@@ -1,74 +1,12 @@
-import {Link, graphql} from 'gatsby'
-import {Page, Card, Section} from '~/components'
+import {graphql} from 'gatsby'
+import {Page, Card, CTA, Section} from '~/components'
 import * as thumbnails from '~/assets/images/view-more'
 import {ORANGE, mq} from '~/constants'
 import {mapNodeToProps} from '~/utilities'
+import {FaArrowCircleRight} from 'react-icons/fa'
+import {IoMdPeople, IoIosCalendar, IoIosJournal} from 'react-icons/io'
 
 export const pageQuery = graphql`
-  fragment Banner on File {
-    childImageSharp {
-      fluid(maxWidth: 500, maxHeight: 309) {
-        ...GatsbyImageSharpFluid
-      }
-    }
-  }
-
-  fragment Avatar on File {
-    childImageSharp {
-      fixed(width: 40, height: 40) {
-        ...GatsbyImageSharpFixed
-      }
-    }
-  }
-
-  fragment PostOrEvent on MarkdownRemark {
-    fields {
-      key
-      slug
-      date(formatString: "MMMM D")
-    }
-    frontmatter {
-      href
-      title
-      description
-      state
-      city
-      location
-      banner {
-        ...Banner
-      }
-      avatar {
-        ...Avatar
-      }
-      authors {
-        fields {
-          slug
-        }
-        frontmatter {
-          name
-          avatar {
-            ...Avatar
-          }
-          github
-          twitter
-        }
-      }
-      organizers {
-        fields {
-          slug
-        }
-        frontmatter {
-          name
-          avatar {
-            ...Avatar
-          }
-          github
-          twitter
-        }
-      }
-    }
-  }
-
   query pageQuery($currentDate: Date) {
     events: allMarkdownRemark(
       filter: {fields: {category: {eq: "events"}, date: {gt: $currentDate}}}
@@ -106,24 +44,11 @@ export const pageQuery = graphql`
 
     contributors: allMarkdownRemark(
       filter: {fields: {category: {eq: "contributors"}}}
-      limit: 7
+      limit: 3
     ) {
       edges {
         node {
-          fields {
-            key
-            slug
-          }
-          frontmatter {
-            avatar {
-              ...Avatar
-            }
-            name
-            bio
-            github
-            twitter
-            website
-          }
+          ...Contributor
         }
       }
     }
@@ -152,12 +77,8 @@ export default ({
         backgroundColor: ORANGE,
         heading: 'AWS Amplify Community',
         subheading: `Let's make cool things together!`,
-        cta: (
-          <Link className='actionable tile button' to='/participate'>
-            share your project, writing, event, misc.
-          </Link>
-        ),
       }}
+      cta={<CTA />}
     >
       <Section
         heading='New Posts'
@@ -170,6 +91,8 @@ export default ({
           heading: 'View All Posts',
           subheading: `${postsCount} posts & counting`,
           to: '/posts',
+          top: <IoIosJournal size={50} />,
+          bottom: <FaArrowCircleRight size={25} />,
         }}
         data={posts}
         mapping={mapNodeToProps}
@@ -191,13 +114,13 @@ export default ({
           heading: 'View All Events',
           subheading: `${upcomingEventsCount} upcoming events`,
           to: '/events',
+          right: <FaArrowCircleRight size={25} />,
         }}
         data={events}
         mapping={mapNodeToProps}
         Template={Card.Event}
         columnCountByMediaQuery={{
           [mq.tablet]: 3,
-          [mq.monitor]: 6,
         }}
       />
 
@@ -212,6 +135,8 @@ export default ({
           heading: 'Browse The Community',
           subheading: `${contributorsCount} AWSome Amplifiers`,
           to: '/contributors',
+          top: <IoMdPeople size={60} />,
+          bottom: <FaArrowCircleRight size={25} />,
         }}
         data={contributors}
         mapping={mapNodeToProps}
@@ -219,7 +144,6 @@ export default ({
         columnCountByMediaQuery={{
           [mq.tablet]: 2,
           [mq.desktop]: 4,
-          [mq.monitor]: 8,
         }}
       />
     </Page>

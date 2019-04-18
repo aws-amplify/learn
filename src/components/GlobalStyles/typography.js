@@ -1,10 +1,13 @@
 import {css} from '@emotion/core'
-import {LIGHT_BLUE, MEDIUM_BLUE, DARK_GRAY, MEDIUM_GRAY} from '~/constants'
+import {LIGHT_BLUE} from '~/constants'
 
 export default css`
   a {
     text-decoration: none;
     color: ${LIGHT_BLUE};
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
 
     &:hover {
       text-decoration: underline;
@@ -12,40 +15,50 @@ export default css`
   }
 
   h1 {
-    font-size: 2.5rem;
-    line-height: 3.75rem;
+    font-size: 42px;
+    line-height: 53px;
+    font-weight: 200;
   }
 
   h2 {
-    font-size: 1.5rem;
-    line-height: 2.25rem;
+    font-size: 28px;
+    line-height: 35px;
+    font-weight: 300;
   }
 
   h3 {
-    font-size: 1.375rem;
-    line-height: 2.0625rem;
+    font-size: 22px;
+    line-height: 27px;
+    font-weight: 300;
   }
 
   h4 {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-    color: ${MEDIUM_BLUE};
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 300;
   }
 
   h5 {
-    font-size: 1.125rem;
-    line-height: 1.6875rem;
-    color: ${DARK_GRAY};
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 300;
   }
 
   h6 {
-    font-size: 0.875rem;
-    line-height: 1.3125rem;
-    color: ${MEDIUM_GRAY};
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 100;
   }
 
   span {
-    font-size: 1rem;
-    color: ${DARK_GRAY};
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 300;
   }
 `

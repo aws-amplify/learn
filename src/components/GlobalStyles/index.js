@@ -12,8 +12,10 @@ const styles = css`
 
   body,
   html {
-    font-family: Ember;
-    font-weight: thinner;
+    font-family: Amazon Ember;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 300;
     
     font-size: 16px;
     line-height: 24px;
@@ -30,6 +32,7 @@ const styles = css`
     appearance: none;
     text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    
   }
 
   &:focus {
@@ -77,7 +80,11 @@ const styles = css`
 
   .button {
     display: flex;
-    padding: 8px 12px;
+    padding: 10px 12px 12px 12px;
+  }
+
+  button {
+    cursor: pointer;
   }
 `
 

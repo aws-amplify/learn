@@ -18,10 +18,11 @@ import whiteLogoSrc from '~/assets/images/logo-white.svg'
 import orangeLogoSrc from '~/assets/images/logo.png'
 import useWindowScroll from 'react-use/lib/useWindowScroll'
 import {useMemo} from 'react'
+import {ORANGE} from '~/constants'
 
 const ghostStylesWithoutBackground = css`
   width: 100%;
-  height: 55px;
+  height: 75px;
 `
 
 const navStylesWithoutBackground = css`
@@ -30,18 +31,18 @@ const navStylesWithoutBackground = css`
   right: 0px;
   left: 0px;
   display: flex;
-  height: 55px;
+  height: 75px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s ease;
-  padding: 8px;
+  padding: 0px 12.5px;
   z-index: 10000;
   backdrop-filter: blur(10px);
 
   a {
     color: #fff;
-    margin: 8px;
+    margin: 0px 12.5px;
 
     &.active {
       text-decoration: underline;
@@ -75,6 +76,10 @@ const navStylesWithoutBackground = css`
       color: #000;
     }
 
+    .landing-link {
+      color: ${ORANGE};
+    }
+
     .white {
       display: none;
     }
@@ -90,13 +95,12 @@ const heroStylesWithoutBackground = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 40px 120px 40px;
+  padding: 80px 0px 100px 40px;
   color: #fff;
   text-align: center;
 
   h3 {
     display: flex;
-    padding-top: 8px;
   }
 
   .cta {

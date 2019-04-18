@@ -2,6 +2,7 @@
 title: Six
 description: 'Description goes here.'
 banner: './banner.jpg'
+href: https://medium.com/@kyle.robert.gill/ridiculously-easy-image-optimization-with-gatsby-js-59d48e15db6e
 authors:
   - eminem
   - j-cole

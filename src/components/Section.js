@@ -1,10 +1,11 @@
 import {Link} from 'gatsby'
 import {css} from '@emotion/core'
+import {SECTION_MAX_WIDTH, ORANGE, MEDIUM_GRAY} from '~/constants'
 
 const stylesWithoutGrid = css`
   display: flex;
   flex-direction: column;
-  max-width: 1600px;
+  max-width: ${SECTION_MAX_WIDTH};
   margin: 0px auto;
 
   > .heading {
@@ -37,17 +38,42 @@ const stylesWithoutGrid = css`
 
       > div {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex: 1;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: rgba(255, 255, 255, 0.875);
         backdrop-filter: blur(5px);
         padding: 16px;
       }
     }
 
+    h4 {
+      font-weight: 400;
+      font-size: 18px;
+      color: ${ORANGE};
+    }
+
     h5 {
+      margin-top: 8px;
+      color: ${MEDIUM_GRAY};
+    }
+
+    svg {
+      color: ${ORANGE};
+    }
+
+    .top {
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .bottom {
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
+
+    .right {
       margin-top: 8px;
     }
   }
@@ -70,8 +96,6 @@ export default ({
       }
     `,
   )
-
-  console.log('the data', data)
 
   const styles = css`
     ${stylesWithoutGrid}
@@ -96,7 +120,7 @@ export default ({
 
         {action && (
           <Link className='actionable tile button' to={action.to}>
-            <span>{`${action.text} `}</span>
+            <h4>{`${action.text} `}</h4>
           </Link>
         )}
       </div>
@@ -110,8 +134,14 @@ export default ({
           <Link to={more.to} className='actionable tile view-more'>
             <div style={{backgroundImage: `url(${more.background})`}}>
               <div>
-                {more.heading && <h4>{more.heading}</h4>}
-                {more.subheading && <h5>{more.subheading}</h5>}
+                <div className='left' />
+                <div>
+                  {more.top && <div className='top'>{more.top}</div>}
+                  {more.heading && <h4>{more.heading}</h4>}
+                  {more.subheading && <h5>{more.subheading}</h5>}
+                  {more.bottom && <div className='bottom'>{more.bottom}</div>}
+                </div>
+                <div className='right'>{more.right}</div>
               </div>
             </div>
           </Link>

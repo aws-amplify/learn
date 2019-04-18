@@ -12,5 +12,5 @@ export default Template => ({href, to, disabled, ...rest}) => {
     [disabled, to, href],
   )
 
-  return <Template {...{Container}} {...rest} />
+  return <Template {...{Container, href, to, disabled}} {...rest} />
 }

@@ -6,49 +6,49 @@ export default css`
   ${[
     {
       uri: Th,
-      weight: 'thin',
+      weight: '100',
       style: 'normal',
     },
     {
       uri: ThIt,
-      weight: 'thin',
+      weight: '100',
       style: 'italic',
     },
     {
       uri: Lt,
-      weight: 'lighter',
+      weight: '200',
       style: 'normal',
     },
     {
       uri: LtIt,
-      weight: 'lighter',
+      weight: '200',
       style: 'italic',
     },
     {
       uri: Rg,
-      weight: 'normal',
+      weight: '300',
       style: 'normal',
     },
     {
       uri: RgIt,
-      weight: 'normal',
+      weight: '300',
       style: 'italic',
     },
     {
       uri: Bd,
-      weight: 'bold',
+      weight: '400',
       style: 'normal',
     },
     {
       uri: BdIt,
-      weight: 'bold',
+      weight: '400',
       style: 'italic',
     },
   ]
     .map(
       ({uri, style, weight}) => `
         @font-face {
-          font-family: Ember;
+          font-family: Amazon Ember;
           src: url(${uri});
           font-style: ${style};
           font-weight: ${weight};

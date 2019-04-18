@@ -4,6 +4,7 @@ import asCard from './asCard'
 import ExternalLink from '../ExternalLink'
 import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io'
 import {useMemo} from 'react'
+import {MEDIUM_GRAY} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -22,16 +23,24 @@ const styles = css`
     width: 100%;
 
     .gatsby-image-wrapper {
+      display: flex;
+      width: 80px !important;
+      height: 80px !important;
       border-radius: 50%;
       overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
 
     h4 {
       margin-top: 16px;
+      color: #000;
     }
 
     h5 {
+      margin-top: 16px;
       text-align: center;
+      color: ${MEDIUM_GRAY};
     }
   }
 
@@ -67,7 +76,7 @@ export default asCard(
     )
 
     return (
-      <div css={styles} className='tile'>
+      <div css={styles} className='actionable tile'>
         <Container>
           {avatar ? <Img {...avatar} /> : '[backup image]'}
           {name && <h4 className='name'>{name}</h4>}

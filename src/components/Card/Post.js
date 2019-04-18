@@ -21,12 +21,17 @@ const styles = css`
     flex: 1;
     padding: 16px;
 
+    h5 {
+      margin-top: 16px;
+      font-weight: 200;
+    }
+
     > .author {
       display: flex;
       flex: 1;
       flex-direction: row;
       justify-content: flex-end;
-      align-items: center;
+      align-items: flex-end;
       margin-top: 16px;
 
       > .text {
@@ -37,8 +42,12 @@ const styles = css`
         margin-right: 8px;
       }
 
-      img {
+      .gatsby-image-wrapper {
         border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #fff;
+        width: 60px !important;
+        height: 60px !important;
       }
     }
   }
@@ -54,11 +63,11 @@ export default asCard(({Container, authors, title, description}) => {
       <div>
         <Container>
           <h3>{title}</h3>
-          <p>{description}</p>
+          <h5>{description}</h5>
         </Container>
         <Link {...{to}} className='author'>
           <div className='text'>
-            <h6>{name}</h6>
+            <h5>{name}</h5>
             <h6>{`@${handle}`}</h6>
           </div>
           <Img {...avatar} />

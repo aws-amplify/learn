@@ -84,7 +84,12 @@ const styles = css`
     height: 57px;
     cursor: pointer;
     background-color: ${ORANGE};
-    border-color: #fff;
+    overflow: none;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
 
     ${mq.tablet} {
       display: none;

@@ -21,3 +21,9 @@ export const DARK_GRAY = '#828282'
 export const MEDIUM_GRAY = '#a2a2a2'
 export const LIGHT_GRAY = '#e1e4ea'
 export const LIGHTER_GRAY = '#f2f2f2'
+
+export const TWITTER_BLUE = '#4199d4'
+export const GITHUB_GRAY = '#333'
+export const YOUTUBE_RED = '#c4302b'
+
+export const SECTION_MAX_WIDTH = '1600px'
