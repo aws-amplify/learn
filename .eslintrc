@@ -1,0 +1,45 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "impliedStrict": true,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "block-scoped-var": "off",
+    "camelcase": "off",
+    "comma-dangle": ["error", "only-multiline"],
+    "func-names": "off",
+    "global-require": "off",
+    "jsx-a11y/heading-has-content": "off",
+    "import/newline-after-import": "off",
+    "import/no-dynamic-require": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "import/order": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "no-console": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-restricted-syntax": "off",
+    "no-unused-expressions": "off",
+    "no-var": "off",
+    "object-shorthand": "off",
+    "react/jsx-filename-extension": "off",
+    "react/no-children-prop": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
+}

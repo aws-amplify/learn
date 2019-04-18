@@ -1,0 +1,38 @@
+# editor
+.vscode
+
+# env vars
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# system
+.DS_Store
+.cache
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# testing
+.nyc_output
+coverage
+actual.js
+
+# production
+lib
+build
+public

@@ -1,0 +1,15 @@
+{
+  "presets": ["gatsby"],
+  "plugins": [
+    "react-require",
+    [
+      "module-resolver",
+      {
+        "root": ".",
+        "alias": {
+          "~": "./src"
+        }
+      }
+    ]
+  ]
+}
