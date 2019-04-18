@@ -52,10 +52,10 @@ const styles = css`
       > div {
         padding: 8px;
         background-color: #fff;
+        border-radius: 4px;
 
         ${mq.tablet} {
           border-width: 0px;
-          border-radius: 0px;
         }
       }
     }

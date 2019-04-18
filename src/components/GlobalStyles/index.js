@@ -68,7 +68,7 @@ const styles = css`
     background-color: rgba(255, 255, 255, .9);
     box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
     border-radius: 4px;
-    overflow-x: hidden;
+    ${'' /* overflow: hidden; */}
 
     &:hover, *:hover {
       text-decoration: none;

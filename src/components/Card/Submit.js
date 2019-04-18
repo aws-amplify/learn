@@ -15,7 +15,7 @@ const styles = css`
   }
 
   > a {
-    margin-top: 8px;
+    margin-top: 16px;
     background-color: ${ORANGE};
   }
 `
@@ -25,7 +25,7 @@ export default ({heading, subheading, action}) => {
     <div css={styles} className='tile'>
       <h3>{heading}</h3>
       <h5>{subheading}</h5>
-      <Link className='actionable button' {...action} />
+      <Link className='actionable tile button' {...action} />
     </div>
   )
 }

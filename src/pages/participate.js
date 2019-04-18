@@ -38,8 +38,7 @@ export default () => {
         ]}
         Template={Card.Submit}
         columnCountByMediaQuery={{
-          [mq.tablet]: 1,
-          [mq.desktop]: 3,
+          [mq.tablet]: 3,
         }}
       />
     </Page>

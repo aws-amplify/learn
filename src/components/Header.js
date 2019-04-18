@@ -90,7 +90,7 @@ const heroStylesWithoutBackground = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 40px;
+  padding: 80px 40px 120px 40px;
   color: #fff;
   text-align: center;
 
@@ -146,11 +146,13 @@ export default ({heading, subheading, cta, backgroundColor}) => {
         </div>
       </nav>
 
-      <div css={heroStyles}>
-        <h1>{heading}</h1>
-        <h3>{subheading}</h3>
-        <div className='cta'>{cta}</div>
-      </div>
+      {hasHero && (
+        <div css={heroStyles}>
+          <h1>{heading}</h1>
+          <h3>{subheading}</h3>
+          <div className='cta'>{cta}</div>
+        </div>
+      )}
     </>
   )
 }
