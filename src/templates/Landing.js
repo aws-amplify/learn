@@ -4,7 +4,7 @@ import * as thumbnails from '~/assets/images/view-more'
 import {ORANGE, LIGHTER_BLUE, mq} from '~/constants'
 import {mapNodeToProps} from '~/utilities'
 import {FaArrowCircleRight} from 'react-icons/fa'
-import {IoMdPeople, IoIosCalendar, IoIosJournal} from 'react-icons/io'
+import {IoMdPeople, IoIosJournal} from 'react-icons/io'
 import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
@@ -16,7 +16,12 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          ...PostOrEvent
+          ...Event
+          frontmatter {
+            avatar {
+              ...AvatarSmall
+            }
+          }
         }
       }
     }
@@ -34,7 +39,16 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          ...PostOrEvent
+          ...Post
+          frontmatter {
+            authors {
+              frontmatter {
+                avatar {
+                  ...AvatarMedium
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -50,6 +64,11 @@ export const pageQuery = graphql`
       edges {
         node {
           ...Contributor
+          frontmatter {
+            avatar {
+              ...AvatarLarge
+            }
+          }
         }
       }
     }
@@ -72,6 +91,8 @@ export default ({
     contributorsCount: {totalCount: contributorsCount},
   },
 }) => {
+  console.log(events)
+
   return (
     <Page
       hero={{

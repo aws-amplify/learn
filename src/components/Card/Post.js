@@ -16,13 +16,12 @@ const styles = css`
     flex: 1;
     padding: 32px;
 
-    h5 {
-      margin-top: 24px;
-      font-weight: 300;
+    h4 {
+      margin-top: 16px;
     }
 
     h6 {
-      font-weight: 200;
+      font-weight: 300;
     }
 
     > .author {
@@ -50,8 +49,6 @@ const styles = css`
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #fff;
-        width: 60px !important;
-        height: 60px !important;
       }
     }
   }
@@ -68,7 +65,7 @@ export default asCard(
         <div>
           <Container>
             <h3>{title}</h3>
-            <h5>{description}</h5>
+            <h4>{description}</h4>
           </Container>
           <Link {...{to}} className='author'>
             <div className='text'>

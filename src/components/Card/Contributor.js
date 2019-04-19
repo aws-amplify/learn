@@ -24,8 +24,6 @@ const styles = css`
 
     .gatsby-image-wrapper {
       display: flex;
-      width: 80px !important;
-      height: 80px !important;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid #fff;

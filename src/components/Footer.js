@@ -32,7 +32,7 @@ const styles = css`
   .weekly {
     max-width: 800px;
     margin: 0px auto;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f5f5f5;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -56,15 +56,12 @@ const styles = css`
     .description {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
     }
 
     h4 {
       font-weight: 400;
-    }
-
-    h5 {
-      text-align: left;
+      margin-bottom: 8px;
     }
 
     .input {
@@ -121,10 +118,10 @@ const styles = css`
         flex-direction: row;
       }
 
-      h6 {
-        max-width: 400px;
+      h5 {
         color: ${MEDIUM_GRAY};
         line-height: 24px;
+        margin: 0px 5%;
       }
 
       img {
@@ -132,6 +129,11 @@ const styles = css`
       }
 
       .links {
+        margin-top: 24px;
+        ${mq.desktop} {
+          margin-top: 0px;
+        }
+
         a {
           margin: 16px;
           color: ${MEDIUM_GRAY};
@@ -172,10 +174,10 @@ export default () => (
     <div className='copyright-and-links'>
       <div>
         <img src={awsSrc} alt='aws' />
-        <h6 className='copyright'>
+        <h5 className='copyright'>
           Amplify Framework is supported by Amazon Web Services © 2018, Amazon
           Web Services, Inc. or its affiliates. All rights reserved.
-        </h6>
+        </h5>
         <div className='links'>
           {[
             {

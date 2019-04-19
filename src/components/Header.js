@@ -1,16 +1,3 @@
-// hero={{
-//   styles: `
-//     background-color: ${ORANGE};
-//   `,
-//   heading: 'AWS Amplify Community',
-//   subheading: `Let's make cool things together!`,
-//   cta: (
-//     <Link to='/participate'>
-//       share your project, writing, event, misc.
-//     </Link>
-//   ),
-// }}
-
 import {css} from '@emotion/core'
 import {Link} from 'gatsby'
 // get consistent format for logos
@@ -107,7 +94,7 @@ const heroStylesWithoutBackground = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px 0px 85px 40px;
+  padding: 50px 40px 85px 40px;
   color: #fff;
   text-align: center;
 

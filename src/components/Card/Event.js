@@ -13,10 +13,10 @@ const styles = css`
     flex: 1;
     flex-direction: column;
     text-align: right;
+    justify-content: center;
 
     > div {
       display: flex;
-      flex: 1;
       flex-direction: row;
       align-items: center;
       padding: 24px;
@@ -32,12 +32,11 @@ const styles = css`
         font-size: 14px;
       }
 
-      > .gatsby-image-wrapper {
+      .gatsby-image-wrapper {
+        flex-shrink: 0;
         border: 1px solid #e9e9e9;
         border-radius: 50%;
         overflow: hidden;
-        width: 45px !important;
-        height: 45px !important;
         margin-right: 24px;
       }
     }
