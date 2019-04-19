@@ -114,7 +114,15 @@ const styles = css`
   }
 `
 
-const List = ({menu, data, shouldDisplay, mapping = e => e, Template}) => {
+const List = ({
+  menu,
+  data,
+  shouldDisplay,
+  mapping = e => e,
+  Template,
+  containerStyles: passedStyles = null,
+  templateContainerStyles: containerStyles = null,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false)
   // eslint-disable-next-line
   useEffect(() => setMenuOpen(window.innerHeight >= mq.tablet), [])
@@ -127,7 +135,7 @@ const List = ({menu, data, shouldDisplay, mapping = e => e, Template}) => {
   )
 
   return (
-    <div css={styles} {...{ref}}>
+    <div css={[styles, passedStyles]} {...{ref}}>
       {menu && (
         <div className={`menu ${menuOpen ? 'opened' : 'closed'}`}>
           <div>
@@ -141,7 +149,7 @@ const List = ({menu, data, shouldDisplay, mapping = e => e, Template}) => {
           return (
             (!shouldDisplay || shouldDisplay(e.node)) && (
               <div>
-                <Template {...mapping(e)} {...{size}} />
+                <Template {...mapping(e)} {...{size, containerStyles}} />
               </div>
             )
           )

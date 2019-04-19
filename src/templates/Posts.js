@@ -1,6 +1,7 @@
 import {graphql} from 'gatsby'
 import {Page, List, Card} from '~/components'
 import {mapNodeToProps} from '~/utilities'
+import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
   {
@@ -60,6 +61,9 @@ export default ({
       data={edges}
       mapping={mapNodeToProps}
       Template={Card.Post}
+      templateStyles={css`
+        background-color: #fff;
+      `}
     />
   </Page>
 )

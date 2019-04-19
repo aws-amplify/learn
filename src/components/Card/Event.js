@@ -1,7 +1,7 @@
 import asCard from './asCard'
 import {css} from '@emotion/core'
 import Img from 'gatsby-image'
-import {MEDIUM_GRAY} from '~/constants'
+import {DARK_GRAY} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -16,9 +16,10 @@ const styles = css`
 
     > div {
       display: flex;
+      flex: 1;
       flex-direction: row;
       align-items: center;
-      padding: 16px;
+      padding: 24px;
       text-align: left;
 
       h4 {
@@ -26,8 +27,9 @@ const styles = css`
       }
 
       h5 {
-        margin-top: 4px;
-        color: ${MEDIUM_GRAY};
+        margin-top: 8px;
+        color: ${DARK_GRAY};
+        font-size: 14px;
       }
 
       > .gatsby-image-wrapper {
@@ -36,37 +38,34 @@ const styles = css`
         overflow: hidden;
         width: 45px !important;
         height: 45px !important;
-        margin-right: 8px;
+        margin-right: 24px;
       }
-    }
-
-    > span {
-      text-transform: uppercase;
-      font-weight: bold;
-      color: ${MEDIUM_GRAY};
-      font-size: 15px;
-      padding: 0px 16px 16px 0px;
     }
   }
 `
 
 export default asCard(
-  ({Container, avatar, title, location, city, state, date}) => {
+  ({
+    Container,
+    avatar,
+    title,
+    location,
+    city,
+    state,
+    date,
+    containerStyles,
+  }) => {
     return (
-      <div css={styles} className='actionable tile'>
+      <div css={[styles, containerStyles]} className='actionable tile'>
         <Container>
           <div>
             {avatar && <Img {...avatar} />}
             <div>
               <h4>{title}</h4>
-              <h5>
-                {location}
-                <br />
-                {`(${city}, ${state})`}
-              </h5>
+              <h5>{date}</h5>
+              <h5>{`${location} (${city}, ${state})`}</h5>
             </div>
           </div>
-          <span>{date}</span>
         </Container>
       </div>
     )

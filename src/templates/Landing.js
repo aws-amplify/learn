@@ -1,10 +1,11 @@
 import {graphql} from 'gatsby'
 import {Page, Card, CTA, Section} from '~/components'
 import * as thumbnails from '~/assets/images/view-more'
-import {ORANGE, mq} from '~/constants'
+import {ORANGE, LIGHTER_BLUE, mq} from '~/constants'
 import {mapNodeToProps} from '~/utilities'
 import {FaArrowCircleRight} from 'react-icons/fa'
 import {IoMdPeople, IoIosCalendar, IoIosJournal} from 'react-icons/io'
+import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
   query pageQuery($currentDate: Date) {
@@ -44,7 +45,7 @@ export const pageQuery = graphql`
 
     contributors: allMarkdownRemark(
       filter: {fields: {category: {eq: "contributors"}}}
-      limit: 3
+      limit: 5
     ) {
       edges {
         node {
@@ -81,29 +82,6 @@ export default ({
       cta={<CTA />}
     >
       <Section
-        heading='New Posts'
-        action={{
-          text: 'write a post',
-          to: '/posts',
-        }}
-        more={{
-          background: thumbnails.posts,
-          heading: 'View All Posts',
-          subheading: `${postsCount} posts & counting`,
-          to: '/posts',
-          top: <IoIosJournal size={50} />,
-          bottom: <FaArrowCircleRight size={25} />,
-        }}
-        data={posts}
-        mapping={mapNodeToProps}
-        Template={Card.Post}
-        columnCountByMediaQuery={{
-          [mq.tablet]: 2,
-          [mq.desktop]: 4,
-        }}
-      />
-
-      <Section
         heading='Upcoming Events'
         action={{
           text: 'add your event',
@@ -120,7 +98,36 @@ export default ({
         mapping={mapNodeToProps}
         Template={Card.Event}
         columnCountByMediaQuery={{
-          [mq.tablet]: 3,
+          [mq.desktop]: 3,
+        }}
+      />
+
+      <Section
+        heading='New Posts'
+        action={{
+          text: 'write a post',
+          to: '/posts',
+        }}
+        more={{
+          background: thumbnails.posts,
+          heading: 'View All Posts',
+          subheading: `${postsCount} posts & counting`,
+          to: '/posts',
+          top: <IoIosJournal size={50} />,
+          bottom: <FaArrowCircleRight size={25} />,
+        }}
+        data={posts}
+        mapping={mapNodeToProps}
+        Template={Card.Post}
+        templateContainerStyles={css`
+          background-color: ${LIGHTER_BLUE};
+          * {
+            color: #fff;
+          }
+        `}
+        columnCountByMediaQuery={{
+          [mq.tablet]: 2,
+          [mq.desktop]: 4,
         }}
       />
 
@@ -142,8 +149,8 @@ export default ({
         mapping={mapNodeToProps}
         Template={Card.Contributor}
         columnCountByMediaQuery={{
-          [mq.tablet]: 2,
-          [mq.desktop]: 4,
+          [mq.tablet]: 3,
+          [mq.desktop]: 6,
         }}
       />
     </Page>

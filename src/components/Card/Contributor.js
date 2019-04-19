@@ -12,7 +12,7 @@ const styles = css`
   height: 100%;
   flex-direction: column;
   justify-content: center;
-  padding: 16px;
+  padding: 48px 16px;
   align-items: center;
 
   > .container {
@@ -41,34 +41,55 @@ const styles = css`
       margin-top: 16px;
       text-align: center;
       color: ${MEDIUM_GRAY};
+      max-width: 150px;
     }
   }
 
   > .social-links {
-    margin-top: 16px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     > a {
       padding: 0px 8px;
+
+      > svg {
+        -webkit-filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+      }
     }
   }
 `
 
 export default asCard(
-  ({Container, name, bio, avatar, github, twitter, website}) => {
+  ({
+    Container,
+    name,
+    bio,
+    avatar,
+    github,
+    twitter,
+    website,
+    containerStyles,
+  }) => {
     const deps = [github, twitter, website]
     const showLinks = useMemo(() => !!deps.filter(Boolean).length, deps)
     const links = useMemo(
       () => [
         {
           href: github,
+          size: 25,
           IconTag: IoLogoGithub,
         },
         {
           href: twitter,
+          size: 27,
           IconTag: IoLogoTwitter,
         },
         {
           href: website,
+          size: 25,
           IconTag: IoIosLink,
         },
       ],
@@ -76,7 +97,7 @@ export default asCard(
     )
 
     return (
-      <div css={styles} className='actionable tile'>
+      <div css={[styles, containerStyles]} className='actionable tile'>
         <Container>
           {avatar ? <Img {...avatar} /> : '[backup image]'}
           {name && <h4 className='name'>{name}</h4>}
@@ -85,10 +106,10 @@ export default asCard(
         {showLinks && (
           <div className='social-links'>
             {links.map(
-              ({href, IconTag}) =>
+              ({href, IconTag, size}) =>
                 href && (
                   <ExternalLink {...{href}}>
-                    <IconTag size={20} />
+                    <IconTag {...{size}} />
                   </ExternalLink>
                 ),
             )}

@@ -68,7 +68,7 @@ const styles = css`
     }
 
     .input {
-      width: 90%;
+      width: 87.5%;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125);
       display: flex;
       flex-direction: row;
@@ -84,7 +84,7 @@ const styles = css`
       input {
         display: flex;
         flex: 1;
-        padding: 10px;
+        padding: 15px;
         font-size: 13px;
         font-family: Amazon Ember;
         font-weight: 300;
@@ -98,7 +98,7 @@ const styles = css`
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 5px;
+        padding: 0px 10px;
         background-color: ${ORANGE};
         color: #fff;
       }
@@ -164,7 +164,7 @@ export default () => (
       <div className='input'>
         <input type='email' placeholder='Email Address' />
         <button type='button' onClick={() => console.log('submitting')}>
-          <IoMdArrowForward size={30} />
+          <IoMdArrowForward size={25} />
         </button>
       </div>
     </div>

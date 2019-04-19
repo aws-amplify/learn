@@ -86,6 +86,7 @@ export default ({
   mapping = e => e,
   more,
   Template,
+  templateContainerStyles: containerStyles,
   columnCountByMediaQuery,
 }) => {
   const entries = Object.entries(columnCountByMediaQuery)
@@ -99,7 +100,6 @@ export default ({
 
   const styles = css`
     ${stylesWithoutGrid}
-
     .grid {
       ${mediaQueries}
     }
@@ -127,7 +127,7 @@ export default ({
 
       <div className='grid'>
         {data.map(e => (
-          <Template {...mapping(e)} />
+          <Template {...mapping(e)} {...{containerStyles}} />
         ))}
 
         {more && (

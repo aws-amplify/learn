@@ -1,24 +1,29 @@
 import {Link} from 'gatsby'
 import {css} from '@emotion/core'
-import {ORANGE} from '~/constants'
+import {ORANGE, LIGHT_BLUE, mq} from '~/constants'
 
 export default () => (
-  <Link
-    to='/participate'
+  <div
     css={css`
-      display: block;
-      width: 100%;
+      display: flex;
+      flex: 1;
       background-color: #fff;
-      padding: 26px;
-      text-align: center;
+      padding: 16px;
+      flex-direction: row;
+      justify-content: center;
 
-      b {
-        color: ${ORANGE};
-        padding-right: 5px;
+      .button {
+        background-color: ${ORANGE};
+        color: #fff;
+        margin: 0px auto;
+        text-align: center;
       }
     `}
   >
-    <b>Loving using Amplify?</b>
-    {`Host an event, write a post, submit your project, or share your creations!`}
-  </Link>
+    <div>
+      <Link className='actionable tile button' to='/participate'>
+        <h4>Host an event, write a post, submit your project, ...</h4>
+      </Link>
+    </div>
+  </div>
 )

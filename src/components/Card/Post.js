@@ -9,20 +9,19 @@ const styles = css`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${LIGHTER_BLUE};
-
-  * {
-    color: #fff;
-  }
 
   > div {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 16px;
+    padding: 32px;
 
     h5 {
-      margin-top: 16px;
+      margin-top: 24px;
+      font-weight: 300;
+    }
+
+    h6 {
       font-weight: 200;
     }
 
@@ -32,14 +31,19 @@ const styles = css`
       flex-direction: row;
       justify-content: flex-end;
       align-items: flex-end;
-      margin-top: 16px;
+      margin-top: 24px;
 
       > .text {
         display: flex;
         flex: 1;
         flex-direction: column;
         align-items: flex-end;
-        margin-right: 8px;
+        margin-right: 10px;
+        margin-bottom: 8px;
+
+        > * {
+          line-height: 20px;
+        }
       }
 
       .gatsby-image-wrapper {
@@ -53,26 +57,28 @@ const styles = css`
   }
 `
 
-export default asCard(({Container, authors, title, description}) => {
-  const [firstAuthor] = authors
-  const {to, name, twitter, github, avatar} = firstAuthor
-  const handle = twitter || github
+export default asCard(
+  ({Container, authors, title, description, containerStyles}) => {
+    const [firstAuthor] = authors
+    const {to, name, twitter, github, avatar} = firstAuthor
+    const handle = twitter || github
 
-  return (
-    <div css={styles} className='actionable tile'>
-      <div>
-        <Container>
-          <h3>{title}</h3>
-          <h5>{description}</h5>
-        </Container>
-        <Link {...{to}} className='author'>
-          <div className='text'>
-            <h5>{name}</h5>
-            <h6>{`@${handle}`}</h6>
-          </div>
-          <Img {...avatar} />
-        </Link>
+    return (
+      <div css={[styles, containerStyles]} className='actionable tile'>
+        <div>
+          <Container>
+            <h3>{title}</h3>
+            <h5>{description}</h5>
+          </Container>
+          <Link {...{to}} className='author'>
+            <div className='text'>
+              <h5>{name}</h5>
+              <h6>{`@${handle}`}</h6>
+            </div>
+            <Img {...avatar} />
+          </Link>
+        </div>
       </div>
-    </div>
-  )
-})
+    )
+  },
+)

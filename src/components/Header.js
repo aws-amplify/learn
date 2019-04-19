@@ -18,7 +18,7 @@ import whiteLogoSrc from '~/assets/images/logo-white.svg'
 import orangeLogoSrc from '~/assets/images/logo.png'
 import useWindowScroll from 'react-use/lib/useWindowScroll'
 import {useMemo} from 'react'
-import {ORANGE} from '~/constants'
+import {ORANGE, SECTION_MAX_WIDTH} from '~/constants'
 
 const ghostStylesWithoutBackground = css`
   width: 100%;
@@ -30,43 +30,9 @@ const navStylesWithoutBackground = css`
   top: 0px;
   right: 0px;
   left: 0px;
-  display: flex;
-  height: 75px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.5s ease;
-  padding: 0px 12.5px;
   z-index: 10000;
   backdrop-filter: blur(10px);
-
-  a {
-    color: #fff;
-    margin: 0px 12.5px;
-
-    &.active {
-      text-decoration: underline;
-    }
-  }
-
-  .landing-link {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .white,
-  .orange {
-    width: 25px;
-    height: 20px;
-  }
-
-  .white {
-    display: block;
-  }
-
-  .orange {
-    display: none;
-  }
+  transition: all 0.5s ease;
 
   &.scrolled {
     background-color: rgba(255, 255, 255, 0.9);
@@ -88,6 +54,52 @@ const navStylesWithoutBackground = css`
       display: block;
     }
   }
+
+  > div {
+    display: flex;
+    flex: 1;
+    margin: 0px auto;
+    height: 75px;
+    max-width: ${SECTION_MAX_WIDTH};
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12.5px;
+
+    a {
+      color: #fff;
+      margin: 0px 12.5px;
+      font-weight: 200;
+
+      &.active {
+        text-decoration: underline;
+      }
+    }
+
+    .landing-link {
+      display: flex;
+      flex-direction: row;
+      text-decoration: none;
+      > svg,
+      > img {
+        margin-right: 5px;
+      }
+    }
+
+    .white,
+    .orange {
+      width: 25px;
+      height: 20px;
+    }
+
+    .white {
+      display: block;
+    }
+
+    .orange {
+      display: none;
+    }
+  }
 `
 
 const heroStylesWithoutBackground = css`
@@ -95,11 +107,13 @@ const heroStylesWithoutBackground = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 0px 100px 40px;
+  padding: 50px 0px 85px 40px;
   color: #fff;
   text-align: center;
 
   h3 {
+    line-height: 50px;
+    font-weight: 100;
     display: flex;
   }
 
@@ -109,10 +123,9 @@ const heroStylesWithoutBackground = css`
 `
 
 const linkProps = [
-  {to: '/', children: 'community'},
-  {to: '/posts', children: 'posts'},
-  {to: '/events', children: 'events'},
-  {to: '/participate', children: 'participate'},
+  {to: '/posts', children: 'Posts'},
+  {to: '/events', children: 'Events'},
+  {to: '/participate', children: 'Participate'},
 ]
 
 export default ({heading, subheading, cta, backgroundColor}) => {
@@ -138,15 +151,17 @@ export default ({heading, subheading, cta, backgroundColor}) => {
       <div css={ghostStyles} />
 
       <nav className={navClasses} css={navStyles}>
-        <Link className='landing-link' to='/'>
-          <img src={whiteLogoSrc} alt='logo' className='white' />
-          <img src={orangeLogoSrc} alt='logo' className='orange' />
-          MPLIFY
-        </Link>
         <div>
-          {linkProps.map(props => (
-            <Link {...props} activeClassName='active' />
-          ))}
+          <Link className='landing-link' to='/'>
+            <img src={whiteLogoSrc} alt='logo' className='white' />
+            <img src={orangeLogoSrc} alt='logo' className='orange' />
+            AMPLIFY
+          </Link>
+          <div>
+            {linkProps.map(props => (
+              <Link {...props} activeClassName='active' />
+            ))}
+          </div>
         </div>
       </nav>
 
