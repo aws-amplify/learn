@@ -12,12 +12,12 @@ const styles = css`
   }
 `
 
-export default ({groupName, options, onChange: onAnyChange}) => {
+export default ({heading, options, onChange: onAnyChange}) => {
   const [selectedOptions, setSelectedOptions] = useState([])
 
   return (
     <div css={styles}>
-      {groupName && <h4>{groupName}</h4>}
+      {heading && <h4>{heading}</h4>}
 
       {options.map(option => {
         const onChange = useCallback(

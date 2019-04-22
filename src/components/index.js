@@ -1,11 +1,15 @@
+import * as Button from './Button'
 import * as Card from './Card'
-export {Card}
+import * as Layout from './Layout'
 
-export {default as Header} from './Header'
-export {default as Page} from './Page'
+export {Button, Card, Layout}
+
 export {default as Link} from './Link'
 export {default as ExternalLink} from './ExternalLink'
 export {default as List} from './List'
 export {default as Checkbox} from './Checkbox'
-export {default as Section} from './Section'
 export {default as CTA} from './CTA'
+export {default as MappedList} from './MappedList'
+export {default as Filter} from './Filter'
+export {default as Nav} from './Nav'
+export {default as Hero} from './Hero'

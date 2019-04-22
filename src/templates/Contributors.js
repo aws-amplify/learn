@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby'
-import {Page, List, Card} from '~/components'
+import {Layout, Card} from '~/components'
 
 export const pageQuery = graphql`
   {
@@ -37,8 +37,4 @@ export default ({
   data: {
     allMarkdownRemark: {edges},
   },
-}) => (
-  <Page>
-    <List data={edges} Template={Card.Contributor} />
-  </Page>
-)
+}) => <Layout main={<div>hello!</div>} />

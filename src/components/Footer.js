@@ -10,8 +10,7 @@ import {
   SECTION_MAX_WIDTH,
 } from '~/constants'
 
-import {useState} from 'react'
-import {ExternalLink} from '~/components'
+import ExternalLink from './ExternalLink'
 import {
   IoLogoGithub,
   IoLogoYoutube,

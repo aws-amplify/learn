@@ -4,10 +4,10 @@ import {LIGHT_BLUE} from '~/constants'
 export default css`
   a {
     text-decoration: none;
-    color: ${LIGHT_BLUE};
     font-size: inherit;
     font-weight: inherit;
     font-style: inherit;
+    color: inherit;
 
     &:hover {
       text-decoration: underline;

@@ -27,16 +27,16 @@ const styles = css`
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid #fff;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
     }
 
     h4 {
-      margin-top: 16px;
+      margin-top: 12px;
       color: #000;
     }
 
     h5 {
-      margin-top: 16px;
+      margin-top: 8px;
       text-align: center;
       color: ${MEDIUM_GRAY};
       max-width: 150px;
@@ -44,18 +44,13 @@ const styles = css`
   }
 
   > .social-links {
-    margin-top: 24px;
+    margin-top: 36px;
     display: flex;
     flex-direction: row;
     align-items: center;
 
     > a {
       padding: 0px 8px;
-
-      > svg {
-        -webkit-filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
-        filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
-      }
     }
   }
 `

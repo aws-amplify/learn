@@ -1,4 +1,5 @@
 import {mapObject} from '~/utilities'
+import {css} from '@emotion/core'
 
 const breakpoints = {
   tablet: 600,
@@ -11,6 +12,11 @@ export const mq = mapObject(
   breakpoint => `@media (min-width: ${breakpoint}px)`,
   breakpoints,
 )
+
+export const TABLET_BREAKPOINT = 600
+export const LAPTOP_BREAKPOINT = 768
+export const DESKTOP_BREAKPOINT = 992
+export const MONITOR_BREAKPOINT = 1200
 
 export const ORANGE = '#ff9900'
 export const LIGHTER_BLUE = '#4b6189'
@@ -27,3 +33,10 @@ export const GITHUB_GRAY = '#333'
 export const YOUTUBE_RED = '#c4302b'
 
 export const SECTION_MAX_WIDTH = '1600px'
+
+export const sectionStyles = css`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 0px 16px;
+`

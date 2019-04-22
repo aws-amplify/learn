@@ -1,3 +1,3 @@
-import {Page} from '~/components'
+import {Layout} from '~/components'
 
-export default () => <Page>404</Page>
+export default () => <Layout.Basic>404</Layout.Basic>

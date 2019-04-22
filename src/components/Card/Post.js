@@ -2,7 +2,6 @@ import asCard from './asCard'
 import {css} from '@emotion/core'
 import Img from 'gatsby-image'
 import {Link} from 'gatsby'
-import {LIGHTER_BLUE} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -61,7 +60,7 @@ export default asCard(
     const handle = twitter || github
 
     return (
-      <div css={[styles, containerStyles]} className='actionable tile'>
+      <div css={[styles, containerStyles]} className='item actionable tile'>
         <div>
           <Container>
             <h3>{title}</h3>

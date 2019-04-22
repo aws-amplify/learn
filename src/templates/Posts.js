@@ -1,7 +1,12 @@
 import {graphql} from 'gatsby'
-import {Page, List, Card} from '~/components'
-import {mapNodeToProps} from '~/utilities'
-import {css} from '@emotion/core'
+import {
+  extract,
+  mapNodeToProps,
+  createFilterContextValue,
+  getFilterOptions,
+} from '~/utilities'
+import {filter as filterContext} from '~/contexts'
+import {MappedList, Layout, Card, Filter} from '~/components'
 
 export const pageQuery = graphql`
   {
@@ -11,59 +16,82 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          ...Post
           frontmatter {
-            href
-            title
-            description
-            banner {
-              childImageSharp {
-                fluid(maxWidth: 500, maxHeight: 309) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
             ecosystems
             categories
-            tags
+            banner {
+              ...Banner
+            }
             authors {
               frontmatter {
                 name
                 github
-                twitter
                 avatar {
-                  childImageSharp {
-                    fixed(width: 40, height: 40) {
-                      ...GatsbyImageSharpFixed
-                    }
-                  }
+                  ...AvatarMedium
                 }
               }
             }
           }
-          fields {
-            slug
-          }
-          excerpt
         }
       }
     }
   }
 `
 
-export default ({
-  data: {
-    allMarkdownRemark: {edges},
-  },
-}) => (
-  <Page>
-    <List
-      filters={['ecosystems', 'categories']}
-      data={edges}
-      mapping={mapNodeToProps}
-      Template={Card.Post}
-      templateStyles={css`
-        background-color: #fff;
-      `}
-    />
-  </Page>
-)
+const PLATFORMS_PATH = ['node', 'frontmatter', 'ecosystems']
+const CATEGORIES_PATH = ['node', 'frontmatter', 'categories']
+
+export default props => {
+  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
+
+  const platformOptions = getFilterOptions(PLATFORMS_PATH, edges)
+  const categoryOptions = getFilterOptions(CATEGORIES_PATH, edges)
+
+  const value = createFilterContextValue(
+    {
+      key: 'platforms',
+      path: PLATFORMS_PATH,
+      meetsCriterion: (field, criterion) =>
+        !criterion || criterion.every(c => field.includes(c)),
+    },
+    {
+      key: 'categories',
+      path: CATEGORIES_PATH,
+      meetsCriterion: (field, criterion) =>
+        !criterion || criterion.every(c => field.includes(c)),
+    },
+  )
+
+  const main = (
+    <filterContext.Consumer>
+      {({meetsCriteria}) => (
+        <MappedList
+          noItems={<p>no items to display</p>}
+          data={edges}
+          mapping={mapNodeToProps}
+          keyExtractor={extract.keyFromNode}
+          renderCondition={meetsCriteria}
+          renderItem={p => <Card.Post {...p} />}
+        />
+      )}
+    </filterContext.Consumer>
+  )
+
+  const menu = (
+    <div>
+      <Filter
+        filters={[
+          {key: 'platforms', options: platformOptions},
+          {key: 'categories', options: categoryOptions},
+        ]}
+      />
+    </div>
+  )
+
+  return (
+    <filterContext.Provider {...{value}}>
+      <Layout.SideMenu {...{menu, main}} />
+    </filterContext.Provider>
+  )
+}

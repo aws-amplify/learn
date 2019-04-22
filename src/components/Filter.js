@@ -1,31 +1,37 @@
-import {useCallback} from 'react'
+import {useContext} from 'react'
 import CheckboxGroup from './CheckboxGroup'
-import {getOptions} from '~/utilities'
+import {filter as filterContext} from '~/contexts'
+import {css} from '@emotion/core'
+import {mq} from '~/constants'
 
-export default ({filters, data, selections, setSelections}) => {
-  const options = getOptions(filters, data)
+const styles = css`
+  padding: 16px;
+
+  ${mq.tablet} {
+    padding-right: 0px;
+  }
+
+  > div {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+`
+
+export default ({filters}) => {
+  const {setCriteria} = useContext(filterContext)
 
   return (
-    <div>
-      {filters.map(key => {
-        const onChange = useCallback(
-          selection => {
-            setSelections({
-              ...selections,
-              [key]: selection,
-            })
-          },
-          [selections, key],
-        )
-
-        return (
+    <div css={styles}>
+      <div>
+        {filters.map(({key, options}) => (
           <CheckboxGroup
-            groupName={key}
-            options={options[key]}
-            {...{onChange}}
+            heading={key}
+            options={options}
+            onChange={d => setCriteria({[key]: d})}
           />
-        )
-      })}
+        ))}
+      </div>
     </div>
   )
 }
