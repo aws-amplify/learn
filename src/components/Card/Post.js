@@ -6,13 +6,18 @@ import {Link} from 'gatsby'
 const styles = css`
   display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
 
   > div {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 2;
+
+    &.gatsby-image-wrapper {
+      flex: 1;
+    }
+
     padding: 32px;
 
     h4 {
@@ -54,13 +59,21 @@ const styles = css`
 `
 
 export default asCard(
-  ({ConditionalAnchor, authors, title, description, containerStyles}) => {
+  ({
+    ConditionalAnchor,
+    banner,
+    authors,
+    title,
+    description,
+    containerStyles,
+  }) => {
     const [firstAuthor] = authors
     const {to, name, twitter, github, avatar} = firstAuthor
     const handle = twitter || github
 
     return (
       <div css={[styles, containerStyles]} className='item actionable tile'>
+        {banner && <Img {...banner} />}
         <div>
           <ConditionalAnchor>
             <h3>{title}</h3>

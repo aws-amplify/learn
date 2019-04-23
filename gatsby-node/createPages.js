@@ -3,6 +3,7 @@ const {
   listTemplatePathByCategory,
   pageTemplatePathByCategory,
 } = require('./constants')
+const {map, keys} = require('ramda')
 
 module.exports = async ({graphql, actions: {createPage}}) => {
   const {errors, data} = await graphql(`
@@ -79,12 +80,21 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   const entries = Object.entries(data)
 
   const existenceByTag = {}
-  const existenceByDate = {}
+  // {[slug]: {events: {[date]: true}}}
+  const dateExistenceByCategoryBySlug = {}
+
+  const getSlug = (stringifiedDate, weeksToSubtract) => {
+    const date = new Date(stringifiedDate)
+    if (weeksToSubtract) date.setDate(date.getDate() - 7 * weeksToSubtract)
+    const year = date.getFullYear()
+    const week = date.getMonth() * 4 + Math.floor(date.getDate() / 7)
+    return `newsletters/${year}/${week}`
+  }
 
   entries.forEach(([category, {edges}]) => {
     edges.forEach(({node}) => {
       const {fields, frontmatter = {}} = node
-      const {slug, date} = fields
+      const {date, slug} = fields
       const {tags, href} = frontmatter
 
       // get list of all tags
@@ -93,8 +103,32 @@ module.exports = async ({graphql, actions: {createPage}}) => {
           existenceByTag[tag] = true
         })
 
-      // get list of all dates
-      if (date) existenceByDate[date] = true
+      // CLEAN THIS UP!
+      if (date) {
+        if (category === 'events') {
+          ;[1, 2, 3, 4].forEach(n => {
+            const s = getSlug(date, n)
+            if (!dateExistenceByCategoryBySlug[s]) {
+              dateExistenceByCategoryBySlug[s] = {
+                events: {},
+                posts: {},
+                newsletters: {},
+              }
+            }
+            dateExistenceByCategoryBySlug[s].events[date] = true
+          })
+        } else {
+          const s = getSlug(date)
+          if (!dateExistenceByCategoryBySlug[s]) {
+            dateExistenceByCategoryBySlug[s] = {
+              events: {},
+              posts: {},
+              newsletters: {},
+            }
+          }
+          dateExistenceByCategoryBySlug[s][category][date] = true
+        }
+      }
 
       // create post, event and contributor pages
       // (don't create for externals)
@@ -117,33 +151,16 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   //   }),
   // )
 
-  const getSlug = stringifiedDate => {
-    const date = new Date(stringifiedDate)
-    const year = date.getFullYear()
-    const week = date.getMonth() * 4 + Math.floor(date.getDate() / 7)
-    return `newsletters/${year}/${week}`
-  }
-
-  // get dictionary of dates to be used in newsletter page queries
-  // looks like this: `{[newsletterSlug]: [...postOrEventDates]}`
-  const datesBySlug = Object.keys(existenceByDate).reduce(
-    (accumulator, current) => {
-      const slug = getSlug(current)
-      return {
-        ...accumulator,
-        [slug]: [...(accumulator[slug] || []), current],
-      }
-    },
-    {},
-  )
-
   // create newsletter pages
-  Object.entries(datesBySlug).forEach(([slug, dates]) =>
-    createPage({
-      path: slug,
-      component: templatePaths.newsletter,
-      context: {dates},
-    }),
+  Object.entries(dateExistenceByCategoryBySlug).forEach(
+    ([slug, datesByCategory]) => {
+      const context = map(keys, datesByCategory)
+      createPage({
+        path: slug,
+        component: templatePaths.newsletter,
+        context,
+      })
+    },
   )
 
   // create "list" pages

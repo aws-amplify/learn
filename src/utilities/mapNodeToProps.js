@@ -1,4 +1,4 @@
-import {mapObject} from './helpers'
+import {map} from 'ramda'
 
 const mapNodeToProps = data => {
   const root = data.node || data
@@ -12,8 +12,8 @@ const mapNodeToProps = data => {
     authors = null,
   } = frontmatter
 
-  const images = mapObject(e => e && e.childImageSharp, {banner, avatar})
-  const contributors = mapObject(e => e && e.length && e.map(mapNodeToProps), {
+  const images = map(e => e && e.childImageSharp, {banner, avatar})
+  const contributors = map(e => e && e.length && e.map(mapNodeToProps), {
     organizers,
     authors,
   })
@@ -23,6 +23,7 @@ const mapNodeToProps = data => {
     ...frontmatter,
     ...images,
     ...contributors,
+
     to,
     excerpt,
   }

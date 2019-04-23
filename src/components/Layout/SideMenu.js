@@ -4,6 +4,7 @@ import {mq} from '~/constants'
 import Base from './Base'
 import {ToggleMenu} from '../Button'
 import {layout as layoutContext} from '~/contexts'
+import {StickyContainer, Sticky} from 'react-sticky'
 
 const megaMenuStyles = css`
   position: fixed;
@@ -60,12 +61,19 @@ export default ({header, menu, main}) => {
 
         {header}
 
-        <div className='body'>
+        <StickyContainer className='body'>
           <div>
-            <div className='side menu'>{menu}</div>
+            <Sticky>
+              {({style}) => (
+                <div className='side menu' {...{style}}>
+                  {menu}
+                </div>
+              )}
+            </Sticky>
+            <div className='menu-ghost' />
             <div className='main'>{main}</div>
           </div>
-        </div>
+        </StickyContainer>
 
         <ToggleMenu />
       </layoutContext.Provider>

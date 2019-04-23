@@ -52,10 +52,8 @@ export default ({
   footer,
 }) => {
   const displayHeading = hooks.some([heading, subheading, cta])
-  const [className, children] = useMemo(
-    () => (items && items.length ? ['items', items] : ['no-items', noItems]),
-    [items],
-  )
+  const [className, children] =
+    items && items.length ? ['items', items] : ['no-items', noItems]
 
   const responsiveGridStyles = useMemo(
     () =>

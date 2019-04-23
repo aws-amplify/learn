@@ -1,45 +1,39 @@
 import {graphql} from 'gatsby'
 
 export const pageQuery = graphql`
-  query ContentByDates($dates: [Date!]!) {
-    allMarkdownRemark(filter: {fields: {date: {in: $dates}}}) {
+  query ContentByDates(
+    $events: [Date!]!
+    $posts: [Date!]!
+    $newsletters: [Date!]!
+  ) {
+    events: allMarkdownRemark(
+      filter: {fields: {category: {eq: "events"}, date: {in: $events}}}
+    ) {
       edges {
         node {
-          frontmatter {
-            title
-            description
-            href
-            organizers {
-              frontmatter {
-                name
-                avatar {
-                  childImageSharp {
-                    fixed(width: 40, height: 40) {
-                      ...GatsbyImageSharpFixed
-                    }
-                  }
-                }
-              }
-            }
-            authors {
-              frontmatter {
-                name
-                avatar {
-                  childImageSharp {
-                    fixed(width: 40, height: 40) {
-                      ...GatsbyImageSharpFixed
-                    }
-                  }
-                }
-              }
-            }
-            tags
-            location
-          }
-          fields {
-            date(formatString: "MMMM DD, YYYY")
-          }
-          html
+          ...Post
+        }
+      }
+    }
+
+    posts: allMarkdownRemark(
+      filter: {fields: {category: {eq: "posts"}, date: {in: $posts}}}
+    ) {
+      edges {
+        node {
+          ...Post
+        }
+      }
+    }
+
+    newsletters: allMarkdownRemark(
+      filter: {
+        fields: {category: {eq: "newsletters"}, date: {in: $newsletters}}
+      }
+    ) {
+      edges {
+        node {
+          ...Post
         }
       }
     }
