@@ -12,9 +12,15 @@ const styles = css`
   }
 
   > div {
-    padding: 16px;
     background-color: #fff;
-    border-radius: 5px;
+  }
+
+  .checkbox-group {
+    padding: 16px;
+    border-top: 1px solid #e2e2e2;
+    &:first-child {
+      border-top-width: 0px;
+    }
   }
 `
 

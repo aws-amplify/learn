@@ -6,7 +6,7 @@ authors:
   - eminem
 href: https://github.com
 
-ecosystems:
+platforms:
   - iOS
   - Android
   - React

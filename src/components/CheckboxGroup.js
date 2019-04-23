@@ -7,7 +7,7 @@ const styles = css`
   flex-direction: column;
 
   h4 {
-    padding: 10px 7px 3px 7px;
+    padding: 4px 7px 13px 7px;
     text-transform: capitalize;
   }
 `
@@ -16,7 +16,7 @@ export default ({heading, options, onChange: onAnyChange}) => {
   const [selectedOptions, setSelectedOptions] = useState([])
 
   return (
-    <div css={styles}>
+    <div css={styles} className='checkbox-group'>
       {heading && <h4>{heading}</h4>}
 
       {options.map(option => {

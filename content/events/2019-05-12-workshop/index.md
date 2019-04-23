@@ -18,6 +18,9 @@ tags:
   - collaboration
   - learning
   - tutorial
+platforms:
+  - React
+  - React Native
 ---
 
 # COOL UPCOMING EVENT

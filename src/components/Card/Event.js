@@ -45,7 +45,7 @@ const styles = css`
 
 export default asCard(
   ({
-    Container,
+    ConditionalAnchor,
     avatar,
     title,
     location,
@@ -55,8 +55,8 @@ export default asCard(
     containerStyles,
   }) => {
     return (
-      <div css={[styles, containerStyles]} className='actionable tile'>
-        <Container>
+      <div css={[styles, containerStyles]} className='item actionable tile'>
+        <ConditionalAnchor>
           <div>
             {avatar && <Img {...avatar} />}
             <div>
@@ -65,7 +65,7 @@ export default asCard(
               <h5>{`${location} (${city}, ${state})`}</h5>
             </div>
           </div>
-        </Container>
+        </ConditionalAnchor>
       </div>
     )
   },

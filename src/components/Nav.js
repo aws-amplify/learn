@@ -39,11 +39,11 @@ const baseStyles = css`
 
     > .branding {
       padding: 16px;
+      font-size: 20px;
 
       img {
         width: 25px;
         height: 20px;
-        margin-right: 8px;
       }
     }
 

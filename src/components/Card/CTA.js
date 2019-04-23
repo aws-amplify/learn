@@ -12,31 +12,13 @@ const styles = css`
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    align-items: space-around;
-    padding: 16px;
-
-    > .middle {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
-      > .text {
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
-
-        > h5 {
-          padding-top: 10px;
-        }
-      }
-    }
+    align-items: space-between;
   }
 `
 
 export default asCard(
   ({
-    Container,
+    ConditionalAnchor,
     heading,
     subheading,
     top,
@@ -46,20 +28,43 @@ export default asCard(
     containerStyles,
   }) => (
     <div css={[styles, containerStyles]} className='actionable tile'>
-      <Container>
-        <div>
-          {top !== false && <div className='top'>{top}</div>}
-          <div className='middle'>
-            {left !== false && <div className='left'>{left}</div>}
-            <div className='text'>
+      <ConditionalAnchor>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 16px;
+          `}
+        >
+          {top !== false && <div>{top}</div>}
+          <div
+            css={css`
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+            `}
+          >
+            {left !== false && <div>{left}</div>}
+            <div>
               <h3>{heading}</h3>
               <h5>{subheading}</h5>
             </div>
-            {right !== false && <div className='right'>{right}</div>}
+            {right !== false && (
+              <div
+                css={css`
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                `}
+              >
+                {right}
+              </div>
+            )}
           </div>
         </div>
-        {bottom !== false && <div className='bottom'>{bottom}</div>}
-      </Container>
+        {bottom !== false && <div>{bottom}</div>}
+      </ConditionalAnchor>
     </div>
   ),
 )

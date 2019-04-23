@@ -5,7 +5,7 @@ banner: './banner.jpg'
 authors:
   - j-cole
 
-ecosystems:
+platforms:
   - iOS
   - Android
   - React

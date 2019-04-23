@@ -54,7 +54,7 @@ const styles = css`
 `
 
 export default asCard(
-  ({Container, authors, title, description, containerStyles}) => {
+  ({ConditionalAnchor, authors, title, description, containerStyles}) => {
     const [firstAuthor] = authors
     const {to, name, twitter, github, avatar} = firstAuthor
     const handle = twitter || github
@@ -62,10 +62,10 @@ export default asCard(
     return (
       <div css={[styles, containerStyles]} className='item actionable tile'>
         <div>
-          <Container>
+          <ConditionalAnchor>
             <h3>{title}</h3>
             <h4>{description}</h4>
-          </Container>
+          </ConditionalAnchor>
           <Link {...{to}} className='author'>
             <div className='text'>
               <h5>{name}</h5>

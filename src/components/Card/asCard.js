@@ -1,9 +1,8 @@
 import Link from '../Link'
 import {useCallback, createElement} from 'react'
-import Tile from './Tile'
 
 export default Template => ({href, to, disabled, ...rest}) => {
-  const Container = useCallback(
+  const ConditionalAnchor = useCallback(
     props => {
       const [CTag, cProps] = disabled
         ? ['div', props]
@@ -13,9 +12,5 @@ export default Template => ({href, to, disabled, ...rest}) => {
     [disabled, to, href],
   )
 
-  return (
-    <Tile actionable>
-      <Template {...{Container, href, to, disabled}} {...rest} />
-    </Tile>
-  )
+  return <Template {...{ConditionalAnchor, href, to, disabled}} {...rest} />
 }

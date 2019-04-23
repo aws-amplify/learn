@@ -17,6 +17,9 @@ tags:
   - javascript
   - ui
   - facebook
+platforms:
+  - Auth
+  - Storage
 ---
 
 # COOL UPCOMING EVENT

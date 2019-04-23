@@ -5,7 +5,7 @@ banner: './banner.jpg'
 authors:
   - harry
 
-ecosystems:
+platforms:
   - React
 categories:
   - Auth

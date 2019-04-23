@@ -14,7 +14,7 @@ ecosystems:
   - React Native
   - Angular
   - Vue
-categories:
+platforms:
   - Auth
   - Storage
 tags:

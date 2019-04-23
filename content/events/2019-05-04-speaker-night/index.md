@@ -17,6 +17,13 @@ tags:
   - lecture
   - speech
   - promo
+platforms:
+  - iOS
+  - Android
+  - React
+  - React Native
+  - Angular
+  - Vue
 ---
 
 # COOL UPCOMING EVENT

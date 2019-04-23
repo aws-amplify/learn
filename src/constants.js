@@ -1,22 +1,22 @@
-import {mapObject} from '~/utilities'
+import {mapObjIndexed} from 'ramda'
 import {css} from '@emotion/core'
-
-const breakpoints = {
-  tablet: 600,
-  laptop: 768,
-  desktop: 992,
-  monitor: 1200,
-}
-
-export const mq = mapObject(
-  breakpoint => `@media (min-width: ${breakpoint}px)`,
-  breakpoints,
-)
 
 export const TABLET_BREAKPOINT = 600
 export const LAPTOP_BREAKPOINT = 768
 export const DESKTOP_BREAKPOINT = 992
 export const MONITOR_BREAKPOINT = 1200
+
+const breakpoints = {
+  tablet: TABLET_BREAKPOINT,
+  laptop: LAPTOP_BREAKPOINT,
+  desktop: DESKTOP_BREAKPOINT,
+  monitor: MONITOR_BREAKPOINT,
+}
+
+export const mq = mapObjIndexed(
+  breakpoint => `@media (min-width: ${breakpoint}px)`,
+  breakpoints,
+)
 
 export const ORANGE = '#ff9900'
 export const LIGHTER_BLUE = '#4b6189'

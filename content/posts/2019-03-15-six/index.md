@@ -7,7 +7,7 @@ authors:
   - eminem
   - j-cole
 
-ecosystems:
+platforms:
   - React
   - React Native
 categories:

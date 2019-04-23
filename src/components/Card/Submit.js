@@ -20,12 +20,13 @@ const styles = css`
   }
 `
 
-export default ({heading, subheading, action}) => {
+export default ({ConditionalAnchor, heading, subheading}) => {
   return (
     <div css={styles} className='tile'>
-      <h3>{heading}</h3>
-      <h5>{subheading}</h5>
-      <Link className='actionable tile button' {...action} />
+      <ConditionalAnchor>
+        <h3>{heading}</h3>
+        <h5>{subheading}</h5>
+      </ConditionalAnchor>
     </div>
   )
 }

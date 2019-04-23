@@ -16,6 +16,8 @@ tags:
   - hacking
   - creating
   - prize
+platforms:
+  - React
 ---
 
 # COOL UPCOMING EVENT

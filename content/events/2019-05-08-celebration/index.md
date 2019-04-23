@@ -19,6 +19,8 @@ tags:
   - party
   - wild
   - bonkers
+platforms:
+  - iOS
 ---
 
 # COOL UPCOMING EVENT

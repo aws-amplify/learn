@@ -5,7 +5,7 @@ banner: './banner.jpg'
 authors:
   - jony
 
-ecosystems:
+platforms:
   - iOS
 categories:
   - Auth

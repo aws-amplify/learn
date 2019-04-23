@@ -2,7 +2,9 @@ import {graphql} from 'gatsby'
 import {Layout, Card, List, Nav, Hero, Button} from '~/components'
 import {
   TABLET_BREAKPOINT,
+  LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
+  MONITOR_BREAKPOINT,
   LIGHT_BLUE,
   ORANGE,
 } from '~/constants'
@@ -94,7 +96,6 @@ const heroProps = {
       resources
     </h3>
   ),
-  cta: <Button.Medium>Join the community</Button.Medium>,
   backgroundColor: ORANGE,
   textColor: '#fff',
 }
@@ -162,9 +163,11 @@ export default props => {
         subheading: `${upcomingEventsCount} upcoming events`,
         to: '/events',
         left: false,
+        bottom: false,
         right: <FaArrowCircleRight size={24} />,
       },
       columnCountByBreakpoint: {
+        [LAPTOP_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 3,
       },
     },
@@ -206,7 +209,7 @@ export default props => {
       },
       columnCountByBreakpoint: {
         [TABLET_BREAKPOINT]: 3,
-        [DESKTOP_BREAKPOINT]: 6,
+        [MONITOR_BREAKPOINT]: 6,
       },
     },
   ]

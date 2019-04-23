@@ -1,6 +1,7 @@
 import {css} from '@emotion/core'
 
 const styles = css`
+  cursor: pointer;
   appearance: none;
   color: #000;
 `

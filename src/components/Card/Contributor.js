@@ -57,7 +57,7 @@ const styles = css`
 
 export default asCard(
   ({
-    Container,
+    ConditionalAnchor,
     name,
     bio,
     avatar,
@@ -90,12 +90,12 @@ export default asCard(
     )
 
     return (
-      <div css={[styles, containerStyles]} className='actionable tile'>
-        <Container>
+      <div css={[styles, containerStyles]} className='item tile'>
+        <ConditionalAnchor>
           {avatar ? <Img {...avatar} /> : '[backup image]'}
           {name && <h4 className='name'>{name}</h4>}
           {bio && <h5 className='bio'>{bio}</h5>}
-        </Container>
+        </ConditionalAnchor>
         {showLinks && (
           <div className='social-links'>
             {links.map(

@@ -6,7 +6,7 @@ authors:
   - jony
   - kendrick-lamar
 
-ecosystems:
+platforms:
   - iOS
   - Android
 categories:

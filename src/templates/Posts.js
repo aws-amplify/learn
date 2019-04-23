@@ -6,7 +6,7 @@ import {
   getFilterOptions,
 } from '~/utilities'
 import {filter as filterContext} from '~/contexts'
-import {MappedList, Layout, Card, Filter} from '~/components'
+import {MappedList, Layout, Card, Filter, Nav} from '~/components'
 
 export const pageQuery = graphql`
   {
@@ -18,7 +18,7 @@ export const pageQuery = graphql`
         node {
           ...Post
           frontmatter {
-            ecosystems
+            platforms
             categories
             banner {
               ...Banner
@@ -39,11 +39,14 @@ export const pageQuery = graphql`
   }
 `
 
-const PLATFORMS_PATH = ['node', 'frontmatter', 'ecosystems']
+const header = <Nav />
+
+const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms']
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories']
 
 export default props => {
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
+  console.log(edges)
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges)
   const categoryOptions = getFilterOptions(CATEGORIES_PATH, edges)
@@ -79,19 +82,17 @@ export default props => {
   )
 
   const menu = (
-    <div>
-      <Filter
-        filters={[
-          {key: 'platforms', options: platformOptions},
-          {key: 'categories', options: categoryOptions},
-        ]}
-      />
-    </div>
+    <Filter
+      filters={[
+        {key: 'platforms', options: platformOptions},
+        {key: 'categories', options: categoryOptions},
+      ]}
+    />
   )
 
   return (
     <filterContext.Provider {...{value}}>
-      <Layout.SideMenu {...{menu, main}} />
+      <Layout.SideMenu {...{header, menu, main}} />
     </filterContext.Provider>
   )
 }
