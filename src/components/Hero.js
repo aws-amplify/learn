@@ -21,11 +21,11 @@ const styles = css`
 
 // make sure 'color' is inherited
 
-export default ({backgroundColor, textColor, heading, subheading, cta}) => (
+export default ({background, textColor, heading, subheading, cta}) => (
   <div
     css={css`
       ${styles}
-      background-color: ${backgroundColor};
+      background-color: ${background};
       h1, h3 {
         color: ${textColor};
       }

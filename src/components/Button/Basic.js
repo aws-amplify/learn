@@ -19,7 +19,7 @@ const paddingBySize = map(
     `,
   {
     small: `5px`,
-    medium: `10px`,
+    medium: `8px 12px 9px`,
     large: `15px`,
   },
 )

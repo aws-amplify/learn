@@ -90,9 +90,8 @@ export const pageQuery = graphql`
 
 const heroProps = {
   heading: 'AWS Amplify Community',
-  subheading:
-    'A place to share projects, events, articles and other Amplify-related resources',
-  backgroundColor: ORANGE,
+  subheading: 'A place to share projects, events, articles and other resources',
+  background: ORANGE,
   textColor: '#fff',
 }
 
@@ -128,7 +127,7 @@ export default props => {
       key: 'upcomingEventsSection',
       heading: 'Upcoming Events',
       cta: {
-        children: 'submit an event',
+        children: 'Add an Event',
         to: '/events/new',
       },
       nodes: upcomingEventNodes,
@@ -148,7 +147,7 @@ export default props => {
       key: 'latestPostsSection',
       heading: 'Latest Posts',
       cta: {
-        children: 'submit a post',
+        children: 'Add a Post',
         to: '/posts/new',
       },
       nodes: latestPostNodes,
@@ -175,7 +174,7 @@ export default props => {
       key: 'featuredContributorsSection',
       heading: 'Featured Contributors',
       cta: {
-        children: 'become a community member',
+        children: 'Join The Community',
         to: '/participate',
       },
       nodes: featuredContributorNodes,
