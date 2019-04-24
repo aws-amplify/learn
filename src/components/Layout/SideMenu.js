@@ -1,10 +1,11 @@
 import {css} from '@emotion/core'
-import {useState, useCallback} from 'react'
+import {useState, useCallback, useRef} from 'react'
 import {mq} from '~/constants'
 import Base from './Base'
 import {ToggleMenu} from '../Button'
 import {layout as layoutContext} from '~/contexts'
 import {StickyContainer, Sticky} from 'react-sticky'
+import useSize from '@rehooks/component-size'
 
 const megaMenuStyles = css`
   position: fixed;
@@ -46,6 +47,9 @@ const megaMenuStyles = css`
 export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen])
+  const [stuck, setStuck] = useState(false)
+  const ref = useRef(null)
+  const size = useSize(ref)
 
   return (
     <Base>
@@ -61,19 +65,26 @@ export default ({header, menu, main}) => {
 
         {header}
 
-        <StickyContainer className='body'>
+        <div className='body'>
           <div>
             <Sticky>
-              {({style}) => (
-                <div className='side menu' {...{style}}>
-                  {menu}
-                </div>
-              )}
+              {({style: {width, top, ...style}, isSticky}) => {
+                // fine-tune this affix behavior
+                isSticky !== stuck && setStuck(isSticky)
+
+                return (
+                  <div className='side menu' style={{...style, top: '75px'}}>
+                    <div {...{ref}}>{menu}</div>
+                  </div>
+                )
+              }}
             </Sticky>
-            <div className='menu-ghost' />
+            {stuck && (
+              <div className='ghost' style={{display: 'block', ...size}} />
+            )}
             <div className='main'>{main}</div>
           </div>
-        </StickyContainer>
+        </div>
 
         <ToggleMenu />
       </layoutContext.Provider>

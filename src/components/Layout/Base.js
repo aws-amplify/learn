@@ -3,6 +3,7 @@ import {css} from '@emotion/core'
 import Nav from '../Nav'
 import Hero from '../Hero'
 import {mq} from '~/constants'
+import {StickyContainer} from 'react-sticky'
 
 export const style = css`
   display: flex;
@@ -41,6 +42,7 @@ export const style = css`
         flex-direction: column;
         flex: 1;
         z-index: 0;
+        padding: 16px 0px;
       }
     }
   }
@@ -50,7 +52,9 @@ export default ({children}) => {
   return (
     <>
       <GlobalStyles />
-      <div css={style}>{children}</div>
+      <StickyContainer>
+        <div css={style}>{children}</div>
+      </StickyContainer>
     </>
   )
 }

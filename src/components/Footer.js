@@ -137,18 +137,6 @@ const styles = css`
           margin: 16px;
           color: ${MEDIUM_GRAY};
           transition: all 0.25s ease;
-
-          &:hover {
-            &.twitter {
-              color: ${TWITTER_BLUE};
-            }
-            &.github {
-              color: ${GITHUB_GRAY};
-            }
-            &.youtube {
-              color: ${YOUTUBE_RED};
-            }
-          }
         }
       }
     }

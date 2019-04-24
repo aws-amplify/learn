@@ -5,21 +5,17 @@ import logoURI from '~/assets/images/logo-dark.png'
 import useWindowScroll from 'react-use/lib/useWindowScroll'
 import {useMemo} from 'react'
 import {ORANGE, SECTION_MAX_WIDTH} from '~/constants'
-import Sticky from 'react-sticky-el'
+import {Sticky} from 'react-sticky'
 import Color from 'color'
+import {values} from 'ramda'
+import Text from './Text'
 
 const baseStyles = css`
   display: flex;
   flex: 1;
   backdrop-filter: blur(10px);
-  transition: all 0.5s ease;
-
-  &.scrolled {
-    background-color: #fff;
-    * {
-      color: #000;
-    }
-  }
+  transition: box-shadow 0.5s ease, color 0.5s ease, background-color 0.5s ease;
+  z-index: 10000;
 
   > div {
     max-width: 1600px;
@@ -50,7 +46,7 @@ const baseStyles = css`
     > .links {
       padding: 8px;
       > a {
-        margin: 8px 8px 8px 32px;
+        margin: 8px 8px 8px 48px;
       }
     }
   }
@@ -62,24 +58,36 @@ const LINK_PROPS = [
   {to: '/participate', children: 'Participate'},
 ]
 
-export default ({beforeScroll = {}}) => {
-  const {
-    backgroundColor = '#fff',
-    textColor = '#000',
-    logoSrc = logoURI,
-  } = beforeScroll
+const defaults = {
+  backgroundColor: '#fff',
+  textColor: '#000',
+  logoSrc: logoURI,
+}
 
-  console.log(backgroundColor, textColor, logoSrc)
+export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
+  const deps = [...values(b), ...values(a)]
+
+  const beforeScroll = {...defaults, ...b}
+  const afterScroll = {...defaults, ...a}
 
   const dynamicStyles = useMemo(
     () =>
       css`
-        background-color: ${backgroundColor};
-        a {
-          color: ${textColor};
+        background-color: ${beforeScroll.backgroundColor};
+
+        * {
+          color: ${beforeScroll.textColor};
+        }
+
+        &.scrolled {
+          background-color: ${afterScroll.backgroundColor};
+
+          * {
+            color: ${afterScroll.textColor};
+          }
         }
       `,
-    [backgroundColor, textColor],
+    deps,
   )
 
   const {y} = useWindowScroll()
@@ -91,29 +99,36 @@ export default ({beforeScroll = {}}) => {
     ${dynamicStyles}
   `
 
-  return (
-    <Sticky
-      stickyStyle={{zIndex: 1000, boxShadow: '0px 0px 5px rgba(0, 0, 0, .125)'}}
-    >
-      <nav {...{className}} css={styles}>
-        <div>
-          <Link className='branding' to='/'>
-            {scrolled ? (
-              <img src={logoURI} alt='logo' />
-            ) : (
-              <img src={logoSrc} alt='logo' />
-            )}
-            <h4>AMPLIFY</h4>
-          </Link>
+  // <Sticky
+  //     stickyStyle={{zIndex: 1000, boxShadow: '0px 0px 5px rgba(0, 0, 0, .125)'}}
+  //   >
 
-          <div className='links'>
-            {LINK_PROPS.map(props => {
-              const {children: key} = props
-              return <Link {...{key}} {...props} activeClassName='active' />
-            })}
+  return (
+    <Sticky>
+      {({style}) => (
+        <nav {...{className, style}} css={styles}>
+          <div>
+            <Link className='branding' to='/'>
+              {scrolled ? (
+                <img src={afterScroll.logoSrc} alt='logo' />
+              ) : (
+                <img src={beforeScroll.logoSrc} alt='logo' />
+              )}
+              <Text navBranding>AMPLIFY</Text>
+            </Link>
+
+            <div className='links'>
+              {LINK_PROPS.map(({children, ...rest}) => {
+                return (
+                  <Link {...{children}} {...rest} activeClassName='active'>
+                    <Text navLink>{children}</Text>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      )}
     </Sticky>
   )
 }

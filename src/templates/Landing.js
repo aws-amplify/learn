@@ -1,15 +1,14 @@
 import {graphql} from 'gatsby'
-import {Layout, Card, List, Nav, Hero, Button} from '~/components'
+import {Layout, Card, List, Nav, Hero, Button, Text} from '~/components'
 import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
   MONITOR_BREAKPOINT,
-  LIGHT_BLUE,
+  VIOLETTE,
   ORANGE,
 } from '~/constants'
 import {mapNodeToProps, extract} from '~/utilities'
-import {FaArrowCircleRight} from 'react-icons/fa'
 import {IoMdPeople, IoIosJournal} from 'react-icons/io'
 import {css} from '@emotion/core'
 import logoLightURI from '~/assets/images/logo-light.svg'
@@ -89,13 +88,9 @@ export const pageQuery = graphql`
 `
 
 const heroProps = {
-  heading: <h1>AWS Amplify Community</h1>,
-  subheading: (
-    <h3>
-      A place to share projects, events, articles and other Amplify-related
-      resources
-    </h3>
-  ),
+  heading: 'AWS Amplify Community',
+  subheading:
+    'A place to share projects, events, articles and other Amplify-related resources',
   backgroundColor: ORANGE,
   textColor: '#fff',
 }
@@ -127,44 +122,21 @@ export default props => {
     'events',
   ].map(extractCount)
 
-  const containerStyles = css`
-    * {
-      color: ${ORANGE};
-    }
-
-    h5 {
-      color: #868686;
-    }
-
-    .right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  `
-
   const sections = [
     {
       key: 'upcomingEventsSection',
       heading: 'Upcoming Events',
-      subheading: `Meetups & hackathons near you`,
-      cta: <Button.Medium>submit an event</Button.Medium>,
+      cta: {
+        children: 'submit an event',
+        to: '/events/new',
+      },
       nodes: upcomingEventNodes,
       Template: Card.Event,
       more: {
-        containerStyles: css`
-          ${containerStyles}
-          text-align: left;
-          .right {
-            padding-right: 16px;
-          }
-        `,
+        Template: Card.ViewAll.Events,
         heading: 'View All Events',
         subheading: `${upcomingEventsCount} upcoming events`,
         to: '/events',
-        left: false,
-        bottom: false,
-        right: <FaArrowCircleRight size={24} />,
       },
       columnCountByBreakpoint: {
         [LAPTOP_BREAKPOINT]: 2,
@@ -174,38 +146,45 @@ export default props => {
     {
       key: 'latestPostsSection',
       heading: 'Latest Posts',
-      subheading: `Writing about Amplify`,
-      cta: <Button.Medium>submit a post</Button.Medium>,
+      cta: {
+        children: 'submit a post',
+        to: '/posts/new',
+      },
       nodes: latestPostNodes,
       Template: Card.Post,
       more: {
-        containerStyles,
+        Template: Card.ViewAll.PostsOrContributors,
+        graphic: <IoIosJournal size={50} />,
         heading: 'View All Posts',
         subheading: `${postsCount} posts and counting`,
         to: '/posts',
-        top: <IoIosJournal size={50} />,
-        bottom: <FaArrowCircleRight size={24} />,
       },
       columnCountByBreakpoint: {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      cardContainerStyles: {backgroundColor: LIGHT_BLUE},
+      cardContainerStyles: css`
+        background-color: ${VIOLETTE};
+        * {
+          color: #fff;
+        }
+      `,
     },
     {
       key: 'featuredContributorsSection',
       heading: 'Featured Contributors',
-      subheading: `A big thanks to these community members`,
-      cta: <Button.Medium>become a community member</Button.Medium>,
+      cta: {
+        children: 'become a community member',
+        to: '/participate',
+      },
       nodes: featuredContributorNodes,
       Template: Card.Contributor,
       more: {
-        containerStyles,
+        Template: Card.ViewAll.PostsOrContributors,
+        graphic: <IoMdPeople size={60} />,
         heading: 'All Contributors',
         subheading: `See all ${contributorsCount} members of our community`,
         to: '/contributors',
-        top: <IoMdPeople size={60} />,
-        bottom: <FaArrowCircleRight size={24} />,
       },
       columnCountByBreakpoint: {
         [TABLET_BREAKPOINT]: 3,
@@ -217,25 +196,32 @@ export default props => {
   const main = sections.map(
     ({
       heading,
-      subheading,
       key,
+      cta,
       nodes,
       Template,
       more,
       cardContainerStyles,
       ...rest
     }) => {
+      const {Template: ViewAllCard, ...viewAllProps} = more
+
       const items = [
         ...nodes.map(node => {
-          return <Template {...mapNodeToProps(node)} />
+          return (
+            <Template
+              containerStyles={cardContainerStyles}
+              {...mapNodeToProps(node)}
+            />
+          )
         }),
-        <Card.CTA {...more} />,
+        <ViewAllCard {...viewAllProps} />,
       ]
 
       return (
         <List
-          heading={<h3>{heading}</h3>}
-          subheading={<h4>{subheading}</h4>}
+          heading={<Text listHeading>{heading}</Text>}
+          cta={<Button.Basic {...cta} landingListCta />}
           {...{key, items}}
           {...rest}
         />

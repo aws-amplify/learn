@@ -1,4 +1,5 @@
 import {css} from '@emotion/core'
+import Text from './Text'
 
 const styles = css`
   display: flex;
@@ -8,12 +9,6 @@ const styles = css`
   padding: 50px 40px 85px 40px;
   color: #fff;
   text-align: center;
-
-  h3 {
-    line-height: 50px;
-    font-weight: 100;
-    display: flex;
-  }
 
   .cta {
     padding-top: 24px;
@@ -32,8 +27,8 @@ export default ({backgroundColor, textColor, heading, subheading, cta}) => (
       }
     `}
   >
-    <h1>{heading}</h1>
-    <h3>{subheading}</h3>
+    <Text heroHeading>{heading}</Text>
+    <Text heroSubheading>{subheading}</Text>
     <div className='cta'>{cta}</div>
   </div>
 )

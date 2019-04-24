@@ -4,23 +4,25 @@ import asCard from './asCard'
 import ExternalLink from '../ExternalLink'
 import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io'
 import {useMemo} from 'react'
-import {MEDIUM_GRAY} from '~/constants'
+import Text from '../Text'
+import {LIGHTER_BLUE} from '~/constants'
+import {identity, values, mapObjIndexed} from 'ramda'
 
 const styles = css`
   display: flex;
   flex: 1;
   height: 100%;
   flex-direction: column;
-  justify-content: center;
-  padding: 48px 16px;
   align-items: center;
 
   > .container {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 32px;
 
     .gatsby-image-wrapper {
       display: flex;
@@ -30,30 +32,55 @@ const styles = css`
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
     }
 
-    h4 {
+    .contributor-card-name {
       margin-top: 12px;
-      color: #000;
     }
 
-    h5 {
+    .contributor-card-bio {
       margin-top: 8px;
-      text-align: center;
-      color: ${MEDIUM_GRAY};
-      max-width: 150px;
     }
   }
 
-  > .social-links {
-    margin-top: 36px;
+  > .social {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid #eee;
 
     > a {
-      padding: 0px 8px;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      justify-content: center;
+      padding: 16px;
+
+      &:hover {
+        path {
+          color: ${LIGHTER_BLUE};
+        }
+      }
     }
   }
 `
+
+const propsBySite = {
+  github: {
+    getHref: handle => `https://github.com/${handle}`,
+    size: 20,
+    Icon: IoLogoGithub,
+  },
+  twitter: {
+    getHref: handle => `https://twitter.com/${handle}`,
+    size: 20,
+    Icon: IoLogoTwitter,
+  },
+  website: {
+    getHref: identity,
+    size: 20,
+    Icon: IoIosLink,
+  },
+}
 
 export default asCard(
   ({
@@ -66,48 +93,35 @@ export default asCard(
     website,
     containerStyles,
   }) => {
-    const deps = [github, twitter, website]
-    const showLinks = useMemo(() => !!deps.filter(Boolean).length, deps)
+    const social = {github, twitter, website}
+    const deps = values(social)
     const links = useMemo(
-      () => [
-        {
-          href: github,
-          size: 25,
-          IconTag: IoLogoGithub,
-        },
-        {
-          href: twitter,
-          size: 27,
-          IconTag: IoLogoTwitter,
-        },
-        {
-          href: website,
-          size: 25,
-          IconTag: IoIosLink,
-        },
-      ],
-      [showLinks, ...deps],
+      () =>
+        values(
+          mapObjIndexed((v, key) => {
+            const {getHref, Icon, size} = propsBySite[key]
+            const href = v && getHref(v)
+            const className = key
+            return (
+              href && (
+                <ExternalLink {...{href, className}}>
+                  <Icon {...{size}} />
+                </ExternalLink>
+              )
+            )
+          }, social),
+        ),
+      deps,
     )
 
     return (
-      <div css={[styles, containerStyles]} className='item tile'>
+      <div css={[styles, containerStyles]} className='item three-dee tile'>
         <ConditionalAnchor>
           {avatar ? <Img {...avatar} /> : '[backup image]'}
-          {name && <h4 className='name'>{name}</h4>}
-          {bio && <h5 className='bio'>{bio}</h5>}
+          {name && <Text contributorCardName>{name}</Text>}
+          {bio && <Text contributorCardBio='bio'>{bio}</Text>}
         </ConditionalAnchor>
-        {showLinks && (
-          <div className='social-links'>
-            {links.map(
-              ({href, IconTag, size}) =>
-                href && (
-                  <ExternalLink {...{href}}>
-                    <IconTag {...{size}} />
-                  </ExternalLink>
-                ),
-            )}
-          </div>
-        )}
+        {deps.length && <div className='social'>{links}</div>}
       </div>
     )
   },

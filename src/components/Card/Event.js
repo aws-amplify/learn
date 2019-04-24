@@ -1,7 +1,7 @@
 import asCard from './asCard'
 import {css} from '@emotion/core'
 import Img from 'gatsby-image'
-import {DARK_GRAY} from '~/constants'
+import Text from '../Text'
 
 const styles = css`
   display: flex;
@@ -21,16 +21,6 @@ const styles = css`
       align-items: center;
       padding: 24px;
       text-align: left;
-
-      h4 {
-        color: #000;
-      }
-
-      h5 {
-        margin-top: 8px;
-        color: ${DARK_GRAY};
-        font-size: 14px;
-      }
 
       .gatsby-image-wrapper {
         flex-shrink: 0;
@@ -55,14 +45,14 @@ export default asCard(
     containerStyles,
   }) => {
     return (
-      <div css={[styles, containerStyles]} className='item actionable tile'>
+      <div css={[styles, containerStyles]} className='item three-dee tile'>
         <ConditionalAnchor>
           <div>
             {avatar && <Img {...avatar} />}
             <div>
-              <h4>{title}</h4>
-              <h5>{date}</h5>
-              <h5>{`${location} (${city}, ${state})`}</h5>
+              <Text eventCardTitle>{title}</Text>
+              <Text eventCardDetail>{date}</Text>
+              <Text eventCardDetail>{`${location} (${city}, ${state})`}</Text>
             </div>
           </div>
         </ConditionalAnchor>

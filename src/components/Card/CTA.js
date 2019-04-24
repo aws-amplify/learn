@@ -27,7 +27,7 @@ export default asCard(
     left,
     containerStyles,
   }) => (
-    <div css={[styles, containerStyles]} className='actionable tile'>
+    <div css={[styles, containerStyles]} className='three-dee tile'>
       <ConditionalAnchor>
         <div
           css={css`

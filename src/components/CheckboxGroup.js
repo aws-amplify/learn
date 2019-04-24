@@ -5,11 +5,6 @@ import Checkbox from './Checkbox'
 const styles = css`
   display: flex;
   flex-direction: column;
-
-  h4 {
-    padding: 4px 7px 13px 7px;
-    text-transform: capitalize;
-  }
 `
 
 export default ({heading, options, onChange: onAnyChange}) => {

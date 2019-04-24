@@ -2,15 +2,11 @@ import {css, Global} from '@emotion/core'
 
 import reset from './reset'
 import fontFaces from './font-faces'
-import typography from './typography'
-import classes from './classes'
-import {LIGHT_GRAY} from '~/constants'
+import {LIGHT_GRAY, TWITTER_BLUE, GITHUB_GRAY, YOUTUBE_RED} from '~/constants'
 
 const styles = css`
   ${reset}
   ${fontFaces}
-  ${typography}
-  ${classes}
 
   body,
   html {
@@ -24,12 +20,13 @@ const styles = css`
   }
 
   * {
+    color: #000;
     box-sizing: border-box;
     backface-visibility: none;
     appearance: none;
     text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-    
+    text-decoration: none;
   }
 
   &:focus {
@@ -38,6 +35,50 @@ const styles = css`
 
   &::webkit-scrollbar {
     display: none;
+  }
+
+  .social *:hover {
+    &.twitter {
+      color: ${TWITTER_BLUE};
+    }
+    &.github {
+      color: ${GITHUB_GRAY};
+    }
+    &.youtube {
+      color: ${YOUTUBE_RED};
+    }
+  }
+
+  .three-dee {
+    box-shadow: 2px 2px 0 2px hsl(0, 0%, 80%);
+    transition: 0.25s ease all;
+
+    &:hover {
+      box-shadow: 3px 3px 0px 3px hsl(0, 0%, 80%);
+      transform: translate(-1px, -1px);
+    }
+  }
+
+  .shadow {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
+    transition: 0.25s ease all;
+
+    &:hover {
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .three-dee,
+  .shadow {
+    &:active {
+      box-shadow: 0px 0px 0px transparent;
+    }
+  }
+
+  .tile {
+    background-color: #fff;
+    border-width: 0px;
+    border-radius: 4px;
   }
 `
 

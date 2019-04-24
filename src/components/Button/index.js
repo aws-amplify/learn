@@ -1,2 +1,2 @@
 export {default as ToggleMenu} from './ToggleMenu'
-export {Small, Medium, Large} from './sizes'
+export {default as Basic} from './Basic'

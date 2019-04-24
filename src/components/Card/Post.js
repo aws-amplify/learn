@@ -2,12 +2,18 @@ import asCard from './asCard'
 import {css} from '@emotion/core'
 import Img from 'gatsby-image'
 import {Link} from 'gatsby'
+import Text from '../Text'
+import {mq} from '~/constants'
 
 const styles = css`
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+
+  ${mq.laptop} {
+    flex-direction: row;
+  }
 
   > div {
     display: flex;
@@ -19,13 +25,8 @@ const styles = css`
     }
 
     padding: 32px;
-
-    h4 {
+    .post-card-description {
       margin-top: 16px;
-    }
-
-    h6 {
-      font-weight: 300;
     }
 
     > .author {
@@ -43,16 +44,13 @@ const styles = css`
         align-items: flex-end;
         margin-right: 10px;
         margin-bottom: 8px;
-
-        > * {
-          line-height: 20px;
-        }
       }
 
       .gatsby-image-wrapper {
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #fff;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
       }
     }
   }
@@ -72,17 +70,17 @@ export default asCard(
     const handle = twitter || github
 
     return (
-      <div css={[styles, containerStyles]} className='item actionable tile'>
+      <div css={[styles, containerStyles]} className='item three-dee tile'>
         {banner && <Img {...banner} />}
         <div>
           <ConditionalAnchor>
-            <h3>{title}</h3>
-            <h4>{description}</h4>
+            <Text postCardTitle>{title}</Text>
+            <Text postCardDescription>{description}</Text>
           </ConditionalAnchor>
           <Link {...{to}} className='author'>
             <div className='text'>
-              <h5>{name}</h5>
-              <h6>{`@${handle}`}</h6>
+              <Text postCardName>{name}</Text>
+              <Text postCardHandle>{`@${handle}`}</Text>
             </div>
             <Img {...avatar} />
           </Link>

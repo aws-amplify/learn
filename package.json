@@ -18,7 +18,6 @@
     "react-icons": "^3.5.0",
     "react-moment": "^0.8.4",
     "react-sticky": "^6.0.3",
-    "react-sticky-el": "^1.0.20",
     "react-use": "^8.1.2",
     "shortid": "^2.2.14"
   },

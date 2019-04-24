@@ -19,7 +19,8 @@ export const mq = mapObjIndexed(
 )
 
 export const ORANGE = '#ff9900'
-export const LIGHTER_BLUE = '#4b6189'
+export const VIOLETTE = '#4b6189'
+export const LIGHTER_BLUE = '#007bb7'
 export const LIGHT_BLUE = '#31456f'
 export const MEDIUM_BLUE = '#232f3e'
 export const DARK_BLUE = '#1c222d'
