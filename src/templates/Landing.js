@@ -12,6 +12,7 @@ import {mapNodeToProps, extract} from '~/utilities'
 import {IoMdPeople, IoIosJournal} from 'react-icons/io'
 import {css} from '@emotion/core'
 import logoLightURI from '~/assets/images/logo-light.svg'
+import {map} from 'ramda'
 
 export const pageQuery = graphql`
   query pageQuery($currentDate: Date) {
@@ -193,7 +194,7 @@ export default props => {
     },
   ]
 
-  const main = sections.map(
+  const main = map(
     ({
       heading,
       key,
@@ -207,14 +208,15 @@ export default props => {
       const {Template: ViewAllCard, ...viewAllProps} = more
 
       const items = [
-        ...nodes.map(node => {
-          return (
+        ...map(
+          node => (
             <Template
               containerStyles={cardContainerStyles}
               {...mapNodeToProps(node)}
             />
-          )
-        }),
+          ),
+          nodes,
+        ),
         <ViewAllCard {...viewAllProps} />,
       ]
 
@@ -227,6 +229,7 @@ export default props => {
         />
       )
     },
+    sections,
   )
 
   return (

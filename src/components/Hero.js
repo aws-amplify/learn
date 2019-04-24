@@ -10,6 +10,10 @@ const styles = css`
   color: #fff;
   text-align: center;
 
+  .hero-subheading {
+    margin-top: 10px;
+  }
+
   .cta {
     padding-top: 24px;
   }

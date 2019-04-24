@@ -28,7 +28,7 @@ const styleByKey = {
     Tag: 'h1',
     styles: css`
       font-size: 40px;
-      line-height: 60px;
+      line-height: 48px;
       font-weight: 200;
     `,
   },
@@ -37,7 +37,7 @@ const styleByKey = {
     Tag: 'h3',
     styles: css`
       font-size: 22px;
-      line-height: 33px;
+      line-height: 36px;
       font-weight: 100;
     `,
   },

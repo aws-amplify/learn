@@ -2,8 +2,7 @@ import {css} from '@emotion/core'
 import {Link} from 'gatsby'
 // get consistent format for logos
 import logoURI from '~/assets/images/logo-dark.png'
-import useWindowScroll from 'react-use/lib/useWindowScroll'
-import {useMemo} from 'react'
+import {useMemo, useState} from 'react'
 import {ORANGE, SECTION_MAX_WIDTH} from '~/constants'
 import {Sticky} from 'react-sticky'
 import Color from 'color'
@@ -81,6 +80,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
         &.scrolled {
           background-color: ${afterScroll.backgroundColor};
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
 
           * {
             color: ${afterScroll.textColor};
@@ -90,45 +90,42 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
     deps,
   )
 
-  const {y} = useWindowScroll()
-  const scrolled = useMemo(() => y > 0, [y])
-  const className = scrolled ? 'scrolled' : ''
-
   const styles = css`
     ${baseStyles}
     ${dynamicStyles}
   `
 
-  // <Sticky
-  //     stickyStyle={{zIndex: 1000, boxShadow: '0px 0px 5px rgba(0, 0, 0, .125)'}}
-  //   >
-
   return (
     <Sticky>
-      {({style}) => (
-        <nav {...{className, style}} css={styles}>
-          <div>
-            <Link className='branding' to='/'>
-              {scrolled ? (
-                <img src={afterScroll.logoSrc} alt='logo' />
-              ) : (
-                <img src={beforeScroll.logoSrc} alt='logo' />
-              )}
-              <Text navBranding>AMPLIFY</Text>
-            </Link>
+      {({style, distanceFromTop}) => {
+        const scrolled = distanceFromTop < 0
+        const className = scrolled ? 'scrolled' : ''
 
-            <div className='links'>
-              {LINK_PROPS.map(({children, ...rest}) => {
-                return (
-                  <Link {...{children}} {...rest} activeClassName='active'>
-                    <Text navLink>{children}</Text>
-                  </Link>
-                )
-              })}
+        return (
+          <nav {...{className, style}} css={styles}>
+            <div>
+              <Link className='branding' to='/'>
+                {scrolled ? (
+                  <img src={afterScroll.logoSrc} alt='logo' />
+                ) : (
+                  <img src={beforeScroll.logoSrc} alt='logo' />
+                )}
+                <Text navBranding>AMPLIFY</Text>
+              </Link>
+
+              <div className='links'>
+                {LINK_PROPS.map(({children, ...rest}) => {
+                  return (
+                    <Link {...{children}} {...rest} activeClassName='active'>
+                      <Text navLink>{children}</Text>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
-          </div>
-        </nav>
-      )}
+          </nav>
+        )
+      }}
     </Sticky>
   )
 }
