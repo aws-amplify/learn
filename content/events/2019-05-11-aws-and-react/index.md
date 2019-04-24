@@ -3,7 +3,7 @@ title: AWS & React
 description: 'The React team is here, and we love Amplify'
 href: https://www.meetup.com/
 avatar: ./avatar.png
-organizers:
+attendantIds:
   - jony
   - kendrick-lamar
 

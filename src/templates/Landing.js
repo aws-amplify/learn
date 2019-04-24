@@ -15,7 +15,7 @@ import logoLightURI from '~/assets/images/logo-light.svg'
 import {map} from 'ramda'
 
 export const pageQuery = graphql`
-  query pageQuery($currentDate: Date) {
+  query($currentDate: Date) {
     upcomingEvents: allMarkdownRemark(
       filter: {fields: {category: {eq: "events"}, date: {gt: $currentDate}}}
       sort: {fields: [fields___date], order: ASC}
@@ -47,7 +47,7 @@ export const pageQuery = graphql`
       edges {
         node {
           ...Post
-          frontmatter {
+          fields {
             authors {
               frontmatter {
                 avatar {
@@ -107,24 +107,21 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props)
 
-  const [upcomingEventNodes, latestPostNodes, featuredContributorNodes] = [
-    'upcomingEvents',
-    'latestPosts',
-    'featuredContributors',
-  ].map(extractEdges)
+  const [upcomingEventNodes, latestPostNodes, featuredContributorNodes] = map(
+    extractEdges,
+    ['upcomingEvents', 'latestPosts', 'featuredContributors'],
+  )
 
   const extractCount = aliasPrefix =>
     extract.fromPath(['data', `${aliasPrefix}Count`, 'totalCount'], props)
 
-  const [upcomingEventsCount, postsCount, contributorsCount] = [
-    'upcomingEvents',
-    'posts',
-    'events',
-  ].map(extractCount)
+  const [upcomingEventsCount, postsCount, contributorsCount] = map(
+    extractCount,
+    ['upcomingEvents', 'posts', 'events'],
+  )
 
   const sections = [
     {
-      key: 'upcomingEventsSection',
       heading: 'Upcoming Events',
       cta: {
         children: 'Add an Event',
@@ -144,7 +141,6 @@ export default props => {
       },
     },
     {
-      key: 'latestPostsSection',
       heading: 'Latest Posts',
       cta: {
         children: 'Add a Post',
@@ -171,7 +167,6 @@ export default props => {
       `,
     },
     {
-      key: 'featuredContributorsSection',
       heading: 'Featured Contributors',
       cta: {
         children: 'Join The Community',
@@ -221,6 +216,7 @@ export default props => {
 
       return (
         <List
+          key={heading}
           heading={<Text listHeading>{heading}</Text>}
           cta={<Button.Basic {...cta} landingListCta />}
           {...{key, items}}

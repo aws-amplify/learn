@@ -3,7 +3,7 @@ title: Speaker Night
 description: 'Lecture from Jony Ive on why Amplify IS COOL!'
 href: https://www.meetup.com/
 avatar: ./avatar.jpg
-organizers:
+attendantIds:
   - jony
   - harry
 

@@ -5,7 +5,6 @@ import ExternalLink from '../ExternalLink'
 import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io'
 import {useMemo} from 'react'
 import Text from '../Text'
-import {LIGHTER_BLUE} from '~/constants'
 import {identity, values, mapObjIndexed} from 'ramda'
 
 const styles = css`
@@ -14,6 +13,7 @@ const styles = css`
   height: 100%;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 
   > .container {
     display: flex;
@@ -47,6 +47,7 @@ const styles = css`
     justify-content: center;
     width: 100%;
     border-top: 1px solid #eee;
+    background-color: rgb(252, 252, 252);
 
     > a {
       display: flex;
@@ -54,12 +55,6 @@ const styles = css`
       flex-direction: row;
       justify-content: center;
       padding: 16px;
-
-      &:hover {
-        path {
-          color: ${LIGHTER_BLUE};
-        }
-      }
     }
   }
 `
@@ -92,6 +87,7 @@ export default asCard(
     twitter,
     website,
     containerStyles,
+    disabled,
   }) => {
     const social = {github, twitter, website}
     const deps = values(social)

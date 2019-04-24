@@ -3,7 +3,7 @@ title: Celebration
 description: 'Just a bunch of Amplifiers getting together & celebrating!'
 href: https://www.meetup.com/
 avatar: ./avatar.png
-organizers:
+attendantIds:
   - j-cole
   - eminem
   - kendrick-lamar

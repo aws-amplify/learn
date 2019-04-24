@@ -87,7 +87,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     const date = new Date(stringifiedDate)
     if (weeksToSubtract) date.setDate(date.getDate() - 7 * weeksToSubtract)
     const year = date.getFullYear()
-    const week = date.getMonth() * 4 + Math.floor(date.getDate() / 7)
+    const week = date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1
     return `newsletters/${year}/${week}`
   }
 

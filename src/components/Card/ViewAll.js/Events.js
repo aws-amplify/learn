@@ -24,7 +24,7 @@ export default asCard(({ConditionalAnchor, heading, subheading}) => (
       }
 
       .more-events-card-heading,
-      path {
+      svg {
         color: ${ORANGE};
       }
     `}

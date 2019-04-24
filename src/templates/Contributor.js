@@ -1,9 +1,10 @@
 import {graphql} from 'gatsby'
-import {Layout, Card} from '~/components'
+import {Layout, Card, Nav} from '~/components'
 import {mapNodeToProps} from '~/utilities'
+import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
-  query PostByContributor($id: String!) {
+  query($id: String!) {
     contributor: markdownRemark(fields: {id: {eq: $id}}) {
       ...Contributor
       frontmatter {
@@ -15,6 +16,26 @@ export const pageQuery = graphql`
   }
 `
 
+// events: allMarkdownRemark(
+//   filter: {
+//     fields: {category: {eq: "events"}}
+//     frontmatter: {organizers: {frontmatter: {id: {in: $id}}}}
+//   }
+// ) {
+//   edges {
+//     node {
+//       ...Event
+//     }
+//   }
+// }
+
+const styles = css`
+  width: 100%;
+  max-width: 500px;
+  margin: 0px auto;
+  padding: 0px 16px;
+`
+
 export default ({
   data: {
     contributor,
@@ -23,5 +44,11 @@ export default ({
   },
 }) => {
   const props = mapNodeToProps(contributor)
-  return <Layout.Basic main={<Card.Contributor {...props} disabled />} />
+  const main = (
+    <div css={styles}>
+      <Card.Contributor {...props} disabled />
+    </div>
+  )
+
+  return <Layout.Basic header={<Nav />} {...{main}} />
 }

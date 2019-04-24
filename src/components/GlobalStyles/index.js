@@ -37,7 +37,15 @@ const styles = css`
     display: none;
   }
 
-  .social *:hover {
+  svg {
+    color: inherit;
+
+    path {
+      color: inherit;
+    }
+  }
+
+  .social a:hover {
     &.twitter {
       color: ${TWITTER_BLUE};
     }

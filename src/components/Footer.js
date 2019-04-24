@@ -1,172 +1,158 @@
 import {css} from '@emotion/core'
-import {
-  mq,
-  MEDIUM_GRAY,
-  TWITTER_BLUE,
-  GITHUB_GRAY,
-  YOUTUBE_RED,
-  ORANGE,
-  DARK_BLUE,
-  SECTION_MAX_WIDTH,
-} from '~/constants'
-
+import {Link} from 'gatsby'
 import ExternalLink from './ExternalLink'
-import {
-  IoLogoGithub,
-  IoLogoYoutube,
-  IoLogoTwitter,
-  IoMdArrowForward,
-} from 'react-icons/io'
-import awsSrc from '~/assets/images/aws.png'
+import {TiNews} from 'react-icons/ti'
+import Text from './Text'
+import {FaArrowCircleRight} from 'react-icons/fa'
+import {ORANGE, MEDIUM_DARK_BLUE, DARK_GRAY, mq} from '~/constants'
+import {IoLogoGithub, IoLogoTwitter, IoLogoYoutube} from 'react-icons/io'
+import awsLogoSrc from '~/assets/images/aws-logo.png'
+import {map} from 'ramda'
 
 const styles = css`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   background-color: #fff;
 
   > div {
-    max-width: ${SECTION_MAX_WIDTH};
-    margin: 0px auto;
-    padding: 40px 32px;
-  }
-
-  .weekly {
-    max-width: 800px;
-    margin: 0px auto;
-    border-bottom: 1px solid #f5f5f5;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    color: ${DARK_BLUE};
-
-    ${mq.tablet} {
-      flex-direction: row;
-
-      .input {
-        width: 380px;
-      }
-    }
-
-    > * {
-      margin: 16px;
-    }
-
-    .description {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h4 {
-      font-weight: 400;
-      margin-bottom: 8px;
-    }
-
-    .input {
-      width: 87.5%;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125);
-      display: flex;
-      flex-direction: row;
-      border-radius: 4px;
-      overflow: hidden;
-
-      button,
-      input {
-        appearance: none;
-        border-width: 0px;
-      }
-
-      input {
-        display: flex;
-        flex: 1;
-        padding: 15px;
-        font-size: 13px;
-        font-family: Amazon Ember;
-        font-weight: 300;
-
-        &::placeholder {
-          color: ${MEDIUM_GRAY};
-        }
-      }
-
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0px 10px;
-        background-color: ${ORANGE};
-        color: #fff;
-      }
-    }
-  }
-
-  .copyright-and-links {
     display: flex;
     flex: 1;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0px auto;
 
-    > div {
+    > a {
       display: flex;
       flex: 1;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: row;
+      justify-content: center;
       align-items: center;
-      text-align: center;
+      padding: 28px 16px;
 
-      ${mq.desktop} {
+      &:hover {
+        background-color: rgba(250, 250, 250, 1);
+      }
+
+      > * {
+        margin: 0px 4px;
+      }
+
+      > .primary,
+      > svg {
+        color: ${ORANGE};
+      }
+
+      > .secondary {
+        color: ${MEDIUM_DARK_BLUE};
+      }
+    }
+
+    &.upper {
+      direction: row;
+    }
+
+    &.lower {
+      flex-direction: column-reverse;
+      align-items: center;
+      padding: 32px 16px;
+
+      ${mq.tablet} {
         flex-direction: row;
       }
 
-      h5 {
-        color: ${MEDIUM_GRAY};
-        line-height: 24px;
-        margin: 0px 5%;
-      }
+      .copyright {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
 
-      img {
-        margin: 16px;
-      }
-
-      .links {
-        margin-top: 24px;
-        ${mq.desktop} {
-          margin-top: 0px;
+        ${mq.tablet} {
+          flex-direction: column-reverse;
+          align-items: flex-start;
+          text-align: left;
         }
 
-        a {
-          margin: 16px;
-          color: ${MEDIUM_GRAY};
-          transition: all 0.25s ease;
+        > img {
+          width: 75px;
+          margin: 16px 0px;
+        }
+
+        .text {
+          max-width: 360px;
+          color: ${DARK_GRAY};
+        }
+      }
+
+      .social {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        padding: 8px 0px;
+
+        ${mq.tablet} {
+          justify-content: flex-end;
+        }
+
+        > * {
+          margin: 0px 12px;
+          ${mq.tablet} {
+            margin: 0px 0px 0px 24px;
+          }
         }
       }
     }
+  }
+
+  > hr {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 0px;
+    border-width: 0px;
+    background-color: #eee;
   }
 `
 
 export default () => (
-  <div css={styles}>
-    <div className='weekly'>
-      <div className='description'>
-        <h4>Recieve our Newsletter</h4>
-        <h5>stay up-to-date with the latest Amplify news and resources</h5>
-      </div>
-      <div className='input'>
-        <input type='email' placeholder='Email Address' />
-        <button type='button' onClick={() => console.log('submitting')}>
-          <IoMdArrowForward size={25} />
-        </button>
-      </div>
+  <footer css={styles}>
+    <div className='upper'>
+      <Link to='/newsletter'>
+        <TiNews size={24} />
+        <Text footerNewsletterCTA className='secondary'>
+          The latest newsletter is out!
+        </Text>
+        <Text footerNewsletterCTA className='primary'>
+          {' '}
+          Read the latest
+        </Text>
+        <FaArrowCircleRight size={22} />
+      </Link>
     </div>
 
-    <div className='copyright-and-links'>
-      <div>
-        <img src={awsSrc} alt='aws' />
-        <h5 className='copyright'>
+    <hr />
+
+    <div className='lower'>
+      <div className='copyright'>
+        <Text footerCopyright>
           Amplify Framework is supported by Amazon Web Services © 2018, Amazon
           Web Services, Inc. or its affiliates. All rights reserved.
-        </h5>
-        <div className='links'>
-          {[
+        </Text>
+        <img src={awsLogoSrc} alt='aws' />
+      </div>
+
+      <div className='social'>
+        {map(
+          ({Icon, ...linkProps}) => {
+            const {className: key} = linkProps
+            return (
+              <ExternalLink {...{key}} {...linkProps}>
+                <Icon size={42} />
+              </ExternalLink>
+            )
+          },
+          [
             {
               className: 'github',
               href: 'https://github.com/aws-amplify',
@@ -182,13 +168,9 @@ export default () => (
               href: 'https://www.youtube.com/channel/UCd6MoB9NC6uYN2grvUNT-Zg',
               Icon: IoLogoYoutube,
             },
-          ].map(({Icon, ...linkProps}) => (
-            <ExternalLink {...linkProps}>
-              <Icon size={30} />
-            </ExternalLink>
-          ))}
-        </div>
+          ],
+        )}
       </div>
     </div>
-  </div>
+  </footer>
 )

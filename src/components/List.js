@@ -1,6 +1,5 @@
 import {css} from '@emotion/core'
 import {useMemo} from 'react'
-import {hooks} from '~/utilities'
 import {values, mapObjIndexed} from 'ramda'
 
 const styles = css`
@@ -51,7 +50,8 @@ export default ({
   noItems,
   footer,
 }) => {
-  const displayHeading = hooks.some([heading, subheading, cta])
+  const deps = [heading, subheading, cta]
+  const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps)
   const [className, children] =
     items && items.length ? ['items', items] : ['no-items', noItems]
 

@@ -18,6 +18,16 @@ module.exports = ({node, getNode, actions: {createNodeField}}) => {
         break
       }
 
+      case 'posts': {
+        const {authorIds: authors} = node.frontmatter
+        addFields({authors})
+      }
+
+      case 'events': {
+        const {attendantIds: attendants} = node.frontmatter
+        addFields({attendants})
+      }
+
       case 'posts':
       case 'events':
       case 'newsletters': {

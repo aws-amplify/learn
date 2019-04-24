@@ -1,9 +1,8 @@
 import GlobalStyles from '../GlobalStyles'
 import {css} from '@emotion/core'
-import Nav from '../Nav'
-import Hero from '../Hero'
 import {mq} from '~/constants'
 import {StickyContainer} from 'react-sticky'
+import Footer from '../Footer'
 
 export const style = css`
   display: flex;
@@ -30,6 +29,7 @@ export const style = css`
         &.side {
           display: none;
           flex-shrink: 1;
+          margin-top: 50px;
 
           ${mq.tablet} {
             display: flex;
@@ -54,6 +54,7 @@ export default ({children}) => {
       <GlobalStyles />
       <StickyContainer>
         <div css={style}>{children}</div>
+        <Footer />
       </StickyContainer>
     </>
   )

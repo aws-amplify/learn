@@ -2,7 +2,7 @@ import {graphql} from 'gatsby'
 import Img from 'gatsby-image'
 
 export const pageQuery = graphql`
-  query EventBySlug($slug: String!) {
+  query($slug: String!) {
     markdownRemark(fields: {slug: {eq: $slug}}) {
       frontmatter {
         title
@@ -15,7 +15,12 @@ export const pageQuery = graphql`
           }
         }
         href
-        organizers {
+        tags
+        location
+      }
+      fields {
+        date(formatString: "MMMM DD, YYYY")
+        attendants {
           frontmatter {
             name
             avatar {
@@ -27,11 +32,6 @@ export const pageQuery = graphql`
             }
           }
         }
-        tags
-        location
-      }
-      fields {
-        date(formatString: "MMMM DD, YYYY")
       }
       html
     }

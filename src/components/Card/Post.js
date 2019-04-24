@@ -10,6 +10,7 @@ const styles = css`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 
   ${mq.laptop} {
     flex-direction: row;

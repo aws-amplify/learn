@@ -2,12 +2,11 @@ import {css} from '@emotion/core'
 import {Link} from 'gatsby'
 // get consistent format for logos
 import logoURI from '~/assets/images/logo-dark.png'
-import {useMemo, useState} from 'react'
-import {ORANGE, SECTION_MAX_WIDTH} from '~/constants'
+import {useMemo} from 'react'
 import {Sticky} from 'react-sticky'
-import Color from 'color'
 import {values} from 'ramda'
 import Text from './Text'
+import {mq} from '~/constants'
 
 const baseStyles = css`
   display: flex;
@@ -36,6 +35,10 @@ const baseStyles = css`
       padding: 16px;
       font-size: 20px;
 
+      .text {
+        padding-left: 8px;
+      }
+
       img {
         width: 25px;
         height: 20px;
@@ -44,8 +47,28 @@ const baseStyles = css`
 
     > .links {
       padding: 8px;
+
       > a {
-        margin: 8px 8px 8px 48px;
+        margin: 8px 8px 8px 8px;
+
+        ${mq.tablet} {
+          margin: 8px 8px 8px 32px;
+        }
+
+        ${mq.desktop} {
+          margin: 8px 8px 8px 48px;
+        }
+
+        ${mq.monitor} {
+          margin: 8px 8px 8px 60px;
+        }
+
+        &:hover,
+        &.active {
+          margin-bottom: 7px;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+        }
       }
     }
   }

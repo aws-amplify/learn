@@ -12,15 +12,11 @@ const styles = css`
   }
 
   > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     background-color: #fff;
-  }
-
-  .checkbox-group {
-    padding: 32px;
-    border-top: 1px solid #e2e2e2;
-    &:first-child {
-      border-top-width: 0px;
-    }
+    border-radius: 4px;
   }
 `
 

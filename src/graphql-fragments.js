@@ -71,7 +71,7 @@ export const SharedBetweenPostsAndEventsFragment = graphql`
     fields {
       key
       slug
-      date(formatString: "MMMM D")
+      date(formatString: "MMMM D, YYYY")
     }
     frontmatter {
       href
@@ -82,11 +82,10 @@ export const SharedBetweenPostsAndEventsFragment = graphql`
   }
 `
 
-// add banner
 export const PostFragment = graphql`
   fragment Post on MarkdownRemark {
     ...SharedBetweenPostsAndEvents
-    frontmatter {
+    fields {
       authors {
         ...Contributor
       }
@@ -97,13 +96,15 @@ export const PostFragment = graphql`
 export const EventFragment = graphql`
   fragment Event on MarkdownRemark {
     ...SharedBetweenPostsAndEvents
+    fields {
+      attendants {
+        ...Contributor
+      }
+    }
     frontmatter {
       location
       city
       state
-      organizers {
-        ...Contributor
-      }
     }
   }
 `

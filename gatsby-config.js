@@ -35,8 +35,8 @@ const sources = sourceNames.map(name => ({
 }))
 
 const mapping = {
-  'MarkdownRemark.frontmatter.authors': 'MarkdownRemark.fields.id',
-  'MarkdownRemark.frontmatter.organizers': 'MarkdownRemark.fields.id',
+  'MarkdownRemark.fields.authors': 'MarkdownRemark.fields.id',
+  'MarkdownRemark.fields.attendants': 'MarkdownRemark.fields.id',
 }
 
 const markdownTransformer = {

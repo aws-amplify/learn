@@ -2,19 +2,19 @@
 title: Five
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 banner: './banner.jpg'
-authors:
+authorIds:
   - kendrick-lamar
   - rick ross
   - harry
 
-ecosystems:
+platforms:
   - iOS
   - Android
   - React
   - React Native
   - Angular
   - Vue
-platforms:
+categories:
   - Auth
   - Storage
 tags:

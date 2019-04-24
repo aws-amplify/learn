@@ -2,6 +2,8 @@ import asCard from './asCard'
 import {css} from '@emotion/core'
 import Img from 'gatsby-image'
 import Text from '../Text'
+import {head, split} from 'ramda'
+import {useMemo} from 'react'
 
 const styles = css`
   display: flex;
@@ -44,6 +46,8 @@ export default asCard(
     date,
     containerStyles,
   }) => {
+    const formattedDate = useMemo(() => head(split(', ', date)), [date])
+
     return (
       <div css={[styles, containerStyles]} className='item three-dee tile'>
         <ConditionalAnchor>
@@ -51,7 +55,7 @@ export default asCard(
             {avatar && <Img {...avatar} />}
             <div>
               <Text eventCardTitle>{title}</Text>
-              <Text eventCardDetail>{date}</Text>
+              <Text eventCardDetail>{formattedDate}</Text>
               <Text eventCardDetail>{`${location} (${city}, ${state})`}</Text>
             </div>
           </div>

@@ -4,7 +4,7 @@ import {mq} from '~/constants'
 import Base from './Base'
 import {ToggleMenu} from '../Button'
 import {layout as layoutContext} from '~/contexts'
-import {StickyContainer, Sticky} from 'react-sticky'
+import {Sticky} from 'react-sticky'
 import useSize from '@rehooks/component-size'
 
 const megaMenuStyles = css`
@@ -25,6 +25,9 @@ const megaMenuStyles = css`
   &.open {
     display: flex;
     background-color: #fff;
+    padding-top: 75px;
+    flex-direction: column;
+    justify-content: flex-start;
 
     > div {
       &,
@@ -80,7 +83,10 @@ export default ({header, menu, main}) => {
               }}
             </Sticky>
             {stuck && (
-              <div className='ghost' style={{display: 'block', ...size}} />
+              <div
+                className='ghost'
+                style={{display: 'block', ...size, marginTop: '50px'}}
+              />
             )}
             <div className='main'>{main}</div>
           </div>

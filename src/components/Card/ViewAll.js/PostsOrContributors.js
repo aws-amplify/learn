@@ -23,7 +23,7 @@ export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
         justify-content: space-evenly;
 
         .more-posts-or-contributors-heading,
-        path {
+        svg {
           color: ${ORANGE};
         }
 

@@ -2,6 +2,8 @@ import {css} from '@emotion/core'
 import {DARK_GRAY} from '~/constants'
 import {keys} from 'ramda'
 
+// LETTER SPACINGS
+
 const baseStyles = css`
   display: flex;
   font-family: Amazon Ember;
@@ -39,6 +41,14 @@ const styleByKey = {
       font-size: 22px;
       line-height: 36px;
       font-weight: 100;
+    `,
+  },
+
+  pageHeading: {
+    Tag: 'h2',
+    styles: css`
+      font-size: 26px;
+      font-weight: 400;
     `,
   },
 
@@ -175,12 +185,67 @@ const styleByKey = {
       font-weight: 300;
     `,
   },
+
+  footerNewsletterCTA: {
+    Tag: 'span',
+    styles: css`
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 400;
+    `,
+  },
+
+  footerCopyright: {
+    Tag: 'h6',
+    styles: css`
+      font-size: 12px;
+      line-height: 21px;
+      font-weight: 200;
+    `,
+  },
+
+  checkboxGroupHeading: {
+    Tag: 'h3',
+    styles: css`
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 40px;
+      text-transform: capitalize;
+    `,
+  },
+
+  checkboxLabel: {
+    Tag: 'span',
+    styles: css`
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 21px;
+    `,
+  },
+
+  submitCardHeading: {
+    Tag: 'h3',
+    styles: css`
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 23px;
+    `,
+  },
+
+  submitCardSubheading: {
+    Tag: 'h4',
+    styles: css`
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 16px;
+    `,
+  },
 }
 
-export default ({children, ...rest}) => {
+export default ({children, className: passedClassName, ...rest}) => {
   const [key] = keys(rest)
   const {Tag, styles} = styleByKey[key]
-  const className = `text ${key
+  const className = `text ${passedClassName || ''} ${key
     .replace(/([a-zA-Z])(?=[A-Z])/g, '$1-')
     .toLowerCase()}`
   return (

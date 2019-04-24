@@ -6,10 +6,10 @@ import {
   createFilterContextValue,
   getFilterOptions,
 } from '~/utilities'
-import {Layout, Card, MappedList, Nav, Filter} from '~/components'
+import {Layout, Card, MappedList, Nav, Filter, Text} from '~/components'
 import {TABLET_BREAKPOINT} from '~/constants'
 import {filter as filterContext} from '~/contexts'
-import {map} from 'ramda'
+import {values, mapObjIndexed} from 'ramda'
 
 export const pageQuery = graphql`
   {
@@ -53,36 +53,39 @@ export default props => {
 
   const edgesByMonth = groupEdgesByMonth(edges)
 
+  const main = (
+    <filterContext.Consumer>
+      {({meetsCriteria}) =>
+        values(
+          mapObjIndexed((group, key) => {
+            console.log(group, key)
+
+            return (
+              group.length && (
+                <MappedList
+                  key={key}
+                  heading={<Text listHeading>{key}</Text>}
+                  columnCountByBreakpoint={{
+                    [TABLET_BREAKPOINT]: 2,
+                  }}
+                  noItems={<p>no items to display</p>}
+                  data={group}
+                  mapping={mapNodeToProps}
+                  keyExtractor={extract.keyFromNode}
+                  renderItem={p => <Card.Event {...p} />}
+                  renderCondition={meetsCriteria}
+                />
+              )
+            )
+          }, edgesByMonth),
+        )
+      }
+    </filterContext.Consumer>
+  )
+
   return (
     <filterContext.Provider {...{value}}>
-      <filterContext.Consumer>
-        {({meetsCriteria}) => (
-          <Layout.SideMenu
-            main={map(([groupMonth, groupData]) => {
-              console.log(groupMonth, groupData)
-
-              return (
-                groupData.length && (
-                  <MappedList
-                    key={groupMonth}
-                    heading={groupMonth}
-                    columnCountByBreakpoint={{
-                      [TABLET_BREAKPOINT]: 2,
-                    }}
-                    noItems={<p>no items to display</p>}
-                    data={groupData}
-                    mapping={mapNodeToProps}
-                    keyExtractor={extract.keyFromNode}
-                    renderItem={p => <Card.Event {...p} />}
-                    renderCondition={meetsCriteria}
-                  />
-                )
-              )
-            }, edgesByMonth)}
-            {...{header, menu}}
-          />
-        )}
-      </filterContext.Consumer>
+      <Layout.SideMenu {...{header, menu, main}} />
     </filterContext.Provider>
   )
 }

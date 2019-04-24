@@ -3,7 +3,7 @@ title: Workshop
 description: "We'll be combining amplify service categories with ease."
 href: https://www.meetup.com/
 avatar: ./avatar.png
-organizers:
+attendantIds:
   - rick-ross
   - eminem
   - j-cole

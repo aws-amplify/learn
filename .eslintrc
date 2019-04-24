@@ -26,6 +26,8 @@
     "import/prefer-default-export": "off",
     "jsx-a11y/anchor-has-content": "off",
     "no-console": "off",
+    "no-duplicate-case": "off",
+    "no-fallthrough": "off",
     "no-nested-ternary": "off",
     "no-param-reassign": "off",
     "no-restricted-syntax": "off",

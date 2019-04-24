@@ -1,13 +1,14 @@
 import {css} from '@emotion/core'
 import {useMemo} from 'react'
 import {generate} from 'shortid'
-import {LIGHT_BLUE, MEDIUM_GRAY} from '~/constants'
+import {LIGHT_BLUE, DARK_GRAY} from '~/constants'
+import Text from './Text'
 
 const styles = css`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5px 8px;
+  padding: 5px 0px;
   cursor: pointer;
 
   * {
@@ -15,8 +16,8 @@ const styles = css`
     transition: all 0.25s ease;
   }
 
-  &:hover {
-    > span {
+  &:hover .display {
+    > .text {
       color: #000;
     }
 
@@ -29,9 +30,22 @@ const styles = css`
     display: none;
   }
 
-  input:checked ~ .box {
-    > div {
-      background-color: ${LIGHT_BLUE};
+  .display {
+    display: flex;
+    flex-direction: row;
+  }
+
+  input:checked ~ .display {
+    > .box {
+      border-color: ${LIGHT_BLUE};
+
+      > div {
+        background-color: ${LIGHT_BLUE};
+      }
+    }
+
+    > .text {
+      color: ${LIGHT_BLUE};
     }
   }
 
@@ -41,7 +55,7 @@ const styles = css`
     align-items: center;
     width: 18px;
     height: 18px;
-    border: 1px solid ${MEDIUM_GRAY};
+    border: 1px solid ${DARK_GRAY};
     border-radius: 1px;
 
     > div {
@@ -51,8 +65,9 @@ const styles = css`
     }
   }
 
-  span {
+  .text {
     margin-left: 7px;
+    color: ${DARK_GRAY};
   }
 `
 
@@ -62,10 +77,12 @@ export default ({value, onChange}) => {
   return (
     <label className='checkbox' css={styles} htmlFor={id}>
       <input type='checkbox' {...{id, value, onChange}} />
-      <div className='box'>
-        <div />
+      <div className='display'>
+        <div className='box'>
+          <div />
+        </div>
+        <Text checkboxLabel>{value}</Text>
       </div>
-      <span>{value}</span>
     </label>
   )
 }

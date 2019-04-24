@@ -6,7 +6,8 @@ import {
   getFilterOptions,
 } from '~/utilities'
 import {filter as filterContext} from '~/contexts'
-import {MappedList, Layout, Card, Filter, Nav} from '~/components'
+import {MappedList, Layout, Card, Filter, Nav, Text} from '~/components'
+import {all, includes} from 'ramda'
 
 export const pageQuery = graphql`
   {
@@ -23,6 +24,8 @@ export const pageQuery = graphql`
             banner {
               ...Banner
             }
+          }
+          fields {
             authors {
               frontmatter {
                 name
@@ -44,9 +47,11 @@ const header = <Nav />
 const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms']
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories']
 
+const meetsCriterion = (field, criterion) =>
+  !criterion || all(c => field && includes(c, field), criterion)
+
 export default props => {
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
-  console.log(edges)
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges)
   const categoryOptions = getFilterOptions(CATEGORIES_PATH, edges)
@@ -55,14 +60,12 @@ export default props => {
     {
       key: 'platforms',
       path: PLATFORMS_PATH,
-      meetsCriterion: (field, criterion) =>
-        !criterion || criterion.every(c => field.includes(c)),
+      meetsCriterion,
     },
     {
       key: 'categories',
       path: CATEGORIES_PATH,
-      meetsCriterion: (field, criterion) =>
-        !criterion || criterion.every(c => field.includes(c)),
+      meetsCriterion,
     },
   )
 
@@ -70,6 +73,7 @@ export default props => {
     <filterContext.Consumer>
       {({meetsCriteria}) => (
         <MappedList
+          heading={<Text listHeading>Latest Posts</Text>}
           noItems={<p>no items to display</p>}
           data={edges}
           mapping={mapNodeToProps}

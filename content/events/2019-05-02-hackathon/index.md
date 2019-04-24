@@ -3,7 +3,7 @@ title: Hackathon
 description: 'The best team wins a record deal.'
 href: https://www.meetup.com/
 avatar: ./avatar.png
-organizers:
+attendantIds:
   - jony
   - kendrick-lamar
 

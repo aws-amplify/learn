@@ -1,10 +1,23 @@
 import {css} from '@emotion/core'
 import {useState, useCallback} from 'react'
 import Checkbox from './Checkbox'
+import Text from './Text'
+import {DARK_GRAY} from '~/constants'
 
 const styles = css`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 32px;
+  border-top: 1px solid #e2e2e2;
+
+  &:first-child {
+    border-top-width: 0px;
+  }
+
+  .checkbox-group-heading {
+    color: ${DARK_GRAY};
+  }
 `
 
 export default ({heading, options, onChange: onAnyChange}) => {
@@ -12,7 +25,7 @@ export default ({heading, options, onChange: onAnyChange}) => {
 
   return (
     <div css={styles} className='checkbox-group'>
-      {heading && <h4>{heading}</h4>}
+      {heading && <Text checkboxGroupHeading>{heading}</Text>}
 
       {options.map(option => {
         const onChange = useCallback(

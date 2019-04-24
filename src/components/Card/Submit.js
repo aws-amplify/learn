@@ -1,4 +1,7 @@
 import {css} from '@emotion/core'
+import asCard from './asCard'
+import Text from '../Text'
+import {DARK_GRAY} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -7,15 +10,19 @@ const styles = css`
   justify-content: center;
   align-items: flex-start;
   padding: 16px;
+
+  .submit-card-subheading {
+    color: ${DARK_GRAY};
+  }
 `
 
-export default ({ConditionalAnchor, heading, subheading}) => {
+export default asCard(({ConditionalAnchor, heading, subheading}) => {
   return (
-    <div css={styles} className='tile'>
+    <div css={styles} className='tile three-dee'>
       <ConditionalAnchor>
-        <h3>{heading}</h3>
-        <h5>{subheading}</h5>
+        <Text submitCardHeading>{heading}</Text>
+        <Text submitCardSubheading>{subheading}</Text>
       </ConditionalAnchor>
     </div>
   )
-}
+})

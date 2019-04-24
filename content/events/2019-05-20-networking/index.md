@@ -3,7 +3,7 @@ title: Networking
 description: Time to meet some people who love the same things.
 href: https://www.meetup.com/
 avatar: ./avatar.png
-organizers:
+attendantIds:
   - j-cole
   - harry
 

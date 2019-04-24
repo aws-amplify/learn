@@ -1,7 +1,7 @@
 import {graphql} from 'gatsby'
 
 export const pageQuery = graphql`
-  query PostsByTag($tag: String!) {
+  query($tag: String!) {
     allMarkdownRemark(
       filter: {frontmatter: {tags: {in: [$tag]}}}
       sort: {fields: [fields___date], order: DESC}
