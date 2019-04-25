@@ -79,19 +79,6 @@ export default ({
         <Card.Contributor {...props} disabled />
       </div>
 
-      {posts.length && (
-        <MappedList
-          heading={<Text listHeading>Posts</Text>}
-          data={posts}
-          mapping={mapNodeToProps}
-          keyExtractor={extract.keyFromNode}
-          renderItem={p => <Card.Post {...p} />}
-          columnCountByBreakpoint={{
-            [DESKTOP_BREAKPOINT]: 2,
-          }}
-        />
-      )}
-
       {events.length && (
         <MappedList
           heading={<Text listHeading>Events</Text>}
@@ -101,6 +88,19 @@ export default ({
           renderItem={p => <Card.Event {...p} />}
           columnCountByBreakpoint={{
             [DESKTOP_BREAKPOINT]: 3,
+          }}
+        />
+      )}
+
+      {posts.length && (
+        <MappedList
+          heading={<Text listHeading>Posts</Text>}
+          data={posts}
+          mapping={mapNodeToProps}
+          keyExtractor={extract.keyFromNode}
+          renderItem={p => <Card.Post {...p} />}
+          columnCountByBreakpoint={{
+            [DESKTOP_BREAKPOINT]: 2,
           }}
         />
       )}

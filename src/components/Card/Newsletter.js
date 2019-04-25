@@ -10,18 +10,14 @@ const styles = css`
   justify-content: center;
   align-items: flex-start;
   padding: 16px;
-
-  .newsletter-card-subheading {
-    color: ${DARK_GRAY};
-  }
 `
 
-export default asCard(({ConditionalAnchor, heading, subheading}) => {
+export default asCard(({ConditionalAnchor, heading}) => {
   return (
-    <div css={styles} className='tile three-dee'>
-      <ConditionalAnchor>
+    <ConditionalAnchor>
+      <div css={styles} className='tile three-dee'>
         <Text newsletterCardHeading>{heading}</Text>
-      </ConditionalAnchor>
-    </div>
+      </div>
+    </ConditionalAnchor>
   )
 })

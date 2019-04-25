@@ -1,31 +1,19 @@
 import {graphql} from 'gatsby'
-import {Layout, Card} from '~/components'
+import {Nav, Layout, Card, MappedList, Text} from '~/components'
+import {extract, mapNodeToProps} from '~/utilities'
+import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants'
 
+// add alphabetical sorting
 export const pageQuery = graphql`
   {
-    allMarkdownRemark(
-      sort: {fields: [fields___date], order: DESC}
-      filter: {fields: {category: {eq: "contributors"}}}
-    ) {
+    allMarkdownRemark(filter: {fields: {category: {eq: "contributors"}}}) {
       edges {
         node {
-          fields {
-            key
-            slug
-          }
+          ...Contributor
           frontmatter {
             avatar {
-              childImageSharp {
-                fixed(width: 40, height: 40) {
-                  ...GatsbyImageSharpFixed
-                }
-              }
+              ...AvatarMedium
             }
-            name
-            bio
-            github
-            twitter
-            website
           }
         }
       }
@@ -33,8 +21,20 @@ export const pageQuery = graphql`
   }
 `
 
-export default ({
-  data: {
-    allMarkdownRemark: {edges},
-  },
-}) => <Layout main={<div>hello!</div>} />
+export default props => {
+  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
+  const main = (
+    <MappedList
+      heading={<Text listHeading>Our Community</Text>}
+      data={edges}
+      mapping={mapNodeToProps}
+      keyExtractor={extract.keyFromNode}
+      renderItem={p => <Card.Contributor {...p} />}
+      columnCountByBreakpoint={{
+        [TABLET_BREAKPOINT]: 2,
+        [DESKTOP_BREAKPOINT]: 4,
+      }}
+    />
+  )
+  return <Layout.Basic header={<Nav />} {...{main}} />
+}

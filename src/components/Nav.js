@@ -85,9 +85,8 @@ const baseStyles = css`
 `
 
 const LINK_PROPS = [
-  {to: '/posts', children: 'Posts'},
   {to: '/events', children: 'Events'},
-  {to: '/participate', children: 'Participate'},
+  {to: '/posts', children: 'Posts'},
 ]
 
 const defaults = {
