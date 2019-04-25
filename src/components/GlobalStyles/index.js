@@ -46,6 +46,8 @@ const styles = css`
   }
 
   .social a:hover {
+    transition: 0.375s ease all;
+
     &.twitter {
       color: ${TWITTER_BLUE};
     }

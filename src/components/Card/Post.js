@@ -12,17 +12,34 @@ const styles = css`
   justify-content: space-between;
   overflow: hidden;
 
+  &:hover {
+    .favicon {
+      opacity: 1;
+    }
+  }
+
   ${mq.laptop} {
     flex-direction: row;
   }
 
   > div {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 2;
 
     &.gatsby-image-wrapper {
       flex: 1;
+    }
+
+    .favicon {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 16px;
+      height: 16px;
+      opacity: 0.5;
+      transition: 0.275s ease all;
     }
 
     padding: 32px;
@@ -65,6 +82,7 @@ export default asCard(
     title,
     description,
     containerStyles,
+    href,
   }) => {
     const [firstAuthor] = authors
     const {to, name, twitter, github, avatar} = firstAuthor
@@ -75,6 +93,15 @@ export default asCard(
         {banner && <Img {...banner} />}
         <div>
           <ConditionalAnchor>
+            {href && (
+              <img
+                className='favicon'
+                src={`http://www.google.com/s2/favicons?domain=${encodeURI(
+                  href,
+                )}`}
+                alt='content platform'
+              />
+            )}
             <Text postCardTitle>{title}</Text>
             <Text postCardDescription>{description}</Text>
           </ConditionalAnchor>

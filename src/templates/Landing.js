@@ -218,7 +218,21 @@ export default props => {
         <List
           key={heading}
           heading={<Text listHeading>{heading}</Text>}
-          cta={<Button.Basic {...cta} landingListCta />}
+          cta={(
+            <Button.Basic
+              styles={css`
+                border-radius: 20px;
+                background-color: ${ORANGE};
+                padding-right: 16px;
+                padding-left: 16px;
+                > * {
+                  color: #fff;
+                }
+              `}
+              {...cta}
+              landingListCta
+            />
+)}
           {...{key, items}}
           {...rest}
         />

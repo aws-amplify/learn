@@ -7,6 +7,8 @@ import {Sticky} from 'react-sticky'
 import {values} from 'ramda'
 import Text from './Text'
 import {mq} from '~/constants'
+import ExternalLink from './ExternalLink'
+import {MdOpenInNew} from 'react-icons/md'
 
 const baseStyles = css`
   display: flex;
@@ -49,7 +51,10 @@ const baseStyles = css`
       padding: 8px;
 
       > a {
+        display: flex;
+        flex-direction: row;
         margin: 8px 8px 8px 8px;
+        align-items: center;
 
         ${mq.tablet} {
           margin: 8px 8px 8px 32px;
@@ -68,6 +73,11 @@ const baseStyles = css`
           margin-bottom: 7px;
           border-bottom-width: 1px;
           border-bottom-style: solid;
+        }
+
+        > svg {
+          margin-top: 2px;
+          margin-left: 4px;
         }
       }
     }
@@ -137,13 +147,15 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               </Link>
 
               <div className='links'>
-                {LINK_PROPS.map(({children, ...rest}) => {
-                  return (
-                    <Link {...{children}} {...rest} activeClassName='active'>
-                      <Text navLink>{children}</Text>
-                    </Link>
-                  )
-                })}
+                {LINK_PROPS.map(({to, children}) => (
+                  <Link {...{to}} key={children} activeClassName='active'>
+                    <Text navLink>{children}</Text>
+                  </Link>
+                ))}
+                <ExternalLink href='https://aws-amplify.github.io'>
+                  <Text navLink>docs</Text>
+                  <MdOpenInNew className='external-graphic' size={14} />
+                </ExternalLink>
               </div>
             </div>
           </nav>

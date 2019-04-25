@@ -11,7 +11,7 @@ const baseStyles = css`
 
 const styleByKey = {
   navBranding: {
-    Tag: 'h1',
+    Tag: 'h2',
     styles: css`
       font-size: 18px;
       font-weight: 200;
@@ -238,6 +238,24 @@ const styleByKey = {
       font-size: 13px;
       font-weight: 300;
       line-height: 16px;
+    `,
+  },
+
+  fourOFourReturnToLanding: {
+    Tag: 'span',
+    styles: css`
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 16px;
+    `,
+  },
+
+  newsletterCardHeading: {
+    Tag: 'h3',
+    styles: css`
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 23px;
     `,
   },
 }

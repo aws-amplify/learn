@@ -82,9 +82,12 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   const existenceByTag = {}
   // {[slug]: {events: {[date]: true}}}
   const dateExistenceByCategoryBySlug = {}
+  const latestNewsletter = {
+    date: null,
+    slug: null,
+  }
 
-  const getSlug = (stringifiedDate, weeksToSubtract) => {
-    const date = new Date(stringifiedDate)
+  const getSlug = (date, weeksToSubtract) => {
     if (weeksToSubtract) date.setDate(date.getDate() - 7 * weeksToSubtract)
     const year = date.getFullYear()
     const week = date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1
@@ -94,7 +97,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   entries.forEach(([category, {edges}]) => {
     edges.forEach(({node}) => {
       const {fields, frontmatter = {}} = node
-      const {date, slug} = fields
+      const {date: stringifiedDate, slug} = fields
       const {tags, href} = frontmatter
 
       // get list of all tags
@@ -104,10 +107,19 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         })
 
       // CLEAN THIS UP!
-      if (date) {
+      if (stringifiedDate) {
+        const date = new Date(stringifiedDate)
+
         if (category === 'events') {
           ;[1, 2, 3, 4].forEach(n => {
             const s = getSlug(date, n)
+            if (!latestNewsletter.date || latestNewsletter.date < date) {
+              Object.assign(latestNewsletter, {
+                date,
+                slug: s,
+              })
+            }
+
             if (!dateExistenceByCategoryBySlug[s]) {
               dateExistenceByCategoryBySlug[s] = {
                 events: {},
@@ -115,10 +127,17 @@ module.exports = async ({graphql, actions: {createPage}}) => {
                 newsletters: {},
               }
             }
-            dateExistenceByCategoryBySlug[s].events[date] = true
+            dateExistenceByCategoryBySlug[s].events[stringifiedDate] = true
           })
         } else {
           const s = getSlug(date)
+          if (!latestNewsletter.date || latestNewsletter.date < date) {
+            Object.assign(latestNewsletter, {
+              date,
+              slug: s,
+            })
+          }
+
           if (!dateExistenceByCategoryBySlug[s]) {
             dateExistenceByCategoryBySlug[s] = {
               events: {},
@@ -126,19 +145,19 @@ module.exports = async ({graphql, actions: {createPage}}) => {
               newsletters: {},
             }
           }
-          dateExistenceByCategoryBySlug[s][category][date] = true
+          dateExistenceByCategoryBySlug[s][category][stringifiedDate] = true
         }
       }
 
       // create post, event and contributor pages
       // (don't create for externals)
-      category !== 'newsletters' &&
-        !href &&
+      if (category !== 'newsletters' && !href) {
         createPage({
           path: slug,
           component: pageTemplatePathByCategory[category],
           context: fields,
         })
+      }
     })
   })
 
@@ -153,14 +172,15 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   // create newsletter pages
   Object.entries(dateExistenceByCategoryBySlug).forEach(
-    ([slug, datesByCategory]) => {
-      const context = map(keys, datesByCategory)
+    ([slug, datesByCategory]) =>
       createPage({
         path: slug,
         component: templatePaths.newsletter,
-        context,
-      })
-    },
+        context: {
+          ...map(keys, datesByCategory),
+          latestNewsletterSlug: latestNewsletter.slug,
+        },
+      }),
   )
 
   // create "list" pages

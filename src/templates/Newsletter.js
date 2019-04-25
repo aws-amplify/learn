@@ -79,6 +79,8 @@ export default props => {
     'latestPosts',
   ])
 
+  console.log(upcomingEventNodes, latestPostNodes)
+
   const sections = [
     {
       key: 'upcomingEventsSection',
@@ -127,23 +129,25 @@ export default props => {
       cardContainerStyles,
       ...rest
     }) => {
-      const items = map(
-        node => (
-          <Template
-            containerStyles={cardContainerStyles}
-            {...mapNodeToProps(node)}
-          />
-        ),
-        nodes,
-      )
+      if (nodes.length) {
+        const items = map(
+          node => (
+            <Template
+              containerStyles={cardContainerStyles}
+              {...mapNodeToProps(node)}
+            />
+          ),
+          nodes,
+        )
 
-      return (
-        <List
-          heading={<Text listHeading>{heading}</Text>}
-          {...{key, items}}
-          {...rest}
-        />
-      )
+        return (
+          <List
+            heading={<Text listHeading>{heading}</Text>}
+            {...{key, items}}
+            {...rest}
+          />
+        )
+      }
     },
     sections,
   )

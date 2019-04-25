@@ -1,12 +1,13 @@
 import {css} from '@emotion/core'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery, graphql} from 'gatsby'
 import ExternalLink from './ExternalLink'
 import {TiNews} from 'react-icons/ti'
 import Text from './Text'
 import {FaArrowCircleRight} from 'react-icons/fa'
 import {ORANGE, MEDIUM_DARK_BLUE, DARK_GRAY, mq} from '~/constants'
-import {IoLogoGithub, IoLogoTwitter, IoLogoYoutube} from 'react-icons/io'
+import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io'
 import awsLogoSrc from '~/assets/images/aws-logo.png'
+import bugleGraphicSrc from '~/assets/images/bugle.svg'
 import {map} from 'ramda'
 
 const styles = css`
@@ -50,6 +51,10 @@ const styles = css`
 
     &.upper {
       direction: row;
+
+      img {
+        height: 30px;
+      }
     }
 
     &.lower {
@@ -115,62 +120,79 @@ const styles = css`
   }
 `
 
-export default () => (
-  <footer css={styles}>
-    <div className='upper'>
-      <Link to='/newsletter'>
-        <TiNews size={24} />
-        <Text footerNewsletterCTA className='secondary'>
-          The latest newsletter is out!
-        </Text>
-        <Text footerNewsletterCTA className='primary'>
-          {' '}
-          Read the latest
-        </Text>
-        <FaArrowCircleRight size={22} />
-      </Link>
-    </div>
+export default () => {
+  const {allSitePage} = useStaticQuery(graphql`
+    {
+      allSitePage(filter: {path: {glob: "/newsletters/**/*"}}, limit: 1) {
+        edges {
+          node {
+            context {
+              latestNewsletterSlug
+            }
+          }
+        }
+      }
+    }
+  `)
 
-    <hr />
+  const {latestNewsletterSlug} = allSitePage.edges[0].node.context
 
-    <div className='lower'>
-      <div className='copyright'>
-        <Text footerCopyright>
-          Amplify Framework is supported by Amazon Web Services © 2018, Amazon
-          Web Services, Inc. or its affiliates. All rights reserved.
-        </Text>
-        <img src={awsLogoSrc} alt='aws' />
+  return (
+    <footer css={styles}>
+      {/* eslint-disable-next-line */}
+      {!window.location.href.includes('newsletters') && (
+        <>
+          <div className='upper'>
+            <Link to={latestNewsletterSlug}>
+              <img src={bugleGraphicSrc} alt='bugle' />
+              <Text footerNewsletterCTA className='secondary'>
+                The latest newsletter is out!
+              </Text>
+              <Text footerNewsletterCTA className='primary'>
+                {' '}
+                Read the latest
+              </Text>
+              <FaArrowCircleRight size={22} />
+            </Link>
+          </div>
+
+          <hr />
+        </>
+      )}
+
+      <div className='lower'>
+        <div className='copyright'>
+          <Text footerCopyright>
+            {`Amplify Framework is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
+          </Text>
+          <img src={awsLogoSrc} alt='aws' />
+        </div>
+
+        <div className='social'>
+          {map(
+            ({Icon, ...linkProps}) => {
+              const {className: key} = linkProps
+              return (
+                <ExternalLink {...{key}} {...linkProps}>
+                  <Icon size={42} />
+                </ExternalLink>
+              )
+            },
+            [
+              {
+                className: 'github',
+                href: 'https://github.com/aws-amplify',
+                Icon: IoLogoGithub,
+              },
+              {
+                className: 'twitter',
+                href: 'https://twitter.com/AWSAmplify',
+                Icon: IoLogoTwitter,
+              },
+            ],
+          )}
+        </div>
       </div>
-
-      <div className='social'>
-        {map(
-          ({Icon, ...linkProps}) => {
-            const {className: key} = linkProps
-            return (
-              <ExternalLink {...{key}} {...linkProps}>
-                <Icon size={42} />
-              </ExternalLink>
-            )
-          },
-          [
-            {
-              className: 'github',
-              href: 'https://github.com/aws-amplify',
-              Icon: IoLogoGithub,
-            },
-            {
-              className: 'twitter',
-              href: 'https://twitter.com/awsformobile',
-              Icon: IoLogoTwitter,
-            },
-            {
-              className: 'youtube',
-              href: 'https://www.youtube.com/channel/UCd6MoB9NC6uYN2grvUNT-Zg',
-              Icon: IoLogoYoutube,
-            },
-          ],
-        )}
-      </div>
-    </div>
-  </footer>
-)
+    </footer>
+  )
+}

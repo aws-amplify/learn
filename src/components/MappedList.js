@@ -1,10 +1,10 @@
 import List from './List'
-import {map} from 'ramda'
+import {identity, map} from 'ramda'
 
 export default ({
   data,
-  mapping,
-  renderCondition = e => e,
+  mapping = identity,
+  renderCondition = identity,
   renderItem,
   keyExtractor,
   ...rest
@@ -14,7 +14,7 @@ export default ({
       renderCondition(e) &&
       renderItem({
         key: keyExtractor(e),
-        ...(mapping ? mapping(e) : e),
+        ...mapping(e),
       }),
     data,
   )

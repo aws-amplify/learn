@@ -53,7 +53,7 @@ module.exports = ({node, getNode, actions: {createNodeField}}) => {
       }
     }
 
-    const key = generate() // for React reconciler re-use
+    const key = generate() // for re-use by reconciler
     const category = sourceInstanceName
     addFields({key, category})
   }
