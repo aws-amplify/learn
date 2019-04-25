@@ -24,24 +24,37 @@ const styles = css`
     margin: 0px auto;
 
     > a {
-      display: flex;
-      flex: 1;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      display: block;
+      width: 100%;
+      text-align: center;
       padding: 28px 16px;
 
       &:hover {
-        background-color: rgba(250, 250, 250, 1);
+        background: linear-gradient(
+          to left,
+          rgb(255, 255, 255),
+          rgb(250, 250, 250),
+          rgb(255, 255, 255)
+        );
+      }
+
+      .text {
+        position: relative;
+        top: -6px;
       }
 
       > * {
-        margin: 0px 4px;
+        display: inline;
       }
 
       > .primary,
       > svg {
         color: ${ORANGE};
+      }
+
+      > svg,
+      > img {
+        margin: 0px 10px;
       }
 
       > .secondary {
@@ -53,14 +66,14 @@ const styles = css`
       direction: row;
 
       img {
-        height: 30px;
+        height: 28px;
       }
     }
 
     &.lower {
       flex-direction: column-reverse;
       align-items: center;
-      padding: 32px 16px;
+      padding: 32px 48px;
 
       ${mq.tablet} {
         flex-direction: row;
