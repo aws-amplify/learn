@@ -38,6 +38,7 @@ const styles = css`
 
     .contributor-card-bio {
       margin-top: 8px;
+      text-align: center;
     }
   }
 
@@ -87,7 +88,6 @@ export default asCard(
     twitter,
     website,
     containerStyles,
-    disabled,
   }) => {
     const social = {github, twitter, website}
     const deps = values(social)
@@ -97,10 +97,9 @@ export default asCard(
           mapObjIndexed((v, key) => {
             const {getHref, Icon, size} = propsBySite[key]
             const href = v && getHref(v)
-            const className = key
             return (
               href && (
-                <ExternalLink {...{href, className}}>
+                <ExternalLink {...{href}} className={key}>
                   <Icon {...{size}} />
                 </ExternalLink>
               )
@@ -114,8 +113,16 @@ export default asCard(
       <div css={[styles, containerStyles]} className='item three-dee tile'>
         <ConditionalAnchor>
           {avatar ? <Img {...avatar} /> : '[backup image]'}
-          {name && <Text contributorCardName>{name}</Text>}
-          {bio && <Text contributorCardBio='bio'>{bio}</Text>}
+          {name && (
+            <Text h3 className='contributor-card-name'>
+              {name}
+            </Text>
+          )}
+          {bio && (
+            <Text p className='contributor-card-bio'>
+              {bio}
+            </Text>
+          )}
         </ConditionalAnchor>
         {deps.length && <div className='social'>{links}</div>}
       </div>

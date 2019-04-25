@@ -6,8 +6,10 @@ import {
   getFilterOptions,
 } from '~/utilities'
 import {filter as filterContext} from '~/contexts'
-import {MappedList, Layout, Card, Filter, Nav, Text} from '~/components'
+import {MappedList, Layout, Card, Filter, Nav, Text, Button} from '~/components'
 import {all, includes} from 'ramda'
+import {ORANGE_PEEL_COLOR} from '~/constants'
+import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
   {
@@ -73,7 +75,29 @@ export default props => {
     <filterContext.Consumer>
       {({meetsCriteria}) => (
         <MappedList
-          heading={<Text listHeading>Latest Posts</Text>}
+          heading={(
+            <Text h2 className='list-heading'>
+              Latest Posts
+            </Text>
+)}
+          cta={(
+            <Button.Basic
+              className='three-dee'
+              styles={css`
+                border-radius: 20px;
+                background-color: ${ORANGE_PEEL_COLOR};
+                padding-right: 16px;
+                padding-left: 16px;
+                > * {
+                  color: #fff;
+                }
+              `}
+              href='https://aws-amplify.github.io'
+              landingListCta
+            >
+              Add a Post
+            </Button.Basic>
+)}
           noItems={<p>no items to display</p>}
           data={edges}
           mapping={mapNodeToProps}

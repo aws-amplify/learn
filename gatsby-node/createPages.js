@@ -3,7 +3,19 @@ const {
   listTemplatePathByCategory,
   pageTemplatePathByCategory,
 } = require('./constants')
-const {map, keys} = require('ramda')
+const {
+  compose,
+  sort,
+  tail,
+  comparator,
+  split,
+  map,
+  keys,
+  invertObj,
+  forEach,
+  forEachObjIndexed,
+  join,
+} = require('ramda')
 
 module.exports = async ({graphql, actions: {createPage}}) => {
   const {errors, data} = await graphql(`
@@ -68,7 +80,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   if (errors) throw errors
 
-  // landing page
   createPage({
     path: '/',
     component: templatePaths.landing,
@@ -82,6 +93,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   const existenceByTag = {}
   // {[slug]: {events: {[date]: true}}}
   const dateExistenceByCategoryBySlug = {}
+
   const latestNewsletter = {
     date: null,
     slug: null,
@@ -94,8 +106,8 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     return `newsletters/${year}/${week}`
   }
 
-  entries.forEach(([category, {edges}]) => {
-    edges.forEach(({node}) => {
+  forEachObjIndexed(({edges}, category) => {
+    forEach(({node}) => {
       const {fields, frontmatter = {}} = node
       const {date: stringifiedDate, slug} = fields
       const {tags, href} = frontmatter
@@ -151,43 +163,69 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
       // create post, event and contributor pages
       // (don't create for externals)
-      if (category !== 'newsletters' && !href) {
+      category !== 'newsletters' &&
+        !href &&
         createPage({
           path: slug,
           component: pageTemplatePathByCategory[category],
           context: fields,
         })
-      }
-    })
-  })
+    }, edges)
+  }, data)
 
-  // // create tag pages
-  // Object.keys(existenceByTag).forEach(tag =>
-  //   createPage({
-  //     path: `tags/${tag}`,
-  //     component: templatePaths.tag,
-  //     context: {tag},
-  //   }),
-  // )
+  const newsletterSlugs = keys(dateExistenceByCategoryBySlug)
 
-  // create newsletter pages
-  Object.entries(dateExistenceByCategoryBySlug).forEach(
-    ([slug, datesByCategory]) =>
-      createPage({
-        path: slug,
-        component: templatePaths.newsletter,
-        context: {
-          ...map(keys, datesByCategory),
-          latestNewsletterSlug: latestNewsletter.slug,
-        },
-      }),
+  const getComparableValuesFromSlug = map(
+    compose(
+      map(parseInt),
+      tail,
+      split('/'),
+    ),
   )
 
-  // create "list" pages
-  entries.forEach(([category]) => {
+  const compareSlugs = comparator((a, b) => {
+    const [[yearA, weekA], [yearB, weekB]] = getComparableValuesFromSlug([a, b])
+    return yearA === yearB ? weekA > weekB : yearA > yearB
+  })
+
+  const sortedNewsletterSlugs = sort(compareSlugs, newsletterSlugs)
+  const indexByNewsletterSlug = map(parseInt, invertObj(sortedNewsletterSlugs))
+
+  createPage({
+    path: 'newsletters',
+    component: listTemplatePathByCategory.newsletters,
+    context: {
+      sortedSlugs: sortedNewsletterSlugs,
+      indexBySlug: JSON.stringify(indexByNewsletterSlug),
+      latestSlug: latestNewsletter.slug,
+    },
+  })
+
+  // create newsletter pages
+  forEachObjIndexed((datesByCategory, slug) => {
+    const i = indexByNewsletterSlug[slug]
+    const next = sortedNewsletterSlugs[i - 1]
+    const previous = sortedNewsletterSlugs[i + 1]
+
     createPage({
-      path: category,
-      component: listTemplatePathByCategory[category],
+      path: slug,
+      component: templatePaths.newsletter,
+      context: {
+        current: `/${slug}`,
+        next,
+        previous,
+        ...map(keys, datesByCategory),
+      },
     })
+  }, dateExistenceByCategoryBySlug)
+
+  createPage({
+    path: 'events',
+    component: listTemplatePathByCategory.events,
+  })
+
+  createPage({
+    path: 'posts',
+    component: listTemplatePathByCategory.posts,
   })
 }

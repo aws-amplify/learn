@@ -79,9 +79,9 @@ export default ({
         <Card.Contributor {...props} disabled />
       </div>
 
-      {events.length && (
+      {!!events.length && (
         <MappedList
-          heading={<Text listHeading>Events</Text>}
+          heading={<Text h2 className='list-heading'>Events</Text>}
           data={events}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
@@ -92,9 +92,9 @@ export default ({
         />
       )}
 
-      {posts.length && (
+      {!!posts.length && (
         <MappedList
-          heading={<Text listHeading>Posts</Text>}
+          heading={<Text h2 className='list-heading'>Posts</Text>}
           data={posts}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}

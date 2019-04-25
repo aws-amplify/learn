@@ -1,12 +1,18 @@
 import {css, Global} from '@emotion/core'
 
 import reset from './reset'
-import fontFaces from './font-faces'
-import {LIGHT_GRAY, TWITTER_BLUE, GITHUB_GRAY, YOUTUBE_RED} from '~/constants'
+import typography from './typography'
+import {
+  ATHENS_GRAY_COLOR,
+  TWITTER_BLUE_COLOR,
+  GITHUB_GRAY_COLOR,
+  YOUTUBE_RED_COLOR,
+  SAN_JUAN_COLOR,
+} from '~/constants'
 
 const styles = css`
   ${reset}
-  ${fontFaces}
+  ${typography}
 
   body,
   html {
@@ -16,7 +22,7 @@ const styles = css`
     font-weight: 200;
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
-    background-color: ${LIGHT_GRAY};
+    background-color: ${ATHENS_GRAY_COLOR};
   }
 
   * {
@@ -49,13 +55,16 @@ const styles = css`
     transition: 0.375s ease all;
 
     &.twitter {
-      color: ${TWITTER_BLUE};
+      color: ${TWITTER_BLUE_COLOR};
     }
     &.github {
-      color: ${GITHUB_GRAY};
+      color: ${GITHUB_GRAY_COLOR};
     }
     &.youtube {
-      color: ${YOUTUBE_RED};
+      color: ${YOUTUBE_RED_COLOR};
+    }
+    &.website {
+      color: ${SAN_JUAN_COLOR};
     }
   }
 

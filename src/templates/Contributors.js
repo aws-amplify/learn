@@ -25,7 +25,7 @@ export default props => {
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
   const main = (
     <MappedList
-      heading={<Text listHeading>Our Community</Text>}
+      heading={<Text h2 className='list-heading'>Our Community</Text>}
       data={edges}
       mapping={mapNodeToProps}
       keyExtractor={extract.keyFromNode}

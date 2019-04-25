@@ -1,45 +1,48 @@
 import {graphql} from 'gatsby'
-import {extract} from '~/utilities'
 import {MappedList, Layout, Nav, Card, Text} from '~/components'
 import {TABLET_BREAKPOINT} from '~/constants'
+import {identity} from 'ramda'
 
 export const pageQuery = graphql`
   {
-    allSitePage(filter: {path: {glob: "/newsletters/**/*"}}) {
-      edges {
-        node {
-          path
-        }
+    sitePage(path: {eq: "/newsletters"}) {
+      context {
+        sortedSlugs
       }
     }
   }
 `
 
-const extractProps = ({node: {path: to}}) => {
+const extractProps = slug => {
   // eslint-disable-next-line
-  const [x, xx, year, week] = to.split('/')
+  const [x, year, week] = slug.split('/')
   return {
-    to,
+    to: slug,
     heading: `Week ${week} of ${year}`,
   }
 }
 
-const extractKey = ({node: {path}}) => path
-
-export default props => {
-  const edges = extract.fromPath(['data', 'allSitePage', 'edges'], props)
-  console.log(edges)
-
+export default ({
+  data: {
+    sitePage: {
+      context: {sortedSlugs},
+    },
+  },
+}) => {
   const main = (
     <MappedList
-      heading={<Text listHeading>Weekly Newsletters</Text>}
+      heading={(
+        <Text h2 className='list-heading'>
+          Weekly Newsletters
+        </Text>
+)}
       columnCountByBreakpoint={{
-        [TABLET_BREAKPOINT]: 2,
+        [TABLET_BREAKPOINT]: 3,
       }}
       noItems={<p>no items to display</p>}
-      data={edges}
+      data={sortedSlugs}
       mapping={extractProps}
-      keyExtractor={extractKey}
+      keyExtractor={identity}
       renderItem={p => <Card.Newsletter {...p} />}
     />
   )

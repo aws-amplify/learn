@@ -2,7 +2,7 @@ import {css} from '@emotion/core'
 import {useContext} from 'react'
 import {layout as layoutContext} from '~/contexts'
 import {IoMdClose, IoIosMore} from 'react-icons/io'
-import {MEDIUM_BLUE, mq} from '~/constants'
+import {EBONY_CLAY_COLOR, mq} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -13,12 +13,13 @@ const styles = css`
   bottom: 8px;
   width: 60px;
   height: 60px;
-  background-color: ${MEDIUM_BLUE};
+  background-color: ${EBONY_CLAY_COLOR};
   color: #fff;
   border-width: 0px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   z-index: 1001;
+  cursor: pointer;
 
   ${mq.tablet} {
     display: none;

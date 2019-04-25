@@ -1,7 +1,6 @@
 import {css} from '@emotion/core'
 import asCard from './asCard'
 import Text from '../Text'
-import {DARK_GRAY} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -16,7 +15,9 @@ export default asCard(({ConditionalAnchor, heading}) => {
   return (
     <ConditionalAnchor>
       <div css={styles} className='tile three-dee'>
-        <Text newsletterCardHeading>{heading}</Text>
+        <Text h3 className='newsletter-card-heading'>
+          {heading}
+        </Text>
       </div>
     </ConditionalAnchor>
   )

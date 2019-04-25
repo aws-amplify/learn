@@ -2,7 +2,7 @@ import {css} from '@emotion/core'
 import asCard from '../asCard'
 import Text from '../../Text'
 import {FaArrowCircleRight} from 'react-icons/fa'
-import {ORANGE} from '~/constants'
+import {ORANGE_PEEL_COLOR} from '~/constants'
 
 export default asCard(({ConditionalAnchor, heading, subheading}) => (
   <div
@@ -23,16 +23,25 @@ export default asCard(({ConditionalAnchor, heading, subheading}) => (
         justify-content: space-between;
       }
 
+      .text {
+        display: flex;
+        flex: 1;
+      }
+
       .more-events-card-heading,
       svg {
-        color: ${ORANGE};
+        color: ${ORANGE_PEEL_COLOR};
       }
     `}
   >
     <ConditionalAnchor>
       <div>
-        <Text moreEventsCardHeading>{heading}</Text>
-        <Text moreEventsCardSubheading>{subheading}</Text>
+        <Text h3 className='more-events-card-heading'>
+          {heading}
+        </Text>
+        <Text h4 className='more-events-card-subheading'>
+          {subheading}
+        </Text>
       </div>
       <FaArrowCircleRight size={22} />
     </ConditionalAnchor>

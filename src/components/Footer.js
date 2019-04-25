@@ -1,10 +1,9 @@
 import {css} from '@emotion/core'
 import {Link, useStaticQuery, graphql} from 'gatsby'
 import ExternalLink from './ExternalLink'
-import {TiNews} from 'react-icons/ti'
 import Text from './Text'
 import {FaArrowCircleRight} from 'react-icons/fa'
-import {ORANGE, MEDIUM_DARK_BLUE, DARK_GRAY, mq} from '~/constants'
+import {ORANGE_PEEL_COLOR, BIG_STONE_COLOR, GRAY_COLOR, mq} from '~/constants'
 import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io'
 import awsLogoSrc from '~/assets/images/aws-logo.png'
 import bugleGraphicSrc from '~/assets/images/bugle.svg'
@@ -24,8 +23,11 @@ const styles = css`
     margin: 0px auto;
 
     > a {
-      display: block;
-      width: 100%;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 28px 16px;
 
@@ -38,27 +40,31 @@ const styles = css`
         );
       }
 
-      .text {
-        position: relative;
-        top: -6px;
-      }
-
       > * {
         display: inline;
       }
 
-      > .primary,
-      > svg {
-        color: ${ORANGE};
+      .primary,
+      svg {
+        color: ${ORANGE_PEEL_COLOR};
       }
 
-      > svg,
-      > img {
+      svg,
+      img {
         margin: 0px 10px;
+        display: none;
+
+        ${mq.tablet} {
+          display: initial;
+        }
       }
 
-      > .secondary {
-        color: ${MEDIUM_DARK_BLUE};
+      .secondary {
+        color: ${BIG_STONE_COLOR};
+      }
+
+      span {
+        display: inline;
       }
     }
 
@@ -73,7 +79,7 @@ const styles = css`
     &.lower {
       flex-direction: column-reverse;
       align-items: center;
-      padding: 32px 48px;
+      padding: 64px 48px;
 
       ${mq.tablet} {
         flex-direction: row;
@@ -99,7 +105,8 @@ const styles = css`
 
         .text {
           max-width: 360px;
-          color: ${DARK_GRAY};
+          color: ${GRAY_COLOR};
+          margin: 16px 0px;
         }
       }
 
@@ -134,21 +141,17 @@ const styles = css`
 `
 
 export default () => {
-  const {allSitePage} = useStaticQuery(graphql`
+  const {sitePage} = useStaticQuery(graphql`
     {
-      allSitePage(filter: {path: {glob: "/newsletters/**/*"}}, limit: 1) {
-        edges {
-          node {
-            context {
-              latestNewsletterSlug
-            }
-          }
+      sitePage(path: {eq: "/newsletters"}) {
+        context {
+          latestSlug
         }
       }
     }
   `)
 
-  const {latestNewsletterSlug} = allSitePage.edges[0].node.context
+  const {latestSlug} = sitePage.context
 
   return (
     <footer css={styles}>
@@ -156,15 +159,17 @@ export default () => {
       {!window.location.href.includes('newsletters') && (
         <>
           <div className='upper'>
-            <Link to={latestNewsletterSlug}>
+            <Link to={latestSlug}>
               <img src={bugleGraphicSrc} alt='bugle' />
-              <Text footerNewsletterCTA className='secondary'>
-                The latest newsletter is out!
-              </Text>
-              <Text footerNewsletterCTA className='primary'>
-                {' '}
-                Read the latest
-              </Text>
+              <span>
+                <Text h4 className='footer-newsletter-cta secondary'>
+                  The latest newsletter is out!
+                </Text>
+                <Text h4 className='footer-newsletter-cta primary'>
+                  {' '}
+                  Read the latest
+                </Text>
+              </span>
               <FaArrowCircleRight size={22} />
             </Link>
           </div>
@@ -175,7 +180,7 @@ export default () => {
 
       <div className='lower'>
         <div className='copyright'>
-          <Text footerCopyright>
+          <Text className='footer-copyright'>
             {`Amplify Framework is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
           </Text>
           <img src={awsLogoSrc} alt='aws' />
@@ -183,11 +188,11 @@ export default () => {
 
         <div className='social'>
           {map(
-            ({Icon, ...linkProps}) => {
+            ({Icon, size, ...linkProps}) => {
               const {className: key} = linkProps
               return (
                 <ExternalLink {...{key}} {...linkProps}>
-                  <Icon size={42} />
+                  <Icon {...{size}} />
                 </ExternalLink>
               )
             },
@@ -196,11 +201,13 @@ export default () => {
                 className: 'github',
                 href: 'https://github.com/aws-amplify',
                 Icon: IoLogoGithub,
+                size: 42,
               },
               {
                 className: 'twitter',
                 href: 'https://twitter.com/AWSAmplify',
                 Icon: IoLogoTwitter,
+                size: 45,
               },
             ],
           )}

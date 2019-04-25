@@ -5,6 +5,7 @@ import Text from '../Text'
 import {map, keys} from 'ramda'
 
 const styles = css`
+  display: flex;
   cursor: pointer;
   appearance: none;
   color: #000;
@@ -31,20 +32,21 @@ export default ({
   href,
   className,
   size,
-  ...rest
+  onClick,
+  textClass,
 }) => {
   const deps = [to, href]
   const isLink = useMemo(() => !!(to || href), deps)
   const Tag = useMemo(() => (isLink ? Link : 'button'), deps)
-  const [typographicalKey] = keys(rest)
 
   return (
     <Tag
       css={[styles, paddingBySize[size || 'medium'], passedStyles]}
-      className={`${className} shadow`}
+      className={`${className}`}
       {...(isLink ? {} : {type: 'button'})}
+      {...{onClick, href, to}}
     >
-      <Text {...{[typographicalKey]: true, children}} />
+      <Text span className={textClass} {...{children}} />
     </Tag>
   )
 }

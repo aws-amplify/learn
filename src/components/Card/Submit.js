@@ -1,7 +1,7 @@
 import {css} from '@emotion/core'
 import asCard from './asCard'
 import Text from '../Text'
-import {DARK_GRAY} from '~/constants'
+import {GRAY_COLOR} from '~/constants'
 
 const styles = css`
   display: flex;
@@ -12,7 +12,7 @@ const styles = css`
   padding: 16px;
 
   .submit-card-subheading {
-    color: ${DARK_GRAY};
+    color: ${GRAY_COLOR};
   }
 `
 
@@ -20,8 +20,12 @@ export default asCard(({ConditionalAnchor, heading, subheading}) => {
   return (
     <div css={styles} className='tile three-dee'>
       <ConditionalAnchor>
-        <Text submitCardHeading>{heading}</Text>
-        <Text submitCardSubheading>{subheading}</Text>
+        <Text h3 className='submit-card-heading'>
+          {heading}
+        </Text>
+        <Text p className='submit-card-subheading'>
+          {subheading}
+        </Text>
       </ConditionalAnchor>
     </div>
   )

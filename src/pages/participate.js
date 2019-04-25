@@ -5,7 +5,11 @@ const header = <Nav />
 const main = (
   <>
     <List
-      heading={<Text listHeading>Contribute to the community</Text>}
+      heading={(
+        <Text h2 className='list-heading'>
+          Contribute to the community
+        </Text>
+)}
       items={[
         {
           heading: 'Submit a Post',
@@ -28,7 +32,11 @@ const main = (
       }}
     />
     <List
-      heading={<Text listHeading>Templates to get you started</Text>}
+      heading={(
+        <Text h2 className='list-heading'>
+          Templates to get you started
+        </Text>
+)}
       items={[
         {
           heading: 'Event Hosting Starter Pack',

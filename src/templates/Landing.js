@@ -5,8 +5,8 @@ import {
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
   MONITOR_BREAKPOINT,
-  VIOLETTE,
-  ORANGE,
+  KASHMIR_BLUE_COLOR,
+  ORANGE_PEEL_COLOR,
 } from '~/constants'
 import {mapNodeToProps, extract} from '~/utilities'
 import {IoMdPeople, IoIosJournal} from 'react-icons/io'
@@ -91,13 +91,13 @@ export const pageQuery = graphql`
 const heroProps = {
   heading: 'AWS Amplify Community',
   subheading: 'A place to share projects, events, articles and other resources',
-  background: ORANGE,
+  background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
 }
 
 const navProps = {
   beforeScroll: {
-    backgroundColor: ORANGE,
+    backgroundColor: ORANGE_PEEL_COLOR,
     textColor: '#fff',
     logoSrc: logoLightURI,
   },
@@ -160,7 +160,7 @@ export default props => {
         [DESKTOP_BREAKPOINT]: 4,
       },
       cardContainerStyles: css`
-        background-color: ${VIOLETTE};
+        background-color: ${KASHMIR_BLUE_COLOR};
         * {
           color: #fff;
         }
@@ -217,12 +217,13 @@ export default props => {
       return (
         <List
           key={heading}
-          heading={<Text listHeading>{heading}</Text>}
+          heading={<Text h2 className='list-heading'>{heading}</Text>}
           cta={(
             <Button.Basic
+              className='three-dee'
               styles={css`
                 border-radius: 20px;
-                background-color: ${ORANGE};
+                background-color: ${ORANGE_PEEL_COLOR};
                 padding-right: 16px;
                 padding-left: 16px;
                 > * {

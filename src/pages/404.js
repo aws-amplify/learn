@@ -15,8 +15,10 @@ const styles = css`
 export default () => (
   <div css={styles}>
     <div>
-      <Text pageHeading>404 – Page Not Found</Text>
-      <Button.Basic to='/' fourOFourReturnToLanding>
+      <Text h2 className='page-heading'>
+        404 – Page Not Found
+      </Text>
+      <Button.Basic to='/' className='four-o-four-return-to-landing'>
         Return Home
       </Button.Basic>
     </div>

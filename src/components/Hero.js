@@ -26,13 +26,19 @@ export default ({background, textColor, heading, subheading, cta}) => (
     css={css`
       ${styles}
       background-color: ${background};
-      h1, h3 {
+      
+      .hero-heading,
+      .hero-subheading {
         color: ${textColor};
       }
     `}
   >
-    <Text heroHeading>{heading}</Text>
-    <Text heroSubheading>{subheading}</Text>
+    <Text h2 className='hero-heading'>
+      {heading}
+    </Text>
+    <Text h3 className='hero-subheading'>
+      {subheading}
+    </Text>
     <div className='cta'>{cta}</div>
   </div>
 )

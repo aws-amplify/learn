@@ -24,6 +24,11 @@ const styles = css`
       padding: 24px;
       text-align: left;
 
+      .text {
+        display: flex;
+        flex: 1;
+      }
+
       .gatsby-image-wrapper {
         flex-shrink: 0;
         border: 1px solid #e9e9e9;
@@ -54,9 +59,18 @@ export default asCard(
           <div>
             {avatar && <Img {...avatar} />}
             <div>
-              <Text eventCardTitle>{title}</Text>
-              <Text eventCardDetail>{formattedDate}</Text>
-              <Text eventCardDetail>{`${location} (${city}, ${state})`}</Text>
+              <Text h3 className='event-card-title'>
+                {title}
+              </Text>
+              <Text h4 className='event-card-detail'>
+                {formattedDate}
+              </Text>
+              <Text
+                h4
+                className='event-card-detail'
+              >
+                {`${location} (${city}, ${state})`}
+              </Text>
             </div>
           </div>
         </ConditionalAnchor>

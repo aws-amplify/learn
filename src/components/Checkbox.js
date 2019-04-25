@@ -1,7 +1,7 @@
 import {css} from '@emotion/core'
 import {useMemo} from 'react'
 import {generate} from 'shortid'
-import {LIGHT_BLUE, DARK_GRAY} from '~/constants'
+import {SAN_JUAN_COLOR, GRAY_COLOR} from '~/constants'
 import Text from './Text'
 
 const styles = css`
@@ -37,15 +37,15 @@ const styles = css`
 
   input:checked ~ .display {
     > .box {
-      border-color: ${LIGHT_BLUE};
+      border-color: ${SAN_JUAN_COLOR};
 
       > div {
-        background-color: ${LIGHT_BLUE};
+        background-color: ${SAN_JUAN_COLOR};
       }
     }
 
     > .text {
-      color: ${LIGHT_BLUE};
+      color: ${SAN_JUAN_COLOR};
     }
   }
 
@@ -55,7 +55,7 @@ const styles = css`
     align-items: center;
     width: 18px;
     height: 18px;
-    border: 1px solid ${DARK_GRAY};
+    border: 1px solid ${GRAY_COLOR};
     border-radius: 1px;
 
     > div {
@@ -67,7 +67,7 @@ const styles = css`
 
   .text {
     margin-left: 7px;
-    color: ${DARK_GRAY};
+    color: ${GRAY_COLOR};
   }
 `
 
@@ -81,7 +81,9 @@ export default ({value, onChange}) => {
         <div className='box'>
           <div />
         </div>
-        <Text checkboxLabel>{value}</Text>
+        <Text span className='checkbox-label'>
+          {value}
+        </Text>
       </div>
     </label>
   )

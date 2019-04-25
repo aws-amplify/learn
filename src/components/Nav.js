@@ -142,17 +142,23 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                 ) : (
                   <img src={beforeScroll.logoSrc} alt='logo' />
                 )}
-                <Text navBranding>AMPLIFY</Text>
+                <Text h3 className='nav-branding'>
+                  AMPLIFY
+                </Text>
               </Link>
 
               <div className='links'>
                 {LINK_PROPS.map(({to, children}) => (
                   <Link {...{to}} key={children} activeClassName='active'>
-                    <Text navLink>{children}</Text>
+                    <Text span className='nav-link'>
+                      {children}
+                    </Text>
                   </Link>
                 ))}
                 <ExternalLink href='https://aws-amplify.github.io'>
-                  <Text navLink>docs</Text>
+                  <Text span className='nav-link'>
+                    docs
+                  </Text>
                   <MdOpenInNew className='external-graphic' size={14} />
                 </ExternalLink>
               </div>

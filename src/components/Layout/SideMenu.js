@@ -70,24 +70,10 @@ export default ({header, menu, main}) => {
 
         <div className='body'>
           <div>
-            <Sticky>
-              {({style: {width, top, ...style}, isSticky}) => {
-                // fine-tune this affix behavior
-                isSticky !== stuck && setStuck(isSticky)
+            <div className='side menu'>
+              <div {...{ref}}>{menu}</div>
+            </div>
 
-                return (
-                  <div className='side menu' style={{...style, top: '75px'}}>
-                    <div {...{ref}}>{menu}</div>
-                  </div>
-                )
-              }}
-            </Sticky>
-            {stuck && (
-              <div
-                className='ghost'
-                style={{display: 'block', ...size, marginTop: '50px'}}
-              />
-            )}
             <div className='main'>{main}</div>
           </div>
         </div>

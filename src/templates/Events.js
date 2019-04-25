@@ -6,10 +6,15 @@ import {
   createFilterContextValue,
   getFilterOptions,
 } from '~/utilities'
-import {Layout, Card, MappedList, Nav, Filter, Text} from '~/components'
-import {TABLET_BREAKPOINT} from '~/constants'
+import {Layout, Card, MappedList, Nav, Filter, Text, Button} from '~/components'
+import {
+  TABLET_BREAKPOINT,
+  DESKTOP_BREAKPOINT,
+  ORANGE_PEEL_COLOR,
+} from '~/constants'
 import {filter as filterContext} from '~/contexts'
-import {values, mapObjIndexed} from 'ramda'
+import {values, mapObjIndexed, map, length, filter, identity} from 'ramda'
+import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
   {
@@ -58,15 +63,36 @@ export default props => {
       {({meetsCriteria}) =>
         values(
           mapObjIndexed((group, key) => {
-            console.log(group, key)
-
             return (
-              group.length && (
+              length(filter(identity, map(meetsCriteria, group))) > 0 && (
                 <MappedList
                   key={key}
-                  heading={<Text listHeading>{key}</Text>}
+                  cta={(
+                    <Button.Basic
+                      className='three-dee'
+                      styles={css`
+                        border-radius: 20px;
+                        background-color: ${ORANGE_PEEL_COLOR};
+                        padding-right: 16px;
+                        padding-left: 16px;
+                        > * {
+                          color: #fff;
+                        }
+                      `}
+                      href='https://aws-amplify.github.io'
+                      landingListCta
+                    >
+                      Add an Event
+                    </Button.Basic>
+)}
+                  heading={(
+                    <Text h2 className='list-heading'>
+                      {key}
+                    </Text>
+)}
                   columnCountByBreakpoint={{
                     [TABLET_BREAKPOINT]: 2,
+                    [DESKTOP_BREAKPOINT]: 3,
                   }}
                   noItems={<p>no items to display</p>}
                   data={group}

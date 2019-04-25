@@ -26,7 +26,12 @@ const styles = css`
     position: relative;
     display: flex;
     flex-direction: column;
-    flex: 2;
+    flex: 1;
+    padding: 32px;
+
+    ${mq.desktop} {
+      flex: 2;
+    }
 
     &.gatsby-image-wrapper {
       flex: 1;
@@ -42,7 +47,6 @@ const styles = css`
       transition: 0.275s ease all;
     }
 
-    padding: 32px;
     .post-card-description {
       margin-top: 16px;
     }
@@ -89,10 +93,10 @@ export default asCard(
     const handle = twitter || github
 
     return (
-      <div css={[styles, containerStyles]} className='item three-dee tile'>
-        {banner && <Img {...banner} />}
-        <div>
-          <ConditionalAnchor>
+      <ConditionalAnchor>
+        <div css={[styles, containerStyles]} className='item three-dee tile'>
+          {banner && <Img {...banner} />}
+          <div>
             {href && (
               <img
                 className='favicon'
@@ -102,18 +106,24 @@ export default asCard(
                 alt='content platform'
               />
             )}
-            <Text postCardTitle>{title}</Text>
-            <Text postCardDescription>{description}</Text>
-          </ConditionalAnchor>
-          <Link {...{to}} className='author'>
-            <div className='text'>
-              <Text postCardName>{name}</Text>
-              <Text postCardHandle>{`@${handle}`}</Text>
-            </div>
-            <Img {...avatar} />
-          </Link>
+            <Text h3 className='post-card-title'>
+              {title}
+            </Text>
+            <Text p className='post-card-description'>
+              {description}
+            </Text>
+            <Link {...{to}} className='author'>
+              <div className='text'>
+                <Text h5 className='post-card-name'>
+                  {name}
+                </Text>
+                <Text h6 className='post-card-handle'>{`@${handle}`}</Text>
+              </div>
+              <Img {...avatar} />
+            </Link>
+          </div>
         </div>
-      </div>
+      </ConditionalAnchor>
     )
   },
 )

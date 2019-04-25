@@ -4,8 +4,8 @@ import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
-  VIOLETTE,
-  ORANGE,
+  KASHMIR_BLUE_COLOR,
+  ORANGE_PEEL_COLOR,
 } from '~/constants'
 import {mapNodeToProps, extract} from '~/utilities'
 import {css} from '@emotion/core'
@@ -13,7 +13,19 @@ import logoLightURI from '~/assets/images/logo-light.svg'
 import {map} from 'ramda'
 
 export const pageQuery = graphql`
-  query($events: [Date!]!, $posts: [Date!]!, $newsletters: [Date!]!) {
+  query(
+    $current: String!
+    $events: [Date!]!
+    $posts: [Date!]!
+    $newsletters: [Date!]!
+  ) {
+    previousAndNext: sitePage(path: {eq: $current}) {
+      context {
+        previous
+        next
+      }
+    }
+
     upcomingEvents: allMarkdownRemark(
       filter: {fields: {category: {eq: "events"}, date: {in: $events}}}
     ) {
@@ -64,7 +76,7 @@ export const pageQuery = graphql`
 
 const navProps = {
   beforeScroll: {
-    backgroundColor: ORANGE,
+    backgroundColor: ORANGE_PEEL_COLOR,
     textColor: '#fff',
     logoSrc: logoLightURI,
   },
@@ -74,12 +86,15 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props)
 
+  const {previous, next} = extract.fromPath(
+    ['data', 'previousAndNext', 'context'],
+    props,
+  )
+
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
     'upcomingEvents',
     'latestPosts',
   ])
-
-  console.log(upcomingEventNodes, latestPostNodes)
 
   const sections = [
     {
@@ -110,7 +125,7 @@ export default props => {
         [DESKTOP_BREAKPOINT]: 4,
       },
       cardContainerStyles: css`
-        background-color: ${VIOLETTE};
+        background-color: ${KASHMIR_BLUE_COLOR};
         * {
           color: #fff;
         }
@@ -118,39 +133,92 @@ export default props => {
     },
   ]
 
-  const main = map(
-    ({
-      heading,
-      key,
-      cta,
-      nodes,
-      Template,
-      more,
-      cardContainerStyles,
-      ...rest
-    }) => {
-      if (nodes.length) {
-        const items = map(
-          node => (
-            <Template
-              containerStyles={cardContainerStyles}
-              {...mapNodeToProps(node)}
-            />
-          ),
-          nodes,
-        )
+  const main = [
+    <div
+      css={css`
+        padding: 16px 16px 0px 16px;
+      `}
+    >
+      <Text className='paragraph-large'>
+        {`Welcome to the AWS Amplify Weekly - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
+      </Text>
+    </div>,
+    ...map(
+      ({
+        heading,
+        key,
+        cta,
+        nodes,
+        Template,
+        more,
+        cardContainerStyles,
+        ...rest
+      }) => {
+        if (nodes.length) {
+          const items = map(
+            node => (
+              <Template
+                containerStyles={cardContainerStyles}
+                {...mapNodeToProps(node)}
+              />
+            ),
+            nodes,
+          )
 
-        return (
-          <List
-            heading={<Text listHeading>{heading}</Text>}
-            {...{key, items}}
-            {...rest}
-          />
-        )
-      }
-    },
-    sections,
-  )
+          return (
+            <List
+              heading={(
+                <Text h2 className='list-heading'>
+                  {heading}
+                </Text>
+)}
+              {...{key, items}}
+              {...rest}
+            />
+          )
+        }
+
+        return null
+      },
+      sections,
+    ),
+    <div
+      css={css`
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding: 16px 16px 0px 16px;
+        > * {
+          margin: 8px;
+        }
+      `}
+    >
+      {previous && (
+        <Button.Basic
+          className='three-dee'
+          newsletterNextPrevious
+          size='medium'
+          to={previous}
+        >
+          Previous
+        </Button.Basic>
+      )}
+
+      {next && (
+        <Button.Basic
+          className='three-dee'
+          newsletterNextPrevious
+          size='medium'
+          to={next}
+        >
+          Next
+        </Button.Basic>
+      )}
+    </div>,
+  ]
 
   return <Layout.Basic header={<Nav {...navProps} />} {...{main}} />
 }

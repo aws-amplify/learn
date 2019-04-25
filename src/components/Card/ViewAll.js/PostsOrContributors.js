@@ -2,7 +2,7 @@ import {css} from '@emotion/core'
 import asCard from '../asCard'
 import Text from '../../Text'
 import {FaArrowCircleRight} from 'react-icons/fa'
-import {ORANGE} from '~/constants'
+import {mq, ORANGE_PEEL_COLOR} from '~/constants'
 
 export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
   <div
@@ -21,10 +21,23 @@ export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
         flex: 1;
         align-items: center;
         justify-content: space-evenly;
+        padding: 32px;
+
+        ${mq.tablet} {
+          padding: 0px 16px;
+        }
+
+        > svg {
+          margin-top: 16px;
+
+          ${mq.tablet} {
+            margin-top: 0px;
+          }
+        }
 
         .more-posts-or-contributors-heading,
         svg {
-          color: ${ORANGE};
+          color: ${ORANGE_PEEL_COLOR};
         }
 
         > div {
@@ -41,8 +54,12 @@ export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
     <ConditionalAnchor>
       <div>
         {graphic}
-        <Text morePostsOrContributorsHeading>{heading}</Text>
-        <Text morePostsOrContributorsSubheading>{subheading}</Text>
+        <Text h3 className='more-posts-or-contributors-heading'>
+          {heading}
+        </Text>
+        <Text p className='more-posts-or-contributors-subheading'>
+          {subheading}
+        </Text>
       </div>
       <FaArrowCircleRight size={22} />
     </ConditionalAnchor>
