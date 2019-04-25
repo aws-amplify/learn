@@ -6,6 +6,7 @@ authorIds:
   - kendrick-lamar
   - rick ross
   - harry
+href: https://egghead.io
 
 platforms:
   - iOS

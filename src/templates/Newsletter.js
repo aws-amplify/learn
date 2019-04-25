@@ -207,6 +207,15 @@ export default props => {
         </Button.Basic>
       )}
 
+      <Button.Basic
+          className='three-dee'
+          newsletterNextPrevious
+          size='medium'
+          to='/newsletters'
+        >
+          View All
+        </Button.Basic>
+
       {next && (
         <Button.Basic
           className='three-dee'

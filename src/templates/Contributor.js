@@ -33,6 +33,11 @@ export const pageQuery = graphql`
               }
             }
           }
+          frontmatter {
+            banner {
+              ...Banner
+            }
+          }
         }
       }
     }
@@ -81,7 +86,11 @@ export default ({
 
       {!!events.length && (
         <MappedList
-          heading={<Text h2 className='list-heading'>Events</Text>}
+          heading={(
+            <Text h2 className='list-heading'>
+              Events
+            </Text>
+)}
           data={events}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
@@ -94,14 +103,15 @@ export default ({
 
       {!!posts.length && (
         <MappedList
-          heading={<Text h2 className='list-heading'>Posts</Text>}
+          heading={(
+            <Text h2 className='list-heading'>
+              Posts
+            </Text>
+)}
           data={posts}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
           renderItem={p => <Card.Post {...p} />}
-          columnCountByBreakpoint={{
-            [DESKTOP_BREAKPOINT]: 2,
-          }}
         />
       )}
     </>

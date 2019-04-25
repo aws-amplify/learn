@@ -39,6 +39,7 @@ const baseStyles = css`
 
       .text {
         padding-left: 8px;
+        letter-spacing: 0.5px;
       }
 
       img {
@@ -143,7 +144,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                   <img src={beforeScroll.logoSrc} alt='logo' />
                 )}
                 <Text h3 className='nav-branding'>
-                  AMPLIFY
+                  Community
                 </Text>
               </Link>
 

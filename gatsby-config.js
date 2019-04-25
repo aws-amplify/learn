@@ -1,4 +1,5 @@
 const {join} = require('path')
+const {map} = require('ramda')
 
 const TITLE = 'Amplify –– an easy-to-use toolchain for building on AWS'
 const SHORT_NAME = 'AWS Amplify'
@@ -25,14 +26,27 @@ const siteMetadata = {
   },
 }
 
-const sourceNames = ['contributors', 'posts', 'events', 'newsletters', 'misc']
-const sources = sourceNames.map(name => ({
-  resolve: 'gatsby-source-filesystem',
+const moduleResolution = {
+  resolve: 'gatsby-plugin-module-resolver',
   options: {
-    name,
-    path: join(__dirname, `content/${name}`),
+    root: '.',
+    aliases: {
+      '~': './src',
+    },
   },
-}))
+}
+
+const sourceNames = ['contributors', 'posts', 'events', 'newsletters', 'misc']
+const dataSources = map(
+  name => ({
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      name,
+      path: join(__dirname, `content/${name}`),
+    },
+  }),
+  sourceNames,
+)
 
 const mapping = {
   'MarkdownRemark.fields.authors': 'MarkdownRemark.fields.id',
@@ -87,7 +101,8 @@ module.exports = {
   siteMetadata,
   mapping,
   plugins: [
-    ...sources,
+    moduleResolution,
+    ...dataSources,
     markdownTransformer,
     ...imageTransformers,
     emotion,

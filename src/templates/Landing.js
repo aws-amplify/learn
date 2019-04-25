@@ -89,7 +89,7 @@ export const pageQuery = graphql`
 `
 
 const heroProps = {
-  heading: 'AWS Amplify Community',
+  heading: 'Join the Amplify Community',
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
@@ -217,7 +217,11 @@ export default props => {
       return (
         <List
           key={heading}
-          heading={<Text h2 className='list-heading'>{heading}</Text>}
+          heading={(
+            <Text h2 className='list-heading'>
+              {heading}
+            </Text>
+)}
           cta={(
             <Button.Basic
               className='three-dee'
