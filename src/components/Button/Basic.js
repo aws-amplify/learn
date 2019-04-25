@@ -11,6 +11,7 @@ const styles = css`
   color: #000;
   background-color: #fff;
   border-radius: 4px;
+  text-align: center;
 `
 
 const paddingBySize = map(

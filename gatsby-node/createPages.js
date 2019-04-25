@@ -88,8 +88,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     },
   })
 
-  const entries = Object.entries(data)
-
   const existenceByTag = {}
   // {[slug]: {events: {[date]: true}}}
   const dateExistenceByCategoryBySlug = {}
@@ -163,7 +161,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
       // create post, event and contributor pages
       // (don't create for externals)
-      category !== 'newsletters' &&
+      category === 'contributors' &&
         !href &&
         createPage({
           path: slug,

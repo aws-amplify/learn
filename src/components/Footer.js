@@ -153,30 +153,26 @@ export default () => {
 
   const {latestSlug} = sitePage.context
 
+  // !window.location.href.includes('newsletters')
   return (
     <footer css={styles}>
-      {/* eslint-disable-next-line */}
-      {!window.location.href.includes('newsletters') && (
-        <>
-          <div className='upper'>
-            <Link to={latestSlug}>
-              <img src={bugleGraphicSrc} alt='bugle' />
-              <span>
-                <Text h4 className='footer-newsletter-cta secondary'>
-                  The latest newsletter is out!
-                </Text>
-                <Text h4 className='footer-newsletter-cta primary'>
-                  {' '}
-                  Read the latest
-                </Text>
-              </span>
-              <FaArrowCircleRight size={22} />
-            </Link>
-          </div>
+      <div className='upper'>
+        <Link to={latestSlug}>
+          <img src={bugleGraphicSrc} alt='bugle' />
+          <span>
+            <Text h4 className='footer-newsletter-cta secondary'>
+              The latest newsletter is out!
+            </Text>
+            <Text h4 className='footer-newsletter-cta primary'>
+              {' '}
+              Read the latest
+            </Text>
+          </span>
+          <FaArrowCircleRight size={22} />
+        </Link>
+      </div>
 
-          <hr />
-        </>
-      )}
+      <hr />
 
       <div className='lower'>
         <div className='copyright'>

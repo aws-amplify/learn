@@ -14,10 +14,9 @@ const templatePaths = Object.assign(
     posts: 'Posts.js',
     events: 'Events.js',
     newsletters: 'Newsletters.js',
-    tag: 'Tag.js',
     contributor: 'Contributor.js',
-    post: 'Post.js',
-    event: 'Event.js',
+    // post: 'Post.js',
+    // event: 'Event.js',
     newsletter: 'Newsletter.js',
   }).map(([key, value]) => ({
     [key]: relativeToTemplatesDir(value),
