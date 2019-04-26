@@ -1,8 +1,7 @@
 import {graphql} from 'gatsby'
 import {MappedList, Layout, Card, Nav, Text} from '~/components'
-import {mapNodeToProps, extract} from '~/utilities'
+import {mapNodeToProps, extract, track} from '~/utilities'
 import {css} from '@emotion/core'
-import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants'
 
 export const pageQuery = graphql`
   query($id: String!) {
@@ -64,8 +63,6 @@ export const pageQuery = graphql`
 
 const styles = css`
   width: 100%;
-  max-width: 800px;
-  margin: 0px auto;
   padding: 0px 16px;
 `
 
@@ -73,18 +70,24 @@ export default ({
   data: {
     contributor,
     posts: {edges: posts},
-    events: {edges: events},
+    // events: {edges: events},
   },
+  location: {href},
 }) => {
-  console.log(posts, events)
+  track({name: 'internalPageView', href})
   const props = mapNodeToProps(contributor)
   const main = (
-    <>
+    <div
+      css={css`
+        max-width: 1000px;
+        margin: 0px auto;
+      `}
+    >
       <div css={styles}>
         <Card.Contributor {...props} disabled />
       </div>
 
-      {!!events.length && (
+      {/* {!!events.length && (
         <MappedList
           heading={(
             <Text h2 className='list-heading'>
@@ -99,7 +102,7 @@ export default ({
             [DESKTOP_BREAKPOINT]: 3,
           }}
         />
-      )}
+      )} */}
 
       {!!posts.length && (
         <MappedList
@@ -114,7 +117,7 @@ export default ({
           renderItem={p => <Card.Post {...p} />}
         />
       )}
-    </>
+    </div>
   )
 
   return <Layout.Basic header={<Nav />} {...{main}} />

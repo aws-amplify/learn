@@ -7,6 +7,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@rehooks/component-size": "^1.0.2",
+    "aws-amplify": "^1.1.26",
     "babel-plugin-ramda": "^2.0.0",
     "gatsby": "2.3.4",
     "gatsby-image": "^2.0.37",

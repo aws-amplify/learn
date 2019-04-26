@@ -1,11 +1,11 @@
-import {css} from '@emotion/core'
+import {css, GlobalStyle} from '@emotion/core'
 import {useState, useCallback, useRef} from 'react'
 import {mq} from '~/constants'
 import Base from './Base'
 import {ToggleMenu} from '../Button'
 import {layout as layoutContext} from '~/contexts'
-import {Sticky} from 'react-sticky'
-import useSize from '@rehooks/component-size'
+// import {Sticky} from 'react-sticky'
+// import useSize from '@rehooks/component-size'
 
 const megaMenuStyles = css`
   position: fixed;
@@ -50,9 +50,8 @@ const megaMenuStyles = css`
 export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen])
-  const [stuck, setStuck] = useState(false)
   const ref = useRef(null)
-  const size = useSize(ref)
+  // const size = useSize(ref)
 
   return (
     <Base>

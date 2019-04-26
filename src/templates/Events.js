@@ -5,6 +5,7 @@ import {
   groupEdgesByMonth,
   createFilterContextValue,
   getFilterOptions,
+  track,
 } from '~/utilities'
 import {Layout, Card, MappedList, Nav, Filter, Text, Button} from '~/components'
 import {
@@ -13,13 +14,22 @@ import {
   ORANGE_PEEL_COLOR,
 } from '~/constants'
 import {filter as filterContext} from '~/contexts'
-import {values, mapObjIndexed, map, length, filter, identity} from 'ramda'
+import {
+  values,
+  mapObjIndexed,
+  map,
+  length,
+  filter,
+  identity,
+  head,
+  keys,
+} from 'ramda'
 import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
   {
     allMarkdownRemark(
-      sort: {fields: [fields___date], order: DESC}
+      sort: {fields: [fields___date], order: ASC}
       filter: {fields: {category: {eq: "events"}}}
     ) {
       edges {
@@ -41,6 +51,8 @@ const header = <Nav />
 const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms']
 
 export default props => {
+  const {href} = props.location
+  track({name: 'internalPageView', href})
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges)
@@ -57,6 +69,7 @@ export default props => {
   )
 
   const edgesByMonth = groupEdgesByMonth(edges)
+  const firstKey = head(keys(edgesByMonth))
 
   const main = (
     <filterContext.Consumer>
@@ -67,24 +80,26 @@ export default props => {
               length(filter(identity, map(meetsCriteria, group))) > 0 && (
                 <MappedList
                   key={key}
-                  cta={(
-                    <Button.Basic
-                      className='three-dee'
-                      styles={css`
-                        border-radius: 20px;
-                        background-color: ${ORANGE_PEEL_COLOR};
-                        padding-right: 16px;
-                        padding-left: 16px;
-                        > * {
-                          color: #fff;
-                        }
-                      `}
-                      href='https://aws-amplify.github.io'
-                      landingListCta
-                    >
-                      Add an Event
-                    </Button.Basic>
-)}
+                  cta={
+                    key === firstKey && (
+                      <Button.Basic
+                        className='three-dee'
+                        styles={css`
+                          border-radius: 20px;
+                          background-color: ${ORANGE_PEEL_COLOR};
+                          padding-right: 16px;
+                          padding-left: 16px;
+                          > * {
+                            color: #fff;
+                          }
+                        `}
+                        href='https://aws-amplify.github.io'
+                        landingListCta
+                      >
+                        Add an Event
+                      </Button.Basic>
+                    )
+                  }
                   heading={(
                     <Text h2 className='list-heading'>
                       {key}

@@ -7,7 +7,7 @@ import {
   KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants'
-import {mapNodeToProps, extract} from '~/utilities'
+import {mapNodeToProps, extract, track} from '~/utilities'
 import {css} from '@emotion/core'
 import logoLightURI from '~/assets/images/logo-light.svg'
 import {map} from 'ramda'
@@ -19,8 +19,9 @@ export const pageQuery = graphql`
     $posts: [Date!]!
     $newsletters: [Date!]!
   ) {
-    previousAndNext: sitePage(path: {eq: $current}) {
+    context: sitePage(path: {eq: $current}) {
       context {
+        week
         previous
         next
       }
@@ -83,11 +84,14 @@ const navProps = {
 }
 
 export default props => {
+  const {href} = props.location
+  track({name: 'internalPageView', href})
+
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props)
 
-  const {previous, next} = extract.fromPath(
-    ['data', 'previousAndNext', 'context'],
+  const {week, previous, next} = extract.fromPath(
+    ['data', 'context', 'context'],
     props,
   )
 
@@ -136,10 +140,21 @@ export default props => {
   const main = [
     <div
       css={css`
+        display: flex;
+        flex-direction: column;
         padding: 16px 16px 0px 16px;
+
+        .page-heading {
+          padding-bottom: 22px;
+        }
       `}
     >
-      <Text className='paragraph-large'>
+      <Text h2 className='page-heading'>
+        Week 
+        {' '}
+        {week}
+      </Text>
+      <Text p className='paragraph-large'>
         {`Welcome to the AWS Amplify Weekly - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
       </Text>
     </div>,
@@ -208,13 +223,13 @@ export default props => {
       )}
 
       <Button.Basic
-          className='three-dee'
-          newsletterNextPrevious
-          size='medium'
-          to='/newsletters'
-        >
-          View All
-        </Button.Basic>
+        className='three-dee'
+        newsletterNextPrevious
+        size='medium'
+        to='/newsletters'
+      >
+        View All
+      </Button.Basic>
 
       {next && (
         <Button.Basic

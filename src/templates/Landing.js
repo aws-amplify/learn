@@ -8,7 +8,7 @@ import {
   KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants'
-import {mapNodeToProps, extract} from '~/utilities'
+import {mapNodeToProps, extract, track} from '~/utilities'
 import {IoMdPeople, IoIosJournal} from 'react-icons/io'
 import {css} from '@emotion/core'
 import logoLightURI from '~/assets/images/logo-light.svg'
@@ -104,6 +104,9 @@ const navProps = {
 }
 
 export default props => {
+  const {href} = props.location
+  track({name: 'internalPageView', href})
+
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props)
 

@@ -1,6 +1,6 @@
 import {graphql} from 'gatsby'
 import {Nav, Layout, Card, MappedList, Text} from '~/components'
-import {extract, mapNodeToProps} from '~/utilities'
+import {extract, mapNodeToProps, track} from '~/utilities'
 import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants'
 
 // add alphabetical sorting
@@ -22,10 +22,16 @@ export const pageQuery = graphql`
 `
 
 export default props => {
+  const {href} = props.location
+  track({name: 'internalPageView', href})
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
   const main = (
     <MappedList
-      heading={<Text h2 className='list-heading'>Our Community</Text>}
+      heading={(
+        <Text h2 className='list-heading'>
+          Our Community
+        </Text>
+)}
       data={edges}
       mapping={mapNodeToProps}
       keyExtractor={extract.keyFromNode}
@@ -36,5 +42,6 @@ export default props => {
       }}
     />
   )
+
   return <Layout.Basic header={<Nav />} {...{main}} />
 }

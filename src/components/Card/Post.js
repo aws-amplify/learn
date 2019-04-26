@@ -8,6 +8,7 @@ import {mq} from '~/constants'
 const styles = css`
   display: flex;
   flex: 1;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
@@ -33,6 +34,10 @@ const styles = css`
       flex: 2;
     }
 
+    ${mq.monitor} {
+      flex: 3;
+    }
+
     &.gatsby-image-wrapper {
       flex: 1;
     }
@@ -49,6 +54,11 @@ const styles = css`
 
     .post-card-description {
       margin-top: 16px;
+
+      ${mq.tablet} {
+        font-size: 14px;
+        line-height: 21px;
+      }
     }
 
     > .author {

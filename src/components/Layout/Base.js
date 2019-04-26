@@ -22,7 +22,7 @@ export const style = css`
       display: flex;
       flex-direction: row;
       flex: 1;
-      max-width: 1600px;
+      max-width: 1200px;
       margin: 0px auto;
 
       .menu {
@@ -48,14 +48,12 @@ export const style = css`
   }
 `
 
-export default ({children}) => {
-  return (
-    <>
-      <GlobalStyles />
-      <StickyContainer>
-        <div css={style}>{children}</div>
-        <Footer />
-      </StickyContainer>
-    </>
-  )
-}
+export default ({children}) => (
+  <>
+    <GlobalStyles />
+    <StickyContainer>
+      <div css={style}>{children}</div>
+      <Footer />
+    </StickyContainer>
+  </>
+)

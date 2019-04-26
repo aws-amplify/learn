@@ -4,6 +4,7 @@ import {
   mapNodeToProps,
   createFilterContextValue,
   getFilterOptions,
+  track,
 } from '~/utilities'
 import {filter as filterContext} from '~/contexts'
 import {MappedList, Layout, Card, Filter, Nav, Text, Button} from '~/components'
@@ -53,6 +54,9 @@ const meetsCriterion = (field, criterion) =>
   !criterion || all(c => field && includes(c, field), criterion)
 
 export default props => {
+  const {href} = props.location
+  track({name: 'internalPageView', href})
+
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges)

@@ -3,7 +3,7 @@ import {css, Global} from '@emotion/core'
 import reset from './reset'
 import typography from './typography'
 import {
-  ATHENS_GRAY_COLOR,
+  CONCRETE_COLOR,
   TWITTER_BLUE_COLOR,
   GITHUB_GRAY_COLOR,
   YOUTUBE_RED_COLOR,
@@ -22,7 +22,7 @@ const styles = css`
     font-weight: 200;
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
-    background-color: ${ATHENS_GRAY_COLOR};
+    background-color: ${CONCRETE_COLOR};
   }
 
   * {

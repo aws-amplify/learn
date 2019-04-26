@@ -15,6 +15,7 @@ const {
   forEach,
   forEachObjIndexed,
   join,
+  last,
 } = require('ramda')
 
 module.exports = async ({graphql, actions: {createPage}}) => {
@@ -92,11 +93,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   // {[slug]: {events: {[date]: true}}}
   const dateExistenceByCategoryBySlug = {}
 
-  const latestNewsletter = {
-    date: null,
-    slug: null,
-  }
-
   const getSlug = (date, weeksToSubtract) => {
     if (weeksToSubtract) date.setDate(date.getDate() - 7 * weeksToSubtract)
     const year = date.getFullYear()
@@ -123,12 +119,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         if (category === 'events') {
           ;[1, 2, 3, 4].forEach(n => {
             const s = getSlug(date, n)
-            if (!latestNewsletter.date || latestNewsletter.date < date) {
-              Object.assign(latestNewsletter, {
-                date,
-                slug: s,
-              })
-            }
 
             if (!dateExistenceByCategoryBySlug[s]) {
               dateExistenceByCategoryBySlug[s] = {
@@ -141,12 +131,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
           })
         } else {
           const s = getSlug(date)
-          if (!latestNewsletter.date || latestNewsletter.date < date) {
-            Object.assign(latestNewsletter, {
-              date,
-              slug: s,
-            })
-          }
 
           if (!dateExistenceByCategoryBySlug[s]) {
             dateExistenceByCategoryBySlug[s] = {
@@ -195,12 +179,13 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     context: {
       sortedSlugs: sortedNewsletterSlugs,
       indexBySlug: JSON.stringify(indexByNewsletterSlug),
-      latestSlug: latestNewsletter.slug,
+      latestSlug: sortedNewsletterSlugs[0],
     },
   })
 
   // create newsletter pages
   forEachObjIndexed((datesByCategory, slug) => {
+    const week = last(split('/', slug))
     const i = indexByNewsletterSlug[slug]
     const next = sortedNewsletterSlugs[i - 1]
     const previous = sortedNewsletterSlugs[i + 1]
@@ -212,10 +197,16 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         current: `/${slug}`,
         next,
         previous,
+        week,
         ...map(keys, datesByCategory),
       },
     })
   }, dateExistenceByCategoryBySlug)
+
+  createPage({
+    path: 'contributors',
+    component: listTemplatePathByCategory.contributors,
+  })
 
   createPage({
     path: 'events',
