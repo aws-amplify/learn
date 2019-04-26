@@ -1,4 +1,4 @@
-import {css} from '@emotion/core'
+import {css} from '@emotion/core';
 
 export default css`
   html,
@@ -130,4 +130,4 @@ export default css`
     border-collapse: collapse;
     border-spacing: 0;
   }
-`
+`;

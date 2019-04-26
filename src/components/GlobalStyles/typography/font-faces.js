@@ -1,7 +1,7 @@
-import {css} from '@emotion/core'
+import {css} from '@emotion/core';
 // make sure Gatsby properly chunks font assets into async loadables
-import {Th, ThIt, Lt, LtIt, Rg, RgIt, Bd, BdIt} from '~/assets/fonts'
-import {map, join} from 'ramda'
+import {Th, ThIt, Lt, LtIt, Rg, RgIt, Bd, BdIt} from '~/assets/fonts';
+import {map, join} from 'ramda';
 
 export default css`
   ${join(
@@ -59,4 +59,4 @@ export default css`
       ],
     ),
   )}
-`
+`;

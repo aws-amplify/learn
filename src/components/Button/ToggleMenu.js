@@ -1,8 +1,8 @@
-import {css} from '@emotion/core'
-import {useContext} from 'react'
-import {layout as layoutContext} from '~/contexts'
-import {IoMdClose, IoIosMore} from 'react-icons/io'
-import {EBONY_CLAY_COLOR, mq} from '~/constants'
+import {css} from '@emotion/core';
+import {useContext} from 'react';
+import {layout as layoutContext} from '~/contexts';
+import {IoMdClose, IoIosMore} from 'react-icons/io';
+import {EBONY_CLAY_COLOR, mq} from '~/constants';
 
 const styles = css`
   display: flex;
@@ -28,10 +28,10 @@ const styles = css`
   .hidden {
     display: none;
   }
-`
+`;
 
 export default () => {
-  const {toggleMenu, menuOpen} = useContext(layoutContext)
+  const {toggleMenu, menuOpen} = useContext(layoutContext);
 
   return (
     <button css={styles} type='button' onClick={toggleMenu}>
@@ -39,5 +39,5 @@ export default () => {
         <Tag {...(menuOpen === !!i ? {className: 'hidden'} : {})} size={23} />
       ))}
     </button>
-  )
-}
+  );
+};

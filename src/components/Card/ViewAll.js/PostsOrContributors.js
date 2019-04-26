@@ -1,24 +1,17 @@
-import {css} from '@emotion/core'
-import asCard from '../asCard'
-import Text from '../../Text'
-import {FaArrowCircleRight} from 'react-icons/fa'
-import {mq, ORANGE_PEEL_COLOR} from '~/constants'
+import {css} from '@emotion/core';
+import asCard from '../asCard';
+import Text from '../../Text';
+import {FaArrowCircleRight} from 'react-icons/fa';
+import {mq, ORANGE_PEEL_COLOR} from '~/constants';
+import {classNames} from '~/utilities';
 
-export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
-  <div
-    className='shadow'
-    css={css`
-      display: flex;
-      flex: 1;
-      height: 100%;
-      background-color: #fff;
-      border-radius: 5px;
-      text-align: center;
-
-      .container {
-        display: flex;
+export default asCard(
+  ({ConditionalAnchor, graphic, heading, subheading, className}) => (
+    <ConditionalAnchor
+      className={classNames('view-all-posts-or-contributors shadow', className)}
+      css={css`
+        text-align: center;
         flex-direction: column;
-        flex: 1;
         align-items: center;
         justify-content: space-evenly;
         padding: 32px;
@@ -48,10 +41,8 @@ export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
             justify-content: center;
           }
         }
-      }
-    `}
-  >
-    <ConditionalAnchor>
+      `}
+    >
       <div>
         {graphic}
         <Text h3 className='more-posts-or-contributors-heading'>
@@ -63,5 +54,5 @@ export default asCard(({ConditionalAnchor, graphic, heading, subheading}) => (
       </div>
       <FaArrowCircleRight size={22} />
     </ConditionalAnchor>
-  </div>
-))
+  ),
+);

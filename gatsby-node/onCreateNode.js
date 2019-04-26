@@ -1,60 +1,63 @@
-const {join} = require('path')
-const {generate} = require('shortid')
+const {join} = require('path');
+const {generate} = require('shortid');
+const {forEachObjIndexed, split} = require('ramda');
+
+const splitAtSlashes = split('/');
+const splitAtDelimiters = split(/-|\//);
 
 module.exports = ({node, getNode, actions: {createNodeField}}) => {
-  const addFields = fields =>
-    Object.entries(fields).forEach(([name, value]) =>
-      createNodeField({node, name, value}),
-    )
+  const addFields = forEachObjIndexed((value, name) =>
+    createNodeField({node, name, value}),
+  );
 
   if (node.internal.type === 'MarkdownRemark' /* && !node.slug */) {
-    const {sourceInstanceName, relativePath} = getNode(node.parent)
+    const {sourceInstanceName, relativePath} = getNode(node.parent);
 
     switch (sourceInstanceName) {
       case 'contributors': {
-        const [id] = relativePath.split('/')
-        const slug = `contributors/${id}`
-        addFields({id, slug})
-        break
+        const [id] = splitAtSlashes(relativePath);
+        const slug = `contributors/${id}`;
+        addFields({id, slug});
+        break;
       }
 
       case 'posts': {
-        const {authorIds: authors} = node.frontmatter
-        addFields({authors})
+        const {authorIds: authors} = node.frontmatter;
+        addFields({authors});
       }
 
       case 'events': {
-        const {attendantIds: attendants} = node.frontmatter
-        addFields({attendants})
+        const {attendantIds: attendants} = node.frontmatter;
+        addFields({attendants});
       }
 
       case 'posts':
       case 'events':
       case 'newsletters': {
-        const pieces = relativePath.split(/-|\//)
-        const piecesWithoutLast = pieces.slice(0, pieces.length - 1)
-        const [year, month, day, ...titlePieces] = piecesWithoutLast
-        const datePath = [year, month, day].join('/')
-        const titlePath = titlePieces ? titlePieces.join('-') : ''
-        const slug = join(sourceInstanceName, datePath, titlePath)
-        const date = new Date(year, month - 1, day).toJSON()
-        addFields({date, slug})
-        break
+        const pieces = splitAtDelimiters(relativePath);
+        const piecesWithoutLast = pieces.slice(0, pieces.length - 1);
+        const [year, month, day, ...titlePieces] = piecesWithoutLast;
+        const datePath = [year, month, day].join('/');
+        const titlePath = titlePieces ? titlePieces.join('-') : '';
+        const slug = join(sourceInstanceName, datePath, titlePath);
+        const date = new Date(year, month - 1, day).toJSON();
+        addFields({date, slug});
+        break;
       }
 
       case 'misc': {
-        const [id] = relativePath.split('/')
-        addFields({id})
-        break
+        const [id] = splitAtSlashes(relativePath);
+        addFields({id});
+        break;
       }
 
       default: {
-        break
+        break;
       }
     }
 
-    const key = generate() // for re-use by reconciler
-    const category = sourceInstanceName
-    addFields({key, category})
+    const key = generate(); // for re-use by reconciler
+    const category = sourceInstanceName;
+    addFields({key, category});
   }
-}
+};

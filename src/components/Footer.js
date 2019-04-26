@@ -1,13 +1,13 @@
-import {css} from '@emotion/core'
-import {Link, useStaticQuery, graphql} from 'gatsby'
-import ExternalLink from './ExternalLink'
-import Text from './Text'
-import {FaArrowCircleRight} from 'react-icons/fa'
-import {ORANGE_PEEL_COLOR, BIG_STONE_COLOR, GRAY_COLOR, mq} from '~/constants'
-import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io'
-import awsLogoSrc from '~/assets/images/aws-logo.png'
-import bugleGraphicSrc from '~/assets/images/bugle.svg'
-import {map} from 'ramda'
+import {css} from '@emotion/core';
+import {Link, useStaticQuery, graphql} from 'gatsby';
+import {FaArrowCircleRight} from 'react-icons/fa';
+import {ORANGE_PEEL_COLOR, BIG_STONE_COLOR, GRAY_COLOR, mq} from '~/constants';
+import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
+import awsLogoSrc from '~/assets/images/aws-logo.png';
+import bugleGraphicSrc from '~/assets/images/bugle.svg';
+import {map} from 'ramda';
+import Text from './Text';
+import ExternalLink from './ExternalLink';
 
 const styles = css`
   display: flex;
@@ -138,7 +138,7 @@ const styles = css`
     border-width: 0px;
     background-color: #eee;
   }
-`
+`;
 
 export default () => {
   const {sitePage} = useStaticQuery(graphql`
@@ -149,9 +149,9 @@ export default () => {
         }
       }
     }
-  `)
+  `);
 
-  const {latestSlug} = sitePage.context
+  const {latestSlug} = sitePage.context;
 
   // !window.location.href.includes('newsletters')
   return (
@@ -185,12 +185,12 @@ export default () => {
         <div className='social'>
           {map(
             ({Icon, size, ...linkProps}) => {
-              const {className: key} = linkProps
+              const {className: key} = linkProps;
               return (
                 <ExternalLink {...{key}} {...linkProps}>
                   <Icon {...{size}} />
                 </ExternalLink>
-              )
+              );
             },
             [
               {
@@ -210,5 +210,5 @@ export default () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};

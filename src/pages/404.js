@@ -1,26 +1,28 @@
-import {css} from '@emotion/core'
-import {Text, Button} from '~/components'
+import {css} from '@emotion/core';
+import {Layout, Text, Button, Nav} from '~/components';
 
+// clean up height value
 const styles = css`
   display: flex;
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
   justify-content: center;
   align-items: center;
-`
+  flex-direction: column;
+  height: 65vh;
+
+  .button {
+    margin-top: 16px;
+  }
+`;
 
 export default () => (
-  <div css={styles}>
-    <div>
-      <Text h2 className='page-heading'>
-        404 – Page Not Found
-      </Text>
-      <Button.Basic to='/' className='four-o-four-return-to-landing'>
-        Return Home
-      </Button.Basic>
-    </div>
-  </div>
-)
+  <Layout.Basic
+    header={<Nav />}
+    main={(
+      <div css={styles}>
+        <Text h2 className='page-heading' children='404' />
+        <Text h4 className='page-subheading' children='Page Not Found' />
+        <Button.Basic to='/' className='three-dee' children='Return Home' />
+      </div>
+)}
+  />
+);

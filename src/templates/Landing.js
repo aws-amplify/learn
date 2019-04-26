@@ -1,5 +1,5 @@
-import {graphql} from 'gatsby'
-import {Layout, Card, List, Nav, Hero, Button, Text} from '~/components'
+import {graphql} from 'gatsby';
+import {Layout, Card, List, Nav, Hero, Button, Text} from '~/components';
 import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
@@ -7,12 +7,12 @@ import {
   MONITOR_BREAKPOINT,
   KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
-} from '~/constants'
-import {mapNodeToProps, extract, track} from '~/utilities'
-import {IoMdPeople, IoIosJournal} from 'react-icons/io'
-import {css} from '@emotion/core'
-import logoLightURI from '~/assets/images/logo-light.svg'
-import {map} from 'ramda'
+} from '~/constants';
+import {mapNodeToProps, extract, track} from '~/utilities';
+import {IoMdPeople, IoIosJournal} from 'react-icons/io';
+import {css} from '@emotion/core';
+import logoLightURI from '~/assets/images/logo-light.svg';
+import {map} from 'ramda';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -86,14 +86,14 @@ export const pageQuery = graphql`
       totalCount
     }
   }
-`
+`;
 
 const heroProps = {
   heading: 'Join the Amplify Community',
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
-}
+};
 
 const navProps = {
   beforeScroll: {
@@ -101,27 +101,26 @@ const navProps = {
     textColor: '#fff',
     logoSrc: logoLightURI,
   },
-}
+};
 
 export default props => {
-  const {href} = props.location
-  track({name: 'internalPageView', href})
+  track.internalPageView(props);
 
   const extractEdges = alias =>
-    extract.fromPath(['data', alias, 'edges'], props)
+    extract.fromPath(['data', alias, 'edges'], props);
 
   const [upcomingEventNodes, latestPostNodes, featuredContributorNodes] = map(
     extractEdges,
     ['upcomingEvents', 'latestPosts', 'featuredContributors'],
-  )
+  );
 
   const extractCount = aliasPrefix =>
-    extract.fromPath(['data', `${aliasPrefix}Count`, 'totalCount'], props)
+    extract.fromPath(['data', `${aliasPrefix}Count`, 'totalCount'], props);
 
   const [upcomingEventsCount, postsCount, contributorsCount] = map(
     extractCount,
     ['upcomingEvents', 'posts', 'events'],
-  )
+  );
 
   const sections = [
     {
@@ -162,18 +161,14 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      cardContainerStyles: css`
-        background-color: ${KASHMIR_BLUE_COLOR};
-        * {
-          color: #fff;
-        }
-      `,
+      itemContainerClassName: 'landing',
     },
     {
       heading: 'Featured Contributors',
       cta: {
         children: 'Join The Community',
         to: '/participate',
+        hidePlus: true,
       },
       nodes: featuredContributorNodes,
       Template: Card.Contributor,
@@ -189,7 +184,7 @@ export default props => {
         [MONITOR_BREAKPOINT]: 6,
       },
     },
-  ]
+  ];
 
   const main = map(
     ({
@@ -199,60 +194,41 @@ export default props => {
       nodes,
       Template,
       more,
-      cardContainerStyles,
+      itemContainerClassName: className,
       ...rest
     }) => {
-      const {Template: ViewAllCard, ...viewAllProps} = more
+      const {Template: ViewAllCard, ...viewAllProps} = more;
 
       const items = [
         ...map(
           node => (
             <Template
-              containerStyles={cardContainerStyles}
+              {...(className ? {className} : {})}
               {...mapNodeToProps(node)}
             />
           ),
           nodes,
         ),
         <ViewAllCard {...viewAllProps} />,
-      ]
+      ];
 
       return (
         <List
           key={heading}
-          heading={(
-            <Text h2 className='list-heading'>
-              {heading}
-            </Text>
-)}
-          cta={(
-            <Button.Basic
-              className='three-dee'
-              styles={css`
-                border-radius: 20px;
-                background-color: ${ORANGE_PEEL_COLOR};
-                padding-right: 16px;
-                padding-left: 16px;
-                > * {
-                  color: #fff;
-                }
-              `}
-              {...cta}
-              landingListCta
-            />
-)}
+          heading={<Text h2 className='list-heading' children={heading} />}
+          cta={<Button.Contribute {...cta} />}
           {...{key, items}}
           {...rest}
         />
-      )
+      );
     },
     sections,
-  )
+  );
 
   return (
     <Layout.Basic
       header={[<Nav {...navProps} />, <Hero {...heroProps} />]}
       {...{main}}
     />
-  )
-}
+  );
+};

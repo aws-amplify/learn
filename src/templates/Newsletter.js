@@ -1,16 +1,16 @@
-import {graphql} from 'gatsby'
-import {Layout, Card, List, Nav, Button, Text} from '~/components'
+import {graphql} from 'gatsby';
+import {Layout, Card, List, Nav, Button, Text} from '~/components';
 import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
   KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
-} from '~/constants'
-import {mapNodeToProps, extract, track} from '~/utilities'
-import {css} from '@emotion/core'
-import logoLightURI from '~/assets/images/logo-light.svg'
-import {map} from 'ramda'
+} from '~/constants';
+import {mapNodeToProps, extract, track} from '~/utilities';
+import {css} from '@emotion/core';
+import logoLightURI from '~/assets/images/logo-light.svg';
+import {map} from 'ramda';
 
 export const pageQuery = graphql`
   query(
@@ -73,7 +73,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 const navProps = {
   beforeScroll: {
@@ -81,24 +81,23 @@ const navProps = {
     textColor: '#fff',
     logoSrc: logoLightURI,
   },
-}
+};
 
 export default props => {
-  const {href} = props.location
-  track({name: 'internalPageView', href})
+  track.internalPageView(props);
 
   const extractEdges = alias =>
-    extract.fromPath(['data', alias, 'edges'], props)
+    extract.fromPath(['data', alias, 'edges'], props);
 
   const {week, previous, next} = extract.fromPath(
     ['data', 'context', 'context'],
     props,
-  )
+  );
 
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
     'upcomingEvents',
     'latestPosts',
-  ])
+  ]);
 
   const sections = [
     {
@@ -135,7 +134,7 @@ export default props => {
         }
       `,
     },
-  ]
+  ];
 
   const main = [
     <div
@@ -178,7 +177,7 @@ export default props => {
               />
             ),
             nodes,
-          )
+          );
 
           return (
             <List
@@ -190,10 +189,10 @@ export default props => {
               {...{key, items}}
               {...rest}
             />
-          )
+          );
         }
 
-        return null
+        return null;
       },
       sections,
     ),
@@ -242,7 +241,7 @@ export default props => {
         </Button.Basic>
       )}
     </div>,
-  ]
+  ];
 
-  return <Layout.Basic header={<Nav {...navProps} />} {...{main}} />
-}
+  return <Layout.Basic header={<Nav {...navProps} />} {...{main}} />;
+};

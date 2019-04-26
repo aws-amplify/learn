@@ -1,4 +1,4 @@
-import Base from './Base'
+import Base from './Base';
 
 export default ({header, main}) => (
   <Base>
@@ -10,4 +10,4 @@ export default ({header, main}) => (
       </div>
     </div>
   </Base>
-)
+);

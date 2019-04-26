@@ -1,44 +1,31 @@
-import asCard from './asCard'
-import {css} from '@emotion/core'
-import Img from 'gatsby-image'
-import Text from '../Text'
-import {head, split} from 'ramda'
-import {useMemo} from 'react'
+import {css} from '@emotion/core';
+import Img from 'gatsby-image';
+import {head, split} from 'ramda';
+import {useMemo} from 'react';
+import Text from '../Text';
+import asCard from './asCard';
+import {classNames} from '~/utilities';
 
 const styles = css`
-  display: flex;
-  height: 100%;
-  flex: 1;
+  text-align: right;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px;
+  text-align: left;
 
-  > .container {
+  .text {
     display: flex;
     flex: 1;
-    flex-direction: column;
-    text-align: right;
-    justify-content: center;
-
-    > div {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: 24px;
-      text-align: left;
-
-      .text {
-        display: flex;
-        flex: 1;
-      }
-
-      .gatsby-image-wrapper {
-        flex-shrink: 0;
-        border: 1px solid #e9e9e9;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-right: 24px;
-      }
-    }
   }
-`
+
+  .avatar > * {
+    flex-shrink: 0;
+    border: 1px solid #e9e9e9;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 24px;
+  }
+`;
 
 export default asCard(
   ({
@@ -49,32 +36,30 @@ export default asCard(
     city,
     state,
     date,
-    containerStyles,
+    className,
   }) => {
-    const formattedDate = useMemo(() => head(split(', ', date)), [date])
+    const formattedDate = useMemo(() => head(split(', ', date)), [date]);
 
     return (
-      <div css={[styles, containerStyles]} className='item three-dee tile'>
-        <ConditionalAnchor>
-          <div>
-            {avatar && <Img {...avatar} />}
-            <div>
-              <Text h3 className='event-card-title'>
-                {title}
-              </Text>
-              <Text h4 className='event-card-detail'>
-                {formattedDate}
-              </Text>
-              <Text
-                h4
-                className='event-card-detail'
-              >
-                {`${location} (${city}, ${state})`}
-              </Text>
-            </div>
+      <ConditionalAnchor
+        css={styles}
+        className={classNames(className, 'event three-dee')}
+      >
+        {avatar && (
+          <div className='avatar'>
+            <Img {...avatar} />
           </div>
-        </ConditionalAnchor>
-      </div>
-    )
+        )}
+        <div>
+          <Text h3 className='event-card-title' children={title} />
+          <Text h4 className='event-card-detail' children={formattedDate} />
+          <Text
+            h4
+            className='event-card-detail'
+            children={`${location} (${city}, ${state})`}
+          />
+        </div>
+      </ConditionalAnchor>
+    );
   },
-)
+);

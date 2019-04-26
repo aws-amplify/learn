@@ -1,7 +1,7 @@
-import {css} from '@emotion/core'
-import {join, values, mapObjIndexed} from 'ramda'
-import dictionary from './dictionary'
-import fontFaces from './font-faces'
+import {css} from '@emotion/core';
+import {join, values, mapObjIndexed} from 'ramda';
+import dictionary from './dictionary';
+import fontFaces from './font-faces';
 
 const createStyleStringByProp = {
   size: x => `font-size: ${x}px;`,
@@ -9,7 +9,7 @@ const createStyleStringByProp = {
   height: x => `line-height: ${x}px;`,
   color: x => `color: ${x};`,
   transform: x => `text-transform: ${x};`,
-}
+};
 
 export default css`
   ${fontFaces}
@@ -38,4 +38,4 @@ export default css`
       dictionary,
     ),
   )}
-`
+`;

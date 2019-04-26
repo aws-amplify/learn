@@ -1,4 +1,4 @@
-import {map} from 'ramda'
-import {createContext} from 'react'
+import {map} from 'ramda';
+import {createContext} from 'react';
 
-export const [layout, filter] = map(createContext, new Array(2))
+export const [layout, filter] = map(createContext, new Array(2));

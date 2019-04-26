@@ -1,4 +1,4 @@
-import {graphql} from 'gatsby'
+import {graphql} from 'gatsby';
 
 export const AvatarSmallFragment = graphql`
   fragment AvatarSmall on File {
@@ -8,7 +8,7 @@ export const AvatarSmallFragment = graphql`
       }
     }
   }
-`
+`;
 
 export const AvatarMediumFragment = graphql`
   fragment AvatarMedium on File {
@@ -18,7 +18,7 @@ export const AvatarMediumFragment = graphql`
       }
     }
   }
-`
+`;
 
 export const AvatarLargeFragment = graphql`
   fragment AvatarLarge on File {
@@ -28,7 +28,7 @@ export const AvatarLargeFragment = graphql`
       }
     }
   }
-`
+`;
 
 export const BannerThumbnailFragment = graphql`
   fragment BannerThumbnail on File {
@@ -38,7 +38,7 @@ export const BannerThumbnailFragment = graphql`
       }
     }
   }
-`
+`;
 
 export const BannerFragment = graphql`
   fragment Banner on File {
@@ -48,7 +48,7 @@ export const BannerFragment = graphql`
       }
     }
   }
-`
+`;
 
 export const ContributorFragment = graphql`
   fragment Contributor on MarkdownRemark {
@@ -64,7 +64,7 @@ export const ContributorFragment = graphql`
       website
     }
   }
-`
+`;
 
 export const SharedBetweenPostsAndEventsFragment = graphql`
   fragment SharedBetweenPostsAndEvents on MarkdownRemark {
@@ -80,7 +80,7 @@ export const SharedBetweenPostsAndEventsFragment = graphql`
       tags
     }
   }
-`
+`;
 
 export const PostFragment = graphql`
   fragment Post on MarkdownRemark {
@@ -91,7 +91,7 @@ export const PostFragment = graphql`
       }
     }
   }
-`
+`;
 
 export const EventFragment = graphql`
   fragment Event on MarkdownRemark {
@@ -107,4 +107,4 @@ export const EventFragment = graphql`
       state
     }
   }
-`
+`;

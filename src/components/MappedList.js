@@ -1,5 +1,5 @@
-import List from './List'
-import {identity, map} from 'ramda'
+import {identity, map} from 'ramda';
+import List from './List';
 
 export default ({
   data,
@@ -17,7 +17,7 @@ export default ({
         ...mapping(e),
       }),
     data,
-  )
+  );
 
-  return <List {...rest} {...{items}} />
-}
+  return <List {...rest} {...{items}} />;
+};

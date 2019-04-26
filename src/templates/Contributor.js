@@ -1,7 +1,7 @@
-import {graphql} from 'gatsby'
-import {MappedList, Layout, Card, Nav, Text} from '~/components'
-import {mapNodeToProps, extract, track} from '~/utilities'
-import {css} from '@emotion/core'
+import {graphql} from 'gatsby';
+import {MappedList, Layout, Card, Nav, Text} from '~/components';
+import {mapNodeToProps, extract, track} from '~/utilities';
+import {css} from '@emotion/core';
 
 export const pageQuery = graphql`
   query($id: String!) {
@@ -59,23 +59,23 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 const styles = css`
   width: 100%;
   padding: 0px 16px;
-`
+`;
 
 export default ({
   data: {
     contributor,
     posts: {edges: posts},
-    // events: {edges: events},
   },
-  location: {href},
+  ...rest
 }) => {
-  track({name: 'internalPageView', href})
-  const props = mapNodeToProps(contributor)
+  track.internalPageView(rest);
+
+  const props = mapNodeToProps(contributor);
   const main = (
     <div
       css={css`
@@ -87,30 +87,9 @@ export default ({
         <Card.Contributor {...props} disabled />
       </div>
 
-      {/* {!!events.length && (
-        <MappedList
-          heading={(
-            <Text h2 className='list-heading'>
-              Events
-            </Text>
-)}
-          data={events}
-          mapping={mapNodeToProps}
-          keyExtractor={extract.keyFromNode}
-          renderItem={p => <Card.Event {...p} />}
-          columnCountByBreakpoint={{
-            [DESKTOP_BREAKPOINT]: 3,
-          }}
-        />
-      )} */}
-
       {!!posts.length && (
         <MappedList
-          heading={(
-            <Text h2 className='list-heading'>
-              Posts
-            </Text>
-)}
+          heading={<Text h2 className='list-heading' children='Posts' />}
           data={posts}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
@@ -118,7 +97,7 @@ export default ({
         />
       )}
     </div>
-  )
+  );
 
-  return <Layout.Basic header={<Nav />} {...{main}} />
-}
+  return <Layout.Basic header={<Nav />} {...{main}} />;
+};

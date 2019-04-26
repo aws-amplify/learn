@@ -1,8 +1,8 @@
-import {css} from '@emotion/core'
-import {useMemo} from 'react'
-import {generate} from 'shortid'
-import {SAN_JUAN_COLOR, GRAY_COLOR} from '~/constants'
-import Text from './Text'
+import {css} from '@emotion/core';
+import {useMemo} from 'react';
+import {generate} from 'shortid';
+import {SAN_JUAN_COLOR, GRAY_COLOR} from '~/constants';
+import Text from './Text';
 
 const styles = css`
   display: flex;
@@ -69,10 +69,10 @@ const styles = css`
     margin-left: 7px;
     color: ${GRAY_COLOR};
   }
-`
+`;
 
 export default ({value, onChange}) => {
-  const id = useMemo(generate, [])
+  const id = useMemo(generate, []);
 
   return (
     <label className='checkbox' css={styles} htmlFor={id}>
@@ -86,5 +86,5 @@ export default ({value, onChange}) => {
         </Text>
       </div>
     </label>
-  )
-}
+  );
+};

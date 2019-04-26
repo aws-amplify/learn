@@ -1,9 +1,10 @@
-import asCard from './asCard'
-import {css} from '@emotion/core'
-import Img from 'gatsby-image'
-import {Link} from 'gatsby'
-import Text from '../Text'
-import {mq} from '~/constants'
+import asCard from './asCard';
+import {css} from '@emotion/core';
+import Img from 'gatsby-image';
+import {Link} from 'gatsby';
+import Text from '../Text';
+import {mq, KASHMIR_BLUE_COLOR} from '~/constants';
+import {classNames} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -12,6 +13,14 @@ const styles = css`
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+
+  background-color: #fff;
+  &.landing {
+    background-color: ${KASHMIR_BLUE_COLOR};
+    * {
+      color: #fff;
+    }
+  }
 
   &:hover {
     .favicon {
@@ -78,7 +87,7 @@ const styles = css`
         margin-bottom: 8px;
       }
 
-      .gatsby-image-wrapper {
+      .avatar > * {
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #fff;
@@ -86,54 +95,57 @@ const styles = css`
       }
     }
   }
-`
+`;
 
 export default asCard(
   ({
+    className,
     ConditionalAnchor,
     banner,
     authors,
     title,
     description,
-    containerStyles,
     href,
   }) => {
-    const [firstAuthor] = authors
-    const {to, name, twitter, github, avatar} = firstAuthor
-    const handle = twitter || github
+    const [firstAuthor] = authors;
+    const {to, name, twitter, github, avatar} = firstAuthor;
+    const handle = twitter || github;
 
     return (
-      <ConditionalAnchor>
-        <div css={[styles, containerStyles]} className='item three-dee tile'>
-          {banner && <Img {...banner} />}
-          <div>
-            {href && (
-              <img
-                className='favicon'
-                src={`http://www.google.com/s2/favicons?domain=${encodeURI(
-                  href,
-                )}`}
-                alt='content platform'
-              />
-            )}
-            <Text h3 className='post-card-title'>
-              {title}
-            </Text>
-            <Text p className='post-card-description'>
-              {description}
-            </Text>
-            <Link {...{to}} className='author'>
-              <div className='text'>
-                <Text h5 className='post-card-name'>
-                  {name}
-                </Text>
-                <Text h6 className='post-card-handle'>{`@${handle}`}</Text>
-              </div>
+      <ConditionalAnchor
+        css={styles}
+        className={classNames(className, 'post three-dee')}
+      >
+        {banner && <Img {...banner} />}
+        <div>
+          {href && (
+            <img
+              className='favicon'
+              src={`http://www.google.com/s2/favicons?domain=${encodeURI(
+                href,
+              )}`}
+              alt='content platform'
+            />
+          )}
+          <Text h3 className='post-card-title'>
+            {title}
+          </Text>
+          <Text p className='post-card-description'>
+            {description}
+          </Text>
+          <Link {...{to}} className='author'>
+            <div className='text'>
+              <Text h5 className='post-card-name'>
+                {name}
+              </Text>
+              <Text h6 className='post-card-handle'>{`@${handle}`}</Text>
+            </div>
+            <div className='avatar'>
               <Img {...avatar} />
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       </ConditionalAnchor>
-    )
+    );
   },
-)
+);

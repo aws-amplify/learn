@@ -1,8 +1,8 @@
-import {useContext} from 'react'
-import CheckboxGroup from './CheckboxGroup'
-import {filter as filterContext} from '~/contexts'
-import {css} from '@emotion/core'
-import {mq} from '~/constants'
+import {useContext} from 'react';
+import CheckboxGroup from './CheckboxGroup';
+import {filter as filterContext} from '~/contexts';
+import {css} from '@emotion/core';
+import {mq} from '~/constants';
 
 const styles = css`
   padding: 16px;
@@ -18,10 +18,10 @@ const styles = css`
     background-color: #fff;
     border-radius: 4px;
   }
-`
+`;
 
 export default ({filters}) => {
-  const {setCriteria} = useContext(filterContext)
+  const {setCriteria} = useContext(filterContext);
 
   return (
     <div css={styles}>
@@ -35,5 +35,5 @@ export default ({filters}) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

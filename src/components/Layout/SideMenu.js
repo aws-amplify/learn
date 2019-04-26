@@ -1,9 +1,9 @@
-import {css, GlobalStyle} from '@emotion/core'
-import {useState, useCallback, useRef} from 'react'
-import {mq} from '~/constants'
-import Base from './Base'
-import {ToggleMenu} from '../Button'
-import {layout as layoutContext} from '~/contexts'
+import {css} from '@emotion/core';
+import {useState, useCallback, useRef} from 'react';
+import {mq} from '~/constants';
+import Base from './Base';
+import {ToggleMenu} from '../Button';
+import {layout as layoutContext} from '~/contexts';
 // import {Sticky} from 'react-sticky'
 // import useSize from '@rehooks/component-size'
 
@@ -45,12 +45,12 @@ const megaMenuStyles = css`
       display: none;
     }
   }
-`
+`;
 
 export default ({header, menu, main}) => {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen])
-  const ref = useRef(null)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen]);
+  const ref = useRef(null);
   // const size = useSize(ref)
 
   return (
@@ -80,5 +80,5 @@ export default ({header, menu, main}) => {
         <ToggleMenu />
       </layoutContext.Provider>
     </Base>
-  )
-}
+  );
+};

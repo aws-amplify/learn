@@ -1,9 +1,9 @@
-const {lifeCycleStages} = require('./constants')
+const {reduce, assoc} = require('ramda');
+const {lifeCycleStages} = require('./constants');
 
-module.exports = lifeCycleStages.reduce(
-  (exportsStage, moduleName) => ({
-    ...exportsStage,
-    [moduleName]: require(`./${moduleName}`),
-  }),
+module.exports = reduce(
+  (exportsStage, moduleName) =>
+    assoc(moduleName, require(`./${moduleName}`), exportsStage),
   {},
-)
+  lifeCycleStages,
+);

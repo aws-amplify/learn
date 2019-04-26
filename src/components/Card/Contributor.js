@@ -1,21 +1,18 @@
-import {css} from '@emotion/core'
-import Img from 'gatsby-image'
-import asCard from './asCard'
-import ExternalLink from '../ExternalLink'
-import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io'
-import {useMemo} from 'react'
-import Text from '../Text'
-import {identity, values, mapObjIndexed} from 'ramda'
+import {css} from '@emotion/core';
+import Img from 'gatsby-image';
+import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io';
+import {useMemo} from 'react';
+import {identity, values, mapObjIndexed} from 'ramda';
+import asCard from './asCard';
+import ExternalLink from '../ExternalLink';
+import Text from '../Text';
+import {classNames} from '~/utilities';
 
 const styles = css`
-  display: flex;
-  flex: 1;
-  height: 100%;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
 
-  > .container {
+  > .body {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -24,7 +21,7 @@ const styles = css`
     width: 100%;
     padding: 32px;
 
-    .gatsby-image-wrapper {
+    .avatar > div {
       display: flex;
       border-radius: 50%;
       overflow: hidden;
@@ -58,7 +55,7 @@ const styles = css`
       padding: 16px;
     }
   }
-`
+`;
 
 const propsBySite = {
   github: {
@@ -76,56 +73,60 @@ const propsBySite = {
     size: 20,
     Icon: IoIosLink,
   },
-}
+};
 
 export default asCard(
   ({
     ConditionalAnchor,
+    className,
     name,
     bio,
     avatar,
     github,
     twitter,
     website,
-    containerStyles,
   }) => {
-    const social = {github, twitter, website}
-    const deps = values(social)
+    const social = {github, twitter, website};
+    const deps = values(social);
     const links = useMemo(
       () =>
         values(
           mapObjIndexed((v, key) => {
-            const {getHref, Icon, size} = propsBySite[key]
-            const href = v && getHref(v)
+            const {getHref, Icon, size} = propsBySite[key];
+            const href = v && getHref(v);
             return (
               href && (
                 <ExternalLink {...{href}} className={key}>
                   <Icon {...{size}} />
                 </ExternalLink>
               )
-            )
+            );
           }, social),
         ),
       deps,
-    )
+    );
 
     return (
-      <div css={[styles, containerStyles]} className='item three-dee tile'>
-        <ConditionalAnchor>
-          {avatar ? <Img {...avatar} /> : '[backup image]'}
+      <div
+        css={styles}
+        className={classNames('contributor three-dee', className)}
+      >
+        <ConditionalAnchor className='body'>
+          {avatar ? (
+            <div className='avatar'>
+              {' '}
+              <Img {...avatar} />
+            </div>
+          ) : (
+            '[backup image]'
+          )}
           {name && (
-            <Text h3 className='contributor-card-name'>
-              {name}
-            </Text>
+            <Text h3 className='contributor-card-name' children={name} />
           )}
-          {bio && (
-            <Text p className='contributor-card-bio'>
-              {bio}
-            </Text>
-          )}
+          {bio && <Text p className='contributor-card-bio' children={bio} />}
         </ConditionalAnchor>
         {deps.length && <div className='social'>{links}</div>}
       </div>
-    )
+    );
   },
-)
+);

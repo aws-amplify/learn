@@ -1,7 +1,7 @@
-import {graphql} from 'gatsby'
-import {Nav, Layout, Card, MappedList, Text} from '~/components'
-import {extract, mapNodeToProps, track} from '~/utilities'
-import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants'
+import {graphql} from 'gatsby';
+import {Nav, Layout, Card, MappedList, Text} from '~/components';
+import {extract, mapNodeToProps, track} from '~/utilities';
+import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 
 // add alphabetical sorting
 export const pageQuery = graphql`
@@ -19,12 +19,11 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 export default props => {
-  const {href} = props.location
-  track({name: 'internalPageView', href})
-  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
+  track.internalPageView(props);
+  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const main = (
     <MappedList
       heading={(
@@ -41,7 +40,7 @@ export default props => {
         [DESKTOP_BREAKPOINT]: 4,
       }}
     />
-  )
+  );
 
-  return <Layout.Basic header={<Nav />} {...{main}} />
-}
+  return <Layout.Basic header={<Nav />} {...{main}} />;
+};

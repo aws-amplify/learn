@@ -22,7 +22,6 @@
         "peerDependencies": true
       }
     ],
-    "import/order": "off",
     "import/prefer-default-export": "off",
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/click-events-have-key-events": "off",
@@ -38,6 +37,7 @@
     "object-shorthand": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-filename-extension": "off",
+    "react/jsx-sort-props": "off",
     "react/no-children-prop": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off"

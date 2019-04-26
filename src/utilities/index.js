@@ -1,7 +1,8 @@
-import * as extract from './extract'
-export {extract}
+import * as extract from './extract';
+import * as track from './track';
+export {extract, track};
 
-export {createFilterContextValue, getFilterOptions} from './filter'
-export {default as mapNodeToProps} from './mapNodeToProps'
-export {default as groupEdgesByMonth} from './groupEdgesByMonth'
-export {default as track} from './track'
+export {createFilterContextValue, getFilterOptions} from './filter';
+export {default as mapNodeToProps} from './mapNodeToProps';
+export {default as groupEventEdges} from './groupEventEdges';
+export {default as classNames} from './classNames';

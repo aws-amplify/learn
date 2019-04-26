@@ -1,4 +1,4 @@
-import {GRAY_COLOR} from '~/constants'
+import {GRAY_COLOR} from '~/constants';
 
 export default {
   'nav-nranding': {
@@ -24,8 +24,14 @@ export default {
   },
 
   'page-heading': {
-    size: 26,
+    size: 36,
+    height: 54,
     weight: 400,
+  },
+
+  'page-subheading': {
+    size: 20,
+    height: 30,
   },
 
   'list-heading': {
@@ -178,4 +184,10 @@ export default {
     weight: 200,
     height: 27,
   },
-}
+
+  'contribute-cta': {
+    size: 14,
+    weight: 200,
+    height: 21,
+  },
+};

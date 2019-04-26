@@ -1,5 +1,5 @@
-import {css} from '@emotion/core'
-import Text from './Text'
+import {css} from '@emotion/core';
+import Text from './Text';
 
 const styles = css`
   display: flex;
@@ -17,7 +17,7 @@ const styles = css`
   .cta {
     padding-top: 24px;
   }
-`
+`;
 
 // make sure 'color' is inherited
 
@@ -33,12 +33,8 @@ export default ({background, textColor, heading, subheading, cta}) => (
       }
     `}
   >
-    <Text h2 className='hero-heading'>
-      {heading}
-    </Text>
-    <Text h3 className='hero-subheading'>
-      {subheading}
-    </Text>
-    <div className='cta'>{cta}</div>
+    <Text h2 className='hero-heading' children={heading} />
+    <Text h3 className='hero-subheading' children={subheading} />
+    <div className='cta' children={cta} />
   </div>
-)
+);

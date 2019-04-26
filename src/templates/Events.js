@@ -1,36 +1,39 @@
-import {graphql} from 'gatsby'
+import {graphql} from 'gatsby';
 import {
   mapNodeToProps,
   extract,
-  groupEdgesByMonth,
+  groupEventEdges,
   createFilterContextValue,
   getFilterOptions,
   track,
-} from '~/utilities'
-import {Layout, Card, MappedList, Nav, Filter, Text, Button} from '~/components'
+} from '~/utilities';
 import {
-  TABLET_BREAKPOINT,
-  DESKTOP_BREAKPOINT,
-  ORANGE_PEEL_COLOR,
-} from '~/constants'
-import {filter as filterContext} from '~/contexts'
+  Layout,
+  Card,
+  MappedList,
+  Nav,
+  Filter,
+  Text,
+  Button,
+} from '~/components';
+import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
+import {filter as filterContext} from '~/contexts';
 import {
   values,
   mapObjIndexed,
   map,
-  length,
   filter,
   identity,
   head,
   keys,
-} from 'ramda'
-import {css} from '@emotion/core'
+  isEmpty,
+} from 'ramda';
 
 export const pageQuery = graphql`
-  {
+  query($currentDate: Date!) {
     allMarkdownRemark(
       sort: {fields: [fields___date], order: ASC}
-      filter: {fields: {category: {eq: "events"}}}
+      filter: {fields: {category: {eq: "events"}, date: {gt: $currentDate}}}
     ) {
       edges {
         node {
@@ -45,66 +48,52 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-const header = <Nav />
-const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms']
+const header = <Nav />;
+const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 
 export default props => {
-  const {href} = props.location
-  track({name: 'internalPageView', href})
-  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props)
-
-  const platformOptions = getFilterOptions(PLATFORMS_PATH, edges)
+  track.internalPageView(props);
 
   const value = createFilterContextValue({
     key: 'platforms',
     path: PLATFORMS_PATH,
     meetsCriterion: (field, criterion) =>
       !criterion || criterion.every(c => field.includes(c)),
-  })
+  });
 
-  const menu = (
+  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
+  const noneUpcoming = isEmpty(edges);
+  const platformOptions =
+    !noneUpcoming && getFilterOptions(PLATFORMS_PATH, edges);
+  const menu = !noneUpcoming && (
     <Filter filters={[{key: 'platforms', options: platformOptions}]} />
-  )
+  );
 
-  const edgesByMonth = groupEdgesByMonth(edges)
-  const firstKey = head(keys(edgesByMonth))
+  const edgesByMonth = groupEventEdges(edges);
+  const firstKey = head(keys(edgesByMonth));
 
-  const main = (
+  const main = noneUpcoming ? (
+    'none upcoming'
+  ) : (
     <filterContext.Consumer>
       {({meetsCriteria}) =>
+        !isEmpty(edges) &&
         values(
           mapObjIndexed((group, key) => {
             return (
-              length(filter(identity, map(meetsCriteria, group))) > 0 && (
+              !isEmpty(filter(identity, map(meetsCriteria, group))) && (
                 <MappedList
                   key={key}
                   cta={
                     key === firstKey && (
-                      <Button.Basic
-                        className='three-dee'
-                        styles={css`
-                          border-radius: 20px;
-                          background-color: ${ORANGE_PEEL_COLOR};
-                          padding-right: 16px;
-                          padding-left: 16px;
-                          > * {
-                            color: #fff;
-                          }
-                        `}
-                        href='https://aws-amplify.github.io'
-                        landingListCta
-                      >
+                      <Button.Contribute href='https://aws-amplify.github.io'>
                         Add an Event
-                      </Button.Basic>
+                      </Button.Contribute>
                     )
                   }
-                  heading={(
-                    <Text h2 className='list-heading'>
-                      {key}
-                    </Text>
-)}
+                  heading={<Text h2 className='list-heading' children={key} />}
                   columnCountByBreakpoint={{
                     [TABLET_BREAKPOINT]: 2,
                     [DESKTOP_BREAKPOINT]: 3,
@@ -117,16 +106,16 @@ export default props => {
                   renderCondition={meetsCriteria}
                 />
               )
-            )
+            );
           }, edgesByMonth),
         )
       }
     </filterContext.Consumer>
-  )
+  );
 
   return (
     <filterContext.Provider {...{value}}>
       <Layout.SideMenu {...{header, menu, main}} />
     </filterContext.Provider>
-  )
-}
+  );
+};

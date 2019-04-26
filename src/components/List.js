@@ -1,6 +1,6 @@
-import {css} from '@emotion/core'
-import {useMemo} from 'react'
-import {values, mapObjIndexed} from 'ramda'
+import {css} from '@emotion/core';
+import {useMemo} from 'react';
+import {values, mapObjIndexed} from 'ramda';
 
 const styles = css`
   display: block;
@@ -38,7 +38,7 @@ const styles = css`
     padding: 16px;
     padding-top: 0px;
   }
-`
+`;
 
 export default ({
   heading,
@@ -50,10 +50,10 @@ export default ({
   noItems,
   footer,
 }) => {
-  const deps = [heading, subheading, cta]
-  const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps)
+  const deps = [heading, subheading, cta];
+  const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps);
   const [className, children] =
-    items && items.length ? ['items', items] : ['no-items', noItems]
+    items && items.length ? ['items', items] : ['no-items', noItems];
 
   const responsiveGridStyles = useMemo(
     () =>
@@ -68,7 +68,7 @@ export default ({
         ),
       ),
     [columnCountByBreakpoint],
-  )
+  );
 
   return (
     <div css={styles} {...containerProps}>
@@ -84,5 +84,5 @@ export default ({
       <div css={responsiveGridStyles} {...{className, children}} />
       {footer && <div className='footer'>{footer}</div>}
     </div>
-  )
-}
+  );
+};

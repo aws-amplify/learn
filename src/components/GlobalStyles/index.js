@@ -1,14 +1,13 @@
-import {css, Global} from '@emotion/core'
-
-import reset from './reset'
-import typography from './typography'
+import {css, Global} from '@emotion/core';
+import reset from './reset';
+import typography from './typography';
 import {
   CONCRETE_COLOR,
   TWITTER_BLUE_COLOR,
   GITHUB_GRAY_COLOR,
   YOUTUBE_RED_COLOR,
   SAN_JUAN_COLOR,
-} from '~/constants'
+} from '~/constants';
 
 const styles = css`
   ${reset}
@@ -21,6 +20,8 @@ const styles = css`
     line-height: 18px;
     font-weight: 200;
     overflow: -moz-scrollbars-none;
+    overflow-x: hidden;
+    overflow-y: scroll;
     -ms-overflow-style: none;
     background-color: ${CONCRETE_COLOR};
   }
@@ -94,11 +95,17 @@ const styles = css`
     }
   }
 
-  .tile {
-    background-color: #fff;
-    border-width: 0px;
+  .rounded {
     border-radius: 4px;
   }
-`
 
-export default () => <Global {...{styles}} />
+  .card {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+`;
+
+export default () => <Global {...{styles}} />;

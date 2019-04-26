@@ -1,18 +1,14 @@
-import {Analytics} from 'aws-amplify'
+import {track} from '~/utilities';
 
 export default props => {
-  const {href} = props
+  const {href} = props;
+
   return (
     <a
       target='_blank'
       rel='noopener noreferrer'
-      onClick={() => {
-        Analytics.record({
-          name: 'followed external link',
-          attributes: {href},
-        })
-      }}
+      onClick={() => track.externalPageView(href)}
       {...props}
     />
-  )
-}
+  );
+};

@@ -1,8 +1,7 @@
-import {css} from '@emotion/core'
-import {useMemo} from 'react'
-import Link from '../Link'
-import Text from '../Text'
-import {map, keys} from 'ramda'
+import {css} from '@emotion/core';
+import {useMemo} from 'react';
+import {map} from 'ramda';
+import Link from '../Link';
 
 const styles = css`
   display: flex;
@@ -12,9 +11,15 @@ const styles = css`
   background-color: #fff;
   border-radius: 4px;
   text-align: center;
-`
 
-const paddingBySize = map(
+  &:focus,
+  &:active {
+    outline: none;
+    border-width: 0px;
+  }
+`;
+
+const paddings = map(
   p =>
     css`
       padding: ${p};
@@ -24,30 +29,30 @@ const paddingBySize = map(
     medium: `8px 12px 9px`,
     large: `15px`,
   },
-)
+);
 
-export default ({
-  children,
-  styles: passedStyles,
-  to,
-  href,
-  className,
-  size,
-  onClick,
-  textClass,
-}) => {
-  const deps = [to, href]
-  const isLink = useMemo(() => !!(to || href), deps)
-  const Tag = useMemo(() => (isLink ? Link : 'button'), deps)
+// {
+//   children,
+//   styles: passedStyles,
+//   to,
+//   href,
+//   className,
+//   size,
+//   onClick,
+// }
+
+export default ({to, href, padding, className: passedClassName, ...rest}) => {
+  const [Tag, uniqueProps] = useMemo(
+    () => (to || href ? [Link, {to, href}] : ['button', {type: 'button'}]),
+    [to, href],
+  );
 
   return (
     <Tag
-      css={[styles, paddingBySize[size || 'medium'], passedStyles]}
-      className={`${className}`}
-      {...(isLink ? {} : {type: 'button'})}
-      {...{onClick, href, to}}
-    >
-      <Text span className={textClass} {...{children}} />
-    </Tag>
-  )
-}
+      css={[styles, paddings[padding || 'medium']]}
+      className={`button ${passedClassName}`}
+      {...uniqueProps}
+      {...rest}
+    />
+  );
+};

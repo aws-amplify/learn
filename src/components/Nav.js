@@ -1,14 +1,14 @@
-import {css} from '@emotion/core'
-import {Link} from 'gatsby'
+import {css} from '@emotion/core';
+import {Link} from 'gatsby';
 // get consistent format for logos
-import logoURI from '~/assets/images/logo-dark.png'
-import {useMemo} from 'react'
-import {Sticky} from 'react-sticky'
-import {values} from 'ramda'
-import Text from './Text'
-import {mq} from '~/constants'
-import ExternalLink from './ExternalLink'
-import {MdOpenInNew} from 'react-icons/md'
+import logoURI from '~/assets/images/logo-dark.png';
+import {useMemo} from 'react';
+import {Sticky} from 'react-sticky';
+import {values} from 'ramda';
+import {MdOpenInNew} from 'react-icons/md';
+import Text from './Text';
+import {mq} from '~/constants';
+import ExternalLink from './ExternalLink';
 
 const baseStyles = css`
   display: flex;
@@ -79,28 +79,29 @@ const baseStyles = css`
         > svg {
           margin-top: 2px;
           margin-left: 4px;
+          box-shadow: 0px 0px 0px transparent;
         }
       }
     }
   }
-`
+`;
 
 const LINK_PROPS = [
   {to: '/events', children: 'Events'},
   {to: '/posts', children: 'Posts'},
-]
+];
 
 const defaults = {
   backgroundColor: '#fff',
   textColor: '#000',
   logoSrc: logoURI,
-}
+};
 
 export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
-  const deps = [...values(b), ...values(a)]
+  const deps = [...values(b), ...values(a)];
 
-  const beforeScroll = {...defaults, ...b}
-  const afterScroll = {...defaults, ...a}
+  const beforeScroll = {...defaults, ...b};
+  const afterScroll = {...defaults, ...a};
 
   const dynamicStyles = useMemo(
     () =>
@@ -121,18 +122,18 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
         }
       `,
     deps,
-  )
+  );
 
   const styles = css`
     ${baseStyles}
     ${dynamicStyles}
-  `
+  `;
 
   return (
     <Sticky>
       {({style, distanceFromTop}) => {
-        const scrolled = distanceFromTop < 0
-        const className = scrolled ? 'scrolled' : ''
+        const scrolled = distanceFromTop < 0;
+        const className = scrolled ? 'scrolled' : '';
 
         return (
           <nav {...{className, style}} css={styles}>
@@ -165,8 +166,8 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               </div>
             </div>
           </nav>
-        )
+        );
       }}
     </Sticky>
-  )
-}
+  );
+};

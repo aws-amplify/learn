@@ -1,4 +1,4 @@
-import {useReducer, useCallback} from 'react'
+import {useReducer, useCallback} from 'react';
 import {
   fromPairs,
   map,
@@ -9,11 +9,11 @@ import {
   reduce,
   is,
   assoc,
-} from 'ramda'
+} from 'ramda';
 
 const error = message => {
-  throw new Error(message)
-}
+  throw new Error(message);
+};
 
 export const createFilterContextValue = (...filters) => {
   const [criteria, setCriteria] = useReducer(
@@ -22,20 +22,20 @@ export const createFilterContextValue = (...filters) => {
       ...newState,
     }),
     fromPairs(map(({key}) => [key, null], filters)),
-  )
+  );
 
   const meetsCriteria = useCallback(
     inQuestion => {
-      const getField = path => view(lensPath(path), inQuestion)
+      const getField = path => view(lensPath(path), inQuestion);
 
       return all(filter => {
-        const {path, paths, key, meetsCriterion} = filter
+        const {path, paths, key, meetsCriterion} = filter;
 
         path &&
           paths &&
           error(
             `Filters cannot be defined with both 'path' and 'paths' props (both in '${key}').`,
-          )
+          );
 
         return meetsCriterion(
           path
@@ -46,33 +46,33 @@ export const createFilterContextValue = (...filters) => {
                 `Filters must be defined with either 'path' or 'paths' props (none in '${key}').`,
               ),
           criteria[key],
-        )
-      }, filters)
+        );
+      }, filters);
     },
     [filters],
-  )
+  );
 
   return {
     criteria,
     setCriteria,
     meetsCriteria,
-  }
-}
+  };
+};
 
 export const getFilterOptions = (path, data) => {
-  const lens = lensPath(path)
-  const viewPath = view(lens)
+  const lens = lensPath(path);
+  const viewPath = view(lens);
 
   return keys(
     reduce(
       (existencesStage, e) => {
-        const valueAtPath = viewPath(e)
+        const valueAtPath = viewPath(e);
         return is(Array, valueAtPath)
           ? reduce((a, c) => assoc(c, true, a), existencesStage, valueAtPath)
-          : assoc(valueAtPath, true, existencesStage)
+          : assoc(valueAtPath, true, existencesStage);
       },
       {},
       data,
     ),
-  )
-}
+  );
+};

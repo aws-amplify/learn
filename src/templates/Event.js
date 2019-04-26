@@ -1,5 +1,5 @@
-import {graphql} from 'gatsby'
-import Img from 'gatsby-image'
+import {graphql} from 'gatsby';
+import Img from 'gatsby-image';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -36,11 +36,11 @@ export const pageQuery = graphql`
       html
     }
   }
-`
+`;
 
 export default ({data}) => {
-  const {fields, frontmatter, html} = data.markdownRemark
-  const {date} = fields
+  const {fields, frontmatter, html} = data.markdownRemark;
+  const {date} = fields;
   const {
     title,
     href,
@@ -49,8 +49,8 @@ export default ({data}) => {
     organizers,
     tags,
     location,
-  } = frontmatter
-  const {sizes} = banner.childImageSharp
+  } = frontmatter;
+  const {sizes} = banner.childImageSharp;
 
   return (
     <div>
@@ -80,5 +80,5 @@ export default ({data}) => {
       {/* eslint-disable-next-line */}
       <div dangerouslySetInnerHTML={{__html: html}} />
     </div>
-  )
-}
+  );
+};

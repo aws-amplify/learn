@@ -1,8 +1,8 @@
-import GlobalStyles from '../GlobalStyles'
-import {css} from '@emotion/core'
-import {mq} from '~/constants'
-import {StickyContainer} from 'react-sticky'
-import Footer from '../Footer'
+import {css} from '@emotion/core';
+import {mq} from '~/constants';
+import {StickyContainer} from 'react-sticky';
+import GlobalStyles from '../GlobalStyles';
+import Footer from '../Footer';
 
 export const style = css`
   display: flex;
@@ -46,7 +46,7 @@ export const style = css`
       }
     }
   }
-`
+`;
 
 export default ({children}) => (
   <>
@@ -56,4 +56,4 @@ export default ({children}) => (
       <Footer />
     </StickyContainer>
   </>
-)
+);

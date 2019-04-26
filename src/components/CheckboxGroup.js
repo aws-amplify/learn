@@ -1,8 +1,8 @@
-import {css} from '@emotion/core'
-import {useState, useCallback} from 'react'
-import Checkbox from './Checkbox'
-import Text from './Text'
-import {GRAY_COLOR} from '~/constants'
+import {css} from '@emotion/core';
+import {useState, useCallback} from 'react';
+import Checkbox from './Checkbox';
+import Text from './Text';
+import {GRAY_COLOR} from '~/constants';
 
 const styles = css`
   display: flex;
@@ -18,10 +18,10 @@ const styles = css`
   .checkbox-group-heading {
     color: ${GRAY_COLOR};
   }
-`
+`;
 
 export default ({heading, options, onChange: onAnyChange}) => {
-  const [selectedOptions, setSelectedOptions] = useState([])
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   return (
     <div css={styles} className='checkbox-group'>
@@ -37,15 +37,15 @@ export default ({heading, options, onChange: onAnyChange}) => {
             // optimize
             const updated = checked
               ? [...selectedOptions, option]
-              : selectedOptions.filter(inQuestion => inQuestion !== option)
+              : selectedOptions.filter(inQuestion => inQuestion !== option);
 
-            ;[setSelectedOptions, onAnyChange].forEach(fn => fn(updated))
+            [setSelectedOptions, onAnyChange].forEach(fn => fn(updated));
           },
           [selectedOptions, option],
-        )
+        );
 
-        return <Checkbox value={option} {...{onChange, option}} />
+        return <Checkbox value={option} {...{onChange, option}} />;
       })}
     </div>
-  )
-}
+  );
+};

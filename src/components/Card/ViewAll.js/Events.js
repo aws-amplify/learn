@@ -1,31 +1,21 @@
-import {css} from '@emotion/core'
-import asCard from '../asCard'
-import Text from '../../Text'
-import {FaArrowCircleRight} from 'react-icons/fa'
-import {ORANGE_PEEL_COLOR} from '~/constants'
+import {css} from '@emotion/core';
+import asCard from '../asCard';
+import Text from '../../Text';
+import {FaArrowCircleRight} from 'react-icons/fa';
+import {ORANGE_PEEL_COLOR} from '~/constants';
+import {classNames} from '~/utilities';
 
-export default asCard(({ConditionalAnchor, heading, subheading}) => (
-  <div
-    className='shadow'
+export default asCard(({ConditionalAnchor, heading, subheading, className}) => (
+  <ConditionalAnchor
+    className={classNames('view-all-events shadow', className)}
     css={css`
-      display: flex;
-      flex: 1;
-      height: 100%;
-      background-color: #fff;
-      border-radius: 5px;
-
-      .container {
-        padding: 32px;
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        align-items: center;
-        justify-content: space-between;
-      }
+      padding: 32px;
+      align-items: center;
+      justify-content: space-between;
 
       .text {
         display: flex;
-        flex: 1;
+        flex-direction: column;
       }
 
       .more-events-card-heading,
@@ -34,16 +24,14 @@ export default asCard(({ConditionalAnchor, heading, subheading}) => (
       }
     `}
   >
-    <ConditionalAnchor>
-      <div>
-        <Text h3 className='more-events-card-heading'>
-          {heading}
-        </Text>
-        <Text h4 className='more-events-card-subheading'>
-          {subheading}
-        </Text>
-      </div>
-      <FaArrowCircleRight size={22} />
-    </ConditionalAnchor>
-  </div>
-))
+    <div>
+      <Text h3 className='more-events-card-heading'>
+        {heading}
+      </Text>
+      <Text h4 className='more-events-card-subheading'>
+        {subheading}
+      </Text>
+    </div>
+    <FaArrowCircleRight size={22} />
+  </ConditionalAnchor>
+));
