@@ -100,6 +100,7 @@ export default props => {
           keyExtractor={extract.keyFromNode}
           renderCondition={meetsCriteria}
           renderItem={p => <Card.Post {...p} />}
+          additionalProps={{className: 'on-posts-page right-rounded'}}
         />
       )}
     </filterContext.Consumer>

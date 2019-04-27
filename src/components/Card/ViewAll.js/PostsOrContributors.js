@@ -8,24 +8,27 @@ import {classNames} from '~/utilities';
 export default asCard(
   ({ConditionalAnchor, graphic, heading, subheading, className}) => (
     <ConditionalAnchor
-      className={classNames('view-all-posts-or-contributors shadow', className)}
+      className={classNames(
+        'view-all-posts-or-contributors rounded scale-down actionable shadow',
+        className,
+      )}
       css={css`
         text-align: center;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
         padding: 32px;
 
         ${mq.tablet} {
           padding: 0px 16px;
         }
 
-        > svg {
-          margin-top: 16px;
+        h3 {
+          margin-top: 8px;
+        }
 
-          ${mq.tablet} {
-            margin-top: 0px;
-          }
+        p {
+          margin-top: 8px;
         }
 
         .more-posts-or-contributors-heading,
@@ -33,26 +36,25 @@ export default asCard(
           color: ${ORANGE_PEEL_COLOR};
         }
 
-        > div {
-          > .text {
-            display: flex;
-            flex-direction: row;
-            flex: 1;
-            justify-content: center;
-          }
+        .arrow {
+          margin-top: 16px;
         }
       `}
     >
-      <div>
-        {graphic}
-        <Text h3 className='more-posts-or-contributors-heading'>
-          {heading}
-        </Text>
-        <Text p className='more-posts-or-contributors-subheading'>
-          {subheading}
-        </Text>
+      <div className='grapic' children={graphic} />
+      <Text
+        h3
+        className='more-posts-or-contributors-heading'
+        children={heading}
+      />
+      <Text
+        p
+        className='more-posts-or-contributors-subheading'
+        children={subheading}
+      />
+      <div className='arrow'>
+        <FaArrowCircleRight size={22} />
       </div>
-      <FaArrowCircleRight size={22} />
     </ConditionalAnchor>
   ),
 );

@@ -7,7 +7,6 @@ import asCard from './asCard';
 import {classNames} from '~/utilities';
 
 const styles = css`
-  text-align: right;
   flex-direction: row;
   align-items: center;
   padding: 24px;
@@ -43,7 +42,7 @@ export default asCard(
     return (
       <ConditionalAnchor
         css={styles}
-        className={classNames(className, 'event three-dee')}
+        className={classNames(className, 'event three-dee actionable rounded')}
       >
         {avatar && (
           <div className='avatar'>

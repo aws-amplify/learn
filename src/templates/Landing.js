@@ -95,14 +95,6 @@ const heroProps = {
   textColor: '#fff',
 };
 
-const navProps = {
-  beforeScroll: {
-    backgroundColor: ORANGE_PEEL_COLOR,
-    textColor: '#fff',
-    logoSrc: logoLightURI,
-  },
-};
-
 export default props => {
   track.internalPageView(props);
 
@@ -161,7 +153,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      itemContainerClassName: 'landing',
+      itemContainerClassName: 'on-landing-page rounded',
     },
     {
       heading: 'Featured Contributors',
@@ -226,9 +218,6 @@ export default props => {
   );
 
   return (
-    <Layout.Basic
-      header={[<Nav {...navProps} />, <Hero {...heroProps} />]}
-      {...{main}}
-    />
+    <Layout.Basic header={[<Nav />, <Hero {...heroProps} />]} {...{main}} />
   );
 };

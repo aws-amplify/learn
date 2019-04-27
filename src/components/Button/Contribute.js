@@ -30,7 +30,7 @@ const styles = css`
 export default ({href, children, hidePlus}) => (
   <Basic
     {...{href}}
-    className='three-dee'
+    className='three-dee actionable'
     css={styles}
     textClass='landing-list-cta'
     padding='medium'

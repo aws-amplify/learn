@@ -40,6 +40,7 @@ const styles = css`
   }
 `;
 
+// get rid of containerProps!
 export default ({
   heading,
   subheading,

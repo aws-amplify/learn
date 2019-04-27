@@ -59,6 +59,7 @@ export default ({
       mapping={extractProps}
       keyExtractor={identity}
       renderItem={p => <Card.Newsletter {...p} />}
+      additionalProps={{className: 'on-newsletters-page'}}
     />
   );
 

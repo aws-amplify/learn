@@ -2,6 +2,7 @@ import {graphql} from 'gatsby';
 import {MappedList, Layout, Card, Nav, Text} from '~/components';
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {css} from '@emotion/core';
+import {map, __, isEmpty} from 'ramda';
 
 export const pageQuery = graphql`
   query($id: String!) {
@@ -62,38 +63,36 @@ export const pageQuery = graphql`
 `;
 
 const styles = css`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 0px 16px;
+
+  > .contributor.card {
+    margin: 56px 0px 12px;
+  }
 `;
 
-export default ({
-  data: {
-    contributor,
-    posts: {edges: posts},
-  },
-  ...rest
-}) => {
-  track.internalPageView(rest);
+export default props => {
+  track.internalPageView(props);
 
-  const props = mapNodeToProps(contributor);
+  const extractFromProps = extract.fromPath(__, props);
+  const [posts, contributor] = map(extractFromProps, [
+    ['data', 'posts', 'edges'],
+    ['data', 'contributor'],
+  ]);
+
   const main = (
-    <div
-      css={css`
-        max-width: 1000px;
-        margin: 0px auto;
-      `}
-    >
-      <div css={styles}>
-        <Card.Contributor {...props} disabled />
-      </div>
+    <div css={styles}>
+      <Card.Contributor {...mapNodeToProps(contributor)} disabled />
 
-      {!!posts.length && (
+      {!isEmpty(posts) && (
         <MappedList
           heading={<Text h2 className='list-heading' children='Posts' />}
           data={posts}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
           renderItem={p => <Card.Post {...p} />}
+          additionalProps={{className: 'rounded'}}
         />
       )}
     </div>

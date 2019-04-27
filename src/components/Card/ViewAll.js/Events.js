@@ -7,7 +7,10 @@ import {classNames} from '~/utilities';
 
 export default asCard(({ConditionalAnchor, heading, subheading, className}) => (
   <ConditionalAnchor
-    className={classNames('view-all-events shadow', className)}
+    className={classNames(
+      'view-all-events rounded scale-down actionable shadow',
+      className,
+    )}
     css={css`
       padding: 32px;
       align-items: center;

@@ -109,7 +109,7 @@ export default asCard(
     return (
       <div
         css={styles}
-        className={classNames('contributor three-dee', className)}
+        className={classNames('contributor three-dee rounded', className)}
       >
         <ConditionalAnchor className='body'>
           {avatar ? (

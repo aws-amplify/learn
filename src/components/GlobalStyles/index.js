@@ -69,34 +69,13 @@ const styles = css`
     }
   }
 
-  .three-dee {
-    box-shadow: 2px 2px 0 2px hsl(0, 0%, 80%);
-    transition: 0.25s ease all;
-
-    &:hover {
-      box-shadow: 3px 3px 0px 3px hsl(0, 0%, 80%);
-      transform: translate(-1px, -1px);
-    }
-  }
-
-  .shadow {
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    transition: 0.25s ease all;
-
-    &:hover {
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.375);
-    }
-  }
-
-  .three-dee,
-  .shadow {
-    &:active {
-      box-shadow: 0px 0px 0px transparent;
-    }
-  }
-
   .rounded {
     border-radius: 4px;
+  }
+
+  .right-rounded {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 
   .card {
@@ -104,7 +83,52 @@ const styles = css`
     flex: 1;
     height: 100%;
     background-color: #fff;
-    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .three-dee {
+    box-shadow: 2px 2px 0 2px hsl(0, 0%, 80%);
+    transition: 0.25s ease all;
+
+    &.actionable {
+      &:hover {
+        box-shadow: 3px 3px 0px 3px hsl(0, 0%, 80%);
+        transform: translate(-1px, -1px);
+      }
+
+      &:active {
+        box-shadow: 0px 0px 0px transparent;
+      }
+    }
+  }
+
+  .shadow {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    transition: 0.25s ease all;
+
+    &.actionable {
+      &:hover {
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.375);
+      }
+
+      &:active {
+        box-shadow: 0px 0px 0px transparent;
+      }
+    }
+  }
+
+  .scale-down {
+    transform: scale(0.9875);
+
+    &.actionable {
+      &:hover {
+        transform: scale(1.0075);
+      }
+
+      &:active {
+        transform: scale(0.9875);
+      }
+    }
   }
 `;
 

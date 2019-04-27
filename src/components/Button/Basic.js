@@ -2,6 +2,7 @@ import {css} from '@emotion/core';
 import {useMemo} from 'react';
 import {map} from 'ramda';
 import Link from '../Link';
+import {classNames} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -41,7 +42,7 @@ const paddings = map(
 //   onClick,
 // }
 
-export default ({to, href, padding, className: passedClassName, ...rest}) => {
+export default ({to, href, padding, className, ...rest}) => {
   const [Tag, uniqueProps] = useMemo(
     () => (to || href ? [Link, {to, href}] : ['button', {type: 'button'}]),
     [to, href],
@@ -50,7 +51,7 @@ export default ({to, href, padding, className: passedClassName, ...rest}) => {
   return (
     <Tag
       css={[styles, paddings[padding || 'medium']]}
-      className={`button ${passedClassName}`}
+      className={classNames('button', className)}
       {...uniqueProps}
       {...rest}
     />

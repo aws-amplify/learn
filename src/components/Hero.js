@@ -1,14 +1,19 @@
 import {css} from '@emotion/core';
 import Text from './Text';
+import {mq} from '~/constants';
 
 const styles = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px 40px 85px 40px;
+  padding: 70px 40px 85px 40px;
   color: #fff;
   text-align: center;
+
+  ${mq.tablet} {
+    padding: 50px 40px 85px 40px;
+  }
 
   .hero-subheading {
     margin-top: 10px;

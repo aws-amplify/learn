@@ -1,7 +1,13 @@
 import {css} from '@emotion/core';
 import {Link, useStaticQuery, graphql} from 'gatsby';
 import {FaArrowCircleRight} from 'react-icons/fa';
-import {ORANGE_PEEL_COLOR, BIG_STONE_COLOR, GRAY_COLOR, mq} from '~/constants';
+import {
+  ORANGE_PEEL_COLOR,
+  BIG_STONE_COLOR,
+  GRAY_COLOR,
+  MAX_WIDTH,
+  mq,
+} from '~/constants';
 import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
@@ -19,7 +25,7 @@ const styles = css`
     display: flex;
     flex: 1;
     width: 100%;
-    max-width: 1600px;
+    max-width: ${MAX_WIDTH};
     margin: 0px auto;
 
     > a {

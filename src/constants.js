@@ -32,3 +32,5 @@ export const CONCRETE_COLOR = '#f2f2f2';
 export const TWITTER_BLUE_COLOR = '#4199d4';
 export const GITHUB_GRAY_COLOR = '#333';
 export const YOUTUBE_RED_COLOR = '#c4302b';
+
+export const MAX_WIDTH = '1200px';

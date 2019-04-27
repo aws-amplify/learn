@@ -7,6 +7,7 @@ export default ({
   renderCondition = identity,
   renderItem,
   keyExtractor,
+  additionalProps = {},
   ...rest
 }) => {
   const items = map(
@@ -15,6 +16,7 @@ export default ({
       renderItem({
         key: keyExtractor(e),
         ...mapping(e),
+        ...additionalProps,
       }),
     data,
   );

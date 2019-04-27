@@ -1,13 +1,14 @@
 import {css} from '@emotion/core';
 import {Link} from 'gatsby';
 // get consistent format for logos
-import logoURI from '~/assets/images/logo-dark.png';
+import logoLightURI from '~/assets/images/logo-light.svg';
+import logoDarkURI from '~/assets/images/logo-dark.png';
 import {useMemo} from 'react';
 import {Sticky} from 'react-sticky';
-import {values} from 'ramda';
+import {values, map} from 'ramda';
 import {MdOpenInNew} from 'react-icons/md';
 import Text from './Text';
-import {mq} from '~/constants';
+import {mq, ORANGE_PEEL_COLOR, MAX_WIDTH} from '~/constants';
 import ExternalLink from './ExternalLink';
 
 const baseStyles = css`
@@ -18,7 +19,7 @@ const baseStyles = css`
   z-index: 10000;
 
   > div {
-    max-width: 1600px;
+    max-width: ${MAX_WIDTH};
     margin: 0px auto;
     display: flex;
     flex-direction: row;
@@ -86,22 +87,31 @@ const baseStyles = css`
   }
 `;
 
-const LINK_PROPS = [
+const linkProps = [
   {to: '/events', children: 'Events'},
   {to: '/posts', children: 'Posts'},
 ];
 
 const defaults = {
-  backgroundColor: '#fff',
-  textColor: '#000',
-  logoSrc: logoURI,
+  beforeScroll: {
+    backgroundColor: ORANGE_PEEL_COLOR,
+    linkColor: '#fff',
+    brandingColor: '#fff',
+    logoSrc: logoLightURI,
+  },
+
+  afterScroll: {
+    backgroundColor: '#fff',
+    linkColor: '#000',
+    brandingColor: ORANGE_PEEL_COLOR,
+    logoSrc: logoDarkURI,
+  },
 };
 
 export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
-  const deps = [...values(b), ...values(a)];
-
-  const beforeScroll = {...defaults, ...b};
-  const afterScroll = {...defaults, ...a};
+  const beforeScroll = {...defaults.beforeScroll, ...b};
+  const afterScroll = {...defaults.afterScroll, ...a};
+  const deps = [...values(beforeScroll), ...values(afterScroll)];
 
   const dynamicStyles = useMemo(
     () =>
@@ -109,7 +119,11 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
         background-color: ${beforeScroll.backgroundColor};
 
         * {
-          color: ${beforeScroll.textColor};
+          color: ${beforeScroll.linkColor};
+        }
+
+        .nav-branding {
+          color: ${beforeScroll.brandingColor};
         }
 
         &.scrolled {
@@ -117,7 +131,11 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
 
           * {
-            color: ${afterScroll.textColor};
+            color: ${afterScroll.linkColor};
+          }
+
+          .nav-branding {
+            color: ${afterScroll.brandingColor};
           }
         }
       `,
@@ -144,23 +162,22 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                 ) : (
                   <img src={beforeScroll.logoSrc} alt='logo' />
                 )}
-                <Text h3 className='nav-branding'>
-                  Community
-                </Text>
+
+                <Text h3 className='nav-branding' children='Community' />
               </Link>
 
               <div className='links'>
-                {LINK_PROPS.map(({to, children}) => (
-                  <Link {...{to}} key={children} activeClassName='active'>
-                    <Text span className='nav-link'>
-                      {children}
-                    </Text>
-                  </Link>
-                ))}
+                {map(
+                  ({to, children}) => (
+                    <Link {...{to}} key={children} activeClassName='active'>
+                      <Text span className='nav-link' {...{children}} />
+                    </Link>
+                  ),
+                  linkProps,
+                )}
+
                 <ExternalLink href='https://aws-amplify.github.io'>
-                  <Text span className='nav-link'>
-                    docs
-                  </Text>
+                  <Text span className='nav-link' children='Docs' />
                   <MdOpenInNew className='external-graphic' size={14} />
                 </ExternalLink>
               </div>

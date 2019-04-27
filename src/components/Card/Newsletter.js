@@ -14,7 +14,10 @@ export default asCard(({ConditionalAnchor, heading, className}) => {
   return (
     <ConditionalAnchor
       css={styles}
-      className={classNames('newsletter three-dee', className)}
+      className={classNames(
+        'newsletter three-dee actionable rounded',
+        className,
+      )}
     >
       <Text h3 className='newsletter-card-heading' children={heading} />
     </ConditionalAnchor>

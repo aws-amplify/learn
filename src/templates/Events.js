@@ -72,6 +72,7 @@ export default props => {
   );
 
   const edgesByMonth = groupEventEdges(edges);
+  // work on a less complex solution
   const firstKey = head(keys(edgesByMonth));
 
   const main = noneUpcoming ? (
@@ -104,6 +105,7 @@ export default props => {
                   keyExtractor={extract.keyFromNode}
                   renderItem={p => <Card.Event {...p} />}
                   renderCondition={meetsCriteria}
+                  additionalProps={{className: 'on-events-page'}}
                 />
               )
             );

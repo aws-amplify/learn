@@ -1,5 +1,5 @@
 import {css} from '@emotion/core';
-import {mq} from '~/constants';
+import {mq, MAX_WIDTH} from '~/constants';
 import {StickyContainer} from 'react-sticky';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
@@ -22,14 +22,14 @@ export const style = css`
       display: flex;
       flex-direction: row;
       flex: 1;
-      max-width: 1200px;
+      max-width: ${MAX_WIDTH};
       margin: 0px auto;
 
       .menu {
         &.side {
           display: none;
           flex-shrink: 1;
-          margin-top: 50px;
+          margin-top: 25px;
 
           ${mq.tablet} {
             display: flex;

@@ -16,7 +16,6 @@ const styles = css`
     flex-direction: column;
     justify-content: flex-start;
     background-color: #fff;
-    border-radius: 4px;
   }
 `;
 

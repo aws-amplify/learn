@@ -7,15 +7,10 @@ import {mq, KASHMIR_BLUE_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
 
 const styles = css`
-  display: flex;
-  flex: 1;
-  height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
 
-  background-color: #fff;
-  &.landing {
+  &.on-landing-page {
     background-color: ${KASHMIR_BLUE_COLOR};
     * {
       color: #fff;
@@ -23,21 +18,43 @@ const styles = css`
   }
 
   &:hover {
-    .favicon {
+    .body .favicon {
       opacity: 1;
     }
   }
 
   ${mq.laptop} {
     flex-direction: row;
+
+    &.on-posts-page {
+      .post-card-title {
+        font-size: 30px;
+        line-height: 45px;
+      }
+
+      .post-card-description {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
   }
 
-  > div {
-    position: relative;
+  .banner {
+    &,
+    & > * {
+      display: flex;
+      flex: 1;
+    }
+  }
+
+  .body {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding: 32px;
+    justify-content: space-between;
+
+    ${mq.tablet} {
+      flex: 1;
+    }
 
     ${mq.desktop} {
       flex: 2;
@@ -47,51 +64,41 @@ const styles = css`
       flex: 3;
     }
 
-    &.gatsby-image-wrapper {
-      flex: 1;
-    }
-
     .favicon {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      width: 16px;
-      height: 16px;
+      position: relative;
+      top: -16px;
+      left: -16px;
       opacity: 0.5;
       transition: 0.275s ease all;
     }
 
-    .post-card-description {
-      margin-top: 16px;
-
-      ${mq.tablet} {
-        font-size: 14px;
-        line-height: 21px;
-      }
+    > div {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 32px;
     }
 
-    > .author {
+    .author {
       display: flex;
-      flex: 1;
       flex-direction: row;
       justify-content: flex-end;
-      align-items: flex-end;
-      margin-top: 24px;
+      align-items: center;
+      padding: 0px 32px 32px 0px;
 
-      > .text {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        align-items: flex-end;
-        margin-right: 10px;
-        margin-bottom: 8px;
-      }
-
-      .avatar > * {
+      > .avatar > * {
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #fff;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+      }
+
+      > .text {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        padding-right: 8px;
       }
     }
   }
@@ -110,39 +117,44 @@ export default asCard(
     const [firstAuthor] = authors;
     const {to, name, twitter, github, avatar} = firstAuthor;
     const handle = twitter || github;
+    const encodedHref = encodeURI(href);
+    const faviconSrc = `http://www.google.com/s2/favicons?domain=${encodedHref}`;
 
     return (
       <ConditionalAnchor
         css={styles}
-        className={classNames(className, 'post three-dee')}
+        className={classNames(className, 'post actionable three-dee')}
       >
-        {banner && <Img {...banner} />}
-        <div>
-          {href && (
-            <img
-              className='favicon'
-              src={`http://www.google.com/s2/favicons?domain=${encodeURI(
-                href,
-              )}`}
-              alt='content platform'
-            />
-          )}
-          <Text h3 className='post-card-title'>
-            {title}
-          </Text>
-          <Text p className='post-card-description'>
-            {description}
-          </Text>
+        {banner && (
+          <div className='banner'>
+            <Img {...banner} />
+          </div>
+        )}
+
+        <div className='body'>
+          <div>
+            {href && (
+              <div className='favicon'>
+                <img src={faviconSrc} alt='content platform' />
+              </div>
+            )}
+
+            <Text h3 className='post-card-title' children={title} />
+
+            <Text p className='post-card-description' children={description} />
+          </div>
+
           <Link {...{to}} className='author'>
             <div className='text'>
-              <Text h5 className='post-card-name'>
-                {name}
-              </Text>
+              <Text h5 className='post-card-name' children={name} />
               <Text h6 className='post-card-handle'>{`@${handle}`}</Text>
             </div>
-            <div className='avatar'>
-              <Img {...avatar} />
-            </div>
+
+            {avatar && (
+              <div className='avatar'>
+                <Img {...avatar} />
+              </div>
+            )}
           </Link>
         </div>
       </ConditionalAnchor>
