@@ -109,8 +109,10 @@ export default props => {
 
   const [upcomingEventsCount, postsCount, contributorsCount] = map(
     extractCount,
-    ['upcomingEvents', 'posts', 'events'],
+    ['upcomingEvents', 'posts', 'contributors'],
   );
+
+  console.log(contributorsCount);
 
   const sections = [
     {
