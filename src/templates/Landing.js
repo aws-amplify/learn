@@ -175,6 +175,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 3,
         [MONITOR_BREAKPOINT]: 6,
       },
+      itemContainerClassName: 'actionable',
     },
   ];
 
