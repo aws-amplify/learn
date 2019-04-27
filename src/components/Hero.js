@@ -30,8 +30,11 @@ export default ({background, textColor, heading, subheading, cta}) => (
   <div
     css={css`
       ${styles}
-      background-color: ${background};
-      
+      background: ${background};
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+
       .hero-heading,
       .hero-subheading {
         color: ${textColor};

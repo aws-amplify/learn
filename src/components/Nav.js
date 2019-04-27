@@ -94,14 +94,14 @@ const linkProps = [
 
 const defaults = {
   beforeScroll: {
-    backgroundColor: ORANGE_PEEL_COLOR,
+    background: ORANGE_PEEL_COLOR,
     linkColor: '#fff',
     brandingColor: '#fff',
     logoSrc: logoLightURI,
   },
 
   afterScroll: {
-    backgroundColor: '#fff',
+    background: '#fff',
     linkColor: '#000',
     brandingColor: ORANGE_PEEL_COLOR,
     logoSrc: logoDarkURI,
@@ -116,7 +116,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
   const dynamicStyles = useMemo(
     () =>
       css`
-        background-color: ${beforeScroll.backgroundColor};
+        background: ${beforeScroll.background};
 
         * {
           color: ${beforeScroll.linkColor};
@@ -127,7 +127,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
         }
 
         &.scrolled {
-          background-color: ${afterScroll.backgroundColor};
+          background: ${afterScroll.background};
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
 
           * {
@@ -176,7 +176,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                   linkProps,
                 )}
 
-                <ExternalLink href='https://aws-amplify.github.io'>
+                <ExternalLink href='https://aws-amplify.github.io/docs/'>
                   <Text span className='nav-link' children='Docs' />
                   <MdOpenInNew className='external-graphic' size={14} />
                 </ExternalLink>

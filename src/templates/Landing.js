@@ -5,14 +5,12 @@ import {
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
   MONITOR_BREAKPOINT,
-  KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
-import {css} from '@emotion/core';
-import logoLightURI from '~/assets/images/logo-light.svg';
 import {map} from 'ramda';
+import mapSrc from '~/assets/images/map.png';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {

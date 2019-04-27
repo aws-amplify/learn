@@ -18,6 +18,8 @@ export const mq = map(
 );
 
 export const ORANGE_PEEL_COLOR = '#ff9900';
+// export const EMBER_BLAZE =
+//   'linear-gradient(to right, #ff9900, #ffc300, #ff9900)';
 export const KASHMIR_BLUE_COLOR = '#4b6189';
 export const LOCHMARA_COLOR = '#007bb7';
 export const SAN_JUAN_COLOR = '#31456f';
