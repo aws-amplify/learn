@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby';
-import {MappedList, Layout, Nav, Card, Hero} from '~/components';
+import {MappedList, Layout, Nav, Card, Hero, Subscribe} from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
 import {identity, split} from 'ramda';
 import {track} from '~/utilities';
@@ -29,6 +29,7 @@ const heroProps = {
     'A weekly blog about community updates in the AWS Amplify ecosystem',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
+  cta: <Subscribe />,
 };
 
 const extractProps = slug => {
@@ -37,6 +38,7 @@ const extractProps = slug => {
   return {
     to: slug,
     heading: `Week ${week}`,
+    subheading: year,
   };
 };
 

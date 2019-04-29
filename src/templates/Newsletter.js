@@ -22,6 +22,7 @@ export const pageQuery = graphql`
     context: sitePage(path: {eq: $current}) {
       context {
         week
+        year
         previous
         next
       }
@@ -89,7 +90,7 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const {week, previous, next} = extract.fromPath(
+  const {week, year, previous, next} = extract.fromPath(
     ['data', 'context', 'context'],
     props,
   );
@@ -148,14 +149,12 @@ export default props => {
         }
       `}
     >
-      <Text h2 className='page-heading'>
-        Week 
-        {' '}
-        {week}
-      </Text>
-      <Text p className='paragraph-large'>
-        {`Welcome to week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
-      </Text>
+      <Text h2 className='page-heading' children={`Week ${week} of ${year}`} />
+      <Text
+        p
+        className='paragraph-large'
+        children={`Welcome to week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
+      />
     </div>,
     ...map(
       ({

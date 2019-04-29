@@ -173,6 +173,12 @@ export default {
     height: 23,
   },
 
+  'newsletter-card-subheading': {
+    size: 13,
+    weight: 200,
+    height: 20,
+  },
+
   'paragraph-large': {
     size: 18,
     weight: 200,

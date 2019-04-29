@@ -79,7 +79,7 @@ export default () => {
         >
           <Text
             className='subscribe-label'
-            children='Subscribe to the Newsletter'
+            children='Subscribe to the Weekly'
           />
         </Basic>
       )}

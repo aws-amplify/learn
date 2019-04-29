@@ -220,6 +220,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
           current: `/${slug}`,
           next,
           previous,
+          year,
           week,
           ...map(keys, datesByCategory),
         },
