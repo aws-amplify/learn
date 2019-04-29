@@ -19,7 +19,6 @@ import {
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map} from 'ramda';
-import mapSrc from '~/assets/images/map.png';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -96,7 +95,7 @@ export const pageQuery = graphql`
 `;
 
 const heroProps = {
-  heading: 'Join the Amplify Community',
+  heading: 'Welcome to the Amplify Community',
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',

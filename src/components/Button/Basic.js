@@ -24,7 +24,7 @@ const paddings = map(
     `,
   {
     small: `5px`,
-    medium: `8px 12px 9px`,
+    medium: `9px 12px 8px`,
     large: `15px`,
   },
 );

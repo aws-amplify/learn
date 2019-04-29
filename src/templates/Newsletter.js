@@ -25,6 +25,10 @@ export const pageQuery = graphql`
         year
         previous
         next
+        dateRange {
+          startDate(formatString: "MMM Do")
+          endDate(formatString: "MMM Do")
+        }
       }
     }
 
@@ -90,10 +94,13 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const {week, year, previous, next} = extract.fromPath(
-    ['data', 'context', 'context'],
-    props,
-  );
+  const {
+    week,
+    year,
+    previous,
+    next,
+    dateRange: {startDate, endDate},
+  } = extract.fromPath(['data', 'context', 'context'], props);
 
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
     'upcomingEvents',
@@ -137,6 +144,8 @@ export default props => {
     },
   ];
 
+  latestPostNodes.forEach(n => console.log(n.node.fields.date));
+
   const main = [
     <div
       css={css`
@@ -144,12 +153,17 @@ export default props => {
         flex-direction: column;
         padding: 16px 16px 0px 16px;
 
-        .page-heading {
+        .page-subheading {
           padding-bottom: 22px;
         }
       `}
     >
       <Text h2 className='page-heading' children={`Week ${week} of ${year}`} />
+      <Text
+        h4
+        className='page-subheading'
+        children={`${startDate} to ${endDate}`}
+      />
       <Text
         p
         className='paragraph-large'

@@ -11,6 +11,7 @@ const {
   forEachObjIndexed,
   filter,
   curry,
+  fromPairs,
 } = require('ramda');
 const {
   templatePaths,
@@ -86,11 +87,18 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1,
   ];
 
-  const subtractWeeks = curry((numWeeks, date) => {
+  const addWeeks = curry((numWeeks, date) => {
     const newDate = new Date(date.getTime());
-    newDate.setDate(newDate.getDate() - 7 * numWeeks);
+    newDate.setDate(newDate.getDate() + 7 * numWeeks);
     return newDate;
   });
+
+  const getStartEndTupleFromYearWeekTuple = ([year, week]) => {
+    const date = new Date(year);
+    const startDate = addWeeks(week - 1, date);
+    const endDate = addWeeks(week, date);
+    return [startDate.toJSON(), endDate.toJSON()];
+  };
 
   const [currentDate, currentYear, currentWeek] = (() => {
     const d = new Date();
@@ -130,7 +138,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
         if (category === 'events') {
           [1, 2, 3, 4].forEach(n => {
-            const adjustedDate = subtractWeeks(n, date);
+            const adjustedDate = addWeeks(-n, date);
             const s = getSlug(adjustedDate);
 
             if (!dateExistenceByCategoryBySlug[s]) {
@@ -193,6 +201,15 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   const sortedNewsletterSlugs = sort(compareSlugs, newsletterSlugs);
   const indexByNewsletterSlug = map(parseInt, invertObj(sortedNewsletterSlugs));
+  const dateRanges = map(slug => {
+    const {0: startDate, 1: endDate} = getStartEndTupleFromYearWeekTuple(
+      tail(split('/', slug)),
+    );
+    return {slug, startDate, endDate};
+  }, newsletterSlugs);
+  const dateRangeBySlug = fromPairs(
+    map(({slug, ...dates}) => [slug, dates], dateRanges),
+  );
 
   createPage({
     path: 'newsletters',
@@ -201,6 +218,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
       sortedSlugs: sortedNewsletterSlugs,
       indexBySlug: JSON.stringify(indexByNewsletterSlug),
       latestSlug: sortedNewsletterSlugs[0],
+      dateRanges,
     },
   });
 
@@ -222,6 +240,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
           previous,
           year,
           week,
+          dateRange: dateRangeBySlug[slug],
           ...map(keys, datesByCategory),
         },
       });

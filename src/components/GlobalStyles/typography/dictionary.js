@@ -32,6 +32,7 @@ export default {
   'page-subheading': {
     size: 20,
     height: 30,
+    weight: 300,
   },
 
   'list-heading': {
