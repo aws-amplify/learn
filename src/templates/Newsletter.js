@@ -174,6 +174,7 @@ export default props => {
               <Template
                 containerStyles={cardContainerStyles}
                 {...mapNodeToProps(node)}
+                className='rounded'
               />
             ),
             nodes,

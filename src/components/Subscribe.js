@@ -133,7 +133,7 @@ export default () => {
         >
           <Text
             className='subscribe-label'
-            children='subscribe to the newsletter'
+            children='Subscribe to the Newsletter'
           />
         </Basic>
       )}
@@ -149,6 +149,7 @@ export default () => {
           noValidate
         >
           <input
+            autoFocus
             type='email'
             autoCapitalize='off'
             autoCorrect='off'
@@ -171,6 +172,7 @@ export default () => {
               <MdArrowForward size={20} />
             </div>
           </label>
+
           <input
             className='hidden'
             type='submit'

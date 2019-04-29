@@ -9,7 +9,8 @@ const {
   invertObj,
   forEach,
   forEachObjIndexed,
-  last,
+  filter,
+  curry,
 } = require('ramda');
 const {
   templatePaths,
@@ -80,7 +81,21 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   if (errors) throw errors;
 
-  const currentDate = new Date().toJSON();
+  const getYearWeekTuple = date => [
+    date.getFullYear(),
+    date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1,
+  ];
+
+  const subtractWeeks = curry((numWeeks, date) => {
+    const newDate = new Date(date.getTime());
+    newDate.setDate(newDate.getDate() - 7 * numWeeks);
+    return newDate;
+  });
+
+  const [currentDate, currentYear, currentWeek] = (() => {
+    const d = new Date();
+    return [d.toJSON(), ...getYearWeekTuple(d)];
+  })();
 
   createPage({
     path: '/',
@@ -92,10 +107,8 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   // {[slug]: {events: {[date]: true}}}
   const dateExistenceByCategoryBySlug = {};
 
-  const getSlug = (date, weeksToSubtract) => {
-    if (weeksToSubtract) date.setDate(date.getDate() - 7 * weeksToSubtract);
-    const year = date.getFullYear();
-    const week = date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1;
+  const getSlug = date => {
+    const [year, week] = getYearWeekTuple(date);
     return `newsletters/${year}/${week}`;
   };
 
@@ -117,7 +130,8 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
         if (category === 'events') {
           [1, 2, 3, 4].forEach(n => {
-            const s = getSlug(date, n);
+            const adjustedDate = subtractWeeks(n, date);
+            const s = getSlug(adjustedDate);
 
             if (!dateExistenceByCategoryBySlug[s]) {
               dateExistenceByCategoryBySlug[s] = {
@@ -126,6 +140,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
                 newsletters: {},
               };
             }
+
             dateExistenceByCategoryBySlug[s].events[stringifiedDate] = true;
           });
         } else {
@@ -138,6 +153,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
               newsletters: {},
             };
           }
+
           dateExistenceByCategoryBySlug[s][category][stringifiedDate] = true;
         }
       }
@@ -154,7 +170,10 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     }, edges);
   }, data);
 
-  const newsletterSlugs = keys(dateExistenceByCategoryBySlug);
+  const newsletterSlugs = filter(s => {
+    const [year, week] = tail(split('/', s));
+    return currentYear >= year && currentWeek >= week;
+  }, keys(dateExistenceByCategoryBySlug));
 
   const getComparableValuesFromSlug = map(
     compose(
@@ -187,22 +206,24 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   // create newsletter pages
   forEachObjIndexed((datesByCategory, slug) => {
-    const week = last(split('/', slug));
+    const [year, week] = tail(split('/', slug));
     const i = indexByNewsletterSlug[slug];
     const next = sortedNewsletterSlugs[i - 1];
     const previous = sortedNewsletterSlugs[i + 1];
 
-    createPage({
-      path: slug,
-      component: templatePaths.newsletter,
-      context: {
-        current: `/${slug}`,
-        next,
-        previous,
-        week,
-        ...map(keys, datesByCategory),
-      },
-    });
+    year <= currentYear &&
+      week <= currentWeek &&
+      createPage({
+        path: slug,
+        component: templatePaths.newsletter,
+        context: {
+          current: `/${slug}`,
+          next,
+          previous,
+          week,
+          ...map(keys, datesByCategory),
+        },
+      });
   }, dateExistenceByCategoryBySlug);
 
   createPage({

@@ -8,7 +8,10 @@ import {
   keys,
   reduce,
   is,
+  sort,
   assoc,
+  comparator,
+  lt,
 } from 'ramda';
 
 const error = message => {
@@ -63,22 +66,25 @@ export const getFilterOptions = (path, data) => {
   const lens = lensPath(path);
   const viewPath = view(lens);
 
-  return keys(
-    reduce(
-      (existencesStage, e) => {
-        const valueAtPath = viewPath(e);
-        return is(Array, valueAtPath)
-          ? reduce(
-              (a, c) => (c ? assoc(c, true, a) : a),
-              existencesStage,
-              valueAtPath,
-            )
-          : valueAtPath
-          ? assoc(valueAtPath, true, existencesStage)
-          : existencesStage;
-      },
-      {},
-      data,
+  return sort(
+    comparator(lt),
+    keys(
+      reduce(
+        (existencesStage, e) => {
+          const valueAtPath = viewPath(e);
+          return is(Array, valueAtPath)
+            ? reduce(
+                (a, c) => (c ? assoc(c, true, a) : a),
+                existencesStage,
+                valueAtPath,
+              )
+            : valueAtPath
+            ? assoc(valueAtPath, true, existencesStage)
+            : existencesStage;
+        },
+        {},
+        data,
+      ),
     ),
   );
 };
