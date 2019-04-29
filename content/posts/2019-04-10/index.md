@@ -8,4 +8,4 @@ href: https://dev.to/dabit3/deploy-a-gatsby-site-to-the-amplify-console-with-one
 platforms:
   - Gatsby
 categories:
-  - Deployment
+  - Hosting

@@ -1,12 +1,12 @@
 import {css} from '@emotion/core';
 import Text from './Text';
 import {mq} from '~/constants';
-import mapSrc from '~/assets/images/map.png';
+import mapSrc from '~/assets/images/map.svg';
 
 const styles = css`
   display: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 70px 40px 85px 40px;
@@ -16,7 +16,13 @@ const styles = css`
   ${mq.tablet} {
     padding: 50px 40px 85px 40px;
   }
-
+  .hero-container {
+    display: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .hero-subheading {
     margin-top: 10px;
   }
@@ -31,18 +37,14 @@ const styles = css`
   }
 
   .temporary-graphic {
-    position: absolute;
-    top: 0px;
-    right: 15px;
-    bottom: 0px;
     width: 300px;
-    height: 400px;
+    height: 200px;
     background-image: url(${mapSrc});
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center;
 
-    @media screen and (max-width: 1270px) {
+
+    @media screen and (max-width: 800px) {
       display: none;
     }
   }
@@ -65,9 +67,11 @@ export default ({background, textColor, heading, subheading, cta}) => (
       }
     `}
   >
-    <Text h2 className='hero-heading' children={heading} />
+  <div className='hero-container'>
+  <Text h2 className='hero-heading' children={heading} />
     <Text h3 className='hero-subheading' children={subheading} />
     <div className='cta' children={cta} />
+  </div>
     <div className='temporary-graphic' />
   </div>
 );

@@ -8,4 +8,4 @@ href: https://dev.to/beavearony/personal-growth-with-git-flow-and-aws-amplify-co
 platforms:
   - Angular
 categories:
-  - Deployment
+  - Hosting

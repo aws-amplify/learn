@@ -88,7 +88,7 @@ export default props => {
     <Filter
       filters={[
         {key: 'dates', name: 'Date Range', dateRange: true},
-        {key: 'platforms', name: 'Platforms', options: platformOptions},
+        {key: 'platforms', name: 'Location', options: platformOptions},
       ]}
     />
   );
