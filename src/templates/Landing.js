@@ -127,7 +127,8 @@ export default props => {
       heading: 'Upcoming Events',
       cta: {
         children: 'Add an Event',
-        to: '/events/new',
+        href:
+          'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
       },
       nodes: upcomingEventNodes,
       Template: Card.Event,
@@ -146,7 +147,8 @@ export default props => {
       heading: 'Latest Posts',
       cta: {
         children: 'Add a Post',
-        to: '/posts/new',
+        href:
+          'https://github.com/aws-amplify/community/tree/master/content/posts/README.md',
       },
       nodes: latestPostNodes,
       Template: Card.Post,
@@ -167,7 +169,8 @@ export default props => {
       heading: 'Featured Contributors',
       cta: {
         children: 'Join The Community',
-        to: '/participate',
+        href:
+          'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
         hidePlus: true,
       },
       nodes: featuredContributorNodes,

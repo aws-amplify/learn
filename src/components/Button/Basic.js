@@ -9,6 +9,8 @@ const styles = css`
   cursor: pointer;
   appearance: none;
   text-align: center;
+  align-items: center;
+  justify-content: center;
 
   &:active {
     outline: none;

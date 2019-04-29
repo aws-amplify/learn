@@ -9,22 +9,17 @@ const styles = css`
   flex-direction: column;
   justify-content: center;
   padding: 32px;
-  border-top: 1px solid #e2e2e2;
-
-  &:first-child {
-    border-top-width: 0px;
-  }
 
   .checkbox-group-heading {
     color: ${GRAY_COLOR};
   }
 `;
 
-export default ({heading, options, onChange: onAnyChange}) => {
+export default ({heading, options, onChange: onAnyChange, className}) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   return (
-    <div css={styles} className='checkbox-group'>
+    <div css={styles} {...{className}}>
       {heading && (
         <Text h3 className='checkbox-group-heading'>
           {heading}
