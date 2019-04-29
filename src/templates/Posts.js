@@ -109,8 +109,8 @@ export default props => {
   const menu = (
     <Filter
       filters={[
-        {key: 'platforms', options: platformOptions},
-        {key: 'categories', options: categoryOptions},
+        {key: 'platforms', name: 'Platforms', options: platformOptions},
+        {key: 'categories', name: 'Categories', options: categoryOptions},
       ]}
     />
   );

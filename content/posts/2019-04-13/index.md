@@ -1,6 +1,6 @@
 ---
 title: Adding Authentication to your Angular Material & AWS Amplify powered PWA (Part 2)
-description: 'Plush is a full-stack mobile application for pictures sharing. It uses Expo and React Native for the front end, AWS Amplify as the back-end service, and the API service is built with GraphQL.'
+description: 'This is the second part in a multi-chapter series outlining building a fully functional multi platform Progressive Web Application (PWA) for mobile and desktop.'
 banner: './banner.png'
 authorIds:
   - michael-labieniec

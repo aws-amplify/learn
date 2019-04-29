@@ -1,8 +1,9 @@
 import {useContext} from 'react';
-import CheckboxGroup from './CheckboxGroup';
 import {filter as filterContext} from '~/contexts';
 import {css} from '@emotion/core';
 import {mq} from '~/constants';
+import DateRange from './DateRange';
+import CheckboxGroup from './CheckboxGroup';
 
 const styles = css`
   padding: 16px;
@@ -25,13 +26,21 @@ export default ({filters}) => {
   return (
     <div css={styles}>
       <div>
-        {filters.map(({key, options}) => (
-          <CheckboxGroup
-            heading={key}
-            options={options}
-            onChange={d => setCriteria({[key]: d})}
-          />
-        ))}
+        {filters.map(({key, name, options, dateRange}) =>
+          options ? (
+            <CheckboxGroup
+              {...{key}}
+              heading={name}
+              options={options}
+              onChange={d => setCriteria({[key]: d})}
+            />
+          ) : dateRange ? (
+            <DateRange
+              {...{key, name}}
+              onChange={d => setCriteria({[key]: d})}
+            />
+          ) : null,
+        )}
       </div>
     </div>
   );

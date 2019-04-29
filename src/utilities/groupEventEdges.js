@@ -1,7 +1,7 @@
-import {reduce, assoc} from 'ramda';
+import {reduce, assoc, invertObj} from 'ramda';
 import * as extract from './extract';
 
-const monthNames = [
+export const monthNameByIndex = [
   'January',
   'February',
   'March',
@@ -16,6 +16,8 @@ const monthNames = [
   'December',
 ];
 
+export const monthIndexByName = invertObj(monthNameByIndex);
+
 const extractDateFromNode = extract.fromPath(['node', 'fields', 'date']);
 
 export default reduce((accumulator, current) => {
@@ -23,7 +25,7 @@ export default reduce((accumulator, current) => {
   const date = new Date(stringifiedDate);
   const year = date.getFullYear();
   const monthIndex = date.getMonth();
-  const month = monthNames[monthIndex];
+  const month = monthNameByIndex[monthIndex];
   const key = `${month} ${year}`;
   return assoc(key, [...(accumulator[key] || []), current], accumulator);
 }, {});

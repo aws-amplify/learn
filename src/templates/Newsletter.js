@@ -22,6 +22,7 @@ export const pageQuery = graphql`
     context: sitePage(path: {eq: $current}) {
       context {
         week
+        year
         previous
         next
       }
@@ -89,7 +90,7 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const {week, previous, next} = extract.fromPath(
+  const {week, year, previous, next} = extract.fromPath(
     ['data', 'context', 'context'],
     props,
   );
@@ -148,14 +149,12 @@ export default props => {
         }
       `}
     >
-      <Text h2 className='page-heading'>
-        Week 
-        {' '}
-        {week}
-      </Text>
-      <Text p className='paragraph-large'>
-        {`Welcome to week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
-      </Text>
+      <Text h2 className='page-heading' children={`Week ${week} of ${year}`} />
+      <Text
+        p
+        className='paragraph-large'
+        children={`Welcome to week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
+      />
     </div>,
     ...map(
       ({
@@ -174,6 +173,7 @@ export default props => {
               <Template
                 containerStyles={cardContainerStyles}
                 {...mapNodeToProps(node)}
+                className='rounded'
               />
             ),
             nodes,
@@ -181,11 +181,7 @@ export default props => {
 
           return (
             <List
-              heading={(
-                <Text h2 className='list-heading'>
-                  {heading}
-                </Text>
-)}
+              heading={<Text h2 className='list-heading' children={heading} />}
               {...{key, items}}
               {...rest}
             />
@@ -205,14 +201,16 @@ export default props => {
         text-align: center;
         justify-content: center;
         padding: 16px 16px 0px 16px;
-        > * {
+
+        > .button {
+          background-color: #fff;
           margin: 8px;
         }
       `}
     >
       {previous && (
         <Button.Basic
-          className='three-dee'
+          className='three-dee actionable rounded'
           newsletterNextPrevious
           size='medium'
           to={previous}
@@ -222,7 +220,7 @@ export default props => {
       )}
 
       <Button.Basic
-        className='three-dee'
+        className='three-dee actionable rounded'
         newsletterNextPrevious
         size='medium'
         to='/newsletters'
@@ -232,7 +230,7 @@ export default props => {
 
       {next && (
         <Button.Basic
-          className='three-dee'
+          className='three-dee actionable rounded'
           newsletterNextPrevious
           size='medium'
           to={next}

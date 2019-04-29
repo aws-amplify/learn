@@ -8,13 +8,31 @@ import {
   YOUTUBE_RED_COLOR,
   SAN_JUAN_COLOR,
 } from '~/constants';
+import toasts from './toasts';
 
 const styles = css`
   ${reset}
+
+  * {
+    box-sizing: border-box;
+    backface-visibility: none;
+    appearance: none;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    background-color: transparent;
+    border-width: 0px;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
   ${typography}
 
   body,
   html {
+    color: #000;
     font-family: Amazon Ember;
     font-size: 15px;
     line-height: 18px;
@@ -26,31 +44,27 @@ const styles = css`
     background-color: ${CONCRETE_COLOR};
   }
 
-  * {
-    color: #000;
-    box-sizing: border-box;
-    backface-visibility: none;
-    appearance: none;
-    text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
-  }
-
-  &:focus {
-    outline: 0;
-  }
-
-  &::webkit-scrollbar {
+  ::webkit-scrollbar {
     display: none;
+  }
+
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:focus,
+  :active {
+    color: inherit;
   }
 
   svg {
     color: inherit;
-
     path {
       color: inherit;
     }
   }
+
+  ${toasts}
 
   .social a:hover {
     transition: 0.375s ease all;

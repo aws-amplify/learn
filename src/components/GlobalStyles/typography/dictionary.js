@@ -173,6 +173,12 @@ export default {
     height: 23,
   },
 
+  'newsletter-card-subheading': {
+    size: 13,
+    weight: 200,
+    height: 20,
+  },
+
   'paragraph-large': {
     size: 18,
     weight: 200,
@@ -189,5 +195,29 @@ export default {
     size: 14,
     weight: 200,
     height: 21,
+  },
+
+  'subscribe-input': {
+    size: 16,
+    weight: 200,
+    height: 24,
+  },
+
+  'subscribe-label': {
+    size: 16,
+    weight: 200,
+    height: 24,
+  },
+
+  'date-range': {
+    size: 14,
+    weight: 200,
+    height: 21,
+  },
+
+  'date-range-heading': {
+    size: 18,
+    weight: 400,
+    height: 27,
   },
 };

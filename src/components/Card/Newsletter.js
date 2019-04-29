@@ -10,7 +10,7 @@ const styles = css`
   padding: 24px;
 `;
 
-export default asCard(({ConditionalAnchor, heading, className}) => {
+export default asCard(({ConditionalAnchor, heading, subheading, className}) => {
   return (
     <ConditionalAnchor
       css={styles}
@@ -20,6 +20,7 @@ export default asCard(({ConditionalAnchor, heading, className}) => {
       )}
     >
       <Text h3 className='newsletter-card-heading' children={heading} />
+      <Text h3 className='newsletter-card-subheading' children={subheading} />
     </ConditionalAnchor>
   );
 });

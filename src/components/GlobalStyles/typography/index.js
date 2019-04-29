@@ -14,7 +14,8 @@ const createStyleStringByProp = {
 export default css`
   ${fontFaces}
 
-  .text {
+  .text,
+  ::placeholder {
     display: inline;
     font-family: Amazon Ember;
   }

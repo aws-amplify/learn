@@ -1,5 +1,14 @@
 import {graphql} from 'gatsby';
-import {Layout, Card, List, Nav, Hero, Button, Text} from '~/components';
+import {
+  Layout,
+  Card,
+  List,
+  Nav,
+  Hero,
+  Button,
+  Text,
+  Subscribe,
+} from '~/components';
 import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
@@ -91,6 +100,7 @@ const heroProps = {
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
+  cta: <Subscribe />,
 };
 
 export default props => {
@@ -111,8 +121,6 @@ export default props => {
     extractCount,
     ['upcomingEvents', 'posts', 'contributors'],
   );
-
-  console.log(contributorsCount);
 
   const sections = [
     {

@@ -1,7 +1,7 @@
 import {graphql} from 'gatsby';
-import {MappedList, Layout, Nav, Card, Text, Hero} from '~/components';
+import {MappedList, Layout, Nav, Card, Hero, Subscribe} from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {identity} from 'ramda';
+import {identity, split} from 'ramda';
 import {track} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 
@@ -29,14 +29,16 @@ const heroProps = {
     'A weekly blog about community updates in the AWS Amplify ecosystem',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
+  cta: <Subscribe />,
 };
 
 const extractProps = slug => {
   // eslint-disable-next-line
-  const [x, year, week] = slug.split('/');
+  const [x, year, week] = split('/', slug);
   return {
     to: slug,
     heading: `Week ${week}`,
+    subheading: year,
   };
 };
 
@@ -49,6 +51,7 @@ export default ({
   ...rest
 }) => {
   track.internalPageView(rest);
+
   const main = (
     <MappedList
       columnCountByBreakpoint={{
