@@ -4,5 +4,10 @@ export {extract, track};
 
 export {createFilterContextValue, getFilterOptions} from './filter';
 export {default as mapNodeToProps} from './mapNodeToProps';
-export {default as groupEventEdges} from './groupEventEdges';
+// clean up this module organization
+export {
+  default as groupEventEdges,
+  monthIndexByName,
+  monthNameByIndex,
+} from './groupEventEdges';
 export {default as classNames} from './classNames';

@@ -6,6 +6,7 @@ import {
   createFilterContextValue,
   getFilterOptions,
   track,
+  monthIndexByName,
 } from '~/utilities';
 import {
   Layout,
@@ -26,6 +27,8 @@ import {
   identity,
   head,
   keys,
+  split,
+  join,
   isEmpty,
 } from 'ramda';
 
@@ -52,23 +55,42 @@ export const pageQuery = graphql`
 
 const header = <Nav />;
 const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
+const DATE_PATH = ['node', 'fields', 'date'];
 
 export default props => {
   track.internalPageView(props);
 
-  const value = createFilterContextValue({
-    key: 'platforms',
-    path: PLATFORMS_PATH,
-    meetsCriterion: (field, criterion) =>
-      !criterion || criterion.every(c => field.includes(c)),
-  });
+  const value = createFilterContextValue(
+    {
+      key: 'dates',
+      path: DATE_PATH,
+      meetsCriterion: (field, criterion) => {
+        if (!criterion) return true;
+
+        const [month, day, year] = split(' ', join('', split(',', field)));
+        const fieldAsDate = new Date(year, monthIndexByName[month], day);
+        return fieldAsDate >= criterion[0] && fieldAsDate <= criterion[1];
+      },
+    },
+    {
+      key: 'platforms',
+      path: PLATFORMS_PATH,
+      meetsCriterion: (field, criterion) =>
+        !criterion || criterion.every(c => field.includes(c)),
+    },
+  );
 
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const noneUpcoming = isEmpty(edges);
   const platformOptions =
     !noneUpcoming && getFilterOptions(PLATFORMS_PATH, edges);
   const menu = !noneUpcoming && (
-    <Filter filters={[{key: 'platforms', options: platformOptions}]} />
+    <Filter
+      filters={[
+        {key: 'dates', name: 'Date Range', dateRange: true},
+        {key: 'platforms', name: 'Platforms', options: platformOptions},
+      ]}
+    />
   );
 
   const edgesByMonth = groupEventEdges(edges);

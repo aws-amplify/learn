@@ -1,65 +1,11 @@
 import {useState, useCallback, useMemo, useReducer} from 'react';
 import {MdArrowForward} from 'react-icons/md';
 import {css} from '@emotion/core';
-import {toast} from 'react-toastify';
 import {Basic} from './Button';
 import {ORANGE_PEEL_COLOR, SAN_JUAN_COLOR} from '~/constants';
 import Text from './Text';
 
-const triggerToast = () =>
-  toast(
-    <div>
-      <Text className='pageHeading' children='subscribed' />
-    </div>,
-    {
-      autoClose: 2500,
-      draggable: true,
-      position: toast.POSITION.BOTTOM_RIGHT,
-      className: 'toast',
-    },
-  );
-
-// const styles = css`
-//   margin-top: 10px;
-//   display: flex;
-//   flex: 1;
-//   flex-direction: row;
-//   background-color: #fff;
-//   border-radius: 4px;
-//   max-width: 378px;
-
-//   > .left {
-//     display: flex;
-//     flex: 1;
-//     flex-direction: column;
-
-//     input {
-//       padding: 12px 16px;
-//     }
-
-//     .text {
-//       cursor: pointer;
-//       padding: 12px 16px;
-//       color: #000;
-//       text-align: center;
-//       color: ${SAN_JUAN_COLOR};
-//     }
-//   }
-
-//   > .right {
-//     display: flex;
-//     padding: 4px;
-
-//     > .button {
-//       background-color: ${ORANGE_PEEL_COLOR};
-//       border-radius: 4px;
-//       color: #fff;
-//     }
-//   }
-// `;
-
 const styles = css`
-  margin-top: 10px;
   display: flex;
   flex: 1;
   background-color: #fff;

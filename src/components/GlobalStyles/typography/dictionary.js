@@ -202,4 +202,16 @@ export default {
     weight: 200,
     height: 24,
   },
+
+  'date-range': {
+    size: 14,
+    weight: 200,
+    height: 21,
+  },
+
+  'date-range-heading': {
+    size: 18,
+    weight: 400,
+    height: 27,
+  },
 };
