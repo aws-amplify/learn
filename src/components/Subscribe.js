@@ -16,6 +16,12 @@ const styles = css`
     flex: 1;
     padding: 12px 16px;
 
+    &:active {
+      .text {
+        color: #000;
+      }
+    }
+
     > .text {
       display: flex;
       flex: 1;
