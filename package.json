@@ -18,6 +18,7 @@
     "react-icons": "^3.5.0",
     "react-moment": "^0.8.4",
     "react-sticky": "^6.0.3",
+    "react-toastify": "^5.1.0",
     "shortid": "^2.2.14"
   },
   "devDependencies": {

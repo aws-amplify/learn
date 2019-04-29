@@ -11,6 +11,7 @@ const styles = css`
 
   .button {
     margin-top: 16px;
+    background-color: #fff;
   }
 `;
 
@@ -21,7 +22,11 @@ export default () => (
       <div css={styles}>
         <Text h2 className='page-heading' children='404' />
         <Text h4 className='page-subheading' children='Page Not Found' />
-        <Button.Basic to='/' className='three-dee' children='Return Home' />
+        <Button.Basic
+          to='/'
+          className='rounded actionable three-dee'
+          children='Return Home'
+        />
       </div>
 )}
   />

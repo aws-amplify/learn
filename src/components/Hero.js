@@ -20,7 +20,12 @@ const styles = css`
   }
 
   .cta {
+    display: flex;
+    flex: 1;
     padding-top: 24px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

@@ -68,8 +68,14 @@ export const getFilterOptions = (path, data) => {
       (existencesStage, e) => {
         const valueAtPath = viewPath(e);
         return is(Array, valueAtPath)
-          ? reduce((a, c) => assoc(c, true, a), existencesStage, valueAtPath)
-          : assoc(valueAtPath, true, existencesStage);
+          ? reduce(
+              (a, c) => (c ? assoc(c, true, a) : a),
+              existencesStage,
+              valueAtPath,
+            )
+          : valueAtPath
+          ? assoc(valueAtPath, true, existencesStage)
+          : existencesStage;
       },
       {},
       data,

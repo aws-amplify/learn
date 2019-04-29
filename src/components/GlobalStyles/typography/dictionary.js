@@ -190,4 +190,16 @@ export default {
     weight: 200,
     height: 21,
   },
+
+  'subscribe-input': {
+    size: 16,
+    weight: 200,
+    height: 24,
+  },
+
+  'subscribe-label': {
+    size: 16,
+    weight: 200,
+    height: 24,
+  },
 };

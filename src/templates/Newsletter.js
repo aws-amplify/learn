@@ -181,11 +181,7 @@ export default props => {
 
           return (
             <List
-              heading={(
-                <Text h2 className='list-heading'>
-                  {heading}
-                </Text>
-)}
+              heading={<Text h2 className='list-heading' children={heading} />}
               {...{key, items}}
               {...rest}
             />
@@ -205,14 +201,16 @@ export default props => {
         text-align: center;
         justify-content: center;
         padding: 16px 16px 0px 16px;
-        > * {
+
+        > .button {
+          background-color: #fff;
           margin: 8px;
         }
       `}
     >
       {previous && (
         <Button.Basic
-          className='three-dee'
+          className='three-dee actionable rounded'
           newsletterNextPrevious
           size='medium'
           to={previous}
@@ -222,7 +220,7 @@ export default props => {
       )}
 
       <Button.Basic
-        className='three-dee'
+        className='three-dee actionable rounded'
         newsletterNextPrevious
         size='medium'
         to='/newsletters'
@@ -232,7 +230,7 @@ export default props => {
 
       {next && (
         <Button.Basic
-          className='three-dee'
+          className='three-dee actionable rounded'
           newsletterNextPrevious
           size='medium'
           to={next}

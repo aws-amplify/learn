@@ -1,5 +1,14 @@
 import {graphql} from 'gatsby';
-import {Layout, Card, List, Nav, Hero, Button, Text} from '~/components';
+import {
+  Layout,
+  Card,
+  List,
+  Nav,
+  Hero,
+  Button,
+  Text,
+  Subscribe,
+} from '~/components';
 import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
@@ -10,7 +19,7 @@ import {
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map} from 'ramda';
-import mapSrc from '~/assets/images/map.png';
+// import mapSrc from '~/assets/images/map.png';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -91,6 +100,7 @@ const heroProps = {
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
+  cta: <Subscribe />,
 };
 
 export default props => {
@@ -111,8 +121,6 @@ export default props => {
     extractCount,
     ['upcomingEvents', 'posts', 'contributors'],
   );
-
-  console.log(contributorsCount);
 
   const sections = [
     {

@@ -8,15 +8,10 @@ const styles = css`
   display: flex;
   cursor: pointer;
   appearance: none;
-  color: #000;
-  background-color: #fff;
-  border-radius: 4px;
   text-align: center;
 
-  &:focus,
   &:active {
     outline: none;
-    border-width: 0px;
   }
 `;
 

@@ -11,6 +11,7 @@ const styles = css`
   text-align: center;
   align-items: center;
   justify-content: center;
+  border-width: 0px;
 
   > * {
     color: #fff;
@@ -30,14 +31,12 @@ const styles = css`
 export default ({href, children, hidePlus}) => (
   <Basic
     {...{href}}
-    className='three-dee actionable'
+    className='actionable shadow'
     css={styles}
     textClass='landing-list-cta'
     padding='medium'
   >
-    <Text span className='contribute-cta'>
-      {children}
-    </Text>
-    {!hidePlus && <IoIosAdd size={24} />}
+    <Text span className='contribute-cta' {...{children}} />
+    {!hidePlus && <IoIosAdd size={22} />}
   </Basic>
 );
