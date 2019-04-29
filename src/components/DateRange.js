@@ -5,18 +5,18 @@ import 'flatpickr/dist/themes/airbnb.css';
 import {css} from '@emotion/core';
 import {generate} from 'shortid';
 import Text from './Text';
-import {SILVER_CHALICE_COLOR} from '~/constants';
+import {SILVER_CHALICE_COLOR, GRAY_COLOR} from '~/constants';
 
 const styles = css`
   display: flex;
   flex-direction: column;
-  padding: 12px 30px 10px 30px;
+  padding: 24px 30px 24px 30px;
   flex: 1;
   cursor: pointer;
 
   label {
     cursor: pointer;
-    color: #000;
+    color: ${GRAY_COLOR};
   }
 
   input {

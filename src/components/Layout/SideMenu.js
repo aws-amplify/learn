@@ -1,11 +1,11 @@
 import {css} from '@emotion/core';
 import {useState, useCallback, useRef} from 'react';
 import {mq} from '~/constants';
+import {Sticky} from 'react-sticky';
+import useSize from '@rehooks/component-size';
 import Base from './Base';
 import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
-// import {Sticky} from 'react-sticky'
-// import useSize from '@rehooks/component-size'
 
 const megaMenuStyles = css`
   position: fixed;
@@ -51,7 +51,9 @@ export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen]);
   const ref = useRef(null);
-  // const size = useSize(ref)
+  const [isStuck, setIsStuck] = useState(false);
+  const size = useSize(ref);
+  console.log(size);
 
   return (
     <Base>
@@ -69,9 +71,20 @@ export default ({header, menu, main}) => {
 
         <div className='body'>
           <div>
-            <div className='side menu'>
-              <div {...{ref}}>{menu}</div>
-            </div>
+            <Sticky className='side menu'>
+              {({isSticky}) => {
+                setIsStuck(isSticky);
+
+                return (
+                  <div
+                    style={isSticky ? {position: 'fixed', top: '100px'} : {}}
+                  >
+                    <div {...{ref}}>{menu}</div>
+                  </div>
+                );
+              }}
+            </Sticky>
+            {isStuck && <div className='ghost' style={size} />}
 
             <div className='main'>{main}</div>
           </div>
