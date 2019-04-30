@@ -21,13 +21,10 @@ const styles = css`
   }
 
   input {
-    padding: 8px 0px 8px 10px;
-  }
-
-  > div {
     display: flex;
-    flex-direction: row;
-    margin-top: 2px;
+    flex: 1;
+    padding: 9px 1px 9px 11px;
+    box-sizing: padding-box;
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 4px;
     transition: 0.375 ease border-color;
@@ -35,6 +32,18 @@ const styles = css`
     &:hover {
       border-color: hsl(0, 0%, 70%);
     }
+
+    &.active,
+    &:focus {
+      padding: 8px 0px 8px 10px;
+      border: 2px solid #3e85f7;
+    }
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
   }
 
   .separation {
