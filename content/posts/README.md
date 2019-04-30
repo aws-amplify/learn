@@ -1,4 +1,4 @@
-# Host an Amplify Post
+# Submit an Amplify Post
 
 Please add your post to our featured posts on the community site.
 
