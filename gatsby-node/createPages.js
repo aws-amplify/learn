@@ -92,6 +92,12 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     return newDate;
   });
 
+  const addDays = curry((numDays, date) => {
+    const newDate = new Date(date.getTime());
+    newDate.setDate(newDate.getDate() + numDays);
+    return newDate;
+  });
+
   const getStartEndTupleFromYearWeekTuple = ([year, week]) => {
     const date = new Date(year);
     const startDate = addWeeks(week - 1, date);

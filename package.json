@@ -60,7 +60,7 @@
     "delete-cache": "rm -rf .cache",
     "clean": "yarn delete-cache -- node_modules",
     "start": "yarn delete-cache && gatsby develop",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve"
   }
 }
