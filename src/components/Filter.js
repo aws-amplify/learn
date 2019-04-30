@@ -3,7 +3,7 @@ import {filter as filterContext} from '~/contexts';
 import {css} from '@emotion/core';
 import {mq} from '~/constants';
 import {curry} from 'ramda';
-import Select from 'react-select';
+import MultiSelect from './MultiSelect';
 import DateRange from './DateRange';
 import CheckboxGroup from './CheckboxGroup';
 
@@ -64,14 +64,7 @@ export default ({filters}) => {
             }
 
             case 'MULTI_SELECT': {
-              return (
-                <Select
-                  closeMenuOnSelect={false}
-                  defaultValue={[]}
-                  isMulti
-                  {...{options, onChange}}
-                />
-              );
+              return <MultiSelect {...{options, key, name, onChange}} />;
             }
 
             default: {

@@ -28,11 +28,12 @@ const styles = css`
 
     &.on-posts-page {
       .post-card-title {
-        font-size: 30px;
-        line-height: 45px;
+        font-size: 26px;
+        line-height: 39px;
       }
 
       .post-card-description {
+        margin-top: 10px;
         font-size: 16px;
         line-height: 24px;
       }

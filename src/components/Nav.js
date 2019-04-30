@@ -69,7 +69,8 @@ const baseStyles = css`
         &:hover,
         &.active {
           padding-top: 2px;
-          border-bottom: 2px solid #fff;
+          border-bottom-width: 2px;
+          border-bottom-style: solid;
         }
       }
     }
@@ -122,6 +123,7 @@ const defaults = {
   beforeScroll: {
     background: ORANGE_PEEL_COLOR,
     linkColor: '#fff',
+    linkHoverColor: '#fff',
     brandingColor: '#fff',
     logoSrc: logoLightURI,
   },
@@ -129,6 +131,7 @@ const defaults = {
   afterScroll: {
     background: '#fff',
     linkColor: '#000',
+    linkHoverColor: ORANGE_PEEL_COLOR,
     brandingColor: ORANGE_PEEL_COLOR,
     logoSrc: logoDarkURI,
   },
@@ -152,6 +155,12 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
           color: ${beforeScroll.linkColor};
         }
 
+        a {
+          &:hover {
+            border-bottom-color: ${beforeScroll.linkHoverColor};
+          }
+        }
+
         .nav-branding {
           color: ${beforeScroll.brandingColor};
         }
@@ -162,6 +171,12 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
           * {
             color: ${afterScroll.linkColor};
+          }
+
+          a {
+            &:hover {
+              border-bottom-color: ${afterScroll.linkHoverColor};
+            }
           }
 
           .nav-branding {

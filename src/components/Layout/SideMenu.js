@@ -81,8 +81,6 @@ export default ({header, menu, main}) => {
       : -(scrollTop - maxScrollTop) + 75;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
 
-  console.log(maxScrollTop, scrollTop);
-
   return (
     <>
       <GlobalStyles />
@@ -104,7 +102,11 @@ export default ({header, menu, main}) => {
                 </div>
                 <div
                   className='ghost'
-                  style={{width: menuWidth, height: menuHeight}}
+                  style={{
+                    marginTop: '75px',
+                    width: menuWidth,
+                    height: menuHeight,
+                  }}
                 />
               </>
             )}

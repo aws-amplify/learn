@@ -30,6 +30,7 @@ import {
   split,
   join,
   isEmpty,
+  includes,
 } from 'ramda';
 
 export const pageQuery = graphql`
@@ -64,10 +65,8 @@ export default props => {
     {
       key: 'city',
       path: CITY_PATH,
-      meetsCriterion: (field, criterion) => {
-        console.log(field, criterion);
-        return true;
-      },
+      meetsCriterion: (field, criterion) =>
+        !criterion || isEmpty(criterion) || includes(field, criterion),
     },
     {
       key: 'dates',
@@ -83,16 +82,16 @@ export default props => {
 
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const noneUpcoming = isEmpty(edges);
-  // const cityOptions = !noneUpcoming && getFilterOptions(CITY_PATH, edges);
+  const cityOptions = !noneUpcoming && getFilterOptions(CITY_PATH, edges);
   const menu = !noneUpcoming && (
     <Filter
       filters={[
-        // {
-        //   key: 'city',
-        //   name: 'City',
-        //   type: 'MULTI_SELECT',
-        //   options: cityOptions,
-        // },
+        {
+          key: 'city',
+          name: 'City',
+          type: 'MULTI_SELECT',
+          options: cityOptions,
+        },
         {key: 'dates', name: 'Date Range', type: 'DATE_RANGE'},
       ]}
     />

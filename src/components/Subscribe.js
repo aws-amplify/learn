@@ -94,7 +94,7 @@ export default () => {
         >
           <Text
             className='subscribe-label'
-            children='Subscribe to the Weekly'
+            children='Subscribe to the Newsletter'
           />
         </Basic>
       )}

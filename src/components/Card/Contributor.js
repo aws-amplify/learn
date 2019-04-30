@@ -2,7 +2,7 @@ import {css} from '@emotion/core';
 import Img from 'gatsby-image';
 import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io';
 import {useMemo} from 'react';
-import {identity, values, mapObjIndexed} from 'ramda';
+import {identity, values, mapObjIndexed, length, slice} from 'ramda';
 import asCard from './asCard';
 import ExternalLink from '../ExternalLink';
 import Text from '../Text';
@@ -82,6 +82,7 @@ export default asCard(
     className,
     name,
     bio,
+    limitBioLength,
     avatar,
     github,
     twitter,
@@ -106,6 +107,11 @@ export default asCard(
         ),
       deps,
     );
+    const clippedBio = useMemo(
+      () =>
+        limitBioLength && length(bio) > 100 ? `${slice(0, 100, bio)}...` : bio,
+      [bio],
+    );
 
     return (
       <div
@@ -124,7 +130,9 @@ export default asCard(
           {name && (
             <Text h3 className='contributor-card-name' children={name} />
           )}
-          {bio && <Text p className='contributor-card-bio' children={bio} />}
+          {bio && (
+            <Text p className='contributor-card-bio' children={clippedBio} />
+          )}
         </ConditionalAnchor>
         {deps.length && <div className='social'>{links}</div>}
       </div>

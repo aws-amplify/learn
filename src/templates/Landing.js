@@ -201,6 +201,7 @@ export default props => {
         [MONITOR_BREAKPOINT]: 6,
       },
       itemContainerClassName: 'actionable',
+      additionalProps: {limitBioLength: true},
     },
   ];
 
@@ -213,6 +214,7 @@ export default props => {
       Template,
       more,
       itemContainerClassName: className,
+      additionalProps,
       ...rest
     }) => {
       const {Template: ViewAllCard, ...viewAllProps} = more;
@@ -223,6 +225,7 @@ export default props => {
             <Template
               {...(className ? {className} : {})}
               {...mapNodeToProps(node)}
+              {...additionalProps || {}}
             />
           ),
           nodes,

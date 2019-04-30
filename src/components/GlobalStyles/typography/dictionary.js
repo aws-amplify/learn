@@ -216,7 +216,7 @@ export default {
     height: 21,
   },
 
-  'date-range-heading': {
+  'filter-heading': {
     size: 18,
     weight: 400,
     height: 27,
