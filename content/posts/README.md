@@ -21,7 +21,7 @@ categories:
   - API (GraphQL)
   - Authentication
   - Functions
-    ---
+---
 ```
 6. Upload an image at the root of your event folder (e.g. /contents/events/YYYY-MM-DD-desc/avatar.png) 
 
