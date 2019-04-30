@@ -1,6 +1,6 @@
 ---
-title: Getting started with a Angular/NX workspace backed by an AWS Amplify GraphQL API
-description: 'We are creating an offline-ready Todo-App backed by a GraphQL API and Authentication.'
+title: Getting started with a Angular/NX workspace backed by an AWS Amplify API (GraphQL)
+description: 'We are creating an offline-ready Todo-App backed by a API (GraphQL) and Authentication.'
 banner: './banner.png'
 authorIds:
   - michael-gustmann
@@ -9,4 +9,4 @@ platforms:
   - Angular
 categories:
   - Authentication
-  - GraphQL API
+  - API (GraphQL)

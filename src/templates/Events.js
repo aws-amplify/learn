@@ -117,7 +117,7 @@ export default props => {
                     key === firstKey && (
                       <Button.Contribute
                         href='https://github.com/aws-amplify/community/tree/master/content/events/README.md'
-                        children='Add an Event'
+                        children='Host an Event'
                       />
                     )
                   }

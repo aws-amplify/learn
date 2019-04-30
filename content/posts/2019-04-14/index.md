@@ -8,5 +8,5 @@ href: https://github.com/jtaylor1989/Plush
 platforms:
   - React Native
 categories:
-  - GraphQL API
+  - API (GraphQL)
   - Storage

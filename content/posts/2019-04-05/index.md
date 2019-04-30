@@ -8,5 +8,5 @@ href: https://medium.com/open-graphql/aws-appsync-serverless-graphql-real-time-r
 platforms:
   - React
 categories:
-  - GraphQL API
+  - API (GraphQL)
   - Hosting
