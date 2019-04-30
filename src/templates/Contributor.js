@@ -92,7 +92,7 @@ export default props => {
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
           renderItem={p => <Card.Post {...p} />}
-          additionalProps={{className: 'rounded'}}
+          additionalProps={{className: 'rounded on-contributor-page'}}
         />
       )}
     </div>

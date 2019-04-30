@@ -28,7 +28,8 @@ const styles = css`
   ${mq.laptop} {
     flex-direction: row;
 
-    &.on-posts-page {
+    &.on-posts-page,
+    &.on-contributor-page {
       .post-card-title {
         font-size: 20px;
         line-height: 30px;
@@ -42,7 +43,8 @@ const styles = css`
     }
   }
 
-  &.on-posts-page {
+  &.on-posts-page,
+  &.on-contributor-page {
     .post-card-title {
       color: ${SAN_JUAN_COLOR};
     }
