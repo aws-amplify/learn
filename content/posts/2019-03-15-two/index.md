@@ -8,6 +8,6 @@ href: https://www.udemy.com/aws-amplify-framework-with-ios-and-swift/
 platforms:
   - iOS
 categories:
-  - GraphQL API
+  - API (GraphQL)
   - Authentication
 ----

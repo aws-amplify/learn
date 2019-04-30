@@ -112,7 +112,7 @@ export default props => {
       key: 'upcomingEventsSection',
       heading: 'Upcoming Events',
       cta: {
-        children: 'Add an Event',
+        children: 'Host an Event',
         to: '/events/new',
       },
       nodes: upcomingEventNodes,

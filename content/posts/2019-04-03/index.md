@@ -8,5 +8,5 @@ href: https://medium.com/open-graphql/how-to-build-a-real-time-collaborative-mar
 platforms:
   - React
 categories:
-  - GraphQL API
+  - API (GraphQL)
   - Hosting
