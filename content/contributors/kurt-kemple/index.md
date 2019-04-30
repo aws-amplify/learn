@@ -1,7 +1,7 @@
 ---
-name: K Dot
-avatar: './avatar.jpg'
-bio: 'I rap prodigous'
-github: kdot
-twitter: kdot
+name: Kurt Kemple
+avatar: './avatar.jpeg'
+bio: 'Web / Mobile / GraphQL enthusiast. Trying to make fetch happen'
+github: kkemple
+twitter: kurtiskemple
 ---
