@@ -16,7 +16,6 @@ export const pageQuery = graphql`
         }
         href
         tags
-        location
       }
       fields {
         date(formatString: "MMMM DD, YYYY")
@@ -41,15 +40,7 @@ export const pageQuery = graphql`
 export default ({data}) => {
   const {fields, frontmatter, html} = data.markdownRemark;
   const {date} = fields;
-  const {
-    title,
-    href,
-    description,
-    banner,
-    organizers,
-    tags,
-    location,
-  } = frontmatter;
+  const {title, href, description, banner, organizers, tags} = frontmatter;
   const {sizes} = banner.childImageSharp;
 
   return (
@@ -71,8 +62,6 @@ export default ({data}) => {
       {date}
       <br />
       <br />
-      Location:
-      {location}
       <br />
       Tags:
       {tags && tags.join(', ')}
