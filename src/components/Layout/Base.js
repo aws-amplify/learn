@@ -1,6 +1,5 @@
 import {css} from '@emotion/core';
 import {mq, MAX_WIDTH} from '~/constants';
-import {StickyContainer} from 'react-sticky';
 import {ToastContainer} from 'react-toastify';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
@@ -52,10 +51,8 @@ export const style = css`
 export default ({children}) => (
   <>
     <GlobalStyles />
-    <StickyContainer>
-      <div css={style}>{children}</div>
-      <Footer />
-    </StickyContainer>
+    <div css={style}>{children}</div>
+    <Footer />
     <ToastContainer />
   </>
 );

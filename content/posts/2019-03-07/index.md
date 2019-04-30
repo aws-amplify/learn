@@ -7,4 +7,4 @@ authorIds:
 href: https://aws.amazon.com/blogs/mobile/aws-amplify-console-supports-instant-cache-invalidation-and-delta-deployments/
 categories:
   - Hosting
-----
+---

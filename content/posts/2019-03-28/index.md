@@ -7,3 +7,4 @@ authorIds:
 href: https://medium.com/@gerard.sans/aws-appsync-velocity-templates-guide-55b9d2bff053
 categories:
   - API (GraphQL)
+---

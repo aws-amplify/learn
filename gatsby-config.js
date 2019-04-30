@@ -43,6 +43,7 @@ const dataSources = map(
     options: {
       name,
       path: join(__dirname, `content/${name}`),
+      ignore: ['**/README.md'],
     },
   }),
   sourceNames,
