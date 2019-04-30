@@ -115,6 +115,8 @@ export default props => {
     ['upcomingEvents', 'latestPosts', 'featuredContributors'],
   );
 
+  console.log(latestPostNodes);
+
   const featuredContributorNodes = useMemo(() => {
     let indicesLength = 0;
     const indices = {};
@@ -127,6 +129,8 @@ export default props => {
     }
     return keys(indices).map(i => allContributorNodes[i]);
   }, []);
+
+  console.log(featuredContributorNodes);
 
   const extractCount = aliasPrefix =>
     extract.fromPath(['data', `${aliasPrefix}Count`, 'totalCount'], props);

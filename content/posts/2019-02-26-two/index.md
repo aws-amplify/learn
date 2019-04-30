@@ -11,4 +11,4 @@ categories:
   - Authentication
   - Hosting
   - API (GraphQL)
-----
+---

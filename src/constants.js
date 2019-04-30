@@ -30,6 +30,7 @@ export const GRAY_COLOR = '#828282';
 export const SILVER_CHALICE_COLOR = '#a2a2a2';
 export const ATHENS_GRAY_COLOR = '#e1e4ea';
 export const CONCRETE_COLOR = '#f2f2f2';
+export const PURPLE = '#527fff';
 
 export const TWITTER_BLUE_COLOR = '#4199d4';
 export const GITHUB_GRAY_COLOR = '#333';

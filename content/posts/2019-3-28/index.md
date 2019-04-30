@@ -7,3 +7,4 @@ authorIds:
 href: https://github.com/mtliendo/aws-amplify-plugin-docs
 categories:
   - Plugins
+---

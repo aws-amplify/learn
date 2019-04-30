@@ -9,4 +9,4 @@ platforms:
   - Gatsby
 categories:
   - Authentication
-----
+---
