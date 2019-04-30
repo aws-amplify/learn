@@ -108,6 +108,7 @@ const misc = ['gatsby-plugin-offline'];
 
 module.exports = {
   siteMetadata,
+  pathPrefix: '/community',
   mapping,
   plugins: [
     moduleResolution,
