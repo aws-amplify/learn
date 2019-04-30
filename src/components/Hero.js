@@ -8,13 +8,9 @@ const styles = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 120px 40px 85px 40px;
+  padding: 85px 40px 85px 40px;
   color: #fff;
   text-align: center;
-
-  ${mq.tablet} {
-    padding: 100px 40px 85px 40px;
-  }
 
   .overlay {
     position: absolute;

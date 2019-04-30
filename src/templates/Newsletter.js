@@ -154,7 +154,12 @@ export default props => {
         padding: 16px 16px 0px 16px;
 
         .page-subheading {
+          padding-top: 14px;
           padding-bottom: 22px;
+        }
+
+        .paragraph-large {
+          padding-bottom: 4px;
         }
       `}
     >

@@ -231,12 +231,6 @@ export default props => {
   );
 
   return (
-    <Layout.Basic
-      header={[
-        <Nav beforeScroll={{background: 'transparent'}} />,
-        <Hero {...heroProps} />,
-      ]}
-      {...{main}}
-    />
+    <Layout.Basic header={[<Nav />, <Hero {...heroProps} />]} {...{main}} />
   );
 };

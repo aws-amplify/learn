@@ -10,7 +10,7 @@ const styles = css`
   display: flex;
   border-width: 0px;
   padding-top: 7px;
-  padding-bottom: 7px;
+  padding-bottom: 8px;
 
   > * {
     color: #fff;

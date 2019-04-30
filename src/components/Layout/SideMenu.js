@@ -14,7 +14,6 @@ const styles = css`
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-top: 75px;
 
   > .body {
     position: relative;

@@ -41,9 +41,26 @@ const baseStyles = css`
 
     > .internal,
     > .external {
-      margin: 8px;
+      margin: 0px 8px;
+
+      ${mq.tablet} {
+        margin: 0px 16px;
+      }
+
+      ${mq.desktop} {
+        margin: 0px 24px;
+      }
+
       a {
-        margin: 8px;
+        margin: 0px 8px;
+
+        ${mq.tablet} {
+          margin: 0px 16px;
+        }
+
+        ${mq.desktop} {
+          margin: 0px 24px;
+        }
 
         &:hover,
         &.active {
@@ -156,53 +173,62 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
   `;
 
   return (
-    <nav {...{className}} css={styles}>
-      <div>
-        <Link className='branding' to='/'>
-          {scrolled ? (
-            <img src={afterScroll.logoSrc} alt='logo' />
-          ) : (
-            <img src={beforeScroll.logoSrc} alt='logo' />
-          )}
+    <>
+      <div
+        css={css`
+          display: block;
+          width: 100%;
+          height: 75px;
+        `}
+      />
+      <nav {...{className}} css={styles}>
+        <div>
+          <Link className='branding' to='/'>
+            {scrolled ? (
+              <img src={afterScroll.logoSrc} alt='logo' />
+            ) : (
+              <img src={beforeScroll.logoSrc} alt='logo' />
+            )}
 
-          <Text h3 className='nav-branding' children='Community' />
-        </Link>
+            <Text h3 className='nav-branding' children='Community' />
+          </Link>
 
-        <div className='internal'>
-          {map(
-            ({to, children}) => (
-              <Link {...{to}} key={children} activeClassName='active'>
-                <Text span className='nav-link' {...{children}} />
-              </Link>
-            ),
-            [
-              {to: '/events', children: 'Events'},
-              {to: '/posts', children: 'Posts'},
-            ],
-          )}
+          <div className='internal'>
+            {map(
+              ({to, children}) => (
+                <Link {...{to}} key={children} activeClassName='active'>
+                  <Text span className='nav-link' {...{children}} />
+                </Link>
+              ),
+              [
+                {to: '/events', children: 'Events'},
+                {to: '/posts', children: 'Posts'},
+              ],
+            )}
+          </div>
+
+          <div className='external'>
+            {map(
+              ({href, children}) => (
+                <ExternalLink {...{href}} key={children}>
+                  <Text span className='nav-link' {...{children}} />
+                  <MdOpenInNew className='external-graphic' size={14} />
+                </ExternalLink>
+              ),
+              [
+                {
+                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
+                  children: 'Chat',
+                },
+                {
+                  href: 'https://aws-amplify.github.io/docs/',
+                  children: 'Docs',
+                },
+              ],
+            )}
+          </div>
         </div>
-
-        <div className='external'>
-          {map(
-            ({href, children}) => (
-              <ExternalLink {...{href}} key={children}>
-                <Text span className='nav-link' {...{children}} />
-                <MdOpenInNew className='external-graphic' size={14} />
-              </ExternalLink>
-            ),
-            [
-              {
-                href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
-                children: 'Chat',
-              },
-              {
-                href: 'https://aws-amplify.github.io/docs/',
-                children: 'Docs',
-              },
-            ],
-          )}
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
