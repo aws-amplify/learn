@@ -8,7 +8,8 @@ href: https://egghead.io/courses/building-serverless-web-applications-with-react
 platforms:
   - React
 categories:
-  - GraphQL API
+  - API (GraphQL)
+  - API (REST)
   - Authentication
   - Storage
   - Functions
