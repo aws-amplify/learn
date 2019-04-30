@@ -84,7 +84,7 @@ export default () => {
     if (result === 'success') {
       setValue('');
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 1000);
+      setTimeout(() => setShowSuccess(false), 2000);
     }
 
     // eslint-disable-next-line
