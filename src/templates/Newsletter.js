@@ -172,7 +172,7 @@ export default props => {
       <Text
         p
         className='paragraph-large'
-        children={`Welcome to week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
+        children={`Welcome to Week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
       />
     </div>,
     ...map(

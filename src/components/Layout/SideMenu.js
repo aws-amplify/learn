@@ -4,7 +4,7 @@ import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import useWindowSize from 'react-use/lib/useWindowSize';
-import useLockBodyScroll from 'react-use/lib/useLockBodyScroll';
+// import useLockBodyScroll from 'react-use/lib/useLockBodyScroll';
 import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
 import GlobalStyles from '../GlobalStyles';
@@ -25,7 +25,6 @@ const styles = css`
 
     .menu {
       position: fixed;
-      max-height: 100%;
       overflow-y: scroll;
 
       ::-webkit-scrollbar-track-piece,
@@ -78,17 +77,19 @@ export default ({header, menu, main}) => {
 
   const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
   const {height: mainHeight} = useSize(mainRef);
-  const maxMenuHeight = windowHeight - 125;
-  const menuHeight =
-    initialMenuHeight > maxMenuHeight ? maxMenuHeight : initialMenuHeight;
+  const maxMenuHeight = windowHeight - 75;
+  const menuHeightGreaterThanMax = initialMenuHeight > maxMenuHeight;
+  const menuHeightStyleProp = menuHeightGreaterThanMax
+    ? `${maxMenuHeight}px`
+    : 'initial';
 
-  const maxScrollTop = mainHeight - menuHeight + 50;
+  const maxScrollTop = mainHeight - initialMenuHeight + 50;
   const menuOffset =
     scrollTop < 50
       ? 125 - scrollTop
-      : scrollTop < maxScrollTop
+      : scrollTop + 50 < maxScrollTop
       ? 75
-      : -(scrollTop - maxScrollTop) + 75;
+      : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
 
   return (
@@ -104,7 +105,7 @@ export default ({header, menu, main}) => {
                 <div
                   className='menu'
                   style={{
-                    maxHeight: `${windowHeight - 90}px`,
+                    height: menuHeightStyleProp,
                     top: menuOffset,
                   }}
                 >
@@ -115,7 +116,7 @@ export default ({header, menu, main}) => {
                   style={{
                     marginTop: '75px',
                     width: menuWidth,
-                    height: menuHeight,
+                    height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
               </>

@@ -75,22 +75,20 @@ export default () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const onClick = async () => {
     const response = await addToMailchimp(value);
-    const {result, msg} = response;
-    const updateMessage = includes(
-      'is already subscribed to list Amplify.',
-      msg,
-    )
-      ? 'Already subscribed'
-      : msg;
+    let {result, msg} = response;
+    if (msg !== 'The email you entered is not valid.') {
+      result = 'success';
+      msg = 'Successfully ubscribed!';
+    }
 
     if (result === 'success') {
       setValue('');
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 1000);
+      setTimeout(() => setShowSuccess(false), 2000);
     }
 
     // eslint-disable-next-line
-    toast(<div dangerouslySetInnerHTML={{__html: updateMessage}} />, {
+    toast(<div dangerouslySetInnerHTML={{__html: msg}} />, {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 3000,
       hideProgressBar: true,
