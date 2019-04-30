@@ -20,6 +20,7 @@ const styles = css`
   flex-direction: column;
   flex: 1;
   background-color: #fff;
+  margin-top: 49px;
 
   > div {
     display: flex;
