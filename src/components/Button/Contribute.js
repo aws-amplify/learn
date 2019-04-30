@@ -6,14 +6,14 @@ import Text from '../Text';
 
 const styles = css`
   border-radius: 20px;
-  background-color: ${ORANGE_PEEL_COLOR};
+  background-color: #fff;
   display: flex;
   border-width: 0px;
   padding-top: 7px;
   padding-bottom: 8px;
 
   > * {
-    color: #fff;
+    color: ${ORANGE_PEEL_COLOR};
   }
 
   .text {

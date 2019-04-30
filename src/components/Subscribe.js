@@ -1,9 +1,9 @@
-import {useState, useCallback} from 'react';
-import {MdArrowForward, MdDone} from 'react-icons/md';
+import {useState, useCallback, useMemo, useReducer} from 'react';
+import {MdArrowForward} from 'react-icons/md';
 import {css} from '@emotion/core';
+import axios from 'axios';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import {toast} from 'react-toastify';
-import {includes} from 'ramda';
 import {Basic} from './Button';
 import {ORANGE_PEEL_COLOR} from '~/constants';
 import Text from './Text';
@@ -72,27 +72,16 @@ export default () => {
   const [value, setValue] = useState('');
   const onChange = useCallback(({target: {value: v}}) => setValue(v), []);
   const [showForm, setShowForm] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const onClick = async () => {
     const response = await addToMailchimp(value);
-    let {result, msg} = response;
-    if (msg !== 'The email you entered is not valid.') {
-      result = 'success';
-      msg = 'Successfully ubscribed!';
-    }
+    const {result, msg} = response;
 
-    if (result === 'success') {
-      setValue('');
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 2000);
-    }
+    result === 'success' && setValue('');
 
     // eslint-disable-next-line
     toast(<div dangerouslySetInnerHTML={{__html: msg}} />, {
       position: toast.POSITION.BOTTOM_RIGHT,
-      autoClose: 3000,
-      hideProgressBar: true,
-      type: result,
+      autoClose: result !== 'success',
     });
   };
 
@@ -119,23 +108,12 @@ export default () => {
             autoCorrect='off'
             className='subscribe-input'
             placeholder='your@email.com'
-            onKeyPress={e => {
-              const {key} = e;
-              if (key === 'Enter') {
-                e.preventDefault();
-                onClick();
-              }
-            }}
             {...{value, onChange}}
           />
 
           <Basic {...{onClick}}>
             <div className='shadow actionable rounded'>
-              {showSuccess ? (
-                <MdDone size={20} />
-              ) : (
-                <MdArrowForward size={20} />
-              )}
+              <MdArrowForward size={20} />
             </div>
           </Basic>
         </form>

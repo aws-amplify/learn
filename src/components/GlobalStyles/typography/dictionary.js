@@ -61,7 +61,7 @@ export default {
 
   'post-card-title': {
     size: 20,
-    weight: 300,
+    weight: 400,
     height: 30,
   },
 
@@ -108,7 +108,7 @@ export default {
 
   'more-posts-or-contributors-heading': {
     size: 20,
-    weight: 300,
+    weight: 400,
     height: 30,
   },
 
@@ -194,7 +194,7 @@ export default {
 
   'contribute-cta': {
     size: 14,
-    weight: 200,
+    weight: 300,
     height: 21,
   },
 

@@ -109,7 +109,7 @@ export default asCard(
     );
     const clippedBio = useMemo(
       () =>
-        limitBioLength && length(bio) > 100 ? `${slice(0, 100, bio)}...` : bio,
+        limitBioLength && length(bio) > 50 ? `${slice(0, 50, bio)}...` : bio,
       [bio],
     );
 

@@ -120,7 +120,7 @@ export default props => {
   const featuredContributorNodes = useMemo(() => {
     let indicesLength = 0;
     const indices = {};
-    while (indicesLength < 5) {
+    while (indicesLength < 4) {
       const index = Math.floor(Math.random() * length(allContributorNodes));
       if (!indices[index]) {
         indices[index] = true;
@@ -182,6 +182,7 @@ export default props => {
         [DESKTOP_BREAKPOINT]: 4,
       },
       itemContainerClassName: 'on-landing-page rounded',
+      additionalProps: {limitDescriptionLength: true},
     },
     {
       heading: 'Featured Contributors',
@@ -201,8 +202,7 @@ export default props => {
         to: '/contributors',
       },
       columnCountByBreakpoint: {
-        [TABLET_BREAKPOINT]: 3,
-        [MONITOR_BREAKPOINT]: 6,
+        [DESKTOP_BREAKPOINT]: 5,
       },
       itemContainerClassName: 'actionable',
       additionalProps: {limitBioLength: true},
