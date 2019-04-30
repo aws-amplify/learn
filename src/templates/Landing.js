@@ -13,14 +13,14 @@ import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
-  MONITOR_BREAKPOINT,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
-import {map, length, assoc, reduce, keys} from 'ramda';
+import {map, length, keys, dropLast} from 'ramda';
 import heroOverlaySrc from '~/assets/images/map.svg';
 import {useMemo} from 'react';
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -106,6 +106,7 @@ const heroProps = {
 
 export default props => {
   track.internalPageView(props);
+  const {width: windowWidth} = useWindowSize();
 
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
@@ -115,12 +116,10 @@ export default props => {
     ['upcomingEvents', 'latestPosts', 'featuredContributors'],
   );
 
-  console.log(latestPostNodes);
-
   const featuredContributorNodes = useMemo(() => {
     let indicesLength = 0;
     const indices = {};
-    while (indicesLength < 4) {
+    while (indicesLength < 5) {
       const index = Math.floor(Math.random() * length(allContributorNodes));
       if (!indices[index]) {
         indices[index] = true;
@@ -130,7 +129,10 @@ export default props => {
     return keys(indices).map(i => allContributorNodes[i]);
   }, []);
 
-  console.log(featuredContributorNodes);
+  const featuredContributorNodesByScreen =
+    windowWidth > DESKTOP_BREAKPOINT
+      ? dropLast(1, featuredContributorNodes)
+      : featuredContributorNodes;
 
   const extractCount = aliasPrefix =>
     extract.fromPath(['data', `${aliasPrefix}Count`, 'totalCount'], props);
@@ -192,7 +194,7 @@ export default props => {
           'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
         hidePlus: true,
       },
-      nodes: featuredContributorNodes,
+      nodes: featuredContributorNodesByScreen,
       Template: Card.Contributor,
       more: {
         Template: Card.ViewAll.PostsOrContributors,
@@ -202,6 +204,7 @@ export default props => {
         to: '/contributors',
       },
       columnCountByBreakpoint: {
+        [TABLET_BREAKPOINT]: 3,
         [DESKTOP_BREAKPOINT]: 5,
       },
       itemContainerClassName: 'actionable',
