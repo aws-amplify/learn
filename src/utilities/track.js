@@ -16,4 +16,4 @@ const track = curry((name, attributes) => {
 
 export const internalPageView = props =>
   track('internal page view', {href: props.location.href});
-export const externalPageView = href => track('internal page view', {href});
+export const externalPageView = href => track('external page view', {href});

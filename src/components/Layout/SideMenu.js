@@ -4,7 +4,7 @@ import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import useWindowSize from 'react-use/lib/useWindowSize';
-// import useLockBodyScroll from 'react-use/lib/useLockBodyScroll';
+import useLockBodyScroll from 'react-use/lib/useLockBodyScroll';
 import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
 import GlobalStyles from '../GlobalStyles';
@@ -67,7 +67,7 @@ const megaMenuStyles = css`
 
 export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  // useLockBodyScroll(!menuOpen);
+  // useLockBodyScroll(true);
 
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen]);
   const {y: scrollTop} = useWindowScroll();
@@ -76,8 +76,11 @@ export default ({header, menu, main}) => {
   const menuRef = useRef(null);
   const mainRef = useRef(null);
 
-  const {width: menuWidth, height: menuHeight} = useSize(menuRef);
+  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
   const {height: mainHeight} = useSize(mainRef);
+  const maxMenuHeight = windowHeight - 125;
+  const menuHeight =
+    initialMenuHeight > maxMenuHeight ? maxMenuHeight : initialMenuHeight;
 
   const maxScrollTop = mainHeight - menuHeight + 50;
   const menuOffset =

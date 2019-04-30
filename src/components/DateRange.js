@@ -6,6 +6,7 @@ import {css} from '@emotion/core';
 import {generate} from 'shortid';
 import Text from './Text';
 import {SILVER_CHALICE_COLOR, GRAY_COLOR} from '~/constants';
+import {classNames} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -24,6 +25,12 @@ const styles = css`
     display: flex;
     flex: 1;
     padding: 9px 1px 9px 11px;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
     box-sizing: padding-box;
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 4px;
@@ -32,18 +39,22 @@ const styles = css`
     &:hover {
       border-color: hsl(0, 0%, 70%);
     }
+  }
 
-    &.active,
-    &:focus {
-      padding: 8px 0px 8px 10px;
+  &.focused {
+    > div {
       border: 2px solid #3e85f7;
+
+      > input {
+        padding: 8px 0px 8px 10px;
+      }
     }
   }
 
-  > div {
+  .clear {
     display: flex;
-    flex-direction: row;
-    margin-top: 2px;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .separation {
@@ -56,9 +67,10 @@ const styles = css`
 export default ({name, onChange, className}) => {
   const [range, setRange] = useState(null);
   const id = useMemo(generate, []);
+  const [focusedClassName, setFocusedClassName] = useState('');
 
   return (
-    <div css={styles} {...{className}}>
+    <div css={styles} className={classNames(focusedClassName, className)}>
       {name && (
         <label htmlFor={id}>
           <Text className='filter-heading' children={name} />
@@ -70,6 +82,8 @@ export default ({name, onChange, className}) => {
           className='date-range'
           placeholder='Select range'
           value={range}
+          onOpen={() => setFocusedClassName('focused')}
+          onClose={() => setFocusedClassName('')}
           onChange={v => {
             setRange(v);
             onChange(v);
