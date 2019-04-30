@@ -1,11 +1,12 @@
 const {join} = require('path');
 const {map} = require('ramda');
 
-const TITLE = 'Amplify –– an easy-to-use toolchain for building on AWS';
-const SHORT_NAME = 'AWS Amplify';
-const SITE_URL = 'aws-amplify.com';
+const TITLE =
+  'Amplify Community –– a place to share projects, events, articles and other resources';
+const SHORT_NAME = 'Amplify Community';
+const SITE_URL = 'amplify.aws/community';
 const DESCRIPTION =
-  'Documentation, news, and community updates relating to AWS Amplify';
+  'A place to share projects, events, articles and other resources';
 
 const GITHUB = 'https://github.com/aws-amplify';
 const TWITTER = 'https://twitter.com/AWSAmplify';
