@@ -52,6 +52,10 @@ const baseStyles = css`
       }
 
       a {
+        display: flex;
+        align-self: stretch;
+        justify-content: center;
+        align-items: center;
         margin: 0px 8px;
 
         ${mq.tablet} {
@@ -64,7 +68,8 @@ const baseStyles = css`
 
         &:hover,
         &.active {
-          text-decoration: underline;
+          padding-top: 2px;
+          border-bottom: 2px solid #fff;
         }
       }
     }

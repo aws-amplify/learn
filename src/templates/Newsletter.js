@@ -163,7 +163,7 @@ export default props => {
         }
       `}
     >
-      <Text h2 className='page-heading' children={`Week ${week} of ${year}`} />
+      <Text h2 className='page-heading' children={`Week ${week}`} />
       <Text
         h4
         className='page-subheading'
