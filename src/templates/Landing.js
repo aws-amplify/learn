@@ -18,8 +18,9 @@ import {
 } from '~/constants';
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
-import {map} from 'ramda';
+import {map, length, assoc, reduce, keys} from 'ramda';
 import heroOverlaySrc from '~/assets/images/map.svg';
+import {useMemo} from 'react';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -73,7 +74,6 @@ export const pageQuery = graphql`
 
     featuredContributors: allMarkdownRemark(
       filter: {fields: {category: {eq: "contributors"}}}
-      limit: 5
     ) {
       edges {
         node {
@@ -110,10 +110,23 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const [upcomingEventNodes, latestPostNodes, featuredContributorNodes] = map(
+  const [upcomingEventNodes, latestPostNodes, allContributorNodes] = map(
     extractEdges,
     ['upcomingEvents', 'latestPosts', 'featuredContributors'],
   );
+
+  const featuredContributorNodes = useMemo(() => {
+    let indicesLength = 0;
+    const indices = {};
+    while (indicesLength < 5) {
+      const index = Math.floor(Math.random() * length(allContributorNodes));
+      if (!indices[index]) {
+        indices[index] = true;
+        indicesLength += 1;
+      }
+    }
+    return keys(indices).map(i => allContributorNodes[i]);
+  }, []);
 
   const extractCount = aliasPrefix =>
     extract.fromPath(['data', `${aliasPrefix}Count`, 'totalCount'], props);
