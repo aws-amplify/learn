@@ -7,7 +7,7 @@ Please add your post to our featured posts on the community site.
 3. Create a new folder in the repo for your event `/contents/posts/YYYY-MM-DD-desc` 
 4. Add an `index.md` to the folder as follows:
 
-    ```
+```
 ---
 title: How to Build Cloud-Powered Mobile Apps with Expo & AWS Amplify
 description: 'In this tutorial, we’ll walk through how to create a cross-platform Expo app with features like user sign-in, AWS Lambda functions, an AWS AppSync GraphQL API, analytics, & storage.'
@@ -22,7 +22,7 @@ categories:
   - Authentication
   - Functions
     ---
-    ```
+```
 6. Upload an image at the root of your event folder (e.g. /contents/events/YYYY-MM-DD-desc/avatar.png) 
 
 7. Submit a PR.
