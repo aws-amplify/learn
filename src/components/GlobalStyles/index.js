@@ -26,12 +26,6 @@ const styles = css`
     &:focus {
       outline: 0;
     }
-
-    &::webkit-scrollbar,
-    &::-webkit-scrollbar-thumb,
-    &::-webkit-scrollbar-track {
-      display: none;
-    }
   }
 
   ${typography}
@@ -45,7 +39,6 @@ const styles = css`
     font-weight: 200;
     overflow: -moz-scrollbars-none;
     overflow-x: hidden;
-    overflow-y: scroll;
     -ms-overflow-style: none;
     background-color: ${CONCRETE_COLOR};
   }

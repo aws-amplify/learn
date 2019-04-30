@@ -27,6 +27,13 @@ const styles = css`
       position: fixed;
       max-height: 100%;
       overflow-y: scroll;
+
+      ::-webkit-scrollbar-track-piece,
+      ::-webkit-scrollbar,
+      ::-webkit-scrollbar-thumb,
+      ::-webkit-scrollbar-track {
+        display: none;
+      }
     }
 
     .ghost {
