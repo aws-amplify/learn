@@ -40,7 +40,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         edges {
           node {
             frontmatter {
-              tags
               href
             }
             fields {
