@@ -19,6 +19,7 @@ import {
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map} from 'ramda';
+import heroOverlaySrc from '~/assets/images/map.svg';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -100,6 +101,7 @@ const heroProps = {
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
   cta: <Subscribe />,
+  overlay: heroOverlaySrc,
 };
 
 export default props => {
@@ -229,6 +231,12 @@ export default props => {
   );
 
   return (
-    <Layout.Basic header={[<Nav />, <Hero {...heroProps} />]} {...{main}} />
+    <Layout.Basic
+      header={[
+        <Nav beforeScroll={{background: 'transparent'}} />,
+        <Hero {...heroProps} />,
+      ]}
+      {...{main}}
+    />
   );
 };

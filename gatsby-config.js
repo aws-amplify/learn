@@ -95,6 +95,14 @@ const manifest = {
   },
 };
 
+const mailchimp = {
+  resolve: 'gatsby-plugin-mailchimp',
+  options: {
+    endpoint:
+      'https://amazon.us20.list-manage.com/subscribe/post?u=1dc41125a628ca803765f7800&amp;id=3e69babeab',
+  },
+};
+
 const misc = ['gatsby-plugin-offline'];
 
 module.exports = {
@@ -108,5 +116,6 @@ module.exports = {
     emotion,
     manifest,
     ...misc,
+    mailchimp,
   ],
 };

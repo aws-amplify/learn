@@ -1,8 +1,11 @@
 import {useState, useCallback, useMemo, useReducer} from 'react';
 import {MdArrowForward} from 'react-icons/md';
 import {css} from '@emotion/core';
+import axios from 'axios';
+import addToMailchimp from 'gatsby-plugin-mailchimp';
+import {toast} from 'react-toastify';
 import {Basic} from './Button';
-import {ORANGE_PEEL_COLOR, SAN_JUAN_COLOR} from '~/constants';
+import {ORANGE_PEEL_COLOR} from '~/constants';
 import Text from './Text';
 
 const styles = css`
@@ -35,10 +38,6 @@ const styles = css`
     flex: 1;
     flex-direction: row;
 
-    > .hidden {
-      display: none;
-    }
-
     input[type='email'] {
       display: flex;
       flex: 1;
@@ -55,18 +54,14 @@ const styles = css`
       }
     }
 
-    label {
+    .button {
       cursor: pointer;
       display: flex;
       padding: 4px;
 
       > div {
-        padding: 0px 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 11px 10px 7px 10px;
         background-color: ${ORANGE_PEEL_COLOR};
-        border-radius: 4px;
         color: #fff;
       }
     }
@@ -74,7 +69,21 @@ const styles = css`
 `;
 
 export default () => {
+  const [value, setValue] = useState('');
+  const onChange = useCallback(({target: {value: v}}) => setValue(v), []);
   const [showForm, setShowForm] = useState(false);
+  const onClick = async () => {
+    const response = await addToMailchimp(value);
+    const {result, msg} = response;
+
+    result === 'success' && setValue('');
+
+    // eslint-disable-next-line
+    toast(<div dangerouslySetInnerHTML={{__html: msg}} />, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: result !== 'success',
+    });
+  };
 
   return (
     <div css={styles} className='rounded'>
@@ -91,47 +100,22 @@ export default () => {
       )}
 
       {showForm && (
-        <form
-          action='https://amazon.us20.list-manage.com/subscribe/post?u=1dc41125a628ca803765f7800&amp;id=3e69babeab'
-          method='post'
-          id='mc-embedded-subscribe-form'
-          name='mc-embedded-subscribe-form'
-          className='validate'
-          target='_blank'
-          noValidate
-        >
+        <form>
           <input
             autoFocus
             type='email'
             autoCapitalize='off'
             autoCorrect='off'
-            name='EMAIL'
             className='subscribe-input'
-            id='mce-EMAIL'
             placeholder='your@email.com'
+            {...{value, onChange}}
           />
 
-          <input
-            className='hidden'
-            type='text'
-            name='b_1dc41125a628ca803765f7800_3e69babeab'
-            tabIndex='-1'
-            value=''
-          />
-
-          <label htmlFor='mc-embedded-subscribe'>
-            <div>
+          <Basic {...{onClick}}>
+            <div className='shadow actionable rounded'>
               <MdArrowForward size={20} />
             </div>
-          </label>
-
-          <input
-            className='hidden'
-            type='submit'
-            value='Subscribe'
-            name='subscribe'
-            id='mc-embedded-subscribe'
-          />
+          </Basic>
         </form>
       )}
     </div>

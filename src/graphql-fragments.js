@@ -102,9 +102,8 @@ export const EventFragment = graphql`
       }
     }
     frontmatter {
-      location
       city
-      state
+      country
     }
   }
 `;

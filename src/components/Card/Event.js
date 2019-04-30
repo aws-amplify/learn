@@ -27,16 +27,7 @@ const styles = css`
 `;
 
 export default asCard(
-  ({
-    ConditionalAnchor,
-    avatar,
-    title,
-    location,
-    city,
-    state,
-    date,
-    className,
-  }) => {
+  ({ConditionalAnchor, avatar, title, country, city, date, className}) => {
     const formattedDate = useMemo(() => head(split(', ', date)), [date]);
 
     return (
@@ -55,7 +46,7 @@ export default asCard(
           <Text
             h4
             className='event-card-detail'
-            children={`${location} (${city}, ${state})`}
+            children={`${city}, ${country}`}
           />
         </div>
       </ConditionalAnchor>

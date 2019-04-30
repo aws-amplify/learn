@@ -8,9 +8,11 @@
     "@emotion/core": "^10.0.10",
     "@rehooks/component-size": "^1.0.2",
     "aws-amplify": "^1.1.26",
+    "axios": "^0.18.0",
     "babel-plugin-ramda": "^2.0.0",
     "gatsby": "2.3.4",
     "gatsby-image": "^2.0.37",
+    "gatsby-plugin-mailchimp": "^5.0.0",
     "prismjs": "^1.16.0",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
@@ -20,6 +22,9 @@
     "react-moment": "^0.8.4",
     "react-select": "^2.4.3",
     "react-sticky": "^6.0.3",
+    "react-sticky-box": "^0.8.0",
+    "react-toastify": "^5.1.0",
+    "react-use": "^8.3.1",
     "shortid": "^2.2.14"
   },
   "devDependencies": {

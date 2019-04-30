@@ -17,7 +17,7 @@ import {
   Text,
   Button,
 } from '~/components';
-import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
+import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 import {filter as filterContext} from '~/contexts';
 import {
   values,
@@ -55,7 +55,6 @@ export const pageQuery = graphql`
 
 const header = <Nav />;
 const CITY_PATH = ['node', 'frontmatter', 'city'];
-const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const DATE_PATH = ['node', 'fields', 'date'];
 
 export default props => {
@@ -80,19 +79,11 @@ export default props => {
         return fieldAsDate >= criterion[0] && fieldAsDate <= criterion[1];
       },
     },
-    {
-      key: 'platforms',
-      path: PLATFORMS_PATH,
-      meetsCriterion: (field, criterion) =>
-        !criterion || criterion.every(c => field.includes(c)),
-    },
   );
 
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const noneUpcoming = isEmpty(edges);
   // const cityOptions = !noneUpcoming && getFilterOptions(CITY_PATH, edges);
-  const platformOptions =
-    !noneUpcoming && getFilterOptions(PLATFORMS_PATH, edges);
   const menu = !noneUpcoming && (
     <Filter
       filters={[
@@ -103,12 +94,6 @@ export default props => {
         //   options: cityOptions,
         // },
         {key: 'dates', name: 'Date Range', type: 'DATE_RANGE'},
-        {
-          key: 'platforms',
-          name: 'Platforms',
-          options: platformOptions,
-          type: 'CHECKBOX_GROUP',
-        },
       ]}
     />
   );
@@ -139,7 +124,7 @@ export default props => {
                   }
                   heading={<Text h2 className='list-heading' children={key} />}
                   columnCountByBreakpoint={{
-                    [TABLET_BREAKPOINT]: 2,
+                    [LAPTOP_BREAKPOINT]: 2,
                     [DESKTOP_BREAKPOINT]: 3,
                   }}
                   noItems={<p>no items to display</p>}
