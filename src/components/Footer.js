@@ -201,7 +201,7 @@ export default () => {
             [
               {
                 className: 'github',
-                href: 'https://github.com/aws-amplify',
+                href: 'https://github.com/aws-amplify/community',
                 Icon: IoLogoGithub,
                 size: 42,
               },

@@ -10,9 +10,6 @@ country: United States
 state: California
 city: San Francisco
 location: 525 Market Street, 2nd Floor
-
-platforms:
-  - United States
 ---
 
 # COOL UPCOMING EVENT

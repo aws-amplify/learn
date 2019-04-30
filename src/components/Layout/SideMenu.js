@@ -25,7 +25,6 @@ const styles = css`
 
     .menu {
       position: fixed;
-      max-height: 100%;
       overflow-y: scroll;
 
       ::-webkit-scrollbar-track-piece,
@@ -78,7 +77,7 @@ export default ({header, menu, main}) => {
 
   const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
   const {height: mainHeight} = useSize(mainRef);
-  const maxMenuHeight = windowHeight;
+  const maxMenuHeight = windowHeight - 75;
   const menuHeightGreaterThanMax = initialMenuHeight > maxMenuHeight;
   const menuHeightStyleProp = menuHeightGreaterThanMax
     ? `${maxMenuHeight}px`
@@ -117,7 +116,7 @@ export default ({header, menu, main}) => {
                   style={{
                     marginTop: '75px',
                     width: menuWidth,
-                    height: maxMenuHeight,
+                    height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
               </>

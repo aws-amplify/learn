@@ -10,9 +10,6 @@ country: United States
 state: New York
 city: New York
 location: 350 West Broadway, New York, NY
-
-platforms:
-  - United States
 ---
 
 # COOL UPCOMING EVENT
