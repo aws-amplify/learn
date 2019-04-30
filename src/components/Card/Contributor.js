@@ -31,6 +31,7 @@ const styles = css`
 
     .contributor-card-name {
       margin-top: 12px;
+      text-align: center;
     }
 
     .contributor-card-bio {

@@ -5,7 +5,7 @@ import {mq} from '~/constants';
 const styles = css`
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 85px 40px 85px 40px;
@@ -48,22 +48,6 @@ const styles = css`
     justify-content: center;
     align-items: center;
   }
-<<<<<<< HEAD
-
-  .temporary-graphic {
-    width: 300px;
-    height: 200px;
-    background-image: url(${mapSrc});
-    background-repeat: no-repeat;
-    background-size: contain;
-
-
-    @media screen and (max-width: 800px) {
-      display: none;
-    }
-  }
-=======
->>>>>>> master
 `;
 
 // make sure 'color' is inherited
@@ -83,20 +67,11 @@ export default ({background, textColor, heading, overlay, subheading, cta}) => (
       }
     `}
   >
-<<<<<<< HEAD
-  <div className='hero-container'>
-  <Text h2 className='hero-heading' children={heading} />
-    <Text h3 className='hero-subheading' children={subheading} />
-    <div className='cta' children={cta} />
-  </div>
-    <div className='temporary-graphic' />
-=======
     {overlay && (
       <div className='overlay' style={{backgroundImage: `url(${overlay})`}} />
     )}
     <Text h2 className='hero-heading' children={heading} />
     <Text h3 className='hero-subheading' children={subheading} />
     <div className='cta' children={cta} />
->>>>>>> master
   </div>
 );
