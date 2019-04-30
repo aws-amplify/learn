@@ -1,13 +1,11 @@
 ---
-title: AWS Summit
+title: JAMStack Meetup
 description: Whether you are a new startup looking to launch or an existing startup looking for ways to grow your business, you will learn something new at the AWS Startup Day.
-href: https://aws.amazon.com/events/startup-day/
+href: https://www.meetup.com/JAMstack-nyc/
 avatar: ./avatar1.png
 attendantIds:
   - nader-dabit
 
-country: India
-city: Mumbai
-
-platforms:
-  - India
+country: United States
+city: New York
+---

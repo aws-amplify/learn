@@ -4,10 +4,7 @@ description: WWDC is Apple's annual Worldwide Developers Conference where develo
 href: https://developer.apple.com/wwdc19/
 avatar: ./avatar.png
 attendantIds:
-  - nader-dabit
-
+  - dennis-hills
 country: United States
 city: San Jose
-
-platforms:
-  - United States
+---
