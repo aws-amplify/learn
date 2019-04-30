@@ -17,7 +17,7 @@ const styles = css`
     flex: 1;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     padding: 32px;
 
