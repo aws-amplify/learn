@@ -1,15 +1,21 @@
 import {graphql} from 'gatsby';
 import {MappedList, Layout, Nav, Card, Hero, Subscribe} from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {identity, split} from 'ramda';
-import {track} from '~/utilities';
+import {identity, split, fromPairs, map} from 'ramda';
+import {track, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
+import {useMemo} from 'react';
 
 export const pageQuery = graphql`
   {
     sitePage(path: {eq: "/newsletters"}) {
       context {
         sortedSlugs
+        dateRanges {
+          slug
+          startDate(formatString: "MMM Do")
+          endDate(formatString: "MMM Do")
+        }
       }
     }
   }
@@ -24,33 +30,36 @@ const navProps = {
 };
 
 const heroProps = {
-  heading: 'AWS Amplify Weekly',
-  subheading:
-    'A weekly blog about community updates in the AWS Amplify ecosystem',
+  heading: 'AWS Amplify Newsletter',
+  subheading: 'A weekly roundup of updates regarding the AWS Amplify ecosystem',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
   cta: <Subscribe />,
 };
 
-const extractProps = slug => {
-  // eslint-disable-next-line
-  const [x, year, week] = split('/', slug);
-  return {
-    to: slug,
-    heading: `Week ${week}`,
-    subheading: year,
-  };
-};
+export default props => {
+  track.internalPageView(props);
 
-export default ({
-  data: {
-    sitePage: {
-      context: {sortedSlugs},
-    },
-  },
-  ...rest
-}) => {
-  track.internalPageView(rest);
+  const {sortedSlugs, dateRanges} = extract.fromPath(
+    ['data', 'sitePage', 'context'],
+    props,
+  );
+
+  const dateRangeBySlug = useMemo(
+    () => fromPairs(map(({slug, ...dates}) => [slug, dates], dateRanges)),
+    [],
+  );
+
+  const extractProps = slug => {
+    // eslint-disable-next-line
+    const [x, year, week] = split('/', slug);
+    const {startDate, endDate} = dateRangeBySlug[slug];
+    return {
+      to: slug,
+      heading: `Week ${week}`,
+      subheading: `${startDate} to ${endDate}`,
+    };
+  };
 
   const main = (
     <MappedList

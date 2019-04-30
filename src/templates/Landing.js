@@ -19,7 +19,7 @@ import {
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map} from 'ramda';
-import mapSrc from '~/assets/images/map.png';
+import heroOverlaySrc from '~/assets/images/map.svg';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {
@@ -96,11 +96,12 @@ export const pageQuery = graphql`
 `;
 
 const heroProps = {
-  heading: 'Join the Amplify Community',
+  heading: 'Welcome to the Amplify Community',
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
   cta: <Subscribe />,
+  overlay: heroOverlaySrc,
 };
 
 export default props => {
@@ -127,7 +128,8 @@ export default props => {
       heading: 'Upcoming Events',
       cta: {
         children: 'Add an Event',
-        to: '/events/new',
+        href:
+          'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
       },
       nodes: upcomingEventNodes,
       Template: Card.Event,
@@ -146,7 +148,8 @@ export default props => {
       heading: 'Latest Posts',
       cta: {
         children: 'Add a Post',
-        to: '/posts/new',
+        href:
+          'https://github.com/aws-amplify/community/tree/master/content/posts/README.md',
       },
       nodes: latestPostNodes,
       Template: Card.Post,
@@ -167,7 +170,8 @@ export default props => {
       heading: 'Featured Contributors',
       cta: {
         children: 'Join The Community',
-        to: '/participate',
+        href:
+          'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
         hidePlus: true,
       },
       nodes: featuredContributorNodes,

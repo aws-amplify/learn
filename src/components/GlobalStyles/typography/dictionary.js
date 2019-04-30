@@ -20,7 +20,7 @@ export default {
   'hero-subheading': {
     size: 22,
     height: 36,
-    weight: 100,
+    weight: 200,
   },
 
   'page-heading': {
@@ -32,6 +32,7 @@ export default {
   'page-subheading': {
     size: 20,
     height: 30,
+    weight: 300,
   },
 
   'list-heading': {

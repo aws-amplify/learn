@@ -1,20 +1,33 @@
 import {css} from '@emotion/core';
 import Text from './Text';
 import {mq} from '~/constants';
-import mapSrc from '~/assets/images/map.svg';
 
 const styles = css`
-  display: relative;
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 70px 40px 85px 40px;
+  padding: 85px 40px 85px 40px;
   color: #fff;
   text-align: center;
 
-  ${mq.tablet} {
-    padding: 50px 40px 85px 40px;
+  .overlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    s-index: -100;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .hero-heading,
+  .hero-subheading,
+  .cta {
+    z-index: 10;
   }
   .hero-container {
     display: relative;
@@ -35,6 +48,7 @@ const styles = css`
     justify-content: center;
     align-items: center;
   }
+<<<<<<< HEAD
 
   .temporary-graphic {
     width: 300px;
@@ -48,11 +62,13 @@ const styles = css`
       display: none;
     }
   }
+=======
+>>>>>>> master
 `;
 
 // make sure 'color' is inherited
 
-export default ({background, textColor, heading, subheading, cta}) => (
+export default ({background, textColor, heading, overlay, subheading, cta}) => (
   <div
     css={css`
       ${styles}
@@ -67,11 +83,20 @@ export default ({background, textColor, heading, subheading, cta}) => (
       }
     `}
   >
+<<<<<<< HEAD
   <div className='hero-container'>
   <Text h2 className='hero-heading' children={heading} />
     <Text h3 className='hero-subheading' children={subheading} />
     <div className='cta' children={cta} />
   </div>
     <div className='temporary-graphic' />
+=======
+    {overlay && (
+      <div className='overlay' style={{backgroundImage: `url(${overlay})`}} />
+    )}
+    <Text h2 className='hero-heading' children={heading} />
+    <Text h3 className='hero-subheading' children={subheading} />
+    <div className='cta' children={cta} />
+>>>>>>> master
   </div>
 );

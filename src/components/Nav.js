@@ -4,14 +4,18 @@ import {Link} from 'gatsby';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import logoDarkURI from '~/assets/images/logo-dark.png';
 import {useMemo} from 'react';
-import {Sticky} from 'react-sticky';
 import {values, map} from 'ramda';
 import {MdOpenInNew} from 'react-icons/md';
+import useWindowScroll from 'react-use/lib/useWindowScroll';
 import Text from './Text';
 import {mq, ORANGE_PEEL_COLOR, MAX_WIDTH} from '~/constants';
 import ExternalLink from './ExternalLink';
 
 const baseStyles = css`
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
   display: flex;
   flex: 1;
   backdrop-filter: blur(10px);
@@ -28,10 +32,41 @@ const baseStyles = css`
     height: 75px;
 
     > .branding,
-    > .links {
+    > .internal,
+    > .external {
       display: flex;
       flex-direction: row;
       align-items: center;
+    }
+
+    > .internal,
+    > .external {
+      margin: 0px 8px;
+
+      ${mq.tablet} {
+        margin: 0px 16px;
+      }
+
+      ${mq.desktop} {
+        margin: 0px 24px;
+      }
+
+      a {
+        margin: 0px 8px;
+
+        ${mq.tablet} {
+          margin: 0px 16px;
+        }
+
+        ${mq.desktop} {
+          margin: 0px 24px;
+        }
+
+        &:hover,
+        &.active {
+          text-decoration: underline;
+        }
+      }
     }
 
     > .branding {
@@ -49,48 +84,34 @@ const baseStyles = css`
       }
     }
 
-    > .links {
-      padding: 8px;
+    > .internal {
+      flex: 1;
+      justify-content: flex-end;
 
-      > a {
+      ${mq.tablet} {
+        justify-content: flex-start;
+      }
+    }
+
+    > .external {
+      display: none;
+
+      ${mq.tablet} {
         display: flex;
-        flex-direction: row;
-        margin: 8px 8px 8px 8px;
-        align-items: center;
+        flex: 1;
+        justify-content: flex-end;
+      }
 
-        ${mq.tablet} {
-          margin: 8px 8px 8px 32px;
-        }
-
-        ${mq.desktop} {
-          margin: 8px 8px 8px 48px;
-        }
-
-        ${mq.monitor} {
-          margin: 8px 8px 8px 60px;
-        }
-
-        &:hover,
-        &.active {
-          margin-bottom: 7px;
-          border-bottom-width: 1px;
-          border-bottom-style: solid;
-        }
-
-        > svg {
-          margin-top: 2px;
+      a {
+        svg {
+          position: relative;
+          top: 2px;
           margin-left: 4px;
-          box-shadow: 0px 0px 0px transparent;
         }
       }
     }
   }
 `;
-
-const linkProps = [
-  {to: '/events', children: 'Events'},
-  {to: '/posts', children: 'Posts'},
-];
 
 const defaults = {
   beforeScroll: {
@@ -109,6 +130,10 @@ const defaults = {
 };
 
 export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
+  const {y: scrollTop} = useWindowScroll();
+  const scrolled = scrollTop > 0;
+  const className = scrolled ? 'scrolled' : '';
+
   const beforeScroll = {...defaults.beforeScroll, ...b};
   const afterScroll = {...defaults.afterScroll, ...a};
   const deps = [...values(beforeScroll), ...values(afterScroll)];
@@ -148,43 +173,62 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
   `;
 
   return (
-    <Sticky>
-      {({style, distanceFromTop}) => {
-        const scrolled = distanceFromTop < 0;
-        const className = scrolled ? 'scrolled' : '';
+    <>
+      <div
+        css={css`
+          display: block;
+          width: 100%;
+          height: 75px;
+        `}
+      />
+      <nav {...{className}} css={styles}>
+        <div>
+          <Link className='branding' to='/'>
+            {scrolled ? (
+              <img src={afterScroll.logoSrc} alt='logo' />
+            ) : (
+              <img src={beforeScroll.logoSrc} alt='logo' />
+            )}
 
-        return (
-          <nav {...{className, style}} css={styles}>
-            <div>
-              <Link className='branding' to='/'>
-                {scrolled ? (
-                  <img src={afterScroll.logoSrc} alt='logo' />
-                ) : (
-                  <img src={beforeScroll.logoSrc} alt='logo' />
-                )}
+            <Text h3 className='nav-branding' children='Community' />
+          </Link>
 
-                <Text h3 className='nav-branding' children='Community' />
-              </Link>
+          <div className='internal'>
+            {map(
+              ({to, children}) => (
+                <Link {...{to}} key={children} activeClassName='active'>
+                  <Text span className='nav-link' {...{children}} />
+                </Link>
+              ),
+              [
+                {to: '/events', children: 'Events'},
+                {to: '/posts', children: 'Posts'},
+              ],
+            )}
+          </div>
 
-              <div className='links'>
-                {map(
-                  ({to, children}) => (
-                    <Link {...{to}} key={children} activeClassName='active'>
-                      <Text span className='nav-link' {...{children}} />
-                    </Link>
-                  ),
-                  linkProps,
-                )}
-
-                <ExternalLink href='https://aws-amplify.github.io/docs/'>
-                  <Text span className='nav-link' children='Docs' />
+          <div className='external'>
+            {map(
+              ({href, children}) => (
+                <ExternalLink {...{href}} key={children}>
+                  <Text span className='nav-link' {...{children}} />
                   <MdOpenInNew className='external-graphic' size={14} />
                 </ExternalLink>
-              </div>
-            </div>
-          </nav>
-        );
-      }}
-    </Sticky>
+              ),
+              [
+                {
+                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
+                  children: 'Chat',
+                },
+                {
+                  href: 'https://aws-amplify.github.io/docs/',
+                  children: 'Docs',
+                },
+              ],
+            )}
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };

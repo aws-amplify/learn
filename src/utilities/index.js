@@ -11,3 +11,4 @@ export {
   monthNameByIndex,
 } from './groupEventEdges';
 export {default as classNames} from './classNames';
+export {default as groupNewsletterEdges} from './groupNewsletterEdges';

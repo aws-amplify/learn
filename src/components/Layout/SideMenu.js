@@ -1,11 +1,48 @@
 import {css} from '@emotion/core';
 import {useState, useCallback, useRef} from 'react';
-import {mq} from '~/constants';
-import {Sticky} from 'react-sticky';
+import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
-import Base from './Base';
+import useWindowScroll from 'react-use/lib/useWindowScroll';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import useLockBodyScroll from 'react-use/lib/useLockBodyScroll';
 import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
+import GlobalStyles from '../GlobalStyles';
+import Footer from '../Footer';
+
+const styles = css`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  > .body {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    max-width: ${MAX_WIDTH};
+    margin: 0px auto;
+    width: 100%;
+
+    .menu {
+      position: fixed;
+      max-height: 100%;
+      overflow-y: scroll;
+    }
+
+    .ghost {
+      display: flex;
+    }
+
+    .main {
+      &,
+      & > div {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
+    }
+  }
+`;
 
 const megaMenuStyles = css`
   position: fixed;
@@ -13,85 +50,85 @@ const megaMenuStyles = css`
   right: 0px;
   bottom: 0px;
   left: 0px;
-  z-index: 1000;
+  background-color: ${CONCRETE_COLOR};
+  padding-top: 75px;
+  max-height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-
-  &.closed {
-    display: none;
-  }
-
-  &.open {
-    display: flex;
-    background-color: #fff;
-    padding-top: 75px;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    > div {
-      &,
-      & > div,
-      & > div > div {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-    }
-  }
-
-  ${mq.tablet} {
-    &.open {
-      display: none;
-    }
-  }
 `;
 
 export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  useLockBodyScroll(!menuOpen);
+
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [menuOpen]);
-  const ref = useRef(null);
-  const [isStuck, setIsStuck] = useState(false);
-  const size = useSize(ref);
-  console.log(size);
+  const {y: scrollTop} = useWindowScroll();
+  const {width: windowWidth, height: windowHeight} = useWindowSize();
+
+  const menuRef = useRef(null);
+  const mainRef = useRef(null);
+
+  const {width: menuWidth, height: menuHeight} = useSize(menuRef);
+  const {height: mainHeight} = useSize(mainRef);
+
+  const maxScrollTop = mainHeight - menuHeight + 50;
+  const menuOffset =
+    scrollTop < 50
+      ? 125 - scrollTop
+      : scrollTop < maxScrollTop
+      ? 75
+      : -(scrollTop - maxScrollTop) + 75;
+  const showSidebar = windowWidth >= TABLET_BREAKPOINT;
+
+  console.log(maxScrollTop, scrollTop);
 
   return (
-    <Base>
-      <layoutContext.Provider value={{menuOpen, toggleMenu}}>
-        {menuOpen && (
-          <div
-            css={megaMenuStyles}
-            className={`mega menu ${menuOpen ? 'open' : 'closed'}`}
-          >
-            {menu}
+    <>
+      <GlobalStyles />
+      <div css={styles}>
+        <layoutContext.Provider value={{menuOpen, toggleMenu}}>
+          {header}
+
+          <div className='body'>
+            {showSidebar && (
+              <>
+                <div
+                  className='menu'
+                  style={{
+                    maxHeight: `${windowHeight - 90}px`,
+                    top: menuOffset,
+                  }}
+                >
+                  <div ref={menuRef}>{menu}</div>
+                </div>
+                <div
+                  className='ghost'
+                  style={{width: menuWidth, height: menuHeight}}
+                />
+              </>
+            )}
+            <div className='main'>
+              <div ref={mainRef}>{main}</div>
+            </div>
           </div>
-        )}
 
-        {header}
+          <Footer />
 
-        <div className='body'>
-          <div>
-            <Sticky className='side menu'>
-              {({isSticky}) => {
-                setIsStuck(isSticky);
-
-                return (
-                  <div
-                    style={isSticky ? {position: 'fixed', top: '100px'} : {}}
-                  >
-                    <div {...{ref}}>{menu}</div>
-                  </div>
-                );
-              }}
-            </Sticky>
-            {isStuck && <div className='ghost' style={size} />}
-
-            <div className='main'>{main}</div>
-          </div>
-        </div>
-
-        <ToggleMenu />
-      </layoutContext.Provider>
-    </Base>
+          {!showSidebar && (
+            <>
+              {menuOpen && (
+                <div
+                  css={megaMenuStyles}
+                  className={`mega menu ${menuOpen ? 'open' : 'closed'}`}
+                  children={menu}
+                />
+              )}
+              <ToggleMenu />
+            </>
+          )}
+        </layoutContext.Provider>
+      </div>
+    </>
   );
 };

@@ -17,7 +17,7 @@ import {
   Text,
   Button,
 } from '~/components';
-import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
+import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 import {filter as filterContext} from '~/contexts';
 import {
   values,
@@ -54,7 +54,7 @@ export const pageQuery = graphql`
 `;
 
 const header = <Nav />;
-const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
+const CITY_PATH = ['node', 'frontmatter', 'city'];
 const DATE_PATH = ['node', 'fields', 'date'];
 
 export default props => {
@@ -62,33 +62,38 @@ export default props => {
 
   const value = createFilterContextValue(
     {
+      key: 'city',
+      path: CITY_PATH,
+      meetsCriterion: (field, criterion) => {
+        console.log(field, criterion);
+        return true;
+      },
+    },
+    {
       key: 'dates',
       path: DATE_PATH,
       meetsCriterion: (field, criterion) => {
         if (!criterion) return true;
-
         const [month, day, year] = split(' ', join('', split(',', field)));
         const fieldAsDate = new Date(year, monthIndexByName[month], day);
         return fieldAsDate >= criterion[0] && fieldAsDate <= criterion[1];
       },
     },
-    {
-      key: 'platforms',
-      path: PLATFORMS_PATH,
-      meetsCriterion: (field, criterion) =>
-        !criterion || criterion.every(c => field.includes(c)),
-    },
   );
 
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const noneUpcoming = isEmpty(edges);
-  const platformOptions =
-    !noneUpcoming && getFilterOptions(PLATFORMS_PATH, edges);
+  // const cityOptions = !noneUpcoming && getFilterOptions(CITY_PATH, edges);
   const menu = !noneUpcoming && (
     <Filter
       filters={[
-        {key: 'dates', name: 'Date Range', dateRange: true},
-        {key: 'platforms', name: 'Location', options: platformOptions},
+        // {
+        //   key: 'city',
+        //   name: 'City',
+        //   type: 'MULTI_SELECT',
+        //   options: cityOptions,
+        // },
+        {key: 'dates', name: 'Date Range', type: 'DATE_RANGE'},
       ]}
     />
   );
@@ -111,14 +116,15 @@ export default props => {
                   key={key}
                   cta={
                     key === firstKey && (
-                      <Button.Contribute href='https://aws-amplify.github.io'>
-                        Add an Event
-                      </Button.Contribute>
+                      <Button.Contribute
+                        href='https://github.com/aws-amplify/community/tree/master/content/events/README.md'
+                        children='Add an Event'
+                      />
                     )
                   }
                   heading={<Text h2 className='list-heading' children={key} />}
                   columnCountByBreakpoint={{
-                    [TABLET_BREAKPOINT]: 2,
+                    [LAPTOP_BREAKPOINT]: 2,
                     [DESKTOP_BREAKPOINT]: 3,
                   }}
                   noItems={<p>no items to display</p>}

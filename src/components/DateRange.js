@@ -29,12 +29,12 @@ const styles = css`
   }
 `;
 
-export default ({name, onChange}) => {
+export default ({name, onChange, className}) => {
   const [range, setRange] = useState(null);
   const id = useMemo(generate, []);
 
   return (
-    <div css={styles}>
+    <div css={styles} {...{className}}>
       {name && (
         <label htmlFor={id}>
           <Text className='date-range-heading'>{name}</Text>

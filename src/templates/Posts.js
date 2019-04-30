@@ -84,15 +84,12 @@ export default props => {
     <filterContext.Consumer>
       {({meetsCriteria}) => (
         <MappedList
-          heading={(
-            <Text h2 className='list-heading'>
-              Latest Posts
-            </Text>
-)}
+          heading={<Text h2 className='list-heading' children='Latest Posts' />}
           cta={(
-            <Button.Contribute href='https://aws-amplify.github.io'>
-              Add a Post
-            </Button.Contribute>
+            <Button.Contribute
+              href='https://github.com/aws-amplify/community/tree/master/content/posts/README.md'
+              children='Add a Post'
+            />
 )}
           noItems={<p>no items to display</p>}
           data={edges}
@@ -109,8 +106,18 @@ export default props => {
   const menu = (
     <Filter
       filters={[
-        {key: 'platforms', name: 'Platforms', options: platformOptions},
-        {key: 'categories', name: 'Categories', options: categoryOptions},
+        {
+          type: 'CHECKBOX_GROUP',
+          key: 'platforms',
+          name: 'Platforms',
+          options: platformOptions,
+        },
+        {
+          type: 'CHECKBOX_GROUP',
+          key: 'categories',
+          name: 'Categories',
+          options: categoryOptions,
+        },
       ]}
     />
   );

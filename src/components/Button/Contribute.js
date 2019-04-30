@@ -8,23 +8,17 @@ const styles = css`
   border-radius: 20px;
   background-color: ${ORANGE_PEEL_COLOR};
   display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
   border-width: 0px;
+  padding-top: 7px;
+  padding-bottom: 8px;
 
   > * {
     color: #fff;
   }
 
   .text {
-    margin-left: 8px;
-  }
-
-  svg {
-    position: relative;
-    top: 1px;
-    margin: 0px;
+    margin-left: 7px;
+    margin-right: 7px;
   }
 `;
 
