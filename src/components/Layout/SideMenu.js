@@ -57,7 +57,7 @@ const megaMenuStyles = css`
   bottom: 0px;
   left: 0px;
   background-color: ${CONCRETE_COLOR};
-  padding-top: 75px;
+  padding-top: 60px;
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -85,7 +85,7 @@ export default ({header, menu, main}) => {
 
   const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
   const {height: mainHeight} = useSize(mainRef);
-  const maxMenuHeight = windowHeight - 75;
+  const maxMenuHeight = windowHeight - 60;
   const menuHeightGreaterThanMax = initialMenuHeight > maxMenuHeight;
   const menuHeightStyleProp = menuHeightGreaterThanMax
     ? `${maxMenuHeight}px`
@@ -94,9 +94,9 @@ export default ({header, menu, main}) => {
   const maxScrollTop = mainHeight - initialMenuHeight + 50;
   const menuOffset =
     scrollTop < 50
-      ? 125 - scrollTop
+      ? 110 - scrollTop
       : scrollTop + 50 < maxScrollTop
-      ? 75
+      ? 60
       : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
 
@@ -122,7 +122,7 @@ export default ({header, menu, main}) => {
                 <div
                   className='ghost'
                   style={{
-                    marginTop: '75px',
+                    marginTop: '60px',
                     width: menuWidth,
                     height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}

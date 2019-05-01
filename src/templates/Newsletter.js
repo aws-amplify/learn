@@ -262,7 +262,7 @@ export default props => {
 
   return (
     <>
-      <Meta pageName={`${week} Newsletter of ${year}`} />
+      <Meta pageName={`Week ${week} of Newsletter`} />
       <Layout.Basic header={<Nav {...navProps} />} {...{main}} />
     </>
   );
