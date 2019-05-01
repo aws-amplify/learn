@@ -16,6 +16,7 @@ import {
   Filter,
   Text,
   Button,
+  Meta,
 } from '~/components';
 import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 import {filter as filterContext} from '~/contexts';
@@ -143,8 +144,11 @@ export default props => {
   );
 
   return (
-    <filterContext.Provider {...{value}}>
-      <Layout.SideMenu {...{header, menu, main}} />
-    </filterContext.Provider>
+    <>
+      <Meta pageName='Events' />
+      <filterContext.Provider {...{value}}>
+        <Layout.SideMenu {...{header, menu, main}} />
+      </filterContext.Provider>
+    </>
   );
 };

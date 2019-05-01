@@ -105,7 +105,31 @@ const mailchimp = {
   },
 };
 
-const misc = ['gatsby-plugin-offline'];
+const favicon = {
+  resolve: `gatsby-plugin-favicon`,
+  options: {
+    logo: ICON_PATH,
+    appName: 'Amplify Community',
+    dir: 'auto',
+    lang: 'en-US',
+    background: '#fff',
+    theme_color: '#fff',
+    display: 'standalone',
+    orientation: 'any',
+    start_url: '/',
+    version: '1.0',
+    icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      coast: false,
+      favicons: true,
+      firefox: true,
+    },
+  },
+};
+
+const misc = ['gatsby-plugin-react-helmet', 'gatsby-plugin-offline'];
 
 module.exports = {
   siteMetadata,
@@ -120,5 +144,6 @@ module.exports = {
     manifest,
     ...misc,
     mailchimp,
+    favicon,
   ],
 };

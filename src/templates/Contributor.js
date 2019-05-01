@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby';
-import {MappedList, Layout, Card, Nav, Text} from '~/components';
+import {MappedList, Layout, Card, Nav, Text, Meta} from '~/components';
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {css} from '@emotion/core';
 import {map, __, isEmpty} from 'ramda';
@@ -80,6 +80,7 @@ export default props => {
     ['data', 'posts', 'edges'],
     ['data', 'contributor'],
   ]);
+  const {name} = contributor.frontmatter;
 
   const main = (
     <div css={styles}>
@@ -98,5 +99,10 @@ export default props => {
     </div>
   );
 
-  return <Layout.Basic header={<Nav />} {...{main}} />;
+  return (
+    <>
+      <Meta pageName={`${name}'s Profile`} />
+      <Layout.Basic header={<Nav />} {...{main}} />
+    </>
+  );
 };

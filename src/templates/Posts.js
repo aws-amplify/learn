@@ -15,6 +15,7 @@ import {
   Nav,
   Text,
   Button,
+  Meta,
 } from '~/components';
 import {all, includes, isEmpty, any} from 'ramda';
 
@@ -124,8 +125,11 @@ export default props => {
   );
 
   return (
-    <filterContext.Provider {...{value}}>
-      <Layout.SideMenu {...{header, menu, main}} />
-    </filterContext.Provider>
+    <>
+      <Meta pageName='Posts' />
+      <filterContext.Provider {...{value}}>
+        <Layout.SideMenu {...{header, menu, main}} />
+      </filterContext.Provider>
+    </>
   );
 };
