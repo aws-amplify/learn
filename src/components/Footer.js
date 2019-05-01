@@ -184,7 +184,7 @@ export default () => {
       <div className='lower'>
         <div className='copyright'>
           <Text className='footer-copyright'>
-            {`Amplify Framework is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
+            {`The Amplify Community is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
           </Text>
           <img src={awsLogoSrc} alt='aws' />
         </div>
