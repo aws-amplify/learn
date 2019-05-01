@@ -12,23 +12,16 @@ Interested in hosting an Amplify meetup, or speaking about Amplify at a conferen
 
     ```
     ---
-    title: AWS Loft Week - NYC
-    description: The AWS Lofts are a place where startups and developers can meet over coffee, work on their apps, attend educational sessions, and get in-person answers to AWS technical questions – all at no cost.
-    href: https://aws.amazon.com/start-ups/loft/sf-loft/
+    title: AWS Summit London
+    href: https://aws.amazon.com/events/summits/london/
     avatar: ./avatar.png
     attendantIds:
-    - nader-dabit
-
-    country: United States
-    state: New York
-    city: New York
-    location: 350 West Broadway, New York, NY
-
-    platforms:
-    - United States
+      - nader-dabit
+    country: England
+    city: London
     ---
     ```
-6. Upload an image at the root of your event folder (e.g. `/contents/events/YYYY-MM-DD-desc/avatar.png`) 
+6. Upload an image at the root of your event folder (e.g. `/contents/events/YYYY-MM-DD-description/avatar.png`) 
 
 7. Submit a PR.
 
