@@ -7,7 +7,7 @@ Interested in hosting an Amplify meetup, or speaking about Amplify at a conferen
 1. Send an email to aws-amplify-customer@amazon.com detailing the type of event you would like to host (e.g. meetup or speaker at a conference).
 2. Fork this repo.
 3. If you haven't already, add yourself as an [Amplify contributor](https://github.com/aws-amplify/community/tree/master/content/contributors).
-4. Create a new folder in the repo for your event `/contents/events/YYYY-MM-DD-desc` 
+4. Create a new folder in the repo for your event `/content/events/YYYY-MM-DD-desc` 
 5. Add an `index.md` to the folder as follows:
 
     ```
@@ -21,7 +21,7 @@ Interested in hosting an Amplify meetup, or speaking about Amplify at a conferen
     city: London
     ---
     ```
-6. Upload an image at the root of your event folder (e.g. `/contents/events/YYYY-MM-DD-description/avatar.png`) 
+6. Upload an image at the root of your event folder (e.g. `/content/events/YYYY-MM-DD-description/avatar.png`) 
 
 7. Submit a PR.
 
