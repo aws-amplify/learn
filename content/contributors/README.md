@@ -1,12 +1,12 @@
 # Become an Amplify Community Contributor
 
-Thank you for your interest in becoming an Amplify Community Contributor! To add yourself as an Amplify contributor you must also submit a post you have written (available on any publication e.g. Medium, dev.to etc), or an event where you are presenting on Amplify. 
+Thank you for your interest in becoming an Amplify Community Contributor! To add yourself as an Amplify contributor you must also submit a [post](https://github.com/aws-amplify/community/blob/master/content/posts/README.md) or [event](https://github.com/aws-amplify/community/blob/master/content/events/README.md). 
 
 ## Logistics
 
 1. Fork this repo
 
-2. Add a folder in the root of this repo with your firstname-lastname e.g. `lebron-james`
+2. Add a folder in the root of `content/contributors` with your firstname-lastname e.g. `arya-stark`
 
 3. Add an `index.md` with the following frontmatter:
 
@@ -20,7 +20,7 @@ twitter: azorahai
 ---
 ```
 
-4. Upload an image at the root of your folder (e.g. `authors/arya-stark/avatar.jpg`)
+4. Upload an image at the root of your folder (e.g. `content/contributors/arya-stark/avatar.jpg`)
 
 5. Add the [post](https://github.com/aws-amplify/community/tree/master/content/posts) or [event](https://github.com/aws-amplify/community/tree/master/content/events) you would like to contribute to the repo.
 
