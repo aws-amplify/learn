@@ -112,12 +112,12 @@ const styles = css`
   }
 
   .shadow {
-    box-shadow: rgba(0, 0, 0, 0.09) 3px 5px 0px -1px;
+    box-shadow: rgba(0, 0, 0, 0.09) 5px 5px 0px -1px;
     transition: 0.25s ease all;
 
     &.actionable {
       &:hover {
-        box-shadow: rgba(0, 0, 0, 0.09) 5px 7px 0px -1px;
+        box-shadow: rgba(0, 0, 0, 0.09) 7px 7px 0px -1px;
       }
 
       &:active {
