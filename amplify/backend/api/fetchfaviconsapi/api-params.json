@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/favicons",
+            "lambdaFunction": "fetchfaviconsapi",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "fetchfaviconsapi",
+    "apiName": "fetchfaviconsapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "fetchfaviconsapi"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "community-20190425164218-authRole",
+        "unAuthRoleName": "community-20190425164218-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "fetchfaviconsapi",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -10,5 +10,29 @@
 			"service": "Pinpoint",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"function": {
+		"fetchfaviconsapi": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"fetchfaviconsapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "fetchfaviconsapi",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
 	}
 }
