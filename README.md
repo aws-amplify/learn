@@ -18,7 +18,7 @@ You can become a contributor by:
 
 1. [Submitting a post](https://github.com/aws-amplify/community/blob/master/content/posts/README.md)
 2. [Hosting an Amplify meetup](https://github.com/aws-amplify/community/blob/master/content/events/README.md)
-3. [Speaking a conference](https://github.com/aws-amplify/community/blob/master/content/events/README.md)
+3. [Speaking at a conference](https://github.com/aws-amplify/community/blob/master/content/events/README.md)
 
 ### Chat
 
