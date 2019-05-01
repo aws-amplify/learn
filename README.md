@@ -7,7 +7,7 @@
   Amplify Community
 </h1>
 
-Welcome to the Amplify Community! The community is a central hub for developers building fullstack serverless applications with Amplify to learn from the latest community-generated content as well as contribute content (such as events, blog posts, videos, sample projects, and tutorials) with the wider Amplify community.
+Welcome to the Amplify Community! The community provides a hub for developers building fullstack serverless applications with Amplify to learn from the latest community-generated content as well as contribute content (such as events, blog posts, videos, sample projects, and tutorials) with the wider Amplify community.
 
 
 ## Participate
