@@ -29,7 +29,7 @@ const baseStyles = css`
     flex-direction: row;
     flex: 1;
     justify-content: space-between;
-    height: 75px;
+    height: 60px;
 
     > .branding,
     > .internal,
@@ -53,7 +53,6 @@ const baseStyles = css`
 
       a {
         display: flex;
-        align-self: stretch;
         justify-content: center;
         align-items: center;
         margin: 0px 8px;
@@ -68,8 +67,9 @@ const baseStyles = css`
 
         &:hover,
         &.active {
-          padding-top: 1px;
-          text-decoration: underline;
+          padding-top: 2px;
+          border-bottom-width: 2px;
+          border-bottom-style: solid;
         }
       }
     }
@@ -154,12 +154,11 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
         a {
           &:hover {
-            text-decoration-color: ${beforeScroll.linkHoverColor};
-            &,
-            & > * {
+            * {
               color: ${beforeScroll.linkHoverColor};
-              fill: ${beforeScroll.linkHoverColor};
             }
+
+            border-bottom-color: ${beforeScroll.linkHoverColor};
           }
         }
 
@@ -177,12 +176,11 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
           a {
             &:hover {
-              text-decoration-color: ${afterScroll.linkHoverColor};
-              &,
-              & > * {
+              * {
                 color: ${afterScroll.linkHoverColor};
-                fill: ${afterScroll.linkHoverColor};
               }
+
+              border-bottom-color: ${afterScroll.linkHoverColor};
             }
           }
 
@@ -205,7 +203,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
         css={css`
           display: block;
           width: 100%;
-          height: 75px;
+          height: 60px;
         `}
       />
       <nav {...{className}} css={styles}>
