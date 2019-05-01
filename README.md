@@ -32,4 +32,4 @@ You can become a contributor by:
 
 ### Ideas for improving the community?
 
-We are always looking at ways to improve. If you have ideas for the community site, open a [GitHub issue](https://github.com/aws-amplify/community/issues) for you feature request.
+We are always looking at ways to improve. If you have ideas for the community site, open a [GitHub issue](https://github.com/aws-amplify/community/issues) for your feature request.
