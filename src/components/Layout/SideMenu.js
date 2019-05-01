@@ -9,6 +9,7 @@ import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
+import {classNames} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -25,13 +26,15 @@ const styles = css`
 
     .menu {
       position: fixed;
-      overflow-y: scroll;
+      &.scrollable {
+        overflow-y: scroll;
 
-      ::-webkit-scrollbar-track-piece,
-      ::-webkit-scrollbar,
-      ::-webkit-scrollbar-thumb,
-      ::-webkit-scrollbar-track {
-        display: none;
+        ::-webkit-scrollbar-track-piece,
+        ::-webkit-scrollbar,
+        ::-webkit-scrollbar-thumb,
+        ::-webkit-scrollbar-track {
+          display: none;
+        }
       }
     }
 
@@ -70,6 +73,14 @@ const megaMenuStyles = css`
   &.closed {
     display: none;
   }
+
+  > * {
+    &,
+    & > * {
+      display: flex;
+      flex: 1;
+    }
+  }
 `;
 
 export default ({header, menu, main}) => {
@@ -99,6 +110,7 @@ export default ({header, menu, main}) => {
       ? 60
       : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
+  const scrollableClassName = menuHeightGreaterThanMax ? 'scrollable' : '';
 
   return (
     <>
@@ -111,7 +123,7 @@ export default ({header, menu, main}) => {
             {showSidebar && (
               <>
                 <div
-                  className='menu'
+                  className={classNames(scrollableClassName, 'menu')}
                   style={{
                     height: menuHeightStyleProp,
                     top: menuOffset,
