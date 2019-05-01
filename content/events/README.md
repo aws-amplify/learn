@@ -1,4 +1,4 @@
-# Host an Amplify Event
+# Host an Event
 
 Interested in hosting an Amplify meetup, or speaking about Amplify at a conference? We are here to support you with AWS credits, swag (free merch such as stickers and an Amplify hoodie!), and our events starter kit that includes a presentation deck, and a list of sample projects.
 
