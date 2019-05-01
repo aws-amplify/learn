@@ -4,7 +4,7 @@ A post is an external piece of content that you have written about your experien
 
 1. Fork this repo.
 2. If you haven't already, add yourself as an [Amplify contributor](https://github.com/aws-amplify/community/tree/master/content/contributors).
-3. Create a new folder in the repo for your event `/contents/posts/YYYY-MM-DD-desc` 
+3. Create a new folder in the repo for your post `/contents/posts/YYYY-MM-DD-desc` 
 4. Add an `index.md` to the folder as follows:
 
 ```
@@ -23,7 +23,7 @@ categories:
   - Functions
 ---
 ```
-6. Upload an image at the root of your event folder (e.g. /contents/events/YYYY-MM-DD-desc/avatar.png) 
+6. Upload an image at the root of your post folder (e.g. /contents/events/YYYY-MM-DD-desc/avatar.png) 
 
 7. Submit a PR.
 
