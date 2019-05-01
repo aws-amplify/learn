@@ -68,9 +68,8 @@ const baseStyles = css`
 
         &:hover,
         &.active {
-          padding-top: 2px;
-          border-bottom-width: 2px;
-          border-bottom-style: solid;
+          padding-top: 1px;
+          text-decoration: underline;
         }
       }
     }
@@ -155,11 +154,12 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
         a {
           &:hover {
-            * {
+            text-decoration-color: ${beforeScroll.linkHoverColor};
+            &,
+            & > * {
               color: ${beforeScroll.linkHoverColor};
+              fill: ${beforeScroll.linkHoverColor};
             }
-
-            border-bottom-color: ${beforeScroll.linkHoverColor};
           }
         }
 
@@ -177,11 +177,12 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
           a {
             &:hover {
-              * {
+              text-decoration-color: ${afterScroll.linkHoverColor};
+              &,
+              & > * {
                 color: ${afterScroll.linkHoverColor};
+                fill: ${afterScroll.linkHoverColor};
               }
-
-              border-bottom-color: ${afterScroll.linkHoverColor};
             }
           }
 
