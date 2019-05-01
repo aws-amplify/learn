@@ -7,7 +7,6 @@ var app = express();
 app.use(bodyParser.json());
 app.use(awsServerlessExpressMiddleware.eventContext());
 
-// Enable CORS for all methods
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
@@ -17,60 +16,14 @@ app.use(function(req, res, next) {
   next();
 });
 
-/** ********************
- * Example get method *
- ********************* */
-
 app.get('/favicons', function(req, res) {
   // Add your code here
   res.json({success: 'get call succeed!', url: req.url});
 });
 
-app.get('/favicons/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
-});
-
-/** **************************
- * Example post method *
- *************************** */
-
 app.post('/favicons', function(req, res) {
   // Add your code here
   res.json({success: 'post call succeed!', url: req.url, body: req.body});
-});
-
-app.post('/favicons/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body});
-});
-
-/** **************************
- * Example post method *
- *************************** */
-
-app.put('/favicons', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body});
-});
-
-app.put('/favicons/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body});
-});
-
-/** **************************
- * Example delete method *
- *************************** */
-
-app.delete('/favicons', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
-
-app.delete('/favicons/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
 });
 
 app.listen(3000, function() {
