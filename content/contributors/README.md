@@ -6,7 +6,7 @@ Thank you for your interest in becoming an Amplify Community Contributor! To add
 
 1. Fork this repo
 
-2. Add a folder in the root of this repo with your firstname-lastname e.g. `lebron-james`
+2. Add a folder in the root of `content/contributors` with your firstname-lastname e.g. `arya-stark`
 
 3. Add an `index.md` with the following frontmatter:
 
