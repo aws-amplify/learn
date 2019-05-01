@@ -1,6 +1,6 @@
 # Become an Amplify Community Contributor
 
-Thank you for your interest in becoming an Amplify Community Contributor! To add yourself as an Amplify contributor you must also submit a post you have written (available on any publication e.g. Medium, dev.to etc), or an event where you are presenting on Amplify. 
+Thank you for your interest in becoming an Amplify Community Contributor! To add yourself as an Amplify contributor you must also submit a [post](https://github.com/aws-amplify/community/blob/master/content/posts/README.md) or [event](https://github.com/aws-amplify/community/blob/master/content/events/README.md). 
 
 ## Logistics
 
