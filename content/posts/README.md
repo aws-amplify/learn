@@ -1,6 +1,6 @@
 # Add a Post
 
-A post is an external piece of content that you have written about your experience with Amplify. You could have written this post on Medium, Dev.to, or your own personal blog. Adding your post to the community site will allow other developers looking for content to find it using filters. 
+A post is an external piece of content (blog post, tutorial, online course, video) that you have written about your experience with Amplify. You could have written this post on Medium, Dev.to, or your own personal blog. Adding your post to the community site will allow other developers looking for content to find it using filters. 
 
 1. Fork this repo.
 2. If you haven't already, add yourself as an [Amplify contributor](https://github.com/aws-amplify/community/blob/master/content/contributors/README.md).
