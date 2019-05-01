@@ -4,7 +4,7 @@ A post is an external piece of content (blog post, tutorial, online course, vide
 
 1. Fork this repo.
 2. If you haven't already, add yourself as an [Amplify contributor](https://github.com/aws-amplify/community/blob/master/content/contributors/README.md).
-3. Create a new folder in the repo for your post `/contents/posts/YYYY-MM-DD-desc` 
+3. Create a new folder in the repo for your post `/content/posts/YYYY-MM-DD-desc` 
 4. Add an `index.md` to the folder as follows:
 
 ```
