@@ -1,6 +1,6 @@
-# Submit an Amplify Post
+# Add a Post
 
-Please add your post to our featured posts on the community site.
+A post is an external piece of content that you have written about your experience with Amplify. You could have written this post on Medium, Dev.to, or your own personal blog. Adding your post to the community site will allow other developers looking for content to find it using filters. 
 
 1. Fork this repo.
 2. If you haven't already, add yourself as an [Amplify contributor](https://github.com/aws-amplify/community/tree/master/content/contributors).
@@ -27,4 +27,4 @@ categories:
 
 7. Submit a PR.
 
-After we review the PR, we will add your event to our list of upcoming events.
+After we review the PR, we will add your post to our list of posts.
