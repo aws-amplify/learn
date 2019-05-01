@@ -110,8 +110,6 @@ const baseStyles = css`
 
       a {
         svg {
-          position: relative;
-          top: 2px;
           margin-left: 4px;
         }
       }
@@ -157,6 +155,10 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
         a {
           &:hover {
+            * {
+              color: ${beforeScroll.linkHoverColor};
+            }
+
             border-bottom-color: ${beforeScroll.linkHoverColor};
           }
         }
@@ -175,6 +177,10 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
           a {
             &:hover {
+              * {
+                color: ${afterScroll.linkHoverColor};
+              }
+
               border-bottom-color: ${afterScroll.linkHoverColor};
             }
           }

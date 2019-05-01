@@ -62,6 +62,14 @@ const megaMenuStyles = css`
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+
+  &.open {
+    display: flex;
+  }
+
+  &.closed {
+    display: none;
+  }
 `;
 
 export default ({header, menu, main}) => {
