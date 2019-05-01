@@ -139,7 +139,7 @@ export default asCard(
     const {to, name, twitter, github, avatar} = firstAuthor;
     const handle = twitter || github;
     const encodedHref = encodeURI(href);
-    const faviconSrc = `http://www.google.com/s2/favicons?domain=${encodedHref}`;
+    const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
     const clippedBio = useMemo(
       () =>
         limitDescriptionLength && length(description) > 250
@@ -166,9 +166,7 @@ export default asCard(
                 <img src={faviconSrc} alt='content platform' />
               </div>
             )}
-
             <Text h3 className='post-card-title' children={title} />
-
             <Text p className='post-card-description' children={clippedBio} />
           </div>
 

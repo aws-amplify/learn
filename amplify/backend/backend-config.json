@@ -19,20 +19,5 @@
 			"dependsOn": []
 		}
 	},
-	"api": {
-		"fetchfaviconsapi": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "fetchfaviconsapi",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		}
-	}
+	"api": {}
 }
