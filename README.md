@@ -22,7 +22,7 @@ You can become a contributor by:
 
 ### Chat
 
-* Have a feature request? Or getting stuck somewhere? Open an issue for:
+* Have a feature request? Or getting stuck somewhere? Open an issue:
   * [Amplify JS](https://github.com/aws-amplify/amplify-js/issues)
   * [Amplify CLI](https://github.com/aws-amplify/amplify-cli/issues)
   * [Amplify Console](https://forums.aws.amazon.com/forum.jspa?forumID=314)  
