@@ -15,8 +15,8 @@ Thank you for your interest in becoming an Amplify Community Contributor! To add
 name: Arya Stark
 avatar: './avatar.jpg'
 bio: 'Not today.'
-github: azor-ahai
-twitter: azor-ahai
+github: azorahai
+twitter: azorahai
 ---
 ```
 
