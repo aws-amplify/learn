@@ -153,7 +153,8 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
         }
 
         a {
-          &:hover {
+          &:hover,
+          &.active {
             * {
               color: ${beforeScroll.linkHoverColor};
             }
@@ -175,7 +176,8 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
           }
 
           a {
-            &:hover {
+            &:hover,
+            &.active {
               * {
                 color: ${afterScroll.linkHoverColor};
               }
