@@ -16,7 +16,7 @@ import {
   Text,
   Button,
 } from '~/components';
-import {all, includes} from 'ramda';
+import {all, includes, isEmpty, any} from 'ramda';
 
 export const pageQuery = graphql`
   {
@@ -56,9 +56,6 @@ const header = <Nav />;
 const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
-const meetsCriterion = (field, criterion) =>
-  !criterion || all(c => field && includes(c, field), criterion);
-
 export default props => {
   track.internalPageView(props);
 
@@ -71,12 +68,16 @@ export default props => {
     {
       key: 'platforms',
       path: PLATFORMS_PATH,
-      meetsCriterion,
+      meetsCriterion: (field, criterion) =>
+        !criterion ||
+        isEmpty(criterion) ||
+        any(c => field && includes(c, field), criterion),
     },
     {
       key: 'categories',
       path: CATEGORIES_PATH,
-      meetsCriterion,
+      meetsCriterion: (field, criterion) =>
+        !criterion || all(c => field && includes(c, field), criterion),
     },
   );
 
