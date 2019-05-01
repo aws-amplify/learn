@@ -1,5 +1,13 @@
 import {graphql} from 'gatsby';
-import {MappedList, Layout, Nav, Card, Hero, Subscribe} from '~/components';
+import {
+  MappedList,
+  Layout,
+  Nav,
+  Card,
+  Hero,
+  Subscribe,
+  Meta,
+} from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
 import {identity, split, fromPairs, map} from 'ramda';
 import {track, extract} from '~/utilities';
@@ -76,9 +84,12 @@ export default props => {
   );
 
   return (
-    <Layout.Basic
-      header={[<Nav {...navProps} />, <Hero {...heroProps} />]}
-      {...{main}}
-    />
+    <>
+      <Meta pageName='Newsletters' />
+      <Layout.Basic
+        header={[<Nav {...navProps} />, <Hero {...heroProps} />]}
+        {...{main}}
+      />
+    </>
   );
 };

@@ -8,6 +8,7 @@ import {
   Button,
   Text,
   Subscribe,
+  Meta,
 } from '~/components';
 import {
   TABLET_BREAKPOINT,
@@ -254,6 +255,9 @@ export default props => {
   );
 
   return (
-    <Layout.Basic header={[<Nav />, <Hero {...heroProps} />]} {...{main}} />
+    <>
+      <Meta pageName='Welcome' />
+      <Layout.Basic header={[<Nav />, <Hero {...heroProps} />]} {...{main}} />
+    </>
   );
 };

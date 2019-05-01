@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby';
-import {Nav, Layout, Card, MappedList, Text} from '~/components';
+import {Nav, Layout, Card, MappedList, Text, Meta} from '~/components';
 import {extract, mapNodeToProps, track} from '~/utilities';
 import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 
@@ -42,5 +42,10 @@ export default props => {
     />
   );
 
-  return <Layout.Basic header={<Nav />} {...{main}} />;
+  return (
+    <>
+      <Meta pageName='Contributors' />
+      <Layout.Basic header={<Nav />} {...{main}} />
+    </>
+  );
 };

@@ -37,9 +37,7 @@ const styles = css`
     font-size: 15px;
     line-height: 18px;
     font-weight: 200;
-    overflow: -moz-scrollbars-none;
     overflow-x: hidden;
-    -ms-overflow-style: none;
     background-color: ${CONCRETE_COLOR};
   }
 

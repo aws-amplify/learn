@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby';
-import {Layout, Card, List, Nav, Button, Text} from '~/components';
+import {Layout, Card, List, Nav, Button, Text, Meta} from '~/components';
 import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
@@ -144,7 +144,7 @@ export default props => {
     },
   ];
 
-  latestPostNodes.forEach(n => console.log(n.node.fields.date));
+  // latestPostNodes.forEach(n => console.log(n.node.fields.date));
 
   const main = [
     <div
@@ -260,5 +260,10 @@ export default props => {
     </div>,
   ];
 
-  return <Layout.Basic header={<Nav {...navProps} />} {...{main}} />;
+  return (
+    <>
+      <Meta pageName={`Newsletter ${week} of ${year}`} />
+      <Layout.Basic header={<Nav {...navProps} />} {...{main}} />
+    </>
+  );
 };
