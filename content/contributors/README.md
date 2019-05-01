@@ -20,7 +20,7 @@ twitter: azorahai
 ---
 ```
 
-4. Upload an image at the root of your folder (e.g. `authors/arya-stark/avatar.jpg`)
+4. Upload an image at the root of your folder (e.g. `content/contributors/arya-stark/avatar.jpg`)
 
 5. Add the [post](https://github.com/aws-amplify/community/tree/master/content/posts) or [event](https://github.com/aws-amplify/community/tree/master/content/events) you would like to contribute to the repo.
 
