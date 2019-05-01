@@ -7,7 +7,7 @@
   Amplify Community
 </h1>
 
-Welcome to the Amplify Community! The community provides a hub for developers building fullstack serverless applications with Amplify to learn from the latest community-generated content as well as contribute content (such as events, blog posts, videos, sample projects, and tutorials) with the wider Amplify community.
+Welcome to the Amplify Community - a hub for developers building fullstack serverless applications with Amplify to access as well as contribute content (such as events, blog posts, videos, sample projects, and tutorials) with the broader Amplify community.
 
 
 ## Participate
@@ -32,4 +32,4 @@ You can become a contributor by:
 
 ### Ideas for improving the community?
 
-We are always looking at ways to improve. If you have ideas for the community site, open a [GitHub issue](https://github.com/aws-amplify/community/issues) for you feature request.
+We are always looking at ways to improve. If you have ideas for the community site, open a [GitHub issue](https://github.com/aws-amplify/community/issues) for your feature request.
