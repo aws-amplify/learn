@@ -166,9 +166,7 @@ export default asCard(
                 <img src={faviconSrc} alt='content platform' />
               </div>
             )}
-
             <Text h3 className='post-card-title' children={title} />
-
             <Text p className='post-card-description' children={clippedBio} />
           </div>
 
