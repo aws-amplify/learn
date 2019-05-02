@@ -37,22 +37,19 @@ const styles = css`
     .contributor-card-bio {
       margin-top: 8px;
       text-align: center;
+      max-width: 40rem;
     }
   }
 
   > .social {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: block;
+    text-align: center;
     width: 100%;
     border-top: 1px solid #eee;
     background-color: rgb(252, 252, 252);
 
     > a {
-      display: flex;
-      flex: 1;
-      flex-direction: row;
-      justify-content: center;
+      display: inline-block;
       padding: 16px;
     }
   }
