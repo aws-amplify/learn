@@ -19,18 +19,15 @@ const styles = css`
   .text {
     margin-left: 7px;
     margin-right: 7px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.3125rem;
   }
 `;
 
 export default ({href, children, hidePlus}) => (
-  <Basic
-    {...{href}}
-    className='actionable shadow'
-    css={styles}
-    textClass='landing-list-cta'
-    padding='medium'
-  >
-    <Text span className='contribute-cta' {...{children}} />
+  <Basic {...{href}} className='actionable shadow' css={styles}>
+    <Text span {...{children}} />
     {!hidePlus && <IoIosAdd size={22} />}
   </Basic>
 );

@@ -5,6 +5,7 @@ import {useMemo} from 'react';
 import Text from '../Text';
 import asCard from './asCard';
 import {classNames} from '~/utilities';
+import {GRAY_COLOR} from '~/constants';
 
 const styles = css`
   flex-direction: row;
@@ -15,6 +16,19 @@ const styles = css`
   .text {
     display: flex;
     flex: 1;
+  }
+
+  h3 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 300;
+  }
+
+  h4 {
+    font-size: 0.8125rem;
+    font-weight: 300;
+    line-height: 1.25rem;
+    color: ${GRAY_COLOR};
   }
 
   .avatar > * {
@@ -41,13 +55,9 @@ export default asCard(
           </div>
         )}
         <div>
-          <Text h3 className='event-card-title' children={title} />
-          <Text h4 className='event-card-detail' children={formattedDate} />
-          <Text
-            h4
-            className='event-card-detail'
-            children={`${city}, ${country}`}
-          />
+          <Text h3 children={title} />
+          <Text h4 children={formattedDate} />
+          <Text h4 children={`${city}, ${country}`} />
         </div>
       </ConditionalAnchor>
     );

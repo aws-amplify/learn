@@ -5,7 +5,7 @@ import {values, mapObjIndexed} from 'ramda';
 const styles = css`
   display: block;
 
-  heading {
+  .heading {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -53,8 +53,10 @@ export default ({
 }) => {
   const deps = [heading, subheading, cta];
   const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps);
-  const [className, children] =
-    items && items.length ? ['items', items] : ['no-items', noItems];
+  const [className, children] = useMemo(
+    () => (items && items.length ? ['items', items] : ['no-items', noItems]),
+    [items, noItems],
+  );
 
   const responsiveGridStyles = useMemo(
     () =>
@@ -74,13 +76,13 @@ export default ({
   return (
     <div css={styles} {...containerProps}>
       {displayHeading && (
-        <heading>
+        <div className='heading'>
           <div>
             {heading}
             {subheading}
           </div>
           {cta}
-        </heading>
+        </div>
       )}
       <div css={responsiveGridStyles} {...{className, children}} />
       {footer && <div className='footer'>{footer}</div>}

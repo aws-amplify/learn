@@ -9,9 +9,26 @@ const styles = css`
   flex-direction: column;
   height: 65vh;
 
-  .button {
+  > h2 {
+    font-size: 4rem;
+    line-height: 4rem;
+    font-weight: 400;
+  }
+
+  > h4 {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    font-weight: 300;
+    padding-top: 14px;
+    padding-bottom: 22px;
+  }
+
+  > .button {
     margin-top: 16px;
     background-color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+    font-height: 1.5rem;
   }
 `;
 

@@ -1,6 +1,6 @@
 import {css, Global} from '@emotion/core';
 import reset from './reset';
-import typography from './typography';
+import fontFaces from './font-faces';
 import {
   CONCRETE_COLOR,
   TWITTER_BLUE_COLOR,
@@ -28,14 +28,20 @@ const styles = css`
     }
   }
 
-  ${typography}
+  .text,
+  ::placeholder {
+    display: inline;
+    font-family: Amazon Ember;
+  }
+
+  ${fontFaces}
 
   body,
   html {
     color: #000;
     font-family: Amazon Ember;
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 16px;
+    line-height: 24px;
     font-weight: 200;
     overflow-x: hidden;
     background-color: ${CONCRETE_COLOR};
@@ -136,6 +142,12 @@ const styles = css`
         transform: scale(0.9875);
       }
     }
+  }
+
+  .list-heading {
+    font-size: 1.375rem;
+    line-height: 2.0625rem;
+    weight: 400;
   }
 `;
 

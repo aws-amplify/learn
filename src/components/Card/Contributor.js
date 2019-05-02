@@ -3,6 +3,7 @@ import Img from 'gatsby-image';
 import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io';
 import {useMemo} from 'react';
 import {identity, values, mapObjIndexed, length, slice} from 'ramda';
+import {GRAY_COLOR} from '~/constants';
 import asCard from './asCard';
 import ExternalLink from '../ExternalLink';
 import Text from '../Text';
@@ -29,14 +30,21 @@ const styles = css`
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
     }
 
-    .contributor-card-name {
+    h3 {
       margin-top: 12px;
       text-align: center;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: 300;
     }
 
-    .contributor-card-bio {
+    p {
       margin-top: 8px;
       text-align: center;
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+      font-weight: 300;
+      color: ${GRAY_COLOR};
     }
   }
 
@@ -127,12 +135,8 @@ export default asCard(
           ) : (
             '[backup image]'
           )}
-          {name && (
-            <Text h3 className='contributor-card-name' children={name} />
-          )}
-          {bio && (
-            <Text p className='contributor-card-bio' children={clippedBio} />
-          )}
+          {name && <Text h3 children={name} />}
+          {bio && <Text p children={clippedBio} />}
         </ConditionalAnchor>
         {deps.length && <div className='social'>{links}</div>}
       </div>

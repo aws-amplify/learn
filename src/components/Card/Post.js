@@ -30,26 +30,29 @@ const styles = css`
 
     &.on-posts-page,
     &.on-contributor-page {
-      .post-card-title {
-        font-size: 20px;
-        line-height: 30px;
-      }
+      > .body {
+        h3 {
+          font-size: 1.25rem;
+          line-height: 1.875rem;
+        }
 
-      .post-card-description {
-        margin-top: 10px;
-        font-size: 14px;
-        line-height: 21px;
+        p {
+          margin-top: 10px;
+          font-size: 0.875rem;
+          line-height: 1.3125rem;
+          font-weight: 300;
+        }
       }
     }
   }
 
   &.on-posts-page,
   &.on-contributor-page {
-    .post-card-title {
+    h3 {
       color: ${SAN_JUAN_COLOR};
     }
 
-    .post-card-description {
+    p {
       color: ${GRAY_COLOR};
       font-weight: 300;
     }
@@ -67,10 +70,6 @@ const styles = css`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    ${mq.tablet} {
-      flex: 1;
-    }
 
     ${mq.desktop} {
       flex: 2;
@@ -96,8 +95,29 @@ const styles = css`
       padding: 32px 27px 16px;
     }
 
-    .post-card-description {
-      margin-top: 20px;
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.875rem;
+    }
+
+    p {
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 200;
+      line-height: 1.21875rem;
+    }
+
+    h5 {
+      font-size: 0.8125rem;
+      line-height: 1.21875rem;
+      font-weight: 300;
+    }
+
+    h6 {
+      font-size: 0.8125rem;
+      line-height: 1.21875rem;
+      font-weight: 200;
     }
 
     .author {
@@ -114,7 +134,7 @@ const styles = css`
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
       }
 
-      > .text {
+      > .text-container {
         display: flex;
         flex-direction: column;
         text-align: right;
@@ -166,14 +186,14 @@ export default asCard(
                 <img src={faviconSrc} alt='content platform' />
               </div>
             )}
-            <Text h3 className='post-card-title' children={title} />
-            <Text p className='post-card-description' children={clippedBio} />
+            <Text h3 children={title} />
+            <Text p children={clippedBio} />
           </div>
 
           <Link {...{to}} className='author'>
-            <div className='text'>
-              <Text h5 className='post-card-name' children={name} />
-              <Text h6 className='post-card-handle'>{`@${handle}`}</Text>
+            <div className='text-container'>
+              <Text h5 children={name} />
+              <Text h6 children={`@${handle}`} />
             </div>
 
             {avatar && (
