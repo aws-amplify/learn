@@ -2,7 +2,7 @@ import {css} from '@emotion/core';
 import asCard from '../asCard';
 import Text from '../../Text';
 import {FaArrowCircleRight} from 'react-icons/fa';
-import {mq, ORANGE_PEEL_COLOR} from '~/constants';
+import {mq, ORANGE_PEEL_COLOR, GRAY_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
 
 export default asCard(
@@ -25,13 +25,21 @@ export default asCard(
 
         h3 {
           margin-top: 8px;
+          font-size: 1.25rem;
+          font-weight: 400;
+          line-height: 1.875rem;
         }
 
         p {
-          margin-top: 8px;
+          margin-top: 4px;
+          font-size: 0.8125rem;
+          line-height: 1.25rem;
+          color: ${GRAY_COLOR};
+          font-weight: 300;
+          max-width: 100% !important;
         }
 
-        .more-posts-or-contributors-heading,
+        h3,
         svg {
           color: ${ORANGE_PEEL_COLOR};
         }
@@ -42,16 +50,8 @@ export default asCard(
       `}
     >
       <div className='grapic' children={graphic} />
-      <Text
-        h3
-        className='more-posts-or-contributors-heading'
-        children={heading}
-      />
-      <Text
-        p
-        className='more-posts-or-contributors-subheading'
-        children={subheading}
-      />
+      <Text h3 children={heading} />
+      <Text p children={subheading} />
       <div className='arrow'>
         <FaArrowCircleRight size={22} />
       </div>

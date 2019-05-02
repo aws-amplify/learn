@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 import {useState, useCallback, useRef} from 'react';
-import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
+import {MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import useWindowSize from 'react-use/lib/useWindowSize';
@@ -83,6 +83,7 @@ const megaMenuStyles = css`
   }
 `;
 
+// rewrite using request-animation-frame for 60fps!!!
 export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   // useLockBodyScroll(true);

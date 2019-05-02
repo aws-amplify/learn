@@ -1,7 +1,7 @@
 import {useContext, useCallback} from 'react';
 import {filter as filterContext} from '~/contexts';
 import {css} from '@emotion/core';
-import {mq} from '~/constants';
+import {mq, GRAY_COLOR} from '~/constants';
 import {curry} from 'ramda';
 import MultiSelect from './MultiSelect';
 import DateRange from './DateRange';
@@ -27,6 +27,14 @@ const styles = css`
     &:first-child {
       border-top-width: 0px;
     }
+  }
+
+  .filter-heading {
+    margin-bottom: 8px;
+    color: ${GRAY_COLOR};
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6875rem;
   }
 `;
 

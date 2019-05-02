@@ -51,6 +51,12 @@ const styles = css`
         display: inline;
       }
 
+      .text {
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+        font-weight: 400;
+      }
+
       .primary,
       svg {
         color: ${ORANGE_PEEL_COLOR};
@@ -114,6 +120,9 @@ const styles = css`
           max-width: 360px;
           color: ${GRAY_COLOR};
           margin: 16px 0px;
+          font-size: 0.75rem;
+          line-height: 1.3125rem;
+          font-weight: 200;
         }
       }
 
@@ -167,10 +176,10 @@ export default () => {
         <Link to={latestSlug}>
           <img src={bugleGraphicSrc} alt='bugle' />
           <span>
-            <Text h4 className='footer-newsletter-cta secondary'>
+            <Text h4 className='secondary'>
               The latest newsletter is out!
             </Text>
-            <Text h4 className='footer-newsletter-cta primary'>
+            <Text h4 className='primary'>
               {' '}
               Read the latest
             </Text>
@@ -183,7 +192,7 @@ export default () => {
 
       <div className='lower'>
         <div className='copyright'>
-          <Text className='footer-copyright'>
+          <Text>
             {`The Amplify Community is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
           </Text>
           <img src={awsLogoSrc} alt='aws' />

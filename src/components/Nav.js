@@ -71,6 +71,11 @@ const baseStyles = css`
           border-bottom-width: 2px;
           border-bottom-style: solid;
         }
+
+        > .text {
+          font-size: 0.9375rem;
+          line-height: 1.40625rem;
+        }
       }
     }
 
@@ -81,6 +86,8 @@ const baseStyles = css`
       .text {
         padding-left: 8px;
         letter-spacing: 0.5px;
+        font-size: 1.125rem;
+        font-weight: 200;
       }
 
       img {
@@ -163,7 +170,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
           }
         }
 
-        .nav-branding {
+        .branding .text {
           color: ${beforeScroll.brandingColor};
         }
 
@@ -186,7 +193,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
             }
           }
 
-          .nav-branding {
+          .branding .text {
             color: ${afterScroll.brandingColor};
           }
         }
@@ -217,14 +224,14 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               <img src={beforeScroll.logoSrc} alt='logo' />
             )}
 
-            <Text h3 className='nav-branding' children='Community' />
+            <Text h3 children='Community' />
           </Link>
 
           <div className='internal'>
             {map(
               ({to, children}) => (
                 <Link {...{to}} key={children} activeClassName='active'>
-                  <Text span className='nav-link' {...{children}} />
+                  <Text span {...{children}} />
                 </Link>
               ),
               [
@@ -238,7 +245,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
             {map(
               ({href, children}) => (
                 <ExternalLink {...{href}} key={children}>
-                  <Text span className='nav-link' {...{children}} />
+                  <Text span {...{children}} />
                   <MdOpenInNew className='external-graphic' size={14} />
                 </ExternalLink>
               ),

@@ -25,6 +25,9 @@ const styles = css`
     display: flex;
     flex: 1;
     padding: 9px 1px 9px 11px;
+    font-size: 0.875rem;
+    font-weight: 200;
+    line-height: 1.3125rem;
   }
 
   > div {
@@ -79,7 +82,6 @@ export default ({name, onChange, className}) => {
       <div>
         <Flatpickr
           {...{id}}
-          className='date-range'
           placeholder='Select range'
           value={range}
           onOpen={() => setFocusedClassName('focused')}

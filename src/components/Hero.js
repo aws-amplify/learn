@@ -24,11 +24,12 @@ const styles = css`
     background-position: center;
   }
 
-  .hero-heading,
-  .hero-subheading,
+  h2,
+  h3,
   .cta {
     z-index: 10;
   }
+
   .hero-container {
     display: relative;
     display: flex;
@@ -36,8 +37,18 @@ const styles = css`
     justify-content: center;
     align-items: center;
   }
-  .hero-subheading {
+
+  h2 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 200;
+  }
+
+  h3 {
     margin-top: 10px;
+    font-size: 1.375rem;
+    line-height: 2.25rem;
+    font-weight: 200;
   }
 
   .cta {
@@ -50,8 +61,6 @@ const styles = css`
   }
 `;
 
-// make sure 'color' is inherited
-
 export default ({background, textColor, heading, overlay, subheading, cta}) => (
   <div
     css={css`
@@ -61,8 +70,7 @@ export default ({background, textColor, heading, overlay, subheading, cta}) => (
       background-position: center;
       background-size: cover;
 
-      .hero-heading,
-      .hero-subheading {
+      h2, h3 {
         color: ${textColor};
       }
     `}
@@ -70,8 +78,8 @@ export default ({background, textColor, heading, overlay, subheading, cta}) => (
     {overlay && (
       <div className='overlay' style={{backgroundImage: `url(${overlay})`}} />
     )}
-    <Text h2 className='hero-heading' children={heading} />
-    <Text h3 className='hero-subheading' children={subheading} />
+    <Text h2 children={heading} />
+    <Text h3 children={subheading} />
     <div className='cta' children={cta} />
   </div>
 );

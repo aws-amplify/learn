@@ -68,6 +68,9 @@ const styles = css`
   .text {
     margin-left: 7px;
     color: ${GRAY_COLOR};
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.3125rem;
   }
 `;
 
@@ -81,9 +84,7 @@ export default ({value, onChange}) => {
         <div className='box'>
           <div />
         </div>
-        <Text span className='checkbox-label'>
-          {value}
-        </Text>
+        <Text span children={value} />
       </div>
     </label>
   );

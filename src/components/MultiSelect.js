@@ -2,7 +2,6 @@ import Select from 'react-select';
 import {css} from '@emotion/core';
 import {map, keys} from 'ramda';
 import Text from './Text';
-import {GRAY_COLOR} from '~/constants';
 
 const styles = css`
   display: flex;
@@ -10,13 +9,15 @@ const styles = css`
   max-width: 300px;
   padding: 30px;
 
-  .filter-heading {
-    margin-bottom: 8px;
-    color: ${GRAY_COLOR};
-  }
-
   > .multi-select {
     cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 200;
+    line-height: 1.3125rem;
+
+    > div {
+      padding: 1px 0px 2px 0px;
+    }
   }
 `;
 

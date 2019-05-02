@@ -153,25 +153,32 @@ export default props => {
         flex-direction: column;
         padding: 16px 16px 0px 16px;
 
-        .page-subheading {
+        > h2 {
+          font-size: 2rem;
+          line-height: 3.375rem;
+          font-weight: 400;
+        }
+
+        > h4 {
+          font-size: 1.25rem;
+          line-height: 1.875rem;
+          font-weight: 300;
           padding-top: 14px;
           padding-bottom: 22px;
         }
 
-        .paragraph-large {
+        > p {
+          font-size: 1.125rem;
+          font-weight: 1.6875rem;
+          font-weight: 200;
           padding-bottom: 4px;
         }
       `}
     >
-      <Text h2 className='page-heading' children={`Week ${week}`} />
-      <Text
-        h4
-        className='page-subheading'
-        children={`${startDate} to ${endDate}`}
-      />
+      <Text h2 children={`Week ${week}`} />
+      <Text h4 children={`${startDate} to ${endDate}`} />
       <Text
         p
-        className='paragraph-large'
         children={`Welcome to Week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
       />
     </div>,
@@ -224,13 +231,15 @@ export default props => {
         > .button {
           background-color: #fff;
           margin: 8px;
+          font-size: 1rem;
+          font-weight: 300;
+          line-height: 1.5rem;
         }
       `}
     >
       {previous && (
         <Button.Basic
           className='three-dee actionable rounded'
-          newsletterNextPrevious
           size='medium'
           to={previous}
         >
@@ -240,7 +249,6 @@ export default props => {
 
       <Button.Basic
         className='three-dee actionable rounded'
-        newsletterNextPrevious
         size='medium'
         to='/newsletters'
       >
@@ -250,7 +258,6 @@ export default props => {
       {next && (
         <Button.Basic
           className='three-dee actionable rounded'
-          newsletterNextPrevious
           size='medium'
           to={next}
         >

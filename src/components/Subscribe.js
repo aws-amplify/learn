@@ -29,6 +29,9 @@ const styles = css`
       flex: 1;
       text-align: center;
       justify-content: center;
+      font-size: 0.9375rem;
+      font-weight: 200;
+      line-height: 1.40625rem;
     }
   }
 
@@ -41,6 +44,9 @@ const styles = css`
       display: flex;
       flex: 1;
       padding: 12px 16px;
+      font-weight: 200;
+      font-size: 1rem;
+      font-weight: 1.5rem;
 
       &:active {
         color: #000;
@@ -116,7 +122,6 @@ export default () => {
             type='email'
             autoCapitalize='off'
             autoCorrect='off'
-            className='subscribe-input'
             placeholder='your@email.com'
             {...{value, onChange}}
             onKeyPress={e => {
