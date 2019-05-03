@@ -45,6 +45,7 @@ const styles = css`
       line-height: 1.25rem;
       font-weight: 300;
       color: ${GRAY_COLOR};
+      max-width: 40rem;
     }
   }
 
