@@ -201,7 +201,7 @@ export default props => {
         Template: Card.ViewAll.PostsOrContributors,
         graphic: <IoMdPeople size={60} />,
         heading: 'All Contributors',
-        subheading: `See all ${contributorsCount} members of our community`,
+        subheading: `See all ${contributorsCount} contributors`,
         to: '/contributors',
       },
       columnCountByBreakpoint: {
