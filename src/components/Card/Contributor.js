@@ -20,18 +20,18 @@ const styles = css`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: 32px;
+    padding: 2rem;
 
     .avatar > div {
       display: flex;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid #fff;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
     }
 
     h3 {
-      margin-top: 12px;
+      margin-top: 0.75rem;
       text-align: center;
       font-size: 1rem;
       line-height: 1.5rem;
@@ -39,7 +39,7 @@ const styles = css`
     }
 
     p {
-      margin-top: 8px;
+      margin-top: 0.5rem;
       text-align: center;
       font-size: 0.8125rem;
       line-height: 1.25rem;
@@ -61,7 +61,7 @@ const styles = css`
       flex: 1;
       flex-direction: row;
       justify-content: center;
-      padding: 16px;
+      padding: 1rem;
     }
   }
 `;

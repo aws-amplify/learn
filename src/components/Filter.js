@@ -8,10 +8,10 @@ import DateRange from './DateRange';
 import CheckboxGroup from './CheckboxGroup';
 
 const styles = css`
-  padding: 16px;
+  padding: 1rem;
 
   ${mq.tablet} {
-    padding-right: 0px;
+    padding-right: 0;
   }
 
   > div {
@@ -30,7 +30,7 @@ const styles = css`
   }
 
   .filter-heading {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     color: ${GRAY_COLOR};
     font-size: 1.125rem;
     font-weight: 400;

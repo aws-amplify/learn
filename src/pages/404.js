@@ -19,12 +19,12 @@ const styles = css`
     font-size: 1.25rem;
     line-height: 1.25rem;
     font-weight: 300;
-    padding-top: 14px;
-    padding-bottom: 22px;
+    padding-top: 0.875rem;
+    padding-bottom: 1.375rem;
   }
 
   > .button {
-    margin-top: 16px;
+    margin-top: 1rem;
     background-color: #fff;
     font-size: 1rem;
     font-weight: 300;

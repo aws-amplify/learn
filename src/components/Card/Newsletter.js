@@ -7,7 +7,7 @@ const styles = css`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 24px;
+  padding: 1.5rem;
 
   h3 {
     font-size: 0.9375rem;

@@ -11,12 +11,12 @@ const styles = css`
   display: flex;
   flex: 1;
   background-color: #fff;
-  max-width: 378px;
+  max-width: 23.625rem;
 
   > .button {
     display: flex;
     flex: 1;
-    padding: 12px 16px;
+    padding: 0.75rem 1rem;
 
     &:active {
       .text {
@@ -43,7 +43,7 @@ const styles = css`
     input[type='email'] {
       display: flex;
       flex: 1;
-      padding: 12px 16px;
+      padding: 0.75rem 1rem;
       font-weight: 200;
       font-size: 1rem;
       font-weight: 1.5rem;
@@ -55,17 +55,17 @@ const styles = css`
       &:-internal-autofill-previewed,
       &:-internal-autofill-selected {
         background-color: #fff !important;
-        border-radius: 4px;
+        border-radius: 0.25rem;
       }
     }
 
     .button {
       cursor: pointer;
       display: flex;
-      padding: 4px;
+      padding: 0.25rem;
 
       > div {
-        padding: 11px 10px 7px 10px;
+        padding: 0.6875rem 0.625rem 0.4375rem 0.625rem;
         background-color: ${ORANGE_PEEL_COLOR};
         color: #fff;
       }

@@ -23,21 +23,11 @@ const paddings = map(
       padding: ${p};
     `,
   {
-    small: `5px`,
-    medium: `9px 12px 8px`,
-    large: `15px`,
+    small: `.3125rem`,
+    medium: `.5625rem .75rem .5rem`,
+    large: `.9375rem`,
   },
 );
-
-// {
-//   children,
-//   styles: passedStyles,
-//   to,
-//   href,
-//   className,
-//   size,
-//   onClick,
-// }
 
 export default ({to, href, padding, className, ...rest}) => {
   const [Tag, uniqueProps] = useMemo(

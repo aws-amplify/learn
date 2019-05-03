@@ -10,8 +10,8 @@ const styles = css`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    padding-bottom: 0px;
+    padding: 1rem;
+    padding-bottom: 0;
 
     > div {
       display: flex;
@@ -23,8 +23,8 @@ const styles = css`
     display: grid;
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 16px;
-    padding: 16px;
+    grid-gap: 1rem;
+    padding: 1rem;
   }
 
   .no-items {
@@ -35,8 +35,8 @@ const styles = css`
   }
 
   .footer {
-    padding: 16px;
-    padding-top: 0px;
+    padding: 1rem;
+    padding-top: 0;
   }
 `;
 

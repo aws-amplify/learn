@@ -10,7 +10,7 @@ import {GRAY_COLOR} from '~/constants';
 const styles = css`
   flex-direction: row;
   align-items: center;
-  padding: 24px;
+  padding: 1.5rem;
   text-align: left;
 
   .text {
@@ -36,7 +36,7 @@ const styles = css`
     border: 1px solid #e9e9e9;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 24px;
+    margin-right: 1.5rem;
   }
 `;
 

@@ -7,7 +7,7 @@ const styles = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 32px;
+  padding: 2rem;
 `;
 
 export default ({heading, options, onChange: onAnyChange, className}) => {

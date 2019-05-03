@@ -21,7 +21,7 @@ const styles = css`
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
     background-color: transparent;
-    border-width: 0px;
+    border-width: 0;
 
     &:focus {
       outline: 0;
@@ -83,12 +83,12 @@ const styles = css`
   }
 
   .rounded {
-    border-radius: 4px;
+    border-radius: 0.25rem;
   }
 
   .right-rounded {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
   }
 
   .card {
@@ -100,32 +100,32 @@ const styles = css`
   }
 
   .three-dee {
-    box-shadow: 2px 2px 0 2px hsl(0, 0%, 80%);
+    box-shadow: 0.125rem 0.125rem 0 0.125rem hsl(0, 0%, 80%);
     transition: 0.25s ease all;
 
     &.actionable {
       &:hover {
-        box-shadow: 3px 3px 0px 3px hsl(0, 0%, 80%);
-        transform: translate(-1px, -1px);
+        box-shadow: 0.1875rem 0.1875rem 0 0.1875rem hsl(0, 0%, 80%);
+        transform: translate(-0.0625rem, -0.0625rem);
       }
 
       &:active {
-        box-shadow: 0px 0px 0px transparent;
+        box-shadow: 0 0 0 transparent;
       }
     }
   }
 
   .shadow {
-    box-shadow: rgba(0, 0, 0, 0.09) 5px 5px 0px -1px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0.3125rem 0.3125rem 0 -0.0625rem;
     transition: 0.25s ease all;
 
     &.actionable {
       &:hover {
-        box-shadow: rgba(0, 0, 0, 0.09) 7px 7px 0px -1px;
+        box-shadow: rgba(0, 0, 0, 0.09) 0.4375rem 0.4375rem 0 -0.0625rem;
       }
 
       &:active {
-        box-shadow: 0px 0px 0px transparent;
+        box-shadow: 0 0 0 transparent;
       }
     }
   }
@@ -147,7 +147,7 @@ const styles = css`
   .list-heading {
     font-size: 1.375rem;
     line-height: 2.0625rem;
-    weight: 400;
+    font-weight: 400;
   }
 `;
 
