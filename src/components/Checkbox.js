@@ -8,7 +8,7 @@ const styles = css`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5px 0px;
+  padding: 0.375rem 0;
   cursor: pointer;
 
   * {
@@ -33,6 +33,7 @@ const styles = css`
   .display {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 
   input:checked ~ .display {
@@ -53,21 +54,25 @@ const styles = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
     border: 1px solid ${GRAY_COLOR};
-    border-radius: 1px;
+    border-radius: 0.125rem;
 
     > div {
       width: 61.81%;
       height: 61.81%;
-      border-radius: 1px;
+      border-radius: 0.125rem;
     }
   }
 
   .text {
-    margin-left: 7px;
+    margin-left: 0.5rem;
     color: ${GRAY_COLOR};
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.3125rem;
+    position: relative;
   }
 `;
 
@@ -81,9 +86,7 @@ export default ({value, onChange}) => {
         <div className='box'>
           <div />
         </div>
-        <Text span className='checkbox-label'>
-          {value}
-        </Text>
+        <Text span children={value} />
       </div>
     </label>
   );

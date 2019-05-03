@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 import {useState, useCallback, useRef} from 'react';
-import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
+import {MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import useWindowSize from 'react-use/lib/useWindowSize';
@@ -21,7 +21,7 @@ const styles = css`
     display: flex;
     flex-direction: row;
     max-width: ${MAX_WIDTH};
-    margin: 0px auto;
+    margin: 0 auto;
     width: 100%;
 
     .menu {
@@ -53,14 +53,15 @@ const styles = css`
   }
 `;
 
+// eventually swap out with REM when dynamically searching sticky-related element values
 const megaMenuStyles = css`
   position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-color: ${CONCRETE_COLOR};
-  padding-top: 60px;
+  padding-top: 3.75rem;
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -83,6 +84,7 @@ const megaMenuStyles = css`
   }
 `;
 
+// rewrite using request-animation-frame for 60fps!!!
 export default ({header, menu, main}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   // useLockBodyScroll(true);
@@ -134,7 +136,7 @@ export default ({header, menu, main}) => {
                 <div
                   className='ghost'
                   style={{
-                    marginTop: '60px',
+                    marginTop: '3.75rem',
                     width: menuWidth,
                     height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
