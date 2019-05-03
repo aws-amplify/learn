@@ -17,21 +17,21 @@ export default asCard(
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 32px;
+        padding: 2rem;
 
         ${mq.tablet} {
-          padding: 0px 16px;
+          padding: 0 1rem;
         }
 
         h3 {
-          margin-top: 8px;
+          margin-top: 0.5rem;
           font-size: 1.25rem;
           font-weight: 400;
           line-height: 1.875rem;
         }
 
         p {
-          margin-top: 4px;
+          margin-top: 0.25rem;
           font-size: 0.8125rem;
           line-height: 1.25rem;
           color: ${GRAY_COLOR};
@@ -45,7 +45,7 @@ export default asCard(
         }
 
         .arrow {
-          margin-top: 16px;
+          margin-top: 1rem;
         }
       `}
     >

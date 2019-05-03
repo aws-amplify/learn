@@ -37,7 +37,7 @@ const styles = css`
         }
 
         p {
-          margin-top: 10px;
+          margin-top: 0.625rem;
           font-size: 0.875rem;
           line-height: 1.3125rem;
           font-weight: 300;
@@ -81,8 +81,8 @@ const styles = css`
 
     .favicon {
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 0.5rem;
+      left: 0.5rem;
       opacity: 0.5;
       transition: 0.275s ease all;
     }
@@ -92,7 +92,7 @@ const styles = css`
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 32px 27px 16px;
+      padding: 2rem 1.6875rem 1rem;
     }
 
     h3 {
@@ -125,20 +125,20 @@ const styles = css`
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
-      padding: 0px 27px 24px;
+      padding: 0 1.6875rem 1.5rem;
 
       > .avatar > * {
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #fff;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
       }
 
       > .text-container {
         display: flex;
         flex-direction: column;
         text-align: right;
-        padding-right: 8px;
+        padding-right: 0.5rem;
       }
     }
   }

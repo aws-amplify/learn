@@ -8,16 +8,16 @@ const styles = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 85px 40px 85px 40px;
+  padding: 5.3125rem 2.5rem;
   color: #fff;
   text-align: center;
 
   .overlay {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     s-index: -100;
     background-repeat: no-repeat;
     background-size: contain;
@@ -45,7 +45,7 @@ const styles = css`
   }
 
   h3 {
-    margin-top: 10px;
+    margin-top: 0.625rem;
     font-size: 1.375rem;
     line-height: 2.25rem;
     font-weight: 200;
@@ -54,7 +54,7 @@ const styles = css`
   .cta {
     display: flex;
     flex: 1;
-    padding-top: 24px;
+    padding-top: 2rem;
     width: 100%;
     justify-content: center;
     align-items: center;

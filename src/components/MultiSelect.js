@@ -6,8 +6,8 @@ import Text from './Text';
 const styles = css`
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  padding: 30px;
+  max-width: 18.75rem;
+  padding: 1.875rem;
 
   > .multi-select {
     cursor: pointer;
@@ -16,7 +16,7 @@ const styles = css`
     line-height: 1.3125rem;
 
     > div {
-      padding: 1px 0px 2px 0px;
+      padding: 0.0625rem 0 0.125rem;
     }
   }
 `;

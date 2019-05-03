@@ -13,9 +13,9 @@ import ExternalLink from './ExternalLink';
 
 const baseStyles = css`
   position: fixed;
-  top: 0px;
-  right: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
   flex: 1;
   backdrop-filter: blur(10px);
@@ -24,12 +24,12 @@ const baseStyles = css`
 
   > div {
     max-width: ${MAX_WIDTH};
-    margin: 0px auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     flex: 1;
     justify-content: space-between;
-    height: 60px;
+    height: 3.75rem;
 
     > .branding,
     > .internal,
@@ -41,34 +41,34 @@ const baseStyles = css`
 
     > .internal,
     > .external {
-      margin: 0px 8px;
+      margin: 0 0.5rem;
 
       ${mq.tablet} {
-        margin: 0px 16px;
+        margin: 0 1rem;
       }
 
       ${mq.desktop} {
-        margin: 0px 24px;
+        margin: 0 2rem;
       }
 
       a {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0px 8px;
+        margin: 0 0.5rem;
 
         ${mq.tablet} {
-          margin: 0px 16px;
+          margin: 0 1rem;
         }
 
         ${mq.desktop} {
-          margin: 0px 24px;
+          margin: 0 2rem;
         }
 
         &:hover,
         &.active {
-          padding-top: 2px;
-          border-bottom-width: 2px;
+          padding-top: 0.125rem;
+          border-bottom-width: 0.125rem;
           border-bottom-style: solid;
         }
 
@@ -80,19 +80,19 @@ const baseStyles = css`
     }
 
     > .branding {
-      padding: 16px;
-      font-size: 20px;
+      padding: 1rem;
+      font-size: 1.25rem;
 
       .text {
-        padding-left: 8px;
-        letter-spacing: 0.5px;
+        padding-left: 0.5rem;
+        letter-spacing: 0.03125rem;
         font-size: 1.125rem;
         font-weight: 200;
       }
 
       img {
-        width: 25px;
-        height: 20px;
+        width: 1.5625rem;
+        height: 1.25rem;
       }
     }
 
@@ -116,7 +116,7 @@ const baseStyles = css`
 
       a {
         svg {
-          margin-left: 4px;
+          margin-left: 0.25rem;
         }
       }
     }
@@ -133,7 +133,7 @@ const defaults = {
   },
 
   afterScroll: {
-    background: '#fff',
+    background: 'rgba(255, 255, 255, .95)',
     linkColor: '#000',
     linkHoverColor: ORANGE_PEEL_COLOR,
     brandingColor: ORANGE_PEEL_COLOR,
@@ -176,7 +176,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
 
         &.scrolled {
           background: ${afterScroll.background};
-          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.125);
 
           * {
             color: ${afterScroll.linkColor};
@@ -212,7 +212,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
         css={css`
           display: block;
           width: 100%;
-          height: 60px;
+          height: 3.75rem;
         `}
       />
       <nav {...{className}} css={styles}>

@@ -13,7 +13,7 @@ export default asCard(({ConditionalAnchor, heading, subheading, className}) => (
       className,
     )}
     css={css`
-      padding: 32px;
+      padding: 2rem;
       align-items: center;
       justify-content: space-between;
 

@@ -151,7 +151,7 @@ export default props => {
       css={css`
         display: flex;
         flex-direction: column;
-        padding: 16px 16px 0px 16px;
+        padding: 1rem 1rem 0 1rem;
 
         > h2 {
           font-size: 2rem;
@@ -163,15 +163,15 @@ export default props => {
           font-size: 1.25rem;
           line-height: 1.875rem;
           font-weight: 300;
-          padding-top: 14px;
-          padding-bottom: 22px;
+          padding-top: 0.875rem;
+          padding-bottom: 1.375rem;
         }
 
         > p {
           font-size: 1.125rem;
           font-weight: 1.6875rem;
           font-weight: 200;
-          padding-bottom: 4px;
+          padding-bottom: 0.25rem;
         }
       `}
     >
@@ -226,11 +226,11 @@ export default props => {
         align-items: center;
         text-align: center;
         justify-content: center;
-        padding: 16px 16px 0px 16px;
+        padding: 1rem 1rem 0 1rem;
 
         > .button {
           background-color: #fff;
-          margin: 8px;
+          margin: 0.5rem;
           font-size: 1rem;
           font-weight: 300;
           line-height: 1.5rem;

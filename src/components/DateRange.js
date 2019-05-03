@@ -11,20 +11,20 @@ import {classNames} from '~/utilities';
 const styles = css`
   display: flex;
   flex-direction: column;
-  padding: 24px 30px 24px 30px;
+  padding: 2rem 1.875rem;
   flex: 1;
   cursor: pointer;
 
   label {
     cursor: pointer;
     color: ${GRAY_COLOR};
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
 
   input {
     display: flex;
     flex: 1;
-    padding: 9px 1px 9px 11px;
+    padding: 0.5625rem 0.0625rem 0.5625rem 0.6875rem;
     font-size: 0.875rem;
     font-weight: 200;
     line-height: 1.3125rem;
@@ -33,10 +33,10 @@ const styles = css`
   > div {
     display: flex;
     flex-direction: row;
-    margin-top: 2px;
+    margin-top: 0.125rem;
     box-sizing: padding-box;
     border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     transition: 0.375 ease border-color;
 
     &:hover {
@@ -49,7 +49,7 @@ const styles = css`
       border: 2px solid #3e85f7;
 
       > input {
-        padding: 8px 0px 8px 10px;
+        padding: 0.5rem 0px 0.5rem 0.625rem;
       }
     }
   }
@@ -61,7 +61,7 @@ const styles = css`
   }
 
   .separation {
-    height: 24px;
+    height: 2rem;
     margin: auto;
     border-left: 1px solid hsl(0, 0%, 80%);
   }

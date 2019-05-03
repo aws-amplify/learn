@@ -23,13 +23,13 @@ export const style = css`
       flex-direction: row;
       flex: 1;
       max-width: ${MAX_WIDTH};
-      margin: 0px auto;
+      margin: 0 auto;
 
       .menu {
         &.side {
           display: none;
           flex-shrink: 1;
-          margin-top: 25px;
+          margin-top: 1.5625rem;
 
           ${mq.tablet} {
             display: flex;
@@ -42,7 +42,7 @@ export const style = css`
         flex-direction: column;
         flex: 1;
         z-index: 0;
-        padding: 16px 0px;
+        padding: 1rem 0;
       }
     }
   }
