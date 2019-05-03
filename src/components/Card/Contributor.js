@@ -127,13 +127,11 @@ export default asCard(
         className={classNames('contributor three-dee rounded', className)}
       >
         <ConditionalAnchor className='body'>
-          {avatar ? (
+          {avatar && (
             <div className='avatar'>
               {' '}
               <Img {...avatar} />
             </div>
-          ) : (
-            '[backup image]'
           )}
           {name && <Text h3 children={name} />}
           {bio && <Text p children={clippedBio} />}

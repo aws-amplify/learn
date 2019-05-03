@@ -7,7 +7,7 @@ import {
   KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract, track, classNames} from '~/utilities';
 import {css} from '@emotion/core';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import {map} from 'ramda';
@@ -135,12 +135,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      cardContainerStyles: css`
-        background-color: ${KASHMIR_BLUE_COLOR};
-        * {
-          color: #fff;
-        }
-      `,
+      itemContainerClassName: 'on-newsletter-page',
     },
   ];
 
@@ -190,16 +185,15 @@ export default props => {
         nodes,
         Template,
         more,
-        cardContainerStyles,
+        itemContainerClassName: className,
         ...rest
       }) => {
         if (nodes.length) {
           const items = map(
             node => (
               <Template
-                containerStyles={cardContainerStyles}
                 {...mapNodeToProps(node)}
-                className='rounded'
+                className={classNames(className, 'rounded')}
               />
             ),
             nodes,
