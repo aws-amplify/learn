@@ -12,10 +12,23 @@ const styles = css`
   flex-direction: column;
   justify-content: space-between;
 
-  &.on-landing-page {
+  &.on-landing-page,
+  &.on-newsletter-page {
     background-color: ${KASHMIR_BLUE_COLOR};
     * {
       color: #fff;
+    }
+  }
+
+  &.on-posts-page,
+  &.on-contributor-page {
+    h3 {
+      color: ${SAN_JUAN_COLOR};
+    }
+
+    p {
+      color: ${GRAY_COLOR};
+      font-weight: 300;
     }
   }
 
@@ -43,18 +56,6 @@ const styles = css`
           font-weight: 300;
         }
       }
-    }
-  }
-
-  &.on-posts-page,
-  &.on-contributor-page {
-    h3 {
-      color: ${SAN_JUAN_COLOR};
-    }
-
-    p {
-      color: ${GRAY_COLOR};
-      font-weight: 300;
     }
   }
 
