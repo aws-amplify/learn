@@ -3,6 +3,7 @@ import Img from 'gatsby-image';
 import {IoLogoGithub, IoLogoTwitter, IoIosLink} from 'react-icons/io';
 import {useMemo} from 'react';
 import {identity, values, mapObjIndexed, length, slice} from 'ramda';
+import {GRAY_COLOR} from '~/constants';
 import asCard from './asCard';
 import ExternalLink from '../ExternalLink';
 import Text from '../Text';
@@ -19,25 +20,32 @@ const styles = css`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: 32px;
+    padding: 2rem;
 
     .avatar > div {
       display: flex;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid #fff;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
     }
 
-    .contributor-card-name {
-      margin-top: 12px;
+    h3 {
+      margin-top: 0.75rem;
       text-align: center;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: 300;
     }
 
-    .contributor-card-bio {
-      margin-top: 8px;
+    p {
+      margin-top: 0.5rem;
       text-align: center;
       max-width: 40rem;
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+      font-weight: 300;
+      color: ${GRAY_COLOR};
     }
   }
 
@@ -124,12 +132,8 @@ export default asCard(
           ) : (
             '[backup image]'
           )}
-          {name && (
-            <Text h3 className='contributor-card-name' children={name} />
-          )}
-          {bio && (
-            <Text p className='contributor-card-bio' children={clippedBio} />
-          )}
+          {name && <Text h3 children={name} />}
+          {bio && <Text p children={clippedBio} />}
         </ConditionalAnchor>
         {deps.length && <div className='social'>{links}</div>}
       </div>

@@ -26,11 +26,7 @@ export default props => {
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const main = (
     <MappedList
-      heading={(
-        <Text h2 className='list-heading'>
-          Our Community
-        </Text>
-)}
+      heading={<Text h2 className='list-heading' children='Our Community' />}
       data={edges}
       mapping={mapNodeToProps}
       keyExtractor={extract.keyFromNode}
@@ -39,6 +35,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       }}
+      additionalProps={{className: 'three-dee actionable'}}
     />
   );
 
