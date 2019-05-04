@@ -5,6 +5,7 @@ banner: './banner.png'
 authorIds:
   - ed-lima
 href: https://aws.amazon.com/blogs/mobile/building-a-serverless-real-time-chat-application-with-aws-appsync/
+platforms:
   - Angular
 categories:
   - API (GraphQL)

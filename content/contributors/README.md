@@ -1,6 +1,6 @@
 # Become an Amplify Community Contributor
 
-Thank you for your interest in becoming an Amplify Community Contributor! To add yourself as an Amplify contributor you must also submit a [post](https://github.com/aws-amplify/community/blob/master/content/posts/README.md) or [event](https://github.com/aws-amplify/community/blob/master/content/events/README.md). 
+Thank you for your interest in becoming an Amplify Community Contributor! To add yourself as an Amplify contributor you must also submit a [post](https://github.com/aws-amplify/community/blob/master/content/posts/README.md) or [event](https://github.com/aws-amplify/community/blob/master/content/events/README.md).
 
 ## Logistics
 
@@ -24,5 +24,4 @@ twitter: azorahai
 
 5. Add the [post](https://github.com/aws-amplify/community/tree/master/content/posts) or [event](https://github.com/aws-amplify/community/tree/master/content/events) you would like to contribute to the repo.
 
-5. Submit the PR.
-
+6. Submit the PR.

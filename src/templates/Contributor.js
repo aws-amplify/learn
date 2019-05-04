@@ -65,10 +65,10 @@ export const pageQuery = graphql`
 const styles = css`
   display: flex;
   flex-direction: column;
-  padding: 0px 16px;
+  padding: 0 1rem;
 
   > .contributor.card {
-    margin: 56px 0px 12px;
+    margin: 3.5rem 0 0.75rem;
   }
 `;
 
