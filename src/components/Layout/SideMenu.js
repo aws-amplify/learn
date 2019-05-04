@@ -144,7 +144,9 @@ export default ({header, menu, main}) => {
                   style={{
                     marginTop: '3.75rem',
                     width: menuWidth,
-                    height: Math.min(initialMenuHeight, maxMenuHeight),
+                    height: menuOpen
+                      ? 'initial'
+                      : Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
               </>
