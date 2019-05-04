@@ -24,7 +24,7 @@ const styles = css`
     margin: 0 auto;
     width: 100%;
 
-    .menu {
+    .side.menu {
       display: none;
       position: fixed;
 
@@ -131,7 +131,7 @@ export default ({header, menu, main}) => {
             {showSidebar && (
               <>
                 <div
-                  className={classNames(scrollableClassName, 'menu')}
+                  className={classNames(scrollableClassName, 'side menu')}
                   style={{
                     height: menuHeightStyleProp,
                     top: menuOffset,
