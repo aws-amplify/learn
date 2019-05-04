@@ -2878,6 +2878,11 @@ capture-stack-trace@^1.0.0:
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
 
+case@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/case/-/case-1.6.1.tgz#fa9ce79bb6f68f21650c419ae9c47b079308714f"
+  integrity sha512-N0rDB5ftMDKANGsIBRWPWcG0VIKtirgqcXb2vKFi66ySAjXVEwbfCN7ass1mkdXO8fbol3RfbWlQ9KyBX2F/Gg==
+
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
