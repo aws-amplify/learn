@@ -40,7 +40,7 @@ const styles = css`
       }
 
       ${mq.tablet} {
-        display: flex;
+        display: block;
       }
     }
 
@@ -144,9 +144,7 @@ export default ({header, menu, main}) => {
                   style={{
                     marginTop: '3.75rem',
                     width: menuWidth,
-                    height: menuOpen
-                      ? 'initial'
-                      : Math.min(initialMenuHeight, maxMenuHeight),
+                    height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
               </>
