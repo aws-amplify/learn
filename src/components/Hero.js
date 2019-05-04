@@ -8,27 +8,28 @@ const styles = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 85px 40px 85px 40px;
+  padding: 5.3125rem 2.5rem;
   color: #fff;
   text-align: center;
 
   .overlay {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     s-index: -100;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
   }
 
-  .hero-heading,
-  .hero-subheading,
+  h2,
+  h3,
   .cta {
     z-index: 10;
   }
+
   .hero-container {
     display: relative;
     display: flex;
@@ -36,21 +37,29 @@ const styles = css`
     justify-content: center;
     align-items: center;
   }
-  .hero-subheading {
-    margin-top: 10px;
+
+  h2 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 200;
+  }
+
+  h3 {
+    margin-top: 0.625rem;
+    font-size: 1.375rem;
+    line-height: 2.25rem;
+    font-weight: 200;
   }
 
   .cta {
     display: flex;
     flex: 1;
-    padding-top: 24px;
+    padding-top: 2rem;
     width: 100%;
     justify-content: center;
     align-items: center;
   }
 `;
-
-// make sure 'color' is inherited
 
 export default ({background, textColor, heading, overlay, subheading, cta}) => (
   <div
@@ -61,8 +70,7 @@ export default ({background, textColor, heading, overlay, subheading, cta}) => (
       background-position: center;
       background-size: cover;
 
-      .hero-heading,
-      .hero-subheading {
+      h2, h3 {
         color: ${textColor};
       }
     `}
@@ -70,8 +78,8 @@ export default ({background, textColor, heading, overlay, subheading, cta}) => (
     {overlay && (
       <div className='overlay' style={{backgroundImage: `url(${overlay})`}} />
     )}
-    <Text h2 className='hero-heading' children={heading} />
-    <Text h3 className='hero-subheading' children={subheading} />
+    <Text h2 children={heading} />
+    <Text h3 children={subheading} />
     <div className='cta' children={cta} />
   </div>
 );
