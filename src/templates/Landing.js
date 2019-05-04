@@ -190,10 +190,9 @@ export default props => {
     {
       heading: 'Featured Contributors',
       cta: {
-        children: 'Join The Community',
+        children: 'Become a Contributor',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
-        hidePlus: true,
       },
       nodes: featuredContributorNodesByScreen,
       Template: Card.Contributor,
