@@ -2,12 +2,16 @@ import Select from 'react-select';
 import {css} from '@emotion/core';
 import {map, keys} from 'ramda';
 import Text from './Text';
+import {mq} from '~/constants';
 
 const styles = css`
   display: flex;
   flex-direction: column;
-  max-width: 18.75rem;
   padding: 1.875rem;
+
+  ${mq.tablet} {
+    max-width: 18.75rem;
+  }
 
   > .multi-select {
     cursor: pointer;
