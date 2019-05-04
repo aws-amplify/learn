@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 import {useState, useCallback, useRef} from 'react';
-import {MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
+import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import useWindowSize from 'react-use/lib/useWindowSize';
@@ -24,8 +24,10 @@ const styles = css`
     margin: 0 auto;
     width: 100%;
 
-    .menu {
+    .side.menu {
+      display: none;
       position: fixed;
+
       &.scrollable {
         overflow-y: scroll;
 
@@ -35,6 +37,10 @@ const styles = css`
         ::-webkit-scrollbar-track {
           display: none;
         }
+      }
+
+      ${mq.tablet} {
+        display: block;
       }
     }
 
@@ -125,7 +131,7 @@ export default ({header, menu, main}) => {
             {showSidebar && (
               <>
                 <div
-                  className={classNames(scrollableClassName, 'menu')}
+                  className={classNames(scrollableClassName, 'side menu')}
                   style={{
                     height: menuHeightStyleProp,
                     top: menuOffset,
