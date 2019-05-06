@@ -5,13 +5,13 @@ import {values, mapObjIndexed} from 'ramda';
 const styles = css`
   display: block;
 
-  heading {
+  .heading {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    padding-bottom: 0px;
+    padding: 1rem;
+    padding-bottom: 0;
 
     > div {
       display: flex;
@@ -23,8 +23,8 @@ const styles = css`
     display: grid;
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 16px;
-    padding: 16px;
+    grid-gap: 1rem;
+    padding: 1rem;
   }
 
   .no-items {
@@ -35,8 +35,8 @@ const styles = css`
   }
 
   .footer {
-    padding: 16px;
-    padding-top: 0px;
+    padding: 1rem;
+    padding-top: 0;
   }
 `;
 
@@ -53,8 +53,10 @@ export default ({
 }) => {
   const deps = [heading, subheading, cta];
   const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps);
-  const [className, children] =
-    items && items.length ? ['items', items] : ['no-items', noItems];
+  const [className, children] = useMemo(
+    () => (items && items.length ? ['items', items] : ['no-items', noItems]),
+    [items, noItems],
+  );
 
   const responsiveGridStyles = useMemo(
     () =>
@@ -74,13 +76,13 @@ export default ({
   return (
     <div css={styles} {...containerProps}>
       {displayHeading && (
-        <heading>
+        <div className='heading'>
           <div>
             {heading}
             {subheading}
           </div>
           {cta}
-        </heading>
+        </div>
       )}
       <div css={responsiveGridStyles} {...{className, children}} />
       {footer && <div className='footer'>{footer}</div>}

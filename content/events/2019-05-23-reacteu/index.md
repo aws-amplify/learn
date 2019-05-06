@@ -1,6 +1,6 @@
 ---
 title: React Europe
-href: https://www.react-europe.org/
+href: https://www.react-europe.org/#schedule-item-1568
 avatar: ./avatar.png
 attendantIds:
   - nader-dabit
