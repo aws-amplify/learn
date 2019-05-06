@@ -11,12 +11,12 @@ const styles = css`
   display: flex;
   flex: 1;
   background-color: #fff;
-  max-width: 378px;
+  max-width: 23.625rem;
 
   > .button {
     display: flex;
     flex: 1;
-    padding: 12px 16px;
+    padding: 0.75rem 1rem;
 
     &:active {
       .text {
@@ -29,6 +29,9 @@ const styles = css`
       flex: 1;
       text-align: center;
       justify-content: center;
+      font-size: 0.9375rem;
+      font-weight: 200;
+      line-height: 1.40625rem;
     }
   }
 
@@ -40,7 +43,10 @@ const styles = css`
     input[type='email'] {
       display: flex;
       flex: 1;
-      padding: 12px 16px;
+      padding: 0.75rem 1rem;
+      font-weight: 200;
+      font-size: 1rem;
+      font-weight: 1.5rem;
 
       &:active {
         color: #000;
@@ -49,17 +55,17 @@ const styles = css`
       &:-internal-autofill-previewed,
       &:-internal-autofill-selected {
         background-color: #fff !important;
-        border-radius: 4px;
+        border-radius: 0.25rem;
       }
     }
 
     .button {
       cursor: pointer;
       display: flex;
-      padding: 4px;
+      padding: 0.25rem;
 
       > div {
-        padding: 11px 10px 7px 10px;
+        padding: 0.6875rem 0.625rem 0.4375rem 0.625rem;
         background-color: ${ORANGE_PEEL_COLOR};
         color: #fff;
       }
@@ -116,7 +122,6 @@ export default () => {
             type='email'
             autoCapitalize='off'
             autoCorrect='off'
-            className='subscribe-input'
             placeholder='your@email.com'
             {...{value, onChange}}
             onKeyPress={e => {

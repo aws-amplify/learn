@@ -9,7 +9,11 @@ export default ({pageName}) => {
       meta={[
         {property: 'og:site_name', content: 'Amplify Community'},
         {name: 'twitter:site', content: 'https://twitter.com/AWSAmplify'},
-        {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+        {
+          name: 'viewport',
+          content:
+            'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
+        },
         {
           property: 'description',
           content:
