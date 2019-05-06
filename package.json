@@ -9,6 +9,7 @@
     "@rehooks/component-size": "^1.0.2",
     "aws-amplify": "^1.1.26",
     "babel-plugin-ramda": "^2.0.0",
+    "cypress": "^3.2.0",
     "gatsby": "2.3.4",
     "gatsby-image": "^2.0.37",
     "gatsby-plugin-mailchimp": "^5.0.0",
@@ -32,6 +33,8 @@
     "babel-plugin-react-require": "^3.1.1",
     "babel-preset-gatsby": "^0.1.11",
     "case": "^1.6.1",
+    "commitizen": "^3.1.1",
+    "cz-conventional-changelog": "2.1.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.1.0",
@@ -59,14 +62,25 @@
     "glob": "^7.1.3",
     "gray-matter": "^4.0.2",
     "markdownlint-cli": "^0.15.0",
+    "start-server-and-test": "^1.9.0",
     "yup": "^0.27.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "scripts": {
     "delete-cache": "rm -rf .cache",
-    "clean": "yarn delete-cache -- node_modules",
+    "clean": "yarn delete-cache -- node_modules && yarn",
     "start": "yarn delete-cache && gatsby develop",
-    "validate-content": "markdownlint content/**/* && scripts/validations.js",
     "build": "gatsby build --prefix-paths",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "validate-content": "markdownlint content/**/* && scripts/validations.js",
+    "cy:dev": "cypress open --config baseUrl=http://localhost:8000",
+    "cy:ci": "cypress run --config baseUrl=http://localhost:9000",
+    "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
+    "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
+    "commit": "git add . && git-cz"
   }
 }
