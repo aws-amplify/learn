@@ -81,6 +81,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   if (errors) throw errors;
 
+  // fix grouping Monday-Sunday to Sunday-Saturday
   const getYearWeekTuple = date => [
     date.getFullYear(),
     date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1,
