@@ -34,6 +34,7 @@ export const pageQuery = graphql`
 
     upcomingEvents: allMarkdownRemark(
       filter: {fields: {category: {eq: "events"}, date: {in: $events}}}
+      sort: {fields: [fields___date], order: ASC}
     ) {
       edges {
         node {
@@ -49,6 +50,7 @@ export const pageQuery = graphql`
 
     latestPosts: allMarkdownRemark(
       filter: {fields: {category: {eq: "posts"}, date: {in: $posts}}}
+      sort: {fields: [fields___date], order: ASC}
     ) {
       edges {
         node {
@@ -227,7 +229,7 @@ export default props => {
           background-color: #fff;
           margin: 0.5rem;
           font-size: 1rem;
-          font-weight: 300;
+          font-weight: 200;
           line-height: 1.5rem;
         }
       `}
