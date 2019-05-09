@@ -19,20 +19,12 @@ const {sync: globSync} = require('glob');
 const {readFileSync} = require('fs');
 const matter = require('gray-matter');
 const {of} = require('case');
+const {contributorExists} = require('./utilities');
 
 let errors = '';
 const addError = curry((path, heading, message) => {
   errors += '\n' + `Validation error in ${path} –– ${heading}, ${message}`;
 });
-
-const existenceByContributorId = reduce(
-  (a, c) => ({
-    ...a,
-    [head(reverse(split('/', c)))]: true,
-  }),
-  {},
-  globSync(join(__dirname, '../content/contributors/*')),
-);
 
 const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const contributorsKeyByCategory = {
@@ -148,7 +140,7 @@ const validate = path => {
       ? addErrorAtPath('contributors', 'must list at least one contributor')
       : forEach(
           idInQuestion =>
-            !existenceByContributorId[idInQuestion] &&
+            !contributorExists(idInQuestion) &&
             addErrorAtPath(
               `invalid ${contributorsKey}`,
               `no such contributor with ID of '${idInQuestion}'`,
