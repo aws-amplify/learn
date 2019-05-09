@@ -147,7 +147,7 @@ export default props => {
     {
       heading: 'Upcoming Events',
       cta: {
-        children: 'Host an Event',
+        children: 'Add an Event',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
       },

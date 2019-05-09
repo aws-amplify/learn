@@ -34,6 +34,7 @@
     "no-fallthrough": "off",
     "no-nested-ternary": "off",
     "no-param-reassign": "off",
+    "no-restricted-globals": "off",
     "no-restricted-syntax": "off",
     "no-unused-expressions": "off",
     "no-var": "off",
