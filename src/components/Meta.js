@@ -9,6 +9,7 @@ export default ({pageName}) => {
       meta={[
         {property: 'og:site_name', content: 'Amplify Community'},
         {name: 'twitter:site', content: 'https://twitter.com/AWSAmplify'},
+        {name: 'description', content: `AWS Amplify Community –– ${pageName}`},
         {
           name: 'viewport',
           content:

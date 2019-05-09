@@ -96,7 +96,6 @@ export default props => {
 
   const {
     week,
-    year,
     previous,
     next,
     dateRange: {startDate, endDate},
@@ -106,6 +105,8 @@ export default props => {
     'upcomingEvents',
     'latestPosts',
   ]);
+
+  latestPostNodes.forEach(({node}) => console.log(node.fields.date));
 
   const sections = [
     {

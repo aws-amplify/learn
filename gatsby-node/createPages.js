@@ -100,7 +100,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   const getStartEndTupleFromYearWeekTuple = ([year, week]) => {
     const date = new Date(year);
-    const startDate = addDays(-1, addWeeks(week, date));
+    const startDate = addWeeks(week, date);
     const endDate = addDays(-1, addWeeks(1, startDate));
     return [startDate.toJSON(), endDate.toJSON()];
   };
