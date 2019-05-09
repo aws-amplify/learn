@@ -204,7 +204,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     return yearA === yearB ? weekA > weekB : yearA > yearB;
   });
 
-  const sortedNewsletterSlugs = sort(compareSlugs, newsletterSlugs);
+  const sortedNewsletterSlugs = tail(sort(compareSlugs, newsletterSlugs));
   const indexByNewsletterSlug = map(parseInt, invertObj(sortedNewsletterSlugs));
   const dateRanges = map(slug => {
     const {0: startDate, 1: endDate} = getStartEndTupleFromYearWeekTuple(
