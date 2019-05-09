@@ -81,6 +81,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   if (errors) throw errors;
 
+  // fix grouping Monday-Sunday to Sunday-Saturday
   const getYearWeekTuple = date => [
     date.getFullYear(),
     date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1,
@@ -100,7 +101,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   const getStartEndTupleFromYearWeekTuple = ([year, week]) => {
     const date = new Date(year);
-    const startDate = addDays(-1, addWeeks(week, date));
+    const startDate = addWeeks(week, date);
     const endDate = addDays(-1, addWeeks(1, startDate));
     return [startDate.toJSON(), endDate.toJSON()];
   };
@@ -204,7 +205,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     return yearA === yearB ? weekA > weekB : yearA > yearB;
   });
 
-  const sortedNewsletterSlugs = sort(compareSlugs, newsletterSlugs);
+  const sortedNewsletterSlugs = tail(sort(compareSlugs, newsletterSlugs));
   const indexByNewsletterSlug = map(parseInt, invertObj(sortedNewsletterSlugs));
   const dateRanges = map(slug => {
     const {0: startDate, 1: endDate} = getStartEndTupleFromYearWeekTuple(
