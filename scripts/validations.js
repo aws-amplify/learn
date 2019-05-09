@@ -4,8 +4,6 @@ const {
   forEach,
   split,
   reverse,
-  reduce,
-  head,
   any,
   isNil,
   isEmpty,
