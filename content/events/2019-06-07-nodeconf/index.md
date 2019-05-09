@@ -6,4 +6,5 @@ attendantIds:
   - nader-dabit
 country: Netherlands
 city: Amsterdam
+avatar: ./avatar1.png
 ---
