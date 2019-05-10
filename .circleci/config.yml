@@ -17,4 +17,4 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      # - run: yarn validate-content
+      - run: yarn validate-content

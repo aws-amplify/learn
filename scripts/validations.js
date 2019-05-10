@@ -73,27 +73,23 @@ const validate = path => {
     );
 
   if (category === 'events' || category === 'contributors') {
-    const avatarError = addErrorAtPath(`'avatar' field`);
     const {avatar} = frontmatter;
-    !avatar &&
-      avatarError(`'avatar' field must be a relative path to an image file`);
-    validateFileExistence({
-      field: 'avatar',
-      pathToFile: join(path, '..'),
-      filename: avatar,
-    });
+    avatar &&
+      validateFileExistence({
+        field: 'avatar',
+        pathToFile: join(path, '..'),
+        filename: avatar,
+      });
   }
 
   if (category === 'posts') {
-    const bannerError = addErrorAtPath(`'banner' field`);
     const {banner} = frontmatter;
-    !banner &&
-      bannerError(`'banner' field must be a relative path to an image file`);
-    validateFileExistence({
-      field: 'banner',
-      pathToFile: join(path, '..'),
-      filename: banner,
-    });
+    banner &&
+      validateFileExistence({
+        field: 'banner',
+        pathToFile: join(path, '..'),
+        filename: banner,
+      });
   }
 
   if (category === 'posts' || category === 'events') {
