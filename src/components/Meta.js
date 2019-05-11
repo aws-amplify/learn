@@ -18,7 +18,15 @@ export default ({pageName}) => {
         },
         {property: 'og:image', content: ogpSrc},
         {property: 'og:url', content: 'https://amplify.aws/community/'},
+        {name: 'twitter:card', content: 'summary_large_image'},
         {name: 'twitter:site', content: 'https://twitter.com/AWSAmplify'},
+        {name: 'twitter:title', content: 'Amplify Community'},
+        {
+          name: 'twitter:description',
+          content:
+            'A place to share projects, events, articles and other resources',
+        },
+        {name: 'twitter:image', content: ogpSrc},
         {name: 'description', content: `AWS Amplify Community –– ${pageName}`},
         {
           name: 'viewport',
