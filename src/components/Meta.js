@@ -1,4 +1,5 @@
 import {Helmet} from 'react-helmet';
+import ogpSrc from '~/assets/images/ogp.jpg';
 
 export default ({pageName}) => {
   return (
@@ -7,7 +8,16 @@ export default ({pageName}) => {
       defaultTitle='Amplify Community'
       defer={false}
       meta={[
+        {property: 'og:type', content: 'website'},
         {property: 'og:site_name', content: 'Amplify Community'},
+        {property: 'og:title', content: 'Amplify Community'},
+        {
+          property: 'og:description',
+          content:
+            'A place to share projects, events, articles and other resources',
+        },
+        {property: 'og:image', content: ogpSrc},
+        {property: 'og:url', content: 'https://amplify.aws/community/'},
         {name: 'twitter:site', content: 'https://twitter.com/AWSAmplify'},
         {name: 'description', content: `AWS Amplify Community –– ${pageName}`},
         {
