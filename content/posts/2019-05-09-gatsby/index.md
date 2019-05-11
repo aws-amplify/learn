@@ -7,7 +7,7 @@ authorIds:
 href: https://www.youtube.com/watch?v=gmHlitxLoCU&t=11s
 platforms:
   - React
-  - JavaScript
+  - Gatsby
 categories:
   - API (GraphQL)
 ---
