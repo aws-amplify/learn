@@ -89,7 +89,7 @@ const manifest = {
   options: {
     name: TITLE,
     short_name: SHORT_NAME,
-    start_url: '/community',
+    start_url: '/community/',
     display: 'minimal-ui',
     background_color: BACKGROUND_COLOR,
     theme_color: THEME_COLOR,
