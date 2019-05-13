@@ -89,7 +89,7 @@ const manifest = {
   options: {
     name: TITLE,
     short_name: SHORT_NAME,
-    start_url: '/',
+    start_url: '/community',
     display: 'minimal-ui',
     background_color: BACKGROUND_COLOR,
     theme_color: THEME_COLOR,
@@ -105,29 +105,29 @@ const mailchimp = {
   },
 };
 
-const favicon = {
-  resolve: `gatsby-plugin-favicon`,
-  options: {
-    logo: ICON_PATH,
-    appName: 'Amplify Community',
-    dir: 'auto',
-    lang: 'en-US',
-    background: '#fff',
-    theme_color: '#fff',
-    display: 'standalone',
-    orientation: 'any',
-    start_url: '/',
-    version: '1.0',
-    icons: {
-      android: true,
-      appleIcon: true,
-      appleStartup: true,
-      coast: false,
-      favicons: true,
-      firefox: true,
-    },
-  },
-};
+// const favicon = {
+//   resolve: `gatsby-plugin-favicon`,
+//   options: {
+//     logo: ICON_PATH,
+//     appName: 'Amplify Community',
+//     dir: 'auto',
+//     lang: 'en-US',
+//     background: '#fff',
+//     theme_color: '#fff',
+//     display: 'standalone',
+//     orientation: 'any',
+//     start_url: '/',
+//     version: '1.0',
+//     icons: {
+//       android: true,
+//       appleIcon: true,
+//       appleStartup: true,
+//       coast: false,
+//       favicons: true,
+//       firefox: true,
+//     },
+//   },
+// };
 
 const misc = ['gatsby-plugin-react-helmet', 'gatsby-plugin-offline'];
 
@@ -144,6 +144,6 @@ module.exports = {
     manifest,
     ...misc,
     mailchimp,
-    favicon,
+    // favicon,
   ],
 };
