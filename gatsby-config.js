@@ -37,7 +37,13 @@ const moduleResolution = {
   },
 };
 
-const sourceNames = ['contributors', 'posts', 'events', 'newsletters', 'misc'];
+const sourceNames = [
+  'contributors',
+  'posts',
+  'events',
+  'newsletter-injections',
+  'misc',
+];
 const dataSources = map(
   name => ({
     resolve: 'gatsby-source-filesystem',

@@ -13,21 +13,7 @@ import {identity, split, fromPairs, map} from 'ramda';
 import {track, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import {useMemo} from 'react';
-
-export const pageQuery = graphql`
-  {
-    sitePage(path: {eq: "/newsletters"}) {
-      context {
-        sortedSlugs
-        dateRanges {
-          slug
-          startDate(formatString: "MMM Do")
-          endDate(formatString: "MMM Do")
-        }
-      }
-    }
-  }
-`;
+import moment from 'moment';
 
 const navProps = {
   beforeScroll: {
@@ -48,20 +34,19 @@ const heroProps = {
 export default props => {
   track.internalPageView(props);
 
-  const {sortedSlugs, dateRanges} = extract.fromPath(
-    ['data', 'sitePage', 'context'],
+  const {sortedSlugs, dateRangeBySlug} = extract.fromPath(
+    ['pageContext'],
     props,
   );
 
-  const dateRangeBySlug = useMemo(
-    () => fromPairs(map(({slug, ...dates}) => [slug, dates], dateRanges)),
-    [],
+  const formattedDateRangeBySlug = map(
+    e => map(d => moment(d).format('MMMM Do'), e),
+    dateRangeBySlug,
   );
 
   const extractProps = slug => {
-    // eslint-disable-next-line
     const [x, year, week] = split('/', slug);
-    const {startDate, endDate} = dateRangeBySlug[slug];
+    const {startDate, endDate} = formattedDateRangeBySlug[slug];
     return {
       to: slug,
       heading: `Week ${week}`,
