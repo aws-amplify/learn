@@ -53,7 +53,7 @@ const addDays = curry((numDays, date) => {
 
 const getDateRange = ([year, week]) => {
   const date = new Date(year);
-  const startDate = addWeeks(week, date);
+  const startDate = addDays(-1, addWeeks(week, date));
   const endDate = addDays(-1, addWeeks(1, startDate));
   return [startDate, endDate];
 };
