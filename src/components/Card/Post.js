@@ -155,7 +155,9 @@ export default asCard(
     description,
     limitDescriptionLength,
     href,
+    date,
   }) => {
+    console.log(date);
     const [firstAuthor] = authors;
     const {to, name, twitter, github, avatar} = firstAuthor;
     const handle = twitter || github;

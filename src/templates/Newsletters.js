@@ -31,6 +31,12 @@ const heroProps = {
   cta: <Subscribe />,
 };
 
+const nextMonday = new Date();
+// newDate.setDate(newDate.getDate() + 7 * numWeeks);
+nextMonday.setDate(
+  nextMonday.getDate() - 7 + ((1 + 7 - nextMonday.getDay()) % 7),
+);
+
 export default props => {
   track.internalPageView(props);
 
