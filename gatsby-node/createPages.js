@@ -28,7 +28,6 @@ module.exports = async ({graphql, actions: {createPage}}) => {
           node {
             id
             frontmatter {
-              title
               tags
               href
             }
