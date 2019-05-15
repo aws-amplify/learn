@@ -158,8 +158,16 @@ const styles = css`
 `;
 
 export default () => {
-  // a temporary fix––will be replaced by end of May 15th
-  const latestSlug = '/newsletters/2019/18';
+  const {sitePage} = useStaticQuery(graphql`
+    {
+      sitePage(path: {eq: "/newsletters"}) {
+        context {
+          latestSlug
+        }
+      }
+    }
+  `);
+  const {latestSlug} = sitePage.context;
 
   return (
     <footer css={styles}>
