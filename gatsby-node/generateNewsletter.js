@@ -15,9 +15,27 @@ const {
 } = require('ramda');
 const {templatePaths} = require('./constants');
 
+const getWeekOfYear = date => {
+  const year = date.getFullYear();
+  const januaryFirst = new Date(year, 0, 1);
+  const januaryFirstDayOfWeek = januaryFirst.getDay();
+  const firstSunday =
+    januaryFirstDayOfWeek === 0
+      ? januaryFirst
+      : (() => {
+          const d = new Date(januaryFirst.getTime());
+          d.setDate(d.getDate() - januaryFirstDayOfWeek);
+          return d;
+        })();
+  console.log(firstSunday.toString());
+  const difference = Math.abs(date.getTime() - firstSunday.getTime());
+  const daysSinceFirstSunday = Math.ceil(difference / (1000 * 60 * 60 * 24));
+  return Math.floor(daysSinceFirstSunday / 7);
+};
+
 const getSlug = date => {
   const year = date.getFullYear();
-  const week = date.getMonth() * 4 + Math.floor((date.getDate() - 1) / 7) + 1;
+  const week = getWeekOfYear(date);
   return join('/', ['newsletters', year, week]);
 };
 
@@ -101,6 +119,8 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
     },
     {events, posts, newsletterInjections},
   );
+
+  // process.exit(1);
 
   const sortedSlugs = sort(
     comparator((a, b) => {

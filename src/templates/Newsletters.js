@@ -7,9 +7,22 @@ import {
   Hero,
   Subscribe,
   Meta,
+  Text,
 } from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {identity, split, fromPairs, map} from 'ramda';
+import {
+  identity,
+  split,
+  fromPairs,
+  map,
+  reduce,
+  tail,
+  mapObjIndexed,
+  values,
+  toPairs,
+  sort,
+  prop,
+} from 'ramda';
 import {track, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import {useMemo} from 'react';
@@ -45,6 +58,18 @@ export default props => {
     props,
   );
 
+  const partitionedByYear = reduce(
+    (accumulator, current) => {
+      const [year] = tail(split('/', current));
+      return {
+        ...accumulator,
+        [year]: [...(accumulator[year] || []), current],
+      };
+    },
+    {},
+    sortedSlugs,
+  );
+
   const formattedDateRangeBySlug = map(
     e => map(d => moment(d).format('MMMM Do'), e),
     dateRangeBySlug,
@@ -60,19 +85,25 @@ export default props => {
     };
   };
 
-  const main = (
-    <MappedList
-      columnCountByBreakpoint={{
-        [TABLET_BREAKPOINT]: 3,
-      }}
-      noItems={<p>no items to display</p>}
-      data={sortedSlugs}
-      mapping={extractProps}
-      keyExtractor={identity}
-      renderItem={p => <Card.Newsletter {...p} />}
-      additionalProps={{className: 'on-newsletters-page'}}
-    />
-  );
+  const sorted = sort((a, b) => b[0] - a[0], toPairs(partitionedByYear));
+
+  const main = map(([year, slugs]) => {
+    console.log(year, slugs);
+    return (
+      <MappedList
+        key={year}
+        heading={<Text h2 className='list-heading' children={year} />}
+        columnCountByBreakpoint={{
+          [TABLET_BREAKPOINT]: 3,
+        }}
+        data={slugs}
+        mapping={extractProps}
+        keyExtractor={identity}
+        renderItem={p => <Card.Newsletter {...p} />}
+        additionalProps={{className: 'on-newsletters-page'}}
+      />
+    );
+  }, sorted);
 
   return (
     <>
