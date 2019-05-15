@@ -12,6 +12,7 @@ const {
   tail,
   comparator,
   invertObj,
+  all,
 } = require('ramda');
 const {templatePaths} = require('./constants');
 
@@ -27,7 +28,6 @@ const getWeekOfYear = date => {
           d.setDate(d.getDate() - januaryFirstDayOfWeek);
           return d;
         })();
-  console.log(firstSunday.toString());
   const difference = Math.abs(date.getTime() - firstSunday.getTime());
   const daysSinceFirstSunday = Math.ceil(difference / (1000 * 60 * 60 * 24));
   return Math.floor(daysSinceFirstSunday / 7);
@@ -75,9 +75,14 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
     contentBySlug[slug][category][id] = true;
   });
 
-  const lastMonday = new Date();
-  const day = lastMonday.getDay();
-  day > 0 && lastMonday.setDate(lastMonday.getDate() - day + 1);
+  const lastMonday = (() => {
+    const d = new Date();
+    const day = d.getDay();
+    day > 0 && d.setDate(d.getDate() - day + 1);
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  })();
+
+  const shouldPlace = inQuestion => inQuestion < lastMonday;
 
   forEachObjIndexed(
     ({edges}, category) => {
@@ -91,7 +96,10 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
         switch (category) {
           case 'posts': {
             const slug = date && getSlug(date);
-            date < lastMonday && placeCategory(slug, id);
+            // if (node.frontmatter.title === 'GraphQLifying REST') {
+            //   console.log(date.getDate(), lastMonday.getDate());
+            // }
+            shouldPlace(date) && placeCategory(slug, id);
             break;
           }
 
@@ -100,7 +108,7 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
               i => {
                 const adjustedDate = addWeeks(-1 * i, date);
                 const slug = getSlug(adjustedDate);
-                adjustedDate < lastMonday && placeCategory(slug, id);
+                shouldPlace(adjustedDate) && placeCategory(slug, id);
               },
               [1, 2, 3, 4],
             );
