@@ -15,9 +15,9 @@ import {map} from 'ramda';
 export const pageQuery = graphql`
   query(
     $current: String!
-    $events: [Date!]!
-    $posts: [Date!]!
-    $newsletters: [Date!]!
+    $events: [String!]!
+    $posts: [String!]!
+    $newsletterInjections: [String!]!
   ) {
     context: sitePage(path: {eq: $current}) {
       context {
@@ -25,15 +25,13 @@ export const pageQuery = graphql`
         year
         previous
         next
-        dateRange {
-          startDate(formatString: "MMM Do")
-          endDate(formatString: "MMM Do")
-        }
+        startDate(formatString: "MMM Do")
+        endDate(formatString: "MMM Do")
       }
     }
 
     upcomingEvents: allMarkdownRemark(
-      filter: {fields: {category: {eq: "events"}, date: {in: $events}}}
+      filter: {id: {in: $events}}
       sort: {fields: [fields___date], order: ASC}
     ) {
       edges {
@@ -49,7 +47,7 @@ export const pageQuery = graphql`
     }
 
     latestPosts: allMarkdownRemark(
-      filter: {fields: {category: {eq: "posts"}, date: {in: $posts}}}
+      filter: {id: {in: $posts}}
       sort: {fields: [fields___date], order: ASC}
     ) {
       edges {
@@ -68,11 +66,7 @@ export const pageQuery = graphql`
       }
     }
 
-    newsletters: allMarkdownRemark(
-      filter: {
-        fields: {category: {eq: "newsletters"}, date: {in: $newsletters}}
-      }
-    ) {
+    newsletters: allMarkdownRemark(filter: {id: {in: $newsletterInjections}}) {
       edges {
         node {
           id
@@ -96,12 +90,10 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const {
-    week,
-    previous,
-    next,
-    dateRange: {startDate, endDate},
-  } = extract.fromPath(['data', 'context', 'context'], props);
+  const {week, previous, next, startDate, endDate} = extract.fromPath(
+    ['data', 'context', 'context'],
+    props,
+  );
 
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
     'upcomingEvents',

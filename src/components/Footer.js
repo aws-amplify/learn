@@ -11,7 +11,7 @@ import {
 import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
-import {map} from 'ramda';
+import {map, join} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
 
@@ -158,19 +158,9 @@ const styles = css`
 `;
 
 export default () => {
-  const {sitePage} = useStaticQuery(graphql`
-    {
-      sitePage(path: {eq: "/newsletters"}) {
-        context {
-          latestSlug
-        }
-      }
-    }
-  `);
+  // a temporary fix––will be replaced by end of May 15th
+  const latestSlug = '/newsletters/2019/18';
 
-  const {latestSlug} = sitePage.context;
-
-  // !window.location.href.includes('newsletters')
   return (
     <footer css={styles}>
       <div className='upper'>
