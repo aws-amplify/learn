@@ -101,12 +101,11 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         const {fields} = node;
         const {slug} = fields;
 
-        category !== 'events' &&
-          createPage({
-            path: slug,
-            component: pageTemplatePathByCategory[category],
-            context: fields,
-          });
+        createPage({
+          path: slug,
+          component: pageTemplatePathByCategory[category],
+          context: fields,
+        });
       }, edges);
     },
     {contributors, events},
