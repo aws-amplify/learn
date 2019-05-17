@@ -37,7 +37,13 @@ const moduleResolution = {
   },
 };
 
-const sourceNames = ['contributors', 'posts', 'events', 'newsletters', 'misc'];
+const sourceNames = [
+  'contributors',
+  'posts',
+  'events',
+  'newsletter-injections',
+  'misc',
+];
 const dataSources = map(
   name => ({
     resolve: 'gatsby-source-filesystem',
@@ -89,7 +95,7 @@ const manifest = {
   options: {
     name: TITLE,
     short_name: SHORT_NAME,
-    start_url: '/community',
+    start_url: '/community/',
     display: 'minimal-ui',
     background_color: BACKGROUND_COLOR,
     theme_color: THEME_COLOR,
