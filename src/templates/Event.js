@@ -3,7 +3,12 @@ import {track, extract, mapNodeToProps} from '~/utilities';
 import Img from 'gatsby-image';
 import {Text, Meta, Layout, Nav, Button} from '~/components';
 import {css} from '@emotion/core';
-import {ORANGE_PEEL_COLOR, GRAY_COLOR, SILVER_CHALICE_COLOR} from '~/constants';
+import {
+  ORANGE_PEEL_COLOR,
+  GRAY_COLOR,
+  SILVER_CHALICE_COLOR,
+  mq,
+} from '~/constants';
 import {join, isEmpty, complement, map} from 'ramda';
 
 export const pageQuery = graphql`
@@ -31,20 +36,24 @@ export const pageQuery = graphql`
 
 const styles = css`
   > div {
-    padding: 0px 16px;
+    padding: 0 1rem;
 
     > div {
       background-color: #fff;
       border-radius: 4px;
       display: flex;
-      flex-direction: row;
-      margin-top: 48px;
+      flex-direction: column;
+      margin-top: 3rem;
+
+      ${mq.tablet} {
+        flex-direction: row;
+      }
 
       > .details {
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 32px;
+        padding: 2rem;
 
         h2 {
           font-size: 2rem;
@@ -70,13 +79,13 @@ const styles = css`
         }
 
         p {
-          margin-top: 4px;
+          margin-top: 0.25rem;
           font-size: 1.125rem;
           line-height: 1.6875rem;
         }
 
         .button-container {
-          margin-top: 14px;
+          margin-top: 0.875rem;
           display: flex;
           flex: 1;
           flex-direction: row;
@@ -91,38 +100,47 @@ const styles = css`
       }
 
       > .attendants {
-        border-left: 1px solid #e9e9e9;
+        padding: 1rem 0px;
+        background: linear-gradient(rgb(245, 245, 245), #fff);
+
+        ${mq.tablet} {
+          border-left: 1px solid #e9e9e9;
+        }
 
         h3 {
-          text-align: center;
-          border-bottom: 1px solid #e9e9e9;
+          text-align: left;
           font-weight: 300;
-          background-color: rgba(250, 250, 250, 1);
-          padding: 8px;
+          padding: 1rem 1.5rem;
+          font-size: 1.25rem;
+          line-height: 1.875rem;
+
+          ${mq.tablet} {
+            border-top-width: 0px;
+          }
         }
 
         > div {
           display: flex;
           flex: 1;
           flex-direction: column;
-          padding: 16px;
+          padding: 0 1rem;
 
           > .attendant {
             display: flex;
             flex-direction: row;
-            padding: 16px;
+            padding: 0.5rem;
 
             .avatar > * {
               border-radius: 50%;
               overflow: hidden;
-              border: 2px solid #fff;
+              border: 0.125rem solid #fff;
               box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
             }
 
             .text-container {
               display: flex;
               flex-direction: column;
-              margin-right: 16px;
+              margin-right: 1rem;
 
               h5 {
                 font-size: 1rem;
