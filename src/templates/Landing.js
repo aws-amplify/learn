@@ -231,7 +231,9 @@ export default props => {
           node => (
             <Template
               {...(className ? {className} : {})}
-              {...mapNodeToProps(node)}
+              {...(heading === 'Upcoming Events'
+                ? mapNodeToProps(node, 'href')
+                : mapNodeToProps(node))}
               {...additionalProps || {}}
             />
           ),

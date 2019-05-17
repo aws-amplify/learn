@@ -18,6 +18,7 @@ const {
   listTemplatePathByCategory,
   pageTemplatePathByCategory,
 } = require('./constants');
+const generateNewsletter = require('./generateNewsletter');
 
 module.exports = async ({graphql, actions: {createPage}}) => {
   const {errors, data} = await graphql(`
@@ -25,6 +26,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
       posts: allMarkdownRemark(filter: {fields: {category: {eq: "posts"}}}) {
         edges {
           node {
+            id
             frontmatter {
               tags
               href
@@ -40,6 +42,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
       events: allMarkdownRemark(filter: {fields: {category: {eq: "events"}}}) {
         edges {
           node {
+            id
             frontmatter {
               href
             }
@@ -56,6 +59,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
       ) {
         edges {
           node {
+            id
             fields {
               id
               slug
@@ -64,14 +68,14 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         }
       }
 
-      newsletters: allMarkdownRemark(
-        filter: {fields: {category: {eq: "newsletters"}}}
+      newsletterInjections: allMarkdownRemark(
+        filter: {fields: {category: {eq: "newsletter-injections"}}}
       ) {
         edges {
           node {
+            id
             fields {
-              slug
-              date
+              injectInto
             }
           }
         }
@@ -81,35 +85,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   if (errors) throw errors;
 
-  // fix grouping Monday-Sunday to Sunday-Saturday
-  const getYearWeekTuple = date => [
-    date.getFullYear(),
-    date.getMonth() * 4 + Math.floor(date.getDate() / 7) + 1,
-  ];
-
-  const addWeeks = curry((numWeeks, date) => {
-    const newDate = new Date(date.getTime());
-    newDate.setDate(newDate.getDate() + 7 * numWeeks);
-    return newDate;
-  });
-
-  const addDays = curry((numDays, date) => {
-    const newDate = new Date(date.getTime());
-    newDate.setDate(newDate.getDate() + numDays);
-    return newDate;
-  });
-
-  const getStartEndTupleFromYearWeekTuple = ([year, week]) => {
-    const date = new Date(year);
-    const startDate = addWeeks(week, date);
-    const endDate = addDays(-1, addWeeks(1, startDate));
-    return [startDate.toJSON(), endDate.toJSON()];
-  };
-
-  const [currentDate, currentYear, currentWeek] = (() => {
-    const d = new Date();
-    return [d.toJSON(), ...getYearWeekTuple(d)];
-  })();
+  const currentDate = new Date().toJSON();
 
   createPage({
     path: '/',
@@ -117,140 +93,23 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     context: {currentDate},
   });
 
-  const existenceByTag = {};
-  // {[slug]: {events: {[date]: true}}}
-  const dateExistenceByCategoryBySlug = {};
+  const {contributors, posts, events, newsletterInjections} = data;
 
-  const getSlug = date => {
-    const [year, week] = getYearWeekTuple(date);
-    return `newsletters/${year}/${week}`;
-  };
+  forEachObjIndexed(
+    ({edges}, category) => {
+      forEach(({node}) => {
+        const {fields} = node;
+        const {slug} = fields;
 
-  forEachObjIndexed(({edges}, category) => {
-    forEach(({node}) => {
-      const {fields, frontmatter = {}} = node;
-      const {date: stringifiedDate, slug} = fields;
-      const {tags, href} = frontmatter;
-
-      // get list of all tags
-      tags &&
-        tags.forEach(tag => {
-          existenceByTag[tag] = true;
-        });
-
-      // CLEAN THIS UP!
-      if (stringifiedDate) {
-        const date = new Date(stringifiedDate);
-
-        if (category === 'events') {
-          [1, 2, 3, 4].forEach(n => {
-            const adjustedDate = addWeeks(-n, date);
-            const s = getSlug(adjustedDate);
-
-            if (!dateExistenceByCategoryBySlug[s]) {
-              dateExistenceByCategoryBySlug[s] = {
-                events: {},
-                posts: {},
-                newsletters: {},
-              };
-            }
-
-            dateExistenceByCategoryBySlug[s].events[stringifiedDate] = true;
-          });
-        } else {
-          const s = getSlug(date);
-
-          if (!dateExistenceByCategoryBySlug[s]) {
-            dateExistenceByCategoryBySlug[s] = {
-              events: {},
-              posts: {},
-              newsletters: {},
-            };
-          }
-
-          dateExistenceByCategoryBySlug[s][category][stringifiedDate] = true;
-        }
-      }
-
-      // create post, event and contributor pages
-      // (don't create for externals)
-      category === 'contributors' &&
-        !href &&
         createPage({
           path: slug,
           component: pageTemplatePathByCategory[category],
           context: fields,
         });
-    }, edges);
-  }, data);
-
-  const newsletterSlugs = filter(s => {
-    const [year, week] = tail(split('/', s));
-    return currentYear >= year && currentWeek >= week;
-  }, keys(dateExistenceByCategoryBySlug));
-
-  const getComparableValuesFromSlug = map(
-    compose(
-      map(parseInt),
-      tail,
-      split('/'),
-    ),
-  );
-
-  const compareSlugs = comparator((a, b) => {
-    const [[yearA, weekA], [yearB, weekB]] = getComparableValuesFromSlug([
-      a,
-      b,
-    ]);
-    return yearA === yearB ? weekA > weekB : yearA > yearB;
-  });
-
-  const sortedNewsletterSlugs = tail(sort(compareSlugs, newsletterSlugs));
-  const indexByNewsletterSlug = map(parseInt, invertObj(sortedNewsletterSlugs));
-  const dateRanges = map(slug => {
-    const {0: startDate, 1: endDate} = getStartEndTupleFromYearWeekTuple(
-      tail(split('/', slug)),
-    );
-    return {slug, startDate, endDate};
-  }, newsletterSlugs);
-  const dateRangeBySlug = fromPairs(
-    map(({slug, ...dates}) => [slug, dates], dateRanges),
-  );
-
-  createPage({
-    path: 'newsletters',
-    component: listTemplatePathByCategory.newsletters,
-    context: {
-      sortedSlugs: sortedNewsletterSlugs,
-      indexBySlug: JSON.stringify(indexByNewsletterSlug),
-      latestSlug: sortedNewsletterSlugs[0],
-      dateRanges,
+      }, edges);
     },
-  });
-
-  // create newsletter pages
-  forEachObjIndexed((datesByCategory, slug) => {
-    const [year, week] = tail(split('/', slug));
-    const i = indexByNewsletterSlug[slug];
-    const next = sortedNewsletterSlugs[i - 1];
-    const previous = sortedNewsletterSlugs[i + 1];
-
-    year <= currentYear &&
-      week <= currentWeek &&
-      createPage({
-        path: slug,
-        component: templatePaths.newsletter,
-        context: {
-          current: `/${slug}`,
-          next,
-          previous,
-          year,
-          week,
-          dateRange: dateRangeBySlug[slug],
-          ...map(keys, datesByCategory),
-        },
-      });
-  }, dateExistenceByCategoryBySlug);
+    {contributors, events},
+  );
 
   createPage({
     path: 'contributors',
@@ -266,5 +125,11 @@ module.exports = async ({graphql, actions: {createPage}}) => {
   createPage({
     path: 'posts',
     component: listTemplatePathByCategory.posts,
+  });
+
+  generateNewsletter(createPage, {
+    posts,
+    events,
+    newsletterInjections,
   });
 };

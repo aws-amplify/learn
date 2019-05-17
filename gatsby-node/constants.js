@@ -15,8 +15,8 @@ const templateFilenames = {
   events: 'Events.js',
   newsletters: 'Newsletters.js',
   contributor: 'Contributor.js',
-  // post: 'Post.js',
-  // event: 'Event.js',
+  post: 'Post.js',
+  event: 'Event.js',
   newsletter: 'Newsletter.js',
 };
 

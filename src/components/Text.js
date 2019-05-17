@@ -1,4 +1,5 @@
 import {keys, find} from 'ramda';
+import {classNames} from '~/utilities';
 import {useMemo} from 'react';
 
 const existenceByValidTag = {
@@ -17,6 +18,6 @@ export default ({className: key, ...rest}) => {
     () => find(k => !!existenceByValidTag[k], keys(rest)) || 'p',
     [rest],
   );
-  const className = useMemo(() => `text ${key}`, [key]);
+  const className = useMemo(() => classNames('text', key), [key]);
   return <Tag {...{className}} {...rest} />;
 };

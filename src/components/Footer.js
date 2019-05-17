@@ -11,7 +11,7 @@ import {
 import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
-import {map} from 'ramda';
+import {map, join} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
 
@@ -167,10 +167,8 @@ export default () => {
       }
     }
   `);
-
   const {latestSlug} = sitePage.context;
 
-  // !window.location.href.includes('newsletters')
   return (
     <footer css={styles}>
       <div className='upper'>
