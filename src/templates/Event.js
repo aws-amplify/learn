@@ -184,7 +184,7 @@ export default props => {
               <Text h4 children=' in ' />
               <Text h4 children={join(', ', [city, country])} />
             </div>
-            <Text p>{description}</Text>
+            {description && <Text p>{description}</Text>}
             {href && (
               <div className='button-container'>
                 <Button.Basic
