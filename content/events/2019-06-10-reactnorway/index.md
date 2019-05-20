@@ -1,10 +1,10 @@
 ---
 title: React Day Norway
-description: ReactJS Oslo Meetup.
+description: "Nader Dabit will be presenting 'Curious Cases of GraphQL' at the React Day Norway conference."
 href: https://reactnorway.com/
 avatar: ./avatar.png
 attendantIds:
   - nader-dabit
-country: Larvik
-city: Oslo
+country: Norway
+city: Larvik
 ---
