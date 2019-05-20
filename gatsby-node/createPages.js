@@ -1,18 +1,4 @@
-const {
-  compose,
-  sort,
-  tail,
-  comparator,
-  split,
-  map,
-  keys,
-  invertObj,
-  forEach,
-  forEachObjIndexed,
-  filter,
-  curry,
-  fromPairs,
-} = require('ramda');
+const {forEach, forEachObjIndexed} = require('ramda');
 const {
   templatePaths,
   listTemplatePathByCategory,
@@ -101,12 +87,11 @@ module.exports = async ({graphql, actions: {createPage}}) => {
         const {fields} = node;
         const {slug} = fields;
 
-        category !== 'events' &&
-          createPage({
-            path: slug,
-            component: pageTemplatePathByCategory[category],
-            context: fields,
-          });
+        createPage({
+          path: slug,
+          component: pageTemplatePathByCategory[category],
+          context: fields,
+        });
       }, edges);
     },
     {contributors, events},

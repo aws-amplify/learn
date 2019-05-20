@@ -187,7 +187,9 @@ export default props => {
           const items = map(
             node => (
               <Template
-                {...mapNodeToProps(node)}
+                {...(key === 'upcomingEventsSection'
+                  ? mapNodeToProps(node, 'href')
+                  : mapNodeToProps(node))}
                 className={classNames(className, 'rounded')}
               />
             ),

@@ -155,6 +155,7 @@ export default asCard(
     description,
     limitDescriptionLength,
     href,
+    date,
   }) => {
     const [firstAuthor] = authors;
     const {to, name, twitter, github, avatar} = firstAuthor;
@@ -163,11 +164,13 @@ export default asCard(
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
     const clippedBio = useMemo(
       () =>
-        limitDescriptionLength && length(description) > 250
-          ? `${slice(0, 250, description)}...`
+        limitDescriptionLength && length(description) > 200
+          ? `${slice(0, 200, description)}...`
           : description,
       [description],
     );
+
+    console.log(date);
 
     return (
       <ConditionalAnchor
