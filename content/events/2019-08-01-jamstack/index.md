@@ -1,11 +1,10 @@
 ---
 title: JAMStack Meetup
-description: Whether you are a new startup looking to launch or an existing startup looking for ways to grow your business, you will learn something new at the AWS Startup Day.
+description: "'Building JAMstack Applications with Gatsby and AWS Amplify Framework'––In this presentation, Nader Dabit will show how to build custom JamStack APIs with GraphQL & serverless functions using Amplify & the Amplify CLI. We'll take a new Gatsby site, add a GraphQL backend, & then add serverless functions to dynamically fetch data. We'll also look at how to implement client-side authentication in a Gatsby site."
 href: https://www.meetup.com/JAMstack-nyc/
 avatar: ./avatar1.png
 attendantIds:
   - nader-dabit
-
 country: United States
 city: New York
 ---
