@@ -1,18 +1,4 @@
-const {
-  compose,
-  sort,
-  tail,
-  comparator,
-  split,
-  map,
-  keys,
-  invertObj,
-  forEach,
-  forEachObjIndexed,
-  filter,
-  curry,
-  fromPairs,
-} = require('ramda');
+const {forEach, forEachObjIndexed} = require('ramda');
 const {
   templatePaths,
   listTemplatePathByCategory,

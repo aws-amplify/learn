@@ -21,7 +21,8 @@ const {contributorExists} = require('./utilities');
 
 let errors = '';
 const addError = curry((path, heading, message) => {
-  errors += '\n' + `Validation error in ${path} –– ${heading}, ${message}`;
+  errors += `
+Validation error in ${path} –– ${heading}, ${message}`;
 });
 
 const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -121,11 +122,13 @@ const validate = path => {
         minLength: 1,
         maxLength: 200,
       },
-      {
-        field: 'description',
-        minLength: 1,
-        maxLength: 500,
-      },
+      ...[
+        category === 'posts' && {
+          field: 'description',
+          minLength: 1,
+          maxLength: 500,
+        },
+      ].filter(Boolean),
     ]);
 
     const contributorsKey = contributorsKeyByCategory[category];

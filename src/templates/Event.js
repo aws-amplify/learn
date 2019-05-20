@@ -79,13 +79,13 @@ const styles = css`
         }
 
         p {
-          margin-top: 0.25rem;
+          margin-top: 0.375rem;
           font-size: 1.125rem;
           line-height: 1.6875rem;
         }
 
         .button-container {
-          margin-top: 0.875rem;
+          margin-top: 0.9875rem;
           display: flex;
           flex: 1;
           flex-direction: row;
@@ -141,6 +141,7 @@ const styles = css`
               display: flex;
               flex-direction: column;
               margin-right: 1rem;
+              text-align: right;
 
               h5 {
                 font-size: 1rem;
