@@ -11,9 +11,11 @@ const track = curry((name, attributes) => {
   if (!configured) {
     awsmobile && Amplify.configure(awsmobile);
     configured = true;
+    console.log('configured analytics');
   }
 
   awsmobile && Analytics.record({name, attributes});
+  console.log('triggered analytics');
 });
 
 export const internalPageView = props =>

@@ -14,6 +14,7 @@ Interested in hosting an Amplify meetup, or speaking about Amplify at a conferen
    ---
    title: AWS Summit London
    href: https://aws.amazon.com/events/summits/london/
+   description: "Learn about AWS Amplify at the AWS Summit."
    avatar: ./avatar.png
    attendantIds:
      - nader-dabit
