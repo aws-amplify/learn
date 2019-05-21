@@ -12,7 +12,6 @@ const {
   tail,
   comparator,
   invertObj,
-  all,
 } = require('ramda');
 const {templatePaths} = require('./constants');
 

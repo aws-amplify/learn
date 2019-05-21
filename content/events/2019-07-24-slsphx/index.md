@@ -5,7 +5,6 @@ href: https://www.meetup.com/Serverless-Phoenix/
 avatar: ./avatar1.png
 attendantIds:
   - nader-dabit
-
 country: United States
 city: Phoenix
 ---

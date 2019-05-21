@@ -129,7 +129,7 @@ export default props => {
                   }}
                   noItems={<p>no items to display</p>}
                   data={group}
-                  mapping={mapNodeToProps}
+                  mapping={n => mapNodeToProps(n, 'href')}
                   keyExtractor={extract.keyFromNode}
                   renderItem={p => <Card.Event {...p} />}
                   renderCondition={meetsCriteria}
