@@ -4,13 +4,13 @@ import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
-  KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
 import {mapNodeToProps, extract, track, classNames} from '~/utilities';
 import {css} from '@emotion/core';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import {map} from 'ramda';
+import moment from 'moment';
 
 export const pageQuery = graphql`
   query(
@@ -25,8 +25,8 @@ export const pageQuery = graphql`
         year
         previous
         next
-        startDate(formatString: "MMM Do")
-        endDate(formatString: "MMM Do")
+        startDate
+        endDate
       }
     }
 
@@ -90,10 +90,18 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const {week, previous, next, startDate, endDate} = extract.fromPath(
-    ['data', 'context', 'context'],
-    props,
-  );
+  const {
+    week,
+    previous,
+    next,
+    startDate: stringifiedStartDate,
+    endDate: stringifiedEndDate,
+  } = extract.fromPath(['data', 'context', 'context'], props);
+
+  const [startDate, endDate] = map(e => moment(e).format('MMMM Do'), [
+    stringifiedStartDate,
+    stringifiedEndDate,
+  ]);
 
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
     'upcomingEvents',
