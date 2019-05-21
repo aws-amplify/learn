@@ -155,7 +155,6 @@ export default asCard(
     description,
     limitDescriptionLength,
     href,
-    date,
   }) => {
     const [firstAuthor] = authors;
     const {to, name, twitter, github, avatar} = firstAuthor;
@@ -169,8 +168,6 @@ export default asCard(
           : description,
       [description],
     );
-
-    console.log(date);
 
     return (
       <ConditionalAnchor
