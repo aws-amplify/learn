@@ -192,7 +192,7 @@ export default props => {
                   className='three-dee actionable rounded'
                   {...{href}}
                 >
-                  <Text span children='View event Page' />
+                  <Text span children='View event page' />
                 </Button.Basic>
               </div>
             )}
