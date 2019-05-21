@@ -11,13 +11,6 @@
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"function": {
-		"fetchfaviconsapi": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": []
-		}
-	},
+	"function": {},
 	"api": {}
 }
