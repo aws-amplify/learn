@@ -89,7 +89,6 @@ export default props => {
         {...mapNodeToProps(contributor)}
         disabled
         className='rounded'
-        wide
       />
 
       {!isEmpty(posts) && (
