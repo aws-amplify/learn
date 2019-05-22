@@ -1,5 +1,5 @@
 import {css} from '@emotion/core';
-import {useState, useCallback, useRef} from 'react';
+import {useState, useCallback, useRef, Suspense} from 'react';
 import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
@@ -124,51 +124,53 @@ export default ({header, menu, main}) => {
     <>
       <GlobalStyles />
       <div css={styles}>
-        <layoutContext.Provider value={{menuOpen, toggleMenu}}>
-          {header}
+        <Suspense>
+          <layoutContext.Provider value={{menuOpen, toggleMenu}}>
+            {header}
 
-          <div className='body'>
-            {showSidebar && (
+            <div className='body'>
+              {showSidebar && (
+                <>
+                  <div
+                    className={classNames(scrollableClassName, 'side menu')}
+                    style={{
+                      height: menuHeightStyleProp,
+                      top: menuOffset,
+                    }}
+                  >
+                    <div ref={menuRef}>{menu}</div>
+                  </div>
+                  <div
+                    className='ghost'
+                    style={{
+                      marginTop: '3.75rem',
+                      width: menuWidth,
+                      height: Math.min(initialMenuHeight, maxMenuHeight),
+                    }}
+                  />
+                </>
+              )}
+              <div className='main'>
+                <div ref={mainRef}>{main}</div>
+              </div>
+            </div>
+
+            <Footer />
+
+            {!showSidebar && (
               <>
-                <div
-                  className={classNames(scrollableClassName, 'side menu')}
-                  style={{
-                    height: menuHeightStyleProp,
-                    top: menuOffset,
-                  }}
-                >
-                  <div ref={menuRef}>{menu}</div>
-                </div>
-                <div
-                  className='ghost'
-                  style={{
-                    marginTop: '3.75rem',
-                    width: menuWidth,
-                    height: Math.min(initialMenuHeight, maxMenuHeight),
-                  }}
-                />
+                {menuOpen && (
+                  <div
+                    css={megaMenuStyles}
+                    className={`mega menu ${menuOpen ? 'open' : 'closed'}`}
+                    children={menu}
+                  />
+                )}
+                <ToggleMenu />
               </>
             )}
-            <div className='main'>
-              <div ref={mainRef}>{main}</div>
-            </div>
-          </div>
-
-          <Footer />
-
-          {!showSidebar && (
-            <>
-              {menuOpen && (
-                <div
-                  css={megaMenuStyles}
-                  className={`mega menu ${menuOpen ? 'open' : 'closed'}`}
-                  children={menu}
-                />
-              )}
-              <ToggleMenu />
-            </>
-          )}
-        </layoutContext.Provider>
+          </layoutContext.Provider>
+        </Suspense>
       </div>
     </>
   );
