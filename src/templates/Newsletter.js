@@ -108,7 +108,7 @@ export default props => {
     'latestPosts',
   ]);
 
-  latestPostNodes.forEach(({node}) => console.log(node.fields.date));
+  // latestPostNodes.forEach(({node}) => console.log(node.fields.date));
 
   const sections = [
     {
