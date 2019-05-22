@@ -88,7 +88,7 @@ export default props => {
   const sorted = sort((a, b) => b[0] - a[0], toPairs(partitionedByYear));
 
   const main = map(([year, slugs]) => {
-    console.log(year, slugs);
+    // console.log(year, slugs);
     return (
       <MappedList
         key={year}
