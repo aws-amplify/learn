@@ -34,7 +34,7 @@ const styles = css`
     flex-direction: column;
     justify-content: center;
     margin-bottom: 0.5rem;
-    background: linear-gradient(to right, rgb(240, 240, 255), #fff);
+    background: linear-gradient(to right, rgb(240, 240, 240), #fff);
 
     ${mq.desktop} {
       margin-bottom: 0;
@@ -63,7 +63,7 @@ const styles = css`
     flex: 2;
     flex-direction: column;
     padding: 2rem 1.6875rem;
-    background-color: rgb(245, 245, 250);
+    background-color: rgb(253, 253, 253);
     border-radius: 4px;
 
     .favicon {
