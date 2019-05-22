@@ -1,6 +1,5 @@
 import {css} from '@emotion/core';
 import Img from 'gatsby-image';
-import {useState, useEffect} from 'react';
 import Text from '../../Text';
 import {SAN_JUAN_COLOR, GRAY_COLOR, mq} from '~/constants';
 import {classNames} from '~/utilities';
@@ -115,20 +114,18 @@ export default asCard(
     description,
     href,
   }) => {
-    const [dominantColor, setDominantColor] = useState(false);
     const [firstAuthor] = authors;
     const {to, name, twitter, github, avatar} = firstAuthor;
     const handle = twitter || github;
     const encodedHref = encodeURI(href);
     // do this at build time!
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
-    const src = banner && banner.fluid && banner.fluid.src;
 
     return (
       <ConditionalAnchor css={styles} className={classNames(className, 'post')}>
         {banner && (
           <div className='banner'>
-            <Img style={{backgroundColor: dominantColor}} {...banner} />
+            <Img {...banner} />
           </div>
         )}
 

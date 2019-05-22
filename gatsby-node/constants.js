@@ -1,7 +1,7 @@
 const {map} = require('ramda');
 const {join, resolve} = require('path');
 
-const lifeCycleStages = ['createPages', 'onCreateNode'];
+const lifeCycleStages = ['onCreateNode', 'createPages'];
 
 const relativeToCurrentDir = path => resolve(join(__dirname, path));
 const relativeToSrcDir = path => relativeToCurrentDir(join('../src', path));
