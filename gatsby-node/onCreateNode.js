@@ -32,8 +32,7 @@ module.exports = ({node, getNode, actions: {createNodeField}}) => {
       }
 
       case 'posts':
-      case 'events':
-      case 'newsletters': {
+      case 'events': {
         const pieces = splitAtDelimiters(relativePath);
         const piecesWithoutLast = pieces.slice(0, pieces.length - 1);
         const [year, month, day, ...titlePieces] = piecesWithoutLast;
@@ -42,6 +41,12 @@ module.exports = ({node, getNode, actions: {createNodeField}}) => {
         const slug = join(sourceInstanceName, datePath, titlePath);
         const date = new Date(year, month - 1, day).toJSON();
         addFields({date, slug});
+        break;
+      }
+
+      case 'newsletter-injections': {
+        const [year, week] = splitAtDelimiters(relativePath);
+        addFields({injectInto: ['newsletters', year, week].join('/')});
         break;
       }
 

@@ -1,17 +1,19 @@
 import Amplify, {Analytics} from 'aws-amplify';
-import awsmobile from '~/aws-exports';
 import {curry} from 'ramda';
+import credentials from '../credentials';
 
 // wiped on page refresh / non-pwa redirects
 let configured = false;
 
 const track = curry((name, attributes) => {
   if (!configured) {
-    Amplify.configure(awsmobile);
+    credentials && Amplify.configure(credentials);
     configured = true;
+    // console.log('configured analytics');
   }
 
-  Analytics.record({name, attributes});
+  credentials && Analytics.record({name, attributes});
+  // console.log('triggered analytics');
 });
 
 export const internalPageView = props =>

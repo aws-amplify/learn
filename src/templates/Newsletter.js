@@ -4,20 +4,20 @@ import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
-  KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract, track, classNames} from '~/utilities';
 import {css} from '@emotion/core';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import {map} from 'ramda';
+import moment from 'moment';
 
 export const pageQuery = graphql`
   query(
     $current: String!
-    $events: [Date!]!
-    $posts: [Date!]!
-    $newsletters: [Date!]!
+    $events: [String!]!
+    $posts: [String!]!
+    $newsletterInjections: [String!]!
   ) {
     context: sitePage(path: {eq: $current}) {
       context {
@@ -25,15 +25,14 @@ export const pageQuery = graphql`
         year
         previous
         next
-        dateRange {
-          startDate(formatString: "MMM Do")
-          endDate(formatString: "MMM Do")
-        }
+        startDate
+        endDate
       }
     }
 
     upcomingEvents: allMarkdownRemark(
-      filter: {fields: {category: {eq: "events"}, date: {in: $events}}}
+      filter: {id: {in: $events}}
+      sort: {fields: [fields___date], order: ASC}
     ) {
       edges {
         node {
@@ -48,7 +47,8 @@ export const pageQuery = graphql`
     }
 
     latestPosts: allMarkdownRemark(
-      filter: {fields: {category: {eq: "posts"}, date: {in: $posts}}}
+      filter: {id: {in: $posts}}
+      sort: {fields: [fields___date], order: ASC}
     ) {
       edges {
         node {
@@ -66,11 +66,7 @@ export const pageQuery = graphql`
       }
     }
 
-    newsletters: allMarkdownRemark(
-      filter: {
-        fields: {category: {eq: "newsletters"}, date: {in: $newsletters}}
-      }
-    ) {
+    newsletters: allMarkdownRemark(filter: {id: {in: $newsletterInjections}}) {
       edges {
         node {
           id
@@ -96,16 +92,23 @@ export default props => {
 
   const {
     week,
-    year,
     previous,
     next,
-    dateRange: {startDate, endDate},
+    startDate: stringifiedStartDate,
+    endDate: stringifiedEndDate,
   } = extract.fromPath(['data', 'context', 'context'], props);
+
+  const [startDate, endDate] = map(e => moment(e).format('MMMM Do'), [
+    stringifiedStartDate,
+    stringifiedEndDate,
+  ]);
 
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
     'upcomingEvents',
     'latestPosts',
   ]);
+
+  // latestPostNodes.forEach(({node}) => console.log(node.fields.date));
 
   const sections = [
     {
@@ -135,12 +138,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      cardContainerStyles: css`
-        background-color: ${KASHMIR_BLUE_COLOR};
-        * {
-          color: #fff;
-        }
-      `,
+      itemContainerClassName: 'on-newsletter-page',
     },
   ];
 
@@ -151,27 +149,34 @@ export default props => {
       css={css`
         display: flex;
         flex-direction: column;
-        padding: 16px 16px 0px 16px;
+        padding: 1rem 1rem 0 1rem;
 
-        .page-subheading {
-          padding-top: 14px;
-          padding-bottom: 22px;
+        > h2 {
+          font-size: 2rem;
+          line-height: 3.375rem;
+          font-weight: 400;
         }
 
-        .paragraph-large {
-          padding-bottom: 4px;
+        > h4 {
+          font-size: 1.25rem;
+          line-height: 1.875rem;
+          font-weight: 300;
+          padding-top: 0.875rem;
+          padding-bottom: 1.375rem;
+        }
+
+        > p {
+          font-size: 1.125rem;
+          font-weight: 1.6875rem;
+          font-weight: 200;
+          padding-bottom: 0.25rem;
         }
       `}
     >
-      <Text h2 className='page-heading' children={`Week ${week}`} />
-      <Text
-        h4
-        className='page-subheading'
-        children={`${startDate} to ${endDate}`}
-      />
+      <Text h2 children={`Week ${week}`} />
+      <Text h4 children={`${startDate} to ${endDate}`} />
       <Text
         p
-        className='paragraph-large'
         children={`Welcome to Week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
       />
     </div>,
@@ -183,16 +188,17 @@ export default props => {
         nodes,
         Template,
         more,
-        cardContainerStyles,
+        itemContainerClassName: className,
         ...rest
       }) => {
         if (nodes.length) {
           const items = map(
             node => (
               <Template
-                containerStyles={cardContainerStyles}
-                {...mapNodeToProps(node)}
-                className='rounded'
+                {...(key === 'upcomingEventsSection'
+                  ? mapNodeToProps(node, 'href')
+                  : mapNodeToProps(node))}
+                className={classNames(className, 'rounded')}
               />
             ),
             nodes,
@@ -219,18 +225,20 @@ export default props => {
         align-items: center;
         text-align: center;
         justify-content: center;
-        padding: 16px 16px 0px 16px;
+        padding: 1rem 1rem 0 1rem;
 
         > .button {
           background-color: #fff;
-          margin: 8px;
+          margin: 0.5rem;
+          font-size: 1rem;
+          font-weight: 200;
+          line-height: 1.5rem;
         }
       `}
     >
       {previous && (
         <Button.Basic
           className='three-dee actionable rounded'
-          newsletterNextPrevious
           size='medium'
           to={previous}
         >
@@ -240,7 +248,6 @@ export default props => {
 
       <Button.Basic
         className='three-dee actionable rounded'
-        newsletterNextPrevious
         size='medium'
         to='/newsletters'
       >
@@ -250,7 +257,6 @@ export default props => {
       {next && (
         <Button.Basic
           className='three-dee actionable rounded'
-          newsletterNextPrevious
           size='medium'
           to={next}
         >

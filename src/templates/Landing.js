@@ -147,7 +147,7 @@ export default props => {
     {
       heading: 'Upcoming Events',
       cta: {
-        children: 'Host an Event',
+        children: 'Add an Event',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
       },
@@ -190,10 +190,9 @@ export default props => {
     {
       heading: 'Featured Contributors',
       cta: {
-        children: 'Join The Community',
+        children: 'Become a Contributor',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
-        hidePlus: true,
       },
       nodes: featuredContributorNodesByScreen,
       Template: Card.Contributor,
@@ -201,7 +200,7 @@ export default props => {
         Template: Card.ViewAll.PostsOrContributors,
         graphic: <IoMdPeople size={60} />,
         heading: 'All Contributors',
-        subheading: `See all ${contributorsCount} members of our community`,
+        subheading: `See all ${contributorsCount} contributors`,
         to: '/contributors',
       },
       columnCountByBreakpoint: {
@@ -232,7 +231,9 @@ export default props => {
           node => (
             <Template
               {...(className ? {className} : {})}
-              {...mapNodeToProps(node)}
+              {...(heading === 'Upcoming Events'
+                ? mapNodeToProps(node, 'href')
+                : mapNodeToProps(node))}
               {...additionalProps || {}}
             />
           ),

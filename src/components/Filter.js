@@ -1,17 +1,17 @@
 import {useContext, useCallback} from 'react';
 import {filter as filterContext} from '~/contexts';
 import {css} from '@emotion/core';
-import {mq} from '~/constants';
+import {mq, GRAY_COLOR} from '~/constants';
 import {curry} from 'ramda';
 import MultiSelect from './MultiSelect';
 import DateRange from './DateRange';
 import CheckboxGroup from './CheckboxGroup';
 
 const styles = css`
-  padding: 16px;
+  padding: 1rem;
 
   ${mq.tablet} {
-    padding-right: 0px;
+    padding-right: 0;
   }
 
   > div {
@@ -27,6 +27,14 @@ const styles = css`
     &:first-child {
       border-top-width: 0px;
     }
+  }
+
+  .filter-heading {
+    margin-bottom: 0.5rem;
+    color: ${GRAY_COLOR};
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6875rem;
   }
 `;
 

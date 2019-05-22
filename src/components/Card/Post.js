@@ -12,10 +12,23 @@ const styles = css`
   flex-direction: column;
   justify-content: space-between;
 
-  &.on-landing-page {
+  &.on-landing-page,
+  &.on-newsletter-page {
     background-color: ${KASHMIR_BLUE_COLOR};
     * {
       color: #fff;
+    }
+  }
+
+  &.on-posts-page,
+  &.on-contributor-page {
+    h3 {
+      color: ${SAN_JUAN_COLOR};
+    }
+
+    p {
+      color: ${GRAY_COLOR};
+      font-weight: 300;
     }
   }
 
@@ -30,28 +43,19 @@ const styles = css`
 
     &.on-posts-page,
     &.on-contributor-page {
-      .post-card-title {
-        font-size: 20px;
-        line-height: 30px;
+      > .body {
+        h3 {
+          font-size: 1.25rem;
+          line-height: 1.875rem;
+        }
+
+        p {
+          margin-top: 0.625rem;
+          font-size: 0.875rem;
+          line-height: 1.3125rem;
+          font-weight: 300;
+        }
       }
-
-      .post-card-description {
-        margin-top: 10px;
-        font-size: 14px;
-        line-height: 21px;
-      }
-    }
-  }
-
-  &.on-posts-page,
-  &.on-contributor-page {
-    .post-card-title {
-      color: ${SAN_JUAN_COLOR};
-    }
-
-    .post-card-description {
-      color: ${GRAY_COLOR};
-      font-weight: 300;
     }
   }
 
@@ -68,10 +72,6 @@ const styles = css`
     flex-direction: column;
     justify-content: space-between;
 
-    ${mq.tablet} {
-      flex: 1;
-    }
-
     ${mq.desktop} {
       flex: 2;
     }
@@ -82,8 +82,8 @@ const styles = css`
 
     .favicon {
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 0.5rem;
+      left: 0.5rem;
       opacity: 0.5;
       transition: 0.275s ease all;
     }
@@ -93,11 +93,32 @@ const styles = css`
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 32px 27px 16px;
+      padding: 2rem 1.6875rem 1rem;
     }
 
-    .post-card-description {
-      margin-top: 20px;
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.875rem;
+    }
+
+    p {
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 200;
+      line-height: 1.21875rem;
+    }
+
+    h5 {
+      font-size: 0.8125rem;
+      line-height: 1.21875rem;
+      font-weight: 300;
+    }
+
+    h6 {
+      font-size: 0.8125rem;
+      line-height: 1.21875rem;
+      font-weight: 200;
     }
 
     .author {
@@ -105,20 +126,20 @@ const styles = css`
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
-      padding: 0px 27px 24px;
+      padding: 0 1.6875rem 1.5rem;
 
       > .avatar > * {
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #fff;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
       }
 
-      > .text {
+      > .text-container {
         display: flex;
         flex-direction: column;
         text-align: right;
-        padding-right: 8px;
+        padding-right: 0.5rem;
       }
     }
   }
@@ -142,8 +163,8 @@ export default asCard(
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
     const clippedBio = useMemo(
       () =>
-        limitDescriptionLength && length(description) > 250
-          ? `${slice(0, 250, description)}...`
+        limitDescriptionLength && length(description) > 200
+          ? `${slice(0, 200, description)}...`
           : description,
       [description],
     );
@@ -166,14 +187,14 @@ export default asCard(
                 <img src={faviconSrc} alt='content platform' />
               </div>
             )}
-            <Text h3 className='post-card-title' children={title} />
-            <Text p className='post-card-description' children={clippedBio} />
+            <Text h3 children={title} />
+            <Text p children={clippedBio} />
           </div>
 
           <Link {...{to}} className='author'>
-            <div className='text'>
-              <Text h5 className='post-card-name' children={name} />
-              <Text h6 className='post-card-handle'>{`@${handle}`}</Text>
+            <div className='text-container'>
+              <Text h5 children={name} />
+              <Text h6 children={`@${handle}`} />
             </div>
 
             {avatar && (

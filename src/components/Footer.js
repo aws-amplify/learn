@@ -11,7 +11,7 @@ import {
 import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
-import {map} from 'ramda';
+import {map, join} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
 
@@ -20,14 +20,14 @@ const styles = css`
   flex-direction: column;
   flex: 1;
   background-color: #fff;
-  margin-top: 49px;
+  margin-top: 3.25rem;
 
   > div {
     display: flex;
     flex: 1;
     width: 100%;
     max-width: ${MAX_WIDTH};
-    margin: 0px auto;
+    margin: 0 auto;
 
     > a {
       display: flex;
@@ -36,7 +36,7 @@ const styles = css`
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 28px 16px;
+      padding: 1.75rem 1rem;
 
       &:hover {
         background: linear-gradient(
@@ -51,6 +51,12 @@ const styles = css`
         display: inline;
       }
 
+      .text {
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+        font-weight: 400;
+      }
+
       .primary,
       svg {
         color: ${ORANGE_PEEL_COLOR};
@@ -58,7 +64,7 @@ const styles = css`
 
       svg,
       img {
-        margin: 0px 10px;
+        margin: 0 0.625rem;
         display: none;
 
         ${mq.tablet} {
@@ -79,14 +85,14 @@ const styles = css`
       direction: row;
 
       img {
-        height: 28px;
+        height: 1.75rem;
       }
     }
 
     &.lower {
       flex-direction: column-reverse;
       align-items: center;
-      padding: 64px 48px;
+      padding: 4rem 3rem;
 
       ${mq.tablet} {
         flex-direction: row;
@@ -106,14 +112,17 @@ const styles = css`
         }
 
         > img {
-          width: 75px;
-          margin: 16px 0px;
+          width: 4.6875rem;
+          margin: 1rem 0;
         }
 
         .text {
-          max-width: 360px;
+          max-width: 22.5rem;
           color: ${GRAY_COLOR};
-          margin: 16px 0px;
+          margin: 1rem 0;
+          font-size: 0.75rem;
+          line-height: 1.3125rem;
+          font-weight: 200;
         }
       }
 
@@ -121,16 +130,17 @@ const styles = css`
         display: flex;
         flex: 1;
         flex-direction: row;
-        padding: 8px 0px;
+        padding: 0.5rem 0;
 
         ${mq.tablet} {
           justify-content: flex-end;
         }
 
         > * {
-          margin: 0px 12px;
+          margin: 0 1rem;
+
           ${mq.tablet} {
-            margin: 0px 0px 0px 24px;
+            margin: 0 0 0 2rem;
           }
         }
       }
@@ -140,9 +150,9 @@ const styles = css`
   > hr {
     display: block;
     width: 100%;
-    height: 1px;
-    margin: 0px;
-    border-width: 0px;
+    height: 0.0625rem;
+    margin: 0;
+    border-width: 0;
     background-color: #eee;
   }
 `;
@@ -157,23 +167,20 @@ export default () => {
       }
     }
   `);
-
   const {latestSlug} = sitePage.context;
 
-  // !window.location.href.includes('newsletters')
   return (
     <footer css={styles}>
       <div className='upper'>
         <Link to={latestSlug}>
           <img src={bugleGraphicSrc} alt='bugle' />
           <span>
-            <Text h4 className='footer-newsletter-cta secondary'>
-              The latest newsletter is out!
-            </Text>
-            <Text h4 className='footer-newsletter-cta primary'>
-              {' '}
-              Read the latest
-            </Text>
+            <Text
+              h4
+              className='secondary'
+              children=' The latest newsletter is out!'
+            />
+            <Text h4 className='primary' children=' Read the latest' />
           </span>
           <FaArrowCircleRight size={22} />
         </Link>
@@ -183,7 +190,7 @@ export default () => {
 
       <div className='lower'>
         <div className='copyright'>
-          <Text className='footer-copyright'>
+          <Text>
             {`The Amplify Community is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
           </Text>
           <img src={awsLogoSrc} alt='aws' />

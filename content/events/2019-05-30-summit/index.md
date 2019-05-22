@@ -4,6 +4,6 @@ href: https://aws.amazon.com/events/summits/chicago/
 avatar: ./avatar.png
 attendantIds:
   - nader-dabit
-country: England
-city: London
+country: United States
+city: Chicago
 ---

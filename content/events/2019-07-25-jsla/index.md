@@ -1,11 +1,10 @@
 ---
 title: JS.LA Meetup
-description: Whether you are a new startup looking to launch or an existing startup looking for ways to grow your business, you will learn something new at the AWS Startup Day.
+description: 'Nader Dabit will be presenting at the JS.LA meetup showing how to build serverless applications using AWS Amplify & GraphQL.'
 href: https://js.la/
 avatar: ./avatar.png
 attendantIds:
   - nader-dabit
-
 country: United States
 city: Los Angeles
 ---
