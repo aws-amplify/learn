@@ -33,6 +33,7 @@ import {
   isEmpty,
   includes,
 } from 'ramda';
+import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   query($currentDate: Date!) {
@@ -60,7 +61,7 @@ const CITY_PATH = ['node', 'frontmatter', 'city'];
 const DATE_PATH = ['node', 'fields', 'date'];
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
   const value = createFilterContextValue(
     {
@@ -127,13 +128,14 @@ export default props => {
                     [LAPTOP_BREAKPOINT]: 2,
                     [DESKTOP_BREAKPOINT]: 3,
                   }}
-                  noItems={<p>no items to display</p>}
                   data={group}
                   mapping={n => mapNodeToProps(n, 'href')}
                   keyExtractor={extract.keyFromNode}
                   renderItem={p => <Card.Event {...p} />}
                   renderCondition={meetsCriteria}
-                  additionalProps={{className: 'on-events-page'}}
+                  additionalItemProps={{
+                    className: 'three-dee actionable rounded',
+                  }}
                 />
               )
             );

@@ -1,6 +1,7 @@
 import {css} from '@emotion/core';
 import {mq, MAX_WIDTH} from '~/constants';
 import {ToastContainer} from 'react-toastify';
+import {Suspense} from 'react';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
 
@@ -52,12 +53,14 @@ export default ({header, main}) => (
   <>
     <GlobalStyles />
     <div css={style}>
-      {header}
-      <div className='body'>
-        <div>
-          <div className='main'>{main}</div>
+      <Suspense>
+        {header}
+        <div className='body'>
+          <div>
+            <div className='main'>{main}</div>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </div>
     <Footer />
     <ToastContainer />

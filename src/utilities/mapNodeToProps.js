@@ -1,5 +1,6 @@
 import {map, filter, complement, F, toPairs, fromPairs} from 'ramda';
 
+// edit exclusionkey to be prop of options param
 const mapNodeToProps = (data, exclusionKey) => {
   const root = data.node || data;
 
