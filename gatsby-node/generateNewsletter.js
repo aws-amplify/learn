@@ -65,6 +65,13 @@ const getComparableValuesFromSlug = map(
   ),
 );
 
+const getLastMonday = () => {
+  const d = new Date();
+  const day = d.getDay();
+  day > 0 && d.setDate(d.getDate() - day + 1);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+};
+
 module.exports = (createPage, {events, posts, newsletterInjections}) => {
   const contentBySlug = {};
 
@@ -74,12 +81,7 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
     contentBySlug[slug][category][id] = true;
   });
 
-  const lastMonday = (() => {
-    const d = new Date();
-    const day = d.getDay();
-    day > 0 && d.setDate(d.getDate() - day + 1);
-    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  })();
+  const lastMonday = getLastMonday();
 
   const shouldPlace = inQuestion => inQuestion < lastMonday;
 

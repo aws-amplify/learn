@@ -7,11 +7,15 @@ const styles = css`
   display: flex;
   flex-direction: row;
 
-  > .avatar > * {
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
+  > .avatar {
+    display: flex;
+
+    > * {
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.25);
+    }
   }
 
   > .text-container {
