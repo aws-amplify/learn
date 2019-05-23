@@ -38,7 +38,7 @@ build
 public
 dist
 
-#amplify
+#amplify/aws
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/backend/amplify-meta.json
