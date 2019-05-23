@@ -16,6 +16,6 @@ const track = curry((name, attributes) => {
   // console.log('triggered analytics');
 });
 
-export const internalPageView = props =>
-  track('internal page view', {href: props.location.href});
+export const internalPageView = ({location: {href}}) =>
+  track('internal page view', {href});
 export const externalPageView = href => track('external page view', {href});

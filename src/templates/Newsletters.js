@@ -1,4 +1,4 @@
-import {graphql} from 'gatsby';
+import {useEffect, useMemo, useCallback} from 'react';
 import {
   MappedList,
   Layout,
@@ -10,22 +10,9 @@ import {
   Text,
 } from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {
-  identity,
-  split,
-  fromPairs,
-  map,
-  reduce,
-  tail,
-  mapObjIndexed,
-  values,
-  toPairs,
-  sort,
-  prop,
-} from 'ramda';
+import {identity, split, map, reduce, tail, toPairs, sort, last} from 'ramda';
 import {track, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
-import {useMemo} from 'react';
 import moment from 'moment';
 
 const navProps = {
@@ -44,48 +31,53 @@ const heroProps = {
   cta: <Subscribe />,
 };
 
-const nextMonday = new Date();
-// newDate.setDate(newDate.getDate() + 7 * numWeeks);
-nextMonday.setDate(
-  nextMonday.getDate() - 7 + ((1 + 7 - nextMonday.getDay()) % 7),
-);
-
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
+  // no need to memoize this––checking dependency is more expensive than re-assignment
   const {sortedSlugs, dateRangeBySlug} = extract.fromPath(
     ['pageContext'],
     props,
   );
 
-  const partitionedByYear = reduce(
-    (accumulator, current) => {
-      const [year] = tail(split('/', current));
+  const partitionedByYear = useMemo(
+    () =>
+      reduce(
+        (accumulator, current) => {
+          const [year] = tail(split('/', current));
+          return {
+            ...accumulator,
+            [year]: [...(accumulator[year] || []), current],
+          };
+        },
+        {},
+        sortedSlugs,
+      ),
+    [sortedSlugs],
+  );
+
+  const formattedDateRangeBySlug = useMemo(
+    () => map(e => map(d => moment(d).format('MMMM Do'), e), dateRangeBySlug),
+    [dateRangeBySlug],
+  );
+
+  const extractProps = useCallback(
+    slug => {
+      const week = last(split('/', slug));
+      const {startDate, endDate} = formattedDateRangeBySlug[slug];
       return {
-        ...accumulator,
-        [year]: [...(accumulator[year] || []), current],
+        to: slug,
+        heading: `Week ${week}`,
+        subheading: `${startDate} to ${endDate}`,
       };
     },
-    {},
-    sortedSlugs,
+    [formattedDateRangeBySlug],
   );
 
-  const formattedDateRangeBySlug = map(
-    e => map(d => moment(d).format('MMMM Do'), e),
-    dateRangeBySlug,
+  const sorted = useMemo(
+    () => sort((a, b) => b[0] - a[0], toPairs(partitionedByYear)),
+    [partitionedByYear],
   );
-
-  const extractProps = slug => {
-    const [x, year, week] = split('/', slug);
-    const {startDate, endDate} = formattedDateRangeBySlug[slug];
-    return {
-      to: slug,
-      heading: `Week ${week}`,
-      subheading: `${startDate} to ${endDate}`,
-    };
-  };
-
-  const sorted = sort((a, b) => b[0] - a[0], toPairs(partitionedByYear));
 
   const main = map(([year, slugs]) => {
     // console.log(year, slugs);
@@ -100,7 +92,7 @@ export default props => {
         mapping={extractProps}
         keyExtractor={identity}
         renderItem={p => <Card.Newsletter {...p} />}
-        additionalProps={{className: 'on-newsletters-page'}}
+        additionalItemProps={{className: 'three-dee rounded actionable'}}
       />
     );
   }, sorted);
