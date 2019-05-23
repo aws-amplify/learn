@@ -69,7 +69,7 @@ const styles = css`
     .favicon {
       position: absolute;
       top: 0.5rem;
-      left: 0.5rem;
+      right: 0.5rem;
     }
 
     h3,

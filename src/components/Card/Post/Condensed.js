@@ -28,7 +28,7 @@ const styles = css`
     .favicon {
       position: absolute;
       top: 0.5rem;
-      left: 0.5rem;
+      right: 0.5rem;
       opacity: 0.5;
       transition: 0.275s ease all;
     }
