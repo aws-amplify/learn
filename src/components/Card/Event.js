@@ -60,7 +60,7 @@ export default asCard(
     return (
       <ConditionalAnchor
         css={styles}
-        className={classNames(className, 'event three-dee actionable rounded')}
+        className={classNames(className, 'event')}
       >
         {avatar && (
           <div className='avatar'>

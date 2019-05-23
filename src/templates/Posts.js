@@ -18,6 +18,7 @@ import {
   Meta,
 } from '~/components';
 import {all, includes, isEmpty, any} from 'ramda';
+import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   {
@@ -58,7 +59,7 @@ const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
 
@@ -84,24 +85,32 @@ export default props => {
 
   const main = (
     <filterContext.Consumer>
-      {({meetsCriteria}) => (
-        <MappedList
-          heading={<Text h2 className='list-heading' children='Latest Posts' />}
-          cta={(
-            <Button.Contribute
-              href='https://github.com/aws-amplify/community/tree/master/content/posts/README.md'
-              children='Add a Post'
-            />
-)}
-          noItems={<p>no items to display</p>}
-          data={edges}
-          mapping={mapNodeToProps}
-          keyExtractor={extract.keyFromNode}
-          renderCondition={meetsCriteria}
-          renderItem={p => <Card.Post {...p} />}
-          additionalProps={{className: 'on-posts-page right-rounded'}}
-        />
-      )}
+      {({meetsCriteria}) => {
+        const heading = (
+          <Text h2 className='list-heading' children='Latest Posts' />
+        );
+
+        const cta = (
+          <Button.Contribute
+            href='https://github.com/aws-amplify/community/tree/master/content/posts/README.md'
+            children='Add a Post'
+          />
+        );
+
+        return (
+          <MappedList
+            {...{heading, cta}}
+            data={edges}
+            mapping={mapNodeToProps}
+            keyExtractor={extract.keyFromNode}
+            renderCondition={meetsCriteria}
+            renderItem={p => <Card.Post.Expanded {...p} />}
+            additionalItemProps={{
+              className: 'three-dee actionable right-rounded',
+            }}
+          />
+        );
+      }}
     </filterContext.Consumer>
   );
 

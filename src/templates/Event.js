@@ -10,6 +10,7 @@ import {
   mq,
 } from '~/constants';
 import {join, isEmpty, complement, map} from 'ramda';
+import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -163,7 +164,7 @@ const styles = css`
 `;
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
   const {html, fields, frontmatter} = extract.fromPath(
     ['data', 'markdownRemark'],
