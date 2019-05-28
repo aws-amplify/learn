@@ -41,7 +41,7 @@ const baseStyles = css`
 
     > .internal,
     > .external {
-      margin: 0 2rem;
+      margin: 0 2rem 0 0;
 
       a {
         display: flex;
@@ -64,7 +64,7 @@ const baseStyles = css`
     }
 
     > .branding {
-      padding: 1rem;
+      padding: 1rem 0 1rem 1rem;
       font-size: 1.25rem;
 
       .text {
