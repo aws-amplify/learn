@@ -13,6 +13,28 @@ const styles = css`
   flex-direction: column;
   align-items: center;
 
+  &.wide {
+    flex-direction: row;
+
+    > .body {
+    }
+
+    > .social {
+      display: flex;
+      align-self: stretch;
+      flex-direction: column;
+      width: initial;
+      border-top-width: 0px;
+      border-left: 1px solid #eee;
+
+      > a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+
   > .body {
     display: flex;
     flex: 1;
@@ -96,6 +118,7 @@ export default asCard(
     github,
     twitter,
     website,
+    wide,
   }) => {
     const social = {github, twitter, website};
     const deps = values(social);
@@ -125,7 +148,7 @@ export default asCard(
     return (
       <div
         css={styles}
-        className={classNames('contributor three-dee rounded', className)}
+        className={classNames('contributor', className, wide && 'wide')}
       >
         <ConditionalAnchor className='body'>
           {avatar && (

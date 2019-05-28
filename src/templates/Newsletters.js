@@ -1,4 +1,4 @@
-import {graphql} from 'gatsby';
+import {useEffect, useMemo, useCallback} from 'react';
 import {
   MappedList,
   Layout,
@@ -7,27 +7,13 @@ import {
   Hero,
   Subscribe,
   Meta,
+  Text,
 } from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {identity, split, fromPairs, map} from 'ramda';
+import {identity, split, map, reduce, tail, toPairs, sort, last} from 'ramda';
 import {track, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
-import {useMemo} from 'react';
-
-export const pageQuery = graphql`
-  {
-    sitePage(path: {eq: "/newsletters"}) {
-      context {
-        sortedSlugs
-        dateRanges {
-          slug
-          startDate(formatString: "MMM Do")
-          endDate(formatString: "MMM Do")
-        }
-      }
-    }
-  }
-`;
+import moment from 'moment';
 
 const navProps = {
   beforeScroll: {
@@ -46,42 +32,70 @@ const heroProps = {
 };
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
-  const {sortedSlugs, dateRanges} = extract.fromPath(
-    ['data', 'sitePage', 'context'],
+  // no need to memoize this––checking dependency is more expensive than re-assignment
+  const {sortedSlugs, dateRangeBySlug} = extract.fromPath(
+    ['pageContext'],
     props,
   );
 
-  const dateRangeBySlug = useMemo(
-    () => fromPairs(map(({slug, ...dates}) => [slug, dates], dateRanges)),
-    [],
+  const partitionedByYear = useMemo(
+    () =>
+      reduce(
+        (accumulator, current) => {
+          const [year] = tail(split('/', current));
+          return {
+            ...accumulator,
+            [year]: [...(accumulator[year] || []), current],
+          };
+        },
+        {},
+        sortedSlugs,
+      ),
+    [sortedSlugs],
   );
 
-  const extractProps = slug => {
-    // eslint-disable-next-line
-    const [x, year, week] = split('/', slug);
-    const {startDate, endDate} = dateRangeBySlug[slug];
-    return {
-      to: slug,
-      heading: `Week ${week}`,
-      subheading: `${startDate} to ${endDate}`,
-    };
-  };
-
-  const main = (
-    <MappedList
-      columnCountByBreakpoint={{
-        [TABLET_BREAKPOINT]: 3,
-      }}
-      noItems={<p>no items to display</p>}
-      data={sortedSlugs}
-      mapping={extractProps}
-      keyExtractor={identity}
-      renderItem={p => <Card.Newsletter {...p} />}
-      additionalProps={{className: 'on-newsletters-page'}}
-    />
+  const formattedDateRangeBySlug = useMemo(
+    () => map(e => map(d => moment(d).format('MMMM Do'), e), dateRangeBySlug),
+    [dateRangeBySlug],
   );
+
+  const extractProps = useCallback(
+    slug => {
+      const week = last(split('/', slug));
+      const {startDate, endDate} = formattedDateRangeBySlug[slug];
+      return {
+        to: slug,
+        heading: `Week ${week}`,
+        subheading: `${startDate} to ${endDate}`,
+      };
+    },
+    [formattedDateRangeBySlug],
+  );
+
+  const sorted = useMemo(
+    () => sort((a, b) => b[0] - a[0], toPairs(partitionedByYear)),
+    [partitionedByYear],
+  );
+
+  const main = map(([year, slugs]) => {
+    // console.log(year, slugs);
+    return (
+      <MappedList
+        key={year}
+        heading={<Text h2 className='list-heading' children={year} />}
+        columnCountByBreakpoint={{
+          [TABLET_BREAKPOINT]: 3,
+        }}
+        data={slugs}
+        mapping={extractProps}
+        keyExtractor={identity}
+        renderItem={p => <Card.Newsletter {...p} />}
+        additionalItemProps={{className: 'three-dee rounded actionable'}}
+      />
+    );
+  }, sorted);
 
   return (
     <>

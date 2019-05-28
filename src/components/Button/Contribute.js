@@ -25,9 +25,9 @@ const styles = css`
   }
 `;
 
-export default ({href, children, hidePlus}) => (
+export default ({href, children}) => (
   <Basic {...{href}} className='actionable shadow' css={styles}>
     <Text span {...{children}} />
-    {!hidePlus && <IoIosAdd size={22} />}
+    <IoIosAdd size={22} />
   </Basic>
 );

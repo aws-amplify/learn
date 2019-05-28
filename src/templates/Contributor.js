@@ -3,6 +3,7 @@ import {MappedList, Layout, Card, Nav, Text, Meta} from '~/components';
 import {mapNodeToProps, extract, track} from '~/utilities';
 import {css} from '@emotion/core';
 import {map, __, isEmpty} from 'ramda';
+import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   query($id: String!) {
@@ -68,12 +69,12 @@ const styles = css`
   padding: 0 1rem;
 
   > .contributor.card {
-    margin: 3.5rem 0 0.75rem;
+    margin: 3.5rem 1rem 0.75rem;
   }
 `;
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
   const extractFromProps = extract.fromPath(__, props);
   const [posts, contributor] = map(extractFromProps, [
@@ -84,7 +85,11 @@ export default props => {
 
   const main = (
     <div css={styles}>
-      <Card.Contributor {...mapNodeToProps(contributor)} disabled />
+      <Card.Contributor
+        {...mapNodeToProps(contributor)}
+        disabled
+        className='rounded'
+      />
 
       {!isEmpty(posts) && (
         <MappedList
@@ -92,8 +97,11 @@ export default props => {
           data={posts}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
-          renderItem={p => <Card.Post {...p} />}
-          additionalProps={{className: 'rounded on-contributor-page'}}
+          renderItem={p => <Card.Post.Expanded {...p} />}
+          additionalItemProps={{
+            className: 'three-dee actionable rounded',
+            onContributorPage: true,
+          }}
         />
       )}
     </div>

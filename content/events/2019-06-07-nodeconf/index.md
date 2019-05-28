@@ -1,10 +1,10 @@
 ---
 title: NodeConf NL
-description: You will hear from Node Core Collaborators and Experts from around the world sharing their experiences and helping you to progress your skills with Nodejs.
+description: "Nader Dabit will be presenting 'Serverless Functions in Depth' at NodeConf NL 2019. In this talk, you'll learn everything about building, deploying, testing, and managing serverless functions using the Amplify Framework."
 href: https://www.eventbrite.co.uk/e/nodeconf-nl-tickets-55400855450#tickets
-avatar: ./avatar1.png
 attendantIds:
   - nader-dabit
 country: Netherlands
 city: Amsterdam
+avatar: ./avatar1.png
 ---

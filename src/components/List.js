@@ -5,7 +5,7 @@ import {values, mapObjIndexed} from 'ramda';
 const styles = css`
   display: block;
 
-  .heading {
+  > .heading {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

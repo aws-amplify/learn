@@ -41,29 +41,13 @@ const baseStyles = css`
 
     > .internal,
     > .external {
-      margin: 0 0.5rem;
-
-      ${mq.tablet} {
-        margin: 0 1rem;
-      }
-
-      ${mq.desktop} {
-        margin: 0 2rem;
-      }
+      margin: 0 2rem;
 
       a {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 0.5rem;
-
-        ${mq.tablet} {
-          margin: 0 1rem;
-        }
-
-        ${mq.desktop} {
-          margin: 0 2rem;
-        }
+        margin: 0 0 0 2rem;
 
         &:hover,
         &.active {

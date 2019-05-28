@@ -1,16 +1,16 @@
 import {css} from '@emotion/core';
 import Img from 'gatsby-image';
-import {head, split} from 'ramda';
+import {head, split, join} from 'ramda';
 import {useMemo} from 'react';
 import Text from '../Text';
 import asCard from './asCard';
 import {classNames} from '~/utilities';
-import {GRAY_COLOR} from '~/constants';
+import {GRAY_COLOR, SILVER_CHALICE_COLOR} from '~/constants';
 
 const styles = css`
   flex-direction: row;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1.875rem 1.5rem 1.75rem;
   text-align: left;
 
   .text {
@@ -28,7 +28,20 @@ const styles = css`
     font-size: 0.8125rem;
     font-weight: 300;
     line-height: 1.25rem;
-    color: ${GRAY_COLOR};
+  }
+
+  .logistics {
+    > * {
+      display: inline;
+    }
+
+    > :nth-child(odd) {
+      color: ${GRAY_COLOR};
+    }
+
+    > :nth-child(even) {
+      color: ${SILVER_CHALICE_COLOR};
+    }
   }
 
   .avatar > * {
@@ -47,17 +60,20 @@ export default asCard(
     return (
       <ConditionalAnchor
         css={styles}
-        className={classNames(className, 'event three-dee actionable rounded')}
+        className={classNames(className, 'event')}
       >
         {avatar && (
           <div className='avatar'>
             <Img {...avatar} />
           </div>
         )}
-        <div>
+        <div className='text-container'>
           <Text h3 children={title} />
-          <Text h4 children={formattedDate} />
-          <Text h4 children={`${city}, ${country}`} />
+          <div className='logistics'>
+            <Text h4 children={formattedDate} />
+            <Text h4 children=' in ' />
+            <Text h4 children={join(', ', [city, country])} />
+          </div>
         </div>
       </ConditionalAnchor>
     );

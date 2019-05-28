@@ -1,7 +1,7 @@
 const {map} = require('ramda');
 const {join, resolve} = require('path');
 
-const lifeCycleStages = ['createPages', 'onCreateNode'];
+const lifeCycleStages = ['onCreateNode', 'createPages'];
 
 const relativeToCurrentDir = path => resolve(join(__dirname, path));
 const relativeToSrcDir = path => relativeToCurrentDir(join('../src', path));
@@ -15,8 +15,8 @@ const templateFilenames = {
   events: 'Events.js',
   newsletters: 'Newsletters.js',
   contributor: 'Contributor.js',
-  // post: 'Post.js',
-  // event: 'Event.js',
+  post: 'Post.js',
+  event: 'Event.js',
   newsletter: 'Newsletter.js',
 };
 

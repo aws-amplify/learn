@@ -2,6 +2,7 @@ import {graphql} from 'gatsby';
 import {Nav, Layout, Card, MappedList, Text, Meta} from '~/components';
 import {extract, mapNodeToProps, track} from '~/utilities';
 import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
+import {useEffect} from 'react';
 
 // add alphabetical sorting
 export const pageQuery = graphql`
@@ -22,7 +23,8 @@ export const pageQuery = graphql`
 `;
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
+
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const main = (
     <MappedList
@@ -35,7 +37,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       }}
-      additionalProps={{className: 'three-dee actionable'}}
+      additionalItemProps={{className: 'three-dee actionable'}}
     />
   );
 
