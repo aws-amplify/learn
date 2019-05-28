@@ -4,7 +4,6 @@ href: https://addconf.com/2018/
 avatar: ./avatar.png
 attendantIds:
   - kurt-kemple
-
 country: Spain
 city: Barcelona
 ---

@@ -38,10 +38,11 @@ build
 public
 dist
 
-#amplify
+#amplify/aws
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
 aws-exports.js
 awsconfiguration.json
+credentials.js
