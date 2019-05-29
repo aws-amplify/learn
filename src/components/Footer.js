@@ -2,16 +2,16 @@ import {css} from '@emotion/core';
 import {Link, useStaticQuery, graphql} from 'gatsby';
 import {FaArrowCircleRight} from 'react-icons/fa';
 import {
+  MAX_WIDTH,
   ORANGE_PEEL_COLOR,
   BIG_STONE_COLOR,
   GRAY_COLOR,
-  MAX_WIDTH,
   mq,
 } from '~/constants';
 import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
-import {map, join} from 'ramda';
+import {map} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
 
@@ -26,8 +26,8 @@ const styles = css`
     display: flex;
     flex: 1;
     width: 100%;
-    max-width: ${MAX_WIDTH};
     margin: 0 auto;
+    max-width: ${MAX_WIDTH};
 
     > a {
       display: flex;
@@ -70,6 +70,11 @@ const styles = css`
         ${mq.tablet} {
           display: initial;
         }
+      }
+
+      svg {
+        width: 1.375rem;
+        height: 1.375rem;
       }
 
       .secondary {
@@ -143,6 +148,16 @@ const styles = css`
             margin: 0 0 0 2rem;
           }
         }
+
+        > .github > svg {
+          width: 2.625rem;
+          height: 2.625rem;
+        }
+
+        > .twitter > svg {
+          width: 2.8125rem;
+          height: 2.8125rem;
+        }
       }
     }
   }
@@ -182,7 +197,7 @@ export default () => {
             />
             <Text h4 className='primary' children=' Read the latest' />
           </span>
-          <FaArrowCircleRight size={22} />
+          <FaArrowCircleRight />
         </Link>
       </div>
 
@@ -197,30 +212,20 @@ export default () => {
         </div>
 
         <div className='social'>
-          {map(
-            ({Icon, size, ...linkProps}) => {
-              const {className: key} = linkProps;
-              return (
-                <ExternalLink {...{key}} {...linkProps}>
-                  <Icon {...{size}} />
-                </ExternalLink>
-              );
-            },
-            [
-              {
-                className: 'github',
-                href: 'https://github.com/aws-amplify/community',
-                Icon: IoLogoGithub,
-                size: 42,
-              },
-              {
-                className: 'twitter',
-                href: 'https://twitter.com/AWSAmplify',
-                Icon: IoLogoTwitter,
-                size: 45,
-              },
-            ],
-          )}
+          <ExternalLink
+            href='https://github.com/aws-amplify/community'
+            key='github'
+            className='github'
+          >
+            <IoLogoGithub />
+          </ExternalLink>
+          <ExternalLink
+            href='https://twitter.com/AWSAmplify'
+            key='twitter'
+            className='twitter'
+          >
+            <IoLogoTwitter />
+          </ExternalLink>
         </div>
       </div>
     </footer>

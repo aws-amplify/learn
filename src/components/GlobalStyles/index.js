@@ -45,6 +45,14 @@ const styles = css`
     font-weight: 200;
     overflow-x: hidden;
     background-color: ${CONCRETE_COLOR};
+
+    @media screen and (min-width: 1800px) {
+      font-size: 120%;
+    }
+
+    @media screen and (min-width: 2200px) {
+      font-size: 140%;
+    }
   }
 
   a,
