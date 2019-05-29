@@ -16,7 +16,7 @@ import {
   DESKTOP_BREAKPOINT,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract, track, classNames} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map, length, keys, dropLast} from 'ramda';
 import heroOverlaySrc from '~/assets/images/map.svg';
@@ -155,6 +155,7 @@ export default props => {
       Template: Card.Event,
       more: {
         Template: Card.ViewAll.Events,
+        className: 'view-all-events',
         heading: 'View All Events',
         subheading: `${upcomingEventsCount} upcoming events`,
         to: '/events',
@@ -174,8 +175,10 @@ export default props => {
       nodes: latestPostNodes,
       Template: Card.Post.Condensed,
       more: {
+        // 50
         Template: Card.ViewAll.PostsOrContributors,
-        graphic: <IoIosJournal size={50} />,
+        className: 'view-all-posts',
+        graphic: <IoIosJournal />,
         heading: 'View All Posts',
         subheading: `${postsCount} posts and counting`,
         to: '/posts',
@@ -195,8 +198,10 @@ export default props => {
       nodes: featuredContributorNodesByScreen,
       Template: Card.Contributor,
       more: {
+        // 60
         Template: Card.ViewAll.PostsOrContributors,
-        graphic: <IoMdPeople size={60} />,
+        className: 'view-all-contributors',
+        graphic: <IoMdPeople />,
         heading: 'All Contributors',
         subheading: `See all ${contributorsCount} contributors`,
         to: '/contributors',
@@ -223,7 +228,7 @@ export default props => {
         <Text h2 className='list-heading' children={headingText} />
       );
       const cta = <Button.Contribute {...ctaProps} />;
-      const {Template: ViewAllCard, ...viewAllProps} = more;
+      const {Template: ViewAllCard, className, ...viewAllProps} = more;
       const items = [
         ...map(({node}) => {
           const {key} = node.fields;
@@ -239,7 +244,7 @@ export default props => {
             />
           );
         }, nodes),
-        <ViewAllCard {...viewAllProps} />,
+        <ViewAllCard {...viewAllProps} {...{className}} />,
       ];
 
       return <List key={headingText} {...{heading, cta, items}} {...rest} />;

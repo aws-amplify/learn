@@ -68,6 +68,11 @@ const styles = css`
         padding: 0.6875rem 0.625rem 0.4375rem 0.625rem;
         background-color: ${ORANGE_PEEL_COLOR};
         color: #fff;
+
+        > svg {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
       }
     }
   }
@@ -135,11 +140,7 @@ export default () => {
 
           <Basic {...{onClick}}>
             <div className='shadow actionable rounded'>
-              {showSuccess ? (
-                <MdCheck size={20} />
-              ) : (
-                <MdArrowForward size={20} />
-              )}
+              {showSuccess ? <MdCheck /> : <MdArrowForward />}
             </div>
           </Basic>
         </form>
