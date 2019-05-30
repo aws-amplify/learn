@@ -4,4 +4,5 @@ github: thetestlabs
 name: Chris McQuaid
 website: thetestlabs.io
 twitter: thetestlabsio
+bio: 'Chris McQuaid'
 ---
