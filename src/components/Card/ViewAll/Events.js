@@ -38,6 +38,8 @@ export default asCard(({ConditionalAnchor, heading, subheading, className}) => (
 
       svg {
         color: ${ORANGE_PEEL_COLOR};
+        width: 1.375rem;
+        height: 1.375rem;
       }
     `}
   >
@@ -45,6 +47,6 @@ export default asCard(({ConditionalAnchor, heading, subheading, className}) => (
       <Text h3 className='more-events-card-heading' children={heading} />
       <Text h4 className='more-events-card-subheading' children={subheading} />
     </div>
-    <FaArrowCircleRight size={22} />
+    <FaArrowCircleRight />
   </ConditionalAnchor>
 ));
