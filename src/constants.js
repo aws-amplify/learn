@@ -5,6 +5,9 @@ export const LAPTOP_BREAKPOINT = 768;
 export const DESKTOP_BREAKPOINT = 992;
 export const MONITOR_BREAKPOINT = 1200;
 
+const createBreakpointStyle = breakpoint =>
+  `@media (min-width: ${breakpoint}px)`;
+
 const breakpoints = {
   tablet: TABLET_BREAKPOINT,
   laptop: LAPTOP_BREAKPOINT,
@@ -12,10 +15,7 @@ const breakpoints = {
   monitor: MONITOR_BREAKPOINT,
 };
 
-export const mq = map(
-  breakpoint => `@media (min-width: ${breakpoint}px)`,
-  breakpoints,
-);
+export const mq = map(createBreakpointStyle, breakpoints);
 
 export const ORANGE_PEEL_COLOR = '#ff9900';
 // export const EMBER_BLAZE =
@@ -36,4 +36,4 @@ export const TWITTER_BLUE_COLOR = '#4199d4';
 export const GITHUB_GRAY_COLOR = '#333';
 export const YOUTUBE_RED_COLOR = '#c4302b';
 
-export const MAX_WIDTH = '1200px';
+export const MAX_WIDTH = '2400px';
