@@ -16,7 +16,7 @@ import {
   DESKTOP_BREAKPOINT,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track, classNames} from '~/utilities';
+import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map, length, keys, dropLast} from 'ramda';
 import heroOverlaySrc from '~/assets/images/map.svg';
