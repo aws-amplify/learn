@@ -20,9 +20,9 @@ const styles = css`
     position: relative;
     display: flex;
     flex-direction: row;
-    max-width: ${MAX_WIDTH};
     margin: 0 auto;
     width: 100%;
+    max-width: ${MAX_WIDTH};
 
     .side.menu {
       display: none;
