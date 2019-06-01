@@ -9,5 +9,4 @@ platforms:
   - Hugo
 categories:
   - Hosting
-  - Continuous Deployment
 ---
