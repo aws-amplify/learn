@@ -1,7 +1,7 @@
 ---
 avatar: ./avatar.jpg
-github: https://github.com/undefobj
+github: undefobj
 name: Richard Threlkeld
 bio: Working on being a good person first and everything else second. Opinions my own.
-twitter: https://twitter.com/undef_obj
+twitter: undef_obj
 ---
