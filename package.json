@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.11",
     "@rehooks/component-size": "^1.0.2",
     "aws-amplify": "^1.1.26",
     "babel-plugin-ramda": "^2.0.0",
