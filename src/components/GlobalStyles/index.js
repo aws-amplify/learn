@@ -34,8 +34,6 @@ const styles = css`
     font-family: Amazon Ember;
   }
 
-  ${fontFaces}
-
   body,
   html {
     color: #000;
@@ -159,4 +157,9 @@ const styles = css`
   }
 `;
 
-export default () => <Global {...{styles}} />;
+export default () => (
+  <>
+    <Global styles={fontFaces} />
+    <Global {...{styles}} />
+  </>
+);
