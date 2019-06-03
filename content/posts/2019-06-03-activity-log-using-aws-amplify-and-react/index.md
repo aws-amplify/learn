@@ -1,6 +1,6 @@
 ---
 title: Build a Post activity log using React & AWS Amplify
-description: "In this tutorial, we’ll walkthrough on How to create an activity log using AWS Amplify, GraphQL & React."
+description: "In this tutorial, we’ll walkthrough how to create an activity log using AWS Amplify, GraphQL & React."
 banner: './banner.jpg'
 authorIds:
   - horacio-herrera
