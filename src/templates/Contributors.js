@@ -37,7 +37,7 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       }}
-      additionalItemProps={{className: 'three-dee actionable'}}
+      additionalItemProps={{className: 'three-dee actionable rounded'}}
     />
   );
 
