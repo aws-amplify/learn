@@ -104,7 +104,7 @@ const styles = css`
     background-color: #fff;
     overflow: hidden;
 
-    &.condensed-post {
+    &.post-condensed {
       flex-direction: column;
       -webkit-box-pack: justify;
       justify-content: space-between;
