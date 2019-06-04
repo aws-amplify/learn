@@ -103,6 +103,13 @@ const styles = css`
     height: 100%;
     background-color: #fff;
     overflow: hidden;
+
+    &.condensed-post {
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      background-color: #4b6189;
+    }
   }
 
   .three-dee {
