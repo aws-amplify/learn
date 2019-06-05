@@ -209,12 +209,12 @@ export default () => {
             {`The Amplify Community is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved. View our `}
             <ExternalLink
               href='https://aws.amazon.com/terms/'
-              children='terms of use'
+              children='Site Terms'
             />
             {` and `}
             <ExternalLink
               href='https://aws.amazon.com/privacy/'
-              children='privacy policy'
+              children='Privacy Policy'
             />
             {`.`}
           </Text>
