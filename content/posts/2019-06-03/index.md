@@ -8,5 +8,5 @@ href: https://youtu.be/uI_S1_ucXi4
 platforms:
   - React
 categories:
-  - API
+  - API (GraphQL)
 ---
