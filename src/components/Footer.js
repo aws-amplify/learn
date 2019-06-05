@@ -206,7 +206,17 @@ export default () => {
       <div className='lower'>
         <div className='copyright'>
           <Text>
-            {`The Amplify Community is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved.`}
+            {`The Amplify Community is supported by Amazon Web Services © ${new Date().getFullYear()}, Amazon Web Services, Inc. or its affiliates. All rights reserved. View our `}
+            <ExternalLink
+              href='https://aws.amazon.com/terms/'
+              children='Site Terms'
+            />
+            {` and `}
+            <ExternalLink
+              href='https://aws.amazon.com/privacy/'
+              children='Privacy Policy'
+            />
+            {`.`}
           </Text>
           <img src={awsLogoSrc} alt='aws' />
         </div>
