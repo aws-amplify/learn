@@ -1,10 +1,10 @@
 ---
-title: Intro to AWS Amplify - build a multi-tenant SaaS app
-href: https://www.meetup.com/Melbourne-AWS-Programming-and-Tools-Meetup/events/261692367/
-description: In this workshop, you will learn how to set up an Amplify project, and configure hosting for both your development and production instances. We'll add authentication through the use of AWS Cognito, and use it to secure an AWS Appsync endpoint using GraphQL and DynamoDB.
-avatar: ./avatar.png
+title: Toronto AWS Amplify Meetup, #2
+href: https://www.meetup.com/Toronto-AWS-Amplify-Meetup/events/261905060/
+description: "Since our last meeting the Amplify team have made some important enhancements. We will recap the most significant updates and discuss why you might care."
+avatar: ./avatar.jpg
 attendantIds:
-  - milan-kapasi
-country: Australia
-city: Melbourne
+  - peter-dyer
+country: Canada
+city: Toronto
 ---
