@@ -83,7 +83,7 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
 
   const lastMonday = getLastMonday();
 
-  const shouldPlace = inQuestion => inQuestion < lastMonday;
+  const shouldPlace = inQuestion => inQuestion < addDays(-1, lastMonday);
 
   forEachObjIndexed(
     ({edges}, category) => {
@@ -97,9 +97,6 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
         switch (category) {
           case 'posts': {
             const slug = date && getSlug(date);
-            // if (node.frontmatter.title === 'GraphQLifying REST') {
-            //   console.log(date.getDate(), lastMonday.getDate());
-            // }
             shouldPlace(date) && placeCategory(slug, id);
             break;
           }
@@ -128,8 +125,6 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
     },
     {events, posts, newsletterInjections},
   );
-
-  // process.exit(1);
 
   const sortedSlugs = sort(
     comparator((a, b) => {
