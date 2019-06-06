@@ -75,6 +75,11 @@ const megaMenuStyles = css`
 
   &.open {
     display: flex;
+
+    .filter-input {
+      background-color: #fff;
+      margin-bottom: 1rem;
+    }
   }
 
   &.closed {
