@@ -9,4 +9,5 @@ platforms:
   - React
 categories:
   - API (GraphQL)
+  - Functions
 ---
