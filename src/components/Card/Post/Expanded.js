@@ -122,7 +122,10 @@ export default asCard(
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
 
     return (
-      <ConditionalAnchor css={styles} className={classNames(className, 'post')}>
+      <ConditionalAnchor
+        css={styles}
+        className={classNames(className, 'post-expanded')}
+      >
         {banner && (
           <div className='banner'>
             <Img {...banner} />

@@ -32,6 +32,16 @@ const styles = css`
     max-width: 100% !important;
   }
 
+  &.view-all-contributors .graphic svg {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  &.view-all-posts .graphic svg {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
   h3,
   svg {
     color: ${ORANGE_PEEL_COLOR};
@@ -39,6 +49,11 @@ const styles = css`
 
   .arrow {
     margin-top: 1.25rem;
+
+    > svg {
+      width: 1.375rem;
+      height: 1.375rem;
+    }
   }
 `;
 
@@ -51,11 +66,11 @@ export default asCard(
       )}
       css={styles}
     >
-      <div className='grapic' children={graphic} />
+      <div className='graphic' children={graphic} />
       <Text h3 children={heading} />
       <Text p children={subheading} />
       <div className='arrow'>
-        <FaArrowCircleRight size={22} />
+        <FaArrowCircleRight />
       </div>
     </ConditionalAnchor>
   ),

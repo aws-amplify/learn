@@ -21,6 +21,7 @@ export const pageQuery = graphql`
         fields: {category: {eq: "posts"}}
         frontmatter: {authorIds: {in: [$id]}}
       }
+      sort: {fields: [fields___date], order: DESC}
     ) {
       edges {
         node {

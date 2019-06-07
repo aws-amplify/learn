@@ -85,9 +85,9 @@ const imageTransformers = [
 
 const emotion = {
   resolve: 'gatsby-plugin-emotion',
-  options: {
-    labelFormat: '[dirname]-[filename]-[local]',
-  },
+  // options: {
+  //   labelFormat: '[dirname]-[filename]-[local]',
+  // },
 };
 
 const manifest = {
