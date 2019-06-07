@@ -13,28 +13,6 @@ const styles = css`
   flex-direction: column;
   align-items: center;
 
-  &.wide {
-    flex-direction: row;
-
-    > .body {
-    }
-
-    > .social {
-      display: flex;
-      align-self: stretch;
-      flex-direction: column;
-      width: initial;
-      border-top-width: 0px;
-      border-left: 1px solid #eee;
-
-      > a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-    }
-  }
-
   > .body {
     display: flex;
     flex: 1;
@@ -85,6 +63,11 @@ const styles = css`
       flex-direction: row;
       justify-content: center;
       padding: 1rem;
+
+      > svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
     }
   }
 `;
@@ -92,17 +75,14 @@ const styles = css`
 const propsBySite = {
   github: {
     getHref: handle => `https://github.com/${handle}`,
-    size: 20,
     Icon: IoLogoGithub,
   },
   twitter: {
     getHref: handle => `https://twitter.com/${handle}`,
-    size: 20,
     Icon: IoLogoTwitter,
   },
   website: {
     getHref: identity,
-    size: 20,
     Icon: IoIosLink,
   },
 };
@@ -126,12 +106,12 @@ export default asCard(
       () =>
         values(
           mapObjIndexed((v, key) => {
-            const {getHref, Icon, size} = propsBySite[key];
+            const {getHref, Icon} = propsBySite[key];
             const href = v && getHref(v);
             return (
               href && (
                 <ExternalLink {...{href}} className={key}>
-                  <Icon {...{size}} />
+                  <Icon />
                 </ExternalLink>
               )
             );

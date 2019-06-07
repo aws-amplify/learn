@@ -70,6 +70,9 @@ module.exports = toolbox =>
             );
           });
 
+          // console.log(data, error);
+          // process.exit(1);
+
           if (error) throw error;
 
           const {
@@ -83,7 +86,10 @@ module.exports = toolbox =>
 
           const title = ogTitle || twitterTitle;
           const description = ogDescription || twitterDescription;
-          const bannerUrl = (ogImage || twitterImage).url;
+          const bannerUrls = ogImage || twitterImage;
+          const bannerUrl = Array.isArray(bannerUrls)
+            ? bannerUrls[0].url
+            : bannerUrls.url;
 
           const {data: bannerBuff} = await axios.request({
             method: 'GET',
