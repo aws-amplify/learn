@@ -34,8 +34,6 @@ const styles = css`
     font-family: Amazon Ember;
   }
 
-  ${fontFaces}
-
   body,
   html {
     color: #000;
@@ -45,6 +43,14 @@ const styles = css`
     font-weight: 200;
     overflow-x: hidden;
     background-color: ${CONCRETE_COLOR};
+
+    @media screen and (min-width: 1800px) {
+      font-size: 120%;
+    }
+
+    @media screen and (min-width: 2200px) {
+      font-size: 140%;
+    }
   }
 
   a,
@@ -97,6 +103,13 @@ const styles = css`
     height: 100%;
     background-color: #fff;
     overflow: hidden;
+
+    &.post-condensed {
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      background-color: #4b6189;
+    }
   }
 
   .three-dee {
@@ -151,4 +164,9 @@ const styles = css`
   }
 `;
 
-export default () => <Global {...{styles}} />;
+export default () => (
+  <>
+    <Global styles={fontFaces} />
+    <Global {...{styles}} />
+  </>
+);

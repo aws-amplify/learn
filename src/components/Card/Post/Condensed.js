@@ -1,14 +1,15 @@
 import {css} from '@emotion/core';
 import Text from '../../Text';
-import {KASHMIR_BLUE_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
 import asCard from '../asCard';
 import {Author} from './fragments';
 
+// hardcode KASHMIR_BLUE_COLOR
 const styles = css`
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${KASHMIR_BLUE_COLOR};
+  background-color: #4b6189;
+
   * {
     color: #fff;
   }
@@ -74,7 +75,10 @@ export default asCard(
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
 
     return (
-      <ConditionalAnchor css={styles} className={classNames(className, 'post')}>
+      <ConditionalAnchor
+        css={styles}
+        className={classNames(className, 'post-condensed')}
+      >
         <div className='body'>
           <div>
             {href && (
