@@ -1,6 +1,6 @@
 ---
 title: Multiple Authorization methods in a single GraphQL API with AWS AppSync
-description: "If you’re using GraphQL, wouldn’t it be great if you could easily define different authorization modes for you application data at the type, field or operation level directly in your schema instead of having a single global authorization mode for an API? What if you could have different types of authorization providers for different parts of your schema? For instance, maybe I need to allow users with an API Key to access some fields and users authenticated by an OpenID Connect (OIDC) identity provider to access the whole data set."
+description: "If you’re using GraphQL, wouldn’t it be great if you could easily define different authorization modes for you application data at the type, field or operation level directly in your schema instead of having a single global authorization mode for an API? What if you could have different types of authorization providers for different parts of your schema?"
 banner: './banner.png'
 authorIds:
   - ed-lima
