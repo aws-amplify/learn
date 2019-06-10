@@ -5,8 +5,6 @@ banner: './banner.png'
 authorIds:
   - ed-lima
 href: https://medium.com/@ednergizer/multiple-authorization-methods-in-a-single-graphql-api-with-aws-appsync-security-at-the-data-7feeaa968486
-platforms:
-  - Generic/Backend
 categories:
   - API (GraphQL)
 ---
