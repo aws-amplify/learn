@@ -8,5 +8,5 @@ href: https://geromekevin.com/sorting-queries-with-aws-amplifys-key-directive/
 platforms:
   - React
 categories:
-  - GraphQL Transform
+  - API (GraphQL)
 ---
