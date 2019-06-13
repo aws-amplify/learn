@@ -6,4 +6,5 @@ attendantIds:
   - kurt-kemple
 country: Spain
 city: Barcelona
+description: 'Single-track international conference for iOS & Android developers and UX/UI designers in Barcelona, Spain.'
 ---
