@@ -8,5 +8,5 @@ href: https://geromekevin.com/query-all-items-using-scans-in-aws-amplify/
 platforms:
   - React
 categories:
-  - GraphQL Transform
+  - API (GraphQL)
 ---
