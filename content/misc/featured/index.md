@@ -1,9 +1,6 @@
 ---
-event: 2019-04-17-workshop
-post: 2019-01-01-one
-contributors:
-  - jony
-  - kendrick-lamar
-  - j-cole
-  - eminem
+posts:
+  - 2019-06-18-query-all-items-using-scans
+  - 2019-06-12-graphql-lambda-resolvers
+  - 2019-06-11-sorting-with-key-directive
 ---
