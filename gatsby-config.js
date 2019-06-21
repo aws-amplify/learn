@@ -59,6 +59,7 @@ const dataSources = map(
 const mapping = {
   'MarkdownRemark.fields.authors': 'MarkdownRemark.fields.id',
   'MarkdownRemark.fields.attendants': 'MarkdownRemark.fields.id',
+  'MarkdownRemark.frontmatter.posts': 'MarkdownRemark.fields.id',
 };
 
 const markdownTransformer = {

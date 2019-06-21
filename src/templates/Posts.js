@@ -16,13 +16,41 @@ import {
   Text,
   Button,
   Meta,
+  FeaturedPosts,
 } from '~/components';
 import {all, includes, isEmpty, any} from 'ramda';
 import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   {
-    allMarkdownRemark(
+    featured: markdownRemark(fields: {id: {eq: "featured"}}) {
+      frontmatter {
+        posts {
+          frontmatter {
+            banner {
+              ...Banner
+            }
+            title
+            href
+          }
+          fields {
+            authors {
+              fields {
+                slug
+              }
+              frontmatter {
+                name
+                avatar {
+                  ...AvatarSmall
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    posts: allMarkdownRemark(
       sort: {fields: [fields___date], order: DESC}
       filter: {fields: {category: {eq: "posts"}}}
     ) {
@@ -53,15 +81,16 @@ export const pageQuery = graphql`
   }
 `;
 
-const header = <Nav />;
-
 const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
 export default props => {
   useEffect(() => track.internalPageView(props), []);
-
-  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
+  const featured = extract.fromPath(
+    ['data', 'featured', 'frontmatter', 'posts'],
+    props,
+  );
+  const edges = extract.fromPath(['data', 'posts', 'edges'], props);
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges);
   const categoryOptions = getFilterOptions(CATEGORIES_PATH, edges);
@@ -81,6 +110,14 @@ export default props => {
       meetsCriterion: (field, criterion) =>
         !criterion || all(c => field && includes(c, field), criterion),
     },
+  );
+
+  const header = (
+    <>
+      <Nav /> 
+      {' '}
+      <FeaturedPosts items={featured} />
+    </>
   );
 
   const main = (
