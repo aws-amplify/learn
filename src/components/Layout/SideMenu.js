@@ -9,7 +9,7 @@ import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
-import {classNames} from '~/utilities';
+import {classNames, useRootFontSize} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -27,6 +27,7 @@ const styles = css`
     .side.menu {
       display: none;
       position: fixed;
+      will-change: transform;
 
       &.scrollable {
         overflow-y: scroll;
@@ -104,23 +105,30 @@ export default ({header, menu, main}) => {
   const {y: scrollTop} = useWindowScroll();
   const {width: windowWidth, height: windowHeight} = useWindowSize();
 
+  const rootFontSize = useRootFontSize();
+  const navHeight = 3.75 * rootFontSize;
+  const spaceBetweenNavAndSidebar = 3.125 * rootFontSize;
+
+  const headerRef = useRef(null);
   const menuRef = useRef(null);
   const mainRef = useRef(null);
 
   const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
   const {height: mainHeight} = useSize(mainRef);
-  const maxMenuHeight = windowHeight - 60;
+  const {height: headerHeight} = useSize(headerRef);
+  const maxMenuHeight = windowHeight - navHeight;
   const menuHeightGreaterThanMax = initialMenuHeight > maxMenuHeight;
   const menuHeightStyleProp = menuHeightGreaterThanMax
-    ? `${maxMenuHeight}px`
+    ? `${maxMenuHeight / 16}rem`
     : 'initial';
 
-  const maxScrollTop = mainHeight - initialMenuHeight + 50;
+  const maxScrollTop =
+    mainHeight - initialMenuHeight + spaceBetweenNavAndSidebar;
   const menuOffset =
-    scrollTop < 50
-      ? 110 - scrollTop
-      : scrollTop + 50 < maxScrollTop
-      ? 60
+    scrollTop < headerHeight - navHeight + spaceBetweenNavAndSidebar
+      ? spaceBetweenNavAndSidebar + headerHeight - scrollTop
+      : scrollTop + spaceBetweenNavAndSidebar < maxScrollTop
+      ? navHeight
       : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
   const scrollableClassName = menuHeightGreaterThanMax ? 'scrollable' : '';
@@ -130,7 +138,7 @@ export default ({header, menu, main}) => {
       <GlobalStyles />
       <div css={styles}>
         <layoutContext.Provider value={{menuOpen, toggleMenu}}>
-          {header}
+          <div ref={headerRef}>{header}</div>
 
           <div className='body'>
             {showSidebar && (
