@@ -39,17 +39,20 @@ const styles = css`
 `;
 
 export default ({filters}) => {
-  const {setCriteria} = useContext(filterContext);
-  const createOnChange = useCallback(
-    curry((key, d) => setCriteria({[key]: d})),
-    [],
-  );
+  const {criteria, setCriteria} = useContext(filterContext);
+  const createOnChange = curry((key, d) => {
+    setCriteria({[key]: d});
+  });
+
+  const stringified = JSON.stringify(criteria);
+  const encoded = encodeURI(stringified);
+  window.location.hash = encoded;
 
   return (
     <div css={styles}>
       <div>
         {filters.map(({type, key, name, options}) => {
-          const onChange = useCallback(createOnChange(key), [key]);
+          const onChange = createOnChange(key);
 
           switch (type) {
             case 'CHECKBOX_GROUP': {
