@@ -39,14 +39,10 @@ const styles = css`
 `;
 
 export default ({filters}) => {
-  const {criteria, setCriteria} = useContext(filterContext);
+  const {setCriteria} = useContext(filterContext);
   const createOnChange = curry((key, d) => {
     setCriteria({[key]: d});
   });
-
-  const stringified = JSON.stringify(criteria);
-  const encoded = encodeURI(stringified);
-  window.location.hash = encoded;
 
   return (
     <div css={styles}>
