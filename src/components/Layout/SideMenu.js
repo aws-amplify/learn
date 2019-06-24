@@ -28,6 +28,7 @@ const styles = css`
       display: none;
       position: fixed;
       will-change: transform;
+      transition: transform 500ms ease;
 
       &.scrollable {
         overflow-y: scroll;

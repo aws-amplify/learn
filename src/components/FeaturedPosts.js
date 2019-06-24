@@ -92,7 +92,7 @@ const slideStyles = css`
       font-size: 2rem;
       text-align: center;
       line-height: 3rem;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .author {
