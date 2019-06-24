@@ -28,7 +28,9 @@ const styles = css`
       display: none;
       position: fixed;
       will-change: transform;
-      transition: transform 500ms ease;
+      top: 0px;
+      backface-visibility: none;
+      transform: translate3d(0, 0, 0);
 
       &.scrollable {
         overflow-y: scroll;
@@ -148,7 +150,7 @@ export default ({header, menu, main}) => {
                   className={classNames(scrollableClassName, 'side menu')}
                   style={{
                     height: menuHeightStyleProp,
-                    top: menuOffset,
+                    transform: `translateY(${menuOffset}px)`,
                   }}
                 >
                   <div ref={menuRef}>{menu}</div>
