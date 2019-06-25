@@ -7,7 +7,7 @@ authorIds:
 href: https://speakerdeck.com/sebsto/simplify-your-web-and-mobile-apps-with-cloud-based-serverless-backends
 platforms: 
   - React
-categories: 
+categories:
   - API (GraphQL)
   - Authentication
 ---
