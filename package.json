@@ -92,6 +92,6 @@
     "cy:ci": "cypress run --config baseUrl=http://localhost:9000",
     "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
-    "commit": "git add . && git-cz"
+    "commit": "git add . && git-cz && git secrets --scan-history"
   }
 }
