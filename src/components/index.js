@@ -16,3 +16,4 @@ export {default as Text} from './Text';
 export {default as Footer} from './Footer';
 export {default as Subscribe} from './Subscribe';
 export {default as Meta} from './Meta';
+export {default as FeaturedPosts} from './FeaturedPosts';

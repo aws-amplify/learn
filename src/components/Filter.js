@@ -40,16 +40,15 @@ const styles = css`
 
 export default ({filters}) => {
   const {setCriteria} = useContext(filterContext);
-  const createOnChange = useCallback(
-    curry((key, d) => setCriteria({[key]: d})),
-    [],
-  );
+  const createOnChange = curry((key, d) => {
+    setCriteria({[key]: d});
+  });
 
   return (
     <div css={styles}>
       <div>
         {filters.map(({type, key, name, options}) => {
-          const onChange = useCallback(createOnChange(key), [key]);
+          const onChange = createOnChange(key);
 
           switch (type) {
             case 'CHECKBOX_GROUP': {

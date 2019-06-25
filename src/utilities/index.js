@@ -12,3 +12,4 @@ export {
 } from './groupEventEdges';
 export {default as classNames} from './classNames';
 export {default as groupNewsletterEdges} from './groupNewsletterEdges';
+export {default as useRootFontSize} from './useRootFontSize';
