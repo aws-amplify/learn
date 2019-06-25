@@ -5,7 +5,7 @@ import {
   Nav,
   Card,
   Hero,
-  Subscribe,
+  // Subscribe,
   Meta,
   Text,
 } from '~/components';
@@ -28,7 +28,7 @@ const heroProps = {
   subheading: 'A weekly roundup of updates regarding the AWS Amplify ecosystem',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
-  cta: <Subscribe />,
+  // cta: <Subscribe />,
 };
 
 export default props => {
