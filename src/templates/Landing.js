@@ -7,7 +7,7 @@ import {
   Hero,
   Button,
   Text,
-  Subscribe,
+  // Subscribe,
   Meta,
 } from '~/components';
 import {
@@ -101,7 +101,7 @@ const heroProps = {
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
-  cta: <Subscribe />,
+  // cta: <Subscribe />,
   overlay: heroOverlaySrc,
 };
 
