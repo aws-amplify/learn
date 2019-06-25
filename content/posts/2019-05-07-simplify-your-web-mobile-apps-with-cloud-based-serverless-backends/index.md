@@ -5,9 +5,9 @@ banner: './banner.jpg'
 authorIds:
   - sebastien-stormacq
 href: https://speakerdeck.com/sebsto/simplify-your-web-and-mobile-apps-with-cloud-based-serverless-backends
-platforms: 
+platforms:
   - React
-categories: 
+categories:
   - API (GraphQL)
   - Authentication
 ---
