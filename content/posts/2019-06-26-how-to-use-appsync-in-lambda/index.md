@@ -8,5 +8,6 @@ href: https://geromekevin.com/how-to-use-aws-appsync-in-lambda-functions/
 platforms:
   - React
 categories:
-  - API (GraphQL & REST)
+  - API (GraphQL)
+  - API (REST)
 ---
