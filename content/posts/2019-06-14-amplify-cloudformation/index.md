@@ -7,5 +7,5 @@ href: https://aws.amazon.com/blogs/mobile/deploy-a-vuejs-app-with-aws-amplify-co
 platforms:
   - Vue
 categories:
-  - CloudFormation
+  - Hosting
 ---
