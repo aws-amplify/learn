@@ -1,6 +1,7 @@
 ---
 posts:
-  - 2019-06-18-query-all-items-using-scans
-  - 2019-06-12-graphql-lambda-resolvers
-  - 2019-06-11-sorting-with-key-directive
+  - '2019-03-15'
+  - '2019-04-16-fullstack'
+  - '2019-05-01-authcomplete'
+  - '2019-04-24-fullstack'
 ---
