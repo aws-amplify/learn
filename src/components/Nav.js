@@ -6,7 +6,6 @@ import logoDarkURI from '~/assets/images/logo-dark.png';
 import {useMemo} from 'react';
 import {values, map} from 'ramda';
 import {MdOpenInNew} from 'react-icons/md';
-import {TiDocumentText} from 'react-icons/ti';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import Text from './Text';
 import {mq, ORANGE_PEEL_COLOR, MAX_WIDTH} from '~/constants';
@@ -22,7 +21,6 @@ const baseStyles = css`
   backdrop-filter: blur(10px);
   transition: box-shadow 0.5s ease, color 0.5s ease, background-color 0.5s ease;
   z-index: 10000;
-
   > div {
     margin: 0 auto;
     display: flex;
@@ -31,96 +29,67 @@ const baseStyles = css`
     justify-content: space-between;
     height: 3.75rem;
     max-width: ${MAX_WIDTH};
-
     > .branding,
-    > .left,
-    > .right {
+    > .internal,
+    > .external {
       display: flex;
       flex-direction: row;
       align-items: center;
     }
-
-    > .left,
-    > .right {
+    > .internal,
+    > .external {
       margin: 0 2rem 0 0;
-
       a {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 0 0 2rem;
-
         &:hover,
         &.active {
           padding-top: 0.125rem;
           border-bottom-width: 0.125rem;
           border-bottom-style: solid;
         }
-
         > .text {
           font-size: 0.9375rem;
           line-height: 1.40625rem;
         }
       }
     }
-
     > .branding {
       padding: 1rem 0 1rem 1rem;
       font-size: 1.25rem;
-
       .text {
         padding-left: 0.5rem;
         letter-spacing: 0.03125rem;
         font-size: 1.125rem;
         font-weight: 200;
       }
-
       img {
         width: 1.5625rem;
         height: 1.25rem;
       }
     }
-
-    > .left {
+    > .internal {
       flex: 1;
       justify-content: flex-end;
-
       ${mq.tablet} {
         justify-content: flex-start;
       }
     }
-
-    > .right {
+    > .external {
       display: none;
-
       ${mq.tablet} {
         display: flex;
         flex: 1;
         justify-content: flex-end;
       }
-    }
-
-    a {
-      svg {
-        width: 0.875rem;
-        height: 0.875rem;
-        margin-left: 0.25rem;
-      }
-    }
-
-    .docs {
-      background-color: #fff;
-      border-radius: 16px;
-      padding: 4px 16px 4px 12px;
-      font-weight: 300;
-
-      * {
-        color: ${ORANGE_PEEL_COLOR};
-      }
-
-      svg {
-        width: 1.125rem;
-        height: 1.125rem;
+      a {
+        svg {
+          width: 0.875rem;
+          height: 0.875rem;
+          margin-left: 0.25rem;
+        }
       }
     }
   }
@@ -157,45 +126,36 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
     () =>
       css`
         background: ${beforeScroll.background};
-
         * {
           color: ${beforeScroll.linkColor};
         }
-
         a {
           &:hover,
           &.active {
             * {
               color: ${beforeScroll.linkHoverColor};
             }
-
             border-bottom-color: ${beforeScroll.linkHoverColor};
           }
         }
-
         .branding .text {
           color: ${beforeScroll.brandingColor};
         }
-
         &.scrolled {
           background: ${afterScroll.background};
           box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.125);
-
           * {
             color: ${afterScroll.linkColor};
           }
-
           a {
             &:hover,
             &.active {
               * {
                 color: ${afterScroll.linkHoverColor};
               }
-
               border-bottom-color: ${afterScroll.linkHoverColor};
             }
           }
-
           .branding .text {
             color: ${afterScroll.brandingColor};
           }
@@ -230,7 +190,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
             <Text h3 children='Community' />
           </Link>
 
-          <div className='left'>
+          <div className='internal'>
             {map(
               ({to, children}) => (
                 <Link {...{to}} key={children} activeClassName='active'>
@@ -242,20 +202,27 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                 {to: '/posts', children: 'Posts'},
               ],
             )}
-            <ExternalLink href='https://gitter.im/AWS-Amplify/Lobby?source=orgpage'>
-              <Text span>Chat</Text>
-              <MdOpenInNew className='external-graphic' />
-            </ExternalLink>
           </div>
 
-          <div className='right'>
-            <ExternalLink
-              className='docs'
-              href='https://aws-amplify.github.io/docs/'
-            >
-              <TiDocumentText />
-              <Text span>Visit Docs</Text>
-            </ExternalLink>
+          <div className='external'>
+            {map(
+              ({href, children}) => (
+                <ExternalLink {...{href}} key={children}>
+                  <Text span {...{children}} />
+                  <MdOpenInNew className='external-graphic' />
+                </ExternalLink>
+              ),
+              [
+                {
+                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
+                  children: 'Chat',
+                },
+                {
+                  href: 'https://aws-amplify.github.io/docs/',
+                  children: 'Docs',
+                },
+              ],
+            )}
           </div>
         </div>
       </nav>

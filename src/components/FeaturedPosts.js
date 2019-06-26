@@ -2,27 +2,29 @@ import Slider from 'react-slick';
 import {css} from '@emotion/core';
 import {map} from 'ramda';
 import {mapNodeToProps} from '~/utilities';
-import {LOCHMARA_COLOR} from '~/constants';
+import {LOCHMARA_COLOR, mq} from '~/constants';
 import Img from 'gatsby-image';
 import {ExternalLink, Text} from '~/components';
 import {Link} from 'gatsby';
 
 const settings = {
   adaptiveHeight: true,
-  autoPlay: true,
   centerMode: false,
   dots: true,
   infinite: true,
-  speed: 500,
+  speed: 750,
   slidesToShow: 1,
   slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 10000,
+  cssEase: 'ease',
 };
 
 // TODO: dynamically determine height
 const containerStyles = css`
   display: block;
   width: 100vw;
-  height: 400px;
+  height: 18.75rem;
 
   .slick-list {
     overflow: hidden !important;
@@ -61,7 +63,8 @@ const containerStyles = css`
 
 const slideStyles = css`
   position: relative;
-  height: 400px;
+  height: 18.75rem;
+  overflow: hidden;
 
   > .gatsby-image-wrapper {
     display: block;
@@ -88,10 +91,15 @@ const slideStyles = css`
     background-color: rgba(0, 0, 0, 0.5);
 
     h2 {
+      ${mq.tablet} {
+        font-size: 2rem;
+        line-height: 3rem;
+      }
+
       color: #fff;
-      font-size: 2rem;
+      font-size: 1.5rem;
       text-align: center;
-      line-height: 3rem;
+      line-height: 2.25rem;
       font-weight: 400;
     }
 
@@ -119,6 +127,7 @@ const slideStyles = css`
 `;
 
 export default ({items}) => {
+  console.log('items', items);
   return (
     <div css={containerStyles}>
       <Slider {...settings}>
@@ -126,6 +135,7 @@ export default ({items}) => {
           const {href, banner, title, authors} = mapNodeToProps(node);
           const [firstAuthor] = authors;
           const {name, avatar, to} = firstAuthor;
+
           return (
             <ExternalLink {...{href}}>
               <div css={slideStyles}>
