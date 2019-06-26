@@ -27,7 +27,7 @@ const containerStyles = css`
   height: 18.75rem;
 
   .slick-list {
-    overflow: hidden !important;
+    overflow: hidden;
   }
 
   .slick-slider {
@@ -38,7 +38,7 @@ const containerStyles = css`
       bottom: 20px;
 
       > li {
-        margin: 0px 2px !important;
+        margin: 0px 2px;
 
         > button {
           :before {
