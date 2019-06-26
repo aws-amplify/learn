@@ -6,6 +6,7 @@ import logoDarkURI from '~/assets/images/logo-dark.png';
 import {useMemo} from 'react';
 import {values, map} from 'ramda';
 import {MdOpenInNew} from 'react-icons/md';
+import {TiDocumentText} from 'react-icons/ti';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import Text from './Text';
 import {mq, ORANGE_PEEL_COLOR, MAX_WIDTH} from '~/constants';
@@ -32,15 +33,15 @@ const baseStyles = css`
     max-width: ${MAX_WIDTH};
 
     > .branding,
-    > .internal,
-    > .external {
+    > .left,
+    > .right {
       display: flex;
       flex-direction: row;
       align-items: center;
     }
 
-    > .internal,
-    > .external {
+    > .left,
+    > .right {
       margin: 0 2rem 0 0;
 
       a {
@@ -80,7 +81,7 @@ const baseStyles = css`
       }
     }
 
-    > .internal {
+    > .left {
       flex: 1;
       justify-content: flex-end;
 
@@ -89,7 +90,7 @@ const baseStyles = css`
       }
     }
 
-    > .external {
+    > .right {
       display: none;
 
       ${mq.tablet} {
@@ -97,13 +98,29 @@ const baseStyles = css`
         flex: 1;
         justify-content: flex-end;
       }
+    }
 
-      a {
-        svg {
-          width: 0.875rem;
-          height: 0.875rem;
-          margin-left: 0.25rem;
-        }
+    a {
+      svg {
+        width: 0.875rem;
+        height: 0.875rem;
+        margin-left: 0.25rem;
+      }
+    }
+
+    .docs {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 4px 16px 4px 12px;
+      font-weight: 300;
+
+      * {
+        color: ${ORANGE_PEEL_COLOR};
+      }
+
+      svg {
+        width: 1.125rem;
+        height: 1.125rem;
       }
     }
   }
@@ -213,7 +230,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
             <Text h3 children='Community' />
           </Link>
 
-          <div className='internal'>
+          <div className='left'>
             {map(
               ({to, children}) => (
                 <Link {...{to}} key={children} activeClassName='active'>
@@ -225,27 +242,20 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                 {to: '/posts', children: 'Posts'},
               ],
             )}
+            <ExternalLink href='https://gitter.im/AWS-Amplify/Lobby?source=orgpage'>
+              <Text span>Chat</Text>
+              <MdOpenInNew className='external-graphic' />
+            </ExternalLink>
           </div>
 
-          <div className='external'>
-            {map(
-              ({href, children}) => (
-                <ExternalLink {...{href}} key={children}>
-                  <Text span {...{children}} />
-                  <MdOpenInNew className='external-graphic' />
-                </ExternalLink>
-              ),
-              [
-                {
-                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
-                  children: 'Chat',
-                },
-                {
-                  href: 'https://aws-amplify.github.io/docs/',
-                  children: 'Docs',
-                },
-              ],
-            )}
+          <div className='right'>
+            <ExternalLink
+              className='docs'
+              href='https://aws-amplify.github.io/docs/'
+            >
+              <TiDocumentText />
+              <Text span>Visit Docs</Text>
+            </ExternalLink>
           </div>
         </div>
       </nav>
