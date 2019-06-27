@@ -8,6 +8,5 @@ href: https://medium.com/@kishida58/ci-for-aws-amplify-console-with-python-unitt
 platforms:
   - Angular
 categories:
-  - Functions
-  - codegen
+  - Hosting
 ---
