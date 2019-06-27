@@ -8,6 +8,7 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
     "@rehooks/component-size": "^1.0.2",
+    "@rooks/use-boundingclientrect": "^3.0.1",
     "aws-amplify": "^1.1.26",
     "babel-plugin-ramda": "^2.0.0",
     "cypress": "^3.2.0",
@@ -24,6 +25,7 @@
     "react-icons": "^3.5.0",
     "react-moment": "^0.8.4",
     "react-select": "^2.4.3",
+    "react-slick": "^0.24.0",
     "react-sticky": "^6.0.3",
     "react-sticky-box": "^0.8.0",
     "react-toastify": "^5.1.0",
@@ -92,6 +94,6 @@
     "cy:ci": "cypress run --config baseUrl=http://localhost:9000",
     "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
-    "commit": "git add . && git-cz"
+    "commit": "git add . && git-cz && git secrets --scan-history"
   }
 }
