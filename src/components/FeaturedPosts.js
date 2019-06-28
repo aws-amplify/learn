@@ -127,7 +127,6 @@ const slideStyles = css`
 `;
 
 export default ({items}) => {
-  console.log('items', items);
   return (
     <div css={containerStyles}>
       <Slider {...settings}>
