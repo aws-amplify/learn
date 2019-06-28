@@ -55,6 +55,7 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.32",
     "gatsby-plugin-twitter": "^2.0.13",
+    "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-remark-copy-linked-files": "^2.0.11",
     "gatsby-remark-embed-gist": "^1.1.7",
     "gatsby-remark-embed-video": "^1.7.1",

@@ -136,7 +136,11 @@ const mailchimp = {
 //   },
 // };
 
-const misc = ['gatsby-plugin-react-helmet', 'gatsby-plugin-offline'];
+const misc = [
+  'gatsby-plugin-react-helmet',
+  'gatsby-plugin-offline',
+  'gatsby-plugin-webpack-bundle-analyzer',
+];
 
 module.exports = {
   siteMetadata,
