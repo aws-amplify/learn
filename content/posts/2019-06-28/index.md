@@ -10,4 +10,5 @@ platforms:
 categories:
   - API (REST)
   - Authentication
+  - Hosting
 ---
