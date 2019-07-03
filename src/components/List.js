@@ -50,6 +50,7 @@ export default ({
   items,
   noItems,
   footer,
+  ref,
 }) => {
   const deps = [heading, subheading, cta];
   const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps);
@@ -74,7 +75,7 @@ export default ({
   );
 
   return (
-    <div css={styles} {...containerProps}>
+    <div css={styles} {...containerProps} {...{ref}}>
       {displayHeading && (
         <div className='heading'>
           <div>
