@@ -18,8 +18,7 @@ import {
   Meta,
   FeaturedPosts,
 } from '~/components';
-import {all, includes, isEmpty, any, sort, map, take} from 'ramda';
-import {useEffect, useState, useRef} from 'react';
+import {all, includes, isEmpty, any, sort, map} from 'ramda';
 
 export const pageQuery = graphql`
   {
@@ -95,13 +94,6 @@ export default props => {
   const sortedFeatured = sort((a, b) => a.i - b.i, featuredData);
   const featured = map(({post}) => post, sortedFeatured);
   const edges = extract.fromPath(['data', 'posts', 'edges'], props);
-  const [edgesToRender, setEdgesToRender] = useState(take(15, edges));
-  useEffect(() => {
-    track.internalPageView(props);
-    setTimeout(() => {
-      setEdgesToRender(edges);
-    }, 100);
-  }, []);
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges);
   const categoryOptions = getFilterOptions(CATEGORIES_PATH, edges);
@@ -147,7 +139,7 @@ export default props => {
         return (
           <MappedList
             {...{heading, cta}}
-            data={edgesToRender}
+            data={edges}
             mapping={mapNodeToProps}
             keyExtractor={extract.keyFromNode}
             renderCondition={meetsCriteria}
