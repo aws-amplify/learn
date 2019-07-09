@@ -19,6 +19,7 @@ import {
   FeaturedPosts,
 } from '~/components';
 import {all, includes, isEmpty, any, sort, map} from 'ramda';
+import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   {
@@ -87,6 +88,7 @@ const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
 export default props => {
+  useEffect(() => track.internalPageView(props), []);
   const featuredData = extract.fromPath(
     ['data', 'featured', 'frontmatter', 'posts'],
     props,

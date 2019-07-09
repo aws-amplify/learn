@@ -30,7 +30,7 @@ const styles = css`
       will-change: transform;
       top: 0px;
       backface-visibility: none;
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 26.625rem, 0);
 
       &.scrollable {
         overflow-y: scroll;
@@ -63,7 +63,6 @@ const styles = css`
   }
 `;
 
-// eventually swap out with REM when dynamically searching sticky-related element values
 const megaMenuStyles = css`
   position: fixed;
   top: 0;
@@ -100,7 +99,7 @@ const megaMenuStyles = css`
 `;
 
 // rewrite using request-animation-frame for 60fps!!!
-export default ({header, menu, main}) => {
+export default ({header, menu, main, onLoad}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   // useLockBodyScroll(true);
 
