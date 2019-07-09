@@ -51,6 +51,7 @@ export default ({
   noItems,
   footer,
   ref,
+  visitorCue,
 }) => {
   const deps = [heading, subheading, cta];
   const displayHeading = useMemo(() => !!deps.filter(Boolean).length, deps);
@@ -75,7 +76,7 @@ export default ({
   );
 
   return (
-    <div css={styles} {...containerProps} {...{ref}}>
+    <div css={styles} {...containerProps} {...{ref}} visitor-cue={visitorCue}>
       {displayHeading && (
         <div className='heading'>
           <div>

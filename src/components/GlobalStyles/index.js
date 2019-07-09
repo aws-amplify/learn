@@ -8,7 +8,7 @@ import {
   YOUTUBE_RED_COLOR,
   SAN_JUAN_COLOR,
 } from '~/constants';
-import toasts from './toasts';
+// import toasts from './toasts';
 import carousel from './carousel';
 
 const styles = css`
@@ -70,7 +70,6 @@ const styles = css`
     }
   }
 
-  ${toasts}
   ${carousel}
 
   .social a:hover {
