@@ -1,6 +1,6 @@
 ---
 title: Add Cognito Groups to Amplify Cloudformation templates
-description: 'In this tutorial, we’ll walk through  how to add Cognito groups to Amplify Cloudformation templates for easy, repeatable deployments.'
+description: 'In this tutorial, we’ll walk through how to add Cognito groups to Amplify Cloudformation templates for easy, repeatable deployments.'
 banner: './banner.jpg'
 authorIds:
   - james-best
