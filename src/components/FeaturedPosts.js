@@ -2,10 +2,11 @@ import Slider from 'react-slick';
 import {css} from '@emotion/core';
 import {map} from 'ramda';
 import {mapNodeToProps} from '~/utilities';
-import {LOCHMARA_COLOR, mq} from '~/constants';
+import {mq} from '~/constants';
 import Img from 'gatsby-image';
-import {ExternalLink, Text} from '~/components';
 import {Link} from 'gatsby';
+import ExternalLink from './ExternalLink';
+import Text from './Text';
 
 const settings = {
   adaptiveHeight: true,

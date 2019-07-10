@@ -28,9 +28,9 @@ const styles = css`
       display: none;
       position: fixed;
       will-change: transform;
-      top: 0px;
+      top: 0;
       backface-visibility: none;
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 26.625rem, 0);
 
       &.scrollable {
         overflow-y: scroll;
@@ -63,7 +63,6 @@ const styles = css`
   }
 `;
 
-// eventually swap out with REM when dynamically searching sticky-related element values
 const megaMenuStyles = css`
   position: fixed;
   top: 0;
@@ -100,7 +99,7 @@ const megaMenuStyles = css`
 `;
 
 // rewrite using request-animation-frame for 60fps!!!
-export default ({header, menu, main}) => {
+export default ({header, menu, main, hasHero = false}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   // useLockBodyScroll(true);
 
@@ -116,7 +115,10 @@ export default ({header, menu, main}) => {
   const menuRef = useRef(null);
   const mainRef = useRef(null);
 
-  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
+  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef) || {
+    width: 200,
+    height: 0,
+  };
   const {height: mainHeight} = useSize(mainRef);
   const {height: headerHeight} = useSize(headerRef);
   const maxMenuHeight = windowHeight - navHeight;
@@ -128,9 +130,11 @@ export default ({header, menu, main}) => {
   const maxScrollTop =
     mainHeight - initialMenuHeight + spaceBetweenNavAndSidebar;
   const menuOffset =
-    scrollTop < headerHeight - navHeight + spaceBetweenNavAndSidebar
+    scrollTop === 0 && hasHero
+      ? 410
+      : scrollTop < headerHeight - navHeight + spaceBetweenNavAndSidebar
       ? spaceBetweenNavAndSidebar + headerHeight - scrollTop
-      : scrollTop + spaceBetweenNavAndSidebar < maxScrollTop
+      : scrollTop + spaceBetweenNavAndSidebar <= maxScrollTop
       ? navHeight
       : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
@@ -150,7 +154,7 @@ export default ({header, menu, main}) => {
                   className={classNames(scrollableClassName, 'side menu')}
                   style={{
                     height: menuHeightStyleProp,
-                    transform: `translateY(${menuOffset}px)`,
+                    transform: `translateY(${menuOffset / 16}rem)`,
                   }}
                 >
                   <div ref={menuRef}>{menu}</div>
@@ -159,7 +163,7 @@ export default ({header, menu, main}) => {
                   className='ghost'
                   style={{
                     marginTop: '3.75rem',
-                    width: menuWidth,
+                    width: menuWidth || '12.5rem',
                     height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
