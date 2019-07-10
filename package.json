@@ -23,6 +23,7 @@
     "react-flatpickr": "^3.7.1",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.5.0",
+    "react-lazyload": "^2.6.2",
     "react-moment": "^0.8.4",
     "react-select": "^2.4.3",
     "react-slick": "^0.24.0",
@@ -73,6 +74,7 @@
     "jest": "^24.8.0",
     "markdownlint-cli": "^0.15.0",
     "open-graph-scraper": "^3.6.1",
+    "parse5": "^5.1.0",
     "react-test-renderer": "^16.8.6",
     "start-server-and-test": "^1.9.0",
     "yup": "^0.27.0"
