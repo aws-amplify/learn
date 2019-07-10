@@ -28,9 +28,9 @@ const styles = css`
       display: none;
       position: fixed;
       will-change: transform;
-      top: 26.625rem;
+      top: 0;
       backface-visibility: none;
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 26.625rem, 0);
 
       &.scrollable {
         overflow-y: scroll;
@@ -99,7 +99,7 @@ const megaMenuStyles = css`
 `;
 
 // rewrite using request-animation-frame for 60fps!!!
-export default ({header, menu, main, onLoad}) => {
+export default ({header, menu, main, hasHero = false}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   // useLockBodyScroll(true);
 
@@ -127,9 +127,11 @@ export default ({header, menu, main, onLoad}) => {
   const maxScrollTop =
     mainHeight - initialMenuHeight + spaceBetweenNavAndSidebar;
   const menuOffset =
-    scrollTop < headerHeight - navHeight + spaceBetweenNavAndSidebar
+    scrollTop === 0 && hasHero
+      ? 410
+      : scrollTop < headerHeight - navHeight + spaceBetweenNavAndSidebar
       ? spaceBetweenNavAndSidebar + headerHeight - scrollTop
-      : scrollTop + spaceBetweenNavAndSidebar < maxScrollTop
+      : scrollTop + spaceBetweenNavAndSidebar <= maxScrollTop
       ? navHeight
       : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
@@ -148,9 +150,8 @@ export default ({header, menu, main, onLoad}) => {
                 <div
                   className={classNames(scrollableClassName, 'side menu')}
                   style={{
-                    top: '0px',
                     height: menuHeightStyleProp,
-                    transform: `translateY(${menuOffset}px)`,
+                    transform: `translateY(${menuOffset / 16}rem)`,
                   }}
                 >
                   <div ref={menuRef}>{menu}</div>

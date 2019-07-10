@@ -178,7 +178,7 @@ export default props => {
     <>
       <Meta pageName='Posts' />
       <filterContext.Provider {...{value}}>
-        <Layout.SideMenu {...{header, menu, main}} />
+        <Layout.SideMenu {...{header, menu, main}} hasHero />
       </filterContext.Provider>
     </>
   );
