@@ -115,7 +115,10 @@ export default ({header, menu, main, hasHero = false}) => {
   const menuRef = useRef(null);
   const mainRef = useRef(null);
 
-  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
+  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef) || {
+    width: 200,
+    height: 0,
+  };
   const {height: mainHeight} = useSize(mainRef);
   const {height: headerHeight} = useSize(headerRef);
   const maxMenuHeight = windowHeight - navHeight;
@@ -160,7 +163,7 @@ export default ({header, menu, main, hasHero = false}) => {
                   className='ghost'
                   style={{
                     marginTop: '3.75rem',
-                    width: menuWidth,
+                    width: menuWidth || '12.5rem',
                     height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
