@@ -3,6 +3,9 @@ const fs = require('fs');
 const R = require('ramda');
 const {parse} = require('parse5');
 const wrap = require('./wrap');
+const {Pinpoint} = require('aws-sdk');
+
+const pinpoint = new Pinpoint();
 
 const newsletter_years_path = path.join(__dirname, '../../public/newsletters');
 
@@ -81,5 +84,30 @@ R.mapObjIndexed((root, category) => {
   });
 }, roots);
 
-const contents = wrap(newsletter_year, newsletter_week, date_range, data);
-console.log(contents);
+const HtmlBody = wrap(newsletter_year, newsletter_week, date_range, data);
+const campaign_title = `Weekly Newsletter (week ${String(
+  newsletter_week,
+)}), year ${String(newsletter_year)}`;
+const in30Seconds = new Date();
+in30Seconds.setSeconds(in30Seconds.getSeconds() + 30);
+pinpoint
+  .createCampaign({
+    ApplicationId: '75ab168484d64fdfb28c84ba1fb23523',
+    WriteCampaignRequest: {
+      Description: campaign_title,
+      MessageConfiguration: {
+        EmailMessage: {
+          Title: 'Amplify Weekly Newsletter',
+          FromAddress: 'harrysolovay@gmail.com',
+          HtmlBody,
+        },
+      },
+      Name: campaign_title,
+      Schedule: {
+        StartTime: in30Seconds.toISOString(),
+        Frequency: 'ONCE',
+      },
+      SegmentId: '3ea09cde6bab4d49835c19236b7c1aab',
+    },
+  })
+  .promise();
