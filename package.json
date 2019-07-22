@@ -33,12 +33,15 @@
     "shortid": "^2.2.14"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "aws-sdk": "^2.494.0",
     "axios": "^0.19.0",
     "babel-jest": "^24.8.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-react-require": "^3.1.1",
     "babel-preset-gatsby": "^0.1.11",
+    "babel-preset-react-app": "^9.0.0",
     "case": "^1.6.1",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "2.1.0",
@@ -75,6 +78,7 @@
     "markdownlint-cli": "^0.15.0",
     "open-graph-scraper": "^3.6.1",
     "parse5": "^5.1.0",
+    "react-html-email": "^3.0.0",
     "react-test-renderer": "^16.8.6",
     "start-server-and-test": "^1.9.0",
     "yup": "^0.27.0"
@@ -98,6 +102,6 @@
     "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
     "commit": "git add . && git-cz && git secrets --scan-history",
-    "generate-newsletter-campaign": "node scripts/generate-newsletter-campaign"
+    "generate-newsletter-campaign": "NODE_ENV=production BABEL_ENV=production node scripts/generate-newsletter-campaign"
   }
 }
