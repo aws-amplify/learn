@@ -1,9 +1,10 @@
 const React = require('react');
 const {Email, Item, Span, A, Box} = require('react-html-email');
+const path = require('path');
 const Event = require('./Event');
 const Post = require('./Post');
 
-module.exports = ({date_range, week, year, events, posts}) => {
+module.exports = ({week, year, events, posts}) => {
   return (
     <Email
       width='100%'
@@ -29,19 +30,58 @@ module.exports = ({date_range, week, year, events, posts}) => {
         }
       `}
     >
-      <Item align='left' style={{padding: '36px 8px 0px 8px'}}>
-        <Span fontSize={32} lineHeight={48} fontWeight={700}>
-          {`Amplify Newsletter, Week ${week} (${year})`}
-        </Span>
+      <Item style={{paddingTop: '16px'}}>
+        <Item
+          style={{
+            padding: '36px 8px 36px 8px',
+            backgroundColor: 'rgb(255, 153, 0)',
+            borderRadius: '5px',
+            boxShadow: 'rgb(204, 204, 204) 2px 2px 0px 2px',
+            backgroundImage:
+              'url(https://amplify.aws/community/static/map-ff2d5fb12102acd9f7cf7576600884b4.svg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <Box width='100%'>
+            <Item align='center'>
+              <Span fontSize={32} lineHeight={48} fontWeight={700} color='#fff'>
+                Amplify Newsletter
+              </Span>
+            </Item>
+            <Item align='center'>
+              <Span fontSize={20} lineHeight={30} color='#fff'>
+                {`Week ${week} of ${year}`}
+              </Span>
+            </Item>
+            <Item align='center' style={{paddingTop: '32px'}}>
+              <A
+                textDecoration='none'
+                href={path.join(
+                  'http://amplify.aws/community/newsletters',
+                  String(year),
+                  String(week),
+                )}
+              >
+                <Span
+                  color='#fff'
+                  style={{
+                    borderRadius: '4px',
+                    border: '1px solid #fff',
+                    padding: '8px',
+                  }}
+                >
+                  click here to open in browser
+                </Span>
+              </A>
+            </Item>
+          </Box>
+        </Item>
       </Item>
-      <Item align='left' style={{padding: '10px 8px 0px 8px'}}>
-        <Span fontSize={20} lineHeight={30}>
-          {date_range}
-        </Span>
-      </Item>
-      <Item align='left' style={{padding: '16px 8px 0px 8px'}}>
+      <Item align='left' style={{padding: '32px 8px 0px 8px'}}>
         <Span fontSize={18} lineHeight={27} fontWeight={100}>
-          {`Welcome to Week 18 of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
+          {`Below is the weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
         </Span>
       </Item>
       <Item align='center'>
@@ -81,7 +121,7 @@ module.exports = ({date_range, week, year, events, posts}) => {
               <Item
                 align='left'
                 style={{
-                  padding: '12px 8px 16px 8px',
+                  padding: '12px 8px 14px 8px',
                 }}
               >
                 <Span fontWeight={700} fontSize={22}>

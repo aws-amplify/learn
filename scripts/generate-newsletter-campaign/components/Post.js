@@ -30,7 +30,7 @@ module.exports = ({title, description, href}) => {
                   {title}
                 </Span>
               </Item>
-              <Item align='left'>
+              <Item align='left' style={{paddingTop: '8px'}}>
                 <Span
                   color='#fff'
                   fontSize={16}
