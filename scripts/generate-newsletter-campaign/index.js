@@ -1,6 +1,8 @@
 const {configStyleValidator, renderEmail} = require('react-html-email');
 require('@babel/register')({presets: ['@babel/preset-env', 'react-app']});
 const {Pinpoint} = require('aws-sdk');
+const fs = require('fs');
+const path = require('path');
 const Email = require('./components/Email');
 const gather_data = require('./gather_data');
 
@@ -18,6 +20,15 @@ configStyleValidator({
     'outlook-web',
   ],
 });
+
+(() => {
+  const destination = path.join(__dirname, 'contents.html');
+  const data = gather_data();
+  const email = Email(data);
+  const contents = renderEmail(email);
+  fs.writeFileSync(destination, contents, 'utf8');
+  process.exit(1);
+})();
 
 const pinpoint = new Pinpoint();
 const ApplicationId = '75ab168484d64fdfb28c84ba1fb23523';
