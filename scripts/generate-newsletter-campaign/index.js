@@ -21,14 +21,14 @@ configStyleValidator({
   ],
 });
 
-(() => {
-  const destination = path.join(__dirname, 'contents.html');
-  const data = gather_data();
-  const email = Email(data);
-  const contents = renderEmail(email);
-  fs.writeFileSync(destination, contents, 'utf8');
-  process.exit(1);
-})();
+// (() => {
+//   const destination = path.join(__dirname, 'contents.html');
+//   const data = gather_data();
+//   const email = Email(data);
+//   const contents = renderEmail(email);
+//   fs.writeFileSync(destination, contents, 'utf8');
+//   process.exit(1);
+// })();
 
 const pinpoint = new Pinpoint();
 const ApplicationId = '75ab168484d64fdfb28c84ba1fb23523';
