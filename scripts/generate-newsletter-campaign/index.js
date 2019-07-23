@@ -46,9 +46,9 @@ if (today_is_monday) {
     [year, month, day].map(String).join('x'),
   ].join('');
 
-  const get_envCache_response = execSync(`envCache --get ${key}`, {
-    stdio: 'inherit',
-  });
+  const get_envCache_response = execSync(`envCache --get ${key}`)
+    .toString()
+    .trim();
   console.log('get_envCache_response', get_envCache_response);
   if (!get_envCache_response) {
     const set_envCache_response = execSync(`envCache --set ${key} 1`, {
