@@ -42,14 +42,25 @@ if (today_is_monday) {
   const month = d.getMonth();
   const year = d.getFullYear();
   const key = ['campaign_created_on', year, month, day].map(String).join('_');
-  // const set_envCache_response = execSync(`envCache --set ${key} 1`, {
-  //   stdio: 'inherit',
-  // });
-  // console.log('set_envCache_response', set_envCache_response);
-  const get_envCache_response = execSync(`envCache --get ${key}`, {
-    stdio: 'inherit',
-  });
-  console.log('get_envCache_response', get_envCache_response);
+
+  try {
+    const get_envCache_response = execSync(`envCache --get ${key}`, {
+      stdio: 'inherit',
+    });
+    console.log('get_envCache_response', get_envCache_response);
+  } catch (get_err) {
+    console.log('retrieval error: ', get_err);
+
+    try {
+      const set_envCache_response = execSync(`envCache --set ${key} 1`, {
+        stdio: 'inherit',
+      });
+      console.log('set_envCache_response', set_envCache_response);
+    } catch (set_err) {
+      console.log('setting error: ', set_err);
+    }
+  }
+
   process.exit(1);
 
   // (async () => {
