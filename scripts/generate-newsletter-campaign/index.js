@@ -51,18 +51,21 @@ if (today_is_monday) {
     .toString()
     .trim();
   const already_created = !!(from_cache && Number(from_cache));
-
+  console.log('already created: ', already_created);
   if (already_created) {
+    console.log('starting async anonymous fn');
     (async () => {
       const data = gather_data();
       const email = Email(data);
       const contents = renderEmail(email);
+      console.log('rendered email: \n', contents);
       const {week: newsletter_week, year: newsletter_year} = data;
       const campaign_title = `Amplify Weekly Newsletter (week ${String(
         newsletter_week,
       )}, year ${String(newsletter_year)})`;
-
+      console.log('about to hit try block');
       try {
+        console.log('about to send request');
         const response = await pinpoint
           .createCampaign({
             ApplicationId,
@@ -84,7 +87,7 @@ if (today_is_monday) {
             },
           })
           .promise();
-
+        console.log('create response: ', response);
         execSync(`envCache --set ${key} 1`, {
           stdio: 'inherit',
         });
@@ -93,5 +96,6 @@ if (today_is_monday) {
         console.log('Pinpoint campaign creation error: ', e);
       }
     })();
+    console.log('exit anonymous fn');
   }
 }
