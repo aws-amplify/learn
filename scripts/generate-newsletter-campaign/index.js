@@ -31,6 +31,8 @@ configStyleValidator({
 //   process.exit(1);
 // })();
 
+// process.exit(1);
+
 const pinpoint = new Pinpoint();
 const ApplicationId = '75ab168484d64fdfb28c84ba1fb23523';
 const SegmentId = '3ea09cde6bab4d49835c19236b7c1aab';
