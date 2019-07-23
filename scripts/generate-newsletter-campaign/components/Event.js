@@ -20,7 +20,10 @@ module.exports = ({title, city, date, to, avatar}) => {
                 <Image
                   width={50}
                   height={50}
+                  alt='Logo'
+                  title='Logo'
                   style={{
+                    display: 'block',
                     borderRadius: '50%',
                     border: '1px solid rgb(233, 233, 233)',
                   }}
