@@ -52,7 +52,7 @@ if (today_is_monday) {
     .trim();
   const already_created = !!(from_cache && Number(from_cache));
   console.log('already created: ', already_created);
-  if (already_created) {
+  if (!already_created) {
     console.log('starting async anonymous fn');
     (async () => {
       const data = gather_data();
