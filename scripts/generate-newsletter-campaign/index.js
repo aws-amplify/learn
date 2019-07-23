@@ -46,22 +46,15 @@ if (today_is_monday) {
     [year, month, day].map(String).join('x'),
   ].join('');
 
-  try {
-    const get_envCache_response = execSync(`envCache --get ${key}`, {
+  const get_envCache_response = execSync(`envCache --get ${key}`, {
+    stdio: 'inherit',
+  });
+  console.log('get_envCache_response', get_envCache_response);
+  if (!get_envCache_response) {
+    const set_envCache_response = execSync(`envCache --set ${key} 1`, {
       stdio: 'inherit',
     });
-    console.log('get_envCache_response', get_envCache_response);
-  } catch (get_err) {
-    console.log('retrieval error: ', get_err);
-
-    try {
-      const set_envCache_response = execSync(`envCache --set ${key} 1`, {
-        stdio: 'inherit',
-      });
-      console.log('set_envCache_response', set_envCache_response);
-    } catch (set_err) {
-      console.log('setting error: ', set_err);
-    }
+    console.log('set_envCache_response', set_envCache_response);
   }
 
   process.exit(1);
