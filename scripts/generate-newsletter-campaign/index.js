@@ -41,12 +41,11 @@ if (today_is_monday) {
   const day = d.getDate();
   const month = d.getMonth();
   const year = d.getFullYear();
-  const d_without_time = new Date(year, month, day);
-  const key = d_without_time.toString();
-  const set_envCache_response = execSync(`envCache --set ${key} 1`, {
-    stdio: 'inherit',
-  });
-  console.log('set_envCache_response', set_envCache_response);
+  const key = ['campaign_created_on', year, month, day].map(String).join('_');
+  // const set_envCache_response = execSync(`envCache --set ${key} 1`, {
+  //   stdio: 'inherit',
+  // });
+  // console.log('set_envCache_response', set_envCache_response);
   const get_envCache_response = execSync(`envCache --get ${key}`, {
     stdio: 'inherit',
   });
