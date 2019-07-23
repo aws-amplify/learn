@@ -41,7 +41,10 @@ if (today_is_monday) {
   const day = d.getDate();
   const month = d.getMonth();
   const year = d.getFullYear();
-  const key = ['campaign_created_on', year, month, day].map(String).join('x');
+  const key = [
+    'campaignCreatedOn',
+    [year, month, day].map(String).join('x'),
+  ].join('');
 
   try {
     const get_envCache_response = execSync(`envCache --get ${key}`, {
