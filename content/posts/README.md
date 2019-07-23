@@ -23,7 +23,7 @@ categories:
   - Functions
 ---
 ```
-6. Upload an image at the root of your post folder (e.g. /contents/events/YYYY-MM-DD-desc/avatar.png) 
+6. Upload an image at the root of your post folder (e.g. /contents/posts/YYYY-MM-DD-desc/avatar.png) 
 
 7. Submit a PR.
 
