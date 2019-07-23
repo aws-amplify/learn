@@ -33,6 +33,7 @@ configStyleValidator({
 
 const pinpoint = new Pinpoint();
 const ApplicationId = '75ab168484d64fdfb28c84ba1fb23523';
+const SegmentId = '3ea09cde6bab4d49835c19236b7c1aab';
 
 const d = new Date();
 const today_is_monday = d.getDay() === 2;
@@ -79,7 +80,7 @@ if (today_is_monday) {
                 StartTime: new Date().toISOString(),
                 Frequency: 'ONCE',
               },
-              SegmentId: '3ea09cde6bab4d49835c19236b7c1aab',
+              SegmentId,
             },
           })
           .promise();
