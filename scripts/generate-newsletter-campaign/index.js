@@ -31,14 +31,12 @@ configStyleValidator({
 //   process.exit(1);
 // })();
 
-// process.exit(1);
-
 const pinpoint = new Pinpoint();
 const ApplicationId = '75ab168484d64fdfb28c84ba1fb23523';
 const SegmentId = '3ea09cde6bab4d49835c19236b7c1aab';
 
 const d = new Date();
-const today_is_monday = d.getDay() === 2;
+const today_is_monday = d.getDay() === 3;
 
 if (today_is_monday) {
   const day = d.getDate();

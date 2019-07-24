@@ -59,7 +59,7 @@ module.exports = ({week, year, events, posts}) => {
               <A
                 textDecoration='none'
                 href={path.join(
-                  'http://amplify.aws/community/newsletters',
+                  'https://amplify.aws/community/newsletters',
                   String(year),
                   String(week),
                 )}
