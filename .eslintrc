@@ -1,5 +1,8 @@
 {
   "extends": ["airbnb", "prettier"],
+  "globals": {
+    "window": "writable"
+  },
   "parserOptions": {
     "ecmaVersion": 9,
     "impliedStrict": true,
@@ -12,7 +15,6 @@
     "comma-dangle": ["error", "only-multiline"],
     "func-names": "off",
     "global-require": "off",
-    "jsx-a11y/heading-has-content": "off",
     "import/newline-after-import": "off",
     "import/no-dynamic-require": "off",
     "import/no-extraneous-dependencies": [
@@ -25,6 +27,7 @@
     "import/prefer-default-export": "off",
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/heading-has-content": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/no-autofocus": "off",
