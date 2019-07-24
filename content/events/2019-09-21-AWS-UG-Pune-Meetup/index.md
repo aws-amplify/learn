@@ -4,7 +4,7 @@ href: https://www.meetup.com/puneawsug/
 description: "Learn about AWS Amplify at the AWS UG Pune Meetup"
 avatar: ./avatar.png
 attendantIds:
-  - jayesh-ahire
+  - Jayesh-Ahire
 country: India
 city: Pune
 ---
