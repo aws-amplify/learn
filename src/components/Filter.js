@@ -39,9 +39,12 @@ const styles = css`
 `;
 
 export default ({filters}) => {
-  const {setCriteria} = useContext(filterContext);
+  const {criteria, setCriteria} = useContext(filterContext);
   const createOnChange = curry((key, d) => {
     setCriteria({[key]: d});
+    // jumpstart lazily-rendered posts
+    window.scrollTo(window.scrollX, window.scrollY + 1);
+    window.scrollTo(window.scrollX, window.scrollY - 1);
   });
 
   return (
@@ -56,6 +59,7 @@ export default ({filters}) => {
                 <CheckboxGroup
                   className='filter-input'
                   {...{key, onChange, options}}
+                  criteria={criteria[key]}
                   heading={name}
                 />
               );
@@ -66,12 +70,18 @@ export default ({filters}) => {
                 <DateRange
                   className='filter-input'
                   {...{key, name, onChange}}
+                  criteria={criteria[key]}
                 />
               );
             }
 
             case 'MULTI_SELECT': {
-              return <MultiSelect {...{options, key, name, onChange}} />;
+              return (
+                <MultiSelect
+                  {...{options, key, name, onChange}}
+                  criteria={criteria[key]}
+                />
+              );
             }
 
             default: {
