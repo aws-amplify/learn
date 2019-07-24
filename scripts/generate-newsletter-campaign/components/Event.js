@@ -27,7 +27,7 @@ module.exports = ({title, city, date, to, avatar}) => {
                     borderRadius: '50%',
                     border: '1px solid rgb(233, 233, 233)',
                   }}
-                  src={path.join('https://amplify.aws', avatar)}
+                  src={`https://amplify.aws${avatar}`}
                 />
               </Item>
               <Item align='center'>
@@ -47,7 +47,7 @@ module.exports = ({title, city, date, to, avatar}) => {
                 style={{paddingTop: '24px', paddingBottom: '24px'}}
               >
                 <A
-                  href={path.join('https://amplify.aws/community', to)}
+                  href={`https://amplify.aws/community/${to}`}
                   textDecoration='none'
                 >
                   <Span
