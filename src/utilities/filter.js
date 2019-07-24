@@ -12,6 +12,8 @@ import {
   assoc,
   comparator,
   lt,
+  isEmpty,
+  forEach,
 } from 'ramda';
 
 const error = message => {
@@ -24,8 +26,32 @@ export const createFilterContextValue = (...filters) => {
       ...lastState,
       ...newState,
     }),
-    fromPairs(map(({key}) => [key, null], filters)),
+    (() => {
+      const {search} = window.location;
+      if (isEmpty(search))
+        return fromPairs(map(({key}) => [key, null], filters));
+      const withoutQuestionMark = search.substr(1);
+      const decoded = decodeURIComponent(withoutQuestionMark);
+      const parsed = JSON.parse(decoded);
+      if (is(Object, parsed)) {
+        forEach(k => {
+          if (parsed[k] && (k === 'platforms' || k === 'categories'))
+            parsed[k] = parsed[k].filter(Boolean);
+        }, keys(parsed));
+        return parsed.dates
+          ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
+          : parsed;
+      }
+      return null;
+    })(),
   );
+
+  if (window.history.pushState) {
+    const newurl = `${window.location.protocol}//${window.location.host}${
+      window.location.pathname
+    }?${encodeURIComponent(JSON.stringify(criteria))}`;
+    window.history.pushState({path: newurl}, '', newurl);
+  }
 
   const meetsCriteria = useCallback(
     inQuestion => {
