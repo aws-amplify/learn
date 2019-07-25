@@ -21,6 +21,7 @@ const error = message => {
 };
 
 export const createFilterContextValue = (...filters) => {
+  console.log(filters);
   const [criteria, setCriteria] = useReducer(
     (lastState, newState) => ({
       ...lastState,
@@ -29,19 +30,19 @@ export const createFilterContextValue = (...filters) => {
     (() => {
       if (typeof window !== 'undefined') {
         const {search} = window.location;
-        if (isEmpty(search))
-          return fromPairs(map(({key}) => [key, null], filters));
-        const withoutQuestionMark = search.substr(1);
-        const decoded = decodeURIComponent(withoutQuestionMark);
-        const parsed = JSON.parse(decoded);
-        if (is(Object, parsed)) {
-          forEach(k => {
-            if (parsed[k] && (k === 'platforms' || k === 'categories'))
-              parsed[k] = parsed[k].filter(Boolean);
-          }, keys(parsed));
-          return parsed.dates
-            ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
-            : parsed;
+        if (!isEmpty(search)) {
+          const withoutQuestionMark = search.substr(1);
+          const decoded = decodeURIComponent(withoutQuestionMark);
+          const parsed = JSON.parse(decoded);
+          if (is(Object, parsed)) {
+            forEach(k => {
+              if (parsed[k] && (k === 'platforms' || k === 'categories'))
+                parsed[k] = parsed[k].filter(Boolean);
+            }, keys(parsed));
+            return parsed.dates
+              ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
+              : parsed;
+          }
         }
       }
       return {};
