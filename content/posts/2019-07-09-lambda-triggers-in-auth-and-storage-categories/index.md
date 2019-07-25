@@ -8,6 +8,8 @@ href: https://aws.amazon.com/blogs/mobile/amplify-framework-adds-supports-for-aw
 platforms:
   - React
   - JavaScript
+  - iOS
+  - Android
 categories:
   - Functions
   - Authentication
