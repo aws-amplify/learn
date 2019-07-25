@@ -1,11 +1,12 @@
 import {useState, useCallback} from 'react';
 import {MdArrowForward, MdCheck} from 'react-icons/md';
 import {css} from '@emotion/core';
-import addToMailchimp from 'gatsby-plugin-mailchimp';
 import {toast} from 'react-toastify';
+import axios from 'axios';
 import {Basic} from './Button';
 import {ORANGE_PEEL_COLOR} from '~/constants';
 import Text from './Text';
+import {isValidEmailAddress} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -78,31 +79,57 @@ const styles = css`
   }
 `;
 
-export default () => {
+const endpoint =
+  'https://pmzb3nwjhk.execute-api.us-west-2.amazonaws.com/development';
+const ctaTextByAction = {
+  subscribe: 'Subscribe to the Newsletter',
+  unsubscribe: 'Unsubscribe from the Newsletter',
+};
+
+export default ({action}) => {
   const [value, setValue] = useState('');
   const onChange = useCallback(({target: {value: v}}) => setValue(v), []);
   const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const onClick = async () => {
-    const response = await addToMailchimp(value);
-    let {result, msg} = response;
-    if (msg !== 'The email you entered is not valid.') {
-      result = 'success';
-      msg = 'Successfully subscribed!';
-    }
 
-    if (result === 'success') {
-      setValue('');
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 2000);
+  const onClick = async () => {
+    const [internal, emailAddress] = value.includes('INTERNAL_USER')
+      ? [true, value.split('INTERNAL_USER')[0]]
+      : [false, value];
+    const valid = isValidEmailAddress(emailAddress);
+    let type;
+    // eslint-disable-next-line
+    let __html;
+    if (valid) {
+      const internalQueryString = internal ? '&internal=true' : '';
+      const fullQueryString = `email_address=${encodeURIComponent(
+        emailAddress,
+      )}&action=${action}${internalQueryString}`;
+      const requestUrl = `${endpoint}?${fullQueryString}`;
+      const {data} = await axios.get(requestUrl);
+      const successful = data.message.includes('Successfully');
+
+      if (successful) {
+        setValue('');
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 2000);
+        type = 'success';
+      } else {
+        type = 'error';
+      }
+
+      ({message: __html} = data);
+    } else {
+      type = 'error';
+      __html = 'Please enter a valid email address.';
     }
 
     // eslint-disable-next-line
-    toast(<div dangerouslySetInnerHTML={{__html: msg}} />, {
+    toast(<div dangerouslySetInnerHTML={{__html}} />, {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 3000,
       hideProgressBar: true,
-      type: result,
+      type,
     });
   };
 
@@ -115,7 +142,7 @@ export default () => {
         >
           <Text
             className='subscribe-label'
-            children='Subscribe to the Newsletter'
+            children={ctaTextByAction[action]}
           />
         </Basic>
       )}

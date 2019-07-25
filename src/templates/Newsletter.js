@@ -191,7 +191,12 @@ export default props => {
     },
   ];
 
-  const sharedProps = {className: 'three-dee rounded actionable'};
+  const sharedProps = {
+    className: 'three-dee rounded actionable',
+    onNewsletter: true,
+  };
+
+  const dateRange = `${startDate} to ${endDate}`;
 
   const main = [
     <div css={headingStyles}>
@@ -219,11 +224,16 @@ export default props => {
           );
 
           return (
-            <List
-              heading={<Text h2 className='list-heading' children={heading} />}
-              {...{key, items, visitorCue}}
-              {...rest}
-            />
+            <>
+              <div data-date-range={dateRange} />
+              <List
+                heading={
+                  <Text h2 className='list-heading' children={heading} />
+                }
+                {...{key, items, visitorCue}}
+                {...rest}
+              />
+            </>
           );
         }
 
