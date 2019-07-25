@@ -59,7 +59,7 @@ export default ({filters}) => {
                 <CheckboxGroup
                   className='filter-input'
                   {...{key, onChange, options}}
-                  criteria={criteria[key]}
+                  criteria={criteria && criteria[key]}
                   heading={name}
                 />
               );
@@ -70,7 +70,7 @@ export default ({filters}) => {
                 <DateRange
                   className='filter-input'
                   {...{key, name, onChange}}
-                  criteria={criteria[key]}
+                  criteria={criteria && criteria[key]}
                 />
               );
             }
@@ -79,7 +79,7 @@ export default ({filters}) => {
               return (
                 <MultiSelect
                   {...{options, key, name, onChange}}
-                  criteria={criteria[key]}
+                  criteria={criteria && criteria[key]}
                 />
               );
             }
