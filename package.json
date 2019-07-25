@@ -14,7 +14,6 @@
     "cypress": "^3.2.0",
     "gatsby": "2.3.4",
     "gatsby-image": "^2.0.37",
-    "gatsby-plugin-mailchimp": "^5.0.0",
     "moment": "^2.24.0",
     "prismjs": "^1.16.0",
     "ramda": "^0.26.1",
@@ -34,11 +33,15 @@
     "shortid": "^2.2.14"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "aws-sdk": "^2.494.0",
+    "axios": "^0.19.0",
     "babel-jest": "^24.8.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-react-require": "^3.1.1",
     "babel-preset-gatsby": "^0.1.11",
+    "babel-preset-react-app": "^9.0.0",
     "case": "^1.6.1",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "2.1.0",
@@ -75,6 +78,7 @@
     "markdownlint-cli": "^0.15.0",
     "open-graph-scraper": "^3.6.1",
     "parse5": "^5.1.0",
+    "react-html-email": "^3.0.0",
     "react-test-renderer": "^16.8.6",
     "start-server-and-test": "^1.9.0",
     "yup": "^0.27.0"
@@ -91,12 +95,13 @@
     "validate-content": "markdownlint content/**/* && scripts/validations.js",
     "prep": "yarn delete-cache && scripts/gather-credentials.js",
     "start": "yarn prep && gatsby develop",
-    "build": "yarn prep && gatsby build --prefix-paths",
+    "build": "yarn prep && gatsby build --prefix-paths && yarn generate-newsletter-campaign",
     "serve": "gatsby serve",
     "cy:dev": "cypress open --config baseUrl=http://localhost:8000",
     "cy:ci": "cypress run --config baseUrl=http://localhost:9000",
     "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
-    "commit": "git add . && git-cz && git secrets --scan-history"
+    "commit": "git add . && git-cz && git secrets --scan-history",
+    "generate-newsletter-campaign": "NODE_ENV=production BABEL_ENV=production node scripts/generate-newsletter-campaign"
   }
 }

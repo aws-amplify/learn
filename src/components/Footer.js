@@ -129,6 +129,10 @@ const styles = css`
           line-height: 1.3125rem;
           font-weight: 200;
         }
+
+        a {
+          text-decoration: underline;
+        }
       }
 
       .social {
@@ -216,7 +220,9 @@ export default () => {
               href='https://aws.amazon.com/privacy/'
               children='Privacy Policy'
             />
-            {`.`}
+            {`. Also, `}
+            <Link to='/newsletter/unsubscribe' children='Click here' />
+            {` to unsubscribe from the weekly newsletter.`}
           </Text>
           <img src={awsLogoSrc} alt='aws' />
         </div>
