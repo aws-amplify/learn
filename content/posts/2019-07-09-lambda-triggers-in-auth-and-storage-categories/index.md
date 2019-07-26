@@ -1,3 +1,4 @@
+---
 title: Amplify Framework adds support for AWS Lambda Triggers in Auth and Storage categories
 description: "In this blog, we will set up AWS Lambda triggers for auth and storage use cases from the Amplify CLI."
 banner: "./banner.jpeg"
@@ -14,3 +15,4 @@ categories:
   - Functions
   - Authentication
   - Storage
+---
