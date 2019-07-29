@@ -46,4 +46,3 @@ amplify/backend/awscloudformation
 aws-exports.js
 awsconfiguration.json
 credentials.js
-email-contents.html
