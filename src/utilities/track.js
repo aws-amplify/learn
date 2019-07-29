@@ -9,11 +9,9 @@ const track = curry((name, attributes) => {
   if (!configured) {
     credentials && Amplify.configure(credentials);
     configured = true;
-    // console.log('configured analytics');
   }
 
   credentials && Analytics.record({name, attributes});
-  // console.log('triggered analytics');
 });
 
 export const internalPageView = ({location: {href}}) =>

@@ -76,7 +76,12 @@ export default ({
   );
 
   return (
-    <div css={styles} {...containerProps} {...{ref}} visitor-cue={visitorCue}>
+    <div
+      css={styles}
+      {...containerProps}
+      {...{ref}}
+      data-visitor-cue={visitorCue}
+    >
       {displayHeading && (
         <div className='heading'>
           <div>

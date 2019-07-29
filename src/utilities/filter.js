@@ -1,4 +1,4 @@
-import {useReducer, useCallback} from 'react';
+import {useReducer, useCallback, useEffect} from 'react';
 import {
   fromPairs,
   map,
@@ -12,6 +12,8 @@ import {
   assoc,
   comparator,
   lt,
+  isEmpty,
+  forEach,
 } from 'ramda';
 
 const error = message => {
@@ -19,13 +21,44 @@ const error = message => {
 };
 
 export const createFilterContextValue = (...filters) => {
+  console.log(filters);
   const [criteria, setCriteria] = useReducer(
     (lastState, newState) => ({
       ...lastState,
       ...newState,
     }),
-    fromPairs(map(({key}) => [key, null], filters)),
+    (() => {
+      if (typeof window !== 'undefined') {
+        const {search} = window.location;
+        if (!isEmpty(search)) {
+          const withoutQuestionMark = search.substr(1);
+          const decoded = decodeURIComponent(withoutQuestionMark);
+          const parsed = JSON.parse(decoded);
+          if (is(Object, parsed)) {
+            forEach(k => {
+              if (parsed[k] && (k === 'platforms' || k === 'categories'))
+                parsed[k] = parsed[k].filter(Boolean);
+            }, keys(parsed));
+            return parsed.dates
+              ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
+              : parsed;
+          }
+        }
+      }
+      return {};
+    })(),
   );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.history.pushState) {
+        const newurl = `${window.location.protocol}//${window.location.host}${
+          window.location.pathname
+        }?${encodeURIComponent(JSON.stringify(criteria))}`;
+        window.history.pushState({path: newurl}, '', newurl);
+      }
+    }
+  }, [...criteria]);
 
   const meetsCriteria = useCallback(
     inQuestion => {
