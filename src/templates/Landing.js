@@ -101,7 +101,7 @@ const heroProps = {
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
-  // cta: <Subscribe />,
+  // cta: <Subscribe action='subscribe' />,
   overlay: heroOverlaySrc,
 };
 

@@ -101,8 +101,6 @@ module.exports = toolbox => {
               '---',
             ]);
 
-            console.log(contents);
-
             finalizations.push(() => {
               // create MD file
               mkdirSync(contributorPath);
