@@ -39,17 +39,19 @@ const styles = css`
 `;
 
 export default ({filters}) => {
-  const {setCriteria} = useContext(filterContext);
-  const createOnChange = useCallback(
-    curry((key, d) => setCriteria({[key]: d})),
-    [],
-  );
+  const {criteria, setCriteria} = useContext(filterContext);
+  const createOnChange = curry((key, d) => {
+    setCriteria({[key]: d});
+    // jumpstart lazily-rendered posts
+    window.scrollTo(window.scrollX, window.scrollY + 1);
+    window.scrollTo(window.scrollX, window.scrollY - 1);
+  });
 
   return (
     <div css={styles}>
       <div>
         {filters.map(({type, key, name, options}) => {
-          const onChange = useCallback(createOnChange(key), [key]);
+          const onChange = createOnChange(key);
 
           switch (type) {
             case 'CHECKBOX_GROUP': {
@@ -57,6 +59,7 @@ export default ({filters}) => {
                 <CheckboxGroup
                   className='filter-input'
                   {...{key, onChange, options}}
+                  criteria={criteria && criteria[key]}
                   heading={name}
                 />
               );
@@ -67,12 +70,18 @@ export default ({filters}) => {
                 <DateRange
                   className='filter-input'
                   {...{key, name, onChange}}
+                  criteria={criteria && criteria[key]}
                 />
               );
             }
 
             case 'MULTI_SELECT': {
-              return <MultiSelect {...{options, key, name, onChange}} />;
+              return (
+                <MultiSelect
+                  {...{options, key, name, onChange}}
+                  criteria={criteria && criteria[key]}
+                />
+              );
             }
 
             default: {

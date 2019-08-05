@@ -1,5 +1,6 @@
 import {css} from '@emotion/core';
 import Img from 'gatsby-image';
+import LazyLoad from 'react-lazyload';
 import Text from '../../Text';
 import {SAN_JUAN_COLOR, GRAY_COLOR, mq} from '~/constants';
 import {classNames} from '~/utilities';
@@ -34,11 +35,12 @@ const styles = css`
     flex-direction: column;
     justify-content: center;
     margin-bottom: 0.5rem;
-    background: linear-gradient(to right, rgb(240, 240, 240), #fff);
+    background: linear-gradient(to bottom, rgb(240, 240, 240), #fff);
 
     ${mq.desktop} {
       margin-bottom: 0;
       margin-right: 0.5rem;
+      background: linear-gradient(to right, rgb(240, 240, 240), #fff);
     }
 
     > .gatsby-image-wrapper {
@@ -122,34 +124,36 @@ export default asCard(
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
 
     return (
-      <ConditionalAnchor
-        css={styles}
-        className={classNames(className, 'post-expanded')}
-      >
-        {banner && (
-          <div className='banner'>
-            <Img {...banner} />
-          </div>
-        )}
-
-        <div className='body'>
-          <div>
-            {href && (
-              <div className='favicon'>
-                <img src={faviconSrc} alt='content platform' />
-              </div>
-            )}
-            <Text h3 children={title} />
-            <Text p children={description} />
-          </div>
-
-          {!onContributorPage && (
-            <div className='author'>
-              <Author {...{to, name, handle, avatar}} />
+      <LazyLoad>
+        <ConditionalAnchor
+          css={styles}
+          className={classNames(className, 'post-expanded')}
+        >
+          {banner && (
+            <div className='banner'>
+              <Img {...banner} />
             </div>
           )}
-        </div>
-      </ConditionalAnchor>
+
+          <div className='body'>
+            <div>
+              {href && (
+                <div className='favicon'>
+                  <img src={faviconSrc} alt='content platform' />
+                </div>
+              )}
+              <Text h3 children={title} />
+              <Text p children={description} />
+            </div>
+
+            {!onContributorPage && (
+              <div className='author'>
+                <Author {...{to, name, handle, avatar}} />
+              </div>
+            )}
+          </div>
+        </ConditionalAnchor>
+      </LazyLoad>
     );
   },
 );

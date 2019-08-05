@@ -160,6 +160,7 @@ export default props => {
 
   const sections = [
     {
+      visitorCue: 'events',
       key: 'upcomingEventsSection',
       heading: 'Upcoming Events',
       cta: {
@@ -174,6 +175,7 @@ export default props => {
       },
     },
     {
+      visitorCue: 'posts',
       key: 'latestPostsSection',
       heading: 'Latest Posts',
       cta: {
@@ -189,7 +191,12 @@ export default props => {
     },
   ];
 
-  const sharedProps = {className: 'three-dee rounded actionable'};
+  const sharedProps = {
+    className: 'three-dee rounded actionable',
+    onNewsletter: true,
+  };
+
+  const dateRange = `${startDate} to ${endDate}`;
 
   const main = [
     <div css={headingStyles}>
@@ -201,31 +208,39 @@ export default props => {
       />
     </div>,
 
-    ...map(({heading, key, cta, nodes, Template, more, ...rest}) => {
-      if (nodes.length) {
-        const items = map(
-          node => (
-            <Template
-              {...(key === 'upcomingEventsSection'
-                ? mapNodeToProps(node, 'href')
-                : mapNodeToProps(node))}
-              {...sharedProps}
-            />
-          ),
-          nodes,
-        );
+    ...map(
+      ({heading, key, cta, nodes, Template, more, visitorCue, ...rest}) => {
+        if (nodes.length) {
+          const items = map(
+            node => (
+              <Template
+                {...(key === 'upcomingEventsSection'
+                  ? mapNodeToProps(node, 'href')
+                  : mapNodeToProps(node))}
+                {...sharedProps}
+              />
+            ),
+            nodes,
+          );
 
-        return (
-          <List
-            heading={<Text h2 className='list-heading' children={heading} />}
-            {...{key, items}}
-            {...rest}
-          />
-        );
-      }
+          return (
+            <>
+              <div data-date-range={dateRange} />
+              <List
+                heading={
+                  <Text h2 className='list-heading' children={heading} />
+                }
+                {...{key, items, visitorCue}}
+                {...rest}
+              />
+            </>
+          );
+        }
 
-      return null;
-    }, sections),
+        return null;
+      },
+      sections,
+    ),
 
     <div css={buttonStyles}>
       {map(

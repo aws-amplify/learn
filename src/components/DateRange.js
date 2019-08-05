@@ -4,8 +4,9 @@ import {useState, useMemo} from 'react';
 import 'flatpickr/dist/themes/airbnb.css';
 import {css} from '@emotion/core';
 import {generate} from 'shortid';
+import {map} from 'ramda';
 import Text from './Text';
-import {SILVER_CHALICE_COLOR, GRAY_COLOR} from '~/constants';
+import {GRAY_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
 
 const styles = css`
@@ -67,8 +68,8 @@ const styles = css`
   }
 `;
 
-export default ({name, onChange, className}) => {
-  const [range, setRange] = useState(null);
+export default ({name, onChange, className, criteria}) => {
+  const [range, setRange] = useState(criteria);
   const id = useMemo(generate, []);
   const [focusedClassName, setFocusedClassName] = useState('');
 
