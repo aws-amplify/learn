@@ -8,12 +8,12 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
     "@rehooks/component-size": "^1.0.2",
+    "@rooks/use-boundingclientrect": "^3.0.1",
     "aws-amplify": "^1.1.26",
     "babel-plugin-ramda": "^2.0.0",
     "cypress": "^3.2.0",
     "gatsby": "2.3.4",
     "gatsby-image": "^2.0.37",
-    "gatsby-plugin-mailchimp": "^5.0.0",
     "moment": "^2.24.0",
     "prismjs": "^1.16.0",
     "ramda": "^0.26.1",
@@ -22,8 +22,10 @@
     "react-flatpickr": "^3.7.1",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.5.0",
+    "react-lazyload": "^2.6.2",
     "react-moment": "^0.8.4",
     "react-select": "^2.4.3",
+    "react-slick": "^0.24.0",
     "react-sticky": "^6.0.3",
     "react-sticky-box": "^0.8.0",
     "react-toastify": "^5.1.0",
@@ -31,11 +33,15 @@
     "shortid": "^2.2.14"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "aws-sdk": "^2.494.0",
+    "axios": "^0.19.0",
     "babel-jest": "^24.8.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-react-require": "^3.1.1",
     "babel-preset-gatsby": "^0.1.11",
+    "babel-preset-react-app": "^9.0.0",
     "case": "^1.6.1",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "2.1.0",
@@ -53,6 +59,7 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.32",
     "gatsby-plugin-twitter": "^2.0.13",
+    "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-remark-copy-linked-files": "^2.0.11",
     "gatsby-remark-embed-gist": "^1.1.7",
     "gatsby-remark-embed-video": "^1.7.1",
@@ -70,6 +77,8 @@
     "jest": "^24.8.0",
     "markdownlint-cli": "^0.15.0",
     "open-graph-scraper": "^3.6.1",
+    "parse5": "^5.1.0",
+    "react-html-email": "^3.0.0",
     "react-test-renderer": "^16.8.6",
     "start-server-and-test": "^1.9.0",
     "yup": "^0.27.0"
@@ -92,6 +101,6 @@
     "cy:ci": "cypress run --config baseUrl=http://localhost:9000",
     "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
-    "commit": "git add . && git-cz"
+    "commit": "git add . && git-cz && git secrets --scan-history"
   }
 }

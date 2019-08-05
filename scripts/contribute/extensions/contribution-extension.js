@@ -70,9 +70,6 @@ module.exports = toolbox =>
             );
           });
 
-          // console.log(data, error);
-          // process.exit(1);
-
           if (error) throw error;
 
           const {
@@ -180,8 +177,6 @@ module.exports = toolbox =>
                   },
                 ]),
               );
-
-              console.log(platforms, categories);
 
               const contents = join('\n', [
                 '---\nbanner: ./banner.jpg',

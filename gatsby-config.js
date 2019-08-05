@@ -59,6 +59,7 @@ const dataSources = map(
 const mapping = {
   'MarkdownRemark.fields.authors': 'MarkdownRemark.fields.id',
   'MarkdownRemark.fields.attendants': 'MarkdownRemark.fields.id',
+  'MarkdownRemark.frontmatter.posts.post': 'MarkdownRemark.fields.id',
 };
 
 const markdownTransformer = {
@@ -103,14 +104,6 @@ const manifest = {
   },
 };
 
-const mailchimp = {
-  resolve: 'gatsby-plugin-mailchimp',
-  options: {
-    endpoint:
-      'https://amazon.us20.list-manage.com/subscribe/post?u=1dc41125a628ca803765f7800&amp;id=3e69babeab',
-  },
-};
-
 // const favicon = {
 //   resolve: `gatsby-plugin-favicon`,
 //   options: {
@@ -135,7 +128,11 @@ const mailchimp = {
 //   },
 // };
 
-const misc = ['gatsby-plugin-react-helmet', 'gatsby-plugin-offline'];
+const misc = [
+  'gatsby-plugin-react-helmet',
+  'gatsby-plugin-offline',
+  'gatsby-plugin-webpack-bundle-analyzer',
+];
 
 module.exports = {
   siteMetadata,
@@ -149,7 +146,6 @@ module.exports = {
     emotion,
     manifest,
     ...misc,
-    mailchimp,
     // favicon,
   ],
 };

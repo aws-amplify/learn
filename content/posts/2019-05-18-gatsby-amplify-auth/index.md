@@ -1,6 +1,6 @@
 ---
 title: Gatsby and AWS Amplify Authentication
-description: "Arbaoui from Full Stack Library shows us how to add authentication to Gatsby using AWS Amplify and Amazon Cognito."
+description: 'The AWS Amplify Authentication modules provide Authentication APIs and building blocks for developers who want to create apps with real-world production-ready user authentication. With Amplify you can incorporate username / password based authentication as well as OAuth with Facebook, Google or Amazon.'
 banner: './banner.jpg'
 authorIds:
   - arbaoui-mehdi

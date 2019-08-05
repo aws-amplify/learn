@@ -9,7 +9,7 @@ import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
-import {classNames} from '~/utilities';
+import {classNames, useRootFontSize} from '~/utilities';
 
 const styles = css`
   display: flex;
@@ -27,6 +27,10 @@ const styles = css`
     .side.menu {
       display: none;
       position: fixed;
+      will-change: transform;
+      top: 0;
+      backface-visibility: none;
+      transform: translate3d(0, 26.625rem, 0);
 
       &.scrollable {
         overflow-y: scroll;
@@ -59,7 +63,6 @@ const styles = css`
   }
 `;
 
-// eventually swap out with REM when dynamically searching sticky-related element values
 const megaMenuStyles = css`
   position: fixed;
   top: 0;
@@ -96,7 +99,7 @@ const megaMenuStyles = css`
 `;
 
 // rewrite using request-animation-frame for 60fps!!!
-export default ({header, menu, main}) => {
+export default ({header, menu, main, hasHero = false}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   // useLockBodyScroll(true);
 
@@ -104,23 +107,35 @@ export default ({header, menu, main}) => {
   const {y: scrollTop} = useWindowScroll();
   const {width: windowWidth, height: windowHeight} = useWindowSize();
 
+  const rootFontSize = useRootFontSize();
+  const navHeight = 3.75 * rootFontSize;
+  const spaceBetweenNavAndSidebar = 3.125 * rootFontSize;
+
+  const headerRef = useRef(null);
   const menuRef = useRef(null);
   const mainRef = useRef(null);
 
-  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef);
+  const {width: menuWidth, height: initialMenuHeight} = useSize(menuRef) || {
+    width: 200,
+    height: 0,
+  };
   const {height: mainHeight} = useSize(mainRef);
-  const maxMenuHeight = windowHeight - 60;
+  const {height: headerHeight} = useSize(headerRef);
+  const maxMenuHeight = windowHeight - navHeight;
   const menuHeightGreaterThanMax = initialMenuHeight > maxMenuHeight;
   const menuHeightStyleProp = menuHeightGreaterThanMax
-    ? `${maxMenuHeight}px`
+    ? `${maxMenuHeight / 16}rem`
     : 'initial';
 
-  const maxScrollTop = mainHeight - initialMenuHeight + 50;
+  const maxScrollTop =
+    mainHeight - initialMenuHeight + spaceBetweenNavAndSidebar;
   const menuOffset =
-    scrollTop < 50
-      ? 110 - scrollTop
-      : scrollTop + 50 < maxScrollTop
-      ? 60
+    scrollTop === 0 && hasHero
+      ? 410
+      : scrollTop < headerHeight - navHeight + spaceBetweenNavAndSidebar
+      ? spaceBetweenNavAndSidebar + headerHeight - scrollTop
+      : scrollTop + spaceBetweenNavAndSidebar <= maxScrollTop
+      ? navHeight
       : -(scrollTop - maxScrollTop) + 25;
   const showSidebar = windowWidth >= TABLET_BREAKPOINT;
   const scrollableClassName = menuHeightGreaterThanMax ? 'scrollable' : '';
@@ -130,7 +145,7 @@ export default ({header, menu, main}) => {
       <GlobalStyles />
       <div css={styles}>
         <layoutContext.Provider value={{menuOpen, toggleMenu}}>
-          {header}
+          <div ref={headerRef}>{header}</div>
 
           <div className='body'>
             {showSidebar && (
@@ -139,7 +154,7 @@ export default ({header, menu, main}) => {
                   className={classNames(scrollableClassName, 'side menu')}
                   style={{
                     height: menuHeightStyleProp,
-                    top: menuOffset,
+                    transform: `translateY(${menuOffset / 16}rem)`,
                   }}
                 >
                   <div ref={menuRef}>{menu}</div>
@@ -148,7 +163,7 @@ export default ({header, menu, main}) => {
                   className='ghost'
                   style={{
                     marginTop: '3.75rem',
-                    width: menuWidth,
+                    width: menuWidth || '12.5rem',
                     height: Math.min(initialMenuHeight, maxMenuHeight),
                   }}
                 />
