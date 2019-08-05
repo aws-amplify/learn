@@ -1,6 +1,6 @@
 ---
-title: AWS Amplify GraphQL Operations with TypeScript and Hooks - Part 3 [Mutations]
-description: 'In this post, we'll take a quick look at how we can provide type safety to GraphQL operations, namely mutations.'
+title: "AWS Amplify GraphQL Operations with TypeScript and Hooks - Part 3 [Mutations]"
+description: "In this post, we'll take a quick look at how we can provide type safety to GraphQL operations, namely mutations."
 banner: './banner.PNG'
 authorIds:
   - mat-warger
