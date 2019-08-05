@@ -66,7 +66,15 @@ const styles = css`
 `;
 
 export default asCard(
-  ({className, ConditionalAnchor, authors, title, description, href}) => {
+  ({
+    className,
+    ConditionalAnchor,
+    authors,
+    title,
+    description,
+    href,
+    onNewsletter,
+  }) => {
     const [firstAuthor] = authors;
     const {to, name, twitter, github, avatar} = firstAuthor;
     const handle = twitter || github;
@@ -75,26 +83,41 @@ export default asCard(
     const faviconSrc = `https://www.google.com/s2/favicons?domain=${encodedHref}`;
 
     return (
-      <ConditionalAnchor
-        css={styles}
-        className={classNames(className, 'post-condensed')}
-      >
-        <div className='body'>
-          <div>
-            {href && (
-              <div className='favicon'>
-                <img src={faviconSrc} alt='content platform' />
-              </div>
-            )}
-            <Text h3 children={title} />
-            <Text p children={description} />
-          </div>
+      <>
+        {onNewsletter && (
+          <div
+            data-visitor-target
+            css={css`
+              display: none;
+            `}
+            {...{
+              href,
+              title,
+              description,
+            }}
+          />
+        )}
+        <ConditionalAnchor
+          css={styles}
+          className={classNames(className, 'post-condensed')}
+        >
+          <div className='body'>
+            <div>
+              {href && (
+                <div className='favicon'>
+                  <img src={faviconSrc} alt='content platform' />
+                </div>
+              )}
+              <Text h3 children={title} />
+              <Text p children={description} />
+            </div>
 
-          <div className='author'>
-            <Author {...{to, name, handle, avatar}} />
+            <div className='author'>
+              <Author {...{to, name, handle, avatar}} />
+            </div>
           </div>
-        </div>
-      </ConditionalAnchor>
+        </ConditionalAnchor>
+      </>
     );
   },
 );
