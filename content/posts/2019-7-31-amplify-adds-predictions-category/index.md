@@ -15,5 +15,4 @@ platforms:
   - Android
 categories:
   - Predictions
-  - Machine Learning
 ---
