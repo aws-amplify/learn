@@ -14,5 +14,4 @@ platforms:
 categories:
   - API (GraphQL)
   - Hosting
-  - Console
 ---
