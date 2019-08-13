@@ -8,8 +8,8 @@ href: https://janhesters.com/multiple-environments-with-aws-amplify/
 platforms:
   - React
 categories:
-  - Environments
+  - Teams
   - API (GraphQL)
   - Analytics
-  - Auth
+  - Authentication
 ---
