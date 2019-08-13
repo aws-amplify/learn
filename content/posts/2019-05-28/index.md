@@ -4,7 +4,7 @@ description: "Translate your application dynamically in multiple languages with 
 banner: './translation.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/localization-with-aws-amplify/
+href: https://janhesters.com/localization-with-aws-amplify/
 platforms:
   - React
 categories:

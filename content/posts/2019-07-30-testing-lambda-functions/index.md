@@ -4,7 +4,7 @@ description: 'You are going to learn how to write unit tests for Lambda function
 banner: './banner.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/testing-lamba-functions/
+href: https://janhesters.com/testing-lamba-functions/
 platforms:
   - React
 categories:
