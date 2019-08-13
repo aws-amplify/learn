@@ -4,7 +4,7 @@ description: 'In this tutorial, you are going to learn how to sort your GraphQL 
 banner: './banner.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/sorting-queries-with-aws-amplifys-key-directive/
+href: https://janhesters.com/sorting-queries-with-aws-amplifys-key-directive/
 platforms:
   - React
 categories:

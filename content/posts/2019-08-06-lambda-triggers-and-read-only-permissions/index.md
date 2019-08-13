@@ -4,7 +4,7 @@ description: 'In this tutorial, you are going to learn how you can trigger a Lam
 banner: './banner.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/lambda-triggers-and-read-only-permissions/
+href: https://janhesters.com/lambda-triggers-and-read-only-permissions/
 platforms:
   - React
 categories:
