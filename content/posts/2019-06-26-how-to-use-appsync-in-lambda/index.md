@@ -4,7 +4,7 @@ description: 'In this tutorial, you are going to learn how you can execute queri
 banner: './banner.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/how-to-use-aws-appsync-in-lambda-functions/
+href: https://janhesters.com/how-to-use-aws-appsync-in-lambda-functions/
 platforms:
   - React
 categories:

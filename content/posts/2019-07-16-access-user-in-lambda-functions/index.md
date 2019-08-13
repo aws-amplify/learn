@@ -4,7 +4,7 @@ description: 'In this tutorial, you are going to learn how to get the user who c
 banner: './banner.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/how-to-access-the-user-in-lambda-functions-with-amplify/
+href: https://janhesters.com/how-to-access-the-user-in-lambda-functions-with-amplify/
 platforms:
   - React
 categories:
