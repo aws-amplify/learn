@@ -7,7 +7,7 @@ authorIds:
 href: https://dev.to/rakannimer/pagination-sorting-with-aws-amplify-4l37
 platforms:
   - React
-  - React-Native
+  - React Native
   - JavaScript
   - TypeScript
   - Android
