@@ -8,5 +8,5 @@ href: https://janhesters.com/setting-up-a-project-with-ci-cd-using-amplify/
 platforms:
   - React
 categories:
-  - Amplify Console
+  - Hosting
 ---
