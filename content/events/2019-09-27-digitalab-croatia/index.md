@@ -5,6 +5,6 @@ href: https://www.meetup.com/Amazon-Web-Services-Wellington-User-Group
 avatar: ./banner.png
 attendantIds:
   - gerard-sans
-country: New Zealand
-city: Wellington
+country: Croatia
+city: Labin
 ---
