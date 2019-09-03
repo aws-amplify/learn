@@ -1,6 +1,6 @@
 ---
 title: How to Build an AI Enabled Natural Language Synthesization Chrome Extension
-description: 'Transilator is a Chrome extension that translates and then synthesizes text on your screen to natural sounding speech. In this tutorial, I'll show you how I built it.'
+description: 'Transilator is a Chrome extension that translates and then synthesizes text on your screen to natural sounding speech. In this tutorial, I will show you how I built it.'
 banner: './banner.jpg'
 authorIds:
   - nader-dabit
