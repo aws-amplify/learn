@@ -33,16 +33,18 @@ export const createFilterContextValue = (...filters) => {
         if (!isEmpty(search)) {
           const withoutQuestionMark = search.substr(1);
           const decoded = decodeURIComponent(withoutQuestionMark);
-          const parsed = JSON.parse(decoded);
-          if (is(Object, parsed)) {
-            forEach(k => {
-              if (parsed[k] && (k === 'platforms' || k === 'categories'))
-                parsed[k] = parsed[k].filter(Boolean);
-            }, keys(parsed));
-            return parsed.dates
-              ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
-              : parsed;
-          }
+          try {
+            const parsed = JSON.parse(decoded);
+            if (is(Object, parsed)) {
+              forEach(k => {
+                if (parsed[k] && (k === 'platforms' || k === 'categories'))
+                  parsed[k] = parsed[k].filter(Boolean);
+              }, keys(parsed));
+              return parsed.dates
+                ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
+                : parsed;
+            }
+          } catch (e) {}
         }
       }
       return {};
