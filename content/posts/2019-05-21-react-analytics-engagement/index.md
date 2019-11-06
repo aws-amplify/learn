@@ -4,7 +4,7 @@ description: 'In this tutorial, you are going to learn how you can use the analy
 banner: './jan-banner.png'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/tracking-and-email-reminders-in-aws-amplify/
+href: https://janhesters.com/tracking-and-email-reminders-in-aws-amplify/
 platforms:
   - React
 categories:

@@ -4,7 +4,7 @@ description: 'Is the 1000 item limit in AWS Amplify hindering you from building 
 banner: './banner.jpg'
 authorIds:
   - jan-hesters
-href: https://geromekevin.com/query-all-items-using-scans-in-aws-amplify/
+href: https://janhesters.com/query-all-items-using-scans-in-aws-amplify/
 platforms:
   - React
 categories:
