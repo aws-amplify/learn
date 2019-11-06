@@ -1,9 +1,10 @@
-import {graphql} from 'gatsby';
-import {MappedList, Layout, Card, Nav, Text, Meta} from '~/components';
-import {mapNodeToProps, extract, track} from '~/utilities';
-import {css} from '@emotion/core';
-import {map, __, isEmpty} from 'ramda';
-import {useEffect} from 'react';
+import { graphql } from "gatsby";
+import { MappedList, Layout, Card, Nav, Text, Meta } from "~/components";
+import { mapNodeToProps, extract, track } from "~/utilities";
+import { css } from "@emotion/core";
+import { map, __, isEmpty } from "ramda";
+import { useEffect } from "react";
+import { LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT } from "~/constants";
 
 export const pageQuery = graphql`
   query($id: String!) {
@@ -78,30 +79,49 @@ export default props => {
   useEffect(() => track.internalPageView(props), []);
 
   const extractFromProps = extract.fromPath(__, props);
-  const [posts, contributor] = map(extractFromProps, [
-    ['data', 'posts', 'edges'],
-    ['data', 'contributor'],
+  const [posts, events, contributor] = map(extractFromProps, [
+    ["data", "posts", "edges"],
+    ["data", "events", "edges"],
+    ["data", "contributor"]
   ]);
-  const {name} = contributor.frontmatter;
+  const { name } = contributor.frontmatter;
 
   const main = (
     <div css={styles}>
       <Card.Contributor
         {...mapNodeToProps(contributor)}
         disabled
-        className='rounded'
+        className="rounded"
       />
 
       {!isEmpty(posts) && (
         <MappedList
-          heading={<Text h2 className='list-heading' children='Posts' />}
+          heading={<Text h2 className="list-heading" children="Posts" />}
           data={posts}
           mapping={mapNodeToProps}
           keyExtractor={extract.keyFromNode}
           renderItem={p => <Card.Post.Expanded {...p} />}
           additionalItemProps={{
-            className: 'three-dee actionable rounded',
-            onContributorPage: true,
+            className: "three-dee actionable rounded",
+            onContributorPage: true
+          }}
+        />
+      )}
+
+      {!isEmpty(events) && (
+        <MappedList
+          heading={<Text h2 className="list-heading" children="Events" />}
+          data={events}
+          mapping={mapNodeToProps}
+          keyExtractor={extract.keyFromNode}
+          renderItem={p => <Card.Event {...p} />}
+          additionalItemProps={{
+            className: "three-dee actionable rounded",
+            onContributorPage: true
+          }}
+          columnCountByBreakpoint={{
+            [LAPTOP_BREAKPOINT]: 2,
+            [DESKTOP_BREAKPOINT]: 3
           }}
         />
       )}
@@ -111,7 +131,7 @@ export default props => {
   return (
     <>
       <Meta pageName={`${name}'s Profile`} />
-      <Layout.Basic header={<Nav />} {...{main}} />
+      <Layout.Basic header={<Nav />} {...{ main }} />
     </>
   );
 };
