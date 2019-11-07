@@ -1,6 +1,6 @@
 ---
 title: Amplify @ re:Invent 2019
-href: https://aws.amazon.com/blogs/mobile/amplify-reinvent-2019-guide/'
+href: https://aws.amazon.com/blogs/mobile/amplify-reinvent-2019-guide/
 avatar: ./aws.png
 attendantIds:
   - ed-lima
