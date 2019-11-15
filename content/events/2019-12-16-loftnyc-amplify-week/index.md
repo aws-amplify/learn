@@ -8,5 +8,5 @@ attendantIds:
   - kurt-kemple
   - gerard-sans
 country: United States
-city: San Francisco
+city: New York
 ---
