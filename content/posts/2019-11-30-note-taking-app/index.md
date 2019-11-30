@@ -1,5 +1,5 @@
 ---
-title: MMobile development : Go serverless with AWS Amplify, a game changer!
+title: Go serverless with AWS Amplify... a game-changer!
 description: "Create a cross-platform note-taking mobile app, using AWS Amplify and React Native."
 banner: "./banner.png"
 authorIds:
