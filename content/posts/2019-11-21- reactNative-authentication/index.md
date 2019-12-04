@@ -1,6 +1,6 @@
 ---
-title: AWS Amplify + React Native / Authentication 🔐 FULL SETUP
-description: 'Authentication Comprehensive Authentication Guide'
+title: AWS Amplify + React Native / Authentication 🔐
+description: 'A comprehensive guide to Authentication with React Native and Amplify'
 banner: './authentication.png'
 authorIds:
   - play-ra
