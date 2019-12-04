@@ -6,7 +6,12 @@ authorIds:
   - ed-lima
 href: https://aws.amazon.com/blogs/mobile/pre-reinvent-2019-aws-amplify-launches/
 platforms:
-  - any
+  - iOS
+  - Android
+  - React
+  - Angular
 categories:
-  - any
+  - Authentication
+  - Hosting
+  - API (GraphQL)
 ---
