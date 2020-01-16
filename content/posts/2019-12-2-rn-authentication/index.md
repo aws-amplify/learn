@@ -1,5 +1,5 @@
 ---
-title: Data Modeling in Depth with GraphQL & AWS Amplify - 17 Data Access Patterns
+title: The Complete React Native Guide to User Authentication with the Amplify Framework
 description: "An in depth guide for adding authentication to your next mobile app using React Native and AWS Amplify"
 banner: "./banner.png"
 authorIds:
