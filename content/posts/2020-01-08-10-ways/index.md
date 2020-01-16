@@ -6,6 +6,7 @@ authorIds:
   - nader-dabit
 href: https://dev.to/aws/10-ways-to-use-serverless-functions-bme
 platforms:
+  - Web
 categories:
   - API (REST)
   - Functions
