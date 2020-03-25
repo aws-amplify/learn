@@ -44,6 +44,9 @@ const baseStyles = css`
         justify-content: center;
         align-items: center;
         margin: 0 0 0 2rem;
+        @media (max-width: 500px) {
+          margin: 0 0 0 1rem;
+        }
         &:hover,
         &.active {
           padding-top: 0.125rem;
@@ -200,6 +203,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               [
                 {to: '/events', children: 'Events'},
                 {to: '/posts', children: 'Posts'},
+                {to: '/resources', children: 'Resources'}
               ],
             )}
           </div>
