@@ -122,6 +122,7 @@ const itemTag = css`
 `
 const tagContainer = css`
   display: flex;
+  flex-wrap: wrap;
 `
 
 const workshops = [
