@@ -113,6 +113,11 @@ module.exports = async ({graphql, actions: {createPage}}) => {
     component: listTemplatePathByCategory.posts,
   });
 
+  createPage({
+    path: 'resources',
+    component: listTemplatePathByCategory.resources,
+  });
+
   generateNewsletter(createPage, {
     posts,
     events,
