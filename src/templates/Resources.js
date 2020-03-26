@@ -13,7 +13,7 @@ export default () => {
       <div css={container} class='items'>
         <div css={titleContainer}>
           <h1 class="text list-heading">Resources</h1>
-          <p css={baseTest}>Here you will find resources like slide decks and workshops that will help you if you are interested in presenting a talk or a workshop at a conference or event. The workshops are also stand-alone, so if you can also take these and use them on your own, at your own pace.</p>
+          <p css={baseTest}>Here you will find resources like slide decks and workshops that will help you if you are interested in presenting a talk or a workshop at a conference or event. The workshops are also stand-alone, so you can take these and use them on your own, at your own pace.</p>
         </div>
         <div>
           <h2 class="text list-heading">Workshops</h2>
