@@ -222,7 +222,7 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
                   children: 'Chat',
                 },
                 {
-                  href: 'https://aws-amplify.github.io/docs/',
+                  href: 'http://docs.amplify.aws/',
                   children: 'Docs',
                 },
               ],
