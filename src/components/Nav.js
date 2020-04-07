@@ -218,12 +218,12 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               ),
               [
                 {
-                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
-                  children: 'Chat',
-                },
-                {
                   href: 'https://docs.amplify.aws/',
                   children: 'Docs',
+                },
+                {
+                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
+                  children: 'Chat',
                 },
               ],
             )}
