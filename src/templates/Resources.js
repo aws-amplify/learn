@@ -126,12 +126,12 @@ const tagContainer = css`
 `
 
 const workshops = [
-  {
-    name: "Building your first Fullstack Serverless App with Vue and AWS Amplify",
-    description: "In this workshop you'll learn how to build cloud-enabled web applications with Vue & AWS Amplify.",
-    link: "https://github.com/gsans/fullstack-serverless-amplify-vue",
-    tags: ['AppSync', 'GraphQL', 'Vue', 'Authentication', 'Amazon Cognito', 'Predictions', 'ML', 'AI', 'Hosting']
-  },
+{
+  name: "Building your first Fullstack Serverless App with Vue and AWS Amplify",
+  description: "In this workshop you'll learn how to build cloud-enabled web applications with Vue & AWS Amplify.",
+  link: "https://github.com/gsans/fullstack-serverless-amplify-vue",
+  tags: ['AppSync', 'GraphQL', 'Vue', 'Authentication', 'Amazon Cognito', 'Predictions', 'ML', 'AI', 'Hosting']
+},
 {
   name: "Build a Photo-Sharing Web App with AWS Amplify and AWS AppSync",
   description: "In this workshop you'll learn how to build cloud-enabled mobile applications with React Native & AWS Amplify.",
@@ -155,6 +155,18 @@ const workshops = [
   description: "In this workshop you'll learn how to build cloud-enabled web applications with Angular & AWS Amplify.",
   link: "https://github.com/gsans/fullstack-serverless-amplify-angular",
   tags: ['AppSync', 'GraphQL', 'Angular', 'Authentication', 'Amazon Cognito', 'Predictions', 'ML', 'AI', 'Hosting']
+},
+{
+  name: "Cloud-enabled Amplify DataStore workshop using Angular",
+  description: "In this workshop we'll learn how to use Amplify DataStore to create Chatty a single room realtime multi-user chat app using Angular 9 & AWS Amplify.",
+  link: "https://github.com/gsans/amplify-datastore-chatty-angular",
+  tags: ['Amplify DataStore', 'AppSync', 'GraphQL', 'Authentication', 'Angular']
+},
+{
+  name: "Cloud-enabled Amplify DataStore workshop using React",
+  description: "In this workshop we'll learn how to use Amplify DataStore to create Chatty a single room realtime multi-user chat app using React & AWS Amplify.",
+  link: "https://github.com/gsans/amplify-datastore-chatty-react",
+  tags: ['Amplify DataStore', 'AppSync', 'GraphQL', 'Authentication', 'React']
 }
 ]
 
