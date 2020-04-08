@@ -60,6 +60,7 @@ export default () => {
 
   return (
     <>
+      <Meta pageName='Resources' />
       <Layout.Basic {...{header, main}} />
     </>
   );
