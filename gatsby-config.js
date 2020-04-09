@@ -4,7 +4,7 @@ const {map} = require('ramda');
 const TITLE =
   'Amplify Community –– a place to share projects, events, articles and other resources';
 const SHORT_NAME = 'Amplify Community';
-const SITE_URL = 'amplify.aws/community';
+const SITE_URL = 'https://amplify.aws/community/';
 const DESCRIPTION =
   'A place to share projects, events, articles and other resources';
 
