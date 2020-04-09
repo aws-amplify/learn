@@ -13,6 +13,8 @@ import {map} from 'ramda';
 import moment from 'moment';
 import {useEffect, useMemo} from 'react';
 
+moment.suppressDeprecationWarnings = true;
+
 export const pageQuery = graphql`
   query(
     $current: String!
