@@ -1,6 +1,7 @@
 import {
   Layout,
-  Nav
+  Nav,
+  Meta
 } from '~/components';
 import React from 'react'
 import {css} from '@emotion/core';
