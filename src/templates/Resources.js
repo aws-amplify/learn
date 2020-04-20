@@ -168,6 +168,12 @@ const workshops = [
   description: "In this workshop we'll learn how to use Amplify DataStore to create Chatty a single room realtime multi-user chat app using React & AWS Amplify.",
   link: "https://github.com/gsans/amplify-datastore-chatty-react",
   tags: ['Amplify DataStore', 'AppSync', 'GraphQL', 'Authentication', 'React']
+},
+{
+  name: "Cloud-enabled Amplify DataStore workshop using Vue",
+  description: "In this workshop we'll learn how to use Amplify DataStore to create Chatty a single room realtime multi-user chat app using Vue & AWS Amplify.",
+  link: "https://github.com/gsans/amplify-datastore-chatty-vue",
+  tags: ['Amplify DataStore', 'AppSync', 'GraphQL', 'Authentication', 'Vue']
 }
 ]
 
