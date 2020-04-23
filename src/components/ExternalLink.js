@@ -1,12 +1,16 @@
 import {track} from '~/utilities';
 
 export default props => {
-  const {href} = props;
+  const {href, redirect} = props;
 
   return (
     <a
-      target='_blank'
-      rel='noopener noreferrer'
+      {...redirect
+        ? {}
+        : {
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          }}
       onClick={() => track.externalPageView(href)}
       {...props}
     />
