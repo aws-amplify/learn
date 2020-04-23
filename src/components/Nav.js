@@ -207,26 +207,15 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               ],
             )}
           </div>
-
+          
           <div className='external'>
-            {map(
-              ({href, children}) => (
-                <ExternalLink {...{href}} key={children}>
-                  <Text span {...{children}} />
-                  <MdOpenInNew className='external-graphic' />
-                </ExternalLink>
-              ),
-              [
-                {
-                  href: 'https://docs.amplify.aws/',
-                  children: 'Docs',
-                },
-                {
-                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
-                  children: 'Chat',
-                },
-              ],
-            )}
+            <ExternalLink href='https://docs.amplify.aws/' redirect>
+              <Text span>Docs</Text>
+            </ExternalLink>
+            <ExternalLink href='https://aws.amazon.com/amplify/'>
+              <Text span>About Amplify</Text>
+              <MdOpenInNew className='external-graphic' />
+            </ExternalLink>
           </div>
         </div>
       </nav>
