@@ -1,6 +1,7 @@
-import {map} from 'ramda';
+import {map, filter, complement, F, toPairs, fromPairs} from 'ramda';
 
-const mapNodeToProps = data => {
+// edit exclusionkey to be prop of options param
+const mapNodeToProps = (data, exclusionKey) => {
   const root = data.node || data;
 
   const {fields = {}, frontmatter = {}, excerpt = null} = root;
@@ -13,15 +14,20 @@ const mapNodeToProps = data => {
     authors,
   });
 
-  return {
-    ...fields,
-    ...frontmatter,
-    ...images,
-    ...contributors,
+  return fromPairs(
+    filter(
+      complement(exclusionKey ? ([k]) => k === exclusionKey : F),
+      toPairs({
+        ...fields,
+        ...frontmatter,
+        ...images,
+        ...contributors,
 
-    to,
-    excerpt,
-  };
+        to,
+        excerpt,
+      }),
+    ),
+  );
 };
 
 export default mapNodeToProps;

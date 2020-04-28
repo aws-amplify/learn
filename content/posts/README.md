@@ -10,8 +10,8 @@ A post is an external piece of content (blog post, tutorial, online course, vide
 ```
 ---
 title: How to Build Cloud-Powered Mobile Apps with Expo & AWS Amplify
-description: 'In this tutorial, we’ll walk through how to create a cross-platform Expo app with features like user sign-in, AWS Lambda functions, an AWS AppSync GraphQL API, analytics, & storage.'
-banner: './banner.jpeg'
+description: "In this tutorial, we’ll walk through how to create a cross-platform Expo app with features like user sign-in, AWS Lambda functions, an AWS AppSync GraphQL API, analytics, & storage."
+banner: "./banner.jpeg"
 authorIds:
   - nader-dabit
 href: https://blog.expo.io/how-to-build-cloud-powered-mobile-apps-with-expo-aws-amplify-2fddc898f9a2

@@ -8,6 +8,7 @@ export default ({pageName}) => {
       defaultTitle='Amplify Community'
       defer={false}
       meta={[
+        {property: 'mobile-web-app-capable', content: 'yes'},
         {property: 'og:type', content: 'website'},
         {property: 'og:site_name', content: 'Amplify Community'},
         {property: 'og:title', content: 'Amplify Community'},

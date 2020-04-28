@@ -10,8 +10,14 @@ const styles = css`
   padding: 2rem;
 `;
 
-export default ({heading, options, onChange: onAnyChange, className}) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+export default ({
+  heading,
+  options,
+  onChange: onAnyChange,
+  className,
+  criteria = [],
+}) => {
+  const [selectedOptions, setSelectedOptions] = useState(criteria);
 
   return (
     <div css={styles} {...{className}}>
@@ -34,7 +40,13 @@ export default ({heading, options, onChange: onAnyChange, className}) => {
           [selectedOptions, option],
         );
 
-        return <Checkbox value={option} {...{onChange, option}} />;
+        return (
+          <Checkbox
+            value={option}
+            {...{onChange, option}}
+            defaultChecked={selectedOptions && selectedOptions.includes(option)}
+          />
+        );
       })}
     </div>
   );

@@ -12,7 +12,6 @@ const {
   tail,
   comparator,
   invertObj,
-  all,
 } = require('ramda');
 const {templatePaths} = require('./constants');
 
@@ -66,6 +65,13 @@ const getComparableValuesFromSlug = map(
   ),
 );
 
+const getLastMonday = () => {
+  const d = new Date();
+  const day = d.getDay();
+  day > 0 && d.setDate(d.getDate() - day + 1);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+};
+
 module.exports = (createPage, {events, posts, newsletterInjections}) => {
   const contentBySlug = {};
 
@@ -75,14 +81,9 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
     contentBySlug[slug][category][id] = true;
   });
 
-  const lastMonday = (() => {
-    const d = new Date();
-    const day = d.getDay();
-    day > 0 && d.setDate(d.getDate() - day + 1);
-    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  })();
+  const lastMonday = getLastMonday();
 
-  const shouldPlace = inQuestion => inQuestion < lastMonday;
+  const shouldPlace = inQuestion => inQuestion < addDays(-1, lastMonday);
 
   forEachObjIndexed(
     ({edges}, category) => {
@@ -96,9 +97,6 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
         switch (category) {
           case 'posts': {
             const slug = date && getSlug(date);
-            // if (node.frontmatter.title === 'GraphQLifying REST') {
-            //   console.log(date.getDate(), lastMonday.getDate());
-            // }
             shouldPlace(date) && placeCategory(slug, id);
             break;
           }
@@ -127,8 +125,6 @@ module.exports = (createPage, {events, posts, newsletterInjections}) => {
     },
     {events, posts, newsletterInjections},
   );
-
-  // process.exit(1);
 
   const sortedSlugs = sort(
     comparator((a, b) => {

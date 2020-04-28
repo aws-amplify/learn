@@ -22,8 +22,9 @@ module.exports = ({node, getNode, actions: {createNodeField}}) => {
       }
 
       case 'posts': {
+        const [id] = splitAtSlashes(relativePath);
         const {authorIds: authors} = node.frontmatter;
-        addFields({authors});
+        addFields({id, authors});
       }
 
       case 'events': {

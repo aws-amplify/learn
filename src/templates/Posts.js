@@ -16,12 +16,44 @@ import {
   Text,
   Button,
   Meta,
+  FeaturedPosts,
 } from '~/components';
-import {all, includes, isEmpty, any} from 'ramda';
+import {all, includes, isEmpty, any, sort, map} from 'ramda';
+import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   {
-    allMarkdownRemark(
+    featured: markdownRemark(fields: {id: {eq: "featured"}}) {
+      frontmatter {
+        posts {
+          i
+          post {
+            frontmatter {
+              banner {
+                ...Banner
+              }
+              title
+              href
+            }
+            fields {
+              authors {
+                fields {
+                  slug
+                }
+                frontmatter {
+                  name
+                  avatar {
+                    ...AvatarSmall
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    posts: allMarkdownRemark(
       sort: {fields: [fields___date], order: DESC}
       filter: {fields: {category: {eq: "posts"}}}
     ) {
@@ -52,15 +84,18 @@ export const pageQuery = graphql`
   }
 `;
 
-const header = <Nav />;
-
 const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
 export default props => {
-  track.internalPageView(props);
-
-  const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
+  useEffect(() => track.internalPageView(props), []);
+  const featuredData = extract.fromPath(
+    ['data', 'featured', 'frontmatter', 'posts'],
+    props,
+  );
+  const sortedFeatured = sort((a, b) => a.i - b.i, featuredData);
+  const featured = map(({post}) => post, sortedFeatured);
+  const edges = extract.fromPath(['data', 'posts', 'edges'], props);
 
   const platformOptions = getFilterOptions(PLATFORMS_PATH, edges);
   const categoryOptions = getFilterOptions(CATEGORIES_PATH, edges);
@@ -82,26 +117,41 @@ export default props => {
     },
   );
 
+  const header = (
+    <>
+      <Nav />
+      <FeaturedPosts items={featured} />
+    </>
+  );
+
   const main = (
     <filterContext.Consumer>
-      {({meetsCriteria}) => (
-        <MappedList
-          heading={<Text h2 className='list-heading' children='Latest Posts' />}
-          cta={(
-            <Button.Contribute
-              href='https://github.com/aws-amplify/community/tree/master/content/posts/README.md'
-              children='Add a Post'
-            />
-)}
-          noItems={<p>no items to display</p>}
-          data={edges}
-          mapping={mapNodeToProps}
-          keyExtractor={extract.keyFromNode}
-          renderCondition={meetsCriteria}
-          renderItem={p => <Card.Post {...p} />}
-          additionalProps={{className: 'on-posts-page right-rounded'}}
-        />
-      )}
+      {({meetsCriteria}) => {
+        const heading = (
+          <Text h2 className='list-heading' children='Latest Posts' />
+        );
+
+        const cta = (
+          <Button.Contribute
+            href='https://github.com/aws-amplify/community/tree/master/content/posts/README.md'
+            children='Add a Post'
+          />
+        );
+
+        return (
+          <MappedList
+            {...{heading, cta}}
+            data={edges}
+            mapping={mapNodeToProps}
+            keyExtractor={extract.keyFromNode}
+            renderCondition={meetsCriteria}
+            renderItem={p => <Card.Post.Expanded {...p} />}
+            additionalItemProps={{
+              className: 'three-dee actionable right-rounded',
+            }}
+          />
+        );
+      }}
     </filterContext.Consumer>
   );
 
@@ -128,7 +178,7 @@ export default props => {
     <>
       <Meta pageName='Posts' />
       <filterContext.Provider {...{value}}>
-        <Layout.SideMenu {...{header, menu, main}} />
+        <Layout.SideMenu {...{header, menu, main}} hasHero />
       </filterContext.Provider>
     </>
   );
