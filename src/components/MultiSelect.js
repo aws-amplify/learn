@@ -25,14 +25,19 @@ const styles = css`
   }
 `;
 
-export default ({className, name, onChange, options: unformattedOptions}) => {
-  const options = map(
-    o => ({
-      label: o,
-      value: o,
-    }),
-    unformattedOptions,
-  );
+const mapToOptions = o => ({
+  label: o,
+  value: o,
+});
+
+export default ({
+  className,
+  name,
+  onChange,
+  options: unformattedOptions,
+  criteria,
+}) => {
+  const options = map(mapToOptions, unformattedOptions);
 
   return (
     <div css={styles} {...{className}}>
@@ -40,7 +45,7 @@ export default ({className, name, onChange, options: unformattedOptions}) => {
       <Select
         className='multi-select'
         closeMenuOnSelect={false}
-        defaultValue={[]}
+        defaultValue={criteria ? map(mapToOptions, criteria) : null}
         isMulti
         onChange={e => onChange(map(({value}) => value, e))}
         {...{options}}

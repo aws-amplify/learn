@@ -76,12 +76,12 @@ const styles = css`
   }
 `;
 
-export default ({value, onChange}) => {
+export default ({value, onChange, defaultChecked}) => {
   const id = useMemo(generate, []);
 
   return (
     <label className='checkbox' css={styles} htmlFor={id}>
-      <input type='checkbox' {...{id, value, onChange}} />
+      <input type='checkbox' {...{id, value, onChange, defaultChecked}} />
       <div className='display'>
         <div className='box'>
           <div />

@@ -22,8 +22,8 @@ export const style = css`
       display: flex;
       flex-direction: row;
       flex: 1;
-      max-width: ${MAX_WIDTH};
       margin: 0 auto;
+      max-width: ${MAX_WIDTH};
 
       .menu {
         &.side {

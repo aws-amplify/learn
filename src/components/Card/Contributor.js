@@ -63,6 +63,11 @@ const styles = css`
       flex-direction: row;
       justify-content: center;
       padding: 1rem;
+
+      > svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
     }
   }
 `;
@@ -70,17 +75,14 @@ const styles = css`
 const propsBySite = {
   github: {
     getHref: handle => `https://github.com/${handle}`,
-    size: 20,
     Icon: IoLogoGithub,
   },
   twitter: {
     getHref: handle => `https://twitter.com/${handle}`,
-    size: 20,
     Icon: IoLogoTwitter,
   },
   website: {
     getHref: identity,
-    size: 20,
     Icon: IoIosLink,
   },
 };
@@ -96,6 +98,7 @@ export default asCard(
     github,
     twitter,
     website,
+    wide,
   }) => {
     const social = {github, twitter, website};
     const deps = values(social);
@@ -103,12 +106,12 @@ export default asCard(
       () =>
         values(
           mapObjIndexed((v, key) => {
-            const {getHref, Icon, size} = propsBySite[key];
+            const {getHref, Icon} = propsBySite[key];
             const href = v && getHref(v);
             return (
               href && (
                 <ExternalLink {...{href}} className={key}>
-                  <Icon {...{size}} />
+                  <Icon />
                 </ExternalLink>
               )
             );
@@ -125,7 +128,7 @@ export default asCard(
     return (
       <div
         css={styles}
-        className={classNames('contributor three-dee rounded', className)}
+        className={classNames('contributor', className, wide && 'wide')}
       >
         <ConditionalAnchor className='body'>
           {avatar && (

@@ -54,28 +54,50 @@ const styles = css`
 `;
 
 export default asCard(
-  ({ConditionalAnchor, avatar, title, country, city, date, className}) => {
+  ({
+    ConditionalAnchor,
+    to,
+    avatar,
+    title,
+    country,
+    city,
+    date,
+    className,
+    onNewsletter,
+  }) => {
     const formattedDate = useMemo(() => head(split(', ', date)), [date]);
 
     return (
-      <ConditionalAnchor
-        css={styles}
-        className={classNames(className, 'event three-dee actionable rounded')}
-      >
-        {avatar && (
-          <div className='avatar'>
-            <Img {...avatar} />
-          </div>
+      <>
+        {onNewsletter && (
+          <div
+            data-visitor-target
+            css={css`
+              display: none;
+            `}
+            {...{to, title, country, city, date}}
+            avatar={avatar.fixed.src}
+          />
         )}
-        <div className='text-container'>
-          <Text h3 children={title} />
-          <div className='logistics'>
-            <Text h4 children={formattedDate} />
-            <Text h4 children=' in ' />
-            <Text h4 children={join(', ', [city, country])} />
+        <ConditionalAnchor
+          css={styles}
+          className={classNames(className, 'event')}
+        >
+          {avatar && (
+            <div className='avatar'>
+              <Img {...avatar} />
+            </div>
+          )}
+          <div className='text-container'>
+            <Text h3 children={title} />
+            <div className='logistics'>
+              <Text h4 children={formattedDate} />
+              <Text h4 children=' in ' />
+              <Text h4 children={join(', ', [city, country])} />
+            </div>
           </div>
-        </div>
-      </ConditionalAnchor>
+        </ConditionalAnchor>
+      </>
     );
   },
 );
