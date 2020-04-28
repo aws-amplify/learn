@@ -23,11 +23,16 @@ const styles = css`
     font-weight: 300;
     line-height: 1.3125rem;
   }
+
+  svg {
+    height: 1.375rem;
+    width: 1.375rem;
+  }
 `;
 
 export default ({href, children}) => (
   <Basic {...{href}} className='actionable shadow' css={styles}>
     <Text span {...{children}} />
-    <IoIosAdd size={22} />
+    <IoIosAdd />
   </Basic>
 );

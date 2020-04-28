@@ -7,7 +7,7 @@ import {
   Hero,
   Button,
   Text,
-  Subscribe,
+  // Subscribe,
   Meta,
 } from '~/components';
 import {
@@ -20,7 +20,7 @@ import {mapNodeToProps, extract, track} from '~/utilities';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map, length, keys, dropLast} from 'ramda';
 import heroOverlaySrc from '~/assets/images/map.svg';
-import {useMemo} from 'react';
+import {useEffect, useMemo} from 'react';
 import useWindowSize from 'react-use/lib/useWindowSize';
 
 export const pageQuery = graphql`
@@ -101,13 +101,12 @@ const heroProps = {
   subheading: 'A place to share projects, events, articles and other resources',
   background: ORANGE_PEEL_COLOR,
   textColor: '#fff',
-  cta: <Subscribe />,
+  // cta: <Subscribe action='subscribe' />,
   overlay: heroOverlaySrc,
 };
 
 export default props => {
-  track.internalPageView(props);
-  const {width: windowWidth} = useWindowSize();
+  useEffect(() => track.internalPageView(props), []);
 
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
@@ -130,6 +129,7 @@ export default props => {
     return keys(indices).map(i => allContributorNodes[i]);
   }, []);
 
+  const {width: windowWidth} = useWindowSize();
   const featuredContributorNodesByScreen =
     windowWidth > DESKTOP_BREAKPOINT
       ? dropLast(1, featuredContributorNodes)
@@ -145,8 +145,8 @@ export default props => {
 
   const sections = [
     {
-      heading: 'Upcoming Events',
-      cta: {
+      headingText: 'Upcoming Events',
+      ctaProps: {
         children: 'Add an Event',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
@@ -155,6 +155,7 @@ export default props => {
       Template: Card.Event,
       more: {
         Template: Card.ViewAll.Events,
+        className: 'view-all-events',
         heading: 'View All Events',
         subheading: `${upcomingEventsCount} upcoming events`,
         to: '/events',
@@ -165,17 +166,19 @@ export default props => {
       },
     },
     {
-      heading: 'Latest Posts',
-      cta: {
+      headingText: 'Latest Posts',
+      ctaProps: {
         children: 'Add a Post',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/posts/README.md',
       },
       nodes: latestPostNodes,
-      Template: Card.Post,
+      Template: Card.Post.Condensed,
       more: {
+        // 50
         Template: Card.ViewAll.PostsOrContributors,
-        graphic: <IoIosJournal size={50} />,
+        className: 'view-all-posts',
+        graphic: <IoIosJournal />,
         heading: 'View All Posts',
         subheading: `${postsCount} posts and counting`,
         to: '/posts',
@@ -184,12 +187,10 @@ export default props => {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      itemContainerClassName: 'on-landing-page rounded',
-      additionalProps: {limitDescriptionLength: true},
     },
     {
-      heading: 'Featured Contributors',
-      cta: {
+      headingText: 'Featured Contributors',
+      ctaProps: {
         children: 'Become a Contributor',
         href:
           'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
@@ -197,8 +198,10 @@ export default props => {
       nodes: featuredContributorNodesByScreen,
       Template: Card.Contributor,
       more: {
+        // 60
         Template: Card.ViewAll.PostsOrContributors,
-        graphic: <IoMdPeople size={60} />,
+        className: 'view-all-contributors',
+        graphic: <IoMdPeople />,
         heading: 'All Contributors',
         subheading: `See all ${contributorsCount} contributors`,
         to: '/contributors',
@@ -207,48 +210,44 @@ export default props => {
         [TABLET_BREAKPOINT]: 3,
         [DESKTOP_BREAKPOINT]: 5,
       },
-      itemContainerClassName: 'actionable',
-      additionalProps: {limitBioLength: true},
+      additionalItemProps: {limitBioLength: true},
     },
   ];
 
   const main = map(
     ({
-      heading,
-      key,
-      cta,
+      headingText,
+      ctaProps,
       nodes,
       Template,
       more,
-      itemContainerClassName: className,
-      additionalProps,
+      additionalItemProps,
       ...rest
     }) => {
-      const {Template: ViewAllCard, ...viewAllProps} = more;
-
+      const heading = (
+        <Text h2 className='list-heading' children={headingText} />
+      );
+      const cta = <Button.Contribute {...ctaProps} />;
+      const {Template: ViewAllCard, className, ...viewAllProps} = more;
       const items = [
-        ...map(
-          node => (
+        ...map(({node}) => {
+          const {key} = node.fields;
+
+          return (
             <Template
-              {...(className ? {className} : {})}
-              {...mapNodeToProps(node)}
-              {...additionalProps || {}}
+              {...{key}}
+              className='three-dee actionable rounded'
+              {...(headingText === 'Upcoming Events'
+                ? mapNodeToProps(node, 'href')
+                : mapNodeToProps(node))}
+              {...additionalItemProps || {}}
             />
-          ),
-          nodes,
-        ),
-        <ViewAllCard {...viewAllProps} />,
+          );
+        }, nodes),
+        <ViewAllCard {...viewAllProps} {...{className}} />,
       ];
 
-      return (
-        <List
-          key={heading}
-          heading={<Text h2 className='list-heading' children={heading} />}
-          cta={<Button.Contribute {...cta} />}
-          {...{key, items}}
-          {...rest}
-        />
-      );
+      return <List key={headingText} {...{heading, cta, items}} {...rest} />;
     },
     sections,
   );

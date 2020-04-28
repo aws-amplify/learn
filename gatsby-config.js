@@ -4,7 +4,7 @@ const {map} = require('ramda');
 const TITLE =
   'Amplify Community –– a place to share projects, events, articles and other resources';
 const SHORT_NAME = 'Amplify Community';
-const SITE_URL = 'amplify.aws/community';
+const SITE_URL = 'https://amplify.aws/community/';
 const DESCRIPTION =
   'A place to share projects, events, articles and other resources';
 
@@ -59,6 +59,7 @@ const dataSources = map(
 const mapping = {
   'MarkdownRemark.fields.authors': 'MarkdownRemark.fields.id',
   'MarkdownRemark.fields.attendants': 'MarkdownRemark.fields.id',
+  'MarkdownRemark.frontmatter.posts.post': 'MarkdownRemark.fields.id',
 };
 
 const markdownTransformer = {
@@ -85,9 +86,9 @@ const imageTransformers = [
 
 const emotion = {
   resolve: 'gatsby-plugin-emotion',
-  options: {
-    labelFormat: '[dirname]-[filename]-[local]',
-  },
+  // options: {
+  //   labelFormat: '[dirname]-[filename]-[local]',
+  // },
 };
 
 const manifest = {
@@ -100,14 +101,6 @@ const manifest = {
     background_color: BACKGROUND_COLOR,
     theme_color: THEME_COLOR,
     icon: ICON_PATH,
-  },
-};
-
-const mailchimp = {
-  resolve: 'gatsby-plugin-mailchimp',
-  options: {
-    endpoint:
-      'https://amazon.us20.list-manage.com/subscribe/post?u=1dc41125a628ca803765f7800&amp;id=3e69babeab',
   },
 };
 
@@ -135,7 +128,11 @@ const mailchimp = {
 //   },
 // };
 
-const misc = ['gatsby-plugin-react-helmet', 'gatsby-plugin-offline'];
+const misc = [
+  'gatsby-plugin-react-helmet',
+  'gatsby-plugin-offline',
+  'gatsby-plugin-webpack-bundle-analyzer',
+];
 
 module.exports = {
   siteMetadata,
@@ -149,7 +146,6 @@ module.exports = {
     emotion,
     manifest,
     ...misc,
-    mailchimp,
     // favicon,
   ],
 };

@@ -43,7 +43,7 @@ export const BannerThumbnailFragment = graphql`
 export const BannerFragment = graphql`
   fragment Banner on File {
     childImageSharp {
-      fluid(maxWidth: 1600, maxHeight: 989) {
+      fluid {
         ...GatsbyImageSharpFluid
       }
     }

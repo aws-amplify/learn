@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+<button
+  className="button actionable three-dee rounded"
+  css={
+    Array [
+      Object {
+        "map": undefined,
+        "name": "bxarfa",
+        "next": undefined,
+        "styles": "
+  display: flex;
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  &:active {
+    outline: none;
+  }
+",
+      },
+      Object {
+        "map": undefined,
+        "name": "jqbzm3",
+        "next": undefined,
+        "styles": "
+      padding: .5625rem .75rem .5rem;
+    ",
+      },
+    ]
+  }
+  onClick={[Function]}
+  type="button"
+>
+  Hello
+</button>
+`;

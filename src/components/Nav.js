@@ -21,16 +21,14 @@ const baseStyles = css`
   backdrop-filter: blur(10px);
   transition: box-shadow 0.5s ease, color 0.5s ease, background-color 0.5s ease;
   z-index: 10000;
-
   > div {
-    max-width: ${MAX_WIDTH};
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     flex: 1;
     justify-content: space-between;
     height: 3.75rem;
-
+    max-width: ${MAX_WIDTH};
     > .branding,
     > .internal,
     > .external {
@@ -38,84 +36,61 @@ const baseStyles = css`
       flex-direction: row;
       align-items: center;
     }
-
     > .internal,
     > .external {
-      margin: 0 0.5rem;
-
-      ${mq.tablet} {
-        margin: 0 1rem;
-      }
-
-      ${mq.desktop} {
-        margin: 0 2rem;
-      }
-
+      margin: 0 2rem 0 0;
       a {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 0.5rem;
-
-        ${mq.tablet} {
-          margin: 0 1rem;
+        margin: 0 0 0 2rem;
+        @media (max-width: 500px) {
+          margin: 0 0 0 1rem;
         }
-
-        ${mq.desktop} {
-          margin: 0 2rem;
-        }
-
         &:hover,
         &.active {
           padding-top: 0.125rem;
           border-bottom-width: 0.125rem;
           border-bottom-style: solid;
         }
-
         > .text {
           font-size: 0.9375rem;
           line-height: 1.40625rem;
         }
       }
     }
-
     > .branding {
-      padding: 1rem;
+      padding: 1rem 0 1rem 1rem;
       font-size: 1.25rem;
-
       .text {
         padding-left: 0.5rem;
         letter-spacing: 0.03125rem;
         font-size: 1.125rem;
         font-weight: 200;
       }
-
       img {
         width: 1.5625rem;
         height: 1.25rem;
       }
     }
-
     > .internal {
       flex: 1;
       justify-content: flex-end;
-
       ${mq.tablet} {
         justify-content: flex-start;
       }
     }
-
     > .external {
       display: none;
-
       ${mq.tablet} {
         display: flex;
         flex: 1;
         justify-content: flex-end;
       }
-
       a {
         svg {
+          width: 0.875rem;
+          height: 0.875rem;
           margin-left: 0.25rem;
         }
       }
@@ -154,45 +129,36 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
     () =>
       css`
         background: ${beforeScroll.background};
-
         * {
           color: ${beforeScroll.linkColor};
         }
-
         a {
           &:hover,
           &.active {
             * {
               color: ${beforeScroll.linkHoverColor};
             }
-
             border-bottom-color: ${beforeScroll.linkHoverColor};
           }
         }
-
         .branding .text {
           color: ${beforeScroll.brandingColor};
         }
-
         &.scrolled {
           background: ${afterScroll.background};
           box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.125);
-
           * {
             color: ${afterScroll.linkColor};
           }
-
           a {
             &:hover,
             &.active {
               * {
                 color: ${afterScroll.linkHoverColor};
               }
-
               border-bottom-color: ${afterScroll.linkHoverColor};
             }
           }
-
           .branding .text {
             color: ${afterScroll.brandingColor};
           }
@@ -237,29 +203,19 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               [
                 {to: '/events', children: 'Events'},
                 {to: '/posts', children: 'Posts'},
+                {to: '/resources', children: 'Resources'}
               ],
             )}
           </div>
-
+          
           <div className='external'>
-            {map(
-              ({href, children}) => (
-                <ExternalLink {...{href}} key={children}>
-                  <Text span {...{children}} />
-                  <MdOpenInNew className='external-graphic' size={14} />
-                </ExternalLink>
-              ),
-              [
-                {
-                  href: 'https://gitter.im/AWS-Amplify/Lobby?source=orgpage',
-                  children: 'Chat',
-                },
-                {
-                  href: 'https://aws-amplify.github.io/docs/',
-                  children: 'Docs',
-                },
-              ],
-            )}
+            <ExternalLink href='https://docs.amplify.aws/' redirect>
+              <Text span>Docs</Text>
+            </ExternalLink>
+            <ExternalLink href='https://aws.amazon.com/amplify/'>
+              <Text span>About Amplify</Text>
+              <MdOpenInNew className='external-graphic' />
+            </ExternalLink>
           </div>
         </div>
       </nav>

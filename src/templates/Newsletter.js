@@ -4,13 +4,16 @@ import {
   TABLET_BREAKPOINT,
   LAPTOP_BREAKPOINT,
   DESKTOP_BREAKPOINT,
-  KASHMIR_BLUE_COLOR,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track, classNames} from '~/utilities';
+import {mapNodeToProps, extract, track} from '~/utilities';
 import {css} from '@emotion/core';
 import logoLightURI from '~/assets/images/logo-light.svg';
 import {map} from 'ramda';
+import moment from 'moment';
+import {useEffect, useMemo} from 'react';
+
+moment.suppressDeprecationWarnings = true;
 
 export const pageQuery = graphql`
   query(
@@ -25,8 +28,8 @@ export const pageQuery = graphql`
         year
         previous
         next
-        startDate(formatString: "MMM Do")
-        endDate(formatString: "MMM Do")
+        startDate
+        endDate
       }
     }
 
@@ -76,6 +79,51 @@ export const pageQuery = graphql`
   }
 `;
 
+const headingStyles = css`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 0 1rem;
+
+  > h2 {
+    font-size: 2rem;
+    line-height: 3.375rem;
+    font-weight: 400;
+  }
+
+  > h4 {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    font-weight: 300;
+    padding-top: 0.875rem;
+    padding-bottom: 1.375rem;
+  }
+
+  > p {
+    font-size: 1.125rem;
+    font-weight: 1.6875rem;
+    font-weight: 200;
+    padding-bottom: 0.25rem;
+  }
+`;
+
+const buttonStyles = css`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 1rem 1rem 0 1rem;
+
+  > .button {
+    background-color: #fff;
+    margin: 0.5rem;
+    font-size: 1rem;
+    font-weight: 200;
+    line-height: 1.5rem;
+  }
+`;
+
 const navProps = {
   beforeScroll: {
     backgroundColor: ORANGE_PEEL_COLOR,
@@ -85,14 +133,26 @@ const navProps = {
 };
 
 export default props => {
-  track.internalPageView(props);
+  useEffect(() => track.internalPageView(props), []);
 
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const {week, previous, next, startDate, endDate} = extract.fromPath(
-    ['data', 'context', 'context'],
-    props,
+  const {
+    week,
+    previous,
+    next,
+    startDate: stringifiedStartDate,
+    endDate: stringifiedEndDate,
+  } = extract.fromPath(['data', 'context', 'context'], props);
+
+  const [startDate, endDate] = useMemo(
+    () =>
+      map(e => moment(e).format('MMMM Do'), [
+        stringifiedStartDate,
+        stringifiedEndDate,
+      ]),
+    [stringifiedStartDate, stringifiedEndDate],
   );
 
   const [upcomingEventNodes, latestPostNodes] = map(extractEdges, [
@@ -100,10 +160,9 @@ export default props => {
     'latestPosts',
   ]);
 
-  latestPostNodes.forEach(({node}) => console.log(node.fields.date));
-
   const sections = [
     {
+      visitorCue: 'events',
       key: 'upcomingEventsSection',
       heading: 'Upcoming Events',
       cta: {
@@ -118,6 +177,7 @@ export default props => {
       },
     },
     {
+      visitorCue: 'posts',
       key: 'latestPostsSection',
       heading: 'Latest Posts',
       cta: {
@@ -125,46 +185,23 @@ export default props => {
         to: '/posts/new',
       },
       nodes: latestPostNodes,
-      Template: Card.Post,
+      Template: Card.Post.Condensed,
       columnCountByBreakpoint: {
         [TABLET_BREAKPOINT]: 2,
         [DESKTOP_BREAKPOINT]: 4,
       },
-      itemContainerClassName: 'on-newsletter-page',
     },
   ];
 
-  // latestPostNodes.forEach(n => console.log(n.node.fields.date));
+  const sharedProps = {
+    className: 'three-dee rounded actionable',
+    onNewsletter: true,
+  };
+
+  const dateRange = `${startDate} to ${endDate}`;
 
   const main = [
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 1rem 0 1rem;
-
-        > h2 {
-          font-size: 2rem;
-          line-height: 3.375rem;
-          font-weight: 400;
-        }
-
-        > h4 {
-          font-size: 1.25rem;
-          line-height: 1.875rem;
-          font-weight: 300;
-          padding-top: 0.875rem;
-          padding-bottom: 1.375rem;
-        }
-
-        > p {
-          font-size: 1.125rem;
-          font-weight: 1.6875rem;
-          font-weight: 200;
-          padding-bottom: 0.25rem;
-        }
-      `}
-    >
+    <div css={headingStyles}>
       <Text h2 children={`Week ${week}`} />
       <Text h4 children={`${startDate} to ${endDate}`} />
       <Text
@@ -172,34 +209,33 @@ export default props => {
         children={`Welcome to Week ${week} of the AWS Amplify newsletter - a weekly roundup of the articles, podcasts, and videos that are relevant to developers who utilize the AWS platform for building great mobile and modern web applications.`}
       />
     </div>,
+
     ...map(
-      ({
-        heading,
-        key,
-        cta,
-        nodes,
-        Template,
-        more,
-        itemContainerClassName: className,
-        ...rest
-      }) => {
+      ({heading, key, cta, nodes, Template, more, visitorCue, ...rest}) => {
         if (nodes.length) {
           const items = map(
             node => (
               <Template
-                {...mapNodeToProps(node)}
-                className={classNames(className, 'rounded')}
+                {...(key === 'upcomingEventsSection'
+                  ? mapNodeToProps(node, 'href')
+                  : mapNodeToProps(node))}
+                {...sharedProps}
               />
             ),
             nodes,
           );
 
           return (
-            <List
-              heading={<Text h2 className='list-heading' children={heading} />}
-              {...{key, items}}
-              {...rest}
-            />
+            <>
+              <div data-date-range={dateRange} />
+              <List
+                heading={
+                  <Text h2 className='list-heading' children={heading} />
+                }
+                {...{key, items, visitorCue}}
+                {...rest}
+              />
+            </>
           );
         }
 
@@ -207,51 +243,38 @@ export default props => {
       },
       sections,
     ),
-    <div
-      css={css`
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        padding: 1rem 1rem 0 1rem;
 
-        > .button {
-          background-color: #fff;
-          margin: 0.5rem;
-          font-size: 1rem;
-          font-weight: 200;
-          line-height: 1.5rem;
-        }
-      `}
-    >
-      {previous && (
-        <Button.Basic
-          className='three-dee actionable rounded'
-          size='medium'
-          to={previous}
-        >
-          Previous
-        </Button.Basic>
-      )}
-
-      <Button.Basic
-        className='three-dee actionable rounded'
-        size='medium'
-        to='/newsletters'
-      >
-        View All
-      </Button.Basic>
-
-      {next && (
-        <Button.Basic
-          className='three-dee actionable rounded'
-          size='medium'
-          to={next}
-        >
-          Next
-        </Button.Basic>
+    <div css={buttonStyles}>
+      {map(
+        ({key, condition, ...buttonprops}) =>
+          condition && (
+            <Button.Basic
+              {...{key}}
+              {...buttonprops}
+              {...sharedProps}
+              size='medium'
+            />
+          ),
+        [
+          {
+            key: 'a',
+            condition: previous,
+            to: previous,
+            children: 'Previous',
+          },
+          {
+            key: 'b',
+            condition: true,
+            to: '/newsletters',
+            children: 'View All',
+          },
+          {
+            key: 'c',
+            condition: next,
+            to: next,
+            children: 'Next',
+          },
+        ],
       )}
     </div>,
   ];

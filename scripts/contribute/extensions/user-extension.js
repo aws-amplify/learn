@@ -52,7 +52,7 @@ module.exports = toolbox => {
           toolbox.print.info('Adding new contributor');
 
           Object.assign(user, {
-            github: `https://github.com/${gitHubId}`,
+            github: gitHubId,
             name,
             bio,
             ...(includes('twitter.com', href)
@@ -100,8 +100,6 @@ module.exports = toolbox => {
               ),
               '---',
             ]);
-
-            console.log(contents);
 
             finalizations.push(() => {
               // create MD file

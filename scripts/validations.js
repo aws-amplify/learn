@@ -21,7 +21,8 @@ const {contributorExists} = require('./utilities');
 
 let errors = '';
 const addError = curry((path, heading, message) => {
-  errors += '\n' + `Validation error in ${path} –– ${heading}, ${message}`;
+  errors += `
+Validation error in ${path} –– ${heading}, ${message}`;
 });
 
 const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -50,10 +51,15 @@ const validate = path => {
     of(name) !== 'kebab' &&
     nameError(`camelcase ${category} folders`);
 
-  const validateExistenceAndLength = ({field, minLength, maxLength}) => {
+  const validateExistenceAndLength = ({
+    required,
+    field,
+    minLength,
+    maxLength,
+  }) => {
     const error = addErrorAtPath(`'${field}' field`);
     const {[field]: v} = frontmatter;
-    isNil(v) && error('missing');
+    required && isNil(v) && error('missing');
     const l = length(v);
     (l < minLength || l > maxLength) &&
       error(`must be between ${minLength} and ${maxLength} characters`);
@@ -117,11 +123,13 @@ const validate = path => {
 
     forEach(validateExistenceAndLength, [
       {
+        required: true,
         field: 'title',
         minLength: 1,
         maxLength: 200,
       },
       {
+        required: category !== 'events',
         field: 'description',
         minLength: 1,
         maxLength: 500,
@@ -150,11 +158,13 @@ const validate = path => {
 
     forEach(validateExistenceAndLength, [
       {
+        required: true,
         field: 'name',
         minLength: 1,
         maxLength: 60,
       },
       {
+        required: true,
         field: 'bio',
         minLength: 1,
         maxLength: 250,

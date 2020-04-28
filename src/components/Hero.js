@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 import Text from './Text';
-import {mq} from '~/constants';
+import {LOCHMARA_COLOR} from '~/constants';
 
 const styles = css`
   position: relative;
@@ -11,6 +11,10 @@ const styles = css`
   padding: 5.3125rem 2.5rem;
   color: #fff;
   text-align: center;
+
+  a {
+    color: ${LOCHMARA_COLOR};
+  }
 
   .overlay {
     position: absolute;
@@ -49,6 +53,7 @@ const styles = css`
     font-size: 1.375rem;
     line-height: 2.25rem;
     font-weight: 200;
+    max-width: 45rem;
   }
 
   .cta {
@@ -58,10 +63,23 @@ const styles = css`
     width: 100%;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
   }
 `;
 
-export default ({background, textColor, heading, overlay, subheading, cta}) => (
+export default ({
+  background,
+  textColor,
+  heading,
+  overlay,
+  subheading,
+  cta,
+  height,
+}) => (
   <div
     css={css`
       ${styles}
@@ -73,6 +91,15 @@ export default ({background, textColor, heading, overlay, subheading, cta}) => (
       h2, h3 {
         color: ${textColor};
       }
+
+      ${height &&
+        css`
+          height: ${height / 16 - 3.75}rem;
+
+          > .cta {
+            flex: none;
+          }
+        `}
     `}
   >
     {overlay && (
