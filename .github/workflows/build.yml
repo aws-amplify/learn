@@ -1,10 +1,10 @@
-name: ValidateContent
+name: Build
 on:
   - push
   - pull_request
 jobs:
-  validate-content:
-    name: ValidateContent
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -15,5 +15,5 @@ jobs:
           node-version: 10.x
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      - name: Run content validation
-        run: yarn validate-content
+      - name: Run build
+        run: yarn build
