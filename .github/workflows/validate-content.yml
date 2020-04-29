@@ -17,3 +17,5 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Run content validation
         run: yarn validate-content
+      - name: Run build
+        run: yarn build
