@@ -7,6 +7,8 @@
   Amplify Community
 </h1>
 
+[![DiscordChat](https://img.shields.io/discord/308323056592486420?logo=discord")](https://discord.gg/jWVbPfC)
+
 Welcome to the Amplify Community - a hub for developers building fullstack serverless applications with Amplify to easily access content (such as events, blog posts, videos, sample projects, and tutorials) created by other members of the Amplify community.
 
 
@@ -28,7 +30,7 @@ You can become a contributor by:
   * [Amplify Console](https://forums.aws.amazon.com/forum.jspa?forumID=314)  
   * [AWS SDK for iOS](https://github.com/aws-amplify/aws-sdk-ios/issues)
   * [AWS SDK for Android](https://github.com/aws-amplify/aws-sdk-android/issues)
-* You can join the real-time conversation on our [Amplify Gitter](https://gitter.im/AWS-Amplify/Lobby)
+* You can join the real-time conversation on our [Amplify Discord Server](https://discord.gg/jWVbPfC)
 
 ### Ideas for improving the community?
 
