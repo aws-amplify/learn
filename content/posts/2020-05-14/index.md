@@ -1,5 +1,5 @@
 ---
-title: Serverless Authentication with AWS Amplify: A Practical Guide
+title: Serverless Authentication with AWS Amplify - A Practical Guide
 description: "In this article, I’ll create an app with a serverless backend service that will be protected by an Amplify-generated authentication."
 banner: "./banner.png"
 authorIds:
