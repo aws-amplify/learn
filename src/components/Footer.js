@@ -14,6 +14,7 @@ import bugleGraphicSrc from '~/assets/images/bugle.svg';
 import {map} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
+import discordSrc from "~/assets/images/discord-black.svg";
 
 const styles = css`
   display: flex;
@@ -153,6 +154,12 @@ const styles = css`
           }
         }
 
+        > .discord {
+          position: relative;
+          top: .0625rem;
+          width: 2.875rem;
+        }
+
         > .github > svg {
           width: 2.625rem;
           height: 2.625rem;
@@ -226,6 +233,13 @@ export default () => {
         </div>
 
         <div className='social'>
+          <ExternalLink
+            href='https://discord.com/invite/jWVbPfC'
+            key='Discord'
+            className='discord'
+          >
+            <img src={discordSrc} />
+          </ExternalLink>
           <ExternalLink
             href='https://github.com/aws-amplify/community'
             key='github'
