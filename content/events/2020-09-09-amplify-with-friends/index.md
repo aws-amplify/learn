@@ -5,7 +5,6 @@ href: https://amplifywithfriends.splashthat.com/
 avatar: ./banner.jpg
 attendantIds:
   - shawn-wang
-  - matt-auerbach
 country: United States
 city: Virtual
 ---
