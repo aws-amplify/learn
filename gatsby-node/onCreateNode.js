@@ -40,7 +40,7 @@ module.exports = ({node, getNode, actions: {createNodeField}}) => {
         const datePath = [year, month, day].join('/');
         const titlePath = titlePieces ? titlePieces.join('-') : '';
         const slug = join(sourceInstanceName, datePath, titlePath);
-        const date = new Date(year, month - 1, day).toISOString();
+        const date = new Date(year, month - 1, day).toJSON();
         addFields({date, slug});
         break;
       }
