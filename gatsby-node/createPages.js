@@ -71,7 +71,7 @@ module.exports = async ({graphql, actions: {createPage}}) => {
 
   if (errors) throw errors;
 
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date().toJSON();
 
   createPage({
     path: '/',
