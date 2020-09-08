@@ -18,7 +18,7 @@ const templateFilenames = {
   post: 'Post.js',
   event: 'Event.js',
   newsletter: 'Newsletter.js',
-  resources: 'Resources.js'
+  resources: 'Resources.js',
 };
 
 const templatePaths = map(
@@ -35,16 +35,22 @@ const {
   post,
   event,
   newsletter,
-  resources
+  resources,
 } = templatePaths;
 
-const listTemplatePathByCategory = {contributors, posts, events, newsletters, resources};
+const listTemplatePathByCategory = {
+  contributors,
+  posts,
+  events,
+  newsletters,
+  resources,
+};
 const pageTemplatePathByCategory = {
   contributors: contributor,
   posts: post,
   events: event,
   newsletters: newsletter,
-  resources
+  resources,
 };
 
 module.exports = {
