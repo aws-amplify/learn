@@ -5,4 +5,3 @@ bio: 'Senior Software Engineer at AWS'
 github: jamesonwilliams
 twitter: softwarejameson
 ---
-
