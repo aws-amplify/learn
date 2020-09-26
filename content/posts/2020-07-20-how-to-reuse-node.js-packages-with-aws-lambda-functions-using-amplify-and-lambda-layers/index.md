@@ -6,7 +6,7 @@ authorIds:
   - erick-wendel
 href: https://www.freecodecamp.org/news/how-to-reuse-packages-with-aws-lambda-functions-using-amplify/
 platforms:
-  - Javascript
+  - JavaScript
   - Web
 categories:
   - Functions
