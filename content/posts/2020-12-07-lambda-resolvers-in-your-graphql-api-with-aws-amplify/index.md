@@ -1,6 +1,6 @@
 ---
 title: Use Lambda resolvers in your GraphQL API with AWS Amplify
-description: "Say you want to update multiple tables generated from the @model directive. How would you do that? The answer: create a Lambda resolver that can access the tables and connect it to your Graphql mutation!"
+description: "You want to update multiple tables generated from the @model directive. How would you do that? The answer: create a Lambda resolver that can access the tables and connect it to your Graphql mutation!"
 banner: "./banner.jpg"
 authorIds:
   - nick-van-hoof
