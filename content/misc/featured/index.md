@@ -1,6 +1,6 @@
 ---
 posts:
-  - post: '2021-02-21-datastore-whitepaper'
+  - post: '2021-02-03-datastore-whitepaper'
     i: 3
   - post: '2021-02-11-amplify-admin-sandbox'
     i: 2
