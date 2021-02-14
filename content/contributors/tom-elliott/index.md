@@ -1,5 +1,5 @@
 ---
-avatar: ./avatar.jpg
+avatar: ./avatar.jpeg
 name: Tom Elliott
 bio: iOS@Facebook
 twitter: temelliott
