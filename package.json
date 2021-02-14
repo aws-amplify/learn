@@ -53,6 +53,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.22.0",
     "gatsby-plugin-emotion": "^4.0.6",
     "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-manifest": "^2.0.26",
