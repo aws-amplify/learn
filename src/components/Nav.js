@@ -203,11 +203,11 @@ export default ({beforeScroll: b = {}, afterScroll: a = {}}) => {
               [
                 {to: '/events', children: 'Events'},
                 {to: '/posts', children: 'Posts'},
-                {to: '/resources', children: 'Resources'}
+                {to: '/resources', children: 'Resources'},
               ],
             )}
           </div>
-          
+
           <div className='external'>
             <ExternalLink href='https://docs.amplify.aws/' redirect>
               <Text span>Docs</Text>

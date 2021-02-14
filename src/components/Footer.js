@@ -14,7 +14,7 @@ import bugleGraphicSrc from '~/assets/images/bugle.svg';
 import {map} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
-import discordSrc from "~/assets/images/discord-black.svg";
+import discordSrc from '~/assets/images/discord-black.svg';
 
 const styles = css`
   display: flex;
@@ -156,7 +156,7 @@ const styles = css`
 
         > .discord {
           position: relative;
-          top: .0625rem;
+          top: 0.0625rem;
           width: 2.875rem;
         }
 
