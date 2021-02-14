@@ -4,7 +4,7 @@ description: "In this post, you will be using the Admin UI to prototype a room b
 authorIds:
   - kyle-lee
 href: https://aws.amazon.com/blogs/mobile/rapid-ios-app-prototyping-with-amplify-admin-ui-and-swiftui/
-banner: "./banner.png"
+banner: "./banner.jpeg"
 platforms:
   - web
   - JavaScript
