@@ -3,7 +3,7 @@ import {mq, MAX_WIDTH} from '~/constants';
 import {ToastContainer} from 'react-toastify';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
-import DiscordButton from "../DiscordButton";
+import DiscordButton from '../DiscordButton';
 
 export const style = css`
   display: flex;

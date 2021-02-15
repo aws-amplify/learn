@@ -10,7 +10,7 @@ import {layout as layoutContext} from '~/contexts';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
 import {classNames, useRootFontSize} from '~/utilities';
-import DiscordButton from "../DiscordButton";
+import DiscordButton from '../DiscordButton';
 
 const styles = css`
   display: flex;
