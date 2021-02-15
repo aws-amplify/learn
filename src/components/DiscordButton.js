@@ -1,13 +1,13 @@
 import discordLogoSrc from '~/assets/images/discord-white.svg';
-import externalLinkSrc from "~/assets/images/external-link.svg";
-import ExternalLink from "./ExternalLink";
-import {css} from "@emotion/core";
-import {ORANGE_PEEL_COLOR, mq} from "../constants"
+import externalLinkSrc from '~/assets/images/external-link.svg';
+import ExternalLink from './ExternalLink';
+import {css} from '@emotion/core';
+import {ORANGE_PEEL_COLOR, mq} from '../constants';
 
 export default () => {
   return (
     <ExternalLink
-      href="https://discord.com/invite/jWVbPfC"
+      href='https://discord.com/invite/jWVbPfC'
       css={css`
         display: none;
         flex-direction: row;
@@ -19,13 +19,13 @@ export default () => {
         border-top-left-radius: 0.25rem;
         border-top-right-radius: 0.25rem;
         color: #fff !important;
-        font-size: .875rem;
+        font-size: 0.875rem;
         font-weight: 200;
         padding: 0.675rem;
 
         img:nth-of-type(1) {
           height: 1.5rem;
-          margin-right: .5rem;
+          margin-right: 0.5rem;
         }
 
         img:nth-of-type(2) {
@@ -42,5 +42,5 @@ export default () => {
       Open Chat
       <img src={externalLinkSrc} />
     </ExternalLink>
-  )
-}
+  );
+};

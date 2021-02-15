@@ -88,18 +88,19 @@ export default ({
       background-position: center;
       background-size: cover;
 
-      h2, h3 {
+      h2,
+      h3 {
         color: ${textColor};
       }
 
       ${height &&
-        css`
-          height: ${height / 16 - 3.75}rem;
+      css`
+        height: ${height / 16 - 3.75}rem;
 
-          > .cta {
-            flex: none;
-          }
-        `}
+        > .cta {
+          flex: none;
+        }
+      `}
     `}
   >
     {overlay && (

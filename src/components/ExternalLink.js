@@ -5,12 +5,12 @@ export default props => {
 
   return (
     <a
-      {...redirect
+      {...(redirect
         ? {}
         : {
             target: '_blank',
             rel: 'noopener noreferrer',
-          }}
+          })}
       onClick={() => track.externalPageView(href)}
       {...props}
     />
