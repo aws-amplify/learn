@@ -111,10 +111,15 @@ export default props => {
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const [upcomingEventNodes, latestPostNodes, allContributorNodes] = map(
-    extractEdges,
-    ['upcomingEvents', 'latestPosts', 'featuredContributors'],
-  );
+  const [
+    upcomingEventNodes,
+    latestPostNodes,
+    allContributorNodes,
+  ] = map(extractEdges, [
+    'upcomingEvents',
+    'latestPosts',
+    'featuredContributors',
+  ]);
 
   const featuredContributorNodes = useMemo(() => {
     let indicesLength = 0;
@@ -240,7 +245,7 @@ export default props => {
               {...(headingText === 'Upcoming Events'
                 ? mapNodeToProps(node, 'href')
                 : mapNodeToProps(node))}
-              {...additionalItemProps || {}}
+              {...(additionalItemProps || {})}
             />
           );
         }, nodes),
