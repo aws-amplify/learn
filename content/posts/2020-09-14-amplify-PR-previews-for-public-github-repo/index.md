@@ -6,7 +6,6 @@ authorIds:
   - yinlin-chen
 href: https://dev.to/yinlinchen/aws-amplify-pull-request-previews-for-public-github-repository-11nc
 platforms:
-  - AWS Amplify console
   - GitHub
 categories:
   - Hosting

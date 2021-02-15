@@ -1,11 +1,11 @@
 ---
 posts:
-  - post: '2019-04-16-fullstack'
+  - post: '2021-02-03-datastore-whitepaper'
     i: 3
-  - post: '2019-03-15'
+  - post: '2021-02-11-amplify-admin-sandbox'
     i: 2
-  - post: '2019-05-01-authcomplete'
+  - post: '2021-01-11-amplify-ios'
     i: 1
-  - post: '2019-04-24-fullstack'
+  - post: '2020-12-28-codemag'
     i: 0
 ---
