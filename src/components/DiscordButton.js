@@ -1,7 +1,7 @@
+import {css} from '@emotion/core';
 import discordLogoSrc from '~/assets/images/discord-white.svg';
 import externalLinkSrc from '~/assets/images/external-link.svg';
 import ExternalLink from './ExternalLink';
-import {css} from '@emotion/core';
 import {ORANGE_PEEL_COLOR, mq} from '../constants';
 
 export default () => {
@@ -38,9 +38,9 @@ export default () => {
         }
       `}
     >
-      <img src={discordLogoSrc} />
+      <img src={discordLogoSrc} alt='Discord logo' />
       Open Chat
-      <img src={externalLinkSrc} />
+      <img src={externalLinkSrc} alt='Discord link' />
     </ExternalLink>
   );
 };

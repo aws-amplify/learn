@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
-import {mq, MAX_WIDTH} from '~/constants';
 import {ToastContainer} from 'react-toastify';
+import {mq, MAX_WIDTH} from '~/constants';
 import GlobalStyles from '../GlobalStyles';
 import Footer from '../Footer';
 import DiscordButton from '../DiscordButton';

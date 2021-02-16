@@ -1,73 +1,8 @@
-import {Layout, Nav, Meta} from '~/components';
 import React from 'react';
 import {css} from '@emotion/core';
+import {Layout, Nav, Meta} from '~/components';
 
 const header = <Nav />;
-
-export default () => {
-  const main = (
-    <div>
-      <div css={container} class='items'>
-        <div css={titleContainer}>
-          <h1 class='text list-heading'>Resources</h1>
-          <p css={baseTest}>
-            Here you will find resources like slide decks and workshops that
-            will help you if you are interested in presenting a talk or a
-            workshop at a conference or event. The workshops are also
-            stand-alone, so you can take these and use them on your own, at your
-            own pace.
-          </p>
-        </div>
-        <div>
-          <h2 class='text list-heading'>Workshops</h2>
-          <div css={listContainer}>
-            {workshops.map((workshop, index) => (
-              <div css={cardContainer}>
-                <p css={itemTitle}>{workshop.name}</p>
-                <p css={itemDescription}>{workshop.description}</p>
-                <a css={itemLink} href={workshop.link} target='_blank'>
-                  View workshop
-                </a>
-                <div css={tagContainer}>
-                  {workshop.tags.map((tag, i) => (
-                    <p css={itemTag}>#{tag}</p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 class='text list-heading'>Slide Decks</h2>
-          <div css={listContainer}>
-            {slideDecks.map((slideDeck, index) => (
-              <div css={cardContainer}>
-                <p css={itemTitle}>{slideDeck.name}</p>
-                <p css={itemDescription}>{slideDeck.description}</p>
-                <a css={itemLink} href={slideDeck.downloadPath} download>
-                  Download deck
-                </a>
-                <div css={tagContainer}>
-                  {slideDeck.tags.map((tag, i) => (
-                    <p css={itemTag}>#{tag}</p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <>
-      <Meta pageName='Resources' />
-      <Layout.Basic {...{header, main}} />
-    </>
-  );
-};
 
 const container = css`
   padding: 40px 80px;
@@ -284,3 +219,79 @@ const slideDecks = [
     tags: ['GraphQL', 'AppSync', 'API', 'DataStore'],
   },
 ];
+
+export default () => {
+  const main = (
+    <div>
+      <div css={container} className='items'>
+        <div css={titleContainer}>
+          <h1 className='text list-heading'>Resources</h1>
+          <p css={baseTest}>
+            Here you will find resources like slide decks and workshops that
+            will help you if you are interested in presenting a talk or a
+            workshop at a conference or event. The workshops are also
+            stand-alone, so you can take these and use them on your own, at your
+            own pace.
+          </p>
+        </div>
+        <div>
+          <h2 className='text list-heading'>Workshops</h2>
+          <div css={listContainer}>
+            {workshops.map(workshop => (
+              <div css={cardContainer}>
+                <p css={itemTitle}>{workshop.name}</p>
+                <p css={itemDescription}>{workshop.description}</p>
+                <a
+                  css={itemLink}
+                  href={workshop.link}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  View workshop
+                </a>
+                <div css={tagContainer}>
+                  {workshop.tags.map(tag => (
+                    <p css={itemTag}>
+                      #
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 className='text list-heading'>Slide Decks</h2>
+          <div css={listContainer}>
+            {slideDecks.map(slideDeck => (
+              <div css={cardContainer}>
+                <p css={itemTitle}>{slideDeck.name}</p>
+                <p css={itemDescription}>{slideDeck.description}</p>
+                <a css={itemLink} href={slideDeck.downloadPath} download>
+                  Download deck
+                </a>
+                <div css={tagContainer}>
+                  {slideDeck.tags.map(tag => (
+                    <p css={itemTag}>
+                      #
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      <Meta pageName='Resources' />
+      <Layout.Basic {...{header, main}} />
+    </>
+  );
+};

@@ -1,6 +1,6 @@
 import {keys, find} from 'ramda';
-import {classNames} from '~/utilities';
 import {useMemo} from 'react';
+import {classNames} from '~/utilities';
 
 const existenceByValidTag = {
   p: true,
