@@ -1,4 +1,19 @@
 import {graphql} from 'gatsby';
+import {useEffect} from 'react';
+import {
+  values,
+  mapObjIndexed,
+  map,
+  filter as filterRamda,
+  identity,
+  head,
+  keys,
+  split,
+  join,
+  isEmpty,
+  includes,
+} from 'ramda';
+import {filter as filterContext} from '~/contexts';
 import {
   mapNodeToProps,
   extract,
@@ -19,21 +34,6 @@ import {
   Meta,
 } from '~/components';
 import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
-import {filter as filterContext} from '~/contexts';
-import {
-  values,
-  mapObjIndexed,
-  map,
-  filter,
-  identity,
-  head,
-  keys,
-  split,
-  join,
-  isEmpty,
-  includes,
-} from 'ramda';
-import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   query($currentDate: Date!) {
@@ -112,7 +112,7 @@ export default props => {
         values(
           mapObjIndexed((group, key) => {
             return (
-              !isEmpty(filter(identity, map(meetsCriteria, group))) && (
+              !isEmpty(filterRamda(identity, map(meetsCriteria, group))) && (
                 <MappedList
                   key={key}
                   cta={

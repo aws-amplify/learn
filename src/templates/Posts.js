@@ -1,4 +1,6 @@
 import {graphql} from 'gatsby';
+import {all, includes, isEmpty, any, sort, map} from 'ramda';
+import {useEffect} from 'react';
 import {
   extract,
   mapNodeToProps,
@@ -18,8 +20,6 @@ import {
   Meta,
   FeaturedPosts,
 } from '~/components';
-import {all, includes, isEmpty, any, sort, map} from 'ramda';
-import {useEffect} from 'react';
 
 export const pageQuery = graphql`
   {

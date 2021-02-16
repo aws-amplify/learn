@@ -1,9 +1,9 @@
 import {graphql} from 'gatsby';
-import {MappedList, Layout, Card, Nav, Text, Meta} from '~/components';
-import {mapNodeToProps, extract, track} from '~/utilities';
 import {css} from '@emotion/core';
 import {map, __, isEmpty} from 'ramda';
 import {useEffect} from 'react';
+import {mapNodeToProps, extract, track} from '~/utilities';
+import {MappedList, Layout, Card, Nav, Text, Meta} from '~/components';
 import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 
 export const pageQuery = graphql`

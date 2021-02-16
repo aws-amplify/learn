@@ -1,8 +1,8 @@
-import {useContext, useCallback} from 'react';
-import {filter as filterContext} from '~/contexts';
+import {useContext} from 'react';
 import {css} from '@emotion/core';
-import {mq, GRAY_COLOR} from '~/constants';
 import {curry} from 'ramda';
+import {filter as filterContext} from '~/contexts';
+import {mq, GRAY_COLOR} from '~/constants';
 import MultiSelect from './MultiSelect';
 import DateRange from './DateRange';
 import CheckboxGroup from './CheckboxGroup';
