@@ -1,12 +1,12 @@
 import {css} from '@emotion/core';
 import {Link} from 'gatsby';
 // get consistent format for logos
-import logoLightURI from '~/assets/images/logo-light.svg';
-import logoDarkURI from '~/assets/images/logo-dark.png';
 import {useMemo} from 'react';
 import {values, map} from 'ramda';
 import {MdOpenInNew} from 'react-icons/md';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
+import logoDarkURI from '~/assets/images/logo-dark.png';
+import logoLightURI from '~/assets/images/logo-light.svg';
 import Text from './Text';
 import {mq, ORANGE_PEEL_COLOR, MAX_WIDTH} from '~/constants';
 import ExternalLink from './ExternalLink';

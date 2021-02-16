@@ -1,6 +1,6 @@
 import Select from 'react-select';
 import {css} from '@emotion/core';
-import {map, keys} from 'ramda';
+import {map} from 'ramda';
 import Text from './Text';
 import {mq} from '~/constants';
 
