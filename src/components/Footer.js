@@ -1,6 +1,7 @@
 import {css} from '@emotion/core';
 import {Link, useStaticQuery, graphql} from 'gatsby';
 import {FaArrowCircleRight} from 'react-icons/fa';
+import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import {
   MAX_WIDTH,
   ORANGE_PEEL_COLOR,
@@ -8,10 +9,8 @@ import {
   GRAY_COLOR,
   mq,
 } from '~/constants';
-import {IoLogoGithub, IoLogoTwitter} from 'react-icons/io';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
-import {map} from 'ramda';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
 import discordSrc from '~/assets/images/discord-black.svg';
@@ -238,7 +237,7 @@ export default () => {
             key='Discord'
             className='discord'
           >
-            <img src={discordSrc} />
+            <img src={discordSrc} alt='Discord link' />
           </ExternalLink>
           <ExternalLink
             href='https://github.com/aws-amplify/community'

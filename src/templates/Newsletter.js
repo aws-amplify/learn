@@ -1,4 +1,8 @@
 import {graphql} from 'gatsby';
+import {css} from '@emotion/core';
+import {map} from 'ramda';
+import moment from 'moment';
+import {useEffect, useMemo} from 'react';
 import {Layout, Card, List, Nav, Button, Text, Meta} from '~/components';
 import {
   TABLET_BREAKPOINT,
@@ -7,11 +11,7 @@ import {
   ORANGE_PEEL_COLOR,
 } from '~/constants';
 import {mapNodeToProps, extract, track} from '~/utilities';
-import {css} from '@emotion/core';
 import logoLightURI from '~/assets/images/logo-light.svg';
-import {map} from 'ramda';
-import moment from 'moment';
-import {useEffect, useMemo} from 'react';
 
 moment.suppressDeprecationWarnings = true;
 

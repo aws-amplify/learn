@@ -1,4 +1,6 @@
 import {useEffect, useMemo, useCallback} from 'react';
+import {identity, split, map, reduce, tail, toPairs, sort, last} from 'ramda';
+import moment from 'moment';
 import {
   MappedList,
   Layout,
@@ -10,10 +12,8 @@ import {
   Text,
 } from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {identity, split, map, reduce, tail, toPairs, sort, last} from 'ramda';
 import {track, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
-import moment from 'moment';
 
 const navProps = {
   beforeScroll: {

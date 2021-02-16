@@ -1,9 +1,9 @@
 import {css} from '@emotion/core';
 import {useState, useCallback, useRef} from 'react';
-import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 import useSize from '@rehooks/component-size';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import useWindowSize from 'react-use/lib/useWindowSize';
+import {mq, MAX_WIDTH, TABLET_BREAKPOINT, CONCRETE_COLOR} from '~/constants';
 // import useLockBodyScroll from 'react-use/lib/useLockBodyScroll';
 import {ToggleMenu} from '../Button';
 import {layout as layoutContext} from '~/contexts';

@@ -2,7 +2,7 @@
 
 exports[`renders properly 1`] = `
 <button
-  className="button actionable three-dee rounded"
+  className="button"
   css={
     Array [
       Object {
@@ -21,6 +21,7 @@ exports[`renders properly 1`] = `
     outline: none;
   }
 ",
+        "toString": [Function],
       },
       Object {
         "map": undefined,
@@ -29,10 +30,10 @@ exports[`renders properly 1`] = `
         "styles": "
       padding: .5625rem .75rem .5rem;
     ",
+        "toString": [Function],
       },
     ]
   }
-  onClick={[Function]}
   type="button"
 >
   Hello

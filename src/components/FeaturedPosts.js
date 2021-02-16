@@ -1,10 +1,10 @@
 import Slider from 'react-slick';
 import {css} from '@emotion/core';
 import {map} from 'ramda';
-import {mapNodeToProps} from '~/utilities';
-import {mq} from '~/constants';
 import Img from 'gatsby-image';
 import {Link} from 'gatsby';
+import {mapNodeToProps} from '~/utilities';
+import {mq} from '~/constants';
 import ExternalLink from './ExternalLink';
 import Text from './Text';
 
