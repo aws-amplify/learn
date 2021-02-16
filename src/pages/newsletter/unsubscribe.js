@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
+import {css, Global} from '@emotion/core';
+import useWindowSize from 'react-use/lib/useWindowSize';
 import {Layout, Nav, Hero, Subscribe, Meta, ExternalLink} from '~/components';
 import {ORANGE_PEEL_COLOR} from '~/constants';
 import {track} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
-import {css, Global} from '@emotion/core';
-import useWindowSize from 'react-use/lib/useWindowSize';
 
 const styles = css`
   #___gatsby > div > * {

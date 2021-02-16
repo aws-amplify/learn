@@ -1,7 +1,7 @@
 import {css} from '@emotion/core';
 import {useContext} from 'react';
-import {layout as layoutContext} from '~/contexts';
 import {IoMdClose, IoIosMore} from 'react-icons/io';
+import {layout as layoutContext} from '~/contexts';
 import {EBONY_CLAY_COLOR, mq} from '~/constants';
 
 const styles = css`

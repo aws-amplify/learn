@@ -35,7 +35,7 @@ const styles = css`
 export default () => (
   <Layout.Basic
     header={<Nav />}
-    main={
+    main={(
       <div css={styles}>
         <Text h2 className='page-heading' children='404' />
         <Text h4 className='page-subheading' children='Page Not Found' />
@@ -45,6 +45,6 @@ export default () => (
           children='Return Home'
         />
       </div>
-    }
+    )}
   />
 );
