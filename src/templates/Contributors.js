@@ -1,8 +1,8 @@
 import {graphql} from 'gatsby';
+import {useEffect} from 'react';
 import {Nav, Layout, Card, MappedList, Text, Meta} from '~/components';
 import {extract, mapNodeToProps, track} from '~/utilities';
 import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
-import {useEffect} from 'react';
 
 // add alphabetical sorting
 export const pageQuery = graphql`

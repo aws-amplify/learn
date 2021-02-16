@@ -1,5 +1,5 @@
-import {reduce, assoc} from 'ramda';
-import * as extract from './extract';
+// import {reduce, assoc} from 'ramda';
+// import * as extract from './extract';
 
 // const extractDateFromNode = extract.fromPath(['node', 'fields', 'date']);
 

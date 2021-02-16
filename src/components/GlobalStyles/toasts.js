@@ -1,5 +1,4 @@
 import {css} from '@emotion/core';
-import {PURPLE} from '~/constants';
 
 export default css`
   .Toastify__toast-container {

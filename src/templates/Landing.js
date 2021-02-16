@@ -1,4 +1,8 @@
 import {graphql} from 'gatsby';
+import {IoMdPeople, IoIosJournal} from 'react-icons/io';
+import {map, length, keys, dropLast} from 'ramda';
+import {useEffect, useMemo} from 'react';
+import useWindowSize from 'react-use/lib/useWindowSize';
 import {
   Layout,
   Card,
@@ -17,11 +21,7 @@ import {
   ORANGE_PEEL_COLOR,
 } from '~/constants';
 import {mapNodeToProps, extract, track} from '~/utilities';
-import {IoMdPeople, IoIosJournal} from 'react-icons/io';
-import {map, length, keys, dropLast} from 'ramda';
 import heroOverlaySrc from '~/assets/images/map.svg';
-import {useEffect, useMemo} from 'react';
-import useWindowSize from 'react-use/lib/useWindowSize';
 
 export const pageQuery = graphql`
   query($currentDate: Date) {

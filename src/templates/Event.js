@@ -1,16 +1,16 @@
 import {graphql, Link} from 'gatsby';
-import {track, extract, mapNodeToProps} from '~/utilities';
 import Img from 'gatsby-image';
-import {Text, Meta, Layout, Nav, Button} from '~/components';
 import {css} from '@emotion/core';
+import {join, isEmpty, complement, map} from 'ramda';
+import {useEffect} from 'react';
 import {
   ORANGE_PEEL_COLOR,
   GRAY_COLOR,
   SILVER_CHALICE_COLOR,
   mq,
 } from '~/constants';
-import {join, isEmpty, complement, map} from 'ramda';
-import {useEffect} from 'react';
+import {Text, Meta, Layout, Nav, Button} from '~/components';
+import {track, extract, mapNodeToProps} from '~/utilities';
 
 export const pageQuery = graphql`
   query($slug: String!) {
