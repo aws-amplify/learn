@@ -3,6 +3,9 @@
   "globals": {
     "window": "writable"
   },
+  "env": {
+    "jest": true
+  },
   "parserOptions": {
     "ecmaVersion": 9,
     "impliedStrict": true,
