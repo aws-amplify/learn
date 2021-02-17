@@ -5,7 +5,7 @@ const mapNodeToProps = (data, exclusionKey) => {
   const root = data.node || data;
 
   const {fields = {}, frontmatter = {}, excerpt = null} = root;
-  const {slug: to = null, authors = null} = fields;
+  const {slug = null, authors = null} = fields;
   const {banner = null, avatar = null, organizers = null} = frontmatter;
 
   const images = map(e => e && e.childImageSharp, {banner, avatar});
@@ -13,6 +13,7 @@ const mapNodeToProps = (data, exclusionKey) => {
     organizers,
     authors,
   });
+  const to = new URL(slug, window.location.origin).pathname;
 
   return fromPairs(
     filter(
