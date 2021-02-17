@@ -87,7 +87,7 @@ const workshops = [
     name:
       'Build a Photo Sharing App with React and AWS Amplify',
     description:
-      "We'll start from scratch, using the Create React App CLI to create a new React web project. We'll then, step by step, use the Amplify CLI to build out and configure our cloud infrastructure and then use the Amplify JS Libraries to connect the React client application to the APIs we create using the CLI.",
+      "We'll start from scratch, using the Create React App CLI to create a new React web project. We'll go step by step, using the Amplify CLI to build and deploy our cloud infrastructure. Lastly, we'll use the Amplify JS libraries to connect our React client application to the APIs we created with the CLI.",
     link: 'https://github.com/dabit3/amplify-photo-sharing-workshop',
     tags: [
       'AppSync',
