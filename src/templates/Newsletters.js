@@ -65,8 +65,9 @@ export default props => {
     slug => {
       const week = last(split('/', slug));
       const {startDate, endDate} = formattedDateRangeBySlug[slug];
+
       return {
-        to: slug,
+        to: `/${slug}`,
         heading: `Week ${week}`,
         subheading: `${startDate} to ${endDate}`,
       };
