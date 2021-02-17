@@ -1,10 +1,6 @@
 import mapNodeToProps from './mapNodeToProps';
 
 describe('mapNodeToProps', () => {
-  beforeEach(() => {
-    delete window.location;
-    window.location = new URL('https://www.example.com');
-  });
   it('parse relative path to absolute path', () => {
     const data = {
       fields: {
