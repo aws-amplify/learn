@@ -84,6 +84,23 @@ const workshops = [
     ],
   },
   {
+    name:
+      'Build a Photo Sharing App with React and AWS Amplify',
+    description:
+      "We'll start from scratch, using the Create React App CLI to create a new React web project. We'll then, step by step, use the Amplify CLI to build out and configure our cloud infrastructure and then use the Amplify JS Libraries to connect the React client application to the APIs we create using the CLI.",
+    link: 'https://github.com/dabit3/amplify-photo-sharing-workshop',
+    tags: [
+      'AppSync',
+      'GraphQL',
+      'React',
+      'Storage',
+      'Amazon S3',
+      'Authentication',
+      'Amazon Cognito',
+      'Hosting',
+    ],
+  },
+  {
     name: 'Building a multi-user blogging platform with Next.js, Tailwind, and AWS',
     description:
       "In this workshop we'll learn how to build a full stack cloud application with Next.js, Tailwind, & AWS Amplify.",
