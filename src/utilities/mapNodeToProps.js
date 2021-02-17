@@ -13,7 +13,7 @@ const mapNodeToProps = (data, exclusionKey) => {
     organizers,
     authors,
   });
-  const to = new URL(slug, window.location.origin).pathname;
+  const to = new URL(slug, 'https://fixture').pathname;
 
   return fromPairs(
     filter(
