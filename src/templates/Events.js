@@ -111,11 +111,6 @@ export default props => {
         !isEmpty(edges) &&
         values(
           mapObjIndexed((group, key) => {
-            /* map over group, update slug to not include the events path since we are already on the events page */
-            group = group.map(g => {
-              g.node.fields.slug = g.node.fields.slug.replace('events/', '')
-              return g
-            })
             return (
               !isEmpty(filterRamda(identity, map(meetsCriteria, group))) && (
                 <MappedList
