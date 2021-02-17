@@ -182,7 +182,7 @@ export default ({header, menu, main, hasHero = false}) => {
               {menuOpen && (
                 <div
                   css={megaMenuStyles}
-                  className={`mega menu ${menuOpen ? 'open' : 'closed'}`}
+                  className="mega menu open"
                   children={menu}
                 />
               )}
