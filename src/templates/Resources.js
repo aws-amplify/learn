@@ -84,10 +84,27 @@ const workshops = [
     ],
   },
   {
-    name: 'Build a Photo-Sharing Web App with AWS Amplify and AWS AppSync',
+    name:
+      'Build a Photo Sharing App with React and AWS Amplify',
     description:
-      "In this workshop you'll learn how to build cloud-enabled mobile applications with React Native & AWS Amplify.",
-    link: 'https://amplify-workshop.go-aws.com/',
+      "We'll start from scratch, using the Create React App CLI to create a new React web project. We'll go step by step, using the Amplify CLI to build and deploy our cloud infrastructure. Lastly, we'll use the Amplify JS libraries to connect our React client application to the APIs we created with the CLI.",
+    link: 'https://github.com/dabit3/amplify-photo-sharing-workshop',
+    tags: [
+      'AppSync',
+      'GraphQL',
+      'React',
+      'Storage',
+      'Amazon S3',
+      'Authentication',
+      'Amazon Cognito',
+      'Hosting',
+    ],
+  },
+  {
+    name: 'Building a multi-user blogging platform with Next.js, Tailwind, and AWS',
+    description:
+      "In this workshop we'll learn how to build a full stack cloud application with Next.js, Tailwind, & AWS Amplify.",
+    link: 'https://github.com/dabit3/next.js-amplify-workshop',
     tags: [
       'GraphQL',
       'Storage',
@@ -95,6 +112,22 @@ const workshops = [
       'React',
       'Authentication',
       'Amazon Cognito',
+      'Next.js'
+    ],
+  },
+  {
+    name: 'CDK with Next.js and AWS Amplify Workshop',
+    description:
+      "In this workshop we'll build a full stack cloud application with Next.js, AWS CDK, AWS AppSync, & AWS Amplify.",
+    link: 'https://github.com/dabit3/next.js-cdk-amplify-workshop',
+    tags: [
+      'GraphQL',
+      'CDK',
+      'API',
+      'Authentication',
+      'Amazon Cognito',
+      'Hosting',
+      'Next.js'
     ],
   },
   {
