@@ -84,10 +84,10 @@ const workshops = [
     ],
   },
   {
-    name: 'Build a Photo-Sharing Web App with AWS Amplify and AWS AppSync',
+    name: 'Building a multi-user blogging platform with Next.js, Tailwind, and AWS',
     description:
-      "In this workshop you'll learn how to build cloud-enabled mobile applications with React Native & AWS Amplify.",
-    link: 'https://amplify-workshop.go-aws.com/',
+      "In this workshop we'll learn how to build a full stack cloud application with Next.js, Tailwind, & AWS Amplify.",
+    link: 'https://github.com/dabit3/next.js-amplify-workshop',
     tags: [
       'GraphQL',
       'Storage',
@@ -95,6 +95,22 @@ const workshops = [
       'React',
       'Authentication',
       'Amazon Cognito',
+      'Next.js'
+    ],
+  },
+  {
+    name: 'CDK with Next.js and AWS Amplify Workshop',
+    description:
+      "In this workshop we'll build a full stack cloud application with Next.js, AWS CDK, AWS AppSync, & AWS Amplify.",
+    link: 'https://github.com/dabit3/next.js-cdk-amplify-workshop',
+    tags: [
+      'GraphQL',
+      'CDK',
+      'API',
+      'Authentication',
+      'Amazon Cognito',
+      'Hosting',
+      'Next.js'
     ],
   },
   {
