@@ -99,7 +99,7 @@
     "prep": "yarn delete-cache && scripts/gather-credentials.js",
     "start": "yarn prep && gatsby develop",
     "build": "yarn prep && gatsby build --prefix-paths",
-    "postbuild": "yarn lint",
+    "postbuild": "yarn lint && yarn test",
     "serve": "gatsby serve",
     "cy:dev": "cypress open --config baseUrl=http://localhost:8000",
     "cy:ci": "cypress run --config baseUrl=http://localhost:9000",
@@ -107,6 +107,7 @@
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
     "commit": "yarn format && git add . && git-cz && git secrets --scan-history",
     "format": "prettier --write \"src/**/*.js\" && yarn lint -- --fix",
-    "lint": "eslint \"src/**/*.js\""
+    "lint": "eslint \"src/**/*.js\"",
+    "test": "jest"
   }
 }
