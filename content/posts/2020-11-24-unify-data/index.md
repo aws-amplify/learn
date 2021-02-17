@@ -1,5 +1,5 @@
 ---
-title: How to Design Almost Any Backend and Deploy It to AWS with No Code
+title: Unify data silos with AWS AppSync
 description: "This post looks into GraphQL, specifically the AWS implementation via AppSync and how it can be used to help provide a flexible API for developers, join data from silos together, & provide a migration path for application modernisation by moving some data into DynamoDB while keeping some in a RDBMS."
 banner: "./banner.jpeg"
 authorIds:
