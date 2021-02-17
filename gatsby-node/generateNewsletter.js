@@ -58,11 +58,7 @@ const getDateRange = ([year, week]) => {
 };
 
 const getComparableValuesFromSlug = map(
-  compose(
-    map(parseInt),
-    tail,
-    split('/'),
-  ),
+  compose(map(parseInt), tail, split('/')),
 );
 
 const getLastMonday = () => {

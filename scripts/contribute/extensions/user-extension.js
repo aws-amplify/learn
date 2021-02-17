@@ -11,7 +11,6 @@ const {
   isNil,
   complement,
   filter,
-  anyPass,
   either,
 } = require('ramda');
 const {contributorExists} = require('../../utilities');
@@ -57,20 +56,24 @@ module.exports = toolbox => {
             bio,
             ...(includes('twitter.com', href)
               ? {
-                  website: (await toolbox.prompt.ask({
-                    type: 'input',
-                    name: 'website',
-                    message: `Enter a website––other than Twitter––associated with this GitHub ID. Leave blank to skip.`,
-                  })).website,
+                  website: (
+                    await toolbox.prompt.ask({
+                      type: 'input',
+                      name: 'website',
+                      message: `Enter a website––other than Twitter––associated with this GitHub ID. Leave blank to skip.`,
+                    })
+                  ).website,
                   twitter: href,
                 }
               : {
                   website: href,
-                  twitter: (await toolbox.prompt.ask({
-                    type: 'input',
-                    name: 'twitter',
-                    message: `Enter the Twitter handle associated with this GitHub ID. Leave blank to skip.`,
-                  })).twitter,
+                  twitter: (
+                    await toolbox.prompt.ask({
+                      type: 'input',
+                      name: 'twitter',
+                      message: `Enter the Twitter handle associated with this GitHub ID. Leave blank to skip.`,
+                    })
+                  ).twitter,
                 }),
           });
 
@@ -116,9 +119,9 @@ module.exports = toolbox => {
       }
 
       toolbox.user.id = gitHubId;
-    } else {
       return prompt();
     }
+    return prompt();
   };
 
   toolbox.user.finalize = () => finalizations.forEach(fn => fn());

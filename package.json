@@ -106,8 +106,8 @@
     "test:dev": "start-server-and-test start http://localhost:8000 cy:dev",
     "test:ci": "start-server-and-test serve http://localhost:9000 cy:ci",
     "commit": "yarn format && git add . && git-cz && git secrets --scan-history",
-    "format": "prettier --write \"src/**/*.js\" && yarn lint -- --fix",
-    "lint": "eslint \"src/**/*.js\"",
+    "format": "prettier --write \"**/*.js\" && yarn lint -- --fix",
+    "lint": "eslint \"**/*.js\"",
     "test": "jest"
   }
 }
