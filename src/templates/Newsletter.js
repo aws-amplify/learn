@@ -259,7 +259,7 @@ export default props => {
           {
             key: 'a',
             condition: previous,
-            to: previous,
+            to: `/${previous}`,
             children: 'Previous',
           },
           {
@@ -271,7 +271,7 @@ export default props => {
           {
             key: 'c',
             condition: next,
-            to: next,
+            to: `/${next}`,
             children: 'Next',
           },
         ],

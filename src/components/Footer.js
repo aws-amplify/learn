@@ -197,7 +197,7 @@ export default () => {
   return (
     <footer css={styles}>
       <div className='upper'>
-        <Link to={latestSlug} id='latest-newsletter-link'>
+        <Link to={`/${latestSlug}`} id='latest-newsletter-link'>
           <img src={bugleGraphicSrc} alt='bugle' />
           <span>
             <Text
