@@ -4,7 +4,7 @@ description: Amplify eases the way of hosting your web applications by leveragin
 authorIds:
   - jones-zachariah-noel-n
 href: https://dev.to/zachjonesnoel/amplify-your-web-hosting-3g4a
-banner: "./banner.png"
+banner: "./banner.PNG"
 platforms: 
   - JavaScript
   - VueJS
