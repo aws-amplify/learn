@@ -1,52 +1,57 @@
-# editor
-.vscode
-
-# lockfiles
-yarn.lock
-package-lock.json
-
-# env vars
-.env
-.env.local
-.env.development
-.env.development.local
-.env.test
-.env.test.local
-.env.production
-.env.production.local
-
-# system
-.DS_Store
-.cache
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules
-.pnp
+/node_modules
+/.pnp
 .pnp.js
 
-# logs
-logs
-*.log
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# testing
-.nyc_output
-coverage
-actual.js
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# production
-lib
-build
-public
-dist
+# vercel
+.vercel
 
-#amplify/aws
+#amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
+amplify/logs
+amplify/mock-data
 amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation
+amplify/backend/.temp
+build/
+dist/
+node_modules/
 aws-exports.js
 awsconfiguration.json
-credentials.js
+amplifyconfiguration.json
+amplifyconfiguration.dart
+amplify-build-config.json
+amplify-gradle-config.json
+amplifytools.xcconfig
+.secret-*
+**.sample
+#amplify-do-not-edit-end
+
+.vscode

@@ -1,16 +1,1 @@
-{
-	"auth": {
-		"cognitocd807727": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"analytics": {
-		"community": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"function": {},
-	"api": {}
-}
+{}

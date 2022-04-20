@@ -1,37 +1,34 @@
-<p align="center">
-  <a href="https://amplify.aws/community">
-    <img alt="Amplify" src="https://github.com/aws-amplify/community/blob/master/src/assets/images/logo-dark.png" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Amplify Community
-</h1>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[![DiscordChat](https://img.shields.io/discord/308323056592486420?logo=discord")](https://discord.gg/jWVbPfC)
+## Getting Started
 
-Welcome to the Amplify Community - a hub for developers building fullstack serverless applications with Amplify to easily access content (such as events, blog posts, videos, sample projects, and tutorials) created by other members of the Amplify community.
+First, run the development server:
 
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## Participate
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Become a contributor
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-You can become a contributor by:
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-1. [Submitting a post](https://github.com/aws-amplify/community/blob/master/content/posts/README.md)
-2. [Hosting an Amplify meetup](https://github.com/aws-amplify/community/blob/master/content/events/README.md)
-3. [Speaking at a conference](https://github.com/aws-amplify/community/blob/master/content/events/README.md)
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-### Chat
+## Learn More
 
-* Have a feature request? Or getting stuck somewhere? Open an issue:
-  * [Amplify JS](https://github.com/aws-amplify/amplify-js/issues)
-  * [Amplify CLI](https://github.com/aws-amplify/amplify-cli/issues)
-  * [Amplify Console](https://forums.aws.amazon.com/forum.jspa?forumID=314)  
-  * [AWS SDK for iOS](https://github.com/aws-amplify/aws-sdk-ios/issues)
-  * [AWS SDK for Android](https://github.com/aws-amplify/aws-sdk-android/issues)
-* You can join the real-time conversation on our [Amplify Discord Server](https://discord.gg/jWVbPfC)
+To learn more about Next.js, take a look at the following resources:
 
-### Ideas for improving the community?
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-We are always looking at ways to improve. If you have ideas for the community site, open a [GitHub issue](https://github.com/aws-amplify/community/issues) for your feature request.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
