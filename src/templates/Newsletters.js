@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useCallback} from 'react';
+import {useMemo, useCallback} from 'react';
 import {identity, split, map, reduce, tail, toPairs, sort, last} from 'ramda';
 import moment from 'moment';
 import {

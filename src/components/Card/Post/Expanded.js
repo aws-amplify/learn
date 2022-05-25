@@ -1,9 +1,9 @@
 import {css} from '@emotion/core';
 import Img from 'gatsby-image';
 import LazyLoad from 'react-lazyload';
-import Text from '../../Text';
 import {SAN_JUAN_COLOR, GRAY_COLOR, mq} from '~/constants';
 import {classNames} from '~/utilities';
+import Text from '../../Text';
 import asCard from '../asCard';
 import {Author} from './fragments';
 

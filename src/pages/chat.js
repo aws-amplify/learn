@@ -1,6 +1,6 @@
 import {Meta, Layout, Nav} from '~/components';
 
-export default props => {
+export default () => {
   const main = <div>chat</div>;
 
   return (

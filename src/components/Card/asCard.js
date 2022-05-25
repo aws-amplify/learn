@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
-import Link from '../Link';
 import {classNames} from '~/utilities';
+import Link from '../Link';
 
 export default Template => ({href, to, disabled, className, ...rest}) => {
   const ConditionalAnchor = useCallback(

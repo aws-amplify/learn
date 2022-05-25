@@ -1,8 +1,8 @@
 import Select from 'react-select';
 import {css} from '@emotion/core';
 import {map} from 'ramda';
-import Text from './Text';
 import {mq} from '~/constants';
+import Text from './Text';
 
 const styles = css`
   display: flex;

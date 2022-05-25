@@ -1,9 +1,9 @@
 import {css} from '@emotion/core';
 import {FaArrowCircleRight} from 'react-icons/fa';
-import asCard from '../asCard';
-import Text from '../../Text';
 import {ORANGE_PEEL_COLOR, GRAY_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
+import asCard from '../asCard';
+import Text from '../../Text';
 
 // figure out why moving styles into a 'styles' var and passing into css prop fails
 export default asCard(({ConditionalAnchor, heading, subheading, className}) => (

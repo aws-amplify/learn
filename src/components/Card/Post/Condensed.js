@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
-import Text from '../../Text';
 import {classNames} from '~/utilities';
+import Text from '../../Text';
 import asCard from '../asCard';
 import {Author} from './fragments';
 
