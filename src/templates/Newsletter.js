@@ -2,7 +2,7 @@ import {graphql} from 'gatsby';
 import {css} from '@emotion/core';
 import {map} from 'ramda';
 import moment from 'moment';
-import {useEffect, useMemo} from 'react';
+import {useMemo} from 'react';
 import {Layout, Card, List, Nav, Button, Text, Meta} from '~/components';
 import {
   TABLET_BREAKPOINT,
@@ -10,13 +10,13 @@ import {
   DESKTOP_BREAKPOINT,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 
 moment.suppressDeprecationWarnings = true;
 
 export const pageQuery = graphql`
-  query(
+  query (
     $current: String!
     $events: [String!]!
     $posts: [String!]!
@@ -133,8 +133,6 @@ const navProps = {
 };
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
@@ -148,10 +146,10 @@ export default props => {
 
   const [startDate, endDate] = useMemo(
     () =>
-      map(e => moment(e).format('MMMM Do'), [
-        stringifiedStartDate,
-        stringifiedEndDate,
-      ]),
+      map(
+        e => moment(e).format('MMMM Do'),
+        [stringifiedStartDate, stringifiedEndDate],
+      ),
     [stringifiedStartDate, stringifiedEndDate],
   );
 

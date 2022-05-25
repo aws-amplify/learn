@@ -1,8 +1,8 @@
 import {css} from '@emotion/core';
 import {useMemo} from 'react';
 import {map} from 'ramda';
-import Link from '../Link';
 import {classNames} from '~/utilities';
+import Link from '../Link';
 
 const styles = css`
   display: flex;

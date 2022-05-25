@@ -1,12 +1,10 @@
 import {graphql} from 'gatsby';
 import {all, includes, isEmpty, any, sort, map} from 'ramda';
-import {useEffect} from 'react';
 import {
   extract,
   mapNodeToProps,
   createFilterContextValue,
   getFilterOptions,
-  track,
 } from '~/utilities';
 import {filter as filterContext} from '~/contexts';
 import {
@@ -88,7 +86,6 @@ const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
   const featuredData = extract.fromPath(
     ['data', 'featured', 'frontmatter', 'posts'],
     props,
