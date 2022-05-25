@@ -11,9 +11,9 @@ import {
 } from '~/constants';
 import awsLogoSrc from '~/assets/images/aws-logo.png';
 import bugleGraphicSrc from '~/assets/images/bugle.svg';
+import discordSrc from '~/assets/images/discord-black.svg';
 import Text from './Text';
 import ExternalLink from './ExternalLink';
-import discordSrc from '~/assets/images/discord-black.svg';
 
 const styles = css`
   display: flex;

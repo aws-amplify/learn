@@ -3,10 +3,10 @@ import {MdArrowForward, MdCheck} from 'react-icons/md';
 import {css} from '@emotion/core';
 import {toast} from 'react-toastify';
 import axios from 'axios';
-import {Basic} from './Button';
 import {ORANGE_PEEL_COLOR} from '~/constants';
-import Text from './Text';
 import {isValidEmailAddress} from '~/utilities';
+import {Basic} from './Button';
+import Text from './Text';
 
 const styles = css`
   display: flex;

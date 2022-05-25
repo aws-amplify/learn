@@ -1,7 +1,7 @@
 import {IoIosAdd} from 'react-icons/io';
 import {css} from '@emotion/core';
-import Basic from './Basic';
 import {ORANGE_PEEL_COLOR} from '~/constants';
+import Basic from './Basic';
 import Text from '../Text';
 
 const styles = css`

@@ -2,7 +2,6 @@ import {graphql, Link} from 'gatsby';
 import Img from 'gatsby-image';
 import {css} from '@emotion/core';
 import {join, isEmpty, complement, map} from 'ramda';
-import {useEffect} from 'react';
 import {
   ORANGE_PEEL_COLOR,
   GRAY_COLOR,
@@ -10,10 +9,10 @@ import {
   mq,
 } from '~/constants';
 import {Text, Meta, Layout, Nav, Button} from '~/components';
-import {track, extract, mapNodeToProps} from '~/utilities';
+import {extract, mapNodeToProps} from '~/utilities';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     markdownRemark(fields: {slug: {eq: $slug}}) {
       html
       ...Event
@@ -164,8 +163,6 @@ const styles = css`
 `;
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const {html, fields, frontmatter} = extract.fromPath(
     ['data', 'markdownRemark'],
     props,

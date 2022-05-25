@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
-import Text from './Text';
 import {LOCHMARA_COLOR} from '~/constants';
+import Text from './Text';
 
 const styles = css`
   position: relative;
