@@ -38,7 +38,6 @@ const heroProps = {
 };
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
   const {height} = useWindowSize();
 
   return (

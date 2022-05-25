@@ -23,8 +23,6 @@ export const pageQuery = graphql`
 `;
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const edges = extract.fromPath(['data', 'allMarkdownRemark', 'edges'], props);
   const main = (
     <MappedList

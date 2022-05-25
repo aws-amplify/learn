@@ -44,9 +44,7 @@ export const createFilterContextValue = (...filters) => {
                 ? {...parsed, dates: map(d => new Date(d), parsed.dates)}
                 : parsed;
             }
-          } catch (e) {
-            track.error(e);
-          }
+          } catch (e) {}
         }
       }
       return {};

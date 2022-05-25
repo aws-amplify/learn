@@ -24,7 +24,7 @@ import {mapNodeToProps, extract, track} from '~/utilities';
 import heroOverlaySrc from '~/assets/images/map.svg';
 
 export const pageQuery = graphql`
-  query($currentDate: Date) {
+  query ($currentDate: Date) {
     upcomingEvents: allMarkdownRemark(
       filter: {fields: {category: {eq: "events"}, date: {gt: $currentDate}}}
       sort: {fields: [fields___date], order: ASC}
@@ -106,20 +106,13 @@ const heroProps = {
 };
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
-  const [
-    upcomingEventNodes,
-    latestPostNodes,
-    allContributorNodes,
-  ] = map(extractEdges, [
-    'upcomingEvents',
-    'latestPosts',
-    'featuredContributors',
-  ]);
+  const [upcomingEventNodes, latestPostNodes, allContributorNodes] = map(
+    extractEdges,
+    ['upcomingEvents', 'latestPosts', 'featuredContributors'],
+  );
 
   const featuredContributorNodes = useMemo(() => {
     let indicesLength = 0;
@@ -153,8 +146,7 @@ export default props => {
       headingText: 'Upcoming Events',
       ctaProps: {
         children: 'Add an Event',
-        href:
-          'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
+        href: 'https://github.com/aws-amplify/community/tree/master/content/events/README.md',
       },
       nodes: upcomingEventNodes,
       Template: Card.Event,
@@ -174,8 +166,7 @@ export default props => {
       headingText: 'Latest Posts',
       ctaProps: {
         children: 'Add a Post',
-        href:
-          'https://github.com/aws-amplify/community/tree/master/content/posts/README.md',
+        href: 'https://github.com/aws-amplify/community/tree/master/content/posts/README.md',
       },
       nodes: latestPostNodes,
       Template: Card.Post.Condensed,
@@ -197,8 +188,7 @@ export default props => {
       headingText: 'Featured Contributors',
       ctaProps: {
         children: 'Become a Contributor',
-        href:
-          'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
+        href: 'https://github.com/aws-amplify/community/tree/master/content/contributors/README.md',
       },
       nodes: featuredContributorNodesByScreen,
       Template: Card.Contributor,

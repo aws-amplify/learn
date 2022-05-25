@@ -32,8 +32,6 @@ const heroProps = {
 };
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   // no need to memoize this––checking dependency is more expensive than re-assignment
   const {sortedSlugs, dateRangeBySlug} = extract.fromPath(
     ['pageContext'],
