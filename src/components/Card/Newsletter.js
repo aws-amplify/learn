@@ -1,7 +1,7 @@
 import {css} from '@emotion/core';
+import {classNames} from '~/utilities';
 import asCard from './asCard';
 import Text from '../Text';
-import {classNames} from '~/utilities';
 
 const styles = css`
   flex-direction: column;

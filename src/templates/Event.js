@@ -2,7 +2,6 @@ import {graphql, Link} from 'gatsby';
 import Img from 'gatsby-image';
 import {css} from '@emotion/core';
 import {join, isEmpty, complement, map} from 'ramda';
-import {useEffect} from 'react';
 import {
   ORANGE_PEEL_COLOR,
   GRAY_COLOR,

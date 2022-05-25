@@ -1,6 +1,5 @@
 import {graphql} from 'gatsby';
 import {all, includes, isEmpty, any, sort, map} from 'ramda';
-import {useEffect} from 'react';
 import {
   extract,
   mapNodeToProps,

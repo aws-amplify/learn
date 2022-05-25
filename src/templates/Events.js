@@ -1,5 +1,4 @@
 import {graphql} from 'gatsby';
-import {useEffect} from 'react';
 import {
   values,
   mapObjIndexed,

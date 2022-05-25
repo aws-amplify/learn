@@ -1,7 +1,7 @@
 import {graphql} from 'gatsby';
 import {IoMdPeople, IoIosJournal} from 'react-icons/io';
 import {map, length, keys, dropLast} from 'ramda';
-import {useEffect, useMemo} from 'react';
+import {useMemo} from 'react';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import {
   Layout,
