@@ -1,5 +1,4 @@
 import {graphql} from 'gatsby';
-import {useEffect} from 'react';
 import {Nav, Layout, Card, MappedList, Text, Meta} from '~/components';
 import {extract, mapNodeToProps} from '~/utilities';
 import {TABLET_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';

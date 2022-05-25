@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import {css, Global} from '@emotion/core';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import {Layout, Nav, Hero, Subscribe, Meta, ExternalLink} from '~/components';
@@ -36,7 +35,7 @@ const heroProps = {
   cta: <Subscribe action='unsubscribe' />,
 };
 
-export default props => {
+export default () => {
   const {height} = useWindowSize();
 
   return (
