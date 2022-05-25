@@ -36,7 +36,7 @@ import {
 import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 
 export const pageQuery = graphql`
-  query($currentDate: Date!) {
+  query ($currentDate: Date!) {
     allMarkdownRemark(
       sort: {fields: [fields___date], order: ASC}
       filter: {fields: {category: {eq: "events"}, date: {gt: $currentDate}}}
@@ -61,8 +61,6 @@ const CITY_PATH = ['node', 'frontmatter', 'city'];
 const DATE_PATH = ['node', 'fields', 'date'];
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const value = createFilterContextValue(
     {
       key: 'city',

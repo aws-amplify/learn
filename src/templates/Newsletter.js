@@ -16,7 +16,7 @@ import logoLightURI from '~/assets/images/logo-light.svg';
 moment.suppressDeprecationWarnings = true;
 
 export const pageQuery = graphql`
-  query(
+  query (
     $current: String!
     $events: [String!]!
     $posts: [String!]!
@@ -133,8 +133,6 @@ const navProps = {
 };
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const extractEdges = alias =>
     extract.fromPath(['data', alias, 'edges'], props);
 
@@ -148,10 +146,10 @@ export default props => {
 
   const [startDate, endDate] = useMemo(
     () =>
-      map(e => moment(e).format('MMMM Do'), [
-        stringifiedStartDate,
-        stringifiedEndDate,
-      ]),
+      map(
+        e => moment(e).format('MMMM Do'),
+        [stringifiedStartDate, stringifiedEndDate],
+      ),
     [stringifiedStartDate, stringifiedEndDate],
   );
 
