@@ -13,7 +13,7 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Flex, Icon, Text } from "@aws-amplify/ui-react";
 export default function ContributorLarge(props) {
-  const { overrides: overridesProp, ...rest } = props;
+  const { image, name, roleTitle, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
       overrides: {

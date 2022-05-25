@@ -1,4 +1,17 @@
 {
+  "jewelle": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-community-jewelle-175350-authRole",
+      "UnauthRoleArn": "arn:aws:iam::464149486631:role/amplify-community-jewelle-175350-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::464149486631:role/amplify-community-jewelle-175350-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-community-jewelle-175350-deployment",
+      "UnauthRoleName": "amplify-community-jewelle-175350-unauthRole",
+      "StackName": "amplify-community-jewelle-175350",
+      "StackId": "arn:aws:cloudformation:us-west-2:464149486631:stack/amplify-community-jewelle-175350/d64cb820-c0d2-11ec-8b5f-028cbc31feed",
+      "AmplifyAppId": "d2q4exa0pxl3b9"
+    }
+  },
   "elbertina": {
     "awscloudformation": {
       "AuthRoleName": "amplify-community-elbertina-174400-authRole",

@@ -2,20 +2,24 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const SkillLevel = {
+  "BEGINNER": "BEGINNER",
+  "INTERMEDIATE": "INTERMEDIATE",
+  "ADVANCED": "ADVANCED"
+};
 
-
-const { Chapters, Tags, TagsCourse, Course, ContributorCourse, Contributor, ContributorLesson, Lesson, HomePage, Nav, Footer } = initSchema(schema);
+const { CoursesPage, AboutPage, Contributor, LessonContributor, Lesson, Chapter, Course, Footer, Nav, HomePage } = initSchema(schema);
 
 export {
-  Chapters,
-  Tags,
-  TagsCourse,
-  Course,
-  ContributorCourse,
+  CoursesPage,
+  AboutPage,
   Contributor,
-  ContributorLesson,
+  LessonContributor,
   Lesson,
-  HomePage,
+  Chapter,
+  Course,
+  Footer,
   Nav,
-  Footer
+  HomePage,
+  SkillLevel
 };

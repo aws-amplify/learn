@@ -1,0 +1,73 @@
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+type CoursesPage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type AboutPage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type Contributor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String
+  JobTitle: String
+  lessons: [LessonContributor] @connection(keyName: "byContributor", fields: ["id"])
+}
+
+type Chapter @model @auth(rules: [{allow: public}]) @key(name: "byLesson", fields: ["lessonID"]) {
+  id: ID!
+  Title: String
+  VideoLink: AWSURL
+  lessonID: ID!
+}
+
+type Lesson @model @auth(rules: [{allow: public}]) @key(name: "byCourse", fields: ["courseID"]) {
+  id: ID!
+  Title: String
+  Description: String
+  LessonContributors: [LessonContributor] @connection(keyName: "byLesson", fields: ["id"])
+  courseID: ID!
+  Chapters: [Chapter] @connection(keyName: "byLesson", fields: ["id"])
+  Content: [String]
+  VideoLink: AWSURL
+}
+
+type Course @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Title: String
+  Subtitle: String
+  SkillLevel: SkillLevel
+  TimeHours: Int
+  TimeMinutes: Int
+  Bio: String
+  Description: String
+  Requirements: [String]
+  Image: String
+  Lessons: [Lesson] @connection(keyName: "byCourse", fields: ["id"])
+}
+
+type Footer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type Nav @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type HomePage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type LessonContributor @model @key(name: "byLesson", fields: ["lessonID", "contributorID"]) @key(name: "byContributor", fields: ["contributorID", "lessonID"]) @auth(rules: [{allow: public}]) {
+  id: ID!
+  lessonID: ID!
+  contributorID: ID!
+  lesson: Lesson! @connection(fields: ["lessonID"])
+  contributor: Contributor! @connection(fields: ["contributorID"])
+}
+ 

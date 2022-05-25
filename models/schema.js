@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Chapters": {
-            "name": "Chapters",
+        "CoursesPage": {
+            "name": "CoursesPage",
             "fields": {
                 "id": {
                     "name": "id",
@@ -9,104 +9,10 @@ export const schema = {
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
-                },
-                "ChapterVideoURL": {
-                    "name": "ChapterVideoURL",
-                    "isArray": false,
-                    "type": "AWSURL",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "lessonID": {
-                    "name": "lessonID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "Title": {
-                    "name": "Title",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Chapters",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byLesson",
-                        "fields": [
-                            "lessonID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Tags": {
-            "name": "Tags",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "TagName": {
-                    "name": "TagName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "TagURL": {
-                    "name": "TagURL",
-                    "isArray": false,
-                    "type": "AWSJSON",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "TagsCourses": {
-                    "name": "TagsCourses",
-                    "isArray": true,
-                    "type": {
-                        "model": "TagsCourse"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "tags"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "Tags",
+            "pluralName": "CoursesPages",
             "attributes": [
                 {
                     "type": "model",
@@ -130,8 +36,8 @@ export const schema = {
                 }
             ]
         },
-        "TagsCourse": {
-            "name": "TagsCourse",
+        "AboutPage": {
+            "name": "AboutPage",
             "fields": {
                 "id": {
                     "name": "id",
@@ -139,210 +45,14 @@ export const schema = {
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
-                },
-                "tags": {
-                    "name": "tags",
-                    "isArray": false,
-                    "type": {
-                        "model": "Tags"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "tagsID"
-                    }
-                },
-                "course": {
-                    "name": "course",
-                    "isArray": false,
-                    "type": {
-                        "model": "Course"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "courseID"
-                    }
                 }
             },
             "syncable": true,
-            "pluralName": "TagsCourses",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {
-                        "queries": null
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byTags",
-                        "fields": [
-                            "tagsID",
-                            "courseID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byCourse",
-                        "fields": [
-                            "courseID",
-                            "tagsID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Course": {
-            "name": "Course",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "tagss": {
-                    "name": "tagss",
-                    "isArray": true,
-                    "type": {
-                        "model": "TagsCourse"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "course"
-                    }
-                },
-                "contributors": {
-                    "name": "contributors",
-                    "isArray": true,
-                    "type": {
-                        "model": "ContributorCourse"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "course"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "Courses",
+            "pluralName": "AboutPages",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "ContributorCourse": {
-            "name": "ContributorCourse",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "contributor": {
-                    "name": "contributor",
-                    "isArray": false,
-                    "type": {
-                        "model": "Contributor"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "contributorID"
-                    }
-                },
-                "course": {
-                    "name": "course",
-                    "isArray": false,
-                    "type": {
-                        "model": "Course"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "courseID"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "ContributorCourses",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {
-                        "queries": null
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byContributor",
-                        "fields": [
-                            "contributorID",
-                            "courseID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byCourse",
-                        "fields": [
-                            "courseID",
-                            "contributorID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -386,25 +96,11 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "ContributorLessons": {
-                    "name": "ContributorLessons",
+                "lessons": {
+                    "name": "lessons",
                     "isArray": true,
                     "type": {
-                        "model": "ContributorLesson"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "contributor"
-                    }
-                },
-                "ContributorCourses": {
-                    "name": "ContributorCourses",
-                    "isArray": true,
-                    "type": {
-                        "model": "ContributorCourse"
+                        "model": "LessonContributor"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -440,8 +136,8 @@ export const schema = {
                 }
             ]
         },
-        "ContributorLesson": {
-            "name": "ContributorLesson",
+        "LessonContributor": {
+            "name": "LessonContributor",
             "fields": {
                 "id": {
                     "name": "id",
@@ -449,19 +145,6 @@ export const schema = {
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
-                },
-                "contributor": {
-                    "name": "contributor",
-                    "isArray": false,
-                    "type": {
-                        "model": "Contributor"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "contributorID"
-                    }
                 },
                 "lesson": {
                     "name": "lesson",
@@ -475,15 +158,36 @@ export const schema = {
                         "connectionType": "BELONGS_TO",
                         "targetName": "lessonID"
                     }
+                },
+                "contributor": {
+                    "name": "contributor",
+                    "isArray": false,
+                    "type": {
+                        "model": "Contributor"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "contributorID"
+                    }
                 }
             },
             "syncable": true,
-            "pluralName": "ContributorLessons",
+            "pluralName": "LessonContributors",
             "attributes": [
                 {
                     "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
                     "properties": {
-                        "queries": null
+                        "name": "byLesson",
+                        "fields": [
+                            "lessonID",
+                            "contributorID"
+                        ]
                     }
                 },
                 {
@@ -493,16 +197,6 @@ export const schema = {
                         "fields": [
                             "contributorID",
                             "lessonID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byLesson",
-                        "fields": [
-                            "lessonID",
-                            "contributorID"
                         ]
                     }
                 },
@@ -534,11 +228,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "contributors": {
-                    "name": "contributors",
+                "Title": {
+                    "name": "Title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Description": {
+                    "name": "Description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "LessonContributors": {
+                    "name": "LessonContributors",
                     "isArray": true,
                     "type": {
-                        "model": "ContributorLesson"
+                        "model": "LessonContributor"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -548,11 +256,18 @@ export const schema = {
                         "associatedWith": "lesson"
                     }
                 },
+                "courseID": {
+                    "name": "courseID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "Chapters": {
                     "name": "Chapters",
                     "isArray": true,
                     "type": {
-                        "model": "Chapters"
+                        "model": "Chapter"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -561,10 +276,216 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "lessonID"
                     }
+                },
+                "Content": {
+                    "name": "Content",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "VideoLink": {
+                    "name": "VideoLink",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
             "pluralName": "Lessons",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byCourse",
+                        "fields": [
+                            "courseID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Chapter": {
+            "name": "Chapter",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Title": {
+                    "name": "Title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "VideoLink": {
+                    "name": "VideoLink",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "lessonID": {
+                    "name": "lessonID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Chapters",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byLesson",
+                        "fields": [
+                            "lessonID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Course": {
+            "name": "Course",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Title": {
+                    "name": "Title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Subtitle": {
+                    "name": "Subtitle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "SkillLevel": {
+                    "name": "SkillLevel",
+                    "isArray": false,
+                    "type": {
+                        "enum": "SkillLevel"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "TimeHours": {
+                    "name": "TimeHours",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "TimeMinutes": {
+                    "name": "TimeMinutes",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Bio": {
+                    "name": "Bio",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Description": {
+                    "name": "Description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Requirements": {
+                    "name": "Requirements",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "Image": {
+                    "name": "Image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Lessons": {
+                    "name": "Lessons",
+                    "isArray": true,
+                    "type": {
+                        "model": "Lesson"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "courseID"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Courses",
             "attributes": [
                 {
                     "type": "model",
@@ -588,8 +509,8 @@ export const schema = {
                 }
             ]
         },
-        "HomePage": {
-            "name": "HomePage",
+        "Footer": {
+            "name": "Footer",
             "fields": {
                 "id": {
                     "name": "id",
@@ -600,7 +521,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "HomePages",
+            "pluralName": "Footers",
             "attributes": [
                 {
                     "type": "model",
@@ -660,8 +581,8 @@ export const schema = {
                 }
             ]
         },
-        "Footer": {
-            "name": "Footer",
+        "HomePage": {
+            "name": "HomePage",
             "fields": {
                 "id": {
                     "name": "id",
@@ -672,7 +593,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Footers",
+            "pluralName": "HomePages",
             "attributes": [
                 {
                     "type": "model",
@@ -697,7 +618,16 @@ export const schema = {
             ]
         }
     },
-    "enums": {},
+    "enums": {
+        "SkillLevel": {
+            "name": "SkillLevel",
+            "values": [
+                "BEGINNER",
+                "INTERMEDIATE",
+                "ADVANCED"
+            ]
+        }
+    },
     "nonModels": {},
-    "version": "3cf39f06b4327f1bf9586e42fc5fcdbb"
+    "version": "a903348ba0c85f5a7278263b298e432f"
 };
