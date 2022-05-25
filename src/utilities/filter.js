@@ -14,7 +14,6 @@ import {
   isEmpty,
   forEach,
 } from 'ramda';
-import * as track from './track';
 
 const error = message => {
   throw new Error(message);

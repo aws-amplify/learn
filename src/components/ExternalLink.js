@@ -1,7 +1,5 @@
-import {track} from '~/utilities';
-
 export default props => {
-  const {href, redirect} = props;
+  const {redirect} = props;
 
   return (
     <a

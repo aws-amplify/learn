@@ -1,4 +1,3 @@
-import {track} from '~/utilities';
 import {Meta, Layout, Nav} from '~/components';
 
 export default props => {

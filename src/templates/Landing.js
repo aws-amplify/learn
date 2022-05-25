@@ -20,7 +20,7 @@ import {
   DESKTOP_BREAKPOINT,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract} from '~/utilities';
 import heroOverlaySrc from '~/assets/images/map.svg';
 
 export const pageQuery = graphql`
