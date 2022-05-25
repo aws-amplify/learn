@@ -13,7 +13,7 @@ import {Text, Meta, Layout, Nav, Button} from '~/components';
 import {track, extract, mapNodeToProps} from '~/utilities';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     markdownRemark(fields: {slug: {eq: $slug}}) {
       html
       ...Event
@@ -164,8 +164,6 @@ const styles = css`
 `;
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const {html, fields, frontmatter} = extract.fromPath(
     ['data', 'markdownRemark'],
     props,

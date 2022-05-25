@@ -88,7 +88,6 @@ const PLATFORMS_PATH = ['node', 'frontmatter', 'platforms'];
 const CATEGORIES_PATH = ['node', 'frontmatter', 'categories'];
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
   const featuredData = extract.fromPath(
     ['data', 'featured', 'frontmatter', 'posts'],
     props,
