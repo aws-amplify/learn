@@ -10,7 +10,7 @@ import {
   mq,
 } from '~/constants';
 import {Text, Meta, Layout, Nav, Button} from '~/components';
-import {track, extract, mapNodeToProps} from '~/utilities';
+import {extract, mapNodeToProps} from '~/utilities';
 
 export const pageQuery = graphql`
   query ($slug: String!) {
