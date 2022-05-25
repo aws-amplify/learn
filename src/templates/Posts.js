@@ -6,7 +6,6 @@ import {
   mapNodeToProps,
   createFilterContextValue,
   getFilterOptions,
-  track,
 } from '~/utilities';
 import {filter as filterContext} from '~/contexts';
 import {

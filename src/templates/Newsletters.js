@@ -12,7 +12,7 @@ import {
   Text,
 } from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {track, extract} from '~/utilities';
+import {extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 
 const navProps = {

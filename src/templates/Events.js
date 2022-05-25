@@ -20,7 +20,6 @@ import {
   groupEventEdges,
   createFilterContextValue,
   getFilterOptions,
-  track,
   monthIndexByName,
 } from '~/utilities';
 import {

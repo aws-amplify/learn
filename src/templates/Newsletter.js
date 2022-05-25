@@ -10,7 +10,7 @@ import {
   DESKTOP_BREAKPOINT,
   ORANGE_PEEL_COLOR,
 } from '~/constants';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 
 moment.suppressDeprecationWarnings = true;
