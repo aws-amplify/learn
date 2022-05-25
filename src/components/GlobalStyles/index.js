@@ -1,6 +1,4 @@
 import {css, Global} from '@emotion/core';
-import reset from './reset';
-import fontFaces from './font-faces';
 import {
   CONCRETE_COLOR,
   TWITTER_BLUE_COLOR,
@@ -8,6 +6,8 @@ import {
   YOUTUBE_RED_COLOR,
   SAN_JUAN_COLOR,
 } from '~/constants';
+import reset from './reset';
+import fontFaces from './font-faces';
 import toasts from './toasts';
 import carousel from './carousel';
 

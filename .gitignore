@@ -2,8 +2,6 @@
 .vscode
 
 # lockfiles
-yarn.lock
-package-lock.json
 
 # env vars
 .env

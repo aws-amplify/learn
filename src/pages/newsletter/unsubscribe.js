@@ -1,9 +1,7 @@
-import {useEffect} from 'react';
 import {css, Global} from '@emotion/core';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import {Layout, Nav, Hero, Subscribe, Meta, ExternalLink} from '~/components';
 import {ORANGE_PEEL_COLOR} from '~/constants';
-import {track} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 
 const styles = css`
@@ -37,8 +35,7 @@ const heroProps = {
   cta: <Subscribe action='unsubscribe' />,
 };
 
-export default props => {
-  useEffect(() => track.internalPageView(props), []);
+export default () => {
   const {height} = useWindowSize();
 
   return (

@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useCallback} from 'react';
+import {useMemo, useCallback} from 'react';
 import {identity, split, map, reduce, tail, toPairs, sort, last} from 'ramda';
 import moment from 'moment';
 import {
@@ -12,7 +12,7 @@ import {
   Text,
 } from '~/components';
 import {TABLET_BREAKPOINT, ORANGE_PEEL_COLOR} from '~/constants';
-import {track, extract} from '~/utilities';
+import {extract} from '~/utilities';
 import logoLightURI from '~/assets/images/logo-light.svg';
 
 const navProps = {
@@ -32,8 +32,6 @@ const heroProps = {
 };
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   // no need to memoize this––checking dependency is more expensive than re-assignment
   const {sortedSlugs, dateRangeBySlug} = extract.fromPath(
     ['pageContext'],

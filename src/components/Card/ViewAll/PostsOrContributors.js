@@ -1,9 +1,9 @@
 import {css} from '@emotion/core';
 import {FaArrowCircleRight} from 'react-icons/fa';
-import asCard from '../asCard';
-import Text from '../../Text';
 import {mq, ORANGE_PEEL_COLOR, GRAY_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
+import asCard from '../asCard';
+import Text from '../../Text';
 
 const styles = css`
   text-align: center;
