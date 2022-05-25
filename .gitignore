@@ -2,7 +2,6 @@
 .vscode
 
 # lockfiles
-yarn.lock
 
 # env vars
 .env
