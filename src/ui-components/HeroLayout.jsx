@@ -11,16 +11,16 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Icon, Text } from "@aws-amplify/ui-react";
+import { Button, Divider, Flex, Text } from "@aws-amplify/ui-react";
 export default function HeroLayout(props) {
   const { course, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
       overrides: {
         "NEW COURSE": {},
-        "Line 7 (Stroke)": {},
+        Divider33082631: {},
         Advanced: {},
-        "Line 8 (Stroke)": {},
+        Divider33082633: {},
         "2h 36m": {},
         "Frame 389": {},
         "Build fullstack mobile applications with Amplify": {},
@@ -39,23 +39,9 @@ export default function HeroLayout(props) {
     {
       overrides: {
         "NEW COURSE": {},
-        "Line 7 (Stroke)": {
-          paths: [
-            {
-              d: "M0 1L-0.5 1L-0.5 1.5L0 1.5L0 1ZM24 1L24 1.5L24.5 1.5L24.5 1L24 1ZM0 0L0 -0.5L-0.5 -0.5L-0.5 0L0 0ZM24 0L24.5 0L24.5 -0.5L24 -0.5L24 0ZM0 1.5L24 1.5L24 0.5L0 0.5L0 1.5ZM-0.5 0L-0.5 1L0.5 1L0.5 0L-0.5 0ZM24 -0.5L0 -0.5L0 0.5L24 0.5L24 -0.5ZM24.5 1L24.5 0L23.5 0L23.5 1L24.5 1Z",
-              stroke: "rgba(0,0,0,1)",
-              fillRule: "nonzero",
-              strokeWidth: 1,
-            },
-            {
-              d: "M24 1L0 1L0 0L24 0L24 1Z",
-              fill: "rgba(169,182,183,1)",
-              fillRule: "evenodd",
-            },
-          ],
-        },
+        Divider33082631: {},
         Advanced: {},
-        "Line 8 (Stroke)": {},
+        Divider33082633: {},
         "2h 36m": {},
         "Frame 389": {},
         "Build fullstack mobile applications with Amplify": {
@@ -124,22 +110,15 @@ export default function HeroLayout(props) {
           children="NEW COURSE"
           {...getOverrideProps(overrides, "NEW COURSE")}
         ></Text>
-        <Icon
-          width="24px"
-          height="1px"
-          viewBox={{ minX: 0, minY: 0, width: 1, height: 24 }}
-          paths={[
-            {
-              d: "M24 1L0 1L0 0L24 0L24 1Z",
-              fill: "rgba(169,182,183,1)",
-              fillRule: "evenodd",
-            },
-          ]}
+        <Divider
+          height="24px"
           shrink="0"
-          alignSelf="stretch"
           position="relative"
-          {...getOverrideProps(overrides, "Line 7 (Stroke)")}
-        ></Icon>
+          padding="0px 0px 0px 0px"
+          size="small"
+          orientation="vertical"
+          {...getOverrideProps(overrides, "Divider33082631")}
+        ></Divider>
         <Text
           fontFamily="Amazon Ember"
           fontSize="16px"
@@ -155,26 +134,18 @@ export default function HeroLayout(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          skillLevel={course?.skillLevel}
-          children="Advanced"
+          children={course?.skillLevel}
           {...getOverrideProps(overrides, "Advanced")}
         ></Text>
-        <Icon
-          width="24px"
-          height="1px"
-          viewBox={{ minX: 0, minY: 0, width: 1, height: 24 }}
-          paths={[
-            {
-              d: "M24 1L0 1L0 0L24 0L24 1Z",
-              fill: "rgba(169,182,183,1)",
-              fillRule: "evenodd",
-            },
-          ]}
+        <Divider
+          height="24px"
           shrink="0"
-          alignSelf="stretch"
           position="relative"
-          {...getOverrideProps(overrides, "Line 8 (Stroke)")}
-        ></Icon>
+          padding="0px 0px 0px 0px"
+          size="small"
+          orientation="vertical"
+          {...getOverrideProps(overrides, "Divider33082633")}
+        ></Divider>
         <Text
           fontFamily="Amazon Ember"
           fontSize="16px"
