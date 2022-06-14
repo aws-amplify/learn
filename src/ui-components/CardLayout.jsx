@@ -11,7 +11,14 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Divider,
+  Flex,
+  Image,
+  Text,
+  View,
+} from "@aws-amplify/ui-react";
 import PlayIcon from "./PlayIcon";
 export default function CardLayout(props) {
   const { course, overrides: overridesProp, ...rest } = props;
@@ -23,9 +30,9 @@ export default function CardLayout(props) {
         "Frame 393": {},
         "Frame 395": {},
         COURSE: {},
-        "Line 7 (Stroke)": {},
+        Divider33082635: {},
         Advanced: {},
-        "Line 8 (Stroke)": {},
+        Divider33082637: {},
         "2h 36m": {},
         "Frame 389": {},
         "Build fullstack mobile applications with Amplify": {},
@@ -46,9 +53,9 @@ export default function CardLayout(props) {
         "Frame 393": { backgroundColor: "rgba(35,47,62,0.5)" },
         "Frame 395": {},
         COURSE: {},
-        "Line 7 (Stroke)": {},
+        Divider33082635: {},
         Advanced: {},
-        "Line 8 (Stroke)": {},
+        Divider33082637: {},
         "2h 36m": {},
         "Frame 389": {},
         "Build fullstack mobile applications with Amplify": {
@@ -71,9 +78,9 @@ export default function CardLayout(props) {
         "Frame 393": { backgroundColor: "rgba(35,47,62,0.75)" },
         "Frame 395": {},
         COURSE: {},
-        "Line 7 (Stroke)": {},
+        Divider33082635: {},
         Advanced: {},
-        "Line 8 (Stroke)": {},
+        Divider33082637: {},
         "2h 36m": {},
         "Frame 389": {},
         "Build fullstack mobile applications with Amplify": {
@@ -201,22 +208,15 @@ export default function CardLayout(props) {
             children="COURSE"
             {...getOverrideProps(overrides, "COURSE")}
           ></Text>
-          <Icon
-            width="24px"
-            height="1px"
-            viewBox={{ minX: 0, minY: 0, width: 1, height: 24 }}
-            paths={[
-              {
-                d: "M24 1L0 1L0 0L24 0L24 1Z",
-                fill: "rgba(169,182,183,1)",
-                fillRule: "evenodd",
-              },
-            ]}
+          <Divider
+            height="24px"
             shrink="0"
-            alignSelf="stretch"
             position="relative"
-            {...getOverrideProps(overrides, "Line 7 (Stroke)")}
-          ></Icon>
+            padding="0px 0px 0px 0px"
+            size="small"
+            orientation="vertical"
+            {...getOverrideProps(overrides, "Divider33082635")}
+          ></Divider>
           <Text
             fontFamily="Amazon Ember"
             fontSize="16px"
@@ -232,25 +232,18 @@ export default function CardLayout(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Advanced"
+            children={course?.skillLevel}
             {...getOverrideProps(overrides, "Advanced")}
           ></Text>
-          <Icon
-            width="24px"
-            height="1px"
-            viewBox={{ minX: 0, minY: 0, width: 1, height: 24 }}
-            paths={[
-              {
-                d: "M24 1L0 1L0 0L24 0L24 1Z",
-                fill: "rgba(169,182,183,1)",
-                fillRule: "evenodd",
-              },
-            ]}
+          <Divider
+            height="24px"
             shrink="0"
-            alignSelf="stretch"
             position="relative"
-            {...getOverrideProps(overrides, "Line 8 (Stroke)")}
-          ></Icon>
+            padding="0px 0px 0px 0px"
+            size="small"
+            orientation="vertical"
+            {...getOverrideProps(overrides, "Divider33082637")}
+          ></Divider>
           <Text
             fontFamily="Amazon Ember"
             fontSize="16px"
