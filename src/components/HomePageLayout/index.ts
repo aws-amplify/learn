@@ -1,0 +1,1 @@
+export { HomePageLayout } from "./HomePageLayout";
