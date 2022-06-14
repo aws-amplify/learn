@@ -4,10 +4,11 @@ import { CardLayoutCollection, HeroLayout, HeroLayoutMobile } from "../../ui-com
 import { Course } from '../../models';
 import { useEffect, useState } from 'react';
 
-export default function HomePageLayout() {
+export function HomePageLayout() {
   const [heroCourse, setHeroCourse] = useState<Course>({ id: ''});
 
   const variant = useBreakpointValue({base: 'base', small: 'small'}) as 'base' | 'small' | undefined;
+  console.log('variant: ', variant);
 
   const getHomePageContent = async () => {
     const data = await DataStore.query(Course);

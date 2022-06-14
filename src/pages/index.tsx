@@ -10,7 +10,7 @@ import { AmplifyProvider, useBreakpointValue } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css'
 
 import { CardLayoutCollection, CardLayout, NavBar, HeroLayout, LearnFooter } from '../ui-components'
-import HomePageLayout from '../components/HomePageLayout'
+import { HomePageLayout } from '../components/HomePageLayout'
 
 Amplify.configure(config)
 
