@@ -1,0 +1,99 @@
+type Image {
+  altText: String
+  src: AWSURL
+}
+
+type NavMenuItem {
+  title: String
+  url: String
+}
+
+type Tag @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  courses: [Course] @manyToMany(relationName: "CourseTag")
+}
+
+type SocialMediaLinks {
+  platform: SocialMediaPlatform
+  url: AWSURL
+}
+
+enum SocialMediaPlatform {
+  INSTAGRAM
+  LINKEDIN
+  FACEBOOK
+  GITHUB
+  TWITTER
+  TWITCH
+  YOUTUBE
+  DISCORDD
+}
+
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+type CoursesPage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type AboutPage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type Contributor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  jobTitle: String
+  socialNetwork: [SocialMediaLinks]
+  courses: [Course] @manyToMany(relationName: "ContributorCourse")
+  bio: String
+}
+
+type Lesson @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  description: String
+  content: String
+  videoUrl: AWSURL
+  chapter: Int
+  courseLesson: Course @hasOne
+  lessonNumber: Int
+}
+
+type Course @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  timeHours: Int
+  timeMinutes: Int
+  learningObjective: String
+  description: String
+  requirements: [String]
+  image: AWSURL
+  contributors: [Contributor] @manyToMany(relationName: "ContributorCourse")
+  courseTags: [Tag] @manyToMany(relationName: "CourseTag")
+  skillLevel: SkillLevel
+  dateCreated: AWSDateTime
+  homepageID: ID @index(name: "byHomePage")
+  isFeatured: Boolean
+  imageAltText: String
+}
+
+type Footer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+}
+
+type NavBar @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  menuItems: [NavMenuItem]
+}
+
+type HomePage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  homePageCourses: [Course] @hasMany(indexName: "byHomePage", fields: ["id"])
+  homePageHeroCourse: Course @hasOne
+}
+ 
