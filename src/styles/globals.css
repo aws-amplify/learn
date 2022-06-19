@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.debugoutline {
+  outline: 10px solid red
+}

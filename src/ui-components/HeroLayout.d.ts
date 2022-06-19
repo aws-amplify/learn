@@ -11,7 +11,7 @@ import { FlexProps } from "@aws-amplify/ui-react";
 export declare type HeroLayoutProps = React.PropsWithChildren<Partial<FlexProps> & {
     course?: Course;
 } & {
-    variation?: "base" | "small";
+    variation?: "default" | "mobile";
 } & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
