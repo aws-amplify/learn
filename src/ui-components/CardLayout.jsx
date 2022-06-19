@@ -19,15 +19,12 @@ import {
   Text,
   View,
 } from "@aws-amplify/ui-react";
-import PlayIcon from "./PlayIcon";
 export default function CardLayout(props) {
   const { course, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
       overrides: {
         "mohammad-rahmani-xV1peKnrlMY-unsplash 1": {},
-        PlayIcon: {},
-        "Frame 393": {},
         "Frame 395": {},
         COURSE: {},
         Divider33082635: {},
@@ -49,8 +46,6 @@ export default function CardLayout(props) {
     {
       overrides: {
         "mohammad-rahmani-xV1peKnrlMY-unsplash 1": {},
-        PlayIcon: { width: "87px", height: "96px" },
-        "Frame 393": { backgroundColor: "rgba(35,47,62,0.5)" },
         "Frame 395": {},
         COURSE: {},
         Divider33082635: {},
@@ -74,8 +69,6 @@ export default function CardLayout(props) {
     {
       overrides: {
         "mohammad-rahmani-xV1peKnrlMY-unsplash 1": {},
-        PlayIcon: { width: "87px", height: "96px" },
-        "Frame 393": { backgroundColor: "rgba(35,47,62,0.75)" },
         "Frame 395": {},
         COURSE: {},
         Divider33082635: {},
@@ -105,11 +98,10 @@ export default function CardLayout(props) {
     <Flex
       gap="24px"
       direction="column"
-      width="534px"
+      width="340px"
       position="relative"
       borderRadius="8px"
       padding="0px 0px 0px 0px"
-      height="500px"
       {...rest}
       {...getOverrideProps(overrides, "CardLayout")}
     >
@@ -124,14 +116,14 @@ export default function CardLayout(props) {
       >
         <Image
           position="absolute"
-          top="240px"
-          bottom="-340px"
-          height="534px"
+          top="0px"
+          bottom="0px"
+          height="100%"
           left="0px"
-          right="100px"
-          width="240px"
+          right="0px"
+          width="calc(100% - 0px)"
           transformOrigin="top left"
-          transform="rotate(-90deg)"
+          transform="rotate(0deg)"
           borderRadius="8px"
           padding="0px 0px 0px 0px"
           src={course?.image}
@@ -141,32 +133,6 @@ export default function CardLayout(props) {
             "mohammad-rahmani-xV1peKnrlMY-unsplash 1"
           )}
         ></Image>
-        <Flex
-          gap="10px"
-          position="absolute"
-          top="0px"
-          bottom="0px"
-          left="0px"
-          right="0px"
-          direction="row"
-          width="340px"
-          height="240px"
-          justifyContent="center"
-          alignItems="center"
-          borderRadius="8px"
-          padding="4px 4px 4px 4px"
-          backgroundColor="rgba(35,47,62,0)"
-          {...getOverrideProps(overrides, "Frame 393")}
-        >
-          <PlayIcon
-            width="116px"
-            height="128px"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "PlayIcon")}
-          ></PlayIcon>
-        </Flex>
       </View>
       <Flex
         gap="12px"
@@ -302,7 +268,6 @@ export default function CardLayout(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          width="534px"
           children={course?.description}
           {...getOverrideProps(
             overrides,

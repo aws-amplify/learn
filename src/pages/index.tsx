@@ -1,24 +1,48 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
 
-import config from '../aws-exports'
-import { Amplify } from 'aws-amplify'
+import config from "../aws-exports";
+import { Amplify } from "aws-amplify";
 
-import { AmplifyProvider, useBreakpointValue } from '@aws-amplify/ui-react'
-import '@aws-amplify/ui-react/styles.css'
+import {
+  Card,
+  Grid,
+  ThemeProvider,
+  useBreakpointValue
+} from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
-import { CardLayoutCollection, CardLayout, NavBar, HeroLayout, LearnFooter } from '../ui-components'
-import { HomePageLayout } from '../components/HomePageLayout'
+import {
+  NavBar,
+  LearnFooter,
+  LearnFooterMobile,
+  NavBarMobileCollapsed,
+  studioTheme,
+} from "../ui-components";
+import { HomePageCardLayoutCollection } from "../components/HomePageCardLayoutCollection";
+import { useEffect, useState } from "react";
+import { ActionHeroLayout } from "../components/ActionHeroLayout";
 
-Amplify.configure(config)
+Amplify.configure(config);
 
 const Home: NextPage = () => {
-  const variant = useBreakpointValue({
-    small: 'small',
-    medium: 'default'
+  const [isMobile, setIsMobile] = useState(false);
+
+  const mobileBreakpointValue = useBreakpointValue({
+    base: "mobile",
+    small: "mobile",
+    medium: "mobile",
+    large: "default",
   });
+
+  useEffect(() => {
+    console.log(mobileBreakpointValue);
+    if (mobileBreakpointValue === "mobile") {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [mobileBreakpointValue]);
 
   const meta = {
     title: "Learn Amplify",
@@ -29,7 +53,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-       <Head>
+      <Head>
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <meta property="og:title" content={meta.title} key="og:title" />
@@ -67,13 +91,36 @@ const Home: NextPage = () => {
           key="twitter:image"
         />
       </Head>
-      <NavBar width={"100vw"}/>
-      <main className='homepage-main'>
-        <HomePageLayout />
-      </main>
-      <LearnFooter width={"100vw"}/>
+      <ThemeProvider theme={studioTheme}>
+        {isMobile ? (
+          <NavBarMobileCollapsed
+            width="100vw"
+            overrides={{ "Frame 396": { gap: "0" } }}
+          />
+        ) : (
+          <NavBar width="100vw" />
+        )}
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            small: "1fr",
+            medium: "1fr",
+            large: "1fr min(120ch, 100%) 1fr",
+          }}
+        >
+          <Card columnStart="2" marginBottom="128px">
+            <HomePageCardLayoutCollection />
+          </Card>
+          <ActionHeroLayout />
+        </Grid>
+        {isMobile ? (
+          <LearnFooterMobile width="100vw" />
+        ) : (
+          <LearnFooter width="100vw" />
+        )}
+      </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
