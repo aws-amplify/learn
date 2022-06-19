@@ -34,9 +34,9 @@ export default function CardLayoutCollection(props) {
     >
       {(item, index) => (
         <CardLayout
-          height="548px"
-          width="582px"
-          margin="0 19px 20px 0"
+          height="auto"
+          width="auto"
+          margin="0 0px 0px 0"
           course={item}
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}

@@ -34,7 +34,7 @@ export default function HeroLayout(props) {
         "Frame 16": {},
         HeroLayout: {},
       },
-      variantValues: { variation: "base" },
+      variantValues: { variation: "default" },
     },
     {
       overrides: {
@@ -63,7 +63,7 @@ export default function HeroLayout(props) {
         },
         HeroLayout: { width: "369px" },
       },
-      variantValues: { variation: "small" },
+      variantValues: { variation: "mobile" },
     },
   ];
   const overrides = mergeVariantsAndOverrides(
