@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm run install
+        - npm install
     build:
       commands:
         - NODE_ENV=production npm run build
