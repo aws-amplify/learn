@@ -4,46 +4,16 @@ import Head from "next/head";
 import config from "../aws-exports";
 import { Amplify } from "aws-amplify";
 
-import {
-  Card,
-  Grid,
-  ThemeProvider,
-  useBreakpointValue
-} from "@aws-amplify/ui-react";
+import { Card } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
-import {
-  NavBar,
-  LearnFooter,
-  LearnFooterMobile,
-  NavBarMobileCollapsed,
-  studioTheme,
-} from "../ui-components";
 import { HomePageCardLayoutCollection } from "../components/HomePageCardLayoutCollection";
-import { useEffect, useState } from "react";
 import { ActionHeroLayout } from "../components/ActionHeroLayout";
+import { Layout } from "../components/Layout";
 
 Amplify.configure(config);
 
 const Home: NextPage = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  const mobileBreakpointValue = useBreakpointValue({
-    base: "mobile",
-    small: "mobile",
-    medium: "mobile",
-    large: "default",
-  });
-
-  useEffect(() => {
-    console.log(mobileBreakpointValue);
-    if (mobileBreakpointValue === "mobile") {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }, [mobileBreakpointValue]);
-
   const meta = {
     title: "Learn Amplify",
     description:
@@ -91,34 +61,12 @@ const Home: NextPage = () => {
           key="twitter:image"
         />
       </Head>
-      <ThemeProvider theme={studioTheme}>
-        {isMobile ? (
-          <NavBarMobileCollapsed
-            width="100vw"
-            overrides={{ "Frame 396": { gap: "0" } }}
-          />
-        ) : (
-          <NavBar width="100vw" />
-        )}
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr",
-            large: "1fr min(120ch, 100%) 1fr",
-          }}
-        >
-          <Card columnStart="2" marginBottom="128px">
-            <HomePageCardLayoutCollection />
-          </Card>
-          <ActionHeroLayout />
-        </Grid>
-        {isMobile ? (
-          <LearnFooterMobile width="100vw" />
-        ) : (
-          <LearnFooter width="100vw" />
-        )}
-      </ThemeProvider>
+      <Layout>
+        <Card columnStart="2" marginBottom="128px">
+          <HomePageCardLayoutCollection />
+        </Card>
+        <ActionHeroLayout />
+      </Layout>
     </>
   );
 };
