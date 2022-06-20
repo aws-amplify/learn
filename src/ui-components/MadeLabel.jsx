@@ -12,7 +12,7 @@ import {
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import AmplifyBorderLogo from "./AmplifyBorderLogo";
-import { Flex, Icon, Text } from "@aws-amplify/ui-react";
+import { Divider, Flex, Text } from "@aws-amplify/ui-react";
 import HeartIcon from "./HeartIcon";
 export default function MadeLabel(props) {
   const { overrides: overridesProp, ...rest } = props;
@@ -20,7 +20,7 @@ export default function MadeLabel(props) {
     {
       overrides: {
         AmplifyBorderLogo: {},
-        "Line 6 (Stroke)": {},
+        Divider: {},
         "Made with": {},
         HeartIcon: {},
         "in Amplify": {},
@@ -32,7 +32,7 @@ export default function MadeLabel(props) {
     {
       overrides: {
         AmplifyBorderLogo: {},
-        "Line 6 (Stroke)": {},
+        Divider: {},
         "Made with": { color: "rgba(35,47,62,1)" },
         HeartIcon: {},
         "in Amplify": { color: "rgba(35,47,62,1)" },
@@ -47,7 +47,7 @@ export default function MadeLabel(props) {
     {
       overrides: {
         AmplifyBorderLogo: {},
-        "Line 6 (Stroke)": {},
+        Divider: {},
         "Made with": { color: "rgba(35,47,62,1)" },
         HeartIcon: {},
         "in Amplify": { color: "rgba(35,47,62,1)" },
@@ -86,22 +86,15 @@ export default function MadeLabel(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "AmplifyBorderLogo")}
       ></AmplifyBorderLogo>
-      <Icon
-        width="24px"
-        height="1px"
-        viewBox={{ minX: 0, minY: 0, width: 1, height: 24 }}
-        paths={[
-          {
-            d: "M0 0.5C0 0.223858 0.223858 0 0.5 0L23.5 0C23.7761 0 24 0.223858 24 0.5C24 0.776142 23.7761 1 23.5 1L0.5 1C0.223858 1 0 0.776142 0 0.5Z",
-            fill: "rgba(169,182,183,1)",
-            fillRule: "evenodd",
-          },
-        ]}
+      <Divider
+        height="24px"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
-        {...getOverrideProps(overrides, "Line 6 (Stroke)")}
-      ></Icon>
+        padding="0px 0px 0px 0px"
+        size="small"
+        orientation="vertical"
+        {...getOverrideProps(overrides, "Divider")}
+      ></Divider>
       <Flex
         gap="4px"
         direction="row"
