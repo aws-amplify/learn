@@ -9,7 +9,7 @@ frontend:
         - NODE_ENV=production npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
-    baseDirectory: .next
+    baseDirectory: out
     files:
       - '**/*'
   cache:
