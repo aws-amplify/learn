@@ -1,12 +1,10 @@
 import { Grid, ThemeProvider, useBreakpointValue } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import {
-  LearnFooter,
-  LearnFooterMobile,
-  NavBar,
-  NavBarMobileCollapsed,
   studioTheme,
 } from "../../ui-components";
+import { LearnFooter } from "../LearnFooter";
+import { LearnNavBar } from "../LearnNavBar";
 
 export function Layout({ children }: { children: any }) {
   const [isMobile, setIsMobile] = useState(false);
@@ -30,14 +28,7 @@ export function Layout({ children }: { children: any }) {
   return (
     <>
       <ThemeProvider theme={studioTheme}>
-        {isMobile ? (
-          <NavBarMobileCollapsed
-            width="100vw"
-            overrides={{ "Frame 396": { gap: "0" } }}
-          />
-        ) : (
-          <NavBar width="100vw" />
-        )}
+        <LearnNavBar isMobile={isMobile} />
         <Grid
           templateColumns={{
             base: "1fr",
@@ -45,14 +36,16 @@ export function Layout({ children }: { children: any }) {
             medium: "1fr",
             large: "1fr min(120ch, 100%) 1fr",
           }}
+          // templateColumns={{
+          //   base: "1fr",
+          //   small: "1fr",
+          //   medium: "64px 1fr 64px",
+          //   large: "128px 1fr 128px",
+          // }}
         >
           {children}
         </Grid>
-        {isMobile ? (
-          <LearnFooterMobile width="100vw" />
-        ) : (
-          <LearnFooter width="100vw" />
-        )}
+        <LearnFooter isMobile={isMobile} />
       </ThemeProvider>
     </>
   );
