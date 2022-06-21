@@ -29,6 +29,17 @@ export function HeroCourse({ course }: HeroCourseProps) {
         variation={heroLayoutVariant}
         course={course}
         shrink="4"
+        overrides={{
+          "Frame 16": {
+            width: "auto"
+          },
+          Button31473054: {
+            width: "auto"
+          },
+          Button31473055: {
+            width: "auto"
+          }
+        }}
       />
       {/* TODO: should images use srcset to handle responsive images? If so, would we need more than one image src? */}
       <Card>
