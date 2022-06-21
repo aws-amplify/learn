@@ -59,7 +59,6 @@ export default function NavBar(props) {
           height="24px"
           position="relative"
           padding="0px 0px 0px 0px"
-          menuItems={navBar?.menuItems}
           {...getOverrideProps(overrides, "Frame 32131473019")}
         >
           <LearnMenuItem
