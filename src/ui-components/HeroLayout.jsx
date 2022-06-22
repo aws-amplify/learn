@@ -205,13 +205,11 @@ export default function HeroLayout(props) {
           justifyContent="center"
           alignItems="center"
           shrink="0"
-          height="35px"
+          height="33px"
           position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
-          borderRadius="5px"
           size="small"
           isDisabled={false}
-          variation="default"
+          variation="link"
           children="#fullstack"
           {...getOverrideProps(overrides, "Button31473050")}
         ></Button>
@@ -223,13 +221,11 @@ export default function HeroLayout(props) {
           justifyContent="center"
           alignItems="center"
           shrink="0"
-          height="35px"
+          height="33px"
           position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
-          borderRadius="5px"
           size="small"
           isDisabled={false}
-          variation="default"
+          variation="link"
           children="#mobile"
           {...getOverrideProps(overrides, "Button31473051")}
         ></Button>
@@ -293,7 +289,7 @@ export default function HeroLayout(props) {
           shrink="0"
           height="42px"
           position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
+          border="1px SOLID rgba(169,182,183,1)"
           borderRadius="5px"
           padding="8px 16px 8px 16px"
           size="default"
