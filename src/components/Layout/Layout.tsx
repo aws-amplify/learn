@@ -1,8 +1,6 @@
 import { Grid, ThemeProvider, useBreakpointValue } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
-import {
-  studioTheme,
-} from "../../ui-components";
+import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
 

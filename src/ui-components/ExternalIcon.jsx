@@ -12,20 +12,19 @@ export default function ExternalIcon(props) {
   const { overrides, ...rest } = props;
   return (
     <View
-      width="24px"
-      height="24px"
-      overflow="hidden"
+      width="28px"
+      height="28px"
       position="relative"
       padding="0px 0px 0px 0px"
       {...rest}
       {...getOverrideProps(overrides, "ExternalIcon")}
     >
       <View
-        width="26.86px"
-        height="27px"
+        width="27.86px"
+        height="28px"
         position="absolute"
-        top="-4px"
-        left="1px"
+        top="0px"
+        left="0px"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 404")}
       >
@@ -47,10 +46,10 @@ export default function ExternalIcon(props) {
             },
           ]}
           position="absolute"
-          top="36.22%"
-          bottom="12.57%"
-          left="27.19%"
-          right="21.33%"
+          top="34.92%"
+          bottom="15.69%"
+          left="29.8%"
+          right="20.56%"
           transformOrigin="top left"
           transform="rotate(-45deg)"
           {...getOverrideProps(overrides, "Vector 2")}
@@ -68,10 +67,10 @@ export default function ExternalIcon(props) {
             },
           ]}
           position="absolute"
-          top="18.52%"
-          bottom="0%"
-          left="0%"
-          right="18.09%"
+          top="17.86%"
+          bottom="3.57%"
+          left="3.59%"
+          right="17.44%"
           {...getOverrideProps(overrides, "Vector")}
         ></Icon>
       </View>
