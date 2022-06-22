@@ -139,7 +139,7 @@ export default createTheme({
         _focus: {
           color: { value: "hsl(213, 28%, 19%)" },
           backgroundColor: { value: "{colors.brand.primary.10.value}" },
-          borderColor: { value: "hsla(0, 0%, 0%, 0)" },
+          borderColor: { value: "hsl(213, 28%, 19%)" },
           boxShadow: {
             value: "{components.fieldcontrol._focus.boxShadow.value}",
           },
@@ -163,7 +163,7 @@ export default createTheme({
           borderColor: { value: "hsla(0, 0%, 0%, 0)" },
           borderWidth: { value: "{borderWidths.small.value}" },
           borderStyle: { value: "solid" },
-          backgroundColor: { value: "{colors.brand.primary.60.value}" },
+          backgroundColor: { value: "hsl(27, 87%, 50%)" },
           color: { value: "{colors.font.inverse.value}" },
           _disabled: {
             borderColor: { value: "transparent" },
@@ -181,7 +181,7 @@ export default createTheme({
             color: { value: "{colors.font.inverse.value}" },
           },
           _focus: {
-            borderColor: { value: "transparent" },
+            borderColor: { value: "hsl(27, 86%, 46%)" },
             backgroundColor: { value: "hsl(27, 86%, 46%)" },
             color: { value: "{colors.font.inverse.value}" },
             boxShadow: {
@@ -189,7 +189,7 @@ export default createTheme({
             },
           },
           _active: {
-            borderColor: { value: "transparent" },
+            borderColor: { value: "hsl(27, 86%, 46%)" },
             backgroundColor: { value: "hsl(27, 86%, 46%)" },
             color: { value: "{colors.font.inverse.value}" },
           },
@@ -1278,7 +1278,7 @@ export default createTheme({
         secondary: { value: "{colors.neutral.40.value}" },
         tertiary: { value: "{colors.neutral.20.value}" },
         disabled: { value: "{colors.border.tertiary.value}" },
-        focus: { value: "hsla(0, 0%, 0%, 0)" },
+        focus: { value: "hsl(213, 28%, 19%)" },
         error: { value: "{colors.red.80.value}" },
       },
       shadow: {

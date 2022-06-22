@@ -33,7 +33,7 @@ export default function NavBar(props) {
         width="475px"
         alignItems="center"
         shrink="0"
-        height="24px"
+        height="30px"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 327")}
@@ -56,7 +56,7 @@ export default function NavBar(props) {
           width="fit-content"
           alignItems="center"
           shrink="0"
-          height="24px"
+          height="30px"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 32131473019")}
@@ -73,7 +73,7 @@ export default function NavBar(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             isDisabled={false}
-            isHover="false"
+            isHover={false}
             {...getOverrideProps(overrides, "LearnMenuItem31473021")}
           ></LearnMenuItem>
           <LearnMenuItem
@@ -99,7 +99,7 @@ export default function NavBar(props) {
             justifyContent="center"
             alignItems="center"
             shrink="0"
-            height="24px"
+            height="30px"
             position="relative"
             padding="0px 0px 0px 0px"
             isDisabled={false}
@@ -112,7 +112,7 @@ export default function NavBar(props) {
         gap="32px"
         direction="row"
         width="fit-content"
-        justifyContent="flex-end"
+        justifyContent="center"
         alignItems="center"
         shrink="0"
         height="40px"
@@ -122,15 +122,14 @@ export default function NavBar(props) {
       >
         <Button
           display="flex"
-          gap="0"
+          gap="10px"
           direction="row"
-          width="fit-content"
-          justifyContent="center"
+          width="163px"
+          height="42px"
           alignItems="center"
           shrink="0"
-          height="42px"
           position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
+          border="1px SOLID rgba(169,182,183,1)"
           borderRadius="5px"
           padding="8px 16px 8px 16px"
           size="default"
