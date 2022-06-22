@@ -18,3 +18,9 @@ a {
 .debugoutline {
   outline: 10px solid red
 }
+
+/* Overwrite default Amplify Figma "Link" button because it doesn't have a border by default */
+button[data-variation="link"][type="button"] {
+  border-style: solid !important;
+  border-width: 1px !important;
+}

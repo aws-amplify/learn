@@ -292,13 +292,11 @@ export default function CardLayout(props) {
             justifyContent="center"
             alignItems="center"
             shrink="0"
-            height="35px"
+            height="33px"
             position="relative"
-            border="1px SOLID rgba(174,179,183,1)"
-            borderRadius="5px"
             size="small"
             isDisabled={false}
-            variation="default"
+            variation="link"
             children="#tag"
             {...getOverrideProps(overrides, "Button31473172")}
           ></Button>
@@ -310,13 +308,11 @@ export default function CardLayout(props) {
             justifyContent="center"
             alignItems="center"
             shrink="0"
-            height="35px"
+            height="33px"
             position="relative"
-            border="1px SOLID rgba(174,179,183,1)"
-            borderRadius="5px"
             size="small"
             isDisabled={false}
-            variation="default"
+            variation="link"
             children="#tag"
             {...getOverrideProps(overrides, "Button31473173")}
           ></Button>

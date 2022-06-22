@@ -126,28 +126,28 @@ export default createTheme({
         paddingInlineEnd: {
           value: "{components.fieldcontrol.paddingInlineEnd.value}",
         },
-        borderColor: { value: "{components.fieldcontrol.borderColor.value}" },
+        borderColor: { value: "hsl(184, 9%, 69%)" },
         borderWidth: { value: "{components.fieldcontrol.borderWidth.value}" },
         borderStyle: { value: "{components.fieldcontrol.borderStyle.value}" },
         borderRadius: { value: "{components.fieldcontrol.borderRadius.value}" },
         color: { value: "hsl(214, 9%, 36%)" },
         _hover: {
-          color: { value: "{colors.font.focus.value}" },
-          backgroundColor: { value: "{colors.brand.primary.10.value}" },
-          borderColor: { value: "{colors.brand.primary.60.value}" },
+          color: { value: "hsl(213, 28%, 19%)" },
+          backgroundColor: { value: "hsl(180, 4%, 95%)" },
+          borderColor: { value: "hsl(213, 28%, 19%)" },
         },
         _focus: {
-          color: { value: "{colors.font.focus.value}" },
+          color: { value: "hsl(213, 28%, 19%)" },
           backgroundColor: { value: "{colors.brand.primary.10.value}" },
-          borderColor: { value: "{colors.border.focus.value}" },
+          borderColor: { value: "hsla(0, 0%, 0%, 0)" },
           boxShadow: {
             value: "{components.fieldcontrol._focus.boxShadow.value}",
           },
         },
         _active: {
-          color: { value: "{colors.font.active.value}" },
-          backgroundColor: { value: "{colors.brand.primary.20.value}" },
-          borderColor: { value: "{colors.brand.primary.100.value}" },
+          color: { value: "hsl(213, 28%, 19%)" },
+          backgroundColor: { value: "hsl(180, 7%, 92%)" },
+          borderColor: { value: "hsl(213, 28%, 19%)" },
         },
         _loading: {
           color: { value: "{colors.font.disabled.value}" },
@@ -160,7 +160,7 @@ export default createTheme({
           borderColor: { value: "{colors.border.tertiary.value}" },
         },
         primary: {
-          borderColor: { value: "transparent" },
+          borderColor: { value: "hsla(0, 0%, 0%, 0)" },
           borderWidth: { value: "{borderWidths.small.value}" },
           borderStyle: { value: "solid" },
           backgroundColor: { value: "{colors.brand.primary.60.value}" },
@@ -177,12 +177,12 @@ export default createTheme({
           },
           _hover: {
             borderColor: { value: "transparent" },
-            backgroundColor: { value: "{colors.brand.primary.90.value}" },
+            backgroundColor: { value: "hsl(23, 94%, 47%)" },
             color: { value: "{colors.font.inverse.value}" },
           },
           _focus: {
             borderColor: { value: "transparent" },
-            backgroundColor: { value: "{colors.brand.primary.90.value}" },
+            backgroundColor: { value: "hsl(27, 86%, 46%)" },
             color: { value: "{colors.font.inverse.value}" },
             boxShadow: {
               value: "{components.fieldcontrol._focus.boxShadow.value}",
@@ -190,7 +190,7 @@ export default createTheme({
           },
           _active: {
             borderColor: { value: "transparent" },
-            backgroundColor: { value: "{colors.brand.primary.100.value}" },
+            backgroundColor: { value: "hsl(27, 86%, 46%)" },
             color: { value: "{colors.font.inverse.value}" },
           },
         },
@@ -215,25 +215,25 @@ export default createTheme({
         link: {
           borderWidth: { value: "0" },
           borderColor: { value: "hsl(184, 9%, 69%)" },
-          backgroundColor: { value: "transparent" },
+          backgroundColor: { value: "hsla(0, 0%, 0%, 0)" },
           color: { value: "hsl(203, 100%, 37%)" },
           _hover: {
-            borderColor: { value: "transparent" },
-            backgroundColor: { value: "{colors.brand.primary.10.value}" },
-            color: { value: "{colors.font.hover.value}" },
+            borderColor: { value: "hsl(209, 92%, 31%)" },
+            backgroundColor: { value: "hsl(200, 100%, 97%)" },
+            color: { value: "hsl(209, 92%, 31%)" },
           },
           _focus: {
-            borderColor: { value: "transparent" },
-            backgroundColor: { value: "{colors.brand.primary.10.value}" },
-            color: { value: "{colors.font.focus.value}" },
+            borderColor: { value: "hsl(210, 94%, 19%)" },
+            backgroundColor: { value: "hsl(200, 100%, 97%)" },
+            color: { value: "hsl(210, 94%, 19%)" },
             boxShadow: {
               value: "{components.fieldcontrol._focus.boxShadow.value}",
             },
           },
           _active: {
-            borderColor: { value: "transparent" },
-            backgroundColor: { value: "{colors.brand.primary.20.value}" },
-            color: { value: "{colors.font.active.value}" },
+            borderColor: { value: "hsl(210, 94%, 19%)" },
+            backgroundColor: { value: "hsl(200, 100%, 97%)" },
+            color: { value: "hsl(210, 94%, 19%)" },
           },
           _disabled: {
             borderColor: { value: "transparent" },
@@ -1278,7 +1278,7 @@ export default createTheme({
         secondary: { value: "{colors.neutral.40.value}" },
         tertiary: { value: "{colors.neutral.20.value}" },
         disabled: { value: "{colors.border.tertiary.value}" },
-        focus: { value: "{colors.brand.primary.100.value}" },
+        focus: { value: "hsla(0, 0%, 0%, 0)" },
         error: { value: "{colors.red.80.value}" },
       },
       shadow: {
