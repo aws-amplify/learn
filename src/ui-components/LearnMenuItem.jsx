@@ -23,7 +23,7 @@ export default function LearnMenuItem(props) {
     {
       overrides: {
         Menu: { color: "rgba(35,47,62,1)" },
-        "Button Icon": { width: "24px" },
+        "Button Icon": {},
         LearnMenuItem: {},
       },
       variantValues: { isDisabled: "false", isHover: "true" },
@@ -31,7 +31,7 @@ export default function LearnMenuItem(props) {
     {
       overrides: {
         Menu: { color: "rgba(169,182,183,1)" },
-        "Button Icon": { width: "24px", height: "25px" },
+        "Button Icon": {},
         LearnMenuItem: {},
       },
       variantValues: { isDisabled: "true", isHover: "false" },
@@ -71,10 +71,9 @@ export default function LearnMenuItem(props) {
         {...getOverrideProps(overrides, "Menu")}
       ></Text>
       <ExternalIcon
-        width="25px"
-        height="24px"
+        width="24px"
+        height="30px"
         shrink="0"
-        overflow="hidden"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Button Icon")}
