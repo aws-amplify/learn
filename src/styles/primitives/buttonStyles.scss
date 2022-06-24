@@ -1,0 +1,35 @@
+/* CSS to match Amplify UI buttons to Figma */
+
+.course-card {
+  // Overwrite "Link" button
+  button[data-variation="link"][type="button"] {
+    border-style: solid !important;
+    border-width: 1px !important;
+
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
+
+// Overwrite "Default" button
+button[data-variation="default"][type="button"] {
+  &:hover {
+    border-color: hsl(213, 28%, 19%) !important;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+// Overwrite "Primary button
+button[data-variation="primary"][type="button"] {
+  &:hover {
+    border-color: none !important;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
