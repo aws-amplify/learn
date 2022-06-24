@@ -6,12 +6,20 @@
 
 /* eslint-disable */
 import React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import {
+  getOverrideProps,
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
 import LearnLogo from "./LearnLogo";
+import { Button, Flex, View } from "@aws-amplify/ui-react";
 import LearnMenuItem from "./LearnMenuItem";
-import { Button, Flex } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
   const { navBar, overrides, ...rest } = props;
+  const frameFourZeroEightOnClick = useNavigateAction({
+    target: "_blank",
+    type: "url",
+    url: "https://docs.amplify.aws/",
+  });
   return (
     <Flex
       gap="32px"
@@ -30,7 +38,7 @@ export default function NavBar(props) {
       <Flex
         gap="40px"
         direction="row"
-        width="475px"
+        width="454px"
         alignItems="center"
         shrink="0"
         height="30px"
@@ -38,28 +46,37 @@ export default function NavBar(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 327")}
       >
-        <LearnLogo
-          display="flex"
-          gap="8px"
-          direction="row"
-          width="fit-content"
-          alignItems="flex-start"
-          shrink="0"
+        <View
+          width="157px"
           height="22px"
+          shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "LearnLogo")}
-        ></LearnLogo>
+          {...getOverrideProps(overrides, "Frame 405")}
+        >
+          <LearnLogo
+            display="flex"
+            gap="8px"
+            position="absolute"
+            top="calc(50% - 11px - 0px)"
+            left="0px"
+            direction="row"
+            alignItems="flex-start"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "LearnLogo")}
+          ></LearnLogo>
+        </View>
         <Flex
-          gap="40px"
+          gap="10px"
           direction="row"
           width="fit-content"
+          height="30px"
           alignItems="center"
           shrink="0"
-          height="30px"
+          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 32131473019")}
+          {...getOverrideProps(overrides, "Frame 406")}
         >
           <LearnMenuItem
             display="flex"
@@ -76,6 +93,19 @@ export default function NavBar(props) {
             isHover={false}
             {...getOverrideProps(overrides, "LearnMenuItem31473021")}
           ></LearnMenuItem>
+        </Flex>
+        <Flex
+          gap="10px"
+          direction="row"
+          width="fit-content"
+          height="30px"
+          alignItems="center"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "Frame 407")}
+        >
           <LearnMenuItem
             display="flex"
             gap="10px"
@@ -91,6 +121,22 @@ export default function NavBar(props) {
             isHover={false}
             {...getOverrideProps(overrides, "LearnMenuItem31473022")}
           ></LearnMenuItem>
+        </Flex>
+        <Flex
+          gap="10px"
+          direction="row"
+          height="30px"
+          alignItems="center"
+          grow="1"
+          basis="74px"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          onClick={() => {
+            frameFourZeroEightOnClick();
+          }}
+          {...getOverrideProps(overrides, "Frame 408")}
+        >
           <LearnMenuItem
             display="flex"
             gap="10px"
@@ -103,7 +149,7 @@ export default function NavBar(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             isDisabled={false}
-            isHover={false}
+            isHover="false"
             {...getOverrideProps(overrides, "LearnMenuItem31473023")}
           ></LearnMenuItem>
         </Flex>
@@ -118,7 +164,7 @@ export default function NavBar(props) {
         height="40px"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 32131473024")}
+        {...getOverrideProps(overrides, "Frame 321")}
       >
         <Button
           display="flex"
@@ -131,7 +177,7 @@ export default function NavBar(props) {
           position="relative"
           border="1px SOLID rgba(169,182,183,1)"
           borderRadius="5px"
-          padding="8px 16px 8px 16px"
+          padding="5px 16px 5px 16px"
           size="default"
           isDisabled={false}
           variation="default"
