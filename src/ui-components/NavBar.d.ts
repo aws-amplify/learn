@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import React from "react";
-import { NavBar } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { NavBar } from "../models";
 import { FlexProps } from "@aws-amplify/ui-react";
 export declare type NavBarProps = React.PropsWithChildren<Partial<FlexProps> & {
     navBar?: NavBar;
