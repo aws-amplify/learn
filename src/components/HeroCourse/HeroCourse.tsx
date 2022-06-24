@@ -1,6 +1,7 @@
 import { Flex, Image, useBreakpointValue, Card } from "@aws-amplify/ui-react";
 import { Course } from "../../models";
-import { HeroLayout } from "../../ui-components";
+import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
+import styles from './HeroCourse.module.scss';
 
 interface HeroCourseProps {
   course: Course;
@@ -16,6 +17,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
 
   return (
     <Flex
+      className={styles['hero-course']}
       direction={{
         base: "column-reverse",
         small: "column-reverse",
