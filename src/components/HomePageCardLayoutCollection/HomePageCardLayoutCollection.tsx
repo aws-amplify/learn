@@ -2,11 +2,10 @@ import { DataStore } from "aws-amplify";
 import {
   AmplifyProvider,
   Flex,
-  Grid,
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import { CardLayoutCollection } from "../../ui-components";
-import { Course, SkillLevel } from "../../models";
+import { Course } from "../../models";
 import { useEffect, useState } from "react";
 import { HeroCourse } from "../HeroCourse";
 

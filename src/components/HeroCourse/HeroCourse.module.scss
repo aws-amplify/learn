@@ -1,0 +1,11 @@
+.hero-course {
+  // Overwrite "Link" button
+  button[data-variation="link"][type="button"] {
+    border-style: solid !important;
+    border-width: 1px !important;
+
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
