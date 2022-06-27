@@ -17,7 +17,6 @@ export function HeroCourse({ course }: HeroCourseProps) {
 
   return (
     <Flex
-      className={styles['hero-course']}
       direction={{
         base: "column-reverse",
         small: "column-reverse",

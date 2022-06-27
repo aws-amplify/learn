@@ -1,0 +1,1 @@
+export { HomePageContent } from "./HomePageContent";
