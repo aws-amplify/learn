@@ -12,10 +12,16 @@ import {
   getOverrideProps,
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
-import CardLayout from "./CardLayout";
+import CardLayout from "./CardLayoutCustom";
 import { Collection } from "@aws-amplify/ui-react";
 export default function CardLayoutCollection(props) {
-  const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const {
+    items: itemsProp,
+    isOnHomePage,
+    overrideItems,
+    overrides,
+    ...rest
+  } = props;
   const itemsPagination = {
     sort: (s) => s.dateCreated(SortDirection.DESCENDING),
   };
@@ -39,6 +45,7 @@ export default function CardLayoutCollection(props) {
     >
       {(item, index) => (
         <CardLayout
+          isOnHomePage={isOnHomePage}
           height="auto"
           width="auto"
           margin="0 0px 0px 0"
