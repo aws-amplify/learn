@@ -29,7 +29,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
       <HeroLayout
         variation={heroLayoutVariant}
         course={course}
-        shrink="4"
+        shrink="10"
         overrides={{
           "Frame 16": {
             width: "auto"

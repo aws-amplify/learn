@@ -84,7 +84,7 @@ export default function HeroLayout(props) {
           alignSelf: "stretch",
           objectFit: "cover",
         },
-        HeroLayout: { width: "369px" },
+        HeroLayout: {},
       },
       variantValues: { variation: "mobile" },
     },
