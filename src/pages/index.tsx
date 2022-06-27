@@ -7,7 +7,7 @@ import { Amplify } from "aws-amplify";
 import { Card } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
-import { HomePageCardLayoutCollection } from "../components/HomePageCardLayoutCollection";
+import { HomePageContent } from "../components/HomePageContent";
 import { ActionHeroLayout } from "../components/ActionHeroLayout";
 import { Layout } from "../components/Layout";
 
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <Card columnStart="2" marginBottom="128px">
-          <HomePageCardLayoutCollection />
+          <HomePageContent />
         </Card>
         <ActionHeroLayout />
       </Layout>

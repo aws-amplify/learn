@@ -5,32 +5,37 @@
  **************************************************************************/
 
 /* eslint-disable */
-import React, { useEffect } from "react";
+import React from "react";
 import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import { Button, Divider, Flex, Text } from "@aws-amplify/ui-react";
+
+import { useEffect } from "react";
 import { DataStore } from "aws-amplify";
 import { CourseTag } from "../models";
 
 export default function HeroLayout(props) {
-  const { course, tagProp, overrides: overridesProp, ...rest } = props;
+  const { course, overrides: overridesProp, ...rest } = props;
+  const [tags, setTags] = React.useState([]);
 
   async function getCourseTags() {
-    console.log('course id: ', course.id);
+    console.log("course id: ", course.id);
     const courseTags = await DataStore.query(CourseTag);
 
-    console.log('coursetags: ', courseTags);
+    console.log("coursetags: ", courseTags);
 
-    const tags = courseTags.filter(e => e.course.id === course.id)
-    console.log('tags: ', tags);
+    const tags = courseTags.filter((e) => e.course.id === course.id);
+
+    console.log("tags: ", tags);
+    setTags(tags);
   }
 
   useEffect(() => {
     getCourseTags();
-  }, []); 
+  }, []);
 
   const variants = [
     {
@@ -92,7 +97,6 @@ export default function HeroLayout(props) {
     <Flex
       gap="16px"
       direction="column"
-      width="665px"
       position="relative"
       padding="0px 0px 0px 0px"
       {...rest}
@@ -216,38 +220,29 @@ export default function HeroLayout(props) {
         courseTags={course?.courseTags}
         {...getOverrideProps(overrides, "Frame 57")}
       >
-        <Button
-          display="flex"
-          gap="0"
-          direction="row"
-          width="fit-content"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          height="33px"
-          position="relative"
-          size="small"
-          isDisabled={false}
-          variation="link"
-          children="#fullstack"
-          {...getOverrideProps(overrides, "Button31473050")}
-        ></Button>
-        <Button
-          display="flex"
-          gap="0"
-          direction="row"
-          width="fit-content"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          height="33px"
-          position="relative"
-          size="small"
-          isDisabled={false}
-          variation="link"
-          children="#mobile"
-          {...getOverrideProps(overrides, "Button31473051")}
-        ></Button>
+        {tags.map((courseTag) => {
+          return (
+            <Button
+              key={courseTag.id}
+              className="tag-button"
+              display="flex"
+              gap="0"
+              direction="row"
+              width="fit-content"
+              justifyContent="center"
+              alignItems="center"
+              shrink="0"
+              height="33px"
+              position="relative"
+              size="small"
+              isDisabled={false}
+              variation="link"
+              {...getOverrideProps(overrides, "Button31473050")}
+            >
+              #{courseTag.tag.name}
+            </Button>
+          );
+        })}
       </Flex>
       <Text
         fontFamily="Amazon Ember"
