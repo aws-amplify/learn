@@ -81,12 +81,12 @@ export function HomePageContent() {
             autoFlow="column"
             gap="20px"
           >
-            <Placeholder columnStart="1" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
             <Placeholder
               columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
               size="large"
