@@ -1,7 +1,6 @@
 import { Flex, Image, useBreakpointValue, Card } from "@aws-amplify/ui-react";
 import { Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
-import styles from './HeroCourse.module.scss';
 
 interface HeroCourseProps {
   course: Course;
