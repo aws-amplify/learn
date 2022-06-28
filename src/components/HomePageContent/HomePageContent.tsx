@@ -22,7 +22,7 @@ export function HomePageContent() {
     large: "grid",
   }) as "list" | "grid";
 
-  async function getHomePageContent() {
+  useEffect(() => {
     // Create listener that will stop observing the model once the sync process is done
     const removeListener = Hub.listen("datastore", async (capsule) => {
       const {
@@ -47,10 +47,6 @@ export function HomePageContent() {
     return () => {
       removeListener();
     };
-  }
-
-  useEffect(() => {
-    getHomePageContent();
   }, []);
 
   return (
@@ -81,42 +77,22 @@ export function HomePageContent() {
             autoFlow="column"
             gap="20px"
           >
-            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
-            <Placeholder columnStart="1" size="large" isLoaded={!isLoading} />
-            <Placeholder
-              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-              size="large"
-              isLoaded={!isLoading}
-            />
-            <Placeholder
-              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-              size="large"
-              isLoaded={!isLoading}
-            />
-            <Placeholder
-              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-              size="large"
-              isLoaded={!isLoading}
-            />
-            <Placeholder
-              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-              size="large"
-              isLoaded={!isLoading}
-            />
-            <Placeholder
-              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-              size="large"
-              isLoaded={!isLoading}
-            />
-            <Placeholder
-              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-              size="large"
-              isLoaded={!isLoading}
-            />
+            {new Array(6).fill(undefined).map((_, index) => (
+              <Placeholder
+                columnStart="1"
+                size="large"
+                isLoaded={!isLoading}
+                key={index}
+              />
+            ))}
+            {new Array(6).fill(undefined).map((_, index) => (
+              <Placeholder
+                columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+                size="large"
+                isLoaded={!isLoading}
+                key={index}
+              />
+            ))}
           </Grid>
         </>
       ) : (
