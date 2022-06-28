@@ -2,6 +2,7 @@ import { DataStore, Hub } from "aws-amplify";
 import {
   AmplifyProvider,
   Flex,
+  Grid,
   Placeholder,
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
@@ -70,13 +71,63 @@ export function HomePageContent() {
     >
       {isLoading ? (
         <>
-          <Placeholder isLoaded={!isLoading} />
+          <Grid
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr",
+              large: "1fr 1fr",
+            }}
+            autoFlow="column"
+            gap="20px"
+          >
+            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder columnStart="1" isLoaded={!isLoading} />
+            <Placeholder
+              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+              size="large"
+              isLoaded={!isLoading}
+            />
+            <Placeholder
+              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+              size="large"
+              isLoaded={!isLoading}
+            />
+            <Placeholder
+              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+              size="large"
+              isLoaded={!isLoading}
+            />
+            <Placeholder
+              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+              size="large"
+              isLoaded={!isLoading}
+            />
+            <Placeholder
+              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+              size="large"
+              isLoaded={!isLoading}
+            />
+            <Placeholder
+              columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
+              size="large"
+              isLoaded={!isLoading}
+            />
+          </Grid>
         </>
       ) : (
         <HeroCourse course={heroCourse} />
       )}
       <AmplifyProvider>
-        <CardLayoutCollection type={cardLayoutCollectionVariant} gap="40px" isOnHomePage={true}/>
+        <CardLayoutCollection
+          type={cardLayoutCollectionVariant}
+          gap="40px"
+          isOnHomePage={true}
+        />
       </AmplifyProvider>
     </Flex>
   );
