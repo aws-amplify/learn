@@ -271,6 +271,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "profilePic": {
+                    "name": "profilePic",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -835,5 +842,5 @@ export const schema = {
             }
         }
     },
-    "version": "f3ca07d33cafdef4994e377b4b462c26"
+    "version": "6b2255a6d65ad389e6cebca8b9829b15"
 };
