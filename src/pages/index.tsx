@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <Layout>
-        <Card columnStart="2" marginBottom="128px">
+        <Card columnStart="2">
           <HomePageContent />
         </Card>
         <ActionHeroLayout />

@@ -284,7 +284,7 @@ export default function CardLayout(props) {
           color="rgba(84,91,100,1)"
           lineHeight="24px"
           textAlign="left"
-          display="flex"
+          display={isOnHomePage ? 'flex' : 'none'}
           direction="column"
           justifyContent="flex-start"
           letterSpacing="0.01px"

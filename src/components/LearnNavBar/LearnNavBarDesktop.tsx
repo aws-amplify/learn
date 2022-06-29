@@ -5,6 +5,8 @@ import { LearnLogo } from "../../ui-components";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
 import styles from "./LearnNavBarDesktop.module.scss";
 
+import Link from "next/link";
+
 export function LearnNavBarDesktop() {
   const frameFourZeroEightOnClick = useNavigateAction({
     target: "_blank",
@@ -14,6 +16,7 @@ export function LearnNavBarDesktop() {
 
   return (
     <Flex
+      className={styles["learn-navbar"]}
       gap="32px"
       direction="row"
       width="100vw"
@@ -42,16 +45,21 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <LearnLogo
-            display="flex"
-            gap="8px"
-            position="absolute"
-            top="calc(50% - 11px - 0px)"
-            left="0px"
-            direction="row"
-            alignItems="flex-start"
-            padding="0px 0px 0px 0px"
-          ></LearnLogo>
+          <Link href="/">
+            <a>
+              <LearnLogo
+                className={styles["learn-logo"]}
+                display="flex"
+                gap="8px"
+                position="absolute"
+                top="calc(50% - 11px - 0px)"
+                left="0px"
+                direction="row"
+                alignItems="flex-start"
+                padding="0px 0px 0px 0px"
+              ></LearnLogo>
+            </a>
+          </Link>
         </View>
         <Flex
           gap="10px"
@@ -64,7 +72,11 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <NavBarMenuItem>Courses</NavBarMenuItem>
+          <Link href="/courses">
+            <a>
+              <NavBarMenuItem>Courses</NavBarMenuItem>
+            </a>
+          </Link>
         </Flex>
         <Flex
           gap="10px"
@@ -77,7 +89,12 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <NavBarMenuItem>About</NavBarMenuItem>
+          <Link href="/about">
+            <a>
+              <NavBarMenuItem>About</NavBarMenuItem>
+            </a>
+          </Link>
+          
         </Flex>
         <Flex
           gap="10px"
@@ -172,7 +189,8 @@ function NavBarMenuItem({
         position="relative"
         padding="0px 0px 0px 0px"
         color={isHoverColor}
-        display={showExternalIcon ? "" : "none"} />
+        display={showExternalIcon ? "" : "none"}
+      />
     </Button>
   );
 }

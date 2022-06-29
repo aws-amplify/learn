@@ -1,3 +1,16 @@
+.learn-navbar {
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+}
+
+.learn-logo {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .navbar-menu-item {
   color: rgba(84,91,100,1);
 
