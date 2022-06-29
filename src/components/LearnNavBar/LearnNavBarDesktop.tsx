@@ -1,10 +1,9 @@
-import { Button, Flex, View, Text } from "@aws-amplify/ui-react";
+import { Button, Flex, View } from "@aws-amplify/ui-react";
 import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 import { useState } from "react";
 import { LearnLogo } from "../../ui-components";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
 import styles from "./LearnNavBarDesktop.module.scss";
-
 import Link from "next/link";
 
 export function LearnNavBarDesktop() {
@@ -16,7 +15,6 @@ export function LearnNavBarDesktop() {
 
   return (
     <Flex
-      className={styles["learn-navbar"]}
       gap="32px"
       direction="row"
       width="100vw"
@@ -72,11 +70,11 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <Link href="/courses">
-            <a>
-              <NavBarMenuItem>Courses</NavBarMenuItem>
-            </a>
-          </Link>
+          <NavBarMenuItem>
+            <Link href="/courses">
+              <a>Courses</a>
+            </Link>
+          </NavBarMenuItem>
         </Flex>
         <Flex
           gap="10px"
@@ -89,12 +87,11 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <Link href="/about">
-            <a>
-              <NavBarMenuItem>About</NavBarMenuItem>
-            </a>
-          </Link>
-          
+          <NavBarMenuItem>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+          </NavBarMenuItem>
         </Flex>
         <Flex
           gap="10px"
@@ -161,15 +158,9 @@ function NavBarMenuItem({
   const [isHoverColor, setIsHoverColor] = useState(defaultColor);
 
   return (
-    <Button
+    <Flex
+      alignItems="center"
       className={styles["navbar-menu-item"]}
-      gap="10px"
-      border="none"
-      fontFamily="Amazon Ember"
-      fontSize="16px"
-      fontWeight="400"
-      lineHeight="24px"
-      variation="link"
       onMouseEnter={() => {
         if (showExternalIcon) {
           setIsHoverColor(hoverColor);
@@ -191,6 +182,6 @@ function NavBarMenuItem({
         color={isHoverColor}
         display={showExternalIcon ? "" : "none"}
       />
-    </Button>
+    </Flex>
   );
 }

@@ -70,6 +70,7 @@ export declare class Contributor {
   readonly socialNetwork?: (SocialMediaLinks | null)[] | null;
   readonly courses?: (ContributorCourse | null)[] | null;
   readonly bio?: string | null;
+  readonly profilePic?: string | null;
   constructor(init: ModelInit<Contributor>);
   static copyOf(source: Contributor, mutator: (draft: MutableModel<Contributor>) => MutableModel<Contributor> | void): Contributor;
 }
