@@ -109,6 +109,7 @@ export default function ContributorLarge(props) {
           basis="104px"
           alignSelf="stretch"
           position="relative"
+          src={contributor?.profilePic}
           {...getOverrideProps(overrides, "Ellipse 15")}
         ></Icon>
       </Flex>
