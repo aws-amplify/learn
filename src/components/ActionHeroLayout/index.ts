@@ -1,1 +1,0 @@
-export { ActionHeroLayout } from "./ActionHeroLayout";

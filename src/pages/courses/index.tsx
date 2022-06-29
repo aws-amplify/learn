@@ -1,8 +1,9 @@
 import { Text, Grid, Heading, View } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
+import { NextPage } from "next";
 
-export default function CoursesPage() {
+const CoursesPage: NextPage = () => {
   return (
     <Layout>
       <View columnStart="2">
@@ -51,3 +52,5 @@ export default function CoursesPage() {
     </Layout>
   );
 }
+
+export default CoursesPage;
