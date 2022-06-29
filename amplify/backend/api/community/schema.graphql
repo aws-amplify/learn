@@ -51,6 +51,7 @@ type Contributor @model @auth(rules: [{allow: public}]) {
   socialNetwork: [SocialMediaLinks]
   courses: [Course] @manyToMany(relationName: "ContributorCourse")
   bio: String
+  profilePic: AWSURL
 }
 
 type Lesson @model @auth(rules: [{allow: public}]) {

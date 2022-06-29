@@ -109,6 +109,7 @@ export default function ContributorHorizontal(props) {
           basis="52px"
           alignSelf="stretch"
           position="relative"
+          src={contributor?.profilePic}
           {...getOverrideProps(overrides, "Ellipse 15")}
         ></Icon>
       </Flex>
