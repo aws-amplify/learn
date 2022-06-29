@@ -52,7 +52,7 @@ export function HomePageContent() {
     if (heroCourse.id === '') {
       queryHeroCourse();
     }
-  }, []);
+  }, [heroCourse.id]);
 
   return (
     <Flex
