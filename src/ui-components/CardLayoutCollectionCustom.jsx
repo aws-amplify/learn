@@ -13,7 +13,7 @@ import {
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
 import CardLayout from "./CardLayoutCustom";
-import { Collection } from "@aws-amplify/ui-react";
+import { Collection, useBreakpointValue } from "@aws-amplify/ui-react";
 export default function CardLayoutCollection(props) {
   const {
     items: itemsProp,
@@ -31,9 +31,17 @@ export default function CardLayoutCollection(props) {
     pagination: itemsPagination,
   }).items;
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
+
+  const cardLayoutCollectionVariant = useBreakpointValue({
+    base: "list",
+    small: "list",
+    medium: "list",
+    large: "grid",
+  });
+
   return (
     <Collection
-      type="grid"
+      type={cardLayoutCollectionVariant}
       searchPlaceholder="Search..."
       templateColumns="1fr 1fr"
       autoFlow="row"
