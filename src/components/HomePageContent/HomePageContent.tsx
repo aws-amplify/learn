@@ -4,7 +4,6 @@ import {
   Flex,
   Grid,
   Placeholder,
-  useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { Course } from "../../models";
@@ -15,29 +14,28 @@ export function HomePageContent() {
   const [heroCourse, setHeroCourse] = useState<Course>({ id: "" });
   const [isLoading, setIsLoading] = useState(true);
 
-  const cardLayoutCollectionVariant = useBreakpointValue({
-    base: "list",
-    small: "list",
-    medium: "list",
-    large: "grid",
-  }) as "list" | "grid";
+  async function queryHeroCourse() {
+    const featuredCourse = await DataStore.query(Course, (c) =>
+      c.isFeatured("eq", true)
+    );
 
+    if (featuredCourse.length === 1) {
+      setHeroCourse(featuredCourse[0]);
+      setIsLoading(false);
+    }
+  }
+
+  // For the first page load, check to see if DataStore is ready before querying
   useEffect(() => {
     // Create listener that will stop observing the model once the sync process is done
-    const removeListener = Hub.listen("datastore", async (capsule) => {
+    const removeListener = Hub.listen("datastore", (capsule) => {
+      console.log("removing listener");
       const {
         payload: { event, data },
       } = capsule;
 
       if (event === "ready") {
-        const featuredCourse = await DataStore.query(Course, (c) =>
-          c.isFeatured("eq", true)
-        );
-
-        if (featuredCourse.length === 1) {
-          setHeroCourse(featuredCourse[0]);
-          setIsLoading(false);
-        }
+        queryHeroCourse();
       }
     });
 
@@ -49,6 +47,13 @@ export function HomePageContent() {
     };
   }, []);
 
+  useEffect(() => {
+    // If we still don't have the heroCourse then try and query again
+    if (heroCourse.id === '') {
+      queryHeroCourse();
+    }
+  }, []);
+
   return (
     <Flex
       direction="column"
@@ -57,12 +62,6 @@ export function HomePageContent() {
         small: "64px",
         medium: "64px",
         large: "124px",
-      }}
-      marginTop={{
-        base: "32px",
-        small: "32px",
-        medium: "64px",
-        large: "128px",
       }}
     >
       {isLoading ? (
@@ -100,7 +99,6 @@ export function HomePageContent() {
       )}
       <AmplifyProvider>
         <CardLayoutCollection
-          type={cardLayoutCollectionVariant}
           gap="40px"
           isOnHomePage={true}
         />

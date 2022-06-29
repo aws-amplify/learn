@@ -34,12 +34,30 @@ export function Layout({ children }: { children: any }) {
             medium: "1fr",
             large: "1fr min(120ch, 100%) 1fr",
           }}
-          // templateColumns={{
-          //   base: "1fr",
-          //   small: "1fr",
-          //   medium: "64px 1fr 64px",
-          //   large: "128px 1fr 128px",
-          // }}
+          marginLeft={{
+            base: "32px",
+            small: "32px",
+            medium: "64px",
+            large: "129px"
+          }}
+          marginRight={{
+            base: "32px",
+            small: "32px",
+            medium: "64px",
+            large: "129px"
+          }}
+          marginTop={{
+            base: "32px",
+            small: "32px",
+            medium: "64px",
+            large: "128px",
+          }}
+          marginBottom={{
+            base: "114px",
+            small: "114px",
+            medium: "118px",
+            large: "143px",
+          }}
         >
           {children}
         </Grid>
