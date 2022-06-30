@@ -1,6 +1,5 @@
 import { DataStore, Hub } from "aws-amplify";
 import {
-  AmplifyProvider,
   Flex,
   Grid,
   Placeholder,
@@ -97,12 +96,10 @@ export function HomePageContent() {
       ) : (
         <HeroCourse course={heroCourse} />
       )}
-      <AmplifyProvider>
         <CardLayoutCollection
           gap="40px"
           isOnHomePage={true}
         />
-      </AmplifyProvider>
     </Flex>
   );
 }
