@@ -1,13 +1,10 @@
 import { DataStore, Hub } from "aws-amplify";
-import {
-  Flex,
-  Grid,
-  Placeholder,
-} from "@aws-amplify/ui-react";
+import { Flex, Grid, Placeholder } from "@aws-amplify/ui-react";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { Course } from "../../models";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { HeroCourse } from "../HeroCourse";
+import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 
 export function HomePageContent() {
   const [heroCourse, setHeroCourse] = useState<Course>({ id: "" });
@@ -24,31 +21,13 @@ export function HomePageContent() {
     }
   }
 
-  // For the first page load, check to see if DataStore is ready before querying
-  useEffect(() => {
-    // Create listener that will stop observing the model once the sync process is done
-    const removeListener = Hub.listen("datastore", (capsule) => {
-      console.log("removing listener");
-      const {
-        payload: { event, data },
-      } = capsule;
+  const callback = useCallback(queryHeroCourse, []);
 
-      if (event === "ready") {
-        queryHeroCourse();
-      }
-    });
-
-    // Start the DataStore, this kicks-off the sync process.
-    DataStore.start();
-
-    return () => {
-      removeListener();
-    };
-  }, []);
+  useFirstDatastoreQuery(callback);
 
   useEffect(() => {
     // If we still don't have the heroCourse then try and query again
-    if (heroCourse.id === '') {
+    if (heroCourse.id === "") {
       queryHeroCourse();
     }
   }, [heroCourse.id]);
@@ -96,10 +75,7 @@ export function HomePageContent() {
       ) : (
         <HeroCourse course={heroCourse} />
       )}
-        <CardLayoutCollection
-          gap="40px"
-          isOnHomePage={true}
-        />
+      <CardLayoutCollection gap="40px" isOnHomePage={true} />
     </Flex>
   );
 }
