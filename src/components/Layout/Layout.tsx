@@ -76,8 +76,8 @@ export function Layout({ children }: { children: any }) {
           key="twitter:image"
         />
       </Head>
-      <ThemeProvider theme={studioTheme}>
-        <AmplifyProvider>
+      <AmplifyProvider>
+        <ThemeProvider theme={studioTheme}>
           <LearnNavBar isMobile={isMobile} />
           <Grid
             templateColumns={{
@@ -114,8 +114,8 @@ export function Layout({ children }: { children: any }) {
             {children}
           </Grid>
           <LearnFooter isMobile={isMobile} />
-        </AmplifyProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </AmplifyProvider>
     </>
   );
 }
