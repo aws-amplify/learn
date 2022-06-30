@@ -42,6 +42,7 @@ export default function ContributorLargeCollectionCustom(props) {
       {(item, index) => (
         <Card 
           key={item.id}
+          borderRadius="16px"
           paddingTop={{
             base: "32px",
             small: "32px",
