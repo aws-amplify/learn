@@ -1,9 +1,5 @@
 import Head from "next/head";
-import {
-  AmplifyProvider,
-  Grid,
-  useBreakpointValue,
-} from "@aws-amplify/ui-react";
+import { Grid, ThemeProvider, useBreakpointValue } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
@@ -75,7 +71,7 @@ export function Layout({ children }: { children: any }) {
           key="twitter:image"
         />
       </Head>
-      <AmplifyProvider theme={studioTheme}>
+      <ThemeProvider theme={studioTheme}>
         <LearnNavBar isMobile={isMobile} />
         <Grid
           templateColumns={{
@@ -112,7 +108,7 @@ export function Layout({ children }: { children: any }) {
           {children}
         </Grid>
         <LearnFooter isMobile={isMobile} />
-      </AmplifyProvider>
+      </ThemeProvider>
     </>
   );
 }
