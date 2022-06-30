@@ -22,24 +22,28 @@ import {
 } from "@aws-amplify/ui-react";
 
 import { DataStore } from "aws-amplify";
-import { CourseTag } from "../models";
+import { CourseTag } from "../../models";
 
-export default function CardLayout(props) {
+import styles from "./CardLayout.module.scss";
+import { TagButton } from "../TagButton";
+
+import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
+
+export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
-
   const [tags, setTags] = React.useState([]);
 
   async function getCourseTags() {
-    console.log("course id: ", course.id);
     const courseTags = await DataStore.query(CourseTag);
 
-    console.log("coursetags: ", courseTags);
+    const result = courseTags.filter((e) => e.course.id === course.id);
 
-    const tags = courseTags.filter((e) => e.course.id === course.id);
-
-    console.log("tags: ", tags);
-    setTags(tags);
+    setTags(result.map((e) => e.tag));
   }
+
+  const callback = React.useCallback(getCourseTags, []);
+
+  useFirstDatastoreQuery(callback);
 
   React.useEffect(() => {
     getCourseTags();
@@ -284,7 +288,7 @@ export default function CardLayout(props) {
           color="rgba(84,91,100,1)"
           lineHeight="24px"
           textAlign="left"
-          display={isOnHomePage ? 'flex' : 'none'}
+          display={isOnHomePage ? "flex" : "none"}
           direction="column"
           justifyContent="flex-start"
           letterSpacing="0.01px"
@@ -311,36 +315,27 @@ export default function CardLayout(props) {
           courseTags={course?.courseTags}
           {...getOverrideProps(overrides, "Frame 58")}
         >
-          {tags.map((courseTag) => {
-            return (
-              <Button
-                key={courseTag.id}
-                className="tag-button"
-                display="flex"
-                gap="0"
-                direction="row"
-                width="fit-content"
-                justifyContent="center"
-                alignItems="center"
-                shrink="0"
-                height="33px"
-                position="relative"
-                size="small"
-                isDisabled={false}
-                variation="link"
-                {...getOverrideProps(overrides, "Button31473050")}
-              >
-                #{courseTag.tag.name}
-              </Button>
-            );
-          })}
+          {tags.map((tag) => (
+            <TagButton key={tag.id} tag={tag} inCourseLayout={true} />
+          ))}
         </Flex>
       </Flex>
     </Flex>
   );
 
   if (isOnHomePage) {
-    return <Card variation="elevated" borderRadius="16px">{cardLayout}</Card>;
+    return (
+      <Card
+        className={styles["home-page-card"]}
+        variation="elevated"
+        borderRadius="16px"
+        onClick={() => {
+          console.log("hi");
+        }}
+      >
+        {cardLayout}
+      </Card>
+    );
   } else {
     return cardLayout;
   }

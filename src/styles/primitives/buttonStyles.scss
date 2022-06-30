@@ -3,6 +3,7 @@
 .tag-button {
   border: 1px solid #A9B6B7 !important;
   color: #0074BD !important;
+  white-space: nowrap;
 
   &:hover {
     border-color: #065198 !important;

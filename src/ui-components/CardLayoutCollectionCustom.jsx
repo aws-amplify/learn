@@ -12,7 +12,7 @@ import {
   getOverrideProps,
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
-import CardLayout from "./CardLayoutCustom";
+import { CardLayout } from "../components/CardLayout/";
 import { Collection, useBreakpointValue } from "@aws-amplify/ui-react";
 export default function CardLayoutCollection(props) {
   const {
