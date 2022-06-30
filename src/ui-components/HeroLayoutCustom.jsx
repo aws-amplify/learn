@@ -17,20 +17,18 @@ import { useEffect } from "react";
 import { DataStore } from "aws-amplify";
 import { CourseTag } from "../models";
 
+import { TagButton } from "../components/TagButton"
+
 export default function HeroLayout(props) {
   const { course, overrides: overridesProp, ...rest } = props;
   const [tags, setTags] = React.useState([]);
 
   async function getCourseTags() {
-    console.log("course id: ", course.id);
     const courseTags = await DataStore.query(CourseTag);
 
-    console.log("coursetags: ", courseTags);
+    const result = courseTags.filter((e) => e.course.id === course.id);
 
-    const tags = courseTags.filter((e) => e.course.id === course.id);
-
-    console.log("tags: ", tags);
-    setTags(tags);
+    setTags(result.map((e) => e.tag));
   }
 
   useEffect(() => {
@@ -220,29 +218,9 @@ export default function HeroLayout(props) {
         courseTags={course?.courseTags}
         {...getOverrideProps(overrides, "Frame 57")}
       >
-        {tags.map((courseTag) => {
-          return (
-            <Button
-              key={courseTag.id}
-              className="tag-button"
-              display="flex"
-              gap="0"
-              direction="row"
-              width="fit-content"
-              justifyContent="center"
-              alignItems="center"
-              shrink="0"
-              height="33px"
-              position="relative"
-              size="small"
-              isDisabled={false}
-              variation="link"
-              {...getOverrideProps(overrides, "Button31473050")}
-            >
-              #{courseTag.tag.name}
-            </Button>
-          );
-        })}
+        {tags.map((tag) => (
+          <TagButton key={tag.id} tag={tag} inCourseLayout={true} />
+        ))}
       </Flex>
       <Text
         fontFamily="Amazon Ember"
