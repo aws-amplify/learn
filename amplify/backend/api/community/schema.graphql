@@ -8,7 +8,7 @@ type NavMenuItem {
   url: String
 }
 
-type Tag @model @auth(rules: [{allow: public}]) {
+type Tag @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   name: String
   courses: [Course] @manyToMany(relationName: "CourseTag")
@@ -36,15 +36,15 @@ enum SkillLevel {
   ADVANCED
 }
 
-type CoursesPage @model @auth(rules: [{allow: public}]) {
+type CoursesPage @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
 }
 
-type AboutPage @model @auth(rules: [{allow: public}]) {
+type AboutPage @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
 }
 
-type Contributor @model @auth(rules: [{allow: public}]) {
+type Contributor @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   name: String
   jobTitle: String
@@ -54,7 +54,7 @@ type Contributor @model @auth(rules: [{allow: public}]) {
   profilePic: AWSURL
 }
 
-type Lesson @model @auth(rules: [{allow: public}]) {
+type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   title: String
   description: String
@@ -65,7 +65,7 @@ type Lesson @model @auth(rules: [{allow: public}]) {
   lessonNumber: Int
 }
 
-type Course @model @auth(rules: [{allow: public}]) {
+type Course @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   title: String
   timeHours: Int
@@ -83,16 +83,16 @@ type Course @model @auth(rules: [{allow: public}]) {
   imageAltText: String
 }
 
-type Footer @model @auth(rules: [{allow: public}]) {
+type Footer @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
 }
 
-type NavBar @model @auth(rules: [{allow: public}]) {
+type NavBar @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   menuItems: [NavMenuItem]
 }
 
-type HomePage @model @auth(rules: [{allow: public}]) {
+type HomePage @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   homePageCourses: [Course] @hasMany(indexName: "byHomePage", fields: ["id"])
   homePageHeroCourse: Course @hasOne
