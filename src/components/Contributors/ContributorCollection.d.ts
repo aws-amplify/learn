@@ -7,7 +7,7 @@
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { CollectionProps } from "@aws-amplify/ui-react";
-export declare type ContributorLargeCollectionCustomProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+export declare type ContributorCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
     items?: any[];
     overrideItems?: ({ item: any, index: number }: {
         item: any;
@@ -16,6 +16,10 @@ export declare type ContributorLargeCollectionCustomProps = React.PropsWithChild
 } & {
     useLargeVariant: boolean
 } & {
+    filter?: any
+} & {
+    limit?: number
+} & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function ContributorLargeCollectionCustom(props: ContributorLargeCollectionCustomProps): React.ReactElement;
+export default function ContributorCollection(props: ContributorCollectionProps): React.ReactElement;

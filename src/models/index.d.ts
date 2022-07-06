@@ -8,7 +8,7 @@ export enum SocialMediaPlatform {
   TWITTER = "TWITTER",
   TWITCH = "TWITCH",
   YOUTUBE = "YOUTUBE",
-  DISCORDD = "DISCORDD"
+  DISCORD = "DISCORD"
 }
 
 export enum SkillLevel {
@@ -29,10 +29,10 @@ export declare class NavMenuItem {
   constructor(init: ModelInit<NavMenuItem>);
 }
 
-export declare class SocialMediaLinks {
+export declare class SocialMediaLink {
   readonly platform?: SocialMediaPlatform | keyof typeof SocialMediaPlatform | null;
   readonly url?: string | null;
-  constructor(init: ModelInit<SocialMediaLinks>);
+  constructor(init: ModelInit<SocialMediaLink>);
 }
 
 export declare class Tag {
@@ -65,12 +65,14 @@ export declare class Course {
 
 export declare class Contributor {
   readonly id: string;
-  readonly name?: string | null;
   readonly jobTitle?: string | null;
-  readonly socialNetwork?: (SocialMediaLinks | null)[] | null;
+  readonly socialNetwork?: (SocialMediaLink | null)[] | null;
   readonly courses?: (ContributorCourse | null)[] | null;
   readonly bio?: string | null;
   readonly profilePic?: string | null;
+  readonly username?: string | null;
+  readonly lastName?: string | null;
+  readonly firstName?: string | null;
   constructor(init: ModelInit<Contributor>);
   static copyOf(source: Contributor, mutator: (draft: MutableModel<Contributor>) => MutableModel<Contributor> | void): Contributor;
 }

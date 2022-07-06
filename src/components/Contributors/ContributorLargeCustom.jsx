@@ -11,8 +11,9 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Flex, Icon, Text } from "@aws-amplify/ui-react";
-export default function ContributorVertical(props) {
+import { Flex, Image, Text } from "@aws-amplify/ui-react";
+import styles from "./ContributorCollection.module.scss";
+export default function ContributorLargeCustom(props) {
   const { contributor, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
@@ -22,11 +23,11 @@ export default function ContributorVertical(props) {
         "Jane Doe": {},
         "Developer Advocate": {},
         "Frame 331": {},
-        ContributorVertical: {},
+        ContributorLarge: {},
       },
       variantValues: {
         property1: "Vertical",
-        property2: "Regular",
+        property2: "Large",
         property3: "false",
         property4: "false",
       },
@@ -34,15 +35,15 @@ export default function ContributorVertical(props) {
     {
       overrides: {
         "Ellipse 15": {},
-        "Frame 360": { border: "2px SOLID rgba(233,94,7,1)" },
+        "Frame 360": { border: "3px SOLID rgba(233,94,7,1)" },
         "Jane Doe": { color: "rgba(233,94,7,1)" },
         "Developer Advocate": {},
         "Frame 331": {},
-        ContributorVertical: {},
+        ContributorLarge: {},
       },
       variantValues: {
         property1: "Vertical",
-        property2: "Regular",
+        property2: "Large",
         property3: "true",
         property4: "false",
       },
@@ -51,17 +52,17 @@ export default function ContributorVertical(props) {
       overrides: {
         "Ellipse 15": {},
         "Frame 360": {
-          border: "2px SOLID rgba(218,107,16,1)",
+          border: "3px SOLID rgba(218,107,16,1)",
           backgroundColor: "rgba(242,243,243,1)",
         },
         "Jane Doe": { color: "rgba(218,107,16,1)" },
         "Developer Advocate": {},
         "Frame 331": {},
-        ContributorVertical: {},
+        ContributorLarge: {},
       },
       variantValues: {
         property1: "Vertical",
-        property2: "Regular",
+        property2: "Large",
         property3: "false",
         property4: "true",
       },
@@ -73,45 +74,41 @@ export default function ContributorVertical(props) {
   );
   return (
     <Flex
-      gap="16px"
+      gap="24px"
       direction="column"
       alignItems="center"
       position="relative"
       padding="0px 0px 0px 0px"
       {...rest}
-      {...getOverrideProps(overrides, "ContributorVertical")}
+      {...getOverrideProps(overrides, "ContributorLarge")}
     >
       <Flex
+        className={styles["profile-pic-container"]}
         gap="10px"
         direction="row"
-        width="64px"
-        height="64px"
+        width="128px"
+        height="128px"
         alignItems="flex-start"
         shrink="0"
         position="relative"
-        border="2px SOLID rgba(169,182,183,1)"
+        border="3px SOLID rgba(169,182,183,1)"
         borderRadius="100px"
-        padding="4px 4px 4px 4px"
+        padding="9px 9px 9px 9px"
         backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 360")}
       >
-        <Icon
-          width="52px"
-          height="52px"
-          viewBox={{ minX: 0, minY: 0, width: 52, height: 52 }}
-          paths={[
-            {
-              d: "M52 26C52 40.3594 40.3594 52 26 52C11.6406 52 0 40.3594 0 26C0 11.6406 11.6406 0 26 0C40.3594 0 52 11.6406 52 26Z",
-              fillRule: "nonzero",
-            },
-          ]}
+        <Image
+          width="104px"
+          height="104px"
           grow="1"
-          basis="52px"
+          basis="104px"
           alignSelf="stretch"
           position="relative"
+          borderRadius="50%"
           src={contributor?.profilePic}
+          alt={`Profile pic of ${contributor.firstName}`}
           {...getOverrideProps(overrides, "Ellipse 15")}
-        ></Icon>
+        ></Image>
       </Flex>
       <Flex
         gap="0"
@@ -123,12 +120,13 @@ export default function ContributorVertical(props) {
         {...getOverrideProps(overrides, "Frame 331")}
       >
         <Text
+          className={styles['contributor-name']}
           fontFamily="Amazon Ember"
-          fontSize="16px"
+          fontSize="20px"
           fontWeight="700"
           color="rgba(0,116,189,1)"
-          lineHeight="24px"
-          textAlign="left"
+          lineHeight="32px"
+          textAlign="center"
           display="flex"
           direction="column"
           justifyContent="flex-start"
@@ -136,20 +134,19 @@ export default function ContributorVertical(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${contributor?.firstName}${" "}${contributor?.lastName}`}
           {...getOverrideProps(overrides, "Jane Doe")}
-        ></Text>
+        >{`${contributor.firstName} ${contributor.lastName}`}</Text>
         <Text
           fontFamily="Amazon Ember"
-          fontSize="16px"
+          fontSize="20px"
           fontWeight="400"
           color="rgba(84,91,100,1)"
-          lineHeight="24px"
-          textAlign="left"
+          lineHeight="32px"
+          textAlign="center"
           display="flex"
           direction="column"
           justifyContent="flex-start"
-          letterSpacing="0.01px"
+          letterSpacing="0.05px"
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"

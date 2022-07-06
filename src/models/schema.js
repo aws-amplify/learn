@@ -46,9 +46,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -206,9 +203,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -227,13 +221,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "jobTitle": {
                     "name": "jobTitle",
                     "isArray": false,
@@ -245,7 +232,7 @@ export const schema = {
                     "name": "socialNetwork",
                     "isArray": true,
                     "type": {
-                        "nonModel": "SocialMediaLinks"
+                        "nonModel": "SocialMediaLink"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -278,6 +265,27 @@ export const schema = {
                     "type": "AWSURL",
                     "isRequired": false,
                     "attributes": []
+                },
+                "username": {
+                    "name": "username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "lastName": {
+                    "name": "lastName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "firstName": {
+                    "name": "firstName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -294,9 +302,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -330,9 +335,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -366,9 +368,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -465,9 +464,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -501,9 +497,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -547,9 +540,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -618,9 +608,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -769,7 +756,7 @@ export const schema = {
                 "TWITTER",
                 "TWITCH",
                 "YOUTUBE",
-                "DISCORDD"
+                "DISCORD"
             ]
         },
         "SkillLevel": {
@@ -820,8 +807,8 @@ export const schema = {
                 }
             }
         },
-        "SocialMediaLinks": {
-            "name": "SocialMediaLinks",
+        "SocialMediaLink": {
+            "name": "SocialMediaLink",
             "fields": {
                 "platform": {
                     "name": "platform",
@@ -842,5 +829,5 @@ export const schema = {
             }
         }
     },
-    "version": "6b2255a6d65ad389e6cebca8b9829b15"
+    "version": "f5eb6b1103b6a094b15cc4d78d00bad2"
 };
