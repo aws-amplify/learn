@@ -1,5 +1,5 @@
 import { useBreakpointValue } from "@aws-amplify/ui-react";
-import { default as ContributorsLargeCollectionCustom } from "../../ui-components/ContributorLargeCollectionCustom";
+import { default as ContributorCollection } from "./ContributorCollection";
 
 export function Contributors() {
   const collectionVariant = useBreakpointValue({
@@ -18,7 +18,7 @@ export function Contributors() {
   }) as boolean;
 
   return (
-    <ContributorsLargeCollectionCustom
+    <ContributorCollection
       type={collectionVariant}
       gap="20px"
       useLargeVariant={useLargeVariant}

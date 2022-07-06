@@ -14,7 +14,7 @@ type Tag @model @auth(rules: [{allow: public, operations: [read]}]) {
   courses: [Course] @manyToMany(relationName: "CourseTag")
 }
 
-type SocialMediaLinks {
+type SocialMediaLink {
   platform: SocialMediaPlatform
   url: AWSURL
 }
@@ -27,7 +27,7 @@ enum SocialMediaPlatform {
   TWITTER
   TWITCH
   YOUTUBE
-  DISCORDD
+  DISCORD
 }
 
 enum SkillLevel {
@@ -46,12 +46,14 @@ type AboutPage @model @auth(rules: [{allow: public, operations: [read]}]) {
 
 type Contributor @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
-  name: String
   jobTitle: String
-  socialNetwork: [SocialMediaLinks]
+  socialNetwork: [SocialMediaLink]
   courses: [Course] @manyToMany(relationName: "ContributorCourse")
   bio: String
   profilePic: AWSURL
+  username: String
+  lastName: String
+  firstName: String
 }
 
 type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
