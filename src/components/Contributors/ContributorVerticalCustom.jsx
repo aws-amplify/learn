@@ -11,8 +11,9 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Flex, Icon, Text } from "@aws-amplify/ui-react";
-export default function ContributorVertical(props) {
+import { Flex, Image, Text } from "@aws-amplify/ui-react";
+import styles from "./ContributorCollection.module.scss";
+export default function ContributorVerticalCustom(props) {
   const { contributor, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
@@ -82,6 +83,7 @@ export default function ContributorVertical(props) {
       {...getOverrideProps(overrides, "ContributorVertical")}
     >
       <Flex
+        className={styles["profile-pic-container"]}
         gap="10px"
         direction="row"
         width="64px"
@@ -95,23 +97,18 @@ export default function ContributorVertical(props) {
         backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 360")}
       >
-        <Icon
+        <Image
           width="52px"
           height="52px"
-          viewBox={{ minX: 0, minY: 0, width: 52, height: 52 }}
-          paths={[
-            {
-              d: "M52 26C52 40.3594 40.3594 52 26 52C11.6406 52 0 40.3594 0 26C0 11.6406 11.6406 0 26 0C40.3594 0 52 11.6406 52 26Z",
-              fillRule: "nonzero",
-            },
-          ]}
           grow="1"
           basis="52px"
           alignSelf="stretch"
           position="relative"
+          borderRadius="50%"
           src={contributor?.profilePic}
+          alt={`Profile pic of ${contributor.firstName}`}
           {...getOverrideProps(overrides, "Ellipse 15")}
-        ></Icon>
+        ></Image>
       </Flex>
       <Flex
         gap="0"
@@ -123,12 +120,13 @@ export default function ContributorVertical(props) {
         {...getOverrideProps(overrides, "Frame 331")}
       >
         <Text
+          className={styles['contributor-name']}
           fontFamily="Amazon Ember"
           fontSize="16px"
           fontWeight="700"
           color="rgba(0,116,189,1)"
           lineHeight="24px"
-          textAlign="left"
+          textAlign="center"
           display="flex"
           direction="column"
           justifyContent="flex-start"
@@ -136,16 +134,15 @@ export default function ContributorVertical(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${contributor?.firstName}${" "}${contributor?.lastName}`}
           {...getOverrideProps(overrides, "Jane Doe")}
-        ></Text>
+        >{`${contributor.firstName} ${contributor.lastName}`}</Text>
         <Text
           fontFamily="Amazon Ember"
           fontSize="16px"
           fontWeight="400"
           color="rgba(84,91,100,1)"
           lineHeight="24px"
-          textAlign="left"
+          textAlign="center"
           display="flex"
           direction="column"
           justifyContent="flex-start"

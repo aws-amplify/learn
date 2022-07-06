@@ -10,7 +10,7 @@ const SocialMediaPlatform = {
   "TWITTER": "TWITTER",
   "TWITCH": "TWITCH",
   "YOUTUBE": "YOUTUBE",
-  "DISCORDD": "DISCORDD"
+  "DISCORD": "DISCORD"
 };
 
 const SkillLevel = {
@@ -19,7 +19,7 @@ const SkillLevel = {
   "ADVANCED": "ADVANCED"
 };
 
-const { Tag, Course, Contributor, CoursesPage, AboutPage, Lesson, Footer, NavBar, HomePage, CourseTag, ContributorCourse, Image, NavMenuItem, SocialMediaLinks } = initSchema(schema);
+const { Tag, Course, Contributor, CoursesPage, AboutPage, Lesson, Footer, NavBar, HomePage, CourseTag, ContributorCourse, Image, NavMenuItem, SocialMediaLink } = initSchema(schema);
 
 export {
   Tag,
@@ -37,5 +37,5 @@ export {
   SkillLevel,
   Image,
   NavMenuItem,
-  SocialMediaLinks
+  SocialMediaLink
 };

@@ -136,7 +136,7 @@ export default function ContributorHorizontal(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={contributor?.name}
+          children={`${contributor?.firstName}${" "}${contributor?.lastName}`}
           {...getOverrideProps(overrides, "Jane Doe")}
         ></Text>
         <Text
