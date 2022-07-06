@@ -238,7 +238,7 @@ const ContributorPage = () => {
                   base: "1fr",
                   small: "1fr",
                   medium: "1fr 1fr",
-                  large: "1fr 1fr 1fr",
+                  large: "1fr 1fr",
                   xl: "1fr 1fr 1fr",
                 }}
                 gap="64px 20px"
