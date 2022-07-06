@@ -5,3 +5,13 @@
     cursor: pointer;
   }
 }
+
+.course-card {
+  &:hover {
+    cursor: pointer;
+
+    .course-title {
+      color: #E95E07 !important;
+    }
+  }
+}
