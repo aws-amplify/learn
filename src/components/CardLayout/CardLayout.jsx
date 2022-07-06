@@ -131,7 +131,7 @@ export function CardLayout(props) {
       position="relative"
       borderRadius="8px"
       padding="0px 0px 0px 0px"
-      className="course-card"
+      className={styles['course-card']}
       {...rest}
       {...getOverrideProps(overrides, "CardLayout")}
     >
@@ -276,6 +276,7 @@ export function CardLayout(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children={course?.title}
+          className={styles['course-title']}
           {...getOverrideProps(
             overrides,
             "Build fullstack mobile applications with Amplify"
