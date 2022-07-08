@@ -6,20 +6,16 @@
 
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { CollectionProps } from "@aws-amplify/ui-react";
-export declare type CardLayoutCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
-    items?: any[];
-    overrideItems?: ({ item: any, index: number }: {
-        item: any;
-        index: any;
-    }) => Record<string, string>;
+import { Contributor } from "../../models";
+import { FlexProps } from "@aws-amplify/ui-react";
+export declare type ContributorHorizontalCustomProps = React.PropsWithChildren<Partial<FlexProps> & {
+    contributor?: Contributor;
 } & {
-    isOnHomePage?: boolean;
+    property1?: "Horizontal";
+    property2?: "Regular";
+    property3?: "false" | "true";
+    property4?: "false" | "true";
 } & {
-    filter?: any
-} & {
-    limit?: number
-}& {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function CardLayoutCollection(props: CardLayoutCollectionProps): React.ReactElement;
+export default function ContributorHorizontalCustom(props: ContributorHorizontalProps): React.ReactElement;
