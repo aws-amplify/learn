@@ -16,7 +16,6 @@ import { Contributor, ContributorCourse, Course } from "../../models";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import ContributorCollection from "../../components/Contributors/ContributorCollection";
-import styles from "./About.module.scss";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 
 const profilePicBorderSize = {
@@ -57,9 +56,9 @@ const ContributorPage = () => {
     }) || "block";
 
   const sectionButtonClassNames = useBreakpointValue({
-    base: styles["stretch-button"],
-    small: styles["stretch-button"],
-    medium: styles["flex-end-button"],
+    base: {justifySelf: "stretch"},
+    small: {justifySelf: "stretch"},
+    medium: {justifySelf: "flex-end"},
   });
 
   async function getContributor() {
@@ -219,7 +218,7 @@ const ContributorPage = () => {
                 medium: 0,
               }}
               alignSelf="center"
-              className={sectionButtonClassNames}
+              style={sectionButtonClassNames}
             >
               <Button
                 aria-label="All Courses"
@@ -277,7 +276,7 @@ const ContributorPage = () => {
                 medium: 0,
               }}
               alignSelf="center"
-              className={sectionButtonClassNames}
+              style={sectionButtonClassNames}
             >
               <Button
                 width="100%"
