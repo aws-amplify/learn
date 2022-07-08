@@ -16,7 +16,7 @@ import { Contributor, ContributorCourse, Course } from "../../models";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import ContributorCollection from "../../components/Contributors/ContributorCollection";
-import styles from "./about.module.scss";
+import styles from "./About.module.scss";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 
 const profilePicBorderSize = {
@@ -83,8 +83,8 @@ const ContributorPage = () => {
     }
   }
 
-  const contributorCallback = useCallback(getContributor, [id, username]);
-  useFirstDatastoreQuery(contributorCallback);
+  const getContributorCallback = useCallback(getContributor, [id, username]);
+  useFirstDatastoreQuery(getContributorCallback);
 
   async function getContributorCourses() {
     const contributorCourses = await DataStore.query(ContributorCourse);
@@ -96,13 +96,13 @@ const ContributorPage = () => {
     setCourses(result.map((e) => e.course));
   }
 
-  const coursesCallback = useCallback(getContributorCourses, [id, username]);
-  useFirstDatastoreQuery(coursesCallback);
+  const getContributorCoursesCallback = useCallback(getContributorCourses, [username]);
+  useFirstDatastoreQuery(getContributorCoursesCallback);
 
   useEffect(() => {
-    getContributor();
-    getContributorCourses();
-  }, [id, username]);
+    getContributorCallback();
+    getContributorCoursesCallback();
+  }, [getContributorCallback, getContributorCoursesCallback]);
 
   return (
     <Layout>
@@ -133,6 +133,7 @@ const ContributorPage = () => {
               medium: "column-reverse",
               large: "row",
             }}
+            columnGap="100px"
           >
             <Flex direction="column">
               <Text fontWeight="300" fontSize="2.5rem">

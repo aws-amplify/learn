@@ -18,6 +18,8 @@ export default function CardLayoutCollection(props) {
   const {
     items: itemsProp,
     isOnHomePage,
+    filter: filterCallback,
+    limit,
     overrideItems,
     overrides,
     ...rest
@@ -25,11 +27,20 @@ export default function CardLayoutCollection(props) {
   const itemsPagination = {
     sort: (s) => s.dateCreated(SortDirection.DESCENDING),
   };
-  const itemsDataStore = useDataStoreBinding({
+  let itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: Course,
     pagination: itemsPagination,
   }).items;
+
+  if (filterCallback) {
+    itemsDataStore = itemsDataStore.filter(filterCallback);
+  }
+
+  if (limit) {
+    itemsDataStore.splice(limit, itemsDataStore.length - limit);
+  }
+
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
 
   const cardLayoutCollectionVariant = useBreakpointValue({

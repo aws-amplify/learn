@@ -5,23 +5,23 @@
  **************************************************************************/
 
 /* eslint-disable */
-import React from "react";
 import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import { Button, Divider, Flex, Text } from "@aws-amplify/ui-react";
-
-import { useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { DataStore } from "aws-amplify";
 import { CourseTag } from "../models";
-
-import { TagButton } from "../components/TagButton"
+import { TagButton } from "../components/TagButton";
+import { useFirstDatastoreQuery } from "../hooks/useFirstDatastoreQuery";
+import { useRouter } from "next/router";
 
 export default function HeroLayout(props) {
   const { course, overrides: overridesProp, ...rest } = props;
-  const [tags, setTags] = React.useState([]);
+  const [tags, setTags] = useState([]);
+  const router = useRouter();
 
   async function getCourseTags() {
     const courseTags = await DataStore.query(CourseTag);
@@ -31,9 +31,12 @@ export default function HeroLayout(props) {
     setTags(result.map((e) => e.tag));
   }
 
+  const getCourseTagsCallback = useCallback(getCourseTags)
+  useFirstDatastoreQuery(getCourseTagsCallback, [course.id]);
+
   useEffect(() => {
-    getCourseTags();
-  }, []);
+    getCourseTagsCallback();
+  }, [getCourseTagsCallback]);
 
   const variants = [
     {
@@ -269,6 +272,12 @@ export default function HeroLayout(props) {
           isDisabled={false}
           variation="primary"
           children="Explore course"
+          onClick={() => {
+            router.push({
+              pathname: "/courses/[coursetitle]",
+              query: { id: course.id },
+            }, `/courses/${course.title.replaceAll(' ', '-')}`)
+          }}
           {...getOverrideProps(overrides, "Button31473054")}
         ></Button>
         <Button

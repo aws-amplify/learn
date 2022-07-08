@@ -20,14 +20,13 @@ const TagPage = () => {
     setRelatedCourses(result.map((e) => e.course));
   }
 
-  const callback = useCallback(getRelatedCourses, [tagname]);
+  const getRelatedCoursesCallback = useCallback(getRelatedCourses, [tagname]);
 
-  useFirstDatastoreQuery(callback);
+  useFirstDatastoreQuery(getRelatedCoursesCallback);
 
   useEffect(() => {
-    console.log(tagname);
-    getRelatedCourses();
-  }, [tagname]);
+    getRelatedCoursesCallback();
+  }, [getRelatedCoursesCallback]);
 
   return (
     <Layout>
