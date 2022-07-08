@@ -20,18 +20,17 @@ import {
   View,
   Card,
 } from "@aws-amplify/ui-react";
-
 import { DataStore } from "aws-amplify";
 import { CourseTag } from "../../models";
-
 import styles from "./CardLayout.module.scss";
 import { TagButton } from "../TagButton";
-
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
+import { useRouter } from "next/router";
 
 export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
   const [tags, setTags] = React.useState([]);
+  const router = useRouter();
 
   async function getCourseTags() {
     const courseTags = await DataStore.query(CourseTag);
@@ -131,7 +130,20 @@ export function CardLayout(props) {
       position="relative"
       borderRadius="8px"
       padding="0px 0px 0px 0px"
-      className={styles['course-card']}
+      className={styles["course-card"]}
+      onClick={(event) => {
+        if (event.target.tagName !== "A") {
+          // Since tag buttons are inside this container, prevent
+          // navigating to course when a tag button is clicked
+          router.push(
+            {
+              pathname: "/courses/[coursetitle]",
+              query: { id: course.id },
+            },
+            `/courses/${course.title.replaceAll(" ", "-")}`
+          );
+        }
+      }}
       {...rest}
       {...getOverrideProps(overrides, "CardLayout")}
     >
@@ -276,7 +288,7 @@ export function CardLayout(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children={course?.title}
-          className={styles['course-title']}
+          className={styles["course-title"]}
           {...getOverrideProps(
             overrides,
             "Build fullstack mobile applications with Amplify"

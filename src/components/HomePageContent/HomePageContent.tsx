@@ -1,4 +1,4 @@
-import { DataStore, Hub } from "aws-amplify";
+import { DataStore } from "aws-amplify";
 import { Flex, Grid, Placeholder } from "@aws-amplify/ui-react";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { Course } from "../../models";

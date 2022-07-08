@@ -31,14 +31,14 @@ export function HeroCourse({ course }: HeroCourseProps) {
         shrink="10"
         overrides={{
           "Frame 16": {
-            width: "auto"
+            width: "auto",
           },
           Button31473054: {
-            width: "auto"
+            width: "auto",
           },
           Button31473055: {
-            width: "auto"
-          }
+            width: "auto",
+          },
         }}
       />
       {/* TODO: should images use srcset to handle responsive images? If so, would we need more than one image src? */}

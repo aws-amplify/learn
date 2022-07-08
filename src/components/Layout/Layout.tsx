@@ -16,7 +16,6 @@ export function Layout({ children }: { children: any }) {
   });
 
   useEffect(() => {
-    console.log(mobileBreakpointValue);
     if (mobileBreakpointValue === "mobile") {
       setIsMobile(true);
     } else {
@@ -78,19 +77,17 @@ export function Layout({ children }: { children: any }) {
             base: "1fr",
             small: "1fr",
             medium: "1fr",
-            large: "1fr min(120ch, 100%) 1fr",
+            large: "1fr min(130ch, 100%) 1fr",
           }}
           marginLeft={{
             base: "32px",
             small: "32px",
             medium: "64px",
-            large: "129px",
           }}
           marginRight={{
             base: "32px",
             small: "32px",
             medium: "64px",
-            large: "129px",
           }}
           marginTop={{
             base: "32px",

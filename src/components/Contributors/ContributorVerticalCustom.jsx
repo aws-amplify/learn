@@ -133,7 +133,7 @@ export default function ContributorVerticalCustom(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
+          whiteSpace="nowrap"
           {...getOverrideProps(overrides, "Jane Doe")}
         >{`${contributor.firstName} ${contributor.lastName}`}</Text>
         <Text
@@ -150,7 +150,7 @@ export default function ContributorVerticalCustom(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
+          whiteSpace="nowrap"
           children={contributor?.jobTitle}
           {...getOverrideProps(overrides, "Developer Advocate")}
         ></Text>
