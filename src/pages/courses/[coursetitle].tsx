@@ -13,7 +13,7 @@ const CoursePage = () => {
     router.query;
   const originalCourseTitle = coursetitle?.replaceAll("-", " ");
 
-  const [course, setCourse] = useState<Course>({ id: "" });
+  const [course, setCourse] = useState<Course | null>(null);
   const [isCourseLoaded, setIsCourseLoaded] = useState(false);
 
   async function getCourse() {
@@ -68,15 +68,23 @@ const CoursePage = () => {
     getCourseContributorsCallback();
   }, [getCourseContributorsCallback]);
 
-  return (
-    <Layout>
-      {course?.id.length > 0 && contributors.length > 0 ? (
-        <CourseOverview course={course} contributors={contributors} />
-      ) : (
-        <Placeholder isLoaded={isCourseLoaded} />
-      )}
-    </Layout>
-  );
+  if (course && course.id.length > 0) {
+    return (
+      <Layout metaObject={{
+        title: course.title ?? '',
+        description: course.description ?? '',
+        url: course.title ?? ''
+      }}>
+        {course?.id.length > 0 && contributors.length > 0 ? (
+          <CourseOverview course={course} contributors={contributors} />
+        ) : (
+          <Placeholder isLoaded={isCourseLoaded} />
+        )}
+      </Layout>
+    );
+  }
+
+  return <Placeholder />
 };
 
 export default CoursePage;

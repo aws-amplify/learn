@@ -5,7 +5,14 @@ import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
 
-export function Layout({ children }: { children: any }) {
+interface IMetaObject {
+  title: string;
+  description: string;
+  url: string;
+  author?: string;
+}
+
+export function Layout({ children, metaObject }: { children: any, metaObject?: IMetaObject }) {
   const [isMobile, setIsMobile] = useState(false);
 
   const mobileBreakpointValue = useBreakpointValue({
@@ -24,10 +31,11 @@ export function Layout({ children }: { children: any }) {
   }, [mobileBreakpointValue]);
 
   const meta = {
-    title: "Learn Amplify",
-    description:
+    title: metaObject?.title ?? "Learn Amplify",
+    description: metaObject?.description ??
       "Learn Amplify - Learn how to use Amplify to develop and deploy cloud-powered mobile and web apps.",
-    url: "https://learn.amplify.aws/",
+    url: metaObject?.url ?? "https://learn.amplify.aws/",
+    author: metaObject?.author ?? ''
   };
 
   return (
@@ -36,6 +44,7 @@ export function Layout({ children }: { children: any }) {
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <meta property="og:title" content={meta.title} key="og:title" />
+        <meta name="author" content={meta.author} />
         <meta name="description" content={meta.description} />
         <meta
           property="og:description"

@@ -3,7 +3,7 @@ import { Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 
 interface HeroCourseProps {
-  course: Course;
+  course: Course | null;
 }
 
 export function HeroCourse({ course }: HeroCourseProps) {
