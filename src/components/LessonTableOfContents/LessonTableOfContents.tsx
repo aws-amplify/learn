@@ -1,6 +1,6 @@
 import { Flex, View, Text, Button } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Lesson } from "../../models";
 import { PlayIcon } from "../../ui-components";
 import styles from "./LessonTableOfContents.module.scss";
@@ -20,6 +20,8 @@ export function LessonTableOfContents({ courseId }: { courseId: string }) {
 
     setLessons(sortedByLessons);
   }
+
+  const getLessonsCallback = useCallback(getLessons, [courseId]);
 
   function createLessonTOC() {
     let chapter = 0;
@@ -86,8 +88,8 @@ export function LessonTableOfContents({ courseId }: { courseId: string }) {
   }
 
   useEffect(() => {
-    getLessons();
-  }, [courseId]);
+    getLessonsCallback();
+  }, [getLessonsCallback]);
 
   useEffect(() => {
     console.log("sorted lessons: ", lessons);

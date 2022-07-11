@@ -9,7 +9,7 @@
  import { Course } from "../models";
  import { FlexProps } from "@aws-amplify/ui-react";
  export declare type HeroLayoutProps = React.PropsWithChildren<Partial<FlexProps> & {
-     course?: Course;
+     course?: Course | null;
  } & {
      variation?: "default" | "mobile";
  } & {
