@@ -58,22 +58,22 @@ type Contributor @model @auth(rules: [{allow: public, operations: [read]}]) {
 
 type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
-  title: String
-  description: String
+  title: String!
+  description: String!
   content: String
   videoUrl: AWSURL
-  chapter: Int
+  chapter: Int!
   courseLesson: Course @hasOne
-  lessonNumber: Int
+  lessonNumber: Int!
 }
 
 type Course @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
-  title: String
+  title: String!
   timeHours: Int
   timeMinutes: Int
   learningObjective: String
-  description: String
+  description: String!
   requirements: [String]
   image: AWSURL
   contributors: [Contributor] @manyToMany(relationName: "ContributorCourse")

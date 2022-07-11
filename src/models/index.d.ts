@@ -45,11 +45,11 @@ export declare class Tag {
 
 export declare class Course {
   readonly id: string;
-  readonly title?: string | null;
+  readonly title: string;
   readonly timeHours?: number | null;
   readonly timeMinutes?: number | null;
   readonly learningObjective?: string | null;
-  readonly description?: string | null;
+  readonly description: string;
   readonly requirements?: (string | null)[] | null;
   readonly image?: string | null;
   readonly contributors?: (ContributorCourse | null)[] | null;
@@ -91,13 +91,13 @@ export declare class AboutPage {
 
 export declare class Lesson {
   readonly id: string;
-  readonly title?: string | null;
-  readonly description?: string | null;
+  readonly title: string;
+  readonly description: string;
   readonly content?: string | null;
   readonly videoUrl?: string | null;
-  readonly chapter?: number | null;
+  readonly chapter: number;
   readonly courseLesson?: Course | null;
-  readonly lessonNumber?: number | null;
+  readonly lessonNumber: number;
   readonly lessonCourseLessonId?: string | null;
   constructor(init: ModelInit<Lesson>);
   static copyOf(source: Lesson, mutator: (draft: MutableModel<Lesson>) => MutableModel<Lesson> | void): Lesson;
