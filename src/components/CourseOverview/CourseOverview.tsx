@@ -6,10 +6,12 @@ import {
   Image,
   Text,
   useBreakpointValue,
+  View,
 } from "@aws-amplify/ui-react";
 import { Contributor, Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { CourseLayout } from "../CourseLayout";
+import { LessonTableOfContents } from "../LessonTableOfContents";
 
 export function CourseOverview({
   course,
@@ -95,7 +97,6 @@ export function CourseOverview({
       }
       mainChildren={
         <>
-          {" "}
           <Flex
             direction={{
               base: "column",
@@ -171,6 +172,9 @@ export function CourseOverview({
               </Flex>
             </Card>
           </Flex>
+          <View as="div" columnStart={1}>
+            <LessonTableOfContents courseId={course.id} />
+          </View>
           <Flex
             columnStart={1}
             direction="column"
