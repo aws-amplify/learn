@@ -68,7 +68,7 @@ export const schema = {
                     "name": "title",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "timeHours": {
@@ -96,7 +96,7 @@ export const schema = {
                     "name": "description",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "requirements": {
@@ -390,14 +390,14 @@ export const schema = {
                     "name": "title",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "description": {
                     "name": "description",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "content": {
@@ -418,7 +418,7 @@ export const schema = {
                     "name": "chapter",
                     "isArray": false,
                     "type": "Int",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "courseLesson": {
@@ -439,7 +439,7 @@ export const schema = {
                     "name": "lessonNumber",
                     "isArray": false,
                     "type": "Int",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "lessonCourseLessonId": {
@@ -829,5 +829,5 @@ export const schema = {
             }
         }
     },
-    "version": "f5eb6b1103b6a094b15cc4d78d00bad2"
+    "version": "265a4f4ed0723833a62f79d215758be8"
 };
