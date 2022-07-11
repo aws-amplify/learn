@@ -7,7 +7,7 @@ import { HeroCourse } from "../HeroCourse";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 
 export function HomePageContent() {
-  const [heroCourse, setHeroCourse] = useState<Course>({ id: "" });
+  const [heroCourse, setHeroCourse] = useState<Course | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   async function queryHeroCourse() {
@@ -27,10 +27,10 @@ export function HomePageContent() {
 
   useEffect(() => {
     // If we still don't have the heroCourse then try and query again
-    if (heroCourse.id === "") {
+    if (heroCourse?.id === "") {
       queryHeroCourse();
     }
-  }, [heroCourse.id]);
+  }, [heroCourse?.id]);
 
   return (
     <Flex
