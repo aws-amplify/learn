@@ -21,16 +21,16 @@ export function HomePageContent() {
     }
   }
 
-  const callback = useCallback(queryHeroCourse, []);
+  const queryHeroCourseCallback = useCallback(queryHeroCourse, [
+    heroCourse?.id,
+  ]);
 
-  useFirstDatastoreQuery(callback);
+  useFirstDatastoreQuery(queryHeroCourseCallback);
 
   useEffect(() => {
     // If we still don't have the heroCourse then try and query again
-    if (heroCourse?.id === "") {
-      queryHeroCourse();
-    }
-  }, [heroCourse?.id]);
+    queryHeroCourseCallback();
+  }, [queryHeroCourseCallback]);
 
   return (
     <Flex
