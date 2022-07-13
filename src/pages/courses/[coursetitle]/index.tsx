@@ -2,10 +2,10 @@ import { Placeholder } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { CourseOverview } from "../../components/CourseOverview";
-import { Layout } from "../../components/Layout";
-import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
-import { Course } from "../../models";
+import { CourseOverview } from "../../../components/CourseOverview";
+import { Layout } from "../../../components/Layout";
+import { useFirstDatastoreQuery } from "../../../hooks/useFirstDatastoreQuery";
+import { Course } from "../../../models";
 
 const CoursePage = () => {
   const router = useRouter();
