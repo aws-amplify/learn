@@ -13,6 +13,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
 import ReactMarkdown from "react-markdown";
+import { useFirstDatastoreQuery } from "../../../../hooks/useFirstDatastoreQuery";
 
 const LessonPage = () => {
   const router = useRouter();
@@ -20,6 +21,8 @@ const LessonPage = () => {
     coursetitle,
     lesson: lessonNumber,
   }: { coursetitle?: string; lesson?: string } = router.query;
+
+  console.log(router);
 
   // Get the course title without the appended id
   const courseIdPrefix = coursetitle?.substring(
@@ -69,6 +72,8 @@ const LessonPage = () => {
     lessonNumber,
   ]);
 
+  useFirstDatastoreQuery(getLessonCallback);
+
   useEffect(() => {
     getLessonCallback();
   }, [getLessonCallback]);
@@ -76,6 +81,7 @@ const LessonPage = () => {
   // const test = 'Learn site \n  \n  lets gooooo\n \n learn learn learn'
 
   if (isLoaded) {
+    console.log("LOADED!")
     return (
       <Layout>
         <CourseLayout
