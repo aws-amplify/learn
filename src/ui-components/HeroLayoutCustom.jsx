@@ -275,6 +275,7 @@ export default function HeroLayout(props) {
           variation="primary"
           children="Explore course"
           onClick={() => {
+            // TODO: Refactor this out into a utitlity function so it can be reused?
             // Use the course title with the first 5 characters of the course id as the coursetitle
             const coursetitle = `${course.title.replaceAll(
               " ",
