@@ -5,13 +5,17 @@ import { useCallback, useEffect, useState } from "react";
 import { CourseOverview } from "../../components/CourseOverview";
 import { Layout } from "../../components/Layout";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
-import { Contributor, ContributorCourse, Course } from "../../models";
+import { Course } from "../../models";
 
 const CoursePage = () => {
   const router = useRouter();
   const { coursetitle, id }: { coursetitle?: string; id?: string } =
     router.query;
-  const originalCourseTitle = coursetitle?.replaceAll("-", " ");
+
+  // Get the course title without the appended id
+  const originalCourseTitle = coursetitle
+    ?.substring(0, coursetitle?.lastIndexOf("-"))
+    .replaceAll("-", " ");
 
   const [course, setCourse] = useState<Course | null>(null);
   const [isCourseLoaded, setIsCourseLoaded] = useState(false);
@@ -25,9 +29,7 @@ const CoursePage = () => {
         setIsCourseLoaded(true);
         setCourse(result);
       }
-    }
-
-    if (originalCourseTitle) {
+    } else if (originalCourseTitle) {
       result = await DataStore.query(Course, (c) =>
         c.title("eq", originalCourseTitle)
       );
@@ -46,37 +48,17 @@ const CoursePage = () => {
     getCourseCallback();
   }, [getCourseCallback]);
 
-  const [contributors, setContributors] = useState<Contributor[]>([]);
-
-  async function getCourseContributors() {
-    if (course?.id) {
-      const contributorCourses = await DataStore.query(ContributorCourse);
-
-      const result = contributorCourses.filter(
-        (rel) => rel.course.id === course.id
-      );
-
-      setContributors(result.map((e) => e.contributor));
-    }
-  }
-
-  const getCourseContributorsCallback = useCallback(getCourseContributors, [
-    course?.id,
-  ]);
-
-  useEffect(() => {
-    getCourseContributorsCallback();
-  }, [getCourseContributorsCallback]);
-
   if (course && course.id.length > 0) {
     return (
-      <Layout metaObject={{
-        title: course.title ?? '',
-        description: course.description ?? '',
-        url: course.title ?? ''
-      }}>
-        {course?.id.length > 0 && contributors.length > 0 ? (
-          <CourseOverview course={course} contributors={contributors} />
+      <Layout
+        metaObject={{
+          title: course.title ?? "",
+          description: course.description ?? "",
+          url: course.title ?? "",
+        }}
+      >
+        {course?.id.length > 0 ? (
+          <CourseOverview course={course} />
         ) : (
           <Placeholder isLoaded={isCourseLoaded} />
         )}
@@ -84,7 +66,7 @@ const CoursePage = () => {
     );
   }
 
-  return <Placeholder />
+  return <Placeholder />;
 };
 
 export default CoursePage;

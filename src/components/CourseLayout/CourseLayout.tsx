@@ -7,26 +7,46 @@ import {
   useBreakpointValue,
   View,
 } from "@aws-amplify/ui-react";
-import { Contributor, Course } from "../../models";
+import { Contributor, ContributorCourse, Course } from "../../models";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { CourseContributors } from "../CourseContributors";
 import { ShareThis } from "../ShareThis";
 import styles from "./CourseLayout.module.scss";
+import { useCallback, useEffect, useState } from "react";
+import { DataStore } from "aws-amplify";
 
 export function CourseLayout({
   course,
-  contributors,
-  topChildren,
   mainChildren,
-  sidebarChildren
+  sidebarChildren,
 }: {
-  course: Course;
-  contributors: Contributor[];
-  topChildren: any;
+  course: Course | null;
   mainChildren: any;
   sidebarChildren: any;
 }) {
   const router = useRouter();
+
+  const [contributors, setContributors] = useState<Contributor[]>([]);
+
+  async function getCourseContributors() {
+    if (course?.id) {
+      const contributorCourses = await DataStore.query(ContributorCourse);
+
+      const result = contributorCourses.filter(
+        (rel) => rel.course.id === course.id
+      );
+
+      setContributors(result.map((e) => e.contributor));
+    }
+  }
+
+  const getCourseContributorsCallback = useCallback(getCourseContributors, [
+    course?.id,
+  ]);
+
+  useEffect(() => {
+    getCourseContributorsCallback();
+  }, [getCourseContributorsCallback]);
 
   const showInSidebarBreakpoint = useBreakpointValue({
     base: false,
@@ -44,7 +64,7 @@ export function CourseLayout({
 
   return (
     <Grid
-      columnStart={2}
+      columnStart="2"
       columnGap="60px"
       templateColumns={{
         base: "1fr",
@@ -53,7 +73,7 @@ export function CourseLayout({
         large: "70% 1fr",
       }}
     >
-      {topChildren}
+      {mainChildren}
       <Flex
         display={{
           base: "none",
@@ -68,20 +88,21 @@ export function CourseLayout({
           large: "column",
           xl: "column",
         }}
+        rowStart="1"
+        columnStart="2"
       >
-        {sidebarChildren}
         {showInSidebarBreakpoint && (
-          <>
+          <Flex direction="column">
+            {sidebarChildren}
             <View marginTop="40px">
               <CourseContributors contributors={contributors} />
             </View>
             <View marginTop="40px">
               <ShareThis />
             </View>
-          </>
+          </Flex>
         )}
       </Flex>
-      {mainChildren}
       {!showInSidebarBreakpoint && (
         <Flex direction="column" columnStart={1}>
           <View marginTop="64px">
@@ -166,7 +187,7 @@ export function CourseLayout({
                 xl: 3,
               }) as number
             }
-            filter={(e: Course) => e.id !== course.id}
+            filter={(e: Course) => e.id !== course?.id}
           />
         </View>
       </Grid>

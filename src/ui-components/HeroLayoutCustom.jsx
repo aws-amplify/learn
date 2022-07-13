@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+ const COURSE_TITLE_ID_LENGTH = 5;
+
 /* eslint-disable */
 import {
   getOverrideProps,
@@ -31,7 +33,7 @@ export default function HeroLayout(props) {
     setTags(result.map((e) => e.tag));
   }
 
-  const getCourseTagsCallback = useCallback(getCourseTags)
+  const getCourseTagsCallback = useCallback(getCourseTags);
   useFirstDatastoreQuery(getCourseTagsCallback, [course.id]);
 
   useEffect(() => {
@@ -273,10 +275,19 @@ export default function HeroLayout(props) {
           variation="primary"
           children="Explore course"
           onClick={() => {
-            router.push({
-              pathname: "/courses/[coursetitle]",
-              query: { id: course.id },
-            }, `/courses/${course.title.replaceAll(' ', '-')}`)
+            // Use the course title with the first 5 characters of the course id as the coursetitle
+            const coursetitle = `${course.title.replaceAll(
+              " ",
+              "-"
+            )}-${course.id.substring(0, COURSE_TITLE_ID_LENGTH)}`;
+
+            router.push(
+              {
+                pathname: "/courses/[coursetitle]",
+                query: { id: course.id },
+              },
+              `/courses/${coursetitle}`
+            );
           }}
           {...getOverrideProps(overrides, "Button31473054")}
         ></Button>
