@@ -12,8 +12,8 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
-import ReactMarkdown from "react-markdown";
 import { useFirstDatastoreQuery } from "../../../../hooks/useFirstDatastoreQuery";
+import { LearnMarkdown } from "../../../../components/LearnMarkdown";
 
 const LessonPage = () => {
   const router = useRouter();
@@ -78,10 +78,8 @@ const LessonPage = () => {
     getLessonCallback();
   }, [getLessonCallback]);
 
-  // const test = 'Learn site \n  \n  lets gooooo\n \n learn learn learn'
-
   if (isLoaded) {
-    console.log("LOADED!")
+    console.log("LOADED!");
     return (
       <Layout>
         <CourseLayout
@@ -110,9 +108,7 @@ const LessonPage = () => {
                 </View>
               )}
               <View as="div" marginTop="64px">
-                <ReactMarkdown
-                  children={lesson?.content as string}
-                />
+                <LearnMarkdown markdownContent={lesson?.content as string} />
               </View>
             </View>
           }
