@@ -21,9 +21,7 @@ export function HomePageContent() {
     }
   }
 
-  const queryHeroCourseCallback = useCallback(queryHeroCourse, [
-    heroCourse?.id,
-  ]);
+  const queryHeroCourseCallback = useCallback(queryHeroCourse, []);
 
   useFirstDatastoreQuery(queryHeroCourseCallback);
 
