@@ -94,7 +94,7 @@ export declare class Lesson {
   readonly title: string;
   readonly description: string;
   readonly content?: string | null;
-  readonly videoUrl?: string | null;
+  readonly youtubeEmbedId?: string | null;
   readonly chapter: number;
   readonly courseLesson?: Course | null;
   readonly lessonNumber: number;

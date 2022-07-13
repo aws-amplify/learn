@@ -13,13 +13,7 @@ import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { CourseLayout } from "../CourseLayout";
 import { LessonTableOfContents } from "../LessonTableOfContents";
 
-export function CourseOverview({
-  course,
-  contributors,
-}: {
-  course: Course;
-  contributors: Contributor[];
-}) {
+export function CourseOverview({ course }: { course: Course }) {
   const router = useRouter();
 
   const heroLayoutVariant = useBreakpointValue({
@@ -29,74 +23,89 @@ export function CourseOverview({
     large: "default",
   }) as "mobile" | "default";
 
+  const buttonGroup = (
+    <>
+      <Button
+        isFullWidth={true}
+        variation="primary"
+        onClick={() => {
+          router.push(
+            {
+              pathname: `${router.pathname}/lessons/[lesson]`,
+              query: { courseId: course.id },
+            },
+            `${router.asPath}/lessons/1`
+          );
+        }}
+      >
+        Start course
+      </Button>
+      <Button isFullWidth={true}>Watch trailer</Button>
+    </>
+  );
+
   return (
     <CourseLayout
       course={course}
-      contributors={contributors}
-      topChildren={
-        <Flex direction="column" gap="32px">
-          <HeroLayout
-            variation={heroLayoutVariant}
-            course={course}
-            shrink="10"
-            overrides={{
-              "NEW COURSE": {
-                children: "COURSE",
-              },
-              Divider33082631: {
-                display: "none",
-              },
-              Advanced: {
-                display: "none",
-              },
-              Divider33082633: {
-                display: "none",
-              },
-              "2h 36m": {
-                display: "none",
-              },
-              "Frame 16": {
-                width: "auto",
-              },
-              Button31473054: {
-                display: "none",
-              },
-              Button31473055: {
-                display: "none",
-              },
-            }}
-          />
-          <Flex
-            display={{
-              base: "flex",
-              small: "flex",
-              medium: "flex",
-              large: "none",
-            }}
-            direction={{
-              base: "column",
-              small: "column",
-              medium: "row",
-              large: "column",
-              xl: "column",
-            }}
-          >
-            <Button isFullWidth={true} variation="primary">
-              Start course
-            </Button>
-            <Button isFullWidth={true}>Watch trailer</Button>
-          </Flex>
-          <Flex justifyContent="center">
-            <Image
-              src={course?.image || ""}
-              alt={course?.imageAltText || ""}
-              borderRadius="8px"
-            />
-          </Flex>
-        </Flex>
-      }
       mainChildren={
         <>
+          <Flex direction="column" gap="32px">
+            <HeroLayout
+              variation={heroLayoutVariant}
+              course={course}
+              shrink="10"
+              overrides={{
+                "NEW COURSE": {
+                  children: "COURSE",
+                },
+                Divider33082631: {
+                  display: "none",
+                },
+                Advanced: {
+                  display: "none",
+                },
+                Divider33082633: {
+                  display: "none",
+                },
+                "2h 36m": {
+                  display: "none",
+                },
+                "Frame 16": {
+                  width: "auto",
+                },
+                Button31473054: {
+                  display: "none",
+                },
+                Button31473055: {
+                  display: "none",
+                },
+              }}
+            />
+            <Flex
+              display={{
+                base: "flex",
+                small: "flex",
+                medium: "flex",
+                large: "none",
+              }}
+              direction={{
+                base: "column",
+                small: "column",
+                medium: "row",
+                large: "column",
+                xl: "column",
+              }}
+            >
+              {buttonGroup}
+            </Flex>
+            <Flex justifyContent="center">
+              <Image
+                src={course?.image || ""}
+                alt={course?.imageAltText || ""}
+                borderRadius="8px"
+              />
+            </Flex>
+          </Flex>
           <Flex
             direction={{
               base: "column",
@@ -172,7 +181,7 @@ export function CourseOverview({
               </Flex>
             </Card>
           </Flex>
-          <View as="div" columnStart={1}>
+          <View as="div" columnStart={1} marginTop="32px">
             <LessonTableOfContents courseId={course.id} />
           </View>
           <Flex
@@ -226,14 +235,7 @@ export function CourseOverview({
           </Flex>
         </>
       }
-      sidebarChildren={
-        <>
-          <Button isFullWidth={true} variation="primary">
-            Start course
-          </Button>
-          <Button isFullWidth={true}>Watch trailer</Button>
-        </>
-      }
+      sidebarChildren={buttonGroup}
     />
   );
 }

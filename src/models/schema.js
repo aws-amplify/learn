@@ -407,10 +407,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "videoUrl": {
-                    "name": "videoUrl",
+                "youtubeEmbedId": {
+                    "name": "youtubeEmbedId",
                     "isArray": false,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -829,5 +829,5 @@ export const schema = {
             }
         }
     },
-    "version": "265a4f4ed0723833a62f79d215758be8"
+    "version": "0a55cc8bba3c917bf56d6d31c39cfd28"
 };

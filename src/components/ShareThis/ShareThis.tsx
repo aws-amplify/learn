@@ -1,13 +1,18 @@
 import { Flex, Text } from "@aws-amplify/ui-react";
+import { useEffect, useState } from "react";
 import { SocialMediaPlatform } from "../../models";
 import { SocialMediaButton } from "../SocialMediaButton";
 
 export function ShareThis() {
-  const url = encodeURIComponent(window.location.href);
+  const [href, setHref] = useState('');
+  
+  useEffect(() => {
+    setHref(encodeURIComponent(window.location.href));
+  }, []);
 
-  const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${url}`;
-  const facebookShareUrl = `https://www.facebook.com/sharer.php?u=${url}`;
+  const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${href}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${href}`;
+  const facebookShareUrl = `https://www.facebook.com/sharer.php?u=${href}`;
 
   return (
     <Flex direction="column">

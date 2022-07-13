@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+const COURSE_TITLE_ID_LENGTH = 5;
+
 /* eslint-disable */
 import React from "react";
 import {
@@ -132,15 +134,21 @@ export function CardLayout(props) {
       padding="0px 0px 0px 0px"
       className={styles["course-card"]}
       onClick={(event) => {
+        // Since tag buttons are inside this container, prevent
+        // navigating to course when a tag button is clicked
         if (event.target.tagName !== "A") {
-          // Since tag buttons are inside this container, prevent
-          // navigating to course when a tag button is clicked
+          // Use the course title with the first 5 characters of the course id as the coursetitle
+          const coursetitle = `${course.title.replaceAll(
+            " ",
+            "-"
+          )}-${course.id.substring(0, COURSE_TITLE_ID_LENGTH)}`;
+
           router.push(
             {
               pathname: "/courses/[coursetitle]",
               query: { id: course.id },
             },
-            `/courses/${course.title.replaceAll(" ", "-")}`
+            `/courses/${coursetitle}`
           );
         }
       }}

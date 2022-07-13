@@ -1,12 +1,19 @@
 import { Flex, View, Text, Button } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
+import router from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { Lesson } from "../../models";
 import { PlayIcon } from "../../ui-components";
 import styles from "./LessonTableOfContents.module.scss";
 
 // Maybe create a "Course" layout so that the table of contents can always be there?
-export function LessonTableOfContents({ courseId }: { courseId: string }) {
+export function LessonTableOfContents({
+  courseId,
+  currentLesson,
+}: {
+  courseId: string;
+  currentLesson?: string;
+}) {
   const [lessons, setLessons] = useState<Lesson[]>([]);
 
   async function getLessons() {
@@ -38,7 +45,11 @@ export function LessonTableOfContents({ courseId }: { courseId: string }) {
             as="div"
             key={`chapter-${lesson.chapter}`}
             padding="12px 20px"
-            className={chapter === 1 ? styles["first-chapter-heading"] : styles["chapter-heading"]}
+            className={
+              chapter === 1
+                ? styles["first-chapter-heading"]
+                : styles["chapter-heading"]
+            }
           >
             <Text
               fontFamily="Amazon Ember Display"
@@ -56,12 +67,37 @@ export function LessonTableOfContents({ courseId }: { courseId: string }) {
           textAlign="left"
           gap="0.875rem"
           padding="8px 29px"
-          className={styles["lesson-link"]}
+          className={`${styles["lesson-link"]} ${
+            Number(currentLesson) === lesson.lessonNumber
+              ? styles["current-lesson"]
+              : ""
+          }`}
+          onClick={() => {
+            const pathname = router.pathname.indexOf("lessons") > -1
+              ? router.pathname
+              : `${router.pathname}/lessons/[lesson]`;
+
+            const asPath = router.asPath.indexOf("lessons") > -1
+              ? `${router.asPath.substring(0, router.asPath.lastIndexOf('/'))}/${lesson.lessonNumber}`
+              : `${router.asPath}/lessons/${lesson.lessonNumber}`;
+
+            
+            router.push(
+              {
+                pathname: pathname,
+                query: { lessonId: lesson.id, courseId },
+              },
+              asPath
+            );
+          }}
         >
           <PlayIcon
             overrides={{
               PlayIcon: {
-                color: "#0074BD",
+                color:
+                  Number(currentLesson) === lesson.lessonNumber
+                    ? "white"
+                    : "#0074BD",
                 // @ts-ignore
                 paths: [
                   {
@@ -91,17 +127,13 @@ export function LessonTableOfContents({ courseId }: { courseId: string }) {
     getLessonsCallback();
   }, [getLessonsCallback]);
 
-  useEffect(() => {
-    console.log("sorted lessons: ", lessons);
-  }, [lessons]);
-
   if (lessons.length > 0) {
-    return ( 
+    return (
       <Flex className={styles["lesson-toc"]} direction="column">
         {lessons.map(createLessonTOC())}
       </Flex>
     );
   }
-  
+
   return <></>;
 }
