@@ -61,7 +61,7 @@ type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
   title: String!
   description: String!
   content: String
-  videoUrl: AWSURL
+  youtubeEmbedId: String
   chapter: Int!
   courseLesson: Course @hasOne
   lessonNumber: Int!
