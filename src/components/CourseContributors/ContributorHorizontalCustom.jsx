@@ -113,8 +113,6 @@ export default function ContributorHorizontal(props) {
       <Flex
         gap="0"
         direction="column"
-        shrink="0"
-        height="48px"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 331")}
@@ -133,7 +131,6 @@ export default function ContributorHorizontal(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
           children={`${contributor?.firstName}${" "}${contributor?.lastName}`}
           {...getOverrideProps(overrides, "Jane Doe")}
         ></Text>
@@ -151,7 +148,6 @@ export default function ContributorHorizontal(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
           children={contributor?.jobTitle}
           {...getOverrideProps(overrides, "Developer Advocate")}
         ></Text>
