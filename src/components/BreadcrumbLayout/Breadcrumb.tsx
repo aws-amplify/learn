@@ -52,7 +52,7 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
   });
 
   return (
-    <Flex direction="row" alignItems="center">
+    <Flex direction="row" alignItems="center" ariaLabel="breadcrumb">
       {childrenWithSeparator}
     </Flex>
   );
