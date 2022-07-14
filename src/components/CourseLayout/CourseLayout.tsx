@@ -64,12 +64,17 @@ export function CourseLayout({
 
   return (
     <Grid
-      columnStart="2"
+      columnStart={{
+        base: "1",
+        small: "1",
+        medium: "1",
+        large: "2",
+      }}
       columnGap="60px"
       templateColumns={{
-        base: "1fr",
-        small: "1fr",
-        medium: "1fr",
+        base: "minmax(0, 1fr)",
+        small: "minmax(0, 1fr)",
+        medium: "minmax(0, 1fr)",
         large: "70% 1fr",
       }}
     >
