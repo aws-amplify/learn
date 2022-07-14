@@ -92,7 +92,7 @@ export declare class AboutPage {
 export declare class Lesson {
   readonly id: string;
   readonly title: string;
-  readonly description: string;
+  readonly description?: string | null;
   readonly content?: string | null;
   readonly youtubeEmbedId?: string | null;
   readonly chapter: number;
