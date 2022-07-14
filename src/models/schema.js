@@ -397,7 +397,7 @@ export const schema = {
                     "name": "description",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "content": {
@@ -829,5 +829,5 @@ export const schema = {
             }
         }
     },
-    "version": "0a55cc8bba3c917bf56d6d31c39cfd28"
+    "version": "8efa0524250814f69fcfe34edca5f8f3"
 };
