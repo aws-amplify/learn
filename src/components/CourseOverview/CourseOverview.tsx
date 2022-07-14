@@ -10,7 +10,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Contributor, Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
-import { CourseLayout } from "../CourseLayout";
+import { LessonLayout } from "../LessonLayout";
 import { LessonTableOfContents } from "../LessonTableOfContents";
 
 export function CourseOverview({ course }: { course: Course }) {
@@ -45,7 +45,7 @@ export function CourseOverview({ course }: { course: Course }) {
   );
 
   return (
-    <CourseLayout
+    <LessonLayout
       course={course}
       mainChildren={
         <>

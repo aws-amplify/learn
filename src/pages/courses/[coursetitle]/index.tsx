@@ -3,7 +3,7 @@ import { DataStore } from "aws-amplify";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { CourseOverview } from "../../../components/CourseOverview";
-import { Layout } from "../../../components/Layout";
+import { CoursesRouteLayout } from "../../../components/CoursesRouteLayout";
 import { useFirstDatastoreQuery } from "../../../hooks/useFirstDatastoreQuery";
 import { Course } from "../../../models";
 
@@ -50,7 +50,7 @@ const CoursePage = () => {
 
   if (course && course.id.length > 0) {
     return (
-      <Layout
+      <CoursesRouteLayout
         metaObject={{
           title: course.title ?? "",
           description: course.description ?? "",
@@ -62,7 +62,7 @@ const CoursePage = () => {
         ) : (
           <Placeholder isLoaded={isCourseLoaded} />
         )}
-      </Layout>
+      </CoursesRouteLayout>
     );
   }
 

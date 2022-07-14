@@ -56,9 +56,9 @@ const ContributorPage = () => {
     }) || "block";
 
   const sectionButtonClassNames = useBreakpointValue({
-    base: {justifySelf: "stretch"},
-    small: {justifySelf: "stretch"},
-    medium: {justifySelf: "flex-end"},
+    base: { justifySelf: "stretch" },
+    small: { justifySelf: "stretch" },
+    medium: { justifySelf: "flex-end" },
   });
 
   async function getContributor() {
@@ -95,7 +95,9 @@ const ContributorPage = () => {
     setCourses(result.map((e) => e.course));
   }
 
-  const getContributorCoursesCallback = useCallback(getContributorCourses, [username]);
+  const getContributorCoursesCallback = useCallback(getContributorCourses, [
+    username,
+  ]);
   useFirstDatastoreQuery(getContributorCoursesCallback);
 
   useEffect(() => {
@@ -103,8 +105,38 @@ const ContributorPage = () => {
     getContributorCoursesCallback();
   }, [getContributorCallback, getContributorCoursesCallback]);
 
+  function contributorBreadcrumbCallback(
+    pathnameArray: string[],
+    asPathArray: string[]
+  ) {
+    if (pathnameArray.length === asPathArray.length) {
+      const breadcrumbs = pathnameArray.map((path, index) => {
+        const result = {
+          href: "",
+          label: "",
+          isCurrent: index === pathnameArray.length - 1,
+        };
+
+        result["href"] = "/" + asPathArray.slice(0, index + 1).join("/");
+
+        if (path === "about") {
+          result["label"] = "About";
+        } else if (path === "[contributor]") {
+          result["label"] = "Contributor";
+        }
+
+        return result;
+      });
+
+      return breadcrumbs;
+    }
+  }
+
   return (
-    <Layout>
+    <Layout
+      showBreadcrumb={true}
+      breadcrumbCallback={contributorBreadcrumbCallback}
+    >
       <Flex
         columnStart={{
           base: "1",
