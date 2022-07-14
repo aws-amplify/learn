@@ -39,8 +39,8 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
             <path
               d="M5.33301 2.6665L10.6663 7.99984L5.33301 13.3332"
               stroke="#A9B6B7"
-              stroke-width="1.5"
-              stroke-linecap="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
               fill="none"
             />
           </Icon>
