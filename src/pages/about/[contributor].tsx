@@ -132,10 +132,12 @@ const ContributorPage = () => {
     }
   }
 
+  const callback = useCallback(contributorBreadcrumbCallback, []);
+
   return (
     <Layout
       showBreadcrumb={true}
-      breadcrumbCallback={contributorBreadcrumbCallback}
+      breadcrumbCallback={callback}
     >
       <Flex
         columnStart={{

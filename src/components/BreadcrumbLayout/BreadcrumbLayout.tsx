@@ -21,7 +21,7 @@ export function BreadcrumbLayout({
     const result = breadcrumbCallback(pathnameArray, asPathArray);
 
     setBreadcrumbs(result);
-  }, [router.pathname, router.asPath]);
+  }, [router.pathname, router.asPath, breadcrumbCallback]);
 
   if (breadcrumbs?.length > 0) {
     return (
@@ -30,15 +30,18 @@ export function BreadcrumbLayout({
           {breadcrumbs.map((e) => {
             if (e.href) {
               if (e.isCurrent) {
-                return <Text color="#A9B6B7">{e.label}</Text>
+                return <Text color="#A9B6B7">{e.label}</Text>;
               } else {
                 return (
-                  <BreadcrumbItem key={e.href} href={e.href} isCurrent={e.isCurrent}>
+                  <BreadcrumbItem
+                    key={e.href}
+                    href={e.href}
+                    isCurrent={e.isCurrent}
+                  >
                     {e.label}
                   </BreadcrumbItem>
                 );
               }
-              
             }
           })}
         </Breadcrumb>
