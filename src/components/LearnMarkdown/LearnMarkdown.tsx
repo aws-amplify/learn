@@ -21,6 +21,13 @@ function CodeBlock({
   const [showButton, setShowButton] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Custom wrapper around `code` 
+  const PreTag = ({ children, ...rest }: { children: any }) => (
+    <View {...rest} as="div" backgroundColor="#F2F3F3" fontSize="0.9rem">
+      {children}
+    </View>
+  );
+
   return match ? (
     <div
       style={{ position: "relative" }}
@@ -47,7 +54,7 @@ function CodeBlock({
       <SyntaxHighlighter
         language={match[1]}
         showLineNumbers={true}
-        PreTag={"div"}
+        PreTag={PreTag}
         {...props}
       >
         {String(children).replace(/\n$/, "")}
