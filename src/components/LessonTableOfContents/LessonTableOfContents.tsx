@@ -67,21 +67,27 @@ export function LessonTableOfContents({
           textAlign="left"
           gap="0.875rem"
           padding="8px 29px"
+          margin="0px 8px"
+          borderRadius="4px"
           className={`${styles["lesson-link"]} ${
             Number(currentLesson) === lesson.lessonNumber
               ? styles["current-lesson"]
               : ""
           }`}
           onClick={() => {
-            const pathname = router.pathname.indexOf("lessons") > -1
-              ? router.pathname
-              : `${router.pathname}/lessons/[lesson]`;
+            const pathname =
+              router.pathname.indexOf("lessons") > -1
+                ? router.pathname
+                : `${router.pathname}/lessons/[lesson]`;
 
-            const asPath = router.asPath.indexOf("lessons") > -1
-              ? `${router.asPath.substring(0, router.asPath.lastIndexOf('/'))}/${lesson.lessonNumber}`
-              : `${router.asPath}/lessons/${lesson.lessonNumber}`;
+            const asPath =
+              router.asPath.indexOf("lessons") > -1
+                ? `${router.asPath.substring(
+                    0,
+                    router.asPath.lastIndexOf("/")
+                  )}/${lesson.lessonNumber}`
+                : `${router.asPath}/lessons/${lesson.lessonNumber}`;
 
-            
             router.push(
               {
                 pathname: pathname,
