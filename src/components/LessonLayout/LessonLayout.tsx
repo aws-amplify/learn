@@ -11,11 +11,11 @@ import { Contributor, ContributorCourse, Course } from "../../models";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { CourseContributors } from "../CourseContributors";
 import { ShareThis } from "../ShareThis";
-import styles from "./CourseLayout.module.scss";
+import styles from "./LessonLayout.module.scss";
 import { useCallback, useEffect, useState } from "react";
 import { DataStore } from "aws-amplify";
 
-export function CourseLayout({
+export function LessonLayout({
   course,
   mainChildren,
   sidebarChildren,
