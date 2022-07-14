@@ -30,7 +30,7 @@ export function BreadcrumbLayout({
           {breadcrumbs.map((e) => {
             if (e.href) {
               if (e.isCurrent) {
-                return <Text color="#A9B6B7">{e.label}</Text>;
+                return <Text color="#A9B6B7" aria-current="page">{e.label}</Text>;
               } else {
                 return (
                   <BreadcrumbItem
