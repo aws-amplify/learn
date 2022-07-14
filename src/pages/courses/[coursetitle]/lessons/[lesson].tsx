@@ -22,8 +22,6 @@ const LessonPage = () => {
     lesson: lessonNumber,
   }: { coursetitle?: string; lesson?: string } = router.query;
 
-  console.log(router);
-
   // Get the course title without the appended id
   const courseIdPrefix = coursetitle?.substring(
     coursetitle?.lastIndexOf("-") + 1,
@@ -61,8 +59,10 @@ const LessonPage = () => {
         const lessonResult = lessonResults[0];
         console.log("lesson", lessonResult);
 
-        setIsLoaded(true);
-        setLesson(lessonResult);
+        if (lessonResult && lessonResult.id) {
+          setIsLoaded(true);
+          setLesson(lessonResult);
+        }
       }
     }
   }
@@ -79,7 +79,6 @@ const LessonPage = () => {
   }, [getLessonCallback]);
 
   if (isLoaded) {
-    console.log("LOADED!");
     return (
       <Layout>
         <CourseLayout
