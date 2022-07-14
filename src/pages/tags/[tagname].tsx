@@ -55,8 +55,10 @@ const TagPage = () => {
     }
   }
 
+  const callback = useCallback(tagsBreadcrumbCallback, []);
+
   return (
-    <Layout showBreadcrumb={true} breadcrumbCallback={tagsBreadcrumbCallback}>
+    <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
       <View
         columnStart={{
           base: "1",
