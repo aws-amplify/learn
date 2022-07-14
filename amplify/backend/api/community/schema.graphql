@@ -59,7 +59,7 @@ type Contributor @model @auth(rules: [{allow: public, operations: [read]}]) {
 type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   title: String!
-  description: String!
+  description: String
   content: String
   youtubeEmbedId: String
   chapter: Int!
