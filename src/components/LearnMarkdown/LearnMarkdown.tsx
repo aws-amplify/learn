@@ -2,7 +2,6 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeExternalLinks from "rehype-external-links";
 import { Button, View } from "@aws-amplify/ui-react";
-import styles from "./LearnMarkdown.module.scss";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
@@ -40,7 +39,7 @@ function CodeBlock({
             setCopied(true);
           }}
         >
-          <Button size="small" className={styles["copy-button"]}>
+          <Button size="small" position="absolute" top="5px" right="5px">
             {copied ? "Copied!" : "Copy"}
           </Button>
         </CopyToClipboard>

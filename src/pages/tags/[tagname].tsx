@@ -28,15 +28,44 @@ const TagPage = () => {
     getRelatedCoursesCallback();
   }, [getRelatedCoursesCallback]);
 
+  function tagsBreadcrumbCallback(
+    pathnameArray: string[],
+    asPathArray: string[]
+  ) {
+    if (pathnameArray.length === asPathArray.length) {
+      const breadcrumbs = pathnameArray.map((path, index) => {
+        const result = {
+          href: "",
+          label: "",
+          isCurrent: index === pathnameArray.length - 1,
+        };
+
+        result["href"] = "/" + asPathArray.slice(0, index + 1).join("/");
+
+        if (path === "tags") {
+          result["label"] = "All tags";
+        } else if (path === "[tagname]") {
+          result["label"] = "Tag";
+        }
+
+        return result;
+      });
+
+      return breadcrumbs;
+    }
+  }
+
   return (
-    <Layout>
-      <View columnStart={{
-        base: "1",
-        small: "1",
-        medium: "1",
-        large: "2",
-        xl: "2"
-      }}>
+    <Layout showBreadcrumb={true} breadcrumbCallback={tagsBreadcrumbCallback}>
+      <View
+        columnStart={{
+          base: "1",
+          small: "1",
+          medium: "1",
+          large: "2",
+          xl: "2",
+        }}
+      >
         <Grid
           templateColumns={{
             base: "1fr",

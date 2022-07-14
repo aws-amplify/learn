@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
+import { BreadcrumbLayout } from "../BreadcrumbLayout";
 
 interface IMetaObject {
   title: string;
@@ -12,7 +13,17 @@ interface IMetaObject {
   author?: string;
 }
 
-export function Layout({ children, metaObject }: { children: any, metaObject?: IMetaObject }) {
+export function Layout({
+  children,
+  metaObject,
+  showBreadcrumb,
+  breadcrumbCallback,
+}: {
+  children: any;
+  metaObject?: IMetaObject;
+  showBreadcrumb?: boolean;
+  breadcrumbCallback?: (pathnameArray: string[], asPathArray: string[]) => any;
+}) {
   const [isMobile, setIsMobile] = useState(false);
 
   const mobileBreakpointValue = useBreakpointValue({
@@ -32,10 +43,11 @@ export function Layout({ children, metaObject }: { children: any, metaObject?: I
 
   const meta = {
     title: metaObject?.title ?? "Learn Amplify",
-    description: metaObject?.description ??
+    description:
+      metaObject?.description ??
       "Learn Amplify - Learn how to use Amplify to develop and deploy cloud-powered mobile and web apps.",
     url: metaObject?.url ?? "https://learn.amplify.aws/",
-    author: metaObject?.author ?? ''
+    author: metaObject?.author ?? "",
   };
 
   return (
@@ -81,6 +93,9 @@ export function Layout({ children, metaObject }: { children: any, metaObject?: I
       </Head>
       <ThemeProvider theme={studioTheme}>
         <LearnNavBar isMobile={isMobile} />
+        {showBreadcrumb && breadcrumbCallback && (
+          <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
+        )}
         <Grid
           templateColumns={{
             base: "1fr",

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { DataStore } from "aws-amplify";
-import { CourseLayout } from "../../../../components/CourseLayout";
-import { Layout } from "../../../../components/Layout";
+import { LessonLayout } from "../../../../components/LessonLayout";
 import { Course, Lesson } from "../../../../models";
 import { useCallback, useEffect, useState } from "react";
 import { YoutubeEmbed } from "../../../../components/YoutubeEmbed";
@@ -14,6 +13,7 @@ import {
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
 import { useFirstDatastoreQuery } from "../../../../hooks/useFirstDatastoreQuery";
 import { LearnMarkdown } from "../../../../components/LearnMarkdown";
+import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
 
 const LessonPage = () => {
   const router = useRouter();
@@ -80,8 +80,8 @@ const LessonPage = () => {
 
   if (isLoaded) {
     return (
-      <Layout>
-        <CourseLayout
+      <CoursesRouteLayout>
+        <LessonLayout
           course={course}
           mainChildren={
             <View as="div">
@@ -118,7 +118,7 @@ const LessonPage = () => {
             />
           }
         />
-      </Layout>
+      </CoursesRouteLayout>
     );
   } else {
     return <Placeholder isLoaded={isLoaded} />;
