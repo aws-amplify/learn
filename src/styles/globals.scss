@@ -53,6 +53,17 @@ h6 {
   isolation: isolate;
 }
 
-pre {
+code {
   font-size: 1rem;
+  background-color: #f1f1eb;
+  padding: 6px 10px;
 }
+
+
+pre {
+  code {
+    font-size: 1rem;
+    padding: initial;
+  }
+}
+
