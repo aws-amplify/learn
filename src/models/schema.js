@@ -816,18 +816,18 @@ export const schema = {
                     "type": {
                         "enum": "SocialMediaPlatform"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "url": {
                     "name": "url",
                     "isArray": false,
                     "type": "AWSURL",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 }
             }
         }
     },
-    "version": "8efa0524250814f69fcfe34edca5f8f3"
+    "version": "b19a2f4039363b0b5c9a8350d640cb10"
 };

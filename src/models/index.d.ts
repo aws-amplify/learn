@@ -30,8 +30,8 @@ export declare class NavMenuItem {
 }
 
 export declare class SocialMediaLink {
-  readonly platform?: SocialMediaPlatform | keyof typeof SocialMediaPlatform | null;
-  readonly url?: string | null;
+  readonly platform: SocialMediaPlatform | keyof typeof SocialMediaPlatform;
+  readonly url: string;
   constructor(init: ModelInit<SocialMediaLink>);
 }
 
