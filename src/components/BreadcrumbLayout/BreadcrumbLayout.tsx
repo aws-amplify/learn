@@ -28,7 +28,7 @@ export function BreadcrumbLayout({
       <View as="div" padding="16px 32px" backgroundColor="#F2F3F3">
         <Breadcrumb>
           {breadcrumbs.map((e) => {
-            if (e.href) {
+            if (e.label && e.href) {
               if (e.isCurrent) {
                 return <Text color="#A9B6B7" aria-current="page">{e.label}</Text>;
               } else {
