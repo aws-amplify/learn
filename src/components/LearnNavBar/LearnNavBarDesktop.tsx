@@ -83,7 +83,6 @@ export function LearnNavBarDesktop() {
           </Link>
         </Flex>
         <Flex
-          tabIndex={0}
           gap="10px"
           direction="row"
           height="30px"
