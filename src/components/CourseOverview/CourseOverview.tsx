@@ -12,6 +12,7 @@ import { Contributor, Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { LessonLayout } from "../LessonLayout";
 import { LessonTableOfContents } from "../LessonTableOfContents";
+import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
 
 export function CourseOverview({ course }: { course: Course }) {
   const router = useRouter();
@@ -143,7 +144,7 @@ export function CourseOverview({ course }: { course: Course }) {
                   padding="0px 0px 0px 0px"
                   whiteSpace="pre-wrap"
                 >
-                  {course?.skillLevel}
+                  {capitalizeEnum(course?.skillLevel)}
                 </Text>
               </Flex>
             </Card>

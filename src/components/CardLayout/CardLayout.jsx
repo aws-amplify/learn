@@ -14,7 +14,6 @@ import {
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import {
-  Button,
   Divider,
   Flex,
   Image,
@@ -28,6 +27,7 @@ import styles from "./CardLayout.module.scss";
 import { TagButton } from "../TagButton";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { useRouter } from "next/router";
+import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
 
 export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
@@ -248,7 +248,7 @@ export function CardLayout(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={course?.skillLevel}
+            children={capitalizeEnum(course?.skillLevel)}
             {...getOverrideProps(overrides, "Advanced")}
           ></Text>
           <Divider
