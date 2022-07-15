@@ -20,16 +20,14 @@ export function CoursesRouteLayout({
           isCurrent: index === pathnameArray.length - 1,
         };
 
-        if (path !== "lessons") {
-          result["href"] = "/" + asPathArray.slice(0, index + 1).join("/");
+        result["href"] = "/" + asPathArray.slice(0, index + 1).join("/");
 
-          if (path === "courses") {
-            result["label"] = "All courses";
-          } else if (path === "[coursetitle]") {
-            result["label"] = "Overview";
-          } else if (path === "[lesson]") {
-            result["label"] = "Lesson";
-          }
+        if (path === "courses") {
+          result["label"] = "All courses";
+        } else if (path === "[coursetitle]") {
+          result["label"] = "Overview";
+        } else if (path === "[lesson]") {
+          result["label"] = "Lesson";
         }
 
         return result;
