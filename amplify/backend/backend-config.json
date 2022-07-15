@@ -21,5 +21,13 @@
         }
       }
     }
+  },
+  "auth": {},
+  "storage": {
+    "s3communitystorage35870d13": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

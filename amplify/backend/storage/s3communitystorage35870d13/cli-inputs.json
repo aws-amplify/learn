@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3communitystorage35870d13",
+  "bucketName": "community-storage-35870d13",
+  "policyUUID": "1bdb26d6",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "DELETE",
+    "READ"
+  ]
+}
