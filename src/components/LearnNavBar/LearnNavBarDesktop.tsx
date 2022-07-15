@@ -1,18 +1,11 @@
 import { Button, Flex, View } from "@aws-amplify/ui-react";
-import { useNavigateAction } from "@aws-amplify/ui-react/internal";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { LearnLogo } from "../../ui-components";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
 import styles from "./LearnNavBarDesktop.module.scss";
 import Link from "next/link";
 
 export function LearnNavBarDesktop() {
-  const frameFourZeroEightOnClick = useNavigateAction({
-    target: "_blank",
-    type: "url",
-    url: "https://docs.amplify.aws/",
-  });
-
   return (
     <Flex
       gap="32px"
@@ -70,11 +63,9 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <NavBarMenuItem>
-            <Link href="/courses">
-              <a>Courses</a>
-            </Link>
-          </NavBarMenuItem>
+          <Link href="/courses" passHref>
+            <NavBarMenuItem>Courses</NavBarMenuItem>
+          </Link>
         </Flex>
         <Flex
           gap="10px"
@@ -87,13 +78,12 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <NavBarMenuItem>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </NavBarMenuItem>
+          <Link href="/about" passHref>
+            <NavBarMenuItem>About</NavBarMenuItem>
+          </Link>
         </Flex>
         <Flex
+          tabIndex={0}
           gap="10px"
           direction="row"
           height="30px"
@@ -103,11 +93,10 @@ export function LearnNavBarDesktop() {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          onClick={() => {
-            frameFourZeroEightOnClick();
-          }}
         >
-          <NavBarMenuItem showExternalIcon={true}>Docs</NavBarMenuItem>
+          <Link href="https://docs.amplify.aws/" passHref>
+            <NavBarMenuItem showExternalIcon={true}>Docs</NavBarMenuItem>
+          </Link>
         </Flex>
       </Flex>
       <Flex
@@ -145,43 +134,57 @@ export function LearnNavBarDesktop() {
   );
 }
 
-function NavBarMenuItem({
-  children,
-  showExternalIcon = false,
-}: {
-  children: any;
-  showExternalIcon?: boolean;
-}) {
-  // Colors for changing "ExternalIcon"
-  const hoverColor = "rgba(35,47,62,1)";
-  const defaultColor = "rgba(84,91,100,1)";
-  const [isHoverColor, setIsHoverColor] = useState(defaultColor);
+const NavBarMenuItem = forwardRef(
+  (
+    {
+      children,
+      href,
+      showExternalIcon = false,
+    }: {
+      children: any;
+      href?: string;
+      showExternalIcon?: boolean;
+    },
+    ref
+  ) => {
+    // Colors for changing "ExternalIcon"
+    const hoverColor = "rgba(35,47,62,1)";
+    const defaultColor = "rgba(84,91,100,1)";
+    const [isHoverColor, setIsHoverColor] = useState(defaultColor);
 
-  return (
-    <Flex
-      alignItems="center"
-      className={styles["navbar-menu-item"]}
-      onMouseEnter={() => {
-        if (showExternalIcon) {
-          setIsHoverColor(hoverColor);
-        }
-      }}
-      onMouseLeave={() => {
-        if (showExternalIcon) {
-          setIsHoverColor(defaultColor);
-        }
-      }}
-    >
-      {children}
-      <ExternalIconCustom
-        width="24px"
-        height="30px"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        color={isHoverColor}
-        display={showExternalIcon ? "" : "none"}
-      />
-    </Flex>
-  );
-}
+    return (
+      <a
+        className={styles["navbar-menu-item"]}
+        href={href}
+        {...(showExternalIcon
+          ? { rel: "noopener noreferrer", target: "_blank" }
+          : {})}
+      >
+        <Flex
+          alignItems="center"
+          onMouseEnter={() => {
+            if (showExternalIcon) {
+              setIsHoverColor(hoverColor);
+            }
+          }}
+          onMouseLeave={() => {
+            if (showExternalIcon) {
+              setIsHoverColor(defaultColor);
+            }
+          }}
+        >
+          {children}
+          <ExternalIconCustom
+            width="24px"
+            height="30px"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            color={isHoverColor}
+            display={showExternalIcon ? "" : "none"}
+          />
+        </Flex>
+      </a>
+    );
+  }
+);
