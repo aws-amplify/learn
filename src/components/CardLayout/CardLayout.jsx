@@ -13,14 +13,7 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import {
-  Divider,
-  Flex,
-  Image,
-  Text,
-  View,
-  Card,
-} from "@aws-amplify/ui-react";
+import { Divider, Flex, Image, Text, View, Card } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
 import { CourseTag } from "../../models";
 import styles from "./CardLayout.module.scss";
@@ -49,6 +42,22 @@ export function CardLayout(props) {
   React.useEffect(() => {
     getCourseTags();
   }, []);
+
+  const navigateToCourse = () => {
+    // Use the course title with the first 5 characters of the course id as the coursetitle
+    const coursetitle = `${course.title.replaceAll(
+      " ",
+      "-"
+    )}-${course.id.substring(0, COURSE_TITLE_ID_LENGTH)}`;
+
+    router.push(
+      {
+        pathname: "/courses/[coursetitle]",
+        query: { id: course.id },
+      },
+      `/courses/${coursetitle}`
+    );
+  };
 
   const variants = [
     {
@@ -133,23 +142,17 @@ export function CardLayout(props) {
       borderRadius="8px"
       padding="0px 0px 0px 0px"
       className={styles["course-card"]}
+      tabIndex="0"
+      onKeyDown={(event) => {
+        if (event.key === "Enter") {
+          navigateToCourse();
+        }
+      }}
       onClick={(event) => {
         // Since tag buttons are inside this container, prevent
         // navigating to course when a tag button is clicked
         if (event.target.tagName !== "A") {
-          // Use the course title with the first 5 characters of the course id as the coursetitle
-          const coursetitle = `${course.title.replaceAll(
-            " ",
-            "-"
-          )}-${course.id.substring(0, COURSE_TITLE_ID_LENGTH)}`;
-
-          router.push(
-            {
-              pathname: "/courses/[coursetitle]",
-              query: { id: course.id },
-            },
-            `/courses/${coursetitle}`
-          );
+          navigateToCourse();
         }
       }}
       {...rest}
