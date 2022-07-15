@@ -1,6 +1,7 @@
 import { Flex, Image, useBreakpointValue, Card } from "@aws-amplify/ui-react";
 import { Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
+import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
 
 interface HeroCourseProps {
   course: Course | null;
@@ -30,6 +31,9 @@ export function HeroCourse({ course }: HeroCourseProps) {
         course={course}
         shrink="10"
         overrides={{
+          Advanced: {
+            children: `${capitalizeEnum(course?.skillLevel as string)}`
+          },
           "Frame 16": {
             width: "auto",
           },
