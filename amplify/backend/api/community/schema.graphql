@@ -15,8 +15,8 @@ type Tag @model @auth(rules: [{allow: public, operations: [read]}]) {
 }
 
 type SocialMediaLink {
-  platform: SocialMediaPlatform
-  url: AWSURL
+  platform: SocialMediaPlatform!
+  url: AWSURL!
 }
 
 enum SocialMediaPlatform {

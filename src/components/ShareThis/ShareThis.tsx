@@ -4,8 +4,8 @@ import { SocialMediaPlatform } from "../../models";
 import { SocialMediaButton } from "../SocialMediaButton";
 
 export function ShareThis() {
-  const [href, setHref] = useState('');
-  
+  const [href, setHref] = useState("");
+
   useEffect(() => {
     setHref(encodeURIComponent(window.location.href));
   }, []);
@@ -25,9 +25,21 @@ export function ShareThis() {
         SHARE THIS
       </Text>
       <Flex direction="row">
-        <SocialMediaButton platform={SocialMediaPlatform.LINKEDIN} url={linkedInShareUrl} />
-        <SocialMediaButton platform={SocialMediaPlatform.TWITTER} url={twitterShareUrl} />
-        <SocialMediaButton platform={SocialMediaPlatform.FACEBOOK} url={facebookShareUrl}/>
+        <SocialMediaButton
+          platform={SocialMediaPlatform.LINKEDIN}
+          url={linkedInShareUrl}
+          iconAriaLabel="Share to LinkedIn"
+        />
+        <SocialMediaButton
+          platform={SocialMediaPlatform.TWITTER}
+          url={twitterShareUrl}
+          iconAriaLabel="Share to Twitter"
+        />
+        <SocialMediaButton
+          platform={SocialMediaPlatform.FACEBOOK}
+          url={facebookShareUrl}
+          iconAriaLabel="Share to Facebook"
+        />
       </Flex>
     </Flex>
   );

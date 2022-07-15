@@ -17,6 +17,7 @@ import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import ContributorCollection from "../../components/Contributors/ContributorCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
+import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -135,10 +136,7 @@ const ContributorPage = () => {
   const callback = useCallback(contributorBreadcrumbCallback, []);
 
   return (
-    <Layout
-      showBreadcrumb={true}
-      breadcrumbCallback={callback}
-    >
+    <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
       <Flex
         columnStart={{
           base: "1",
@@ -182,17 +180,23 @@ const ContributorPage = () => {
               <Text fontWeight="400" fontSize="1rem">
                 {contributor.bio}
               </Text>
-              <Flex>
-                {contributor.socialNetwork?.map((e, index) => {
-                  return (
-                    <SocialMediaButton
-                      key={index}
-                      platform={e?.platform}
-                      url={e?.url}
-                    ></SocialMediaButton>
-                  );
-                })}
-              </Flex>
+              {contributor.socialNetwork &&
+              contributor.socialNetwork.length > 0 ? (
+                <Flex>
+                  {contributor.socialNetwork.map((e, index) => {
+                    return (
+                      <SocialMediaButton
+                        key={index}
+                        platform={e?.platform}
+                        url={e?.url}
+                        iconAriaLabel={`${capitalizeEnum(e?.platform)} link for ${contributor.firstName}`}
+                      ></SocialMediaButton>
+                    );
+                  })}
+                </Flex>
+              ) : (
+                <></>
+              )}
             </Flex>
             <Flex
               gap="10px"
