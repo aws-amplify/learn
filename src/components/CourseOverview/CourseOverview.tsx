@@ -127,7 +127,7 @@ export function CourseOverview({ course }: { course: Course }) {
                 <Text
                   fontFamily="Amazon Ember Display"
                   fontSize="0.875rem"
-                  color="#879697"
+                  color="#545B64"
                 >
                   SKILL LEVEL
                 </Text>
@@ -135,7 +135,7 @@ export function CourseOverview({ course }: { course: Course }) {
                   fontFamily="Amazon Ember Display"
                   fontSize="16px"
                   fontWeight="400"
-                  color="#545B64"
+                  color="#232F3E"
                   lineHeight="24px"
                   display="flex"
                   letterSpacing="0.01px"
@@ -159,7 +159,7 @@ export function CourseOverview({ course }: { course: Course }) {
                 <Text
                   fontFamily="Amazon Ember Display"
                   fontSize="0.875rem"
-                  color="#879697"
+                  color="#545B64"
                   whiteSpace="nowrap"
                 >
                   TIME TO COMPLETE
@@ -168,7 +168,7 @@ export function CourseOverview({ course }: { course: Course }) {
                   fontFamily="Amazon Ember Display"
                   fontSize="16px"
                   fontWeight="400"
-                  color="#545B64"
+                  color="#232F3E"
                   lineHeight="24px"
                   display="flex"
                   letterSpacing="0.01px"

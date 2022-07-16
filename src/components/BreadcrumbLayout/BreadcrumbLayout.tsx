@@ -25,12 +25,22 @@ export function BreadcrumbLayout({
 
   if (breadcrumbs?.length > 0) {
     return (
-      <View as="div" padding="16px 32px" backgroundColor="#F2F3F3">
+      <View as="div" padding="16px 32px" backgroundColor="#FFFFFF">
         <Breadcrumb>
           {breadcrumbs.map((e) => {
             if (e.label && e.href) {
               if (e.isCurrent) {
-                return <Text color="#A9B6B7" aria-current="page">{e.label}</Text>;
+                return (
+                  <BreadcrumbItem
+                    key={e.href}
+                    href={e.href}
+                    isCurrent={e.isCurrent}
+                  >
+                    <Text key={e.href} color="#6d7576" aria-current="page">
+                      {e.label}
+                    </Text>
+                  </BreadcrumbItem>
+                );
               } else {
                 return (
                   <BreadcrumbItem
