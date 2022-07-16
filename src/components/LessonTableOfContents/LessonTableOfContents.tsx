@@ -66,7 +66,7 @@ export function LessonTableOfContents({
           variation="link"
           textAlign="left"
           gap="0.875rem"
-          padding="8px 29px"
+          padding="8px 15px"
           margin="0px 8px"
           borderRadius="4px"
           className={`${styles["lesson-link"]} ${
