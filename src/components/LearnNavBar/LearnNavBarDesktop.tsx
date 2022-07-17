@@ -187,3 +187,5 @@ const NavBarMenuItem = forwardRef(
     );
   }
 );
+
+NavBarMenuItem.displayName = "NavBarMenuItem";
