@@ -1,7 +1,14 @@
-import { Flex, Text, Button, useBreakpointValue } from "@aws-amplify/ui-react";
+import {
+  Flex,
+  Text,
+  Button,
+  useBreakpointValue,
+  View,
+} from "@aws-amplify/ui-react";
 import Modal from "react-modal";
 import { CloseIcon } from "../../ui-components";
 import { YoutubeEmbed } from "../YoutubeEmbed";
+import styles from "./YoutubeModal.module.scss";
 
 export function YoutubeModal({
   modalIsOpen,
@@ -21,7 +28,7 @@ export function YoutubeModal({
     small: "100vw",
     medium: "90vw",
     large: "75vw",
-    xl: "50vw"
+    xl: "50vw",
   }) as string;
 
   return (
@@ -52,9 +59,13 @@ export function YoutubeModal({
             fontWeight="300"
             fontSize="1.5rem"
           >{`Trailer for ${courseTitle}`}</Text>
-          <Button onClick={closeModal}>
-            <CloseIcon ariaLabel="Close modal" overrides={
-              {
+          <View as="div" onClick={closeModal}>
+            <CloseIcon
+              tabIndex="0"
+              role="button"
+              className={styles["close-modal"]}
+              ariaLabel="Close modal"
+              overrides={{
                 "Vector 3": {
                   // @ts-ignore
                   paths: [
@@ -63,9 +74,9 @@ export function YoutubeModal({
                       fillRule: "nonzero",
                       strokeWidth: 2,
                     },
-                  ]
+                  ],
                 },
-                "Vector 4":{
+                "Vector 4": {
                   // @ts-ignore
                   paths: [
                     {
@@ -73,11 +84,11 @@ export function YoutubeModal({
                       fillRule: "nonzero",
                       strokeWidth: 2,
                     },
-                  ]
-                }
-              }
-            } />
-          </Button>
+                  ],
+                },
+              }}
+            />
+          </View>
         </Flex>
         <YoutubeEmbed embedId={courseTrailerEmbedId || ""} />
       </Flex>
