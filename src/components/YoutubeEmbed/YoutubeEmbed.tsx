@@ -5,7 +5,7 @@ export function YoutubeEmbed({ embedId }: { embedId: string }) {
     <View as="div">
       <iframe
         width="100%"
-        height="450"
+        height="450px"
         src={`https://www.youtube-nocookie.com/embed/${embedId}`}
         title="YouTube video player"
         frameBorder="0"
