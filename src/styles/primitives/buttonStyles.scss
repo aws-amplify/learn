@@ -8,11 +8,6 @@
   &:hover {
     border-color: #065198 !important;
   }
-
-  &:active {
-    color: #F0FAFF !important;
-    border-color: #03305E !important;
-  }
 }
 
 // Overwrite "Default" button
@@ -20,19 +15,11 @@ button[data-variation="default"][type="button"] {
   &:hover {
     border-color: hsl(213, 28%, 19%) !important;
   }
-
-  &:focus {
-    box-shadow: none !important;
-  }
 }
 
 // Overwrite "Primary button
 button[data-variation="primary"][type="button"] {
   &:hover {
     border-color: none !important;
-  }
-
-  &:focus {
-    box-shadow: none !important;
   }
 }
