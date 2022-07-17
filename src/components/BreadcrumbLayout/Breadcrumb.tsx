@@ -30,7 +30,7 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
   const childrenWithSeparator = childrenArray.map((child, index) => {
     if (index !== childrenArray.length - 1) {
       return (
-        <Fragment>
+        <Fragment key={index}>
           {child}
           <Icon
             ariaLabel="Breadcrumb separator"
