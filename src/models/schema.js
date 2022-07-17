@@ -178,6 +178,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "trailerEmbedId": {
+                    "name": "trailerEmbedId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -829,5 +836,5 @@ export const schema = {
             }
         }
     },
-    "version": "b19a2f4039363b0b5c9a8350d640cb10"
+    "version": "0e97541eaf541aec85489969f480fab6"
 };

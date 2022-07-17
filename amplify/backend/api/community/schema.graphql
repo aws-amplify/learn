@@ -83,6 +83,7 @@ type Course @model @auth(rules: [{allow: public, operations: [read]}]) {
   homepageID: ID @index(name: "byHomePage")
   isFeatured: Boolean
   imageAltText: String
+  trailerEmbedId: String
 }
 
 type Footer @model @auth(rules: [{allow: public, operations: [read]}]) {
