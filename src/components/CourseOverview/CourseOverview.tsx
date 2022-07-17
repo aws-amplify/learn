@@ -13,9 +13,17 @@ import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { LessonLayout } from "../LessonLayout";
 import { LessonTableOfContents } from "../LessonTableOfContents";
 import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
+import { useState } from "react";
+import { YoutubeModal } from "../YoutubeModal";
 
 export function CourseOverview({ course }: { course: Course }) {
   const router = useRouter();
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const heroLayoutVariant = useBreakpointValue({
     base: "mobile",
@@ -41,7 +49,14 @@ export function CourseOverview({ course }: { course: Course }) {
       >
         Start course
       </Button>
-      <Button isFullWidth={true}>Watch trailer</Button>
+      <Button
+        isFullWidth={true}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Watch trailer
+      </Button>
     </>
   );
 
@@ -185,6 +200,14 @@ export function CourseOverview({ course }: { course: Course }) {
           <View as="div" columnStart={1} marginTop="32px">
             <LessonTableOfContents courseId={course.id} />
           </View>
+          {course.trailerEmbedId && (
+            <YoutubeModal
+              modalIsOpen={modalIsOpen}
+              closeModal={closeModal}
+              courseTitle={course.title}
+              courseTrailerEmbedId={course.trailerEmbedId}
+            />
+          )}
           <Flex
             columnStart={1}
             direction="column"
