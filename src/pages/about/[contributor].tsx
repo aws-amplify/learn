@@ -6,14 +6,13 @@ import {
   Text,
   Button,
   useBreakpointValue,
-  Placeholder,
 } from "@aws-amplify/ui-react";
-import { DataStore } from "aws-amplify";
+import { withSSRContext } from "aws-amplify";
+import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { Key, useCallback } from "react";
 import { Layout } from "../../components/Layout";
 import { Contributor, ContributorCourse, Course } from "../../models";
-import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import ContributorCollection from "../../components/Contributors/ContributorCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
@@ -33,13 +32,11 @@ const profilePicSize = {
   large: "232px",
 };
 
-const ContributorPage = () => {
+export default function ContributorPage(data: any) {
+  const contributor = deserializeModel(Contributor, data.contributor);
+  const courses = deserializeModel(Course, data.courses);
+
   const router = useRouter();
-  const { contributor: username, id }: { contributor?: string; id?: string } =
-    router.query;
-  const [contributor, setContributor] = useState<Contributor>({ id: "" });
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const otherContributorsLimit = useBreakpointValue({
     base: 2,
@@ -61,50 +58,6 @@ const ContributorPage = () => {
     small: { justifySelf: "stretch" },
     medium: { justifySelf: "flex-end" },
   });
-
-  async function getContributor() {
-    let result;
-    if (id) {
-      result = await DataStore.query(Contributor, id);
-
-      if (result) {
-        setContributor(result);
-        setIsLoading(false);
-      }
-    } else if (username) {
-      result = await DataStore.query(Contributor, (c) =>
-        c.username("eq", username)
-      );
-
-      if (result.length > 0) {
-        setContributor(result[0]);
-        setIsLoading(false);
-      }
-    }
-  }
-
-  const getContributorCallback = useCallback(getContributor, [id, username]);
-  useFirstDatastoreQuery(getContributorCallback);
-
-  async function getContributorCourses() {
-    const contributorCourses = await DataStore.query(ContributorCourse);
-
-    const result = contributorCourses.filter(
-      (e) => e.contributor.username === username
-    );
-
-    setCourses(result.map((e) => e.course));
-  }
-
-  const getContributorCoursesCallback = useCallback(getContributorCourses, [
-    username,
-  ]);
-  useFirstDatastoreQuery(getContributorCoursesCallback);
-
-  useEffect(() => {
-    getContributorCallback();
-    getContributorCoursesCallback();
-  }, [getContributorCallback, getContributorCoursesCallback]);
 
   function contributorBreadcrumbCallback(
     pathnameArray: string[],
@@ -153,37 +106,38 @@ const ContributorPage = () => {
           large: "128px",
         }}
       >
-        {isLoading ? (
-          <Placeholder size="large" isLoaded={!isLoading} />
-        ) : (
-          <Flex
-            justifyContent="space-between"
-            direction={{
-              base: "column-reverse",
-              small: "column-reverse",
-              medium: "column-reverse",
-              large: "row",
-            }}
-            columnGap="100px"
-          >
-            <Flex direction="column">
-              <Text fontWeight="300" fontSize="2.5rem">
-                {`${contributor.firstName} ${contributor.lastName}`}
-              </Text>
-              <Text
-                fontFamily="Amazon Ember Display"
-                fontWeight="400"
-                fontSize="1.5rem"
-              >
-                {contributor.jobTitle}
-              </Text>
-              <Text fontWeight="400" fontSize="1rem">
-                {contributor.bio}
-              </Text>
-              {contributor.socialNetwork &&
-              contributor.socialNetwork.length > 0 ? (
-                <Flex>
-                  {contributor.socialNetwork.map((e, index) => {
+        <Flex
+          justifyContent="space-between"
+          direction={{
+            base: "column-reverse",
+            small: "column-reverse",
+            medium: "column-reverse",
+            large: "row",
+          }}
+          columnGap="100px"
+        >
+          <Flex direction="column">
+            <Text fontWeight="300" fontSize="2.5rem">
+              {`${contributor.firstName} ${contributor.lastName}`}
+            </Text>
+            <Text
+              fontFamily="Amazon Ember Display"
+              fontWeight="400"
+              fontSize="1.5rem"
+            >
+              {contributor.jobTitle}
+            </Text>
+            <Text fontWeight="400" fontSize="1rem">
+              {contributor.bio}
+            </Text>
+            {contributor.socialNetwork &&
+            contributor.socialNetwork.length > 0 ? (
+              <Flex>
+                {contributor.socialNetwork.map(
+                  (
+                    e: { platform: string; url: string },
+                    index: Key | null | undefined
+                  ) => {
                     return (
                       <SocialMediaButton
                         key={index}
@@ -196,161 +150,183 @@ const ContributorPage = () => {
                         iconHeight="24px"
                       ></SocialMediaButton>
                     );
-                  })}
-                </Flex>
-              ) : (
-                <></>
-              )}
-            </Flex>
-            <Flex
-              gap="10px"
-              direction="row"
-              width={profilePicBorderSize}
-              height={profilePicBorderSize}
-              alignItems="flex-start"
-              shrink="0"
-              position="relative"
-              border="3px solid rgba(169,182,183,1)"
-              borderRadius="50%"
-              padding="9px 9px 9px 9px"
-              backgroundColor="rgba(255,255,255,1)"
-            >
-              <Image
-                width={profilePicSize}
-                height={profilePicSize}
-                grow="1"
-                basis="104px"
-                alignSelf="stretch"
-                position="relative"
-                borderRadius="50%"
-                src={contributor?.profilePic || ""}
-                alt={`Profile pic of ${contributor.firstName}`}
-              ></Image>
-            </Flex>
+                  }
+                )}
+              </Flex>
+            ) : (
+              <></>
+            )}
           </Flex>
-        )}
-        {isLoading ? (
-          <Placeholder size="large" isLoaded={!isLoading} />
-        ) : (
-          <Grid
-            templateRows={{
-              small: "auto",
-              medium: "auto 1fr",
-            }}
-            templateColumns={{
-              base: "1fr",
-              small: "1fr",
-              medium: "1fr 1fr",
-            }}
-            rowGap="32px"
+          <Flex
+            gap="10px"
+            direction="row"
+            width={profilePicBorderSize}
+            height={profilePicBorderSize}
+            alignItems="flex-start"
+            shrink="0"
+            position="relative"
+            border="3px solid rgba(169,182,183,1)"
+            borderRadius="50%"
+            padding="9px 9px 9px 9px"
+            backgroundColor="rgba(255,255,255,1)"
           >
-            <Text
-              display={contributorSectionTitle}
-              fontFamily="'Amazon Ember Display'"
-              fontWeight="400"
-              fontSize="2rem"
-            >
-              {`Courses by ${contributor.firstName}`}
-            </Text>
-            <View
-              as="div"
-              order={{
-                base: 1,
-                small: 1,
-                medium: 0,
-              }}
-              alignSelf="center"
-              style={sectionButtonClassNames}
-            >
-              <Button
-                aria-label="All Courses"
-                width="100%"
-                onClick={() => {
-                  router.push("/courses");
-                }}
-              >
-                All courses
-              </Button>
-            </View>
-            <View as="div" columnSpan={2}>
-              <CardLayoutCollection
-                items={courses}
-                type="grid"
-                templateColumns={{
-                  base: "1fr",
-                  small: "1fr",
-                  medium: "1fr 1fr",
-                  large: "1fr 1fr",
-                  xl: "1fr 1fr 1fr",
-                }}
-                gap="64px 20px"
-              />
-            </View>
-          </Grid>
-        )}
-        {isLoading ? (
-          <Placeholder size="large" isLoaded={!isLoading} />
-        ) : (
-          <Grid
-            templateRows={{
-              small: "auto",
-              medium: "auto 1fr",
-            }}
-            templateColumns={{
-              base: "1fr",
-              small: "1fr",
-              medium: "1fr 1fr",
-            }}
-            rowGap="32px"
+            <Image
+              width={profilePicSize}
+              height={profilePicSize}
+              grow="1"
+              basis="104px"
+              alignSelf="stretch"
+              position="relative"
+              borderRadius="50%"
+              src={contributor?.profilePic || ""}
+              alt={`Profile pic of ${contributor.firstName}`}
+            ></Image>
+          </Flex>
+        </Flex>
+
+        <Grid
+          templateRows={{
+            small: "auto",
+            medium: "auto 1fr",
+          }}
+          templateColumns={{
+            base: "1fr",
+            small: "1fr",
+            medium: "1fr 1fr",
+          }}
+          rowGap="32px"
+        >
+          <Text
+            display={contributorSectionTitle}
+            fontFamily="'Amazon Ember Display'"
+            fontWeight="400"
+            fontSize="2rem"
           >
-            <Text
-              fontFamily="'Amazon Ember Display'"
-              fontWeight="400"
-              fontSize="2rem"
-            >
-              Other Contributors
-            </Text>
-            <View
-              as="div"
-              order={{
-                base: 1,
-                small: 1,
-                medium: 0,
+            {`Courses by ${contributor.firstName}`}
+          </Text>
+          <View
+            as="div"
+            order={{
+              base: 1,
+              small: 1,
+              medium: 0,
+            }}
+            alignSelf="center"
+            style={sectionButtonClassNames}
+          >
+            <Button
+              aria-label="All Courses"
+              width="100%"
+              onClick={() => {
+                router.push("/courses");
               }}
-              alignSelf="center"
-              style={sectionButtonClassNames}
             >
-              <Button
-                width="100%"
-                aria-label="All contributors"
-                onClick={() => {
-                  router.push("/about");
-                }}
-              >
-                All contributors
-              </Button>
-            </View>
-            <View as="div" columnSpan={2}>
-              <ContributorCollection
-                type="grid"
-                templateColumns={{
-                  base: "1fr",
-                  small: "1fr",
-                  medium: "1fr 1fr",
-                  large: "1fr 1fr 1fr",
-                  xl: "1fr 1fr 1fr 1fr",
-                }}
-                gap="20px"
-                useLargeVariant={false}
-                filter={(e: Contributor) => e.username !== contributor.username}
-                limit={otherContributorsLimit}
-              />
-            </View>
-          </Grid>
-        )}
+              All courses
+            </Button>
+          </View>
+          <View as="div" columnSpan={2}>
+            <CardLayoutCollection
+              items={courses}
+              type="grid"
+              templateColumns={{
+                base: "1fr",
+                small: "1fr",
+                medium: "1fr 1fr",
+                large: "1fr 1fr",
+                xl: "1fr 1fr 1fr",
+              }}
+              gap="64px 20px"
+            />
+          </View>
+        </Grid>
+
+        <Grid
+          templateRows={{
+            small: "auto",
+            medium: "auto 1fr",
+          }}
+          templateColumns={{
+            base: "1fr",
+            small: "1fr",
+            medium: "1fr 1fr",
+          }}
+          rowGap="32px"
+        >
+          <Text
+            fontFamily="'Amazon Ember Display'"
+            fontWeight="400"
+            fontSize="2rem"
+          >
+            Other Contributors
+          </Text>
+          <View
+            as="div"
+            order={{
+              base: 1,
+              small: 1,
+              medium: 0,
+            }}
+            alignSelf="center"
+            style={sectionButtonClassNames}
+          >
+            <Button
+              width="100%"
+              aria-label="All contributors"
+              onClick={() => {
+                router.push("/about");
+              }}
+            >
+              All contributors
+            </Button>
+          </View>
+          <View as="div" columnSpan={2}>
+            <ContributorCollection
+              type="grid"
+              templateColumns={{
+                base: "1fr",
+                small: "1fr",
+                medium: "1fr 1fr",
+                large: "1fr 1fr 1fr",
+                xl: "1fr 1fr 1fr 1fr",
+              }}
+              gap="20px"
+              useLargeVariant={false}
+              filter={(e: Contributor) => e.username !== contributor.username}
+              limit={otherContributorsLimit}
+            />
+          </View>
+        </Grid>
       </Flex>
     </Layout>
   );
-};
+}
 
-export default ContributorPage;
+export async function getServerSideProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { contributor: username } = context.query;
+
+  let contributorResults: Contributor[] = await DataStore.query(
+    Contributor,
+    (c: any) => c.username("eq", username)
+  );
+
+  const contributorCoursesRelationships: ContributorCourse[] =
+    await DataStore.query(ContributorCourse);
+
+  const filteredCourses = contributorCoursesRelationships
+    .filter((e) => e.contributor.username === username)
+    .map((e) => e.course);
+
+  if (contributorResults.length > 0) {
+    return {
+      props: {
+        contributor: serializeModel(contributorResults[0]),
+        courses: serializeModel(filteredCourses),
+      },
+    };
+  }
+
+  return {
+    notFound: true,
+  };
+}

@@ -2,31 +2,15 @@ import { useRouter } from "next/router";
 import { Collection, Grid, Heading, View } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { CardLayout } from "../../components/CardLayout";
-import { Course, CourseTag } from "../../models";
-import { useCallback, useEffect, useState } from "react";
-import { DataStore } from "aws-amplify";
-import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
+import { Course, CourseTag, Tag } from "../../models";
+import { useCallback } from "react";
+import { withSSRContext } from "aws-amplify";
+import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 
-const TagPage = () => {
+export default function TagPage(data: any) {
+  const relatedCourses = deserializeModel(Course, data.relatedCourses);
   const router = useRouter();
   const { tagname } = router.query;
-  const [relatedCourses, setRelatedCourses] = useState<Course[]>([]);
-
-  async function getRelatedCourses() {
-    const courseTags = await DataStore.query(CourseTag);
-
-    const result = courseTags.filter((e) => e.tag.name === tagname);
-
-    setRelatedCourses(result.map((e) => e.course));
-  }
-
-  const getRelatedCoursesCallback = useCallback(getRelatedCourses, [tagname]);
-
-  useFirstDatastoreQuery(getRelatedCoursesCallback);
-
-  useEffect(() => {
-    getRelatedCoursesCallback();
-  }, [getRelatedCoursesCallback]);
 
   function tagsBreadcrumbCallback(
     pathnameArray: string[],
@@ -99,7 +83,7 @@ const TagPage = () => {
           gap="64px"
           items={relatedCourses}
         >
-          {(item, index) => (
+          {(item: Course) => (
             <CardLayout
               isOnHomePage={false}
               height="auto"
@@ -113,6 +97,31 @@ const TagPage = () => {
       </View>
     </Layout>
   );
-};
+}
 
-export default TagPage;
+export async function getServerSideProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { tagname } = context.query;
+
+  const tags: Tag[] = await DataStore.query(Tag, (t: any) =>
+    t.name("eq", tagname)
+  );
+
+  if (tags.length > 0) {
+    const courseTags: CourseTag[] = await DataStore.query(CourseTag);
+
+    const filteredCourses = courseTags
+      .filter((e) => e.tag.name === tagname)
+      .map((e) => e.course);
+
+    return {
+      props: {
+        relatedCourses: serializeModel(filteredCourses),
+      },
+    };
+  }
+
+  return {
+    notFound: true,
+  };
+}

@@ -1,80 +1,64 @@
-import { Placeholder } from "@aws-amplify/ui-react";
-import { DataStore } from "aws-amplify";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { withSSRContext } from "aws-amplify";
+import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { CourseOverview } from "../../../components/CourseOverview";
 import { CoursesRouteLayout } from "../../../components/CoursesRouteLayout";
-import { useFirstDatastoreQuery } from "../../../hooks/useFirstDatastoreQuery";
-import { Course } from "../../../models";
+import { Course, Lesson } from "../../../models";
 
-const CoursePage = () => {
-  const router = useRouter();
-  const { coursetitle, id }: { coursetitle?: string; id?: string } =
-    router.query;
+export default function CoursePage(data: any) {
+  const course = deserializeModel(Course, data.course);
+  const lessons = deserializeModel(Lesson, data.lessons);
+
+  return (
+    <CoursesRouteLayout
+      metaObject={{
+        title: course.title ?? "",
+        description: course.description ?? "",
+      }}
+    >
+      <CourseOverview course={course} lessons={lessons} />
+    </CoursesRouteLayout>
+  );
+}
+
+export async function getServerSideProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { coursetitle } = context.query;
 
   // Get the course title without the appended id
   const originalCourseTitle = coursetitle
     ?.substring(0, coursetitle?.lastIndexOf("-"))
     .replaceAll("-", " ");
 
-  const courseIdBeginsWith = coursetitle?.substring(
+  // Get the course Id prefix
+  const courseIdPrefix = coursetitle?.substring(
     coursetitle?.lastIndexOf("-") + 1,
-    coursetitle?.length
+    coursetitle.length
   );
 
-  const [course, setCourse] = useState<Course | null>(null);
-  const [isCourseLoaded, setIsCourseLoaded] = useState(false);
+  const courseResults: Course[] = await DataStore.query(Course, (c: any) =>
+    c.id("beginsWith", courseIdPrefix).title("eq", originalCourseTitle)
+  );
 
-  async function getCourse() {
-    let result;
-    if (id) {
-      result = await DataStore.query(Course, id);
+  const courseResult = courseResults[0];
 
-      if (result) {
-        setIsCourseLoaded(true);
-        setCourse(result);
-      }
-    } else if (originalCourseTitle && courseIdBeginsWith) {
-      result = await DataStore.query(Course, (c) =>
-        c.title("eq", originalCourseTitle).id("beginsWith", courseIdBeginsWith)
-      );
-
-      if (result) {
-        setIsCourseLoaded(true);
-        setCourse(result[0]);
-      }
-    }
-  }
-
-  const getCourseCallback = useCallback(getCourse, [
-    id,
-    originalCourseTitle,
-    courseIdBeginsWith,
-  ]);
-  useFirstDatastoreQuery(getCourseCallback);
-
-  useEffect(() => {
-    getCourseCallback();
-  }, [getCourseCallback]);
-
-  if (course && course.id.length > 0) {
-    return (
-      <CoursesRouteLayout
-        metaObject={{
-          title: course.title ?? "",
-          description: course.description ?? "",
-        }}
-      >
-        {course?.id.length > 0 ? (
-          <CourseOverview course={course} />
-        ) : (
-          <Placeholder isLoaded={isCourseLoaded} />
-        )}
-      </CoursesRouteLayout>
+  if (courseResult) {
+    const lessons: Lesson[] = await DataStore.query(Lesson, (l: any) =>
+      l.lessonCourseLessonId("eq", courseResult.id)
     );
+
+    const lessonsSorted = lessons.sort(
+      (a: Lesson, b: Lesson) => a.lessonNumber - b.lessonNumber
+    );
+
+    return {
+      props: {
+        course: serializeModel(courseResult),
+        lessons: serializeModel(lessonsSorted),
+      },
+    };
   }
 
-  return <Placeholder />;
-};
-
-export default CoursePage;
+  return {
+    notFound: true,
+  };
+}
