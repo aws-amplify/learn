@@ -353,9 +353,6 @@ export function CardLayout(props) {
         className={styles["home-page-card"]}
         variation="elevated"
         borderRadius="16px"
-        onClick={() => {
-          console.log("hi");
-        }}
       >
         {cardLayout}
       </Card>
