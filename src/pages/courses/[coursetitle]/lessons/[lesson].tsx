@@ -74,10 +74,8 @@ const LessonPage = () => {
   useFirstDatastoreQuery(getLessonCallback);
 
   useEffect(() => {
-    if (!lesson) {
       getLessonCallback();
-    }
-  }, [lesson, getLessonCallback]);
+  }, [getLessonCallback]);
 
   if (isLoaded) {
     return (
