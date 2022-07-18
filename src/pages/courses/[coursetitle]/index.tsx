@@ -43,7 +43,7 @@ const CoursePage = () => {
     }
   }
 
-  const getCourseCallback = useCallback(getCourse, [id, originalCourseTitle]);
+  const getCourseCallback = useCallback(getCourse, [id, originalCourseTitle, courseIdBeginsWith]);
   useFirstDatastoreQuery(getCourseCallback);
 
   useEffect(() => {
