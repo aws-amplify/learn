@@ -77,7 +77,7 @@ export function SocialMediaButton({
         >
           {/* Hard coding the position of the Github icon because it's built different from the other icons */}
           <GithubIcon
-            top="20%"
+            top="15%"
             left="20%"
             ariaLabel={iconAriaLabel}
             overrides={{
