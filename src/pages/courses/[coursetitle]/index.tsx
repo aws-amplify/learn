@@ -17,6 +17,8 @@ const CoursePage = () => {
     ?.substring(0, coursetitle?.lastIndexOf("-"))
     .replaceAll("-", " ");
 
+  const courseIdBeginsWith = coursetitle?.substring(coursetitle?.lastIndexOf('-') + 1, coursetitle?.length);
+
   const [course, setCourse] = useState<Course | null>(null);
   const [isCourseLoaded, setIsCourseLoaded] = useState(false);
 
@@ -29,9 +31,9 @@ const CoursePage = () => {
         setIsCourseLoaded(true);
         setCourse(result);
       }
-    } else if (originalCourseTitle) {
+    } else if (originalCourseTitle && courseIdBeginsWith) {
       result = await DataStore.query(Course, (c) =>
-        c.title("eq", originalCourseTitle)
+        c.title("eq", originalCourseTitle).id('beginsWith', courseIdBeginsWith)
       );
 
       if (result) {
@@ -45,8 +47,11 @@ const CoursePage = () => {
   useFirstDatastoreQuery(getCourseCallback);
 
   useEffect(() => {
-    getCourseCallback();
-  }, [getCourseCallback]);
+    if (!course && !isCourseLoaded) {
+      getCourseCallback();
+    }
+    
+  }, [course, isCourseLoaded, getCourseCallback]);
 
   if (course && course.id.length > 0) {
     return (
@@ -54,7 +59,6 @@ const CoursePage = () => {
         metaObject={{
           title: course.title ?? "",
           description: course.description ?? "",
-          url: course.title ?? "",
         }}
       >
         {course?.id.length > 0 ? (
