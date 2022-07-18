@@ -51,9 +51,6 @@ export function YoutubeModal({
     return (
       <div
         {...props}
-        // position="fixed"
-        // inset="0px"
-        // backgroundColor="rgba(0, 0, 0, 0.6)"
       >
         <View
           as="div"
