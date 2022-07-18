@@ -57,7 +57,6 @@ const LessonPage = () => {
         );
 
         const lessonResult = lessonResults[0];
-        console.log("lesson", lessonResult);
 
         if (lessonResult && lessonResult.id) {
           setIsLoaded(true);
@@ -75,8 +74,10 @@ const LessonPage = () => {
   useFirstDatastoreQuery(getLessonCallback);
 
   useEffect(() => {
-    getLessonCallback();
-  }, [getLessonCallback]);
+    if (!lesson) {
+      getLessonCallback();
+    }
+  }, [lesson, getLessonCallback]);
 
   if (isLoaded) {
     return (
