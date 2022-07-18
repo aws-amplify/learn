@@ -189,7 +189,9 @@ const ContributorPage = () => {
                         key={index}
                         platform={e?.platform}
                         url={e?.url}
-                        iconAriaLabel={`${capitalizeEnum(e?.platform)} link for ${contributor.firstName}`}
+                        iconAriaLabel={`${capitalizeEnum(
+                          e?.platform
+                        )} link for ${contributor.firstName}`}
                       ></SocialMediaButton>
                     );
                   })}
