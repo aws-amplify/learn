@@ -14,6 +14,7 @@ import styles from "./SocialMediaButton.module.scss";
 
 type SocialMediaButtonProps = {
   platform:
+    | string
     | "INSTAGRAM"
     | "LINKEDIN"
     | "FACEBOOK"
