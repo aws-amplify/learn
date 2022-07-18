@@ -51,6 +51,9 @@ const AboutPage: NextPage = () => {
               size="large"
               gap="10px"
               width="max-content"
+              onClick={() => {
+                window.open('https://discord.gg/amplify', '_blank', 'noopener,noreferrer')
+              }}
             >
               Chat on Discord
               <ExternalIconCustom />

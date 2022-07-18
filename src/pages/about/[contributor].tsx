@@ -192,6 +192,8 @@ const ContributorPage = () => {
                         iconAriaLabel={`${capitalizeEnum(
                           e?.platform
                         )} link for ${contributor.firstName}`}
+                        iconWidth="24px"
+                        iconHeight="24px"
                       ></SocialMediaButton>
                     );
                   })}

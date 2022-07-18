@@ -11,10 +11,9 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import GithubIcon from "./GithubIcon";
 import { View } from "@aws-amplify/ui-react";
 export default function LearnSocialCustom(props) {
-  const { children, overrides: overridesProp, ...rest } = props;
+  const { children, showBorder, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
       overrides: { GithubIcon: {}, LearnSocial: {} },
@@ -50,22 +49,12 @@ export default function LearnSocialCustom(props) {
       width="41px"
       height="41px"
       position="relative"
-      border="1px SOLID rgba(169,182,183,1)"
-      borderRadius="100.5px"
       padding="0px 0px 0px 0px"
+      {...(showBorder ? {border: "1px SOLID rgba(169,182,183,1)", borderRadius:"100.5px"} : {})}
       {...rest}
       {...getOverrideProps(overrides, "LearnSocial")}
     >
       {children}
-      {/* <GithubIcon
-        position="absolute"
-        top="20%"
-        bottom="20%"
-        left="20%"
-        right="20%"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "GithubIcon")}
-      ></GithubIcon> */}
     </View>
   );
 }
