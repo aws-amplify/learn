@@ -34,7 +34,7 @@ export function YoutubeModal({
   }) as string;
 
   // Custom overlay element to hold the close button outside of the actual modal
-  const overlayElement = (
+  const OverlayElement = (
     props: JSX.IntrinsicAttributes &
       ClassAttributes<HTMLDivElement> &
       HTMLAttributes<HTMLDivElement>,
@@ -98,7 +98,7 @@ export function YoutubeModal({
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      overlayElement={overlayElement}
+      overlayElement={OverlayElement}
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0.800)",
