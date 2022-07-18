@@ -17,7 +17,10 @@ const CoursePage = () => {
     ?.substring(0, coursetitle?.lastIndexOf("-"))
     .replaceAll("-", " ");
 
-  const courseIdBeginsWith = coursetitle?.substring(coursetitle?.lastIndexOf('-') + 1, coursetitle?.length);
+  const courseIdBeginsWith = coursetitle?.substring(
+    coursetitle?.lastIndexOf("-") + 1,
+    coursetitle?.length
+  );
 
   const [course, setCourse] = useState<Course | null>(null);
   const [isCourseLoaded, setIsCourseLoaded] = useState(false);
@@ -33,7 +36,7 @@ const CoursePage = () => {
       }
     } else if (originalCourseTitle && courseIdBeginsWith) {
       result = await DataStore.query(Course, (c) =>
-        c.title("eq", originalCourseTitle).id('beginsWith', courseIdBeginsWith)
+        c.title("eq", originalCourseTitle).id("beginsWith", courseIdBeginsWith)
       );
 
       if (result) {
@@ -43,15 +46,16 @@ const CoursePage = () => {
     }
   }
 
-  const getCourseCallback = useCallback(getCourse, [id, originalCourseTitle, courseIdBeginsWith]);
+  const getCourseCallback = useCallback(getCourse, [
+    id,
+    originalCourseTitle,
+    courseIdBeginsWith,
+  ]);
   useFirstDatastoreQuery(getCourseCallback);
 
   useEffect(() => {
-    if (!course && !isCourseLoaded) {
-      getCourseCallback();
-    }
-    
-  }, [course, isCourseLoaded, getCourseCallback]);
+    getCourseCallback();
+  }, [getCourseCallback]);
 
   if (course && course.id.length > 0) {
     return (
