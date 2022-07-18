@@ -29,16 +29,22 @@ export function ShareThis() {
           platform={SocialMediaPlatform.LINKEDIN}
           url={linkedInShareUrl}
           iconAriaLabel="Share to LinkedIn"
+          iconWidth="24px"
+          iconHeight="24px"
         />
         <SocialMediaButton
           platform={SocialMediaPlatform.TWITTER}
           url={twitterShareUrl}
           iconAriaLabel="Share to Twitter"
+          iconWidth="24px"
+          iconHeight="24px"
         />
         <SocialMediaButton
           platform={SocialMediaPlatform.FACEBOOK}
           url={facebookShareUrl}
           iconAriaLabel="Share to Facebook"
+          iconWidth="24px"
+          iconHeight="24px"
         />
       </Flex>
     </Flex>
