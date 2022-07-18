@@ -1,12 +1,10 @@
-import {
-  LearnFooterMobile,
-  LearnFooter as FigmaLearnFooter,
-} from "../../ui-components";
+import { default as LearnFooterMobileCustom } from "../../ui-components/LearnFooterMobileCustom";
+import { default as LearnFooterCustom } from "../../ui-components/LearnFooterCustom";
 
 export function LearnFooter({ isMobile }: { isMobile: boolean }) {
   if (!isMobile) {
-    return <FigmaLearnFooter width="100vw" />;
+    return <LearnFooterCustom width="100vw" />;
   } else {
-    return <LearnFooterMobile width="100vw" />;
+    return <LearnFooterMobileCustom width="100vw" />;
   }
 }
