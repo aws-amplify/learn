@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Grid,
+  Placeholder,
   Text,
   useBreakpointValue,
   View,
@@ -14,28 +15,31 @@ import { ShareThis } from "../ShareThis";
 import styles from "./LessonLayout.module.scss";
 import { useCallback, useEffect, useState } from "react";
 import { DataStore } from "aws-amplify";
+import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 
 export function LessonLayout({
   course,
   mainChildren,
   sidebarChildren,
 }: {
-  course: Course | null;
+  course: Course;
   mainChildren: any;
   sidebarChildren: any;
 }) {
   const router = useRouter();
 
   const [contributors, setContributors] = useState<Contributor[]>([]);
+  const [contributorsLoaded, setContributorsLoaded] = useState(false);
 
   async function getCourseContributors() {
-    if (course?.id) {
+    if (course.id) {
       const contributorCourses = await DataStore.query(ContributorCourse);
 
       const result = contributorCourses.filter(
         (rel) => rel.course.id === course.id
       );
 
+      setContributorsLoaded(true);
       setContributors(result.map((e) => e.contributor));
     }
   }
@@ -43,6 +47,8 @@ export function LessonLayout({
   const getCourseContributorsCallback = useCallback(getCourseContributors, [
     course?.id,
   ]);
+
+  useFirstDatastoreQuery(getCourseContributorsCallback);
 
   useEffect(() => {
     getCourseContributorsCallback();
@@ -100,7 +106,11 @@ export function LessonLayout({
           <Flex direction="column">
             {sidebarChildren}
             <View marginTop="40px">
-              <CourseContributors contributors={contributors} />
+              {contributorsLoaded ? (
+                <CourseContributors contributors={contributors} />
+              ) : (
+                <Placeholder isLoaded={contributorsLoaded} />
+              )}
             </View>
             <View marginTop="40px">
               <ShareThis />
@@ -111,7 +121,11 @@ export function LessonLayout({
       {!showInSidebarBreakpoint && (
         <Flex direction="column" columnStart={1}>
           <View marginTop="64px">
-            <CourseContributors contributors={contributors} />{" "}
+            {contributorsLoaded ? (
+              <CourseContributors contributors={contributors} />
+            ) : (
+              <Placeholder isLoaded={contributorsLoaded} />
+            )}
           </View>
           <View marginTop="64px">
             <ShareThis />

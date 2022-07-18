@@ -1,7 +1,5 @@
 import { Flex, View, Text, Button } from "@aws-amplify/ui-react";
-import { DataStore } from "aws-amplify";
 import router from "next/router";
-import { useCallback, useEffect, useState } from "react";
 import { Lesson } from "../../models";
 import { PlayIcon } from "../../ui-components";
 import styles from "./LessonTableOfContents.module.scss";
@@ -9,27 +7,13 @@ import styles from "./LessonTableOfContents.module.scss";
 // Maybe create a "Course" layout so that the table of contents can always be there?
 export function LessonTableOfContents({
   courseId,
+  lessons,
   currentLesson,
 }: {
   courseId: string;
+  lessons: Lesson[];
   currentLesson?: string;
 }) {
-  const [lessons, setLessons] = useState<Lesson[]>([]);
-
-  async function getLessons() {
-    const result = await DataStore.query(Lesson, (l) =>
-      l.lessonCourseLessonId("eq", courseId)
-    );
-
-    const sortedByLessons = result.sort(
-      (a, b) => a.lessonNumber - b.lessonNumber
-    );
-
-    setLessons(sortedByLessons);
-  }
-
-  const getLessonsCallback = useCallback(getLessons, [courseId]);
-
   function createLessonTOC() {
     let chapter = 0;
 
@@ -128,10 +112,6 @@ export function LessonTableOfContents({
 
     return closure;
   }
-
-  useEffect(() => {
-    getLessonsCallback();
-  }, [getLessonsCallback]);
 
   if (lessons.length > 0) {
     return (

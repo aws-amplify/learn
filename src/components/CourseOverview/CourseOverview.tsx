@@ -8,7 +8,7 @@ import {
   useBreakpointValue,
   View,
 } from "@aws-amplify/ui-react";
-import { Contributor, Course } from "../../models";
+import { Lesson, Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { LessonLayout } from "../LessonLayout";
 import { LessonTableOfContents } from "../LessonTableOfContents";
@@ -16,7 +16,13 @@ import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
 import { useState } from "react";
 import { YoutubeModal } from "../YoutubeModal";
 
-export function CourseOverview({ course }: { course: Course }) {
+export function CourseOverview({
+  course,
+  lessons,
+}: {
+  course: Course;
+  lessons: Lesson[];
+}) {
   const router = useRouter();
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -198,7 +204,7 @@ export function CourseOverview({ course }: { course: Course }) {
             </Card>
           </Flex>
           <View as="div" columnStart={1} marginTop="32px">
-            <LessonTableOfContents courseId={course.id} />
+            <LessonTableOfContents courseId={course.id} lessons={lessons} />
           </View>
           {course.trailerEmbedId && (
             <YoutubeModal
