@@ -32,6 +32,13 @@ export default function Home(data: any) {
             size="large"
             gap="10px"
             width="max-content"
+            onClick={() => {
+              window.open(
+                "https://aws.amazon.com/amplify/",
+                "_blank",
+                "noopener,noreferrer"
+              );
+            }}
           >
             Try Amplify now
             <ExternalIconCustom />

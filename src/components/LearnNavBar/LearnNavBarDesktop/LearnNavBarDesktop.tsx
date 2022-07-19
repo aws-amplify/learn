@@ -122,8 +122,13 @@ export function LearnNavBarDesktop() {
           borderRadius="5px"
           padding="5px 16px 5px 16px"
           isDisabled={false}
-          // @ts-ignore
-          variation="default"
+          onClick={() => {
+            window.open(
+              "https://aws.amazon.com/amplify/",
+              "_blank",
+              "noopener,noreferrer"
+            );
+          }}
         >
           Try Amplify
           <ExternalIconCustom />
@@ -132,5 +137,3 @@ export function LearnNavBarDesktop() {
     </Flex>
   );
 }
-
-
