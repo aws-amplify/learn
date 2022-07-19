@@ -59,16 +59,7 @@ const TagsPage: NextPage = () => {
           </Text>
         </Grid>
         {isLoading ? (
-          <Grid templateColumns="1fr" autoFlow="column" gap="20px">
-            {new Array(6).fill(undefined).map((_, index) => (
-              <Placeholder
-                columnStart="1"
-                size="large"
-                isLoaded={!isLoading}
-                key={index}
-              />
-            ))}
-          </Grid>
+          <Placeholder size="large" isLoaded={!isLoading} />
         ) : (
           <Grid
             templateColumns={{
