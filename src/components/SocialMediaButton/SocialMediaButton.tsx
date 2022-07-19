@@ -81,6 +81,7 @@ export function SocialMediaButton({
             top="15%"
             left="20%"
             ariaLabel={iconAriaLabel}
+            role="button"
             overrides={{
               Shape: {
                 width: iconWidth,

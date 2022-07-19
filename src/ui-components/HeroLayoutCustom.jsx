@@ -222,7 +222,7 @@ export default function HeroLayout(props) {
         shrink="0"
         position="relative"
         padding="8px 0px 0px 0px"
-        courseTags={course?.courseTags}
+        ariaLabel="Courses hash tags"
         {...getOverrideProps(overrides, "Frame 57")}
       >
         {tags.map((tag) => (
@@ -275,7 +275,7 @@ export default function HeroLayout(props) {
           size="default"
           isDisabled={false}
           variation="primary"
-          children="Explore course"
+          ariaLabel={`Go to course ${course.title}`}
           onClick={() => {
             // TODO: Refactor this out into a utitlity function so it can be reused?
             // Use the course title with the first 5 characters of the course id as the coursetitle
@@ -293,7 +293,9 @@ export default function HeroLayout(props) {
             );
           }}
           {...getOverrideProps(overrides, "Button31473054")}
-        ></Button>
+        >
+          Explore course
+        </Button>
         <Button
           display="flex"
           gap="0"
@@ -310,9 +312,11 @@ export default function HeroLayout(props) {
           size="default"
           isDisabled={false}
           variation="default"
-          children="Watch trailer"
+          ariaLabel={`Watch trailer for course ${course.title}`}
           {...getOverrideProps(overrides, "Button31473055")}
-        ></Button>
+        >
+          Watch trailer
+        </Button>
       </Flex>
     </Flex>
   );
