@@ -41,35 +41,7 @@ export function HomePageContent() {
       }}
     >
       {isLoading ? (
-        <>
-          <Grid
-            templateColumns={{
-              base: "1fr",
-              small: "1fr",
-              medium: "1fr",
-              large: "1fr 1fr",
-            }}
-            autoFlow="column"
-            gap="20px"
-          >
-            {new Array(6).fill(undefined).map((_, index) => (
-              <Placeholder
-                columnStart="1"
-                size="large"
-                isLoaded={!isLoading}
-                key={index}
-              />
-            ))}
-            {new Array(6).fill(undefined).map((_, index) => (
-              <Placeholder
-                columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
-                size="large"
-                isLoaded={!isLoading}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </>
+        <Placeholder size="large" isLoaded={!isLoading} />
       ) : (
         <HeroCourse course={heroCourse} />
       )}
