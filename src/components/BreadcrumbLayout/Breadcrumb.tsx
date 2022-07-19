@@ -15,7 +15,9 @@ export function BreadcrumbItem({
   return (
     <Link href={href}>
       <a
-        className={`${styles['breadcrumb']} ${isCurrent ? styles["current"] : ""}`}
+        className={`${styles["breadcrumb"]} ${
+          isCurrent ? styles["current"] : ""
+        }`}
         aria-current={isCurrent ? "page" : "false"}
       >
         {children}
@@ -35,6 +37,7 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
           <Icon
             ariaLabel="Breadcrumb separator"
             viewBox={{ width: 16, height: 16 }}
+            fr={undefined}
           >
             <path
               d="M5.33301 2.6665L10.6663 7.99984L5.33301 13.3332"
