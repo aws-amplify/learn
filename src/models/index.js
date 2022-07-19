@@ -19,23 +19,16 @@ const SkillLevel = {
   "ADVANCED": "ADVANCED"
 };
 
-const { Tag, Course, Contributor, CoursesPage, AboutPage, Lesson, Footer, NavBar, HomePage, CourseTag, ContributorCourse, Image, NavMenuItem, SocialMediaLink } = initSchema(schema);
+const { Tag, Course, Contributor, Lesson, CourseTag, ContributorCourse, SocialMediaLink } = initSchema(schema);
 
 export {
   Tag,
   Course,
   Contributor,
-  CoursesPage,
-  AboutPage,
   Lesson,
-  Footer,
-  NavBar,
-  HomePage,
   CourseTag,
   ContributorCourse,
   SocialMediaPlatform,
   SkillLevel,
-  Image,
-  NavMenuItem,
   SocialMediaLink
 };
