@@ -200,6 +200,7 @@ export function CardLayout(props) {
         <Flex
           gap="12px"
           direction="row"
+          wrap="wrap"
           alignItems="flex-start"
           shrink="0"
           alignSelf="stretch"
@@ -331,6 +332,7 @@ export function CardLayout(props) {
         <Flex
           gap="8px"
           direction="row"
+          wrap="wrap"
           width="fit-content"
           alignItems="flex-start"
           shrink="0"
