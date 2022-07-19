@@ -338,7 +338,7 @@ export function CardLayout(props) {
           shrink="0"
           position="relative"
           padding="8px 0px 0px 0px"
-          courseTags={course?.courseTags}
+          ariaLabel="Courses hash tags"
           {...getOverrideProps(overrides, "Frame 58")}
         >
           {tags.map((tag) => (

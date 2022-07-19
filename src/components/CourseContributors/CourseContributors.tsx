@@ -10,7 +10,7 @@ export function CourseContributors({
   contributors: Contributor[];
 }) {
   return (
-    <Flex direction="column">
+    <Flex direction="column" ariaLabel="Contributors">
       <Text
         fontFamily="Amazon Ember Display"
         fontSize="0.875rem"

@@ -106,7 +106,7 @@ export default function ContributorHorizontal(props) {
           position="relative"
           borderRadius="50%"
           src={contributor?.profilePic}
-          alt={`Profile pic of ${contributor.firstName}`}
+          alt={`Profile picture`}
           {...getOverrideProps(overrides, "Ellipse 15")}
         ></Image>
       </Flex>

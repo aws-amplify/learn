@@ -143,9 +143,9 @@ export default function ContributorPage(data: any) {
                         key={index}
                         platform={e?.platform}
                         url={e?.url}
-                        iconAriaLabel={`${capitalizeEnum(
-                          e?.platform
-                        )} link for ${contributor.firstName}`}
+                        iconAriaLabel={`${
+                          contributor.firstName
+                        }'s ${capitalizeEnum(e?.platform)} profile link`}
                         iconWidth="24px"
                         iconHeight="24px"
                       ></SocialMediaButton>

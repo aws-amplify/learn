@@ -47,6 +47,7 @@ export function LessonTableOfContents({
       result.push(
         <Button
           key={`lesson-${lesson.lessonNumber}`}
+          ariaLabel={`Go to lesson ${lesson.lessonNumber}, ${lesson.title}`}
           variation="link"
           textAlign="left"
           gap="0.875rem"
@@ -115,7 +116,11 @@ export function LessonTableOfContents({
 
   if (lessons.length > 0) {
     return (
-      <Flex className={styles["lesson-toc"]} direction="column">
+      <Flex
+        className={styles["lesson-toc"]}
+        direction="column"
+        ariaLabel="Lesson Table of Contents"
+      >
         {lessons.map(createLessonTOC())}
       </Flex>
     );

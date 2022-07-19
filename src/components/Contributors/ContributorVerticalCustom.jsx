@@ -106,7 +106,7 @@ export default function ContributorVerticalCustom(props) {
           position="relative"
           borderRadius="50%"
           src={contributor?.profilePic}
-          alt={`Profile pic of ${contributor.firstName}`}
+          alt={`Profile picture`}
           {...getOverrideProps(overrides, "Ellipse 15")}
         ></Image>
       </Flex>
@@ -120,7 +120,7 @@ export default function ContributorVerticalCustom(props) {
         {...getOverrideProps(overrides, "Frame 331")}
       >
         <Text
-          className={styles['contributor-name']}
+          className={styles["contributor-name"]}
           fontFamily="Amazon Ember"
           fontSize="16px"
           fontWeight="700"
