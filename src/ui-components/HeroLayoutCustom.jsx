@@ -4,7 +4,7 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
- const COURSE_TITLE_ID_LENGTH = 5;
+const COURSE_TITLE_ID_LENGTH = 5;
 
 /* eslint-disable */
 import {
@@ -109,6 +109,7 @@ export default function HeroLayout(props) {
         gap="16px"
         direction="row"
         alignItems="flex-start"
+        wrap="wrap"
         shrink="0"
         alignSelf="stretch"
         objectFit="cover"
@@ -215,6 +216,7 @@ export default function HeroLayout(props) {
       <Flex
         gap="8px"
         direction="row"
+        wrap="wrap"
         width="fit-content"
         alignItems="flex-start"
         shrink="0"
