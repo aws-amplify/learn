@@ -2,9 +2,13 @@ import { LearnNavBarDesktop } from "./LearnNavBarDesktop";
 import { LearnNavBarMobile } from "./LearnNavBarMobile";
 
 export function LearnNavBar({ isMobile }: { isMobile: boolean }) {
+  let navbar;
+
   if (isMobile) {
-    return <LearnNavBarMobile />;
+    navbar = <LearnNavBarMobile />;
   } else {
-    return <LearnNavBarDesktop />;
+    navbar = <LearnNavBarDesktop />;
   }
+
+  return <nav>{navbar}</nav>;
 }
