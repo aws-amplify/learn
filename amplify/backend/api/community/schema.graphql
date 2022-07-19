@@ -1,16 +1,6 @@
-type Image {
-  altText: String
-  src: AWSURL
-}
-
-type NavMenuItem {
-  title: String
-  url: String
-}
-
 type Tag @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
-  name: String
+  name: String!
   courses: [Course] @manyToMany(relationName: "CourseTag")
 }
 
@@ -36,31 +26,22 @@ enum SkillLevel {
   ADVANCED
 }
 
-type CoursesPage @model @auth(rules: [{allow: public, operations: [read]}]) {
-  id: ID!
-}
-
-type AboutPage @model @auth(rules: [{allow: public, operations: [read]}]) {
-  id: ID!
-}
-
 type Contributor @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
-  jobTitle: String
+  jobTitle: String!
   socialNetwork: [SocialMediaLink]
   courses: [Course] @manyToMany(relationName: "ContributorCourse")
-  bio: String
-  profilePic: AWSURL
-  username: String
-  lastName: String
-  firstName: String
+  bio: String!
+  profilePic: AWSURL!
+  username: String!
+  lastName: String!
+  firstName: String!
 }
 
 type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   title: String!
-  description: String
-  content: String
+  content: String!
   youtubeEmbedId: String
   chapter: Int!
   courseLesson: Course @hasOne
@@ -70,34 +51,18 @@ type Lesson @model @auth(rules: [{allow: public, operations: [read]}]) {
 type Course @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   title: String!
-  timeHours: Int
-  timeMinutes: Int
-  learningObjective: String
+  timeHours: Int!
+  timeMinutes: Int!
+  learningObjective: String!
   description: String!
-  requirements: [String]
+  requirements: [String!]
   image: AWSURL
   contributors: [Contributor] @manyToMany(relationName: "ContributorCourse")
   courseTags: [Tag] @manyToMany(relationName: "CourseTag")
-  skillLevel: SkillLevel
-  dateCreated: AWSDateTime
-  homepageID: ID @index(name: "byHomePage")
-  isFeatured: Boolean
+  skillLevel: SkillLevel!
+  dateCreated: AWSDateTime!
+  isFeatured: Boolean!
   imageAltText: String
   trailerEmbedId: String
-}
-
-type Footer @model @auth(rules: [{allow: public, operations: [read]}]) {
-  id: ID!
-}
-
-type NavBar @model @auth(rules: [{allow: public, operations: [read]}]) {
-  id: ID!
-  menuItems: [NavMenuItem]
-}
-
-type HomePage @model @auth(rules: [{allow: public, operations: [read]}]) {
-  id: ID!
-  homePageCourses: [Course] @hasMany(indexName: "byHomePage", fields: ["id"])
-  homePageHeroCourse: Course @hasOne
 }
  

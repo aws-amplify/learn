@@ -17,18 +17,6 @@ export enum SkillLevel {
   ADVANCED = "ADVANCED"
 }
 
-export declare class Image {
-  readonly altText?: string | null;
-  readonly src?: string | null;
-  constructor(init: ModelInit<Image>);
-}
-
-export declare class NavMenuItem {
-  readonly title?: string | null;
-  readonly url?: string | null;
-  constructor(init: ModelInit<NavMenuItem>);
-}
-
 export declare class SocialMediaLink {
   readonly platform: SocialMediaPlatform | keyof typeof SocialMediaPlatform;
   readonly url: string;
@@ -37,7 +25,7 @@ export declare class SocialMediaLink {
 
 export declare class Tag {
   readonly id: string;
-  readonly name?: string | null;
+  readonly name: string;
   readonly courses?: (CourseTag | null)[] | null;
   constructor(init: ModelInit<Tag>);
   static copyOf(source: Tag, mutator: (draft: MutableModel<Tag>) => MutableModel<Tag> | void): Tag;
@@ -46,18 +34,17 @@ export declare class Tag {
 export declare class Course {
   readonly id: string;
   readonly title: string;
-  readonly timeHours?: number | null;
-  readonly timeMinutes?: number | null;
-  readonly learningObjective?: string | null;
+  readonly timeHours: number;
+  readonly timeMinutes: number;
+  readonly learningObjective: string;
   readonly description: string;
-  readonly requirements?: (string | null)[] | null;
+  readonly requirements?: string[] | null;
   readonly image?: string | null;
   readonly contributors?: (ContributorCourse | null)[] | null;
   readonly courseTags?: (CourseTag | null)[] | null;
-  readonly skillLevel?: SkillLevel | keyof typeof SkillLevel | null;
-  readonly dateCreated?: string | null;
-  readonly homepageID?: string | null;
-  readonly isFeatured?: boolean | null;
+  readonly skillLevel: SkillLevel | keyof typeof SkillLevel;
+  readonly dateCreated: string;
+  readonly isFeatured: boolean;
   readonly imageAltText?: string | null;
   readonly trailerEmbedId?: string | null;
   constructor(init: ModelInit<Course>);
@@ -66,35 +53,22 @@ export declare class Course {
 
 export declare class Contributor {
   readonly id: string;
-  readonly jobTitle?: string | null;
+  readonly jobTitle: string;
   readonly socialNetwork?: (SocialMediaLink | null)[] | null;
   readonly courses?: (ContributorCourse | null)[] | null;
-  readonly bio?: string | null;
-  readonly profilePic?: string | null;
-  readonly username?: string | null;
-  readonly lastName?: string | null;
-  readonly firstName?: string | null;
+  readonly bio: string;
+  readonly profilePic: string;
+  readonly username: string;
+  readonly lastName: string;
+  readonly firstName: string;
   constructor(init: ModelInit<Contributor>);
   static copyOf(source: Contributor, mutator: (draft: MutableModel<Contributor>) => MutableModel<Contributor> | void): Contributor;
-}
-
-export declare class CoursesPage {
-  readonly id: string;
-  constructor(init: ModelInit<CoursesPage>);
-  static copyOf(source: CoursesPage, mutator: (draft: MutableModel<CoursesPage>) => MutableModel<CoursesPage> | void): CoursesPage;
-}
-
-export declare class AboutPage {
-  readonly id: string;
-  constructor(init: ModelInit<AboutPage>);
-  static copyOf(source: AboutPage, mutator: (draft: MutableModel<AboutPage>) => MutableModel<AboutPage> | void): AboutPage;
 }
 
 export declare class Lesson {
   readonly id: string;
   readonly title: string;
-  readonly description?: string | null;
-  readonly content?: string | null;
+  readonly content: string;
   readonly youtubeEmbedId?: string | null;
   readonly chapter: number;
   readonly courseLesson?: Course | null;
@@ -102,28 +76,6 @@ export declare class Lesson {
   readonly lessonCourseLessonId?: string | null;
   constructor(init: ModelInit<Lesson>);
   static copyOf(source: Lesson, mutator: (draft: MutableModel<Lesson>) => MutableModel<Lesson> | void): Lesson;
-}
-
-export declare class Footer {
-  readonly id: string;
-  constructor(init: ModelInit<Footer>);
-  static copyOf(source: Footer, mutator: (draft: MutableModel<Footer>) => MutableModel<Footer> | void): Footer;
-}
-
-export declare class NavBar {
-  readonly id: string;
-  readonly menuItems?: (NavMenuItem | null)[] | null;
-  constructor(init: ModelInit<NavBar>);
-  static copyOf(source: NavBar, mutator: (draft: MutableModel<NavBar>) => MutableModel<NavBar> | void): NavBar;
-}
-
-export declare class HomePage {
-  readonly id: string;
-  readonly homePageCourses?: (Course | null)[] | null;
-  readonly homePageHeroCourse?: Course | null;
-  readonly homePageHomePageHeroCourseId?: string | null;
-  constructor(init: ModelInit<HomePage>);
-  static copyOf(source: HomePage, mutator: (draft: MutableModel<HomePage>) => MutableModel<HomePage> | void): HomePage;
 }
 
 export declare class CourseTag {
