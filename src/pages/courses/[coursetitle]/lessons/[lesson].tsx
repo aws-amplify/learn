@@ -78,7 +78,7 @@ export async function getServerSideProps(context: any) {
   // Get the course title without the appended id
   const originalCourseTitle = coursetitle
     ?.substring(0, coursetitle?.lastIndexOf("-"))
-    .replaceAll("-", " ");
+    .replace(/-/g, " ");
 
   // Get the course Id prefix
   const courseIdPrefix = coursetitle?.substring(
