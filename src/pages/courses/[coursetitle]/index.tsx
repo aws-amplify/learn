@@ -4,8 +4,16 @@ import { CourseOverview } from "../../../components/CourseOverview";
 import { CoursesRouteLayout } from "../../../components/CoursesRouteLayout";
 import { Course, Lesson } from "../../../models";
 import { createCourseTitleUri } from "../../../utils";
+import { useRouter } from "next/router";
+import { Fallback } from "../../../components/Fallback";
 
 export default function CoursePage(data: any) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Fallback />;
+  }
+
   const course = deserializeModel(Course, data.course);
   const lessons = deserializeModel(Lesson, data.lessons);
 
@@ -31,7 +39,7 @@ export async function getStaticPaths(context: any) {
         coursetitle: createCourseTitleUri(course.title, course.id),
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -72,6 +80,11 @@ export async function getStaticProps(context: any) {
         course: serializeModel(courseResult),
         lessons: serializeModel(lessonsSorted),
       },
+      revalidate: 10,
     };
   }
+
+  return {
+    notFound: true,
+  };
 }
