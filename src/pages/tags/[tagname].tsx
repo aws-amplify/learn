@@ -6,12 +6,9 @@ import { Course, CourseTag, Tag } from "../../models";
 import { useCallback } from "react";
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
+import { Fallback } from "../../components/Fallback";
 
 export default function TagPage(data: any) {
-  const relatedCourses = deserializeModel(Course, data.relatedCourses);
-  const router = useRouter();
-  const { tagname } = router.query;
-
   function tagsBreadcrumbCallback(
     pathnameArray: string[],
     asPathArray: string[]
@@ -40,6 +37,15 @@ export default function TagPage(data: any) {
   }
 
   const callback = useCallback(tagsBreadcrumbCallback, []);
+
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Fallback />;
+  }
+
+  const relatedCourses = deserializeModel(Course, data.relatedCourses);
+  const { tagname } = router.query;
 
   return (
     <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
@@ -107,7 +113,7 @@ export async function getStaticPaths(context: any) {
     paths: tags.map((tag) => ({
       params: { tagname: tag.name },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -130,6 +136,7 @@ export async function getStaticProps(context: any) {
       props: {
         relatedCourses: serializeModel(filteredCourses),
       },
+      revalidate: 60,
     };
   }
 

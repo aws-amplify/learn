@@ -1,5 +1,10 @@
 import Head from "next/head";
-import { Grid, ThemeProvider, useBreakpointValue } from "@aws-amplify/ui-react";
+import {
+  Grid,
+  ThemeProvider,
+  useBreakpointValue,
+  Flex,
+} from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
@@ -92,43 +97,46 @@ export function Layout({
         />
       </Head>
       <ThemeProvider theme={studioTheme}>
-        <LearnNavBar isMobile={isMobile} />
-        {showBreadcrumb && breadcrumbCallback && (
-          <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
-        )}
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr",
-            large: "1fr min(130ch, 100%) 1fr",
-          }}
-          marginLeft={{
-            base: "32px",
-            small: "32px",
-            medium: "64px",
-          }}
-          marginRight={{
-            base: "32px",
-            small: "32px",
-            medium: "64px",
-          }}
-          marginTop={{
-            base: "32px",
-            small: "32px",
-            medium: "64px",
-            large: "128px",
-          }}
-          marginBottom={{
-            base: "114px",
-            small: "114px",
-            medium: "118px",
-            large: "143px",
-          }}
-        >
-          {children}
-        </Grid>
-        <LearnFooter isMobile={isMobile} />
+        <Flex direction="column" minHeight="100%">
+          <LearnNavBar isMobile={isMobile} />
+          {showBreadcrumb && breadcrumbCallback && (
+            <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
+          )}
+          <Grid
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr",
+              large: "1fr min(130ch, 100%) 1fr",
+            }}
+            marginLeft={{
+              base: "32px",
+              small: "32px",
+              medium: "64px",
+            }}
+            marginRight={{
+              base: "32px",
+              small: "32px",
+              medium: "64px",
+            }}
+            marginTop={{
+              base: "32px",
+              small: "32px",
+              medium: "64px",
+              large: "128px",
+            }}
+            marginBottom={{
+              base: "114px",
+              small: "114px",
+              medium: "118px",
+              large: "143px",
+            }}
+            grow="1"
+          >
+            {children}
+          </Grid>
+          <LearnFooter isMobile={isMobile} />
+        </Flex>
       </ThemeProvider>
     </>
   );

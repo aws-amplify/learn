@@ -1,4 +1,4 @@
-import { Text, Grid, Heading, View, Placeholder } from "@aws-amplify/ui-react";
+import { Text, Grid, Heading, View } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { withSSRContext } from "aws-amplify";
 import { Tag } from "../../models";
@@ -63,5 +63,6 @@ export async function getStaticProps(context: any) {
     props: {
       tags: serializeModel(tags),
     },
+    revalidate: 60,
   };
 }

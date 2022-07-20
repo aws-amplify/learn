@@ -17,6 +17,7 @@ import { default as CardLayoutCollection } from "../../ui-components/CardLayoutC
 import ContributorCollection from "../../components/Contributors/ContributorCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
+import { Fallback } from "../../components/Fallback";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -33,9 +34,6 @@ const profilePicSize = {
 };
 
 export default function ContributorPage(data: any) {
-  const contributor = deserializeModel(Contributor, data.contributor);
-  const courses = deserializeModel(Course, data.courses);
-
   const router = useRouter();
 
   const otherContributorsLimit = useBreakpointValue({
@@ -87,6 +85,13 @@ export default function ContributorPage(data: any) {
   }
 
   const callback = useCallback(contributorBreadcrumbCallback, []);
+
+  if (router.isFallback) {
+    return <Fallback />;
+  }
+
+  const contributor = deserializeModel(Contributor, data.contributor);
+  const courses = deserializeModel(Course, data.courses);
 
   return (
     <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
@@ -308,7 +313,7 @@ export async function getStaticPaths(context: any) {
         contributor: contributor.username,
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -334,6 +339,11 @@ export async function getStaticProps(context: any) {
         contributor: serializeModel(contributorResults[0]),
         courses: serializeModel(filteredCourses),
       },
+      revalidate: 60,
     };
   }
+
+  return {
+    notFound: true,
+  };
 }
