@@ -2,9 +2,13 @@ import { default as LearnFooterMobileCustom } from "../../ui-components/LearnFoo
 import { default as LearnFooterCustom } from "../../ui-components/LearnFooterCustom";
 
 export function LearnFooter({ isMobile }: { isMobile: boolean }) {
+  let learnFooter;
+
   if (!isMobile) {
-    return <LearnFooterCustom width="100vw" />;
+    learnFooter = <LearnFooterCustom width="100vw" />;
   } else {
-    return <LearnFooterMobileCustom width="100vw" />;
+    learnFooter = <LearnFooterMobileCustom width="100vw" />;
   }
+
+  return <footer>{learnFooter}</footer>;
 }
