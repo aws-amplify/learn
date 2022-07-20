@@ -7,6 +7,7 @@ import { Text, useBreakpointValue, View } from "@aws-amplify/ui-react";
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
 import { LearnMarkdown } from "../../../../components/LearnMarkdown";
 import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
+import { createCourseTitleUri } from "../../../../utils";
 
 export default function LessonPage(data: any) {
   const course = deserializeModel(Course, data.course);
@@ -70,6 +71,21 @@ export default function LessonPage(data: any) {
     </CoursesRouteLayout>
   );
 }
+
+// export async function getStaticPaths(context: any) {
+//   const { DataStore } = withSSRContext(context);
+//   const lessons: Lesson[] = await DataStore.query(Lesson);
+
+//   return {
+//     paths: lessons.map((lesson) => ({
+//       params: {
+//         coursetitle: '',
+//         lesson: lesson.lessonNumber
+//       }
+//     }))
+//   }
+
+// }
 
 export async function getServerSideProps(context: any) {
   const { DataStore } = withSSRContext(context);

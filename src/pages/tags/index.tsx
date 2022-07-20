@@ -1,35 +1,12 @@
 import { Text, Grid, Heading, View, Placeholder } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
-import { NextPage } from "next";
-import { DataStore, Hub } from "aws-amplify";
-import { useCallback, useEffect, useState } from "react";
+import { withSSRContext } from "aws-amplify";
 import { Tag } from "../../models";
 import { TagButton } from "../../components/TagButton";
-import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
+import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 
-const TagsPage: NextPage = () => {
-  const [tags, setTags] = useState<Tag[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  async function queryTags() {
-    const results = await DataStore.query(Tag);
-
-    if (results.length > 0) {
-      setTags(results);
-      setIsLoading(false);
-    }
-  }
-
-  const callback = useCallback(queryTags, []);
-
-  useFirstDatastoreQuery(callback);
-
-  useEffect(() => {
-    // If we still don't have the tags then try and query again
-    if (tags.length < 1) {
-      queryTags();
-    }
-  }, [tags.length]);
+export default function TagsPage(data: any) {
+  const tags: Tag[] = deserializeModel(Tag, data.tags);
 
   return (
     <Layout>
@@ -58,27 +35,33 @@ const TagsPage: NextPage = () => {
             tristique senectus et netus et malesuada.
           </Text>
         </Grid>
-        {isLoading ? (
-          <Placeholder size="large" isLoaded={!isLoading} />
-        ) : (
-          <Grid
-            templateColumns={{
-              base: "1fr",
-              small: "1fr",
-              medium: "1fr 1fr",
-              large: "1fr 1fr 1fr",
-              xl: "1fr 1fr 1fr 1fr",
-            }}
-            gap="20px"
-          >
-            {tags.map((tag) => (
-              <TagButton key={tag.id} tag={tag} inCourseLayout={false} />
-            ))}
-          </Grid>
-        )}
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            small: "1fr",
+            medium: "1fr 1fr",
+            large: "1fr 1fr 1fr",
+            xl: "1fr 1fr 1fr 1fr",
+          }}
+          gap="20px"
+        >
+          {tags.map((tag) => (
+            <TagButton key={tag.id} tag={tag} inCourseLayout={false} />
+          ))}
+        </Grid>
       </View>
     </Layout>
   );
-};
+}
 
-export default TagsPage;
+export async function getStaticProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+
+  const tags: Tag[] = await DataStore.query(Tag);
+
+  return {
+    props: {
+      tags: serializeModel(tags),
+    },
+  };
+}

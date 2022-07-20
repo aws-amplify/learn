@@ -99,9 +99,21 @@ export default function TagPage(data: any) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getStaticPaths(context: any) {
   const { DataStore } = withSSRContext(context);
-  const { tagname } = context.query;
+  const tags: Tag[] = await DataStore.query(Tag);
+
+  return {
+    paths: tags.map((tag) => ({
+      params: { tagname: tag.name },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { tagname } = context.params;
 
   const tags: Tag[] = await DataStore.query(Tag, (t: any) =>
     t.name("eq", tagname)

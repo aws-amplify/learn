@@ -48,7 +48,8 @@ export default function Home(data: any) {
     </Layout>
   );
 }
-export async function getServerSideProps(context: any) {
+
+export async function getStaticProps(context: any) {
   const { DataStore } = withSSRContext(context);
 
   const featuredCourse = await DataStore.query(Course, (c: any) =>

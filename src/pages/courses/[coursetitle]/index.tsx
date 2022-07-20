@@ -3,6 +3,7 @@ import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { CourseOverview } from "../../../components/CourseOverview";
 import { CoursesRouteLayout } from "../../../components/CoursesRouteLayout";
 import { Course, Lesson } from "../../../models";
+import { createCourseTitleUri } from "../../../utils";
 
 export default function CoursePage(data: any) {
   const course = deserializeModel(Course, data.course);
@@ -20,9 +21,25 @@ export default function CoursePage(data: any) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getStaticPaths(context: any) {
   const { DataStore } = withSSRContext(context);
-  const { coursetitle } = context.query;
+  const courses: Course[] = await DataStore.query(Course);
+
+  return {
+    paths: courses.map((course) => ({
+      params: {
+        coursetitle: createCourseTitleUri(course.title, course.id),
+      },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { coursetitle: encodedCourseTitle } = context.params;
+
+  const coursetitle = decodeURIComponent(encodedCourseTitle);
 
   // Get the course title without the appended id
   const originalCourseTitle = coursetitle
@@ -57,8 +74,4 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
-
-  return {
-    notFound: true,
-  };
 }
