@@ -10,13 +10,13 @@ import {
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { useRouter } from "next/router";
-import { Key, useCallback } from "react";
+import { useCallback } from "react";
 import { Layout } from "../../components/Layout";
 import { Contributor, ContributorCourse, Course } from "../../models";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import ContributorCollection from "../../components/Contributors/ContributorCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
-import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
+import { capitalizeEnum } from "../../utils/capitalizeEnum";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -134,10 +134,7 @@ export default function ContributorPage(data: any) {
             contributor.socialNetwork.length > 0 ? (
               <Flex>
                 {contributor.socialNetwork.map(
-                  (
-                    e: { platform: string; url: string },
-                    index: Key | null | undefined
-                  ) => {
+                  (e: { platform: string; url: string }, index: number) => {
                     return (
                       <SocialMediaButton
                         key={index}
@@ -301,9 +298,23 @@ export default function ContributorPage(data: any) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getStaticPaths(context: any) {
   const { DataStore } = withSSRContext(context);
-  const { contributor: username } = context.query;
+  const contributors: Contributor[] = await DataStore.query(Contributor);
+
+  return {
+    paths: contributors.map((contributor) => ({
+      params: {
+        contributor: contributor.username,
+      },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { contributor: username } = context.params;
 
   let contributorResults: Contributor[] = await DataStore.query(
     Contributor,
@@ -325,8 +336,4 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
-
-  return {
-    notFound: true,
-  };
 }
