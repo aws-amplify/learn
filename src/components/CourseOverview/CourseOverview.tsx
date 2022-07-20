@@ -12,7 +12,7 @@ import { Lesson, Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { LessonLayout } from "../LessonLayout";
 import { LessonTableOfContents } from "../LessonTableOfContents";
-import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
+import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { useState } from "react";
 import { YoutubeModal } from "../YoutubeModal";
 

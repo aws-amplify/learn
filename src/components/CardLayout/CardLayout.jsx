@@ -4,8 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-const COURSE_TITLE_ID_LENGTH = 5;
-
 /* eslint-disable */
 import React from "react";
 import {
@@ -20,7 +18,7 @@ import styles from "./CardLayout.module.scss";
 import { TagButton } from "../TagButton";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { useRouter } from "next/router";
-import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
+import { capitalizeEnum, createCourseTitleUri } from "../../utils";
 
 export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
@@ -44,11 +42,7 @@ export function CardLayout(props) {
   }, []);
 
   const navigateToCourse = () => {
-    // Use the course title with the first 5 characters of the course id as the coursetitle
-    const coursetitle = `${course.title.replaceAll(
-      " ",
-      "-"
-    )}-${course.id.substring(0, COURSE_TITLE_ID_LENGTH)}`;
+    const coursetitle = createCourseTitleUri(course.title, course.id);
 
     router.push(
       {
