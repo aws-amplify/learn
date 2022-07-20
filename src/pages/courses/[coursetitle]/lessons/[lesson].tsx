@@ -8,13 +8,10 @@ import { LessonTableOfContents } from "../../../../components/LessonTableOfConte
 import { LearnMarkdown } from "../../../../components/LearnMarkdown";
 import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
 import { createCourseTitleUri } from "../../../../utils";
+import { useRouter } from "next/router";
+import { Fallback } from "../../../../components/Fallback";
 
 export default function LessonPage(data: any) {
-  const course = deserializeModel(Course, data.course);
-  const currentLesson = deserializeModel(Lesson, data.currentLesson);
-  const lessons = deserializeModel(Lesson, data.lessons);
-  const lessonNumber = currentLesson.lessonNumber;
-
   const showInSidebarBreakpoint = useBreakpointValue({
     base: false,
     small: false,
@@ -22,6 +19,17 @@ export default function LessonPage(data: any) {
     large: true,
     xl: true,
   });
+
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Fallback />;
+  }
+
+  const course = deserializeModel(Course, data.course);
+  const currentLesson = deserializeModel(Lesson, data.currentLesson);
+  const lessons = deserializeModel(Lesson, data.lessons);
+  const lessonNumber = currentLesson.lessonNumber;
 
   return (
     <CoursesRouteLayout>
@@ -72,24 +80,45 @@ export default function LessonPage(data: any) {
   );
 }
 
-// export async function getStaticPaths(context: any) {
-//   const { DataStore } = withSSRContext(context);
-//   const lessons: Lesson[] = await DataStore.query(Lesson);
-
-//   return {
-//     paths: lessons.map((lesson) => ({
-//       params: {
-//         coursetitle: '',
-//         lesson: lesson.lessonNumber
-//       }
-//     }))
-//   }
-
-// }
-
-export async function getServerSideProps(context: any) {
+export async function getStaticPaths(context: any) {
   const { DataStore } = withSSRContext(context);
-  const { coursetitle, lesson: lessonNumber } = context.query;
+  const lessons: Lesson[] = await DataStore.query(Lesson);
+  const courses: Course[] = await DataStore.query(Course);
+
+  // Create object that contains course title, course Id, and the lesson number
+  const data = courses.map((course) => {
+    const filteredLessons = lessons.filter(
+      (lesson) => lesson.lessonCourseLessonId === course.id
+    );
+
+    return filteredLessons.map((lesson) => ({
+      courseTitle: course.title,
+      courseId: course.id,
+      lessonNumber: `${lesson.lessonNumber}`,
+    }));
+  });
+
+  // `data` is an array of arrays so we need to flatten it in order to have the
+  // correct structure to return the paths
+  const flatData = data.reduce((acc, currentValue) => {
+    acc.push(...currentValue);
+    return acc;
+  }, []);
+
+  return {
+    paths: flatData.map((e) => ({
+      params: {
+        coursetitle: createCourseTitleUri(e.courseTitle, e.courseId),
+        lesson: e.lessonNumber,
+      },
+    })),
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+  const { coursetitle, lesson: lessonNumber } = context.params;
 
   // Get the course title without the appended id
   const originalCourseTitle = coursetitle
@@ -126,6 +155,7 @@ export async function getServerSideProps(context: any) {
           currentLesson: serializeModel(currentLesson),
           lessons: serializeModel(lessonsSorted),
         },
+        revalidate: 60,
       };
     }
   }
