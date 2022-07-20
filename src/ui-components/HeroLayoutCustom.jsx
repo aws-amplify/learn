@@ -4,8 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-const COURSE_TITLE_ID_LENGTH = 5;
-
 /* eslint-disable */
 import {
   getOverrideProps,
@@ -19,6 +17,7 @@ import { CourseTag } from "../models";
 import { TagButton } from "../components/TagButton";
 import { useFirstDatastoreQuery } from "../hooks/useFirstDatastoreQuery";
 import { useRouter } from "next/router";
+import { createCourseTitleUri } from "../utils";
 
 export default function HeroLayout(props) {
   const { course, overrides: overridesProp, ...rest } = props;
@@ -277,12 +276,7 @@ export default function HeroLayout(props) {
           variation="primary"
           ariaLabel={`Go to course ${course.title}`}
           onClick={() => {
-            // TODO: Refactor this out into a utitlity function so it can be reused?
-            // Use the course title with the first 5 characters of the course id as the coursetitle
-            const coursetitle = `${course.title.replaceAll(
-              " ",
-              "-"
-            )}-${course.id.substring(0, COURSE_TITLE_ID_LENGTH)}`;
+            const coursetitle = createCourseTitleUri(course.title, course.id);
 
             router.push(
               {

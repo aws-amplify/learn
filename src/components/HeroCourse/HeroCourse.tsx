@@ -7,7 +7,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
-import { capitalizeEnum } from "../../utils/transformEnumsFromAmplify";
+import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { useState } from "react";
 import { YoutubeModal } from "../YoutubeModal";
 
