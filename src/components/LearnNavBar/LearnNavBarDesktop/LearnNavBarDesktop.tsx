@@ -124,7 +124,7 @@ export function LearnNavBarDesktop() {
           isDisabled={false}
           onClick={() => {
             window.open(
-              "https://aws.amazon.com/amplify/",
+              "https://docs.amplify.aws/start/",
               "_blank",
               "noopener,noreferrer"
             );

@@ -12,7 +12,7 @@ const CoursesPage: NextPage = () => {
             base: "1fr",
             small: "1fr",
             medium: "1fr",
-            large: "1fr 1fr"
+            large: "1fr 1fr",
           }}
           gap="16px"
           marginBottom={{
@@ -25,11 +25,6 @@ const CoursesPage: NextPage = () => {
           <Heading fontFamily="Amazon Ember" fontWeight="300" level={1}>
             Courses
           </Heading>
-          <Text columnStart="1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi
-            tristique senectus et netus et malesuada.
-          </Text>
         </Grid>
         <CardLayoutCollection
           templateColumns={{
@@ -37,7 +32,7 @@ const CoursesPage: NextPage = () => {
             small: "1fr",
             medium: "1fr",
             large: "1fr 1fr",
-            xl: "1fr 1fr 1fr"
+            xl: "1fr 1fr 1fr",
           }}
           gap="64px"
           isOnHomePage={false}
@@ -51,6 +46,6 @@ const CoursesPage: NextPage = () => {
       </View>
     </Layout>
   );
-}
+};
 
 export default CoursesPage;
