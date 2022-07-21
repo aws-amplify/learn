@@ -7,6 +7,7 @@ import { Amplify } from "aws-amplify";
 Amplify.configure({ ...awsmobile, ssr: true });
 if (process.env.NODE_ENV === "production") {
   Amplify.configure({
+    ...awsmobile,
     ...{
       aws_appsync_graphqlEndpoint: "https://learn-backend.amplify.aws/graphql",
     },
