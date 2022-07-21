@@ -29,11 +29,6 @@ export default function TagsPage(data: any) {
           <Heading fontFamily="Amazon Ember" fontWeight="300" level={1}>
             Tags
           </Heading>
-          <Text columnStart="1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi
-            tristique senectus et netus et malesuada.
-          </Text>
         </Grid>
         <Grid
           templateColumns={{
