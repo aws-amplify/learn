@@ -15,7 +15,13 @@ export function HomePageContent({ heroCourse }: { heroCourse: Course }) {
       }}
     >
       <HeroCourse course={heroCourse} />
-      <CardLayoutCollection gap="40px" isOnHomePage={true} />
+      <CardLayoutCollection
+        gap="40px"
+        isOnHomePage={true}
+        filter={(element: Course) => element.isFeatured === false}
+        isPaginated={false}
+        limit={4}
+      />
     </Flex>
   );
 }
