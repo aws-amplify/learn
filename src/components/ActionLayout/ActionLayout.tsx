@@ -23,6 +23,7 @@ export function ActionLayout({ children }: { children: any }) {
         medium: "0px",
         large: "200px",
       }}
+      justifyContent="space-between"
     >
       {children}
     </Flex>

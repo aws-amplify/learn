@@ -1,9 +1,23 @@
-import { Text, Grid, Heading, View } from "@aws-amplify/ui-react";
+import {
+  Text,
+  Grid,
+  Heading,
+  View,
+  useBreakpointValue,
+} from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { NextPage } from "next";
 
 const CoursesPage: NextPage = () => {
+  const itemsPerPageBreakpoint = useBreakpointValue({
+    base: 3,
+    small: 3,
+    medium: 3,
+    large: 4,
+    xl: 6,
+  }) as number;
+
   return (
     <Layout>
       <View columnStart="2">
@@ -26,23 +40,30 @@ const CoursesPage: NextPage = () => {
             Courses
           </Heading>
         </Grid>
-        <CardLayoutCollection
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr",
-            large: "1fr 1fr",
-            xl: "1fr 1fr 1fr",
-          }}
-          gap="64px"
-          isOnHomePage={false}
+        <View
+          as="div"
           marginBottom={{
             base: "118px",
             small: "118px",
             medium: "75px",
             large: "152px",
           }}
-        />
+        >
+          <CardLayoutCollection
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr",
+              large: "1fr 1fr",
+              xl: "1fr 1fr 1fr",
+            }}
+            gap="64px"
+            isOnHomePage={false}
+            isPaginated={true}
+            itemsPerPage={itemsPerPageBreakpoint}
+            marginBottom="30px"
+          />
+        </View>
       </View>
     </Layout>
   );
