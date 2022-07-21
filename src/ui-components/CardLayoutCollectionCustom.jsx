@@ -59,6 +59,8 @@ export default function CardLayoutCollection(props) {
       alignItems="stretch"
       justifyContent="stretch"
       items={items || []}
+      isPaginated={items.length > 6}
+      itemsPerPage={items.length > 6 ? 6 : undefined}
       {...rest}
       {...getOverrideProps(overrides, "CardLayoutCollection")}
     >
