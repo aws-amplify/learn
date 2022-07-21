@@ -21,9 +21,8 @@ export default function Home(data: any) {
             Take Amplify for a Spin!
           </Heading>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi
-            tristique senectus et netus et malesuada.
+            Build extensible, full-stack web and mobile apps faster. Easy to
+            start, easy to scale.
           </p>
         </Card>
         <Card>
@@ -34,7 +33,7 @@ export default function Home(data: any) {
             width="max-content"
             onClick={() => {
               window.open(
-                "https://aws.amazon.com/amplify/",
+                "https://docs.amplify.aws/start/",
                 "_blank",
                 "noopener,noreferrer"
               );

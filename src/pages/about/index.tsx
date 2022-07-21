@@ -28,9 +28,16 @@ const AboutPage: NextPage = () => {
             About
           </Heading>
           <Text columnStart="1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi
-            tristique senectus et netus et malesuada.
+            This site contains a collection of courses on{" "}
+            <a
+              target="_blank"
+              href="https://docs.amplify.aws"
+              rel="noopener noreferrer"
+            >
+              AWS Amplify
+            </a>{" "}
+            brought to you by the Developer Advocacy team working on the
+            product.
           </Text>
         </Grid>
         <Contributors />
@@ -40,9 +47,8 @@ const AboutPage: NextPage = () => {
               {`Let's Connect`}
             </Heading>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi
-              tristique senectus et netus et malesuada.
+              Join the Amplify Community Discord to ask questions, contribute to
+              the open source project, and learn about new features.
             </p>
           </Card>
           <Card>
@@ -52,7 +58,11 @@ const AboutPage: NextPage = () => {
               gap="10px"
               width="max-content"
               onClick={() => {
-                window.open('https://discord.gg/amplify', '_blank', 'noopener,noreferrer')
+                window.open(
+                  "https://discord.gg/amplify",
+                  "_blank",
+                  "noopener,noreferrer"
+                );
               }}
             >
               Chat on Discord
