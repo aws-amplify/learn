@@ -238,10 +238,11 @@ export default function ContributorPage(data: any) {
                 xl: "1fr 1fr 1fr",
               }}
               gap="64px 20px"
+              isPaginated={courses.length > 3}
+              itemsPerPage={courses.length > 3 ? 3 : undefined}
             />
           </View>
         </Grid>
-
         <Grid
           templateRows={{
             small: "auto",

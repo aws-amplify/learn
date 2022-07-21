@@ -59,7 +59,6 @@ const CoursesPage: NextPage = () => {
             }}
             gap="64px"
             isOnHomePage={false}
-            isPaginated={true}
             itemsPerPage={itemsPerPageBreakpoint}
             marginBottom="30px"
           />
