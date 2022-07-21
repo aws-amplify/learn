@@ -28,7 +28,9 @@ export default function CardLayoutCollection(props) {
   return (
     <Collection
       type="grid"
+      isPaginated={true}
       searchPlaceholder="Search..."
+      itemsPerPage={6}
       templateColumns="1fr 1fr"
       autoFlow="row"
       alignItems="stretch"
