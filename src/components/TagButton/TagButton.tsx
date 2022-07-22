@@ -1,6 +1,6 @@
+import { useBreakpointValue } from "@aws-amplify/ui-react";
 import Link from "next/link";
 import { Tag } from "../../models";
-import styles from "./TagButton.module.scss";
 
 export function TagButton({
   tag,
@@ -9,9 +9,15 @@ export function TagButton({
   tag: Tag;
   inCourseLayout: boolean;
 }) {
+  const tagButtonPadding = useBreakpointValue({
+    base: "24px 32px",
+    small: "24px 32px",
+    medium: "32px 48px",
+  }) as string;
+
+  // Trying to make an <a> tag look like a button
   const inCourseClasses =
     "amplify-button amplify-field-group__control amplify-button--link amplify-button--small tag-button";
-  const defaultClasses = `amplify-button ${styles["tag-button"]}`;
 
   return (
     <Link
@@ -24,7 +30,15 @@ export function TagButton({
       as={`/tags/${tag.name}`}
     >
       <a
-        className={inCourseLayout ? inCourseClasses : defaultClasses}
+        className={inCourseLayout ? inCourseClasses : `amplify-button`}
+        style={
+          !inCourseLayout
+            ? {
+                color: "#0074bd",
+                padding: tagButtonPadding,
+              }
+            : {}
+        }
       >{`#${tag.name}`}</a>
     </Link>
   );
