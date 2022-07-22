@@ -3,6 +3,7 @@ import "../styles/index.scss";
 import type { AppProps } from "next/app";
 import awsmobile from "../aws-exports";
 import { Amplify } from "aws-amplify";
+import { useEffect, useState } from "react";
 
 Amplify.configure({ ...awsmobile, ssr: true });
 if (process.env.NODE_ENV === "production") {
@@ -16,6 +17,16 @@ if (process.env.NODE_ENV === "production") {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
+
   return <Component {...pageProps} />;
 }
 
