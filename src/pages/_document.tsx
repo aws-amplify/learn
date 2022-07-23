@@ -4,7 +4,55 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link href="/fonts/fonts.css" rel="stylesheet" />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmber_W_Rg.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmber_W_Bd.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmber_W_Lt.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmberDisplay_W_Bd.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmberDisplay_W_Lt.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmberDisplay_W_Md.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/AmazonEmberDisplay_W_Rg.woff"
+            as="font"
+            type="font/wof"
+            crossOrigin="anonymous"
+          />
         </Head>
         <body>
           <Main />
