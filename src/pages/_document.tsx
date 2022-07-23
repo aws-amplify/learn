@@ -6,51 +6,16 @@ export default class MyDocument extends Document {
         <Head>
           <link
             rel="preload"
-            href="/fonts/AmazonEmber_W_Rg.woff"
+            href="/fonts/AmazonEmber_W_Rg.woff2"
             as="font"
-            type="font/woff"
+            type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/fonts/AmazonEmber_W_Bd.woff"
+            href="/fonts/AmazonEmberDisplay_W_Rg.woff2"
             as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/AmazonEmber_W_Lt.woff"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/AmazonEmberDisplay_W_Bd.woff"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/AmazonEmberDisplay_W_Lt.woff"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/AmazonEmberDisplay_W_Md.woff"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/AmazonEmberDisplay_W_Rg.woff"
-            as="font"
-            type="font/woff"
+            type="font/woff2"
             crossOrigin="anonymous"
           />
         </Head>
