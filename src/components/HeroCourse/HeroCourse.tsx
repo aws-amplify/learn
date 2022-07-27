@@ -1,15 +1,16 @@
 import {
   Flex,
-  Image,
   useBreakpointValue,
   Card,
   Placeholder,
+  View,
 } from "@aws-amplify/ui-react";
 import { Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { useState } from "react";
 import { YoutubeModal } from "../YoutubeModal";
+import Image from "next/image";
 
 interface HeroCourseProps {
   course: Course | null;
@@ -44,7 +45,13 @@ export function HeroCourse({ course }: HeroCourseProps) {
         <HeroLayout
           variation={heroLayoutVariant}
           course={course}
-          shrink="10"
+          shrink={{
+            base: "1",
+            small: "1",
+            medium: "1",
+            large: "2",
+            xl: "5",
+          }}
           overrides={{
             Advanced: {
               children: `${capitalizeEnum(course?.skillLevel as string)}`,
@@ -73,14 +80,25 @@ export function HeroCourse({ course }: HeroCourseProps) {
             courseTrailerEmbedId={course.trailerEmbedId}
           />
         )}
-        {/* TODO: should images use srcset to handle responsive images? If so, would we need more than one image src? */}
-        <Card>
-          <Image
-            src={course?.image || ""}
-            alt={course?.imageAltText || ""}
-            borderRadius="8px"
-          />
-        </Card>
+        {course.image && (
+          <Card>
+            <Flex
+              shrink="0"
+              position="relative"
+              overflow="hidden"
+              borderRadius="8px"
+            >
+              <Image
+                src={course.image}
+                alt={course?.imageAltText || `Photo for course ${course.title}`}
+                height="368px"
+                width="580px"
+                layout="intrinsic"
+                quality={100}
+              />
+            </Flex>
+          </Card>
+        )}
       </Flex>
     );
   } else {
