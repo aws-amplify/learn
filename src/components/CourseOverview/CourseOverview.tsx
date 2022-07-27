@@ -135,6 +135,7 @@ export function CourseOverview({
                   alt={
                     course.imageAltText || `Photo for course ${course.title}`
                   }
+                  priority={true}
                 />
               </View>
             ) : (

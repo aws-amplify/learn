@@ -95,6 +95,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
                 width="580px"
                 layout="intrinsic"
                 quality={100}
+                priority={true}
               />
             </Flex>
           </Card>
