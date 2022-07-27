@@ -53,6 +53,7 @@ const AboutPage: NextPage = () => {
           </Card>
           <Card>
             <Button
+              ariaLabel="Join the Amplify Discord"
               variation="primary"
               size="large"
               gap="10px"
