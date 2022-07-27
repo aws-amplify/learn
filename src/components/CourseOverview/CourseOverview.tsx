@@ -3,7 +3,6 @@ import {
   Button,
   Card,
   Flex,
-  Image,
   Text,
   useBreakpointValue,
   View,
@@ -15,6 +14,7 @@ import { LessonTableOfContents } from "../LessonTableOfContents";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { useState } from "react";
 import { YoutubeModal } from "../YoutubeModal";
+import Image from "next/image";
 
 export function CourseOverview({
   course,
@@ -120,13 +120,26 @@ export function CourseOverview({
             >
               {buttonGroup}
             </Flex>
-            <Flex justifyContent="center">
-              <Image
-                src={course?.image || ""}
-                alt={course?.imageAltText || ""}
+            {course.image ? (
+              <View
+                as="div"
+                position="relative"
                 borderRadius="8px"
-              />
-            </Flex>
+                overflow="hidden"
+                height="300px"
+              >
+                <Image
+                  layout="fill"
+                  objectFit="cover"
+                  src={course.image}
+                  alt={
+                    course.imageAltText || `Photo for course ${course.title}`
+                  }
+                />
+              </View>
+            ) : (
+              <></>
+            )}
           </Flex>
           <Flex
             direction={{
