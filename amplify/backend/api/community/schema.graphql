@@ -32,7 +32,7 @@ type Contributor @model @auth(rules: [{allow: public, operations: [read]}]) {
   socialNetwork: [SocialMediaLink]
   courses: [Course] @manyToMany(relationName: "ContributorCourse")
   bio: String!
-  profilePic: AWSURL!
+  profilePic: String!
   username: String!
   lastName: String!
   firstName: String!
@@ -56,7 +56,7 @@ type Course @model @auth(rules: [{allow: public, operations: [read]}]) {
   learningObjective: String!
   description: String!
   requirements: [String!]
-  image: AWSURL
+  image: String
   contributors: [Contributor] @manyToMany(relationName: "ContributorCourse")
   courseTags: [Tag] @manyToMany(relationName: "CourseTag")
   skillLevel: SkillLevel!
