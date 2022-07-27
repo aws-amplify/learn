@@ -7,13 +7,11 @@
 /* eslint-disable */
 import React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
+import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 import HeartIcon from "./HeartIcon";
-import { SocialMediaButton } from "../components/SocialMediaButton";
-import { SocialMediaPlatform } from "../models";
-import { default as ExternalIconCustom } from "./ExternalIconCustom";
 export default function LearnFooterCustomMobile(props) {
-  const { overrides, ...rest } = props;
+  const { socialMediaButtons, submitGithubIssueButton, overrides, ...rest } =
+    props;
   return (
     <Flex
       gap="24px"
@@ -468,27 +466,7 @@ export default function LearnFooterCustomMobile(props) {
             ></Text>
           </Flex>
         </Flex>
-        <Button
-          display="flex"
-          gap="12px"
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          alignSelf="stretch"
-          objectFit="cover"
-          position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
-          borderRadius="5px"
-          padding="8px 16px 8px 16px"
-          size="default"
-          isDisabled={false}
-          variation="default"
-          {...getOverrideProps(overrides, "Button")}
-        >
-          Submit issue on GitHub
-          <ExternalIconCustom />
-        </Button>
+        <View>{submitGithubIssueButton}</View>
       </Flex>
       <Flex
         gap="20px"
@@ -500,38 +478,7 @@ export default function LearnFooterCustomMobile(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 389")}
       >
-        <SocialMediaButton
-          platform={SocialMediaPlatform.GITHUB}
-          url="https://github.com/aws-amplify/community"
-          iconAriaLabel="Github Repo for Amplify Learn"
-          showBorder={false}
-          iconWidth="26px"
-          iconHeight="26px"
-        />
-        <SocialMediaButton
-          platform={SocialMediaPlatform.TWITTER}
-          url="https://twitter.com/AWSAmplify"
-          iconAriaLabel="AWS Amplify Twitter account"
-          showBorder={false}
-          iconWidth="26px"
-          iconHeight="26px"
-        />
-        <SocialMediaButton
-          platform={SocialMediaPlatform.YOUTUBE}
-          url="https://www.youtube.com/c/amazonwebservices"
-          iconAriaLabel="AWS Amplify Youtube channel"
-          showBorder={false}
-          iconWidth="26px"
-          iconHeight="26px"
-        />
-        <SocialMediaButton
-          platform={SocialMediaPlatform.DISCORD}
-          url="https://discord.gg/amplify"
-          iconAriaLabel="AWS Amplify Discord"
-          showBorder={false}
-          iconWidth="26px"
-          iconHeight="26px"
-        />
+        {socialMediaButtons}
       </Flex>
     </Flex>
   );

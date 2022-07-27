@@ -7,7 +7,15 @@
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps } from "@aws-amplify/ui-react";
-export declare type LearnFooterCustomProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type LearnFooterCustomProps = React.PropsWithChildren<
+  Partial<FlexProps> & {
+    socialMediaButtons: JSX.Element[];
+  } & {
+    submitGithubIssueButton: JSX.Element;
+  } & {
     overrides?: EscapeHatchProps | undefined | null;
-}>;
-export default function LearnFooterCustom(props: LearnFooterCustomProps): React.ReactElement;
+  }
+>;
+export default function LearnFooterCustom(
+  props: LearnFooterCustomProps
+): React.ReactElement;
