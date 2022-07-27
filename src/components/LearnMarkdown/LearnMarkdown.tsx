@@ -74,8 +74,6 @@ function CodeBlock({
 }
 
 function Paragraph({ node, children }: PropsHelper<"p">) {
-  console.log("p tag", { node, children });
-
   if (
     node.children[0].type === "element" &&
     node.children[0].tagName === "img"
@@ -104,7 +102,6 @@ export function LearnMarkdown({
 }: {
   markdownContent: string;
 }) {
-  console.log("markdown content: ", markdownContent);
   return (
     <View>
       <ReactMarkdown
