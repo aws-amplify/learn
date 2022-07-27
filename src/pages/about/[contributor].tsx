@@ -18,6 +18,7 @@ import ContributorCollection from "../../components/Contributors/ContributorColl
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { Fallback } from "../../components/Fallback";
+import ArrowRightIconCustom from "../../ui-components/ArrowRightIconCustom";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -219,11 +220,13 @@ export default function ContributorPage(data: any) {
             <Button
               aria-label="All Courses"
               width="100%"
+              gap="10px"
               onClick={() => {
                 router.push("/courses");
               }}
             >
               All courses
+              <ArrowRightIconCustom />
             </Button>
           </View>
           <View as="div" columnSpan={2}>
@@ -275,11 +278,13 @@ export default function ContributorPage(data: any) {
             <Button
               width="100%"
               aria-label="All contributors"
+              gap="10px"
               onClick={() => {
                 router.push("/about");
               }}
             >
               All contributors
+              <ArrowRightIconCustom />
             </Button>
           </View>
           <View as="div" columnSpan={2}>
