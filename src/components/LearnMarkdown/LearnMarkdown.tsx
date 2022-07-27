@@ -1,10 +1,15 @@
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeExternalLinks from "rehype-external-links";
-import { Button, View } from "@aws-amplify/ui-react";
+import { Button, View, Image, Flex } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import type { ComponentPropsWithoutRef, ElementType } from "react";
+import type { ReactMarkdownProps } from "react-markdown/lib/complex-types";
 import styles from "./LearnMarkdown.module.scss";
+
+type PropsHelper<Element extends ElementType> =
+  ComponentPropsWithoutRef<Element> & ReactMarkdownProps;
 
 function CodeBlock({
   node,
@@ -68,16 +73,43 @@ function CodeBlock({
   );
 }
 
+function Paragraph({ node, children }: PropsHelper<"p">) {
+  console.log("p tag", { node, children });
+
+  if (
+    node.children[0].type === "element" &&
+    node.children[0].tagName === "img"
+  ) {
+    const image = node.children[0];
+    const alt = image?.properties?.alt;
+    const src = image?.properties?.src;
+
+    if (
+      typeof src === "string" &&
+      (typeof alt === "string" || typeof alt === "undefined")
+    ) {
+      return (
+        <Flex justifyContent="center" margin="20px 0px">
+          <Image src={src} alt={alt ? alt : ""} />
+        </Flex>
+      );
+    }
+  }
+
+  return <p>{children}</p>;
+}
+
 export function LearnMarkdown({
   markdownContent,
 }: {
   markdownContent: string;
 }) {
+  console.log("markdown content: ", markdownContent);
   return (
     <View>
       <ReactMarkdown
         rehypePlugins={[rehypeExternalLinks]}
-        components={{ code: CodeBlock }}
+        components={{ code: CodeBlock, p: Paragraph }}
         className={styles["markdown-wrapper"]}
       >
         {markdownContent}
