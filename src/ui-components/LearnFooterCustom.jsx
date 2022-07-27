@@ -7,13 +7,11 @@
 /* eslint-disable */
 import React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Icon, Text } from "@aws-amplify/ui-react";
+import { View, Flex, Icon, Text } from "@aws-amplify/ui-react";
 import MadeLabel from "./MadeLabel";
-import { SocialMediaButton } from "../components/SocialMediaButton";
-import { SocialMediaPlatform } from "../models";
-import { default as ExternalIconCustom } from "./ExternalIconCustom";
 export default function LearnFooterCustom(props) {
-  const { overrides, ...rest } = props;
+  const { socialMediaButtons, submitGithubIssueButton, overrides, ...rest } =
+    props;
   return (
     <Flex
       gap="48px"
@@ -227,60 +225,9 @@ export default function LearnFooterCustom(props) {
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 377")}
         >
-          <SocialMediaButton
-            platform={SocialMediaPlatform.GITHUB}
-            url="https://github.com/aws-amplify/community"
-            iconAriaLabel="Github Repo for Amplify Learn"
-            showBorder={false}
-            iconWidth="34px"
-            iconHeight="34px"
-          />
-          <SocialMediaButton
-            platform={SocialMediaPlatform.TWITTER}
-            url="https://twitter.com/AWSAmplify"
-            iconAriaLabel="AWS Amplify Twitter account"
-            showBorder={false}
-            iconWidth="38px"
-            iconHeight="38px"
-          />
-          <SocialMediaButton
-            platform={SocialMediaPlatform.YOUTUBE}
-            url="https://www.youtube.com/c/amazonwebservices"
-            iconAriaLabel="AWS Amplify Youtube channel"
-            showBorder={false}
-            iconWidth="38px"
-            iconHeight="38px"
-          />
-          <SocialMediaButton
-            platform={SocialMediaPlatform.DISCORD}
-            url="https://discord.gg/amplify"
-            iconAriaLabel="AWS Amplify Discord"
-            showBorder={false}
-            iconWidth="38px"
-            iconHeight="38px"
-          />
+          {socialMediaButtons}
         </Flex>
-        <Button
-          display="flex"
-          gap="11px"
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          alignSelf="stretch"
-          objectFit="cover"
-          position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
-          borderRadius="5px"
-          padding="8px 16px 8px 16px"
-          size="default"
-          isDisabled={false}
-          variation="default"
-          {...getOverrideProps(overrides, "Button")}
-        >
-          Submit issue on GitHub
-          <ExternalIconCustom />
-        </Button>
+        {submitGithubIssueButton}
       </Flex>
     </Flex>
   );
