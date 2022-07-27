@@ -170,6 +170,7 @@ export function CardLayout(props) {
           layout="fill"
           objectFit="cover"
           quality={100}
+          priority={true}
         ></Image>
       </View>
       <Flex

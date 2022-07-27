@@ -110,6 +110,7 @@ export default function ContributorVerticalCustom(props) {
             objectFit="cover"
             src={contributor?.profilePic}
             alt={`Profile picture`}
+            priority={true}
           ></Image>
         </View>
       </Flex>
