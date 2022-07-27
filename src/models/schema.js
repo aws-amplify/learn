@@ -110,7 +110,7 @@ export const schema = {
                 "image": {
                     "name": "image",
                     "isArray": false,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -253,7 +253,7 @@ export const schema = {
                 "profilePic": {
                     "name": "profilePic",
                     "isArray": false,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -565,5 +565,5 @@ export const schema = {
             }
         }
     },
-    "version": "c8b162770b3163df336cb98bf0c81a03"
+    "version": "8c942c584461ae5f138a3538b295ab8c"
 };
