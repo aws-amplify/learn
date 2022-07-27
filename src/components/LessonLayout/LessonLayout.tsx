@@ -16,6 +16,7 @@ import styles from "./LessonLayout.module.scss";
 import { useCallback, useEffect, useState } from "react";
 import { DataStore } from "aws-amplify";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
+import ArrowRightIconCustom from "../../ui-components/ArrowRightIconCustom";
 
 export function LessonLayout({
   course,
@@ -179,11 +180,13 @@ export function LessonLayout({
           <Button
             aria-label="All Courses"
             width="100%"
+            gap="10px"
             onClick={() => {
               router.push("/courses");
             }}
           >
             All courses
+            <ArrowRightIconCustom />
           </Button>
         </View>
         <View as="div" columnStart={1} columnEnd={-1}>
