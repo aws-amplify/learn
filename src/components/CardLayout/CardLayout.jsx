@@ -11,7 +11,7 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Divider, Flex, Text, View, Card } from "@aws-amplify/ui-react";
+import { Divider, Flex, Image, Text, View, Card } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
 import { CourseTag } from "../../models";
 import styles from "./CardLayout.module.scss";
@@ -19,7 +19,6 @@ import { TagButton } from "../TagButton";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { useRouter } from "next/router";
 import { capitalizeEnum, createCourseTitleUri } from "../../utils";
-import Image from "next/image";
 
 export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
@@ -160,17 +159,26 @@ export function CardLayout(props) {
         objectFit="cover"
         position="relative"
         padding="0px 0px 0px 0px"
-        overflow="hidden"
-        borderRadius="8px"
         {...getOverrideProps(overrides, "Frame 395")}
       >
         <Image
+          position="absolute"
+          top="0px"
+          bottom="0px"
+          height="100%"
+          left="0px"
+          right="0px"
+          width="calc(100% - 0px)"
+          transformOrigin="top left"
+          transform="rotate(0deg)"
+          borderRadius="8px"
+          padding="0px 0px 0px 0px"
           src={course?.image}
           alt={course?.imageAltText}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          priority={true}
+          {...getOverrideProps(
+            overrides,
+            "mohammad-rahmani-xV1peKnrlMY-unsplash 1"
+          )}
         ></Image>
       </View>
       <Flex
