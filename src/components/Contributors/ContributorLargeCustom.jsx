@@ -11,8 +11,9 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Flex, Image, Text } from "@aws-amplify/ui-react";
+import { Flex, Text, View } from "@aws-amplify/ui-react";
 import styles from "./ContributorCollection.module.scss";
+import Image from "next/image";
 export default function ContributorLargeCustom(props) {
   const { contributor, overrides: overridesProp, ...rest } = props;
   const variants = [
@@ -97,18 +98,20 @@ export default function ContributorLargeCustom(props) {
         backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 360")}
       >
-        <Image
+        <View
           width="104px"
           height="104px"
-          grow="1"
-          basis="104px"
-          alignSelf="stretch"
+          overflow="hidden"
           position="relative"
           borderRadius="50%"
-          src={contributor?.profilePic}
-          alt={`Profile picture`}
-          {...getOverrideProps(overrides, "Ellipse 15")}
-        ></Image>
+        >
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={contributor?.profilePic}
+            alt={`Profile picture`}
+          ></Image>
+        </View>
       </Flex>
       <Flex
         gap="0"
