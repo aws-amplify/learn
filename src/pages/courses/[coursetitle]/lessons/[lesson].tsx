@@ -3,13 +3,16 @@ import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { LessonLayout } from "../../../../components/LessonLayout";
 import { Course, Lesson } from "../../../../models";
 import { YoutubeEmbed } from "../../../../components/YoutubeEmbed";
-import { Text, useBreakpointValue, View } from "@aws-amplify/ui-react";
+import { Text, useBreakpointValue, View, Flex } from "@aws-amplify/ui-react";
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
 import { LearnMarkdown } from "../../../../components/LearnMarkdown";
 import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
 import { createCourseTitleUri } from "../../../../utils";
 import { useRouter } from "next/router";
 import { Fallback } from "../../../../components/Fallback";
+import Link from "next/link";
+import ArrowRightIconCustom from "../../../../ui-components/ArrowRightIconCustom";
+import styles from "./lesson.module.scss";
 
 export default function LessonPage(data: any) {
   const showInSidebarBreakpoint = useBreakpointValue({
@@ -66,6 +69,33 @@ export default function LessonPage(data: any) {
                 markdownContent={currentLesson?.content as string}
               />
             </View>
+            {lessonNumber < lessons.length && (
+              <Flex justifyContent="flex-end">
+                <View as="div" display="inline-block">
+                  <Link
+                    href={{
+                      pathname: `${router.asPath.substring(
+                        0,
+                        router.asPath.lastIndexOf("/") + 1
+                      )}${Number(lessonNumber) + 1}`,
+                    }}
+                  >
+                    <a className={styles["next-lesson-link"]}>
+                      <Flex
+                        marginTop="50px"
+                        alignItems="flex-end"
+                        direction="column"
+                      >
+                        <Flex>
+                          Next <ArrowRightIconCustom />
+                        </Flex>
+                        {lessons[lessonNumber - 1].title}
+                      </Flex>
+                    </a>
+                  </Link>
+                </View>
+              </Flex>
+            )}
           </View>
         }
         sidebarChildren={
