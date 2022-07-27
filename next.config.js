@@ -4,6 +4,9 @@ const path = require("path");
 const nextConfig = {
   reactStrictMode: true,
   basePath: "/learn",
+  images: {
+    domains: ["raw.githubusercontent.com", "images.unsplash.com"],
+  },
 };
 
 module.exports = nextConfig;
