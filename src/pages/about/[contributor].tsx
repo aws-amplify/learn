@@ -1,6 +1,7 @@
 import {
   Flex,
   Grid,
+  Image,
   View,
   Text,
   Button,
@@ -17,7 +18,6 @@ import ContributorCollection from "../../components/Contributors/ContributorColl
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { Fallback } from "../../components/Fallback";
-import Image from "next/image";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -172,21 +172,17 @@ export default function ContributorPage(data: any) {
             padding="9px 9px 9px 9px"
             backgroundColor="rgba(255,255,255,1)"
           >
-            <View
-              as="div"
+            <Image
               width={profilePicSize}
               height={profilePicSize}
-              borderRadius="50%"
+              grow="1"
+              basis="104px"
+              alignSelf="stretch"
               position="relative"
-              overflow="hidden"
-            >
-              <Image
-                layout="fill"
-                src={contributor.profilePic}
-                alt={`Profile pic of ${contributor.firstName}`}
-                priority={true}
-              ></Image>
-            </View>
+              borderRadius="50%"
+              src={contributor?.profilePic || ""}
+              alt={`Profile pic of ${contributor.firstName}`}
+            ></Image>
           </Flex>
         </Flex>
 
