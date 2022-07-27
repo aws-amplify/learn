@@ -184,6 +184,7 @@ export default function ContributorPage(data: any) {
                 layout="fill"
                 src={contributor.profilePic}
                 alt={`Profile pic of ${contributor.firstName}`}
+                priority={true}
               ></Image>
             </View>
           </Flex>

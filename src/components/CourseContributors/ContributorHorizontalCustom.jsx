@@ -111,6 +111,7 @@ export default function ContributorHorizontal(props) {
             objectFit="cover"
             src={contributor?.profilePic}
             alt={`Profile picture`}
+            priority={true}
           ></Image>
         </View>
       </Flex>
