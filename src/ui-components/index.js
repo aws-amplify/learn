@@ -4,7 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as YoutubePlayer } from "./YoutubePlayer";
 export { default as ContributorVertical } from "./ContributorVertical";
 export { default as NavBarMobileCollapsed } from "./NavBarMobileCollapsed";
 export { default as CardLayoutCollection } from "./CardLayoutCollection";
@@ -34,7 +33,6 @@ export { default as LearnCounter } from "./LearnCounter";
 export { default as InstagramIcon } from "./InstagramIcon";
 export { default as ContributorHorizontal } from "./ContributorHorizontal";
 export { default as CardLayout } from "./CardLayout";
-export { default as LearnBreadcrumb } from "./LearnBreadcrumb";
 export { default as NavBarMobileExpanded } from "./NavBarMobileExpanded";
 export { default as ContributorLargeCollection } from "./ContributorLargeCollection";
 export { default as DiscordIcon } from "./DiscordIcon";
