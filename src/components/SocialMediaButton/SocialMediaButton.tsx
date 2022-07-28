@@ -11,6 +11,7 @@ import {
   YouTubeIcon,
 } from "../../ui-components";
 import styles from "./SocialMediaButton.module.scss";
+import { trackExternalLink } from "../../utils/track";
 
 type SocialMediaButtonProps = {
   platform:
@@ -24,7 +25,7 @@ type SocialMediaButtonProps = {
     | "YOUTUBE"
     | "DISCORD"
     | undefined;
-  url: string | null | undefined;
+  url: string;
   iconAriaLabel: string;
   iconWidth: string;
   iconHeight: string;
@@ -167,7 +168,14 @@ export function SocialMediaButton({
   }
 
   return (
-    <a target="_blank" href={url || ""} rel="noopener noreferrer">
+    <a
+      target="_blank"
+      href={url}
+      rel="noopener noreferrer"
+      onClick={() => {
+        trackExternalLink(url);
+      }}
+    >
       {icon}
     </a>
   );
