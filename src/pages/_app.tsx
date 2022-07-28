@@ -1,7 +1,6 @@
 import "@aws-amplify/ui-react/styles.css";
 import "../styles/index.scss";
 import type { AppProps } from "next/app";
-import Script from "next/script";
 import awsmobile from "../aws-exports";
 import { Amplify } from "aws-amplify";
 import { useEffect, useState } from "react";
