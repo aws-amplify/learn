@@ -74,3 +74,12 @@ export function trackPageView(eventName: string, pageURL: string): void {
 
   trackCustomEvent(opt);
 }
+
+export function trackExternalLink(hrefTo: string): void {
+  if (typeof window !== "undefined" && typeof window.s != "undefined") {
+    const { s } = window;
+    s.linkTrackVars =
+      "prop39,prop41,prop50,prop61,prop62,eVar39,eVar41,eVar50,eVar61,eVar62,eVar69";
+    s.tl(true, "e", hrefTo);
+  }
+}

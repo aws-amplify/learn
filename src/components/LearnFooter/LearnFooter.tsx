@@ -6,6 +6,7 @@ import { createGithubIssueLink } from "../../utils";
 import { View } from "@aws-amplify/ui-react";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
 import styles from "./LearnFooter.module.scss";
+import { trackExternalLink } from "../../utils/track";
 
 export function LearnFooter({ isMobile }: { isMobile: boolean }) {
   let learnFooter;
@@ -51,12 +52,17 @@ export function LearnFooter({ isMobile }: { isMobile: boolean }) {
     />,
   ];
 
+  const githubIssueUrl = createGithubIssueLink(window.location.href);
+
   const submitGithubIssueLink = (
     <a
-      href={createGithubIssueLink(window.location.href)}
+      href={githubIssueUrl}
       target="_blank"
       rel="noopener noreferrer"
       className={styles["submit-github-issue-link"]}
+      onClick={() => {
+        trackExternalLink(githubIssueUrl);
+      }}
     >
       <View
         className={styles["submit-github-issue-button"]}

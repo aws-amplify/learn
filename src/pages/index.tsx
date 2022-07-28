@@ -1,4 +1,4 @@
-import { Button, Card, Heading } from "@aws-amplify/ui-react";
+import { Button, Card, Heading, Link } from "@aws-amplify/ui-react";
 import { HomePageContent } from "../components/HomePageContent";
 import { ActionLayout } from "../components/ActionLayout";
 import { Layout } from "../components/Layout";
@@ -6,6 +6,7 @@ import ExternalIconCustom from "../ui-components/ExternalIconCustom";
 import { withSSRContext } from "aws-amplify";
 import { Course } from "../models";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
+import { trackExternalLink } from "../utils/track";
 
 export default function Home(data: any) {
   const featuredCourse = deserializeModel(Course, data.featuredCourse);
@@ -32,6 +33,7 @@ export default function Home(data: any) {
             gap="10px"
             width="max-content"
             onClick={() => {
+              trackExternalLink("https://docs.amplify.aws/start/");
               window.open(
                 "https://docs.amplify.aws/start/",
                 "_blank",

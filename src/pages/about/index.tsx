@@ -4,6 +4,7 @@ import { ActionLayout } from "../../components/ActionLayout";
 import { Contributors } from "../../components/Contributors";
 import { Layout } from "../../components/Layout";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
+import { trackExternalLink } from "../../utils/track";
 
 const AboutPage: NextPage = () => {
   return (
@@ -59,6 +60,7 @@ const AboutPage: NextPage = () => {
               gap="10px"
               width="max-content"
               onClick={() => {
+                trackExternalLink("https://discord.gg/amplify");
                 window.open(
                   "https://discord.gg/amplify",
                   "_blank",
