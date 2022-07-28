@@ -108,8 +108,8 @@ export function LearnNavBarMobile() {
             position="relative"
             padding="16px 32px 16px 32px"
           >
-            <Link href="/courses" passHref>
-              <NavBarMenuItem>Courses</NavBarMenuItem>
+            <Link href="/courses">
+              <a className={styles["navbar-menu-item"]}>Courses</a>
             </Link>
           </Flex>
           <View
@@ -129,8 +129,8 @@ export function LearnNavBarMobile() {
             position="relative"
             padding="16px 32px 16px 32px"
           >
-            <Link href="/about" passHref>
-              <NavBarMenuItem>About</NavBarMenuItem>
+            <Link href="/about">
+              <a className={styles["navbar-menu-item"]}>About</a>
             </Link>
           </Flex>
           <View
