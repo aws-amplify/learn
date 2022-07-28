@@ -17,14 +17,12 @@ import { CourseTag } from "../../models";
 import styles from "./CardLayout.module.scss";
 import { TagButton } from "../TagButton";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
-import { useRouter } from "next/router";
 import { capitalizeEnum, createCourseTitleUri } from "../../utils";
 import Link from "next/link";
 
 export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
   const [tags, setTags] = React.useState([]);
-  const router = useRouter();
 
   async function getCourseTags() {
     const courseTags = await DataStore.query(CourseTag);
@@ -41,18 +39,6 @@ export function CardLayout(props) {
   React.useEffect(() => {
     getCourseTags();
   }, []);
-
-  const navigateToCourse = () => {
-    const coursetitle = createCourseTitleUri(course.title, course.id);
-
-    router.push(
-      {
-        pathname: "/courses/[coursetitle]",
-        query: { id: course.id },
-      },
-      `/courses/${coursetitle}`
-    );
-  };
 
   const variants = [
     {
