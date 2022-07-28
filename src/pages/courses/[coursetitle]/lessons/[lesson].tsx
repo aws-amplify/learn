@@ -89,7 +89,7 @@ export default function LessonPage(data: any) {
                         <Flex>
                           Next <ArrowRightIconCustom />
                         </Flex>
-                        {lessons[lessonNumber - 1].title}
+                        {lessons[lessonNumber].title}
                       </Flex>
                     </a>
                   </Link>
