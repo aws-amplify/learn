@@ -16,6 +16,12 @@
 .lesson-link {
   justify-content: flex-start;
   border-radius: 0px;
+
+  &:hover {
+    background-color: var(
+      --amplify-components-button-link-hover-background-color
+    );
+  }
 }
 
 .current-lesson {
