@@ -61,7 +61,7 @@ function trackCustomEvent(opt: CustomEventOptions): void {
   }
 }
 
-export function pageView(eventName: string, pageURL: string): void {
+export function trackPageView(eventName: string, pageURL: string): void {
   const opt: PageViewOptions = {
     event: {
       type: "pageview",
