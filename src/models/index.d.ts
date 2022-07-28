@@ -39,13 +39,13 @@ export declare class Course {
   readonly learningObjective: string;
   readonly description: string;
   readonly requirements?: string[] | null;
-  readonly image?: string | null;
+  readonly image: string;
   readonly contributors?: (ContributorCourse | null)[] | null;
   readonly courseTags?: (CourseTag | null)[] | null;
   readonly skillLevel: SkillLevel | keyof typeof SkillLevel;
   readonly dateCreated: string;
   readonly isFeatured: boolean;
-  readonly imageAltText?: string | null;
+  readonly imageAltText: string;
   readonly trailerEmbedId?: string | null;
   constructor(init: ModelInit<Course>);
   static copyOf(source: Course, mutator: (draft: MutableModel<Course>) => MutableModel<Course> | void): Course;

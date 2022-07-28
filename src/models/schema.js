@@ -111,7 +111,7 @@ export const schema = {
                     "name": "image",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "contributors": {
@@ -169,7 +169,7 @@ export const schema = {
                     "name": "imageAltText",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "trailerEmbedId": {
@@ -565,5 +565,5 @@ export const schema = {
             }
         }
     },
-    "version": "8c942c584461ae5f138a3538b295ab8c"
+    "version": "8066b729b8f5d2e11e9b587e26746cdc"
 };
