@@ -4,6 +4,7 @@ import ExternalIconCustom from "../../../ui-components/ExternalIconCustom";
 import styles from "../LearnNavBar.module.scss";
 import Link from "next/link";
 import { NavBarMenuItem } from "../NavBarMenuItem";
+import { trackExternalLink } from "../../../utils/track";
 
 export function LearnNavBarDesktop() {
   return (
@@ -93,9 +94,7 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <Link href="https://docs.amplify.aws/" passHref>
-            <NavBarMenuItem showExternalIcon={true}>Docs</NavBarMenuItem>
-          </Link>
+          <NavBarMenuItem href="https://docs.amplify.aws/">Docs</NavBarMenuItem>
         </Flex>
       </Flex>
       <Flex
@@ -123,6 +122,7 @@ export function LearnNavBarDesktop() {
           padding="5px 16px 5px 16px"
           isDisabled={false}
           onClick={() => {
+            trackExternalLink("https://docs.amplify.aws/start/");
             window.open(
               "https://docs.amplify.aws/start/",
               "_blank",

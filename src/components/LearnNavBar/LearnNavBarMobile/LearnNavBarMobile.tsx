@@ -150,11 +150,9 @@ export function LearnNavBarMobile() {
             position="relative"
             padding="16px 32px 16px 32px"
           >
-            <Link href="https://docs.amplify.aws/" passHref>
-              <NavBarMenuItem showExternalIcon={true} onMobile={true}>
-                Docs
-              </NavBarMenuItem>
-            </Link>
+            <NavBarMenuItem href="https://docs.amplify.aws/" onMobile={true}>
+              Docs
+            </NavBarMenuItem>
           </Flex>
           <View
             height="1px"
