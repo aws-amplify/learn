@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import awsmobile from "../aws-exports";
 import { Amplify } from "aws-amplify";
 import { useEffect, useState } from "react";
-import { configureAdobeAnalytics, pageView } from "../utils/track";
+import { configureAdobeAnalytics, trackPageView } from "../utils/track";
 import { useRouter } from "next/router";
 
 Amplify.configure({ ...awsmobile, ssr: true });
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const handleRouteChange = (url: any) => {
       const origin = window.location.origin;
 
-      pageView(`Page view for ${url}`, `${origin}${url}`);
+      trackPageView(`Page view for ${url}`, `${origin}${url}`);
     };
 
     router.events.on("routeChangeStart", handleRouteChange);
