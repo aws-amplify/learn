@@ -19,6 +19,7 @@ import { TagButton } from "../TagButton";
 import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { useRouter } from "next/router";
 import { capitalizeEnum, createCourseTitleUri } from "../../utils";
+import Link from "next/link";
 
 export function CardLayout(props) {
   const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
@@ -136,209 +137,210 @@ export function CardLayout(props) {
       borderRadius="8px"
       padding="0px 0px 0px 0px"
       className={styles["course-card"]}
-      tabIndex="0"
-      onKeyDown={(event) => {
-        if (event.key === "Enter") {
-          navigateToCourse();
-        }
-      }}
-      onClick={(event) => {
-        // Since tag buttons are inside this container, prevent
-        // navigating to course when a tag button is clicked
-        if (event.target.tagName !== "A") {
-          navigateToCourse();
-        }
-      }}
       {...rest}
       {...getOverrideProps(overrides, "CardLayout")}
     >
-      <View
-        height="240px"
-        shrink="0"
-        alignSelf="stretch"
-        objectFit="cover"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 395")}
+      <Link
+        href={{
+          pathname: "/courses/[coursetitle]",
+          query: { id: course.id },
+        }}
+        as={`/courses/${createCourseTitleUri(course.title, course.id)}`}
       >
-        <Image
-          position="absolute"
-          top="0px"
-          bottom="0px"
-          height="100%"
-          left="0px"
-          right="0px"
-          width="calc(100% - 0px)"
-          transformOrigin="top left"
-          transform="rotate(0deg)"
-          borderRadius="8px"
-          padding="0px 0px 0px 0px"
-          src={course?.image}
-          alt={course?.imageAltText}
-          {...getOverrideProps(
-            overrides,
-            "mohammad-rahmani-xV1peKnrlMY-unsplash 1"
-          )}
-        ></Image>
-      </View>
+        <a style={{ textDecoration: "none" }} className={styles["course-card"]}>
+          <Flex gap="24px" direction="column">
+            <View
+              height="240px"
+              shrink="0"
+              alignSelf="stretch"
+              objectFit="cover"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              {...getOverrideProps(overrides, "Frame 395")}
+            >
+              <Image
+                position="absolute"
+                top="0px"
+                bottom="0px"
+                height="100%"
+                left="0px"
+                right="0px"
+                width="calc(100% - 0px)"
+                transformOrigin="top left"
+                transform="rotate(0deg)"
+                borderRadius="8px"
+                padding="0px 0px 0px 0px"
+                src={course?.image}
+                alt={course?.imageAltText}
+                {...getOverrideProps(
+                  overrides,
+                  "mohammad-rahmani-xV1peKnrlMY-unsplash 1"
+                )}
+              ></Image>
+            </View>
+            <Flex
+              gap="12px"
+              direction="column"
+              shrink="0"
+              alignSelf="stretch"
+              objectFit="cover"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              {...getOverrideProps(overrides, "Frame 118")}
+            >
+              <Flex
+                gap="12px"
+                direction="row"
+                wrap="wrap"
+                alignItems="flex-start"
+                shrink="0"
+                alignSelf="stretch"
+                objectFit="cover"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                {...getOverrideProps(overrides, "Frame 389")}
+              >
+                <Text
+                  fontFamily="Amazon Ember Display"
+                  fontSize="16px"
+                  fontWeight="700"
+                  color="rgba(35,47,62,1)"
+                  textTransform="uppercase"
+                  lineHeight="24px"
+                  textAlign="left"
+                  display="flex"
+                  direction="column"
+                  justifyContent="flex-start"
+                  letterSpacing="1.13px"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="COURSE"
+                  {...getOverrideProps(overrides, "COURSE")}
+                ></Text>
+                <Divider
+                  height="24px"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  size="small"
+                  orientation="vertical"
+                  {...getOverrideProps(overrides, "Divider33082635")}
+                ></Divider>
+                <Text
+                  fontFamily="Amazon Ember"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(35,47,62,1)"
+                  lineHeight="24px"
+                  textAlign="right"
+                  display="flex"
+                  direction="column"
+                  justifyContent="flex-start"
+                  letterSpacing="0.01px"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={capitalizeEnum(course?.skillLevel)}
+                  {...getOverrideProps(overrides, "Advanced")}
+                ></Text>
+                <Divider
+                  height="24px"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  size="small"
+                  orientation="vertical"
+                  {...getOverrideProps(overrides, "Divider33082637")}
+                ></Divider>
+                <Text
+                  fontFamily="Amazon Ember"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(35,47,62,1)"
+                  lineHeight="24px"
+                  textAlign="right"
+                  display="flex"
+                  direction="column"
+                  justifyContent="flex-start"
+                  letterSpacing="0.01px"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={`${course?.timeHours}${"h "}${
+                    course?.timeMinutes
+                  }${"m"}`}
+                  {...getOverrideProps(overrides, "2h 36m")}
+                ></Text>
+              </Flex>
+              <Text
+                fontFamily="Amazon Ember Display"
+                fontSize="24px"
+                fontWeight="500"
+                color="rgba(0,116,189,1)"
+                lineHeight="32px"
+                textAlign="left"
+                display="flex"
+                direction="column"
+                justifyContent="flex-start"
+                shrink="0"
+                alignSelf="stretch"
+                objectFit="cover"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={course?.title}
+                className={styles["course-title"]}
+                {...getOverrideProps(
+                  overrides,
+                  "Build fullstack mobile applications with Amplify"
+                )}
+              ></Text>
+              <Text
+                fontFamily="Amazon Ember"
+                fontSize="16px"
+                fontWeight="400"
+                color="rgba(84,91,100,1)"
+                lineHeight="24px"
+                textAlign="left"
+                display={isOnHomePage ? "flex" : "none"}
+                direction="column"
+                justifyContent="flex-start"
+                letterSpacing="0.01px"
+                shrink="0"
+                alignSelf="stretch"
+                objectFit="cover"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={course?.description}
+                {...getOverrideProps(
+                  overrides,
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada."
+                )}
+              ></Text>
+            </Flex>
+          </Flex>
+        </a>
+      </Link>
       <Flex
-        gap="12px"
-        direction="column"
+        gap="8px"
+        direction="row"
+        wrap="wrap"
+        width="fit-content"
+        alignItems="flex-start"
         shrink="0"
-        alignSelf="stretch"
-        objectFit="cover"
         position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 118")}
+        padding="8px 0px 0px 0px"
+        ariaLabel="Courses hash tags"
+        {...getOverrideProps(overrides, "Frame 58")}
       >
-        <Flex
-          gap="12px"
-          direction="row"
-          wrap="wrap"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          objectFit="cover"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 389")}
-        >
-          <Text
-            fontFamily="Amazon Ember Display"
-            fontSize="16px"
-            fontWeight="700"
-            color="rgba(35,47,62,1)"
-            textTransform="uppercase"
-            lineHeight="24px"
-            textAlign="left"
-            display="flex"
-            direction="column"
-            justifyContent="flex-start"
-            letterSpacing="1.13px"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="COURSE"
-            {...getOverrideProps(overrides, "COURSE")}
-          ></Text>
-          <Divider
-            height="24px"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            size="small"
-            orientation="vertical"
-            {...getOverrideProps(overrides, "Divider33082635")}
-          ></Divider>
-          <Text
-            fontFamily="Amazon Ember"
-            fontSize="16px"
-            fontWeight="400"
-            color="rgba(35,47,62,1)"
-            lineHeight="24px"
-            textAlign="right"
-            display="flex"
-            direction="column"
-            justifyContent="flex-start"
-            letterSpacing="0.01px"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={capitalizeEnum(course?.skillLevel)}
-            {...getOverrideProps(overrides, "Advanced")}
-          ></Text>
-          <Divider
-            height="24px"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            size="small"
-            orientation="vertical"
-            {...getOverrideProps(overrides, "Divider33082637")}
-          ></Divider>
-          <Text
-            fontFamily="Amazon Ember"
-            fontSize="16px"
-            fontWeight="400"
-            color="rgba(35,47,62,1)"
-            lineHeight="24px"
-            textAlign="right"
-            display="flex"
-            direction="column"
-            justifyContent="flex-start"
-            letterSpacing="0.01px"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={`${course?.timeHours}${"h "}${course?.timeMinutes}${"m"}`}
-            {...getOverrideProps(overrides, "2h 36m")}
-          ></Text>
-        </Flex>
-        <Text
-          fontFamily="Amazon Ember Display"
-          fontSize="24px"
-          fontWeight="500"
-          color="rgba(0,116,189,1)"
-          lineHeight="32px"
-          textAlign="left"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          objectFit="cover"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children={course?.title}
-          className={styles["course-title"]}
-          {...getOverrideProps(
-            overrides,
-            "Build fullstack mobile applications with Amplify"
-          )}
-        ></Text>
-        <Text
-          fontFamily="Amazon Ember"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(84,91,100,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display={isOnHomePage ? "flex" : "none"}
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
-          alignSelf="stretch"
-          objectFit="cover"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children={course?.description}
-          {...getOverrideProps(
-            overrides,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada."
-          )}
-        ></Text>
-        <Flex
-          gap="8px"
-          direction="row"
-          wrap="wrap"
-          width="fit-content"
-          alignItems="flex-start"
-          shrink="0"
-          position="relative"
-          padding="8px 0px 0px 0px"
-          ariaLabel="Courses hash tags"
-          {...getOverrideProps(overrides, "Frame 58")}
-        >
-          {tags.map((tag) => (
-            <TagButton key={tag.id} tag={tag} inCourseLayout={true} />
-          ))}
-        </Flex>
+        {tags.map((tag) => (
+          <TagButton key={tag.id} tag={tag} inCourseLayout={true} />
+        ))}
       </Flex>
     </Flex>
   );
