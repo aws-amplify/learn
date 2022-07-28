@@ -56,13 +56,13 @@ type Course @model @auth(rules: [{allow: public, operations: [read]}]) {
   learningObjective: String!
   description: String!
   requirements: [String!]
-  image: String
+  image: String!
   contributors: [Contributor] @manyToMany(relationName: "ContributorCourse")
   courseTags: [Tag] @manyToMany(relationName: "CourseTag")
   skillLevel: SkillLevel!
   dateCreated: AWSDateTime!
   isFeatured: Boolean!
-  imageAltText: String
+  imageAltText: String!
   trailerEmbedId: String
 }
  
