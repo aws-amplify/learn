@@ -46,6 +46,14 @@ export default class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
+          <script
+            src="https://a0.awsstatic.com/s_code/js/3.0/awshome_s_code.js"
+            defer
+          ></script>
+          <script
+            src="/learn/scripts/aws-ux-shortbread-v1-0-14.js"
+            defer
+          ></script>
         </Head>
         <body>
           <Main />

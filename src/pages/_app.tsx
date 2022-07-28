@@ -1,12 +1,11 @@
 import "@aws-amplify/ui-react/styles.css";
-import "../styles/fonts.css";
-import "../styles/globals.scss";
-import "../styles/primitives/buttonStyles.scss";
-// import "../styles/index.scss";
+import "../styles/index.scss";
 import type { AppProps } from "next/app";
+import Script from "next/script";
 import awsmobile from "../aws-exports";
 import { Amplify } from "aws-amplify";
 import { useEffect, useState } from "react";
+import { configureAdobeAnalytics } from "../utils/track";
 
 Amplify.configure({ ...awsmobile, ssr: true });
 if (process.env.NODE_ENV === "production") {
@@ -23,6 +22,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    configureAdobeAnalytics();
+
     setHasMounted(true);
   }, []);
 
@@ -30,7 +31,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     return null;
   }
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
