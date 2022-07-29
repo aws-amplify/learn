@@ -62,6 +62,7 @@ export async function getStaticProps(context: any) {
       props: {
         featuredCourse: serializeModel(featuredCourse[0]),
       },
+      revalidate: 60,
     };
   } else {
     const firstCourse = await DataStore.query(Course);
@@ -70,6 +71,7 @@ export async function getStaticProps(context: any) {
       props: {
         featuredCourse: serializeModel(firstCourse[0]),
       },
+      revalidate: 60,
     };
   }
 }
