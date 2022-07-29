@@ -206,7 +206,7 @@ type Course @model @auth(rules: [{ allow: public, operations: [read] }]) {
 
   """
   YouTube embed ID for the course's trailer.
-  Can be found in the url or from the "Share" link on the video's page
+  Can be found in the url or from the 'Share' link on the video's page
   """
   trailerEmbedId: String
 }
