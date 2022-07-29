@@ -110,7 +110,7 @@ type Lesson @model @auth(rules: [{ allow: public, operations: [read] }]) {
 
   """
   YouTube embed ID for the lesson.
-  Can be found in the url or from the "Share" link on the video's page
+  Can be found in the url or from the 'Share' link on the video's page
   """
   youtubeEmbedId: String
 
