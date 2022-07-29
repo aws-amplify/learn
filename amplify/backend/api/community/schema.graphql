@@ -71,9 +71,7 @@ type Contributor @model @auth(rules: [{ allow: public, operations: [read] }]) {
   bio: String!
 
   """
-  URL or relative path string for contributor's profile picture.
-  If using relative path, the file must be pushed to the git repo
-  and be referenced with the learn base path: /learn/...path to file...
+  URL or relative path string for contributor's profile picture
   """
   profilePic: String!
 
@@ -171,9 +169,7 @@ type Course @model @auth(rules: [{ allow: public, operations: [read] }]) {
   requirements: [String!]
 
   """
-  URL or relative path string for the course's picture.
-  If using relative path, the file must be pushed to the git repo
-  and be referenced with the learn base path: /learn/...path to file...
+  URL or relative path string for the course's picture
   """
   image: String!
 
