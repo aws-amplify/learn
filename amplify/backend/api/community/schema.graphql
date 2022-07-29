@@ -5,7 +5,7 @@ type Tag @model @auth(rules: [{ allow: public, operations: [read] }]) {
   id: ID!
 
   """
-  Tag name (without the hashtag)
+  Tag name, without the hashtag
   """
   name: String!
 
