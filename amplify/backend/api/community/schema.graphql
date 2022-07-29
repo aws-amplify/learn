@@ -73,7 +73,7 @@ type Contributor @model @auth(rules: [{ allow: public, operations: [read] }]) {
   """
   URL or relative path string for contributor's profile picture.
   If using relative path, the file must be pushed to the git repo
-  and referenced like `/learn/...path to file...`
+  and referenced like '/learn/...path to file...'
   """
   profilePic: String!
 
