@@ -2,8 +2,8 @@ import {
   Flex,
   Image,
   useBreakpointValue,
-  Card,
   Placeholder,
+  View,
 } from "@aws-amplify/ui-react";
 import { Course } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
@@ -74,7 +74,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
           />
         )}
         {/* TODO: should images use srcset to handle responsive images? If so, would we need more than one image src? */}
-        <Card
+        <View
           width="100%"
           height={{
             base: "240px",
@@ -91,7 +91,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
             alt={course.imageAltText}
             borderRadius="8px"
           />
-        </Card>
+        </View>
       </Flex>
     );
   } else {
