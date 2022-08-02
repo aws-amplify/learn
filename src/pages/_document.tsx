@@ -42,6 +42,7 @@ const getCspContent = (context: HtmlProps) => {
   if (process.env.NODE_ENV !== "production") {
     return `upgrade-insecure-requests;
       default-src 'none';
+      prefetch-src 'self';
       style-src 'self' 'unsafe-inline';
       font-src 'self' data:;
       frame-src 'self' https://www.youtube-nocookie.com ${ANALYTICS_CSP.all.frame.join(
@@ -60,6 +61,7 @@ const getCspContent = (context: HtmlProps) => {
   // Prod environment
   return `upgrade-insecure-requests;
     default-src 'none';
+    prefetch-src 'self';
     style-src 'self' 'unsafe-inline';
     font-src 'self';
     frame-src 'self' https://www.youtube-nocookie.com ${ANALYTICS_CSP.all.frame.join(
