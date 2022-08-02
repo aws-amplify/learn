@@ -1,0 +1,26 @@
+.learn-logo {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.navbar-menu-item {
+  color: rgba(84, 91, 100, 1);
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: rgba(35, 47, 62, 1);
+  }
+
+  cursor: pointer;
+  color: rgba(84, 91, 100, 1);
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent;
+    color: rgba(35, 47, 62, 1);
+  }
+}

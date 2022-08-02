@@ -1,0 +1,40 @@
+.lesson-toc {
+  border: 1px solid #a9b6b7;
+  border-radius: 8px;
+  padding-bottom: 8px;
+}
+
+.first-chapter-heading {
+  border-bottom: 1px solid #a9b6b7;
+}
+
+.chapter-heading {
+  border-top: 1px solid #a9b6b7;
+  border-bottom: 1px solid #a9b6b7;
+}
+
+.lesson-link {
+  justify-content: flex-start;
+  border-radius: 0px;
+
+  &:hover {
+    background-color: var(
+      --amplify-components-button-link-hover-background-color
+    );
+  }
+}
+
+.current-lesson {
+  background-color: #da6b10 !important;
+  p {
+    color: white;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #da6b10 !important;
+    border: none !important;
+    box-shadow: none;
+  }
+}

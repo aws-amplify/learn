@@ -1,0 +1,20 @@
+.home-page-card {
+  &:hover,
+  &:focus,
+  &:focus-within {
+    border: 1px #232f3e solid;
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
+
+.course-card {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    .course-title {
+      color: #e95e07 !important;
+    }
+  }
+}
