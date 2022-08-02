@@ -20,7 +20,7 @@ const CoursesPage: NextPage = () => {
 
   return (
     <Layout>
-      <View columnStart="2">
+      <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
         <Grid
           templateColumns={{
             base: "1fr",
