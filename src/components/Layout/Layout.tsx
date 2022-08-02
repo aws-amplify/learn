@@ -108,7 +108,7 @@ export function Layout({
               base: "1fr",
               small: "1fr",
               medium: "1fr",
-              large: "1fr min(130ch, 100%) 1fr",
+              large: "1fr min(152ch, 100%) 1fr",
             }}
             marginLeft={{
               base: "16px",
