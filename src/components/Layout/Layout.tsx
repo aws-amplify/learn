@@ -103,7 +103,6 @@ export function Layout({
             <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
           )}
           <Grid
-            backgroundColor="#FAFAFA"
             templateColumns={{
               base: "1fr",
               small: "1fr",
