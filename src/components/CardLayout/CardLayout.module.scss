@@ -2,8 +2,8 @@
   &:hover,
   &:focus,
   &:focus-within {
-    border: 1px #232f3e solid;
-    box-shadow: none;
+    border-color: transparent;
+    box-shadow: 0 0 0 1px #232f3e;
     cursor: pointer;
   }
 }
