@@ -1,4 +1,4 @@
-import { Button, Card, Heading, Link } from "@aws-amplify/ui-react";
+import { Button, View, Heading } from "@aws-amplify/ui-react";
 import { HomePageContent } from "../components/HomePageContent";
 import { ActionLayout } from "../components/ActionLayout";
 import { Layout } from "../components/Layout";
@@ -13,14 +13,15 @@ export default function Home(data: any) {
 
   return (
     <Layout>
-      <Card
+      <View
+        as="div"
         columnStart="2"
         marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}
       >
         <HomePageContent heroCourse={featuredCourse} />
-      </Card>
+      </View>
       <ActionLayout>
-        <Card>
+        <View as="div">
           <Heading fontFamily="Amazon Ember" fontWeight="300" level={3}>
             Take Amplify for a Spin!
           </Heading>
@@ -28,8 +29,8 @@ export default function Home(data: any) {
             Build extensible, full-stack web and mobile apps faster. Easy to
             start, easy to scale.
           </p>
-        </Card>
-        <Card>
+        </View>
+        <View as="div">
           <Button
             variation="primary"
             size="large"
@@ -47,7 +48,7 @@ export default function Home(data: any) {
             Try Amplify now
             <ExternalIconCustom />
           </Button>
-        </Card>
+        </View>
       </ActionLayout>
     </Layout>
   );
