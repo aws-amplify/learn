@@ -85,6 +85,7 @@ export default function LessonPage(data: any) {
                         marginTop="50px"
                         alignItems="flex-end"
                         direction="column"
+                        textAlign="right"
                       >
                         <Flex>
                           Next <ArrowRightIconCustom />
