@@ -122,6 +122,9 @@ export function CourseOverview({
             </Flex>
             <Flex justifyContent="center">
               <Image
+                objectFit="cover"
+                width="100%"
+                maxHeight="350px"
                 src={course?.image || ""}
                 alt={course?.imageAltText || ""}
                 borderRadius="8px"
