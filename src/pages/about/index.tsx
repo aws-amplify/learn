@@ -1,4 +1,4 @@
-import { Grid, Heading, View, Text, Button, Card } from "@aws-amplify/ui-react";
+import { Grid, Heading, View, Text, Button } from "@aws-amplify/ui-react";
 import { NextPage } from "next";
 import { ActionLayout } from "../../components/ActionLayout";
 import { Contributors } from "../../components/Contributors";
