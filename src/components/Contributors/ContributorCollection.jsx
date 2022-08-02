@@ -57,7 +57,7 @@ export default function ContributorCollection(props) {
           }}
           as={`/about/${item.username}`}
         >
-          <a className={styles['contributor-card-hyperlink']}>
+          <a className={styles["contributor-card-hyperlink"]}>
             <Card
               className={styles["contributor-card"]}
               borderRadius="16px"
@@ -68,7 +68,13 @@ export default function ContributorCollection(props) {
                 large: "48px",
                 xl: "64px",
               }}
-              paddingBottom="64px"
+              paddingBottom={{
+                base: "32px",
+                small: "32px",
+                medium: "48px",
+                large: "48px",
+                xl: "64px",
+              }}
               variation="elevated"
             >
               {useLargeVariant ? (
