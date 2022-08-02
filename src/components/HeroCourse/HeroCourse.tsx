@@ -39,7 +39,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
           large: "row",
         }}
         alignItems="center"
-        gap="20px"
+        gap="40px"
       >
         <HeroLayout
           variation={heroLayoutVariant}
