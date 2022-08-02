@@ -124,7 +124,6 @@ export function Layout({
               base: "32px",
               small: "32px",
               medium: "64px",
-              large: "128px",
             }}
             marginBottom={{
               base: "114px",
