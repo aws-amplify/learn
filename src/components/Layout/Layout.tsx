@@ -97,7 +97,7 @@ export function Layout({
         />
       </Head>
       <ThemeProvider theme={studioTheme}>
-        <Flex direction="column" minHeight="100%">
+        <Flex direction="column" minHeight="100%" gap="0px">
           <LearnNavBar isMobile={isMobile} />
           {showBreadcrumb && breadcrumbCallback && (
             <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
@@ -111,13 +111,13 @@ export function Layout({
               large: "1fr min(130ch, 100%) 1fr",
             }}
             marginLeft={{
-              base: "32px",
-              small: "32px",
+              base: "16px",
+              small: "16px",
               medium: "64px",
             }}
             marginRight={{
-              base: "32px",
-              small: "32px",
+              base: "16px",
+              small: "16px",
               medium: "64px",
             }}
             marginTop={{
