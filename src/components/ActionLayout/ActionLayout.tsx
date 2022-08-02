@@ -18,9 +18,9 @@ export function ActionLayout({ children }: { children: any }) {
       }}
       columnStart="2"
       gap={{
-        base: "0px",
-        small: "0px",
-        medium: "0px",
+        base: "32px",
+        small: "32px",
+        medium: "32px",
         large: "200px",
       }}
       justifyContent="space-between"
