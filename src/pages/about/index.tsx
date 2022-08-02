@@ -43,7 +43,7 @@ const AboutPage: NextPage = () => {
         </Grid>
         <Contributors />
         <ActionLayout>
-          <Card>
+          <View as="div">
             <Heading fontFamily="Amazon Ember" fontWeight="300" level={3}>
               {`Let's Connect`}
             </Heading>
@@ -51,8 +51,8 @@ const AboutPage: NextPage = () => {
               Join the Amplify Community Discord to ask questions, contribute to
               the open source project, and learn about new features.
             </p>
-          </Card>
-          <Card>
+          </View>
+          <View as="div">
             <Button
               ariaLabel="Join the Amplify Discord"
               variation="primary"
@@ -71,7 +71,7 @@ const AboutPage: NextPage = () => {
               Chat on Discord
               <ExternalIconCustom />
             </Button>
-          </Card>
+          </View>
         </ActionLayout>
       </View>
     </Layout>
