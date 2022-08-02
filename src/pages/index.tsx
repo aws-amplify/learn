@@ -13,7 +13,7 @@ export default function Home(data: any) {
 
   return (
     <Layout>
-      <Card columnStart="2">
+      <Card columnStart="2" marginTop="64px">
         <HomePageContent heroCourse={featuredCourse} />
       </Card>
       <ActionLayout>
