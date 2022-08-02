@@ -40,8 +40,6 @@ export function NavBarMenuItem({
       >
         {children}
         <ExternalIconCustom
-          width="24px"
-          height="30px"
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
