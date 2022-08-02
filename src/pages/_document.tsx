@@ -67,9 +67,10 @@ const getCspContent = (context: HtmlProps) => {
     frame-src 'self' https://www.youtube-nocookie.com ${ANALYTICS_CSP.all.frame.join(
       " "
     )};
-    connect-src 'self' *.shortbread.aws.dev https://learn-backend.amplify.aws ws: ${ANALYTICS_CSP.all.connect.join(
-      " "
-    )};
+    connect-src 'self' *.shortbread.aws.dev https://learn-backend.amplify.aws ws: ${[
+      ...ANALYTICS_CSP.all.connect,
+      ...ANALYTICS_CSP.prod.connect,
+    ].join(" ")};
     img-src 'self' images.unsplash.com ${ANALYTICS_CSP.all.img.join(" ")};
     script-src 'self' ${ANALYTICS_CSP.all.script.join(
       " "
