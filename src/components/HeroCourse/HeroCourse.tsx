@@ -44,7 +44,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
         <HeroLayout
           variation={heroLayoutVariant}
           course={course}
-          shrink="10"
+          shrink="1.5"
           overrides={{
             Advanced: {
               children: `${capitalizeEnum(course?.skillLevel as string)}`,
@@ -74,10 +74,21 @@ export function HeroCourse({ course }: HeroCourseProps) {
           />
         )}
         {/* TODO: should images use srcset to handle responsive images? If so, would we need more than one image src? */}
-        <Card>
+        <Card
+          width="100%"
+          height={{
+            base: "240px",
+            small: "240px",
+            medium: "280px",
+            large: "368px",
+          }}
+        >
           <Image
-            src={course?.image || ""}
-            alt={course?.imageAltText || ""}
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            src={course.image}
+            alt={course.imageAltText}
             borderRadius="8px"
           />
         </Card>

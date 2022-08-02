@@ -139,7 +139,6 @@ export function CardLayout(props) {
               height="240px"
               shrink="0"
               alignSelf="stretch"
-              objectFit="cover"
               position="relative"
               padding="0px 0px 0px 0px"
               {...getOverrideProps(overrides, "Frame 395")}
@@ -152,6 +151,7 @@ export function CardLayout(props) {
                 left="0px"
                 right="0px"
                 width="calc(100% - 0px)"
+                objectFit="cover"
                 transformOrigin="top left"
                 transform="rotate(0deg)"
                 borderRadius="8px"
