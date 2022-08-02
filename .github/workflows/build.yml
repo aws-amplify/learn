@@ -14,6 +14,6 @@ jobs:
         with:
           node-version: 12.x
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install
       - name: Run build
-        run: yarn build
+        run: npm run build
