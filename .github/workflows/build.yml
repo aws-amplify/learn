@@ -56,7 +56,5 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           app-id: ${{ secrets.APP_ID }}
           env-name: ${{ secrets.ENV_NAME }}
-      - name: Run tests
-        run: npm run test
       - name: Run build
         run: npm run build
