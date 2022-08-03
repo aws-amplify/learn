@@ -7,7 +7,7 @@
 /* eslint-disable */
 import React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { View, Flex, Icon, Text } from "@aws-amplify/ui-react";
+import { Flex, Icon, Text } from "@aws-amplify/ui-react";
 import MadeLabel from "./MadeLabel";
 export default function LearnFooterCustom(props) {
   const { socialMediaButtons, submitGithubIssueButton, overrides, ...rest } =
