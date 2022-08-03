@@ -1,4 +1,4 @@
-import { Flex, Text, useBreakpointValue, View } from "@aws-amplify/ui-react";
+import { Flex, useBreakpointValue, View } from "@aws-amplify/ui-react";
 import {
   ClassAttributes,
   HTMLAttributes,
@@ -49,9 +49,7 @@ export function YoutubeModal({
       | undefined
   ) => {
     return (
-      <div
-        {...props}
-      >
+      <div {...props}>
         <View
           as="div"
           onClick={closeModal}
