@@ -2,16 +2,20 @@ name: Fetch Amplify Backend
 description: Downloads Amplify configurations after getting temporary AWS credentials
 inputs:
   aws-region:
+    description: "AWS region"
     required: true
   role-to-assume:
+    description: "Role to assume"
     required: true
   app-id:
+    description: "App id"
     required: true
   env-name:
+    description: "Env name"
     required: true
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Add Amplify CLI
       run: npm install -g @aws-amplify/cli
