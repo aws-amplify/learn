@@ -1,4 +1,4 @@
-import { Flex, Placeholder } from "@aws-amplify/ui-react";
+import { Flex, Loader } from "@aws-amplify/ui-react";
 import { Layout } from "../Layout";
 
 export function Fallback() {
@@ -15,7 +15,14 @@ export function Fallback() {
         alignItems="center"
         height="calc(45vh - 80px)"
       >
-        <Placeholder size="large" ariaLabel="Loading" />
+        <Loader
+          size="large"
+          ariaLabel="Loading"
+          width="3em"
+          height="3em"
+          filledColor="#0074BD"
+          fr={undefined}
+        />
       </Flex>
     </Layout>
   );
