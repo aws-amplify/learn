@@ -53,7 +53,6 @@ export default function ContributorCollection(props) {
           key={item.id}
           href={{
             pathname: "/about/[contributor]",
-            query: { id: item.id },
           }}
           as={`/about/${item.username}`}
         >

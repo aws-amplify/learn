@@ -25,7 +25,6 @@ export function CourseContributors({
             key={index}
             href={{
               pathname: "/about/[contributor]",
-              query: { id: contributor.id },
             }}
             as={`/about/${contributor.username}`}
           >

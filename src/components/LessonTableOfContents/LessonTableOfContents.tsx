@@ -64,7 +64,6 @@ export function LessonTableOfContents({
           <Link
             href={{
               pathname: pathname,
-              query: { lessonId: lesson.id, courseId },
             }}
             as={asPath}
           >

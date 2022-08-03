@@ -129,7 +129,6 @@ export function CardLayout(props) {
       <Link
         href={{
           pathname: "/courses/[coursetitle]",
-          query: { id: course.id },
         }}
         as={`/courses/${createCourseTitleUri(course.title, course.id)}`}
       >
