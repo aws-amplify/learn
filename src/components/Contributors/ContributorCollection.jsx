@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function ContributorCollection(props) {
-  const router = useRouter();
   const {
     items: itemsProp,
     overrideItems,

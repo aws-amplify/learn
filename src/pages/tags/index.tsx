@@ -1,4 +1,4 @@
-import { Text, Grid, Heading, View } from "@aws-amplify/ui-react";
+import { Grid, Heading, View } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { withSSRContext } from "aws-amplify";
 import { Tag } from "../../models";

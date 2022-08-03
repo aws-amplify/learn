@@ -7,7 +7,7 @@ export function useFirstDatastoreQuery(queryFn: any) {
     // Create listener that will stop observing the model once the sync process is done
     const removeListener = Hub.listen("datastore", (capsule) => {
       const {
-        payload: { event, data },
+        payload: { event },
       } = capsule;
 
       if (event === "ready") {

@@ -1,10 +1,4 @@
-import {
-  Text,
-  Grid,
-  Heading,
-  View,
-  useBreakpointValue,
-} from "@aws-amplify/ui-react";
+import { Grid, Heading, View, useBreakpointValue } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
 import { NextPage } from "next";
