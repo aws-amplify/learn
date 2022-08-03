@@ -23,9 +23,6 @@ export function TagButton({
     <Link
       href={{
         pathname: "/tags/[tagname]",
-        query: {
-          id: tag.id,
-        },
       }}
       as={`/tags/${tag.name}`}
     >

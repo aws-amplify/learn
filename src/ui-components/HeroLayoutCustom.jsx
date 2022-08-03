@@ -281,7 +281,6 @@ export default function HeroLayout(props) {
             router.push(
               {
                 pathname: "/courses/[coursetitle]",
-                query: { id: course.id },
               },
               `/courses/${coursetitle}`
             );

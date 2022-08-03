@@ -47,7 +47,6 @@ export function CourseOverview({
           router.push(
             {
               pathname: `${router.pathname}/lessons/[lesson]`,
-              query: { courseId: course.id },
             },
             `${router.asPath}/lessons/1`
           );
