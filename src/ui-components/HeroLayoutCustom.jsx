@@ -11,33 +11,13 @@ import {
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import { Button, Divider, Flex, Text } from "@aws-amplify/ui-react";
-import { useState, useEffect, useCallback } from "react";
-import { DataStore } from "aws-amplify";
-import { CourseTag } from "../models";
 import { TagButton } from "../components/TagButton";
-import { useFirstDatastoreQuery } from "../hooks/useFirstDatastoreQuery";
 import { useRouter } from "next/router";
 import { createCourseTitleUri } from "../utils";
 
 export default function HeroLayout(props) {
-  const { course, overrides: overridesProp, ...rest } = props;
-  const [tags, setTags] = useState([]);
+  const { course, tags, overrides: overridesProp, ...rest } = props;
   const router = useRouter();
-
-  async function getCourseTags() {
-    const courseTags = await DataStore.query(CourseTag);
-
-    const result = courseTags.filter((e) => e.course.id === course.id);
-
-    setTags(result.map((e) => e.tag));
-  }
-
-  const getCourseTagsCallback = useCallback(getCourseTags);
-  useFirstDatastoreQuery(getCourseTagsCallback, [course.id]);
-
-  useEffect(() => {
-    getCourseTagsCallback();
-  }, [getCourseTagsCallback]);
 
   const variants = [
     {

@@ -1,119 +1,38 @@
-/***************************************************************************
- * The contents of this file were generated with Amplify Studio.           *
- * Please refrain from making any modifications to this file.              *
- * Any changes to this file will be overwritten when running amplify pull. *
- **************************************************************************/
-
-/* eslint-disable */
 import React from "react";
 import {
-  getOverrideProps,
-  getOverridesFromVariants,
-  mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
-import { Divider, Flex, Image, Text, View, Card } from "@aws-amplify/ui-react";
-import { DataStore } from "aws-amplify";
-import { CourseTag } from "../../models";
+  Divider,
+  Flex,
+  Image,
+  Text,
+  View,
+  Card,
+  FlexProps,
+} from "@aws-amplify/ui-react";
 import styles from "./CardLayout.module.scss";
 import { TagButton } from "../TagButton";
-import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import { capitalizeEnum, createCourseTitleUri } from "../../utils";
 import Link from "next/link";
+import { Course, Tag } from "../../models";
 
-export function CardLayout(props) {
-  const { course, isOnHomePage, overrides: overridesProp, ...rest } = props;
-  const [tags, setTags] = React.useState([]);
-
-  async function getCourseTags() {
-    const courseTags = await DataStore.query(CourseTag);
-
-    const result = courseTags.filter((e) => e.course.id === course.id);
-
-    setTags(result.map((e) => e.tag));
+export declare type CardLayoutProps = React.PropsWithChildren<
+  Partial<FlexProps> & {
+    course: Course;
+  } & {
+    tags: Tag[];
+  } & {
+    isOnHomePage?: boolean;
+  } & {
+    isActive?: "false" | "true";
+    isHover?: "false" | "true";
   }
+>;
 
-  const callback = React.useCallback(getCourseTags, []);
-
-  useFirstDatastoreQuery(callback);
-
-  React.useEffect(() => {
-    getCourseTags();
-  }, []);
-
-  const variants = [
-    {
-      overrides: {
-        "mohammad-rahmani-xV1peKnrlMY-unsplash 1": {},
-        "Frame 395": {},
-        COURSE: {},
-        Divider33082635: {},
-        Advanced: {},
-        Divider33082637: {},
-        "2h 36m": {},
-        "Frame 389": {},
-        "Build fullstack mobile applications with Amplify": {},
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada.":
-          {},
-        Button31473172: {},
-        Button31473173: {},
-        "Frame 58": {},
-        "Frame 118": {},
-        CardLayout: {},
-      },
-      variantValues: { isHover: "false", isActive: "false" },
-    },
-    {
-      overrides: {
-        "mohammad-rahmani-xV1peKnrlMY-unsplash 1": {},
-        "Frame 395": {},
-        COURSE: {},
-        Divider33082635: {},
-        Advanced: {},
-        Divider33082637: {},
-        "2h 36m": {},
-        "Frame 389": {},
-        "Build fullstack mobile applications with Amplify": {
-          color: "rgba(233,94,7,1)",
-        },
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada.":
-          {},
-        Button31473172: {},
-        Button31473173: {},
-        "Frame 58": {},
-        "Frame 118": {},
-        CardLayout: {},
-      },
-      variantValues: { isHover: "true", isActive: "false" },
-    },
-    {
-      overrides: {
-        "mohammad-rahmani-xV1peKnrlMY-unsplash 1": {},
-        "Frame 395": {},
-        COURSE: {},
-        Divider33082635: {},
-        Advanced: {},
-        Divider33082637: {},
-        "2h 36m": {},
-        "Frame 389": {},
-        "Build fullstack mobile applications with Amplify": {
-          color: "rgba(218,107,16,1)",
-        },
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada.":
-          {},
-        Button31473172: {},
-        Button31473173: {},
-        "Frame 58": {},
-        "Frame 118": {},
-        CardLayout: {},
-      },
-      variantValues: { isHover: "false", isActive: "true" },
-    },
-  ];
-  const overrides = mergeVariantsAndOverrides(
-    getOverridesFromVariants(variants, props),
-    overridesProp || {}
-  );
-
+export function CardLayout({
+  course,
+  tags,
+  isOnHomePage,
+  ...rest
+}: CardLayoutProps) {
   const cardLayout = (
     <Flex
       gap="24px"
@@ -124,7 +43,6 @@ export function CardLayout(props) {
       padding="0px 0px 0px 0px"
       className={styles["course-card"]}
       {...rest}
-      {...getOverrideProps(overrides, "CardLayout")}
     >
       <Link
         href={{
@@ -140,7 +58,6 @@ export function CardLayout(props) {
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Frame 395")}
             >
               <Image
                 position="absolute"
@@ -157,10 +74,6 @@ export function CardLayout(props) {
                 padding="0px 0px 0px 0px"
                 src={course?.image}
                 alt={course?.imageAltText}
-                {...getOverrideProps(
-                  overrides,
-                  "mohammad-rahmani-xV1peKnrlMY-unsplash 1"
-                )}
               ></Image>
             </View>
             <Flex
@@ -168,10 +81,8 @@ export function CardLayout(props) {
               direction="column"
               shrink="0"
               alignSelf="stretch"
-              objectFit="cover"
               position="relative"
               padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Frame 118")}
             >
               <Flex
                 gap="12px"
@@ -180,10 +91,8 @@ export function CardLayout(props) {
                 alignItems="flex-start"
                 shrink="0"
                 alignSelf="stretch"
-                objectFit="cover"
                 position="relative"
                 padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Frame 389")}
               >
                 <Text
                   fontFamily="Amazon Ember Display"
@@ -194,15 +103,12 @@ export function CardLayout(props) {
                   lineHeight="24px"
                   textAlign="left"
                   display="flex"
-                  direction="column"
-                  justifyContent="flex-start"
                   letterSpacing="1.13px"
                   shrink="0"
                   position="relative"
                   padding="0px 0px 0px 0px"
                   whiteSpace="pre-wrap"
                   children="COURSE"
-                  {...getOverrideProps(overrides, "COURSE")}
                 ></Text>
                 <Divider
                   height="24px"
@@ -211,7 +117,6 @@ export function CardLayout(props) {
                   padding="0px 0px 0px 0px"
                   size="small"
                   orientation="vertical"
-                  {...getOverrideProps(overrides, "Divider33082635")}
                 ></Divider>
                 <Text
                   fontFamily="Amazon Ember"
@@ -221,15 +126,12 @@ export function CardLayout(props) {
                   lineHeight="24px"
                   textAlign="right"
                   display="flex"
-                  direction="column"
-                  justifyContent="flex-start"
                   letterSpacing="0.01px"
                   shrink="0"
                   position="relative"
                   padding="0px 0px 0px 0px"
                   whiteSpace="pre-wrap"
                   children={capitalizeEnum(course?.skillLevel)}
-                  {...getOverrideProps(overrides, "Advanced")}
                 ></Text>
                 <Divider
                   height="24px"
@@ -238,7 +140,6 @@ export function CardLayout(props) {
                   padding="0px 0px 0px 0px"
                   size="small"
                   orientation="vertical"
-                  {...getOverrideProps(overrides, "Divider33082637")}
                 ></Divider>
                 <Text
                   fontFamily="Amazon Ember"
@@ -248,8 +149,6 @@ export function CardLayout(props) {
                   lineHeight="24px"
                   textAlign="right"
                   display="flex"
-                  direction="column"
-                  justifyContent="flex-start"
                   letterSpacing="0.01px"
                   shrink="0"
                   position="relative"
@@ -258,7 +157,6 @@ export function CardLayout(props) {
                   children={`${course?.timeHours}${"h "}${
                     course?.timeMinutes
                   }${"m"}`}
-                  {...getOverrideProps(overrides, "2h 36m")}
                 ></Text>
               </Flex>
               <Text
@@ -269,20 +167,13 @@ export function CardLayout(props) {
                 lineHeight="32px"
                 textAlign="left"
                 display="flex"
-                direction="column"
-                justifyContent="flex-start"
                 shrink="0"
                 alignSelf="stretch"
-                objectFit="cover"
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
                 children={course?.title}
                 className={styles["course-title"]}
-                {...getOverrideProps(
-                  overrides,
-                  "Build fullstack mobile applications with Amplify"
-                )}
               ></Text>
               <Text
                 fontFamily="Amazon Ember"
@@ -292,20 +183,13 @@ export function CardLayout(props) {
                 lineHeight="24px"
                 textAlign="left"
                 display={isOnHomePage ? "flex" : "none"}
-                direction="column"
-                justifyContent="flex-start"
                 letterSpacing="0.01px"
                 shrink="0"
                 alignSelf="stretch"
-                objectFit="cover"
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
                 children={course?.description}
-                {...getOverrideProps(
-                  overrides,
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada."
-                )}
               ></Text>
             </Flex>
           </Flex>
@@ -321,7 +205,6 @@ export function CardLayout(props) {
         position="relative"
         padding="8px 0px 0px 0px"
         ariaLabel="Courses hash tags"
-        {...getOverrideProps(overrides, "Frame 58")}
       >
         {tags.map((tag) => (
           <TagButton key={tag.id} tag={tag} inCourseLayout={true} />
