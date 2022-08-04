@@ -5,17 +5,18 @@ import {
   Placeholder,
   View,
 } from "@aws-amplify/ui-react";
-import { Course } from "../../models";
+import { Course, Tag } from "../../models";
 import { default as HeroLayout } from "../../ui-components/HeroLayoutCustom";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { useState } from "react";
 import { YoutubeModal } from "../YoutubeModal";
 
 interface HeroCourseProps {
-  course: Course | null;
+  course: Course;
+  tags: Tag[];
 }
 
-export function HeroCourse({ course }: HeroCourseProps) {
+export function HeroCourse({ course, tags }: HeroCourseProps) {
   const heroLayoutVariant = useBreakpointValue({
     base: "mobile",
     small: "mobile ",
@@ -44,6 +45,7 @@ export function HeroCourse({ course }: HeroCourseProps) {
         <HeroLayout
           variation={heroLayoutVariant}
           course={course}
+          tags={tags}
           shrink="1.5"
           overrides={{
             Advanced: {

@@ -1,22 +1,9 @@
 import "@aws-amplify/ui-react/styles.css";
 import "../styles/index.scss";
 import type { AppProps } from "next/app";
-import awsmobile from "../aws-exports";
-import { Amplify } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { configureAdobeAnalytics, trackPageView } from "../utils/track";
 import { useRouter } from "next/router";
-
-Amplify.configure({ ...awsmobile, ssr: true });
-if (process.env.NODE_ENV === "production") {
-  Amplify.configure({
-    ...{
-      ...awsmobile,
-      aws_appsync_graphqlEndpoint: "https://learn-backend.amplify.aws/graphql",
-    },
-    ssr: true,
-  });
-}
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

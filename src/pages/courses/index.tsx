@@ -1,9 +1,13 @@
 import { Grid, Heading, View, useBreakpointValue } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
-import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
-import { NextPage } from "next";
+import { CardLayoutCollection } from "../../components/CardLayoutCollection";
+import { withSSRContext } from "aws-amplify";
+import { CourseTag } from "../../models";
+import { CardLayoutData } from "../../types";
 
-const CoursesPage: NextPage = () => {
+export default function CoursesPage(data: any) {
+  const cardLayouts: CardLayoutData[] = JSON.parse(data.cardLayouts);
+
   const itemsPerPageBreakpoint = useBreakpointValue({
     base: 3,
     small: 3,
@@ -44,6 +48,7 @@ const CoursesPage: NextPage = () => {
           }}
         >
           <CardLayoutCollection
+            cardLayouts={cardLayouts}
             templateColumns={{
               base: "1fr",
               small: "1fr",
@@ -60,6 +65,42 @@ const CoursesPage: NextPage = () => {
       </View>
     </Layout>
   );
-};
+}
 
-export default CoursesPage;
+export async function getStaticProps(context: any) {
+  const { DataStore } = withSSRContext(context);
+
+  const courseTags: CourseTag[] = await DataStore.query(CourseTag);
+
+  const groupedCourseTags: Record<string, CardLayoutData> = {};
+
+  courseTags.forEach((courseTag) => {
+    if (!groupedCourseTags.hasOwnProperty(courseTag.course.id)) {
+      const tags = [courseTag.tag];
+
+      groupedCourseTags[courseTag.course.id] = {
+        course: courseTag.course,
+        tags,
+      };
+    } else {
+      const cardLayout = groupedCourseTags[courseTag.course.id];
+
+      const tags = cardLayout.tags;
+      tags.push(courseTag.tag);
+
+      groupedCourseTags[courseTag.course.id] = {
+        course: courseTag.course,
+        tags,
+      };
+    }
+  });
+
+  const flattenedCourseLayouts = Object.values(groupedCourseTags);
+
+  return {
+    props: {
+      cardLayouts: JSON.stringify(flattenedCourseLayouts),
+    },
+    revalidate: 60,
+  };
+}
