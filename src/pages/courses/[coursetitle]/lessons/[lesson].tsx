@@ -1,7 +1,7 @@
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { LessonLayout } from "../../../../components/LessonLayout";
-import { Course, Lesson } from "../../../../models";
+import { Contributor, Course, Lesson } from "../../../../models";
 import { YoutubeEmbed } from "../../../../components/YoutubeEmbed";
 import { Text, useBreakpointValue, View, Flex } from "@aws-amplify/ui-react";
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
@@ -13,8 +13,27 @@ import { Fallback } from "../../../../components/Fallback";
 import Link from "next/link";
 import ArrowRightIconCustom from "../../../../ui-components/ArrowRightIconCustom";
 import styles from "./lesson.module.scss";
+import { CardLayoutData, Context } from "../../../../types/models";
+import {
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from "next";
+import {
+  getCardLayoutData,
+  getCourseAndLessonData,
+  getCourseContributors,
+} from "../../../../lib/getData";
+import { ParsedUrlQuery } from "querystring";
 
-export default function LessonPage(data: any) {
+export default function LessonPage(data: {
+  course: Course;
+  lessons: Lesson[];
+  currentLesson: Lesson;
+  contributors: Contributor[];
+  cardLayoutData: string;
+}) {
   const showInSidebarBreakpoint = useBreakpointValue({
     base: false,
     small: false,
@@ -29,15 +48,23 @@ export default function LessonPage(data: any) {
     return <Fallback />;
   }
 
-  const course = deserializeModel(Course, data.course);
-  const currentLesson = deserializeModel(Lesson, data.currentLesson);
-  const lessons = deserializeModel(Lesson, data.lessons);
+  const course: Course = deserializeModel(Course, data.course);
+  const lessons: Lesson[] = deserializeModel(Lesson, data.lessons);
+  const currentLesson: Lesson = deserializeModel(Lesson, data.currentLesson);
+  const contributors: Contributor[] = deserializeModel(
+    Contributor,
+    data.contributors
+  );
+  const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
+
   const lessonNumber = currentLesson.lessonNumber;
 
   return (
     <CoursesRouteLayout>
       <LessonLayout
         course={course}
+        contributors={contributors}
+        cardLayoutData={cardLayoutData}
         mainChildren={
           <View as="div">
             {currentLesson?.youtubeEmbedId && (
@@ -58,7 +85,7 @@ export default function LessonPage(data: any) {
             {!showInSidebarBreakpoint && (
               <View marginTop="32px">
                 <LessonTableOfContents
-                  currentLesson={lessonNumber}
+                  currentLesson={`${currentLesson.lessonNumber}`}
                   courseId={course.id as string}
                   lessons={lessons}
                 />
@@ -101,7 +128,7 @@ export default function LessonPage(data: any) {
         }
         sidebarChildren={
           <LessonTableOfContents
-            currentLesson={lessonNumber}
+            currentLesson={`${currentLesson.lessonNumber}`}
             courseId={course?.id as string}
             lessons={lessons}
           />
@@ -111,7 +138,22 @@ export default function LessonPage(data: any) {
   );
 }
 
-export async function getStaticPaths(context: any) {
+interface LessonPageProps {
+  course: JSON;
+  lessons: JSON;
+  currentLesson: JSON;
+  contributors: JSON;
+  cardLayoutData: string;
+}
+
+interface LessonPageParams extends ParsedUrlQuery {
+  coursetitle: string;
+  lesson: string;
+}
+
+export async function getStaticPaths(
+  context: GetStaticPaths & Context
+): Promise<GetStaticPathsResult<LessonPageParams>> {
   const { DataStore } = withSSRContext(context);
   const lessons: Lesson[] = await DataStore.query(Lesson);
   const courses: Course[] = await DataStore.query(Course);
@@ -147,44 +189,31 @@ export async function getStaticPaths(context: any) {
   };
 }
 
-export async function getStaticProps(context: any) {
-  const { DataStore } = withSSRContext(context);
-  const { coursetitle, lesson: lessonNumber } = context.params;
+export async function getStaticProps(
+  context: GetStaticPropsContext<LessonPageParams> & Context
+): Promise<GetStaticPropsResult<LessonPageProps>> {
+  const courseAndLessonData = await getCourseAndLessonData(context);
 
-  // Get the course title without the appended id
-  const originalCourseTitle = coursetitle
-    ?.substring(0, coursetitle?.lastIndexOf("-"))
-    .replace(/-/g, " ");
+  if (courseAndLessonData) {
+    const { lesson: lessonNumber } = context.params as LessonPageParams;
 
-  // Get the course Id prefix
-  const courseIdPrefix = coursetitle?.substring(
-    coursetitle?.lastIndexOf("-") + 1,
-    coursetitle.length
-  );
+    const currentLesson = courseAndLessonData.lessons[Number(lessonNumber) - 1];
 
-  const courseResults: Course[] = await DataStore.query(Course, (c: any) =>
-    c.id("beginsWith", courseIdPrefix).title("eq", originalCourseTitle)
-  );
+    const cardLayoutData = await getCardLayoutData(context);
 
-  const courseResult = courseResults[0];
-
-  if (courseResult) {
-    const result: Lesson[] = await DataStore.query(Lesson, (l: any) =>
-      l.lessonCourseLessonId("eq", courseResult.id)
+    const courseContributors = await getCourseContributors(
+      context,
+      (rel) => rel.course.id === courseAndLessonData.course.id
     );
-
-    const lessonsSorted = result.sort(
-      (a, b) => a.lessonNumber - b.lessonNumber
-    );
-
-    const currentLesson = lessonsSorted[lessonNumber - 1];
 
     if (currentLesson && currentLesson.id) {
       return {
         props: {
-          course: serializeModel(courseResult),
+          course: serializeModel(courseAndLessonData.course),
+          lessons: serializeModel(courseAndLessonData.lessons),
           currentLesson: serializeModel(currentLesson),
-          lessons: serializeModel(lessonsSorted),
+          contributors: serializeModel(courseContributors),
+          cardLayoutData: JSON.stringify(cardLayoutData),
         },
         revalidate: 60,
       };

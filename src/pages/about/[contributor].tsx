@@ -12,13 +12,22 @@ import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { Layout } from "../../components/Layout";
-import { Contributor, ContributorCourse, Course } from "../../models";
-import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
-import ContributorCollection from "../../components/Contributors/ContributorCollection";
+import { Contributor, ContributorCourse } from "../../models";
+import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
 import { Fallback } from "../../components/Fallback";
 import ArrowRightIconCustom from "../../ui-components/ArrowRightIconCustom";
+import { ContributorCollection } from "../../components/ContributorCollection";
+import {
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from "next";
+import { Context } from "../../types/models";
+import { ParsedUrlQuery } from "querystring";
+import { getCardLayoutData } from "../../lib/getData";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -34,7 +43,11 @@ const profilePicSize = {
   large: "232px",
 };
 
-export default function ContributorPage(data: any) {
+export default function ContributorPage(data: {
+  contributor: Contributor;
+  cardLayoutData: string;
+  otherContributors: Contributor[];
+}) {
   const router = useRouter();
 
   const otherContributorsLimit = useBreakpointValue({
@@ -92,7 +105,11 @@ export default function ContributorPage(data: any) {
   }
 
   const contributor = deserializeModel(Contributor, data.contributor);
-  const courses = deserializeModel(Course, data.courses);
+  const cardLayoutData = JSON.parse(data.cardLayoutData);
+  const otherContributors = deserializeModel(
+    Contributor,
+    data.otherContributors
+  );
 
   return (
     <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
@@ -231,7 +248,7 @@ export default function ContributorPage(data: any) {
           </View>
           <View as="div" columnSpan={2}>
             <CardLayoutCollection
-              items={courses}
+              cardLayouts={cardLayoutData}
               type="grid"
               templateColumns={{
                 base: "1fr",
@@ -241,8 +258,8 @@ export default function ContributorPage(data: any) {
                 xl: "1fr 1fr 1fr",
               }}
               gap="64px 20px"
-              isPaginated={courses.length > 3}
-              itemsPerPage={courses.length > 3 ? 3 : undefined}
+              isPaginated={cardLayoutData.length > 3}
+              itemsPerPage={cardLayoutData.length > 3 ? 3 : undefined}
             />
           </View>
         </Grid>
@@ -290,6 +307,21 @@ export default function ContributorPage(data: any) {
           <View as="div" columnSpan={2}>
             <ContributorCollection
               type="grid"
+              contributors={otherContributors}
+              gap="20px"
+              templateColumns={{
+                base: "1fr",
+                small: "1fr",
+                medium: "1fr 1fr",
+                large: "1fr 1fr 1fr",
+                xl: "1fr 1fr 1fr 1fr",
+              }}
+              useLargeVariant={false}
+              filter={(e: Contributor) => e.username !== contributor.username}
+              limit={otherContributorsLimit}
+            />
+            {/* <ContributorCollection
+              type="grid"
               templateColumns={{
                 base: "1fr",
                 small: "1fr",
@@ -301,7 +333,7 @@ export default function ContributorPage(data: any) {
               useLargeVariant={false}
               filter={(e: Contributor) => e.username !== contributor.username}
               limit={otherContributorsLimit}
-            />
+            /> */}
           </View>
         </Grid>
       </Flex>
@@ -309,7 +341,19 @@ export default function ContributorPage(data: any) {
   );
 }
 
-export async function getStaticPaths(context: any) {
+interface ContributorPageParams extends ParsedUrlQuery {
+  contributor: string;
+}
+
+interface ContributorPageProps {
+  contributor: JSON;
+  cardLayoutData: string;
+  otherContributors: JSON;
+}
+
+export async function getStaticPaths(
+  context: GetStaticPaths & Context
+): Promise<GetStaticPathsResult<ContributorPageParams>> {
   const { DataStore } = withSSRContext(context);
   const contributors: Contributor[] = await DataStore.query(Contributor);
 
@@ -323,30 +367,45 @@ export async function getStaticPaths(context: any) {
   };
 }
 
-export async function getStaticProps(context: any) {
-  const { DataStore } = withSSRContext(context);
-  const { contributor: username } = context.params;
+export async function getStaticProps(
+  context: GetStaticPropsContext<ContributorPageParams> & Context
+): Promise<GetStaticPropsResult<ContributorPageProps>> {
+  if (context.params) {
+    const { DataStore } = withSSRContext(context);
+    const { contributor: username } = context.params;
 
-  let contributorResults: Contributor[] = await DataStore.query(
-    Contributor,
-    (c: any) => c.username("eq", username)
-  );
+    let contributorResults: Contributor[] = await DataStore.query(
+      Contributor,
+      (c: any) => c.username("eq", username)
+    );
 
-  const contributorCoursesRelationships: ContributorCourse[] =
-    await DataStore.query(ContributorCourse);
+    const contributorCoursesRelationships: ContributorCourse[] =
+      await DataStore.query(ContributorCourse);
 
-  const filteredCourses = contributorCoursesRelationships
-    .filter((e) => e.contributor.username === username)
-    .map((e) => e.course);
+    const filteredCourses = contributorCoursesRelationships
+      .filter((e) => e.contributor.username === username)
+      .map((e) => e.course);
 
-  if (contributorResults.length > 0) {
-    return {
-      props: {
-        contributor: serializeModel(contributorResults[0]),
-        courses: serializeModel(filteredCourses),
-      },
-      revalidate: 60,
-    };
+    const cardLayoutData = await getCardLayoutData(context);
+
+    const filteredCardLayoutData = cardLayoutData.filter((cardLayout) =>
+      filteredCourses.find((e) => e.id === cardLayout.course.id)
+    );
+
+    const otherContributors = await DataStore.query(Contributor, (c: any) =>
+      c.username("ne", username)
+    );
+
+    if (contributorResults.length > 0) {
+      return {
+        props: {
+          contributor: serializeModel(contributorResults[0]),
+          cardLayoutData: JSON.stringify(filteredCardLayoutData),
+          otherContributors: serializeModel(otherContributors),
+        },
+        revalidate: 60,
+      };
+    }
   }
 
   return {

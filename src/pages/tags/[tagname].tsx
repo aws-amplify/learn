@@ -1,14 +1,22 @@
 import { useRouter } from "next/router";
-import { Collection, Grid, Heading, View } from "@aws-amplify/ui-react";
+import { Grid, Heading, View } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
-import { CardLayout } from "../../components/CardLayout";
-import { Course, CourseTag, Tag } from "../../models";
+import { Tag } from "../../models";
 import { useCallback } from "react";
 import { withSSRContext } from "aws-amplify";
-import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { Fallback } from "../../components/Fallback";
+import {
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from "next";
+import { CardLayoutData, Context } from "../../types/models";
+import { ParsedUrlQuery } from "querystring";
+import { getCardLayoutData } from "../../lib/getData";
+import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 
-export default function TagPage(data: any) {
+export default function TagPage(data: { cardLayoutData: string }) {
   function tagsBreadcrumbCallback(
     pathnameArray: string[],
     asPathArray: string[]
@@ -44,7 +52,7 @@ export default function TagPage(data: any) {
     return <Fallback />;
   }
 
-  const relatedCourses = deserializeModel(Course, data.relatedCourses);
+  const cardLayoutData = JSON.parse(data.cardLayoutData);
   const { tagname } = router.query;
 
   return (
@@ -77,35 +85,35 @@ export default function TagPage(data: any) {
             {`#${tagname}`}
           </Heading>
         </Grid>
-        <Collection
-          type="grid"
+        <CardLayoutCollection
+          cardLayouts={cardLayoutData}
           templateColumns={{
             base: "1fr",
             small: "1fr",
-            medium: "1fr 1fr",
+            medium: "1fr",
             large: "1fr 1fr",
             xl: "1fr 1fr 1fr",
           }}
           gap="64px"
-          items={relatedCourses}
-        >
-          {(item: Course) => (
-            <CardLayout
-              isOnHomePage={false}
-              height="auto"
-              width="auto"
-              margin="0 0px 0px 0"
-              course={item}
-              key={item.id}
-            ></CardLayout>
-          )}
-        </Collection>
+          isOnHomePage={false}
+          marginBottom="30px"
+        />
       </View>
     </Layout>
   );
 }
 
-export async function getStaticPaths(context: any) {
+interface TagnamePageParams extends ParsedUrlQuery {
+  tagname: string;
+}
+
+interface TagnamePageProps {
+  cardLayoutData: string;
+}
+
+export async function getStaticPaths(
+  context: GetStaticPaths & Context
+): Promise<GetStaticPathsResult<TagnamePageParams>> {
   const { DataStore } = withSSRContext(context);
   const tags: Tag[] = await DataStore.query(Tag);
 
@@ -117,27 +125,31 @@ export async function getStaticPaths(context: any) {
   };
 }
 
-export async function getStaticProps(context: any) {
-  const { DataStore } = withSSRContext(context);
-  const { tagname } = context.params;
+export async function getStaticProps(
+  context: GetStaticPropsContext<TagnamePageParams> & Context
+): Promise<GetStaticPropsResult<TagnamePageProps>> {
+  if (context.params) {
+    const { DataStore } = withSSRContext(context);
+    const { tagname } = context.params;
 
-  const tags: Tag[] = await DataStore.query(Tag, (t: any) =>
-    t.name("eq", tagname)
-  );
+    const tags: Tag[] = await DataStore.query(Tag, (t: any) =>
+      t.name("eq", tagname)
+    );
 
-  if (tags.length > 0) {
-    const courseTags: CourseTag[] = await DataStore.query(CourseTag);
+    if (tags.length > 0) {
+      const cardLayoutData: CardLayoutData[] = await getCardLayoutData(context);
 
-    const filteredCourses = courseTags
-      .filter((e) => e.tag.name === tagname)
-      .map((e) => e.course);
+      const filteredData = cardLayoutData.filter((e) =>
+        e.tags.find((tag) => tag.name === tagname)
+      );
 
-    return {
-      props: {
-        relatedCourses: serializeModel(filteredCourses),
-      },
-      revalidate: 60,
-    };
+      return {
+        props: {
+          cardLayoutData: JSON.stringify(filteredData),
+        },
+        revalidate: 60,
+      };
+    }
   }
 
   return {

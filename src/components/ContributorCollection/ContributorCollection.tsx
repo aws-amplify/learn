@@ -1,52 +1,42 @@
 import React from "react";
 import { Contributor } from "../../models";
-import {
-  getOverrideProps,
-  useDataStoreBinding,
-} from "@aws-amplify/ui-react/internal";
-import ContributorLargeCustom from "./ContributorLargeCustom";
-import ContributorVerticalCustom from "./ContributorVerticalCustom";
-import { Collection, Card } from "@aws-amplify/ui-react";
+import ContributorLargeCustom from "./ContributorComponents/ContributorLargeCustom";
+import ContributorVerticalCustom from "./ContributorComponents/ContributorVerticalCustom";
+import { Collection, Card, CollectionProps } from "@aws-amplify/ui-react";
 import styles from "./ContributorCollection.module.scss";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function ContributorCollection(props) {
-  const {
-    items: itemsProp,
-    overrideItems,
-    useLargeVariant,
-    filter: filterCallback,
-    limit,
-    overrides,
-    ...rest
-  } = props;
-  let itemsDataStore = useDataStoreBinding({
-    type: "collection",
-    model: Contributor,
-  }).items;
+export declare type ContributorCollectionProps = React.PropsWithChildren<
+  Partial<CollectionProps<any>> & {
+    contributors: Contributor[];
+  } & {
+    useLargeVariant?: boolean;
+  } & {
+    filter?: (e: Contributor) => boolean;
+  } & {
+    limit?: number;
+  }
+>;
 
-  if (filterCallback) {
-    itemsDataStore = itemsDataStore.filter(filterCallback);
+export function ContributorCollection({
+  contributors,
+  useLargeVariant,
+  filter,
+  limit,
+  ...rest
+}: ContributorCollectionProps) {
+  let items = [...contributors];
+
+  if (filter) {
+    items = items.filter(filter);
   }
 
-  if (limit) {
-    itemsDataStore.splice(limit, itemsDataStore.length - limit);
+  if (limit && contributors.length > limit) {
+    items.splice(limit, items.length - limit);
   }
 
-  const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
   return (
-    <Collection
-      type="grid"
-      searchPlaceholder="Search..."
-      templateColumns="1fr 1fr"
-      autoFlow="row"
-      alignItems="stretch"
-      justifyContent="stretch"
-      items={items || []}
-      {...rest}
-      {...getOverrideProps(overrides, "ContributorLargeCollection")}
-    >
+    <Collection type="grid" items={items} {...rest}>
       {(item, index) => (
         <Link
           key={item.id}
@@ -78,12 +68,10 @@ export default function ContributorCollection(props) {
               {useLargeVariant ? (
                 <ContributorLargeCustom
                   contributor={item}
-                  {...(overrideItems && overrideItems({ item, index }))}
                 ></ContributorLargeCustom>
               ) : (
                 <ContributorVerticalCustom
                   contributor={item}
-                  {...(overrideItems && overrideItems({ item, index }))}
                 ></ContributorVerticalCustom>
               )}
             </Card>

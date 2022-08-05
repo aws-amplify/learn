@@ -6,20 +6,20 @@
 
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { CollectionProps } from "@aws-amplify/ui-react";
-export declare type ContributorCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
-    items?: any[];
-    overrideItems?: ({ item: any, index: number }: {
-        item: any;
-        index: any;
-    }) => Record<string, string>;
-} & {
-    useLargeVariant: boolean
-} & {
-    filter?: any
-} & {
-    limit?: number
-} & {
+import { Contributor } from "../../../models";
+import { FlexProps } from "@aws-amplify/ui-react";
+export declare type ContributorLargeCustomProps = React.PropsWithChildren<
+  Partial<FlexProps> & {
+    contributor?: Contributor;
+  } & {
+    property1?: "Vertical";
+    property2?: "Large";
+    property3?: "false" | "true";
+    property4?: "false" | "true";
+  } & {
     overrides?: EscapeHatchProps | undefined | null;
-}>;
-export default function ContributorCollection(props: ContributorCollectionProps): React.ReactElement;
+  }
+>;
+export default function ContributorLargeCustom(
+  props: ContributorLargeCustomProps
+): React.ReactElement;
