@@ -6,6 +6,7 @@ import { TagButton } from "../../components/TagButton";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { Context } from "../../types/models";
+import { configureAmplify } from "../../lib/getData";
 
 export default function TagsPage(data: { tags: Tag[] }) {
   const tags: Tag[] = deserializeModel(Tag, data.tags);
@@ -65,6 +66,8 @@ interface TagsPageProps {
 export async function getStaticProps(
   context: GetStaticPropsContext & Context
 ): Promise<GetStaticPropsResult<TagsPageProps>> {
+  configureAmplify();
+
   const { DataStore } = withSSRContext(context);
 
   const tags: Tag[] = await DataStore.query(Tag);

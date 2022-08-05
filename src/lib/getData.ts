@@ -11,7 +11,11 @@ import {
 } from "../models";
 import { CardLayoutData, Context, CoursePageParams } from "../types/models";
 
-Amplify.configure({ ...awsmobile, ssr: true });
+export function configureAmplify() {
+  Amplify.configure({ ...awsmobile, ssr: true });
+}
+
+configureAmplify();
 
 export async function getFeaturedCourseData(
   context: GetStaticPropsContext & Context
