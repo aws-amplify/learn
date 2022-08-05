@@ -1,12 +1,12 @@
 import { Grid, Heading, View, useBreakpointValue } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
-import { withSSRContext } from "aws-amplify";
-import { CourseTag } from "../../models";
-import { CardLayoutData } from "../../types";
+import { CardLayoutData, Context } from "../../types/models";
+import { getCardLayoutData } from "../../lib/getData";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
-export default function CoursesPage(data: any) {
-  const cardLayouts: CardLayoutData[] = JSON.parse(data.cardLayouts);
+export default function CoursesPage(data: { cardLayoutData: string }) {
+  const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
 
   const itemsPerPageBreakpoint = useBreakpointValue({
     base: 3,
@@ -48,7 +48,7 @@ export default function CoursesPage(data: any) {
           }}
         >
           <CardLayoutCollection
-            cardLayouts={cardLayouts}
+            cardLayouts={cardLayoutData}
             templateColumns={{
               base: "1fr",
               small: "1fr",
@@ -67,39 +67,19 @@ export default function CoursesPage(data: any) {
   );
 }
 
-export async function getStaticProps(context: any) {
-  const { DataStore } = withSSRContext(context);
+export interface CoursesPageProps {
+  /** Data for the card layout collection */
+  cardLayoutData: string;
+}
 
-  const courseTags: CourseTag[] = await DataStore.query(CourseTag);
-
-  const groupedCourseTags: Record<string, CardLayoutData> = {};
-
-  courseTags.forEach((courseTag) => {
-    if (!groupedCourseTags.hasOwnProperty(courseTag.course.id)) {
-      const tags = [courseTag.tag];
-
-      groupedCourseTags[courseTag.course.id] = {
-        course: courseTag.course,
-        tags,
-      };
-    } else {
-      const cardLayout = groupedCourseTags[courseTag.course.id];
-
-      const tags = cardLayout.tags;
-      tags.push(courseTag.tag);
-
-      groupedCourseTags[courseTag.course.id] = {
-        course: courseTag.course,
-        tags,
-      };
-    }
-  });
-
-  const flattenedCourseLayouts = Object.values(groupedCourseTags);
+export async function getStaticProps(
+  context: GetStaticPropsContext & Context
+): Promise<GetStaticPropsResult<CoursesPageProps>> {
+  const cardLayoutData = await getCardLayoutData(context);
 
   return {
     props: {
-      cardLayouts: JSON.stringify(flattenedCourseLayouts),
+      cardLayoutData: JSON.stringify(cardLayoutData),
     },
     revalidate: 60,
   };

@@ -3,7 +3,7 @@ import {
   CollectionProps,
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
-import { CardLayoutData } from "../../types";
+import { CardLayoutData } from "../../types/models";
 import { CardLayout } from "../CardLayout";
 
 declare type CardLayoutCollectionProps = React.PropsWithChildren<
@@ -12,7 +12,7 @@ declare type CardLayoutCollectionProps = React.PropsWithChildren<
   } & {
     isOnHomePage?: boolean;
   } & {
-    filter?: any;
+    filter?: (e: CardLayoutData) => boolean;
   } & {
     limit?: number;
   }
@@ -24,7 +24,7 @@ export function CardLayoutCollection({
   filter,
   limit,
   ...rest
-}: CardLayoutCollectionProps): React.ReactElement {
+}: CardLayoutCollectionProps) {
   const collectionType = useBreakpointValue({
     base: "list",
     small: "list",
@@ -43,7 +43,7 @@ export function CardLayoutCollection({
   }
 
   return (
-    <Collection type={collectionType} items={items || []} {...rest}>
+    <Collection type={collectionType} items={items} {...rest}>
       {(item: CardLayoutData) => (
         <CardLayout
           isOnHomePage={isOnHomePage}

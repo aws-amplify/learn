@@ -3,57 +3,32 @@ import {
   Button,
   Flex,
   Grid,
-  Placeholder,
   Text,
   useBreakpointValue,
   View,
 } from "@aws-amplify/ui-react";
-import { Contributor, ContributorCourse, Course } from "../../models";
-import { default as CardLayoutCollection } from "../../ui-components/CardLayoutCollectionCustom";
+import { Contributor, Course } from "../../models";
+import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { CourseContributors } from "../CourseContributors";
 import { ShareThis } from "../ShareThis";
 import styles from "./LessonLayout.module.scss";
-import { useCallback, useEffect, useState } from "react";
-import { DataStore } from "aws-amplify";
-import { useFirstDatastoreQuery } from "../../hooks/useFirstDatastoreQuery";
 import ArrowRightIconCustom from "../../ui-components/ArrowRightIconCustom";
+import { CardLayoutData } from "../../types/models";
 
 export function LessonLayout({
   course,
+  contributors,
+  cardLayoutData,
   mainChildren,
   sidebarChildren,
 }: {
   course: Course;
+  contributors: Contributor[];
+  cardLayoutData: CardLayoutData[];
   mainChildren: any;
   sidebarChildren: any;
 }) {
   const router = useRouter();
-
-  const [contributors, setContributors] = useState<Contributor[]>([]);
-  const [contributorsLoaded, setContributorsLoaded] = useState(false);
-
-  async function getCourseContributors() {
-    if (course.id) {
-      const contributorCourses = await DataStore.query(ContributorCourse);
-
-      const result = contributorCourses.filter(
-        (rel) => rel.course.id === course.id
-      );
-
-      setContributorsLoaded(true);
-      setContributors(result.map((e) => e.contributor));
-    }
-  }
-
-  const getCourseContributorsCallback = useCallback(getCourseContributors, [
-    course?.id,
-  ]);
-
-  useFirstDatastoreQuery(getCourseContributorsCallback);
-
-  useEffect(() => {
-    getCourseContributorsCallback();
-  }, [getCourseContributorsCallback]);
 
   const showInSidebarBreakpoint = useBreakpointValue({
     base: false,
@@ -107,11 +82,7 @@ export function LessonLayout({
           <Flex direction="column">
             {sidebarChildren}
             <View marginTop="40px">
-              {contributorsLoaded ? (
-                <CourseContributors contributors={contributors} />
-              ) : (
-                <Placeholder isLoaded={contributorsLoaded} />
-              )}
+              <CourseContributors contributors={contributors} />
             </View>
             <View marginTop="40px">
               <ShareThis />
@@ -122,11 +93,7 @@ export function LessonLayout({
       {!showInSidebarBreakpoint && (
         <Flex direction="column" columnStart={1}>
           <View marginTop="64px">
-            {contributorsLoaded ? (
-              <CourseContributors contributors={contributors} />
-            ) : (
-              <Placeholder isLoaded={contributorsLoaded} />
-            )}
+            <CourseContributors contributors={contributors} />
           </View>
           <View marginTop="64px">
             <ShareThis />
@@ -191,6 +158,7 @@ export function LessonLayout({
         </View>
         <View as="div" columnStart={1} columnEnd={-1}>
           <CardLayoutCollection
+            cardLayouts={cardLayoutData}
             type="grid"
             templateColumns={{
               base: "1fr",
@@ -209,7 +177,7 @@ export function LessonLayout({
                 xl: 3,
               }) as number
             }
-            filter={(e: Course) => e.id !== course?.id}
+            filter={(e: CardLayoutData) => e.course.id !== course.id}
           />
         </View>
       </Grid>

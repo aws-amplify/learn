@@ -2,23 +2,26 @@ import { Button, View, Heading, Flex } from "@aws-amplify/ui-react";
 import { ActionLayout } from "../components/ActionLayout";
 import { Layout } from "../components/Layout";
 import ExternalIconCustom from "../ui-components/ExternalIconCustom";
-import { withSSRContext } from "aws-amplify";
-import { Course, CourseTag, Tag } from "../models";
+import { Course, Tag } from "../models";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { trackExternalLink } from "../utils/track";
 import { HeroCourse } from "../components/HeroCourse";
 import { CardLayoutCollection } from "../components/CardLayoutCollection";
-import { CardLayoutData } from "../types";
-import awsmobile from "../aws-exports";
-import { Amplify } from "aws-amplify";
+import { CardLayoutData, Context } from "../types/models";
+import { getCardLayoutData, getFeaturedCourseData } from "../lib/getData";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
-export default function Home(data: any) {
+export default function Home(data: {
+  featuredCourse: Course;
+  featuredCourseTags: Tag[];
+  cardLayoutData: string;
+}) {
   const featuredCourse: Course = deserializeModel(Course, data.featuredCourse);
   const featuredCourseTags: Tag[] = deserializeModel(
     Tag,
     data.featuredCourseTags
   );
-  const cardLayouts: CardLayoutData[] = JSON.parse(data.cardLayouts);
+  const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
 
   return (
     <Layout>
@@ -38,7 +41,7 @@ export default function Home(data: any) {
         >
           <HeroCourse course={featuredCourse} tags={featuredCourseTags} />
           <CardLayoutCollection
-            cardLayouts={cardLayouts}
+            cardLayouts={cardLayoutData}
             isOnHomePage={true}
             filter={(e: CardLayoutData) => e.course.isFeatured === false}
             isPaginated={false}
@@ -82,64 +85,24 @@ export default function Home(data: any) {
   );
 }
 
-export async function getStaticProps(context: any) {
-  Amplify.configure({ ...awsmobile, ssr: true });
+export interface HomePageProps {
+  featuredCourse: JSON;
+  featuredCourseTags: JSON;
+  cardLayoutData: string;
+}
 
-  const { DataStore } = withSSRContext(context);
+export async function getStaticProps(
+  context: GetStaticPropsContext & Context
+): Promise<GetStaticPropsResult<HomePageProps>> {
+  const featuredCourseData = await getFeaturedCourseData(context);
 
-  // Helper function to get Tags related to a Course
-  const getCourseTags = async (courseId: string) => {
-    const courseTags: CourseTag[] = await DataStore.query(CourseTag);
-
-    const filteredCourseTags = courseTags.filter(
-      (e) => e.course.id === courseId
-    );
-
-    return filteredCourseTags.map((e) => e.tag);
-  };
-
-  const courses: Course[] = await DataStore.query(Course);
-  const courseTags: CourseTag[] = await DataStore.query(CourseTag);
-
-  const featuredCourses: Course[] = await DataStore.query(Course, (c: any) =>
-    c.isFeatured("eq", true)
-  );
-
-  let featuredCourse =
-    featuredCourses.length === 1 ? featuredCourses[0] : courses[0];
-
-  const featuredCourseTags = await getCourseTags(featuredCourse.id);
-
-  const groupedCourseTags: Record<string, CardLayoutData> = {};
-
-  courseTags.forEach((courseTag) => {
-    if (!groupedCourseTags.hasOwnProperty(courseTag.course.id)) {
-      const tags = [courseTag.tag];
-
-      groupedCourseTags[courseTag.course.id] = {
-        course: courseTag.course,
-        tags,
-      };
-    } else {
-      const cardLayout = groupedCourseTags[courseTag.course.id];
-
-      const tags = cardLayout.tags;
-      tags.push(courseTag.tag);
-
-      groupedCourseTags[courseTag.course.id] = {
-        course: courseTag.course,
-        tags,
-      };
-    }
-  });
-
-  const flattenedCourseLayouts = Object.values(groupedCourseTags);
+  const cardLayoutData = await getCardLayoutData(context);
 
   return {
     props: {
-      featuredCourse: serializeModel(featuredCourse),
-      featuredCourseTags: serializeModel(featuredCourseTags),
-      cardLayouts: JSON.stringify(flattenedCourseLayouts),
+      featuredCourse: serializeModel(featuredCourseData.course),
+      featuredCourseTags: serializeModel(featuredCourseData.tags),
+      cardLayoutData: JSON.stringify(cardLayoutData),
     },
     revalidate: 60,
   };

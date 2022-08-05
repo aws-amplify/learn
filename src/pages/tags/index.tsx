@@ -4,8 +4,10 @@ import { withSSRContext } from "aws-amplify";
 import { Tag } from "../../models";
 import { TagButton } from "../../components/TagButton";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+import { Context } from "../../types/models";
 
-export default function TagsPage(data: any) {
+export default function TagsPage(data: { tags: Tag[] }) {
   const tags: Tag[] = deserializeModel(Tag, data.tags);
 
   return (
@@ -56,7 +58,13 @@ export default function TagsPage(data: any) {
   );
 }
 
-export async function getStaticProps(context: any) {
+interface TagsPageProps {
+  tags: JSON;
+}
+
+export async function getStaticProps(
+  context: GetStaticPropsContext & Context
+): Promise<GetStaticPropsResult<TagsPageProps>> {
   const { DataStore } = withSSRContext(context);
 
   const tags: Tag[] = await DataStore.query(Tag);

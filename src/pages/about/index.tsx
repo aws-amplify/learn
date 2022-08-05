@@ -1,12 +1,43 @@
-import { Grid, Heading, View, Text, Button } from "@aws-amplify/ui-react";
-import { NextPage } from "next";
+import {
+  Grid,
+  Heading,
+  View,
+  Text,
+  Button,
+  useBreakpointValue,
+} from "@aws-amplify/ui-react";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { ActionLayout } from "../../components/ActionLayout";
-import { Contributors } from "../../components/Contributors";
+import { ContributorCollection } from "../../components/ContributorCollection";
 import { Layout } from "../../components/Layout";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
+import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { trackExternalLink } from "../../utils/track";
+import { Contributor } from "../../models";
+import { Context } from "../../types/models";
+import { getContributors } from "../../lib/getData";
 
-const AboutPage: NextPage = () => {
+export default function AboutPage(data: any) {
+  const contributors: Contributor[] = deserializeModel(
+    Contributor,
+    data.contributors
+  );
+
+  const useLargeVariant = useBreakpointValue({
+    base: false,
+    small: false,
+    medium: false,
+    large: false,
+    xl: true,
+  }) as boolean;
+
+  const collectionType = useBreakpointValue({
+    base: "list",
+    small: "list",
+    medium: "grid",
+    large: "grid",
+  }) as "grid" | "list";
+
   return (
     <Layout>
       <View columnStart="2">
@@ -41,7 +72,19 @@ const AboutPage: NextPage = () => {
             product.
           </Text>
         </Grid>
-        <Contributors />
+        <ContributorCollection
+          contributors={contributors}
+          type={collectionType}
+          useLargeVariant={useLargeVariant}
+          gap="20px"
+          templateColumns={{
+            base: "1fr",
+            small: "1fr",
+            medium: "1fr 1fr",
+            large: "1fr 1fr",
+            xl: "1fr 1fr 1fr",
+          }}
+        />
         <ActionLayout>
           <View as="div">
             <Heading fontFamily="Amazon Ember" fontWeight="300" level={3}>
@@ -76,6 +119,21 @@ const AboutPage: NextPage = () => {
       </View>
     </Layout>
   );
-};
+}
 
-export default AboutPage;
+interface AboutPageProps {
+  contributors: JSON;
+}
+
+export async function getStaticProps(
+  context: GetStaticPropsContext & Context
+): Promise<GetStaticPropsResult<AboutPageProps>> {
+  const contributors = await getContributors(context);
+
+  return {
+    props: {
+      contributors: serializeModel(contributors),
+    },
+    revalidate: 60,
+  };
+}
