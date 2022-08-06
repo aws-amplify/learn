@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "community",
+  "projectName": "LearnProduction",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
