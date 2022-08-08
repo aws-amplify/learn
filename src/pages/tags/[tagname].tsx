@@ -81,7 +81,7 @@ export default function TagPage(data: { cardLayoutData: string }) {
             large: "128px",
           }}
         >
-          <Heading fontFamily="Amazon Ember" fontWeight="300" level={1}>
+          <Heading className="page-heading" level={1}>
             {`#${tagname}`}
           </Heading>
         </Grid>
