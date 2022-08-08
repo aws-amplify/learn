@@ -16,12 +16,41 @@ export default function Home(data: {
   featuredCourseTags: Tag[];
   cardLayoutData: string;
 }) {
-  const featuredCourse: Course = deserializeModel(Course, data.featuredCourse);
-  const featuredCourseTags: Tag[] = deserializeModel(
-    Tag,
-    data.featuredCourseTags
-  );
-  const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
+  let content = <></>;
+  if (data.featuredCourse && data.featuredCourseTags && data.cardLayoutData) {
+    const featuredCourse: Course = deserializeModel(
+      Course,
+      data.featuredCourse
+    );
+    const featuredCourseTags: Tag[] = deserializeModel(
+      Tag,
+      data.featuredCourseTags
+    );
+    const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
+
+    content = (
+      <Flex
+        direction="column"
+        gap={{
+          base: "64px",
+          small: "64px",
+          medium: "64px",
+          large: "124px",
+        }}
+      >
+        <HeroCourse course={featuredCourse} tags={featuredCourseTags} />
+        <CardLayoutCollection
+          cardLayouts={cardLayoutData}
+          isOnHomePage={true}
+          filter={(e: CardLayoutData) => e.course.isFeatured === false}
+          isPaginated={false}
+          limit={4}
+          gap="40px"
+          templateColumns="1fr 1fr"
+        />
+      </Flex>
+    );
+  }
 
   return (
     <Layout>
@@ -30,26 +59,7 @@ export default function Home(data: {
         columnStart="2"
         marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}
       >
-        <Flex
-          direction="column"
-          gap={{
-            base: "64px",
-            small: "64px",
-            medium: "64px",
-            large: "124px",
-          }}
-        >
-          <HeroCourse course={featuredCourse} tags={featuredCourseTags} />
-          <CardLayoutCollection
-            cardLayouts={cardLayoutData}
-            isOnHomePage={true}
-            filter={(e: CardLayoutData) => e.course.isFeatured === false}
-            isPaginated={false}
-            limit={4}
-            gap="40px"
-            templateColumns="1fr 1fr"
-          />
-        </Flex>
+        {content}
       </View>
       <ActionLayout>
         <View as="div">
@@ -86,8 +96,8 @@ export default function Home(data: {
 }
 
 export interface HomePageProps {
-  featuredCourse: JSON;
-  featuredCourseTags: JSON;
+  featuredCourse: JSON | null;
+  featuredCourseTags: JSON | null;
   cardLayoutData: string;
 }
 
@@ -98,11 +108,22 @@ export async function getStaticProps(
 
   const cardLayoutData = await getCardLayoutData(context);
 
+  if (featuredCourseData) {
+    return {
+      props: {
+        featuredCourse: serializeModel(featuredCourseData.course),
+        featuredCourseTags: serializeModel(featuredCourseData.tags),
+        cardLayoutData: JSON.stringify(cardLayoutData),
+      },
+      revalidate: 60,
+    };
+  }
+
   return {
     props: {
-      featuredCourse: serializeModel(featuredCourseData.course),
-      featuredCourseTags: serializeModel(featuredCourseData.tags),
-      cardLayoutData: JSON.stringify(cardLayoutData),
+      featuredCourse: null,
+      featuredCourseTags: null,
+      cardLayoutData: "",
     },
     revalidate: 60,
   };

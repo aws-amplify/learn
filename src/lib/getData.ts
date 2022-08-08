@@ -19,20 +19,25 @@ configureAmplify();
 
 export async function getFeaturedCourseData(
   context: GetStaticPropsContext & Context
-): Promise<{ course: Course; tags: Tag[] }> {
+): Promise<{ course: Course; tags: Tag[] } | null> {
   const { DataStore } = withSSRContext(context);
 
   const courses: Course[] = await DataStore.query(Course);
 
-  const featuredCourses: Course[] = await DataStore.query(Course, (c: any) =>
-    c.isFeatured("eq", true)
-  );
+  if (courses.length > 0) {
+    const featuredCourses: Course[] = await DataStore.query(Course, (c: any) =>
+      c.isFeatured("eq", true)
+    );
 
-  const course = featuredCourses.length === 1 ? featuredCourses[0] : courses[0];
+    const course =
+      featuredCourses.length === 1 ? featuredCourses[0] : courses[0];
 
-  const tags = await getCourseTags(context, course.id);
+    const tags = await getCourseTags(context, course.id);
 
-  return { course, tags };
+    return { course, tags };
+  }
+
+  return null;
 }
 
 export async function getCourseTags(
