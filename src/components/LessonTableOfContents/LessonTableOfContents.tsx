@@ -29,7 +29,6 @@ export function LessonTableOfContents({
 
         result.push(
           <View
-            as="div"
             key={`chapter-${lesson.chapter}`}
             padding="12px 20px"
             className={

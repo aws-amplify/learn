@@ -66,7 +66,7 @@ export default function LessonPage(data: {
         contributors={contributors}
         cardLayoutData={cardLayoutData}
         mainChildren={
-          <View as="div">
+          <View>
             {currentLesson?.youtubeEmbedId && (
               <View marginBottom="32px">
                 <YoutubeEmbed
@@ -74,7 +74,7 @@ export default function LessonPage(data: {
                 />
               </View>
             )}
-            <View as="div">
+            <View>
               <Text fontWeight="400" fontSize="1.25rem">
                 {course?.title}
               </Text>
@@ -91,14 +91,14 @@ export default function LessonPage(data: {
                 />
               </View>
             )}
-            <View as="div" marginTop="64px">
+            <View marginTop="64px">
               <LearnMarkdown
                 markdownContent={currentLesson?.content as string}
               />
             </View>
             {lessonNumber < lessons.length && (
               <Flex justifyContent="flex-end">
-                <View as="div" display="inline-block">
+                <View display="inline-block">
                   <Link
                     href={{
                       pathname: `${router.asPath.substring(

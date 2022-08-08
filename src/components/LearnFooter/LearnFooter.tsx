@@ -66,7 +66,6 @@ export function LearnFooter({ isMobile }: { isMobile: boolean }) {
     >
       <View
         className={styles["submit-github-issue-button"]}
-        as="div"
         display="flex"
         gap="12px"
         direction="row"

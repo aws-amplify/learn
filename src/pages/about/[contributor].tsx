@@ -225,7 +225,6 @@ export default function ContributorPage(data: {
             {`Courses by ${contributor.firstName}`}
           </Text>
           <View
-            as="div"
             order={{
               base: 1,
               small: 1,
@@ -246,7 +245,7 @@ export default function ContributorPage(data: {
               <ArrowRightIconCustom />
             </Button>
           </View>
-          <View as="div" columnSpan={2}>
+          <View columnSpan={2}>
             <CardLayoutCollection
               cardLayouts={cardLayoutData}
               type="grid"
@@ -283,7 +282,6 @@ export default function ContributorPage(data: {
             Other Contributors
           </Text>
           <View
-            as="div"
             order={{
               base: 1,
               small: 1,
@@ -304,7 +302,7 @@ export default function ContributorPage(data: {
               <ArrowRightIconCustom />
             </Button>
           </View>
-          <View as="div" columnSpan={2}>
+          <View columnSpan={2}>
             <ContributorCollection
               type="grid"
               contributors={otherContributors}

@@ -50,13 +50,7 @@ export function YoutubeModal({
   ) => {
     return (
       <div {...props}>
-        <View
-          as="div"
-          onClick={closeModal}
-          position="absolute"
-          right="20px"
-          top="20px"
-        >
+        <View onClick={closeModal} position="absolute" right="20px" top="20px">
           <CloseIcon
             color="white"
             tabIndex="0"
