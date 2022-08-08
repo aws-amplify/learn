@@ -37,7 +37,6 @@ import { LessonLayout } from "../../../components/LessonLayout";
 import { default as HeroLayout } from "../../../ui-components/HeroLayoutCustom";
 import { LessonTableOfContents } from "../../../components/LessonTableOfContents";
 import { YoutubeModal } from "../../../components/YoutubeModal";
-import { ParsedUrlQuery } from "querystring";
 
 export default function CoursePage(data: {
   course: Course;
