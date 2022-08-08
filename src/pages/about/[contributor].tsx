@@ -320,20 +320,6 @@ export default function ContributorPage(data: {
               filter={(e: Contributor) => e.username !== contributor.username}
               limit={otherContributorsLimit}
             />
-            {/* <ContributorCollection
-              type="grid"
-              templateColumns={{
-                base: "1fr",
-                small: "1fr",
-                medium: "1fr 1fr",
-                large: "1fr 1fr 1fr",
-                xl: "1fr 1fr 1fr 1fr",
-              }}
-              gap="20px"
-              useLargeVariant={false}
-              filter={(e: Contributor) => e.username !== contributor.username}
-              limit={otherContributorsLimit}
-            /> */}
           </View>
         </Grid>
       </Flex>
