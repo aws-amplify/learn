@@ -29,7 +29,7 @@ function CodeBlock({
 
   // Custom wrapper around `code`
   const PreTag = ({ children, ...rest }: { children: any }) => (
-    <View {...rest} as="div" backgroundColor="#F2F3F3" fontSize="0.9rem">
+    <View {...rest} backgroundColor="#F2F3F3" fontSize="0.9rem">
       {children}
     </View>
   );

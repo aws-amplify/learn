@@ -39,7 +39,6 @@ export default function CoursesPage(data: { cardLayoutData: string }) {
           </Heading>
         </Grid>
         <View
-          as="div"
           marginBottom={{
             base: "118px",
             small: "118px",

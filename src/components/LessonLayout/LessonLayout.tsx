@@ -135,7 +135,6 @@ export function LessonLayout({
           More Courses
         </Text>
         <View
-          as="div"
           order={{
             base: 1,
             small: 1,
@@ -156,7 +155,7 @@ export function LessonLayout({
             <ArrowRightIconCustom />
           </Button>
         </View>
-        <View as="div" columnStart={1} columnEnd={-1}>
+        <View columnStart={1} columnEnd={-1}>
           <CardLayoutCollection
             cardLayouts={cardLayoutData}
             type="grid"

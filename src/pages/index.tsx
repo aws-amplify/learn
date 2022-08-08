@@ -55,14 +55,13 @@ export default function Home(data: {
   return (
     <Layout>
       <View
-        as="div"
         columnStart="2"
         marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}
       >
         {content}
       </View>
       <ActionLayout>
-        <View as="div">
+        <View>
           <Heading fontFamily="Amazon Ember" fontWeight="300" level={3}>
             Take Amplify for a Spin!
           </Heading>
@@ -71,7 +70,7 @@ export default function Home(data: {
             start, easy to scale.
           </p>
         </View>
-        <View as="div">
+        <View>
           <Button
             variation="primary"
             size="large"

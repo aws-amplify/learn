@@ -248,7 +248,7 @@ export default function CoursePage(data: {
                 </Flex>
               </Card>
             </Flex>
-            <View as="div" columnStart={1} marginTop="32px">
+            <View columnStart={1} marginTop="32px">
               <LessonTableOfContents courseId={course.id} lessons={lessons} />
             </View>
             {course.trailerEmbedId && (
