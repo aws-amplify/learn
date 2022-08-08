@@ -56,7 +56,7 @@ export default function AboutPage(data: any) {
             large: "128px",
           }}
         >
-          <Heading fontFamily="Amazon Ember" fontWeight="300" level={1}>
+          <Heading className="page-heading" level={1}>
             About
           </Heading>
           <Text columnStart="1">
@@ -86,8 +86,8 @@ export default function AboutPage(data: any) {
           }}
         />
         <ActionLayout>
-          <View>
-            <Heading fontFamily="Amazon Ember" fontWeight="300" level={3}>
+          <View as="div">
+            <Heading className="action-layout-heading" level={3}>
               {`Let's Connect`}
             </Heading>
             <p>
@@ -95,7 +95,7 @@ export default function AboutPage(data: any) {
               the open source project, and learn about new features.
             </p>
           </View>
-          <View>
+          <View as="div">
             <Button
               ariaLabel="Join the Amplify Discord"
               variation="primary"

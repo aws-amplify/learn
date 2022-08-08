@@ -62,7 +62,7 @@ export default function Home(data: {
       </View>
       <ActionLayout>
         <View>
-          <Heading fontFamily="Amazon Ember" fontWeight="300" level={3}>
+          <Heading className="action-layout-heading" level={3}>
             Take Amplify for a Spin!
           </Heading>
           <p>
