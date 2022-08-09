@@ -5,4 +5,9 @@
   &:hover {
     text-decoration: underline;
   }
+
+  &:visited {
+    text-decoration: none;
+    color: var(--amplify-components-text-color);
+  }
 }
