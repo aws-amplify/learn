@@ -22,14 +22,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       trackPageView(`Page view for ${url}`, `${origin}${url}`);
     };
 
+    const handleRouteChangeComplete = () => {
+      // Work around for firefox not always scrolling to the top
+      window.scroll({
+        top: 1,
+        left: 0,
+        behavior: "smooth",
+      });
+    };
+
     router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
 
     // If the component is unmounted, unsubscribe
     // from the event with the `off` method:
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
-  }, [router.events]);
+  }, [router]);
 
   if (!hasMounted) {
     return null;
