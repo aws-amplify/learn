@@ -103,6 +103,7 @@ export function Layout({
             <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
           )}
           <Grid
+            as="main"
             templateColumns={{
               base: "1fr",
               small: "1fr",
