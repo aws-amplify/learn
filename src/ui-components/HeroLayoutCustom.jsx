@@ -246,6 +246,11 @@ export default function HeroLayout(props) {
               <View
                 className="amplify-button amplify-button--primary"
                 height="40px"
+                width={{
+                  base: "100%",
+                  small: "100%",
+                  medium: "auto",
+                }}
               >
                 Explore course
               </View>
