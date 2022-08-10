@@ -77,7 +77,7 @@ export default function CoursePage(data: {
     <>
       <Link
         href={{
-          pathname: "${router.pathname}/lessons/[lesson]",
+          pathname: `${router.pathname}/lessons/[lesson]`,
         }}
         as={`${router.asPath}/lessons/1`}
       >
