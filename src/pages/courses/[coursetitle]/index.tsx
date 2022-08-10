@@ -37,6 +37,7 @@ import { LessonLayout } from "../../../components/LessonLayout";
 import { default as HeroLayout } from "../../../ui-components/HeroLayoutCustom";
 import { LessonTableOfContents } from "../../../components/LessonTableOfContents";
 import { YoutubeModal } from "../../../components/YoutubeModal";
+import Link from "next/link";
 
 export default function CoursePage(data: {
   course: Course;
@@ -74,20 +75,21 @@ export default function CoursePage(data: {
 
   const buttonGroup = (
     <>
-      <Button
-        isFullWidth={true}
-        variation="primary"
-        onClick={() => {
-          router.push(
-            {
-              pathname: `${router.pathname}/lessons/[lesson]`,
-            },
-            `${router.asPath}/lessons/1`
-          );
+      <Link
+        href={{
+          pathname: "${router.pathname}/lessons/[lesson]",
         }}
+        as={`${router.asPath}/lessons/1`}
       >
-        Start course
-      </Button>
+        <a className="link-button">
+          <View
+            className="amplify-button amplify-button--primary amplify-button--fullwidth"
+            height="42px"
+          >
+            Start course
+          </View>
+        </a>
+      </Link>
       <Button
         isFullWidth={true}
         onClick={() => {

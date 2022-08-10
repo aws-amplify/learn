@@ -1,19 +1,13 @@
-/***************************************************************************
- * The contents of this file were generated with Amplify Studio.           *
- * Please refrain from making any modifications to this file.              *
- * Any changes to this file will be overwritten when running amplify pull. *
- **************************************************************************/
-
-/* eslint-disable */
 import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Button, Divider, Flex, Text } from "@aws-amplify/ui-react";
+import { Button, Divider, Flex, Text, View } from "@aws-amplify/ui-react";
 import { TagButton } from "../components/TagButton";
 import { useRouter } from "next/router";
 import { createCourseTitleUri } from "../utils";
+import Link from "next/link";
 
 export default function HeroLayout(props) {
   const { course, tags, overrides: overridesProp, ...rest } = props;
@@ -241,34 +235,23 @@ export default function HeroLayout(props) {
         padding="8px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 16")}
       >
-        <Button
-          display="flex"
-          gap="0"
-          direction="row"
-          width="fit-content"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          height="40px"
-          position="relative"
-          size="default"
-          isDisabled={false}
-          variation="primary"
-          ariaLabel={`Go to course ${course.title}`}
-          onClick={() => {
-            const coursetitle = createCourseTitleUri(course.title, course.id);
-
-            router.push(
-              {
-                pathname: "/courses/[coursetitle]",
-              },
-              `/courses/${coursetitle}`
-            );
-          }}
-          {...getOverrideProps(overrides, "Button31473054")}
-        >
-          Explore course
-        </Button>
+        <View {...getOverrideProps(overrides, "Button31473054")}>
+          <Link
+            href={{
+              pathname: "/courses/[coursetitle]",
+            }}
+            as={`/courses/${createCourseTitleUri(course.title, course.id)}`}
+          >
+            <a className="link-button">
+              <View
+                className="amplify-button amplify-button--primary"
+                height="40px"
+              >
+                Explore course
+              </View>
+            </a>
+          </Link>
+        </View>
         <Button
           display="flex"
           gap="0"
