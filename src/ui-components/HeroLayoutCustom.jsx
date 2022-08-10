@@ -3,7 +3,14 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
-import { Button, Divider, Flex, Text, View } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Text,
+  View,
+} from "@aws-amplify/ui-react";
 import { TagButton } from "../components/TagButton";
 import { createCourseTitleUri } from "../utils";
 import Link from "next/link";
@@ -162,7 +169,8 @@ export default function HeroLayout(props) {
           {...getOverrideProps(overrides, "2h 36m")}
         ></Text>
       </Flex>
-      <Text
+      <Heading
+        level={1}
         fontFamily="Amazon Ember"
         fontSize="48px"
         fontWeight="300"
@@ -183,7 +191,7 @@ export default function HeroLayout(props) {
           overrides,
           "Build fullstack mobile applications with Amplify"
         )}
-      ></Text>
+      ></Heading>
       <Flex
         gap="8px"
         direction="row"
