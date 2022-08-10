@@ -5,13 +5,11 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Button, Divider, Flex, Text, View } from "@aws-amplify/ui-react";
 import { TagButton } from "../components/TagButton";
-import { useRouter } from "next/router";
 import { createCourseTitleUri } from "../utils";
 import Link from "next/link";
 
 export default function HeroLayout(props) {
   const { course, tags, overrides: overridesProp, ...rest } = props;
-  const router = useRouter();
 
   const variants = [
     {
