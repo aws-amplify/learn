@@ -75,12 +75,15 @@ export default function LessonPage(data: {
               </View>
             )}
             <View>
-              <Text fontWeight="400" fontSize="1.25rem">
-                {course?.title}
-              </Text>
-              <Text fontWeight="300" fontSize="2.5rem">
-                {currentLesson?.title}
-              </Text>
+              <h1>
+                <Text as="span" fontWeight="400" fontSize="1.25rem">
+                  {course?.title}
+                </Text>
+                <br />
+                <Text as="span" fontWeight="300" fontSize="2.5rem">
+                  {currentLesson?.title}
+                </Text>
+              </h1>
             </View>
             {!showInSidebarBreakpoint && (
               <View marginTop="32px">
