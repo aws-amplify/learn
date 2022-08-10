@@ -55,8 +55,8 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
   });
 
   return (
-    <nav>
-      <Flex direction="row" alignItems="center" ariaLabel="Breadcrumb">
+    <nav aria-label="Breadcrumbs">
+      <Flex direction="row" alignItems="center">
         {childrenWithSeparator}
       </Flex>
     </nav>
