@@ -52,7 +52,7 @@ export function LearnFooter({ isMobile }: { isMobile: boolean }) {
     />,
   ];
 
-  const githubIssueUrl = createGithubIssueLink(window.location.href);
+  const githubIssueUrl = createGithubIssueLink();
 
   const submitGithubIssueLink = (
     <a
