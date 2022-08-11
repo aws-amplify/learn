@@ -7,12 +7,9 @@ import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     configureAdobeAnalytics();
-
-    setHasMounted(true);
   }, []);
 
   useEffect(() => {
@@ -41,10 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
   }, [router]);
-
-  if (!hasMounted) {
-    return null;
-  }
 
   return (
     <>
