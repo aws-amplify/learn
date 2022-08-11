@@ -5,15 +5,13 @@ import { MetaInfo } from "../types/models";
 
 export default function Custom404() {
   // 404 page meta data
-  const metaObject: MetaInfo = {
+  const metaInfo: MetaInfo = {
     title: "Not Found - Learn Amplify",
     description: "We could not find what you were looking for on Learn Amplify",
-    url: "https://amplify.aws/learn",
-    image: "",
   };
 
   return (
-    <Layout metaObject={metaObject}>
+    <Layout metaInfo={metaInfo}>
       <Flex
         direction="column"
         columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
