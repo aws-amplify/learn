@@ -360,6 +360,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "lessonCourseLessonId": {
                     "name": "lessonCourseLessonId",
                     "isArray": false,
@@ -565,5 +572,5 @@ export const schema = {
             }
         }
     },
-    "version": "8066b729b8f5d2e11e9b587e26746cdc"
+    "version": "d31fb7782a70224b6c2ca141e6b76dbb"
 };
