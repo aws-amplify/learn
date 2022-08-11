@@ -1,7 +1,7 @@
 import { Grid, Heading, View, useBreakpointValue } from "@aws-amplify/ui-react";
 import { Layout } from "../../components/Layout";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
-import { CardLayoutData, Context } from "../../types/models";
+import { CardLayoutData, Context, MetaObject } from "../../types/models";
 import { getCardLayoutData } from "../../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
@@ -16,8 +16,16 @@ export default function CoursesPage(data: { cardLayoutData: string }) {
     xl: 6,
   }) as number;
 
+  // All courses page meta data
+  const metaObject: MetaObject = {
+    title: "All courses - Learn Amplify",
+    description: "All courses on Learn Amplify",
+    url: window.location.href,
+    image: "",
+  };
+
   return (
-    <Layout>
+    <Layout metaObject={metaObject}>
       <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
         <Grid
           templateColumns={{

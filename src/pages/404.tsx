@@ -1,10 +1,19 @@
 import { Flex, Heading, Text } from "@aws-amplify/ui-react";
 import Link from "next/link";
 import { Layout } from "../components/Layout";
+import { MetaObject } from "../types/models";
 
 export default function Custom404() {
+  // 404 page meta data
+  const metaObject: MetaObject = {
+    title: "Not Found - Learn Amplify",
+    description: "We could not find what you were looking for on Learn Amplify",
+    url: "https://amplify.aws/learn",
+    image: "",
+  };
+
   return (
-    <Layout>
+    <Layout metaObject={metaObject}>
       <Flex
         direction="column"
         columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}

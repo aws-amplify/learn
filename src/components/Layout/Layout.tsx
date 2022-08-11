@@ -1,4 +1,3 @@
-import Head from "next/head";
 import {
   Grid,
   ThemeProvider,
@@ -10,13 +9,8 @@ import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
-
-interface IMetaObject {
-  title: string;
-  description: string;
-  url: string;
-  author?: string;
-}
+import { MetaObject } from "../../types/models";
+import { Head } from "../Head";
 
 export function Layout({
   children,
@@ -25,7 +19,7 @@ export function Layout({
   breadcrumbCallback,
 }: {
   children: any;
-  metaObject?: IMetaObject;
+  metaObject: MetaObject;
   showBreadcrumb?: boolean;
   breadcrumbCallback?: (pathnameArray: string[], asPathArray: string[]) => any;
 }) {
@@ -46,56 +40,9 @@ export function Layout({
     }
   }, [mobileBreakpointValue]);
 
-  const meta = {
-    title: metaObject?.title ?? "Learn Amplify",
-    description:
-      metaObject?.description ??
-      "Learn Amplify - Learn how to use Amplify to develop and deploy cloud-powered mobile and web apps.",
-    url: metaObject?.url ?? "https://learn.amplify.aws/",
-    author: metaObject?.author ?? "",
-  };
-
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-        <meta property="og:title" content={meta.title} key="og:title" />
-        <meta name="author" content={meta.author} />
-        <meta name="description" content={meta.description} />
-        <meta
-          property="og:description"
-          content={meta.description}
-          key="og:description"
-        />
-        <meta property="og:url" content={meta.url} key="og:url" />
-        <meta
-          property="og:image"
-          content="https://docs.amplify.aws/assets/ogp.jpg"
-          key="og:image"
-        />
-        <meta
-          property="description"
-          content={meta.description}
-          key="description"
-        />
-        <meta property="twitter:card" content="summary" key="twitter:card" />
-        <meta
-          property="twitter:title"
-          content={meta.title}
-          key="twitter:title"
-        />
-        <meta
-          property="twitter:description"
-          content={meta.description}
-          key="twitter:description"
-        />
-        <meta
-          property="twitter:image"
-          content="https://docs.amplify.aws/assets/ogp.jpg"
-          key="twitter:image"
-        />
-      </Head>
+      <Head metaObject={metaObject} />
       <ThemeProvider theme={studioTheme}>
         <Flex direction="column" minHeight="100%" gap="0px">
           <LearnNavBar isMobile={isMobile} />

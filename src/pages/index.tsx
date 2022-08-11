@@ -7,7 +7,7 @@ import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { trackExternalLink } from "../utils/track";
 import { HeroCourse } from "../components/HeroCourse";
 import { CardLayoutCollection } from "../components/CardLayoutCollection";
-import { CardLayoutData, Context } from "../types/models";
+import { CardLayoutData, Context, MetaObject } from "../types/models";
 import { getCardLayoutData, getFeaturedCourseData } from "../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
@@ -52,8 +52,17 @@ export default function Home(data: {
     );
   }
 
+  // Home page meta data
+  const metaObject: MetaObject = {
+    title: "Learn Amplify",
+    image: "https://docs.amplify.aws/assets/ogp.jpg",
+    description:
+      "Learn Amplify - Learn how to use Amplify to develop and deploy cloud-powered mobile and web apps.",
+    url: "https://amplify.aws/learn",
+  };
+
   return (
-    <Layout>
+    <Layout metaObject={metaObject}>
       <View
         columnStart="2"
         marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}

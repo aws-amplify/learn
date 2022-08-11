@@ -11,7 +11,7 @@ import {
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from "next";
-import { CardLayoutData, Context } from "../../types/models";
+import { CardLayoutData, Context, MetaObject } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
@@ -55,8 +55,20 @@ export default function TagPage(data: { cardLayoutData: string }) {
   const cardLayoutData = JSON.parse(data.cardLayoutData);
   const { tagname } = router.query;
 
+  // All tags page meta data
+  const metaObject: MetaObject = {
+    title: `#${tagname} - Learn Amplify`,
+    description: `Courses tagged by #${tagname}`,
+    url: window.location.href,
+    image: "",
+  };
+
   return (
-    <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
+    <Layout
+      metaObject={metaObject}
+      showBreadcrumb={true}
+      breadcrumbCallback={callback}
+    >
       <View
         columnStart={{
           base: "1",

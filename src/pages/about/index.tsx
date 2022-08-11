@@ -14,7 +14,7 @@ import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { trackExternalLink } from "../../utils/track";
 import { Contributor } from "../../models";
-import { Context } from "../../types/models";
+import { Context, MetaObject } from "../../types/models";
 import { getContributors } from "../../lib/getData";
 
 export default function AboutPage(data: any) {
@@ -38,8 +38,16 @@ export default function AboutPage(data: any) {
     large: "grid",
   }) as "grid" | "list";
 
+  // About page meta data
+  const metaObject: MetaObject = {
+    title: "About - Learn Amplify",
+    description: "About",
+    url: window.location.href,
+    image: "",
+  };
+
   return (
-    <Layout>
+    <Layout metaObject={metaObject}>
       <View columnStart="2">
         <Grid
           templateColumns={{

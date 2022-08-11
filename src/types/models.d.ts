@@ -1,6 +1,14 @@
 import { ParsedUrlQuery } from "querystring";
 import { Course, Tag } from "../models";
 
+export interface MetaObject {
+  title: string;
+  image: string;
+  description: string;
+  url: string;
+  author?: string;
+}
+
 /**
  * Type for CardLayout component to render
  * course info and tags

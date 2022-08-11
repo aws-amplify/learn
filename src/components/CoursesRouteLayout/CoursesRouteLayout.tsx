@@ -6,7 +6,7 @@ export function CoursesRouteLayout({
   metaObject,
 }: {
   children: ReactNode;
-  metaObject?: any;
+  metaObject: any;
 }) {
   function coursesBreadcrumbCallback(
     pathnameArray: string[],

@@ -13,7 +13,7 @@ import { Fallback } from "../../../../components/Fallback";
 import Link from "next/link";
 import ArrowRightIconCustom from "../../../../ui-components/ArrowRightIconCustom";
 import styles from "./lesson.module.scss";
-import { CardLayoutData, Context } from "../../../../types/models";
+import { CardLayoutData, Context, MetaObject } from "../../../../types/models";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
@@ -59,29 +59,40 @@ export default function LessonPage(data: {
 
   const lessonNumber = currentLesson.lessonNumber;
 
+  // Lesson page meta data
+  const metaObject: MetaObject = {
+    title: currentLesson.title,
+    image: course.image,
+    description: currentLesson.description,
+    url: window.location.href,
+    author: `${contributors
+      .map((c) => `${c.firstName} ${c.lastName}`)
+      .join(", ")}`,
+  };
+
   return (
-    <CoursesRouteLayout>
+    <CoursesRouteLayout metaObject={metaObject}>
       <LessonLayout
         course={course}
         contributors={contributors}
         cardLayoutData={cardLayoutData}
         mainChildren={
           <View>
-            {currentLesson?.youtubeEmbedId && (
+            {currentLesson.youtubeEmbedId && (
               <View marginBottom="32px">
                 <YoutubeEmbed
-                  embedId={currentLesson?.youtubeEmbedId as string}
+                  embedId={currentLesson.youtubeEmbedId as string}
                 />
               </View>
             )}
             <View>
               <h1>
                 <Text as="span" fontWeight="400" fontSize="1.25rem">
-                  {course?.title}
+                  {course.title}
                 </Text>
                 <br />
                 <Text as="span" fontWeight="300" fontSize="2.5rem">
-                  {currentLesson?.title}
+                  {currentLesson.title}
                 </Text>
               </h1>
             </View>
@@ -96,7 +107,7 @@ export default function LessonPage(data: {
             )}
             <View marginTop="64px">
               <LearnMarkdown
-                markdownContent={currentLesson?.content as string}
+                markdownContent={currentLesson.content as string}
               />
             </View>
             {lessonNumber < lessons.length && (
@@ -132,7 +143,7 @@ export default function LessonPage(data: {
         sidebarChildren={
           <LessonTableOfContents
             currentLesson={`${currentLesson.lessonNumber}`}
-            courseId={course?.id as string}
+            courseId={course.id as string}
             lessons={lessons}
           />
         }
