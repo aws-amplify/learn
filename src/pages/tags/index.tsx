@@ -5,22 +5,20 @@ import { Tag } from "../../models";
 import { TagButton } from "../../components/TagButton";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { Context, MetaObject } from "../../types/models";
+import { Context, MetaInfo } from "../../types/models";
 import { configureAmplify } from "../../lib/getData";
 
 export default function TagsPage(data: { tags: Tag[] }) {
   const tags: Tag[] = deserializeModel(Tag, data.tags);
 
   // All tags page meta data
-  const metaObject: MetaObject = {
-    title: "All Tags - Learn Amplify",
+  const metaInfo: MetaInfo = {
+    title: "All Tags",
     description: "Discover different tags for Amplify courses",
-    url: window.location.href,
-    image: "",
   };
 
   return (
-    <Layout metaObject={metaObject}>
+    <Layout metaInfo={metaInfo}>
       <View
         columnStart={{
           base: "1",

@@ -16,7 +16,7 @@ import {
   Context,
   CoursePageParams,
   CoursePageProps,
-  MetaObject,
+  MetaInfo,
 } from "../../../types/models";
 import {
   getCardLayoutData,
@@ -103,18 +103,17 @@ export default function CoursePage(data: {
   );
 
   // Course page meta data
-  const metaObject: MetaObject = {
+  const metaInfo: MetaInfo = {
     title: course.title,
     image: course.image,
     description: course.description,
-    url: window.location.href,
     author: `${contributors
       .map((c) => `${c.firstName} ${c.lastName}`)
       .join(", ")}`,
   };
 
   return (
-    <CoursesRouteLayout metaObject={metaObject}>
+    <CoursesRouteLayout metaInfo={metaInfo}>
       <LessonLayout
         course={course}
         contributors={contributors}

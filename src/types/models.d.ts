@@ -1,11 +1,11 @@
 import { ParsedUrlQuery } from "querystring";
 import { Course, Tag } from "../models";
 
-export interface MetaObject {
+export interface MetaInfo {
   title: string;
-  image: string;
   description: string;
-  url: string;
+  image?: string;
+  url?: string;
   author?: string;
 }
 

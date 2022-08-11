@@ -13,7 +13,7 @@ import { Fallback } from "../../../../components/Fallback";
 import Link from "next/link";
 import ArrowRightIconCustom from "../../../../ui-components/ArrowRightIconCustom";
 import styles from "./lesson.module.scss";
-import { CardLayoutData, Context, MetaObject } from "../../../../types/models";
+import { CardLayoutData, Context, MetaInfo } from "../../../../types/models";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
@@ -60,18 +60,17 @@ export default function LessonPage(data: {
   const lessonNumber = currentLesson.lessonNumber;
 
   // Lesson page meta data
-  const metaObject: MetaObject = {
+  const metaInfo: MetaInfo = {
     title: currentLesson.title,
     image: course.image,
     description: currentLesson.description,
-    url: window.location.href,
     author: `${contributors
       .map((c) => `${c.firstName} ${c.lastName}`)
       .join(", ")}`,
   };
 
   return (
-    <CoursesRouteLayout metaObject={metaObject}>
+    <CoursesRouteLayout metaInfo={metaInfo}>
       <LessonLayout
         course={course}
         contributors={contributors}
