@@ -19,19 +19,23 @@ export function Head({ metaInfo }: { metaInfo: MetaInfo }) {
       <link rel="canonical" href={siteUrl} />
       <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta property="og:type" content="website" />
       <meta name="description" content={metaInfo.description} />
       <meta name="author" content={metaInfo.author} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={metaInfo.description} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" name="title" content={title} />
+      <meta
+        property="og:description"
+        name="description"
+        content={metaInfo.description}
+      />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content={metaInfo.image} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={metaInfo.description} />
+      <meta property="og:image" name="image" content={metaInfo.image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaInfo.description} />
       <meta name="twitter:url" content={url} />
-      <meta property="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@AWSAmplify" />
-      <meta property="twitter:image" content={metaInfo.image} />
+      <meta name="twitter:image" content={metaInfo.image} />
     </NextHead>
   );
 }
