@@ -25,7 +25,7 @@ import {
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from "next";
-import { CardLayoutData, Context, MetaObject } from "../../types/models";
+import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
 
@@ -115,16 +115,15 @@ export default function ContributorPage(data: {
   );
 
   // Contributor page meta data
-  const metaObject: MetaObject = {
-    title: `${contributor.firstName} ${contributor.lastName} - Learn Amplify`,
+  const metaInfo: MetaInfo = {
+    title: `${contributor.firstName} ${contributor.lastName}`,
     description: contributor.bio,
-    url: window.location.href,
     image: contributor.profilePic,
   };
 
   return (
     <Layout
-      metaObject={metaObject}
+      metaInfo={metaInfo}
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >

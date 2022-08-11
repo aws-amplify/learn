@@ -9,17 +9,17 @@ import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
-import { MetaObject } from "../../types/models";
+import { MetaInfo } from "../../types/models";
 import { Head } from "../Head";
 
 export function Layout({
   children,
-  metaObject,
+  metaInfo,
   showBreadcrumb,
   breadcrumbCallback,
 }: {
   children: any;
-  metaObject: MetaObject;
+  metaInfo: MetaInfo;
   showBreadcrumb?: boolean;
   breadcrumbCallback?: (pathnameArray: string[], asPathArray: string[]) => any;
 }) {
@@ -42,7 +42,7 @@ export function Layout({
 
   return (
     <>
-      <Head metaObject={metaObject} />
+      <Head metaInfo={metaInfo} />
       <ThemeProvider theme={studioTheme}>
         <Flex direction="column" minHeight="100%" gap="0px">
           <LearnNavBar isMobile={isMobile} />

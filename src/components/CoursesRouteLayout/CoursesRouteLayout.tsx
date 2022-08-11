@@ -1,12 +1,13 @@
 import { ReactNode, useCallback } from "react";
+import { MetaInfo } from "../../types/models";
 import { Layout } from "../Layout";
 
 export function CoursesRouteLayout({
   children,
-  metaObject,
+  metaInfo,
 }: {
   children: ReactNode;
-  metaObject: any;
+  metaInfo: MetaInfo;
 }) {
   function coursesBreadcrumbCallback(
     pathnameArray: string[],
@@ -41,7 +42,7 @@ export function CoursesRouteLayout({
 
   return (
     <Layout
-      metaObject={metaObject}
+      metaInfo={metaInfo}
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >

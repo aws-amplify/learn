@@ -1,17 +1,15 @@
 import { Flex, Loader } from "@aws-amplify/ui-react";
-import { MetaObject } from "../../types/models";
+import { MetaInfo } from "../../types/models";
 import { Layout } from "../Layout";
 
 export function Fallback() {
-  const metaObject: MetaObject = {
-    title: "Loading - Learn Amplify",
+  const metaInfo: MetaInfo = {
+    title: "Loading",
     description: "Loading site",
-    url: "https://amplify.aws/learn",
-    image: "",
   };
 
   return (
-    <Layout metaObject={metaObject}>
+    <Layout metaInfo={metaInfo}>
       <Flex
         columnStart={{
           base: "1",
