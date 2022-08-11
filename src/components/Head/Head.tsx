@@ -1,8 +1,8 @@
-import NextHead from "next/head";
+import Head from "next/head";
 import { MetaInfo } from "../../types/models";
 import { useRouter } from "next/router";
 
-export function Head({ metaInfo }: { metaInfo: MetaInfo }) {
+export function HeadCustom({ metaInfo }: { metaInfo: MetaInfo }) {
   const router = useRouter();
 
   const siteUrl = process.env.SITE_URL;
@@ -15,7 +15,7 @@ export function Head({ metaInfo }: { metaInfo: MetaInfo }) {
   const url = `${process.env.SITE_URL}${router.asPath}`;
 
   return (
-    <NextHead>
+    <Head>
       <link rel="canonical" href={siteUrl} />
       <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +36,6 @@ export function Head({ metaInfo }: { metaInfo: MetaInfo }) {
       <meta name="twitter:url" content={url} />
       <meta name="twitter:site" content="@AWSAmplify" />
       <meta name="twitter:image" content={metaInfo.image} />
-    </NextHead>
+    </Head>
   );
 }
