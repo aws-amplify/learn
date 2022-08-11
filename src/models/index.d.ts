@@ -73,6 +73,7 @@ export declare class Lesson {
   readonly chapter: number;
   readonly courseLesson?: Course | null;
   readonly lessonNumber: number;
+  readonly description: string;
   readonly lessonCourseLessonId?: string | null;
   constructor(init: ModelInit<Lesson>);
   static copyOf(source: Lesson, mutator: (draft: MutableModel<Lesson>) => MutableModel<Lesson> | void): Lesson;
