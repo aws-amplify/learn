@@ -25,7 +25,7 @@ import {
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from "next";
-import { Context } from "../../types/models";
+import { CardLayoutData, Context, MetaObject } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
 
@@ -104,15 +104,30 @@ export default function ContributorPage(data: {
     return <Fallback />;
   }
 
-  const contributor = deserializeModel(Contributor, data.contributor);
-  const cardLayoutData = JSON.parse(data.cardLayoutData);
-  const otherContributors = deserializeModel(
+  const contributor: Contributor = deserializeModel(
+    Contributor,
+    data.contributor
+  );
+  const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
+  const otherContributors: Contributor[] = deserializeModel(
     Contributor,
     data.otherContributors
   );
 
+  // Contributor page meta data
+  const metaObject: MetaObject = {
+    title: `${contributor.firstName} ${contributor.lastName} - Learn Amplify`,
+    description: contributor.bio,
+    url: window.location.href,
+    image: contributor.profilePic,
+  };
+
   return (
-    <Layout showBreadcrumb={true} breadcrumbCallback={callback}>
+    <Layout
+      metaObject={metaObject}
+      showBreadcrumb={true}
+      breadcrumbCallback={callback}
+    >
       <Flex
         columnStart={{
           base: "1",
@@ -156,22 +171,20 @@ export default function ContributorPage(data: {
             {contributor.socialNetwork &&
             contributor.socialNetwork.length > 0 ? (
               <Flex>
-                {contributor.socialNetwork.map(
-                  (e: { platform: string; url: string }, index: number) => {
-                    return (
-                      <SocialMediaButton
-                        key={index}
-                        platform={e?.platform}
-                        url={e?.url}
-                        iconAriaLabel={`${
-                          contributor.firstName
-                        }'s ${capitalizeEnum(e?.platform)} profile link`}
-                        iconWidth="24px"
-                        iconHeight="24px"
-                      ></SocialMediaButton>
-                    );
-                  }
-                )}
+                {contributor.socialNetwork?.map((e, index: number) => {
+                  return (
+                    <SocialMediaButton
+                      key={index}
+                      platform={e?.platform}
+                      url={e?.url || ""}
+                      iconAriaLabel={`${
+                        contributor.firstName
+                      }'s ${capitalizeEnum(e?.platform)} profile link`}
+                      iconWidth="24px"
+                      iconHeight="24px"
+                    ></SocialMediaButton>
+                  );
+                })}
               </Flex>
             ) : (
               <></>
