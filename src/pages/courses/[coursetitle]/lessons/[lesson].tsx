@@ -99,7 +99,6 @@ export default function LessonPage(data: {
               <View marginTop="32px">
                 <LessonTableOfContents
                   currentLesson={`${currentLesson.lessonNumber}`}
-                  courseId={course.id as string}
                   lessons={lessons}
                 />
               </View>
@@ -142,7 +141,6 @@ export default function LessonPage(data: {
         sidebarChildren={
           <LessonTableOfContents
             currentLesson={`${currentLesson.lessonNumber}`}
-            courseId={course.id as string}
             lessons={lessons}
           />
         }

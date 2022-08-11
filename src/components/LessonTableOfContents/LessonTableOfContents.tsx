@@ -1,5 +1,5 @@
 import { Flex, View, Text } from "@aws-amplify/ui-react";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { Lesson } from "../../models";
 import { PlayIcon } from "../../ui-components";
 import Link from "next/link";
@@ -7,14 +7,14 @@ import styles from "./LessonTableOfContents.module.scss";
 
 // Maybe create a "Course" layout so that the table of contents can always be there?
 export function LessonTableOfContents({
-  courseId,
   lessons,
   currentLesson,
 }: {
-  courseId: string;
   lessons: Lesson[];
   currentLesson?: string;
 }) {
+  const router = useRouter();
+
   // Helper function to create the table of contents
   function createLessonTOC() {
     let chapter = 0;

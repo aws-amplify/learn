@@ -257,7 +257,7 @@ export default function CoursePage(data: {
               </Card>
             </Flex>
             <View columnStart={1} marginTop="32px">
-              <LessonTableOfContents courseId={course.id} lessons={lessons} />
+              <LessonTableOfContents lessons={lessons} />
             </View>
             {course.trailerEmbedId && (
               <YoutubeModal
