@@ -1,7 +1,7 @@
 import "@aws-amplify/ui-react/styles.css";
 import "../styles/index.scss";
 import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { configureAdobeAnalytics, trackPageView } from "../utils/track";
 import { useRouter } from "next/router";
 
@@ -39,11 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, [router]);
 
-  return (
-    <>
-      <Component {...pageProps} />
-    </>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
