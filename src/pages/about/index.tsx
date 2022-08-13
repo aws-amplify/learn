@@ -9,13 +9,13 @@ import {
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { ActionLayout } from "../../components/ActionLayout";
 import { ContributorCollection } from "../../components/ContributorCollection";
-import { Layout } from "../../components/Layout";
 import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { trackExternalLink } from "../../utils/track";
 import { Contributor } from "../../models";
 import { Context, MetaInfo } from "../../types/models";
 import { getContributors } from "../../lib/getData";
+import { MetaLayout } from "../../components/MetaLayout";
 
 export default function AboutPage(data: any) {
   const contributors: Contributor[] = deserializeModel(
@@ -45,7 +45,7 @@ export default function AboutPage(data: any) {
   };
 
   return (
-    <Layout metaInfo={metaInfo}>
+    <MetaLayout metaInfo={metaInfo}>
       <View columnStart="2">
         <Grid
           templateColumns={{
@@ -123,7 +123,7 @@ export default function AboutPage(data: any) {
           </View>
         </ActionLayout>
       </View>
-    </Layout>
+    </MetaLayout>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from "@aws-amplify/ui-react";
 import Link from "next/link";
-import { Layout } from "../components/Layout";
+import { MetaLayout } from "../components/MetaLayout";
 import { MetaInfo } from "../types/models";
 
 export default function Custom404() {
@@ -11,7 +11,7 @@ export default function Custom404() {
   };
 
   return (
-    <Layout metaInfo={metaInfo}>
+    <MetaLayout metaInfo={metaInfo}>
       <Flex
         direction="column"
         columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}
@@ -32,6 +32,6 @@ export default function Custom404() {
           </Link>
         </Text>
       </Flex>
-    </Layout>
+    </MetaLayout>
   );
 }

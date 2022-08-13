@@ -1,5 +1,4 @@
 import { Grid, Heading, View } from "@aws-amplify/ui-react";
-import { Layout } from "../../components/Layout";
 import { withSSRContext } from "aws-amplify";
 import { Tag } from "../../models";
 import { TagButton } from "../../components/TagButton";
@@ -7,6 +6,7 @@ import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { Context, MetaInfo } from "../../types/models";
 import { configureAmplify } from "../../lib/getData";
+import { MetaLayout } from "../../components/MetaLayout";
 
 export default function TagsPage(data: { tags: Tag[] }) {
   const tags: Tag[] = deserializeModel(Tag, data.tags);
@@ -18,7 +18,7 @@ export default function TagsPage(data: { tags: Tag[] }) {
   };
 
   return (
-    <Layout metaInfo={metaInfo}>
+    <MetaLayout metaInfo={metaInfo}>
       <View
         columnStart={{
           base: "1",
@@ -61,7 +61,7 @@ export default function TagsPage(data: { tags: Tag[] }) {
           ))}
         </Grid>
       </View>
-    </Layout>
+    </MetaLayout>
   );
 }
 

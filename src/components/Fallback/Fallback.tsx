@@ -1,6 +1,6 @@
 import { Flex, Loader } from "@aws-amplify/ui-react";
 import { MetaInfo } from "../../types/models";
-import { Layout } from "../Layout";
+import { MetaLayout } from "../MetaLayout";
 
 export function Fallback() {
   const metaInfo: MetaInfo = {
@@ -9,7 +9,7 @@ export function Fallback() {
   };
 
   return (
-    <Layout metaInfo={metaInfo}>
+    <MetaLayout metaInfo={metaInfo}>
       <Flex
         columnStart={{
           base: "1",
@@ -30,6 +30,6 @@ export function Fallback() {
           fr={undefined}
         />
       </Flex>
-    </Layout>
+    </MetaLayout>
   );
 }

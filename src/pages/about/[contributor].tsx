@@ -11,7 +11,6 @@ import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { Layout } from "../../components/Layout";
 import { Contributor, ContributorCourse } from "../../models";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
@@ -28,6 +27,7 @@ import {
 import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
+import { MetaLayout } from "../../components/MetaLayout";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -122,7 +122,7 @@ export default function ContributorPage(data: {
   };
 
   return (
-    <Layout
+    <MetaLayout
       metaInfo={metaInfo}
       showBreadcrumb={true}
       breadcrumbCallback={callback}
@@ -333,7 +333,7 @@ export default function ContributorPage(data: {
           </View>
         </Grid>
       </Flex>
-    </Layout>
+    </MetaLayout>
   );
 }
 
