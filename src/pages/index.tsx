@@ -1,6 +1,5 @@
 import { Button, View, Heading, Flex } from "@aws-amplify/ui-react";
 import { ActionLayout } from "../components/ActionLayout";
-import { Layout } from "../components/Layout";
 import ExternalIconCustom from "../ui-components/ExternalIconCustom";
 import { Course, Tag } from "../models";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
@@ -10,6 +9,7 @@ import { CardLayoutCollection } from "../components/CardLayoutCollection";
 import { CardLayoutData, Context, MetaInfo } from "../types/models";
 import { getCardLayoutData, getFeaturedCourseData } from "../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+import { MetaLayout } from "../components/MetaLayout";
 
 export default function Home(data: {
   featuredCourse: Course;
@@ -60,7 +60,7 @@ export default function Home(data: {
   };
 
   return (
-    <Layout metaInfo={metaInfo}>
+    <MetaLayout metaInfo={metaInfo}>
       <View
         columnStart="2"
         marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}
@@ -97,7 +97,7 @@ export default function Home(data: {
           </Button>
         </View>
       </ActionLayout>
-    </Layout>
+    </MetaLayout>
   );
 }
 

@@ -1,9 +1,9 @@
 import { Grid, Heading, View, useBreakpointValue } from "@aws-amplify/ui-react";
-import { Layout } from "../../components/Layout";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { getCardLayoutData } from "../../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+import { MetaLayout } from "../../components/MetaLayout";
 
 export default function CoursesPage(data: { cardLayoutData: string }) {
   const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
@@ -23,7 +23,7 @@ export default function CoursesPage(data: { cardLayoutData: string }) {
   };
 
   return (
-    <Layout metaInfo={metaInfo}>
+    <MetaLayout metaInfo={metaInfo}>
       <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
         <Grid
           templateColumns={{
@@ -68,7 +68,7 @@ export default function CoursesPage(data: { cardLayoutData: string }) {
           />
         </View>
       </View>
-    </Layout>
+    </MetaLayout>
   );
 }
 

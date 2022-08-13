@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { Grid, Heading, View } from "@aws-amplify/ui-react";
-import { Layout } from "../../components/Layout";
 import { Tag } from "../../models";
 import { useCallback } from "react";
 import { withSSRContext } from "aws-amplify";
@@ -15,6 +14,7 @@ import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
+import { MetaLayout } from "../../components/MetaLayout";
 
 export default function TagPage(data: { cardLayoutData: string }) {
   function tagsBreadcrumbCallback(
@@ -62,7 +62,7 @@ export default function TagPage(data: { cardLayoutData: string }) {
   };
 
   return (
-    <Layout
+    <MetaLayout
       metaInfo={metaInfo}
       showBreadcrumb={true}
       breadcrumbCallback={callback}
@@ -109,7 +109,7 @@ export default function TagPage(data: { cardLayoutData: string }) {
           marginBottom="30px"
         />
       </View>
-    </Layout>
+    </MetaLayout>
   );
 }
 
