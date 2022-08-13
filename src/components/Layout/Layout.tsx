@@ -9,7 +9,6 @@ import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
-import { MetaInfo } from "../../types/models";
 
 export function Layout({
   children,
