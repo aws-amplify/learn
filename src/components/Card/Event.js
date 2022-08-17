@@ -2,10 +2,10 @@ import {css} from '@emotion/core';
 import Img from 'gatsby-image';
 import {head, split, join} from 'ramda';
 import {useMemo} from 'react';
-import Text from '../Text';
-import asCard from './asCard';
 import {classNames} from '~/utilities';
 import {GRAY_COLOR, SILVER_CHALICE_COLOR} from '~/constants';
+import Text from '../Text';
+import asCard from './asCard';
 
 const styles = css`
   flex-direction: row;

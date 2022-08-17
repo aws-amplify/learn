@@ -1,13 +1,12 @@
 import {graphql} from 'gatsby';
 import {css} from '@emotion/core';
 import {map, __, isEmpty} from 'ramda';
-import {useEffect} from 'react';
-import {mapNodeToProps, extract, track} from '~/utilities';
+import {mapNodeToProps, extract} from '~/utilities';
 import {MappedList, Layout, Card, Nav, Text, Meta} from '~/components';
 import {LAPTOP_BREAKPOINT, DESKTOP_BREAKPOINT} from '~/constants';
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     contributor: markdownRemark(fields: {id: {eq: $id}}) {
       ...Contributor
       frontmatter {
@@ -76,8 +75,6 @@ const styles = css`
 `;
 
 export default props => {
-  useEffect(() => track.internalPageView(props), []);
-
   const extractFromProps = extract.fromPath(__, props);
   const [posts, events, contributor] = map(extractFromProps, [
     ['data', 'posts', 'edges'],

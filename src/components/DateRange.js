@@ -4,9 +4,9 @@ import {useState, useMemo} from 'react';
 import 'flatpickr/dist/themes/airbnb.css';
 import {css} from '@emotion/core';
 import {generate} from 'shortid';
-import Text from './Text';
 import {GRAY_COLOR} from '~/constants';
 import {classNames} from '~/utilities';
+import Text from './Text';
 
 const styles = css`
   display: flex;
