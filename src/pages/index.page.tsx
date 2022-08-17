@@ -42,7 +42,7 @@ export default function Home(data: {
         <CardLayoutCollection
           cardLayouts={cardLayoutData}
           isOnHomePage={true}
-          filter={(e: CardLayoutData) => e.course.isFeatured === false}
+          filter={(e: CardLayoutData) => e.course.id !== featuredCourse.id}
           isPaginated={false}
           limit={4}
           gap="40px"
