@@ -4,8 +4,11 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import { configureAdobeAnalytics, trackPageView } from "../utils/track";
 import { useRouter } from "next/router";
+import Modal from "react-modal";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  Modal.setAppElement("#__next");
+
   const router = useRouter();
 
   useEffect(() => {

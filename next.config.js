@@ -5,6 +5,7 @@ const nextConfig = {
   env: {
     SITE_URL: process.env.SITE_URL,
   },
+  pageExtensions: ["page.tsx"],
 };
 
 module.exports = nextConfig;

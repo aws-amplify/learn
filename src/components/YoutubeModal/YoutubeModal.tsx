@@ -23,8 +23,6 @@ export function YoutubeModal({
   courseTitle: string;
   courseTrailerEmbedId: string;
 }) {
-  Modal.setAppElement("#__next");
-
   const modalWidth = useBreakpointValue({
     base: "100vw",
     small: "100vw",
