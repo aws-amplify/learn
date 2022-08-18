@@ -7,7 +7,7 @@
 /* eslint-disable */
 import React from "react";
 import { SortDirection } from "@aws-amplify/datastore";
-import { Course } from "../models";
+import { Contributor, Course, Tag } from "../models";
 import {
   getOverrideProps,
   useDataStoreBinding,
@@ -19,11 +19,23 @@ export default function CardLayoutCollection(props) {
   const itemsPagination = {
     sort: (s) => s.dateCreated(SortDirection.DESCENDING),
   };
+  const contributorItems = useDataStoreBinding({
+    type: "collection",
+    model: Contributor,
+  }).items;
+  const tagItems = useDataStoreBinding({
+    type: "collection",
+    model: Tag,
+  }).items;
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: Course,
     pagination: itemsPagination,
-  }).items;
+  }).items.map((item) => ({
+    ...item,
+    contributors: contributorItems.filter((model) => model.course === item.id),
+    courseTags: tagItems.filter((model) => model.course === item.id),
+  }));
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
   return (
     <Collection

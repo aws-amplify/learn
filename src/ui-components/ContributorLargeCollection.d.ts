@@ -6,13 +6,14 @@
 
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { ContributorLargeProps } from "./ContributorLarge";
 import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type ContributorLargeCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
     items?: any[];
-    overrideItems?: ({ item: any, index: number }: {
+    overrideItems?: (collectionItem: {
         item: any;
-        index: any;
-    }) => Record<string, string>;
+        index: number;
+    }) => ContributorLargeProps;
 } & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
