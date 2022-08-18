@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import React from "react";
-import { Contributor } from "../models";
+import { Contributor, Course } from "../models";
 import {
   getOverrideProps,
   useDataStoreBinding,
@@ -15,10 +15,17 @@ import ContributorVertical from "./ContributorVertical";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ContributorVerticalCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const courseItems = useDataStoreBinding({
+    type: "collection",
+    model: Course,
+  }).items;
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: Contributor,
-  }).items;
+  }).items.map((item) => ({
+    ...item,
+    courses: courseItems.filter((model) => model.contributor === item.id),
+  }));
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
   return (
     <Collection
