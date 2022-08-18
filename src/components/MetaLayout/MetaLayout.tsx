@@ -27,6 +27,8 @@ export function MetaLayout({
 
   const url = `${process.env.SITE_URL}${router.asPath}`;
 
+  const image = metaInfo.image ? metaInfo.image : "/learn/learn-preview.jpg";
+
   return (
     <>
       <Head>
@@ -43,13 +45,13 @@ export function MetaLayout({
           content={metaInfo.description}
         />
         <meta property="og:url" content={url} />
-        <meta property="og:image" name="image" content={metaInfo.image} />
+        <meta property="og:image" name="image" content={image} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={metaInfo.description} />
         <meta name="twitter:url" content={url} />
         <meta name="twitter:site" content="@AWSAmplify" />
-        <meta name="twitter:image" content={metaInfo.image} />
+        <meta name="twitter:image" content={image} />
       </Head>
       <Layout
         showBreadcrumb={showBreadcrumb}
