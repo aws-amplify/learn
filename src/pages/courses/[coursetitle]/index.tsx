@@ -76,21 +76,23 @@ export default function CoursePage(data: {
 
   const buttonGroup = (
     <>
-      <Link
-        href={{
-          pathname: `${router.pathname}/lessons/[lesson]`,
-        }}
-        as={`${router.asPath}/lessons/1`}
-      >
-        <a className="link-button">
-          <View
-            className="amplify-button amplify-button--primary amplify-button--fullwidth"
-            height="42px"
-          >
-            Start course
-          </View>
-        </a>
-      </Link>
+      <View width="100%">
+        <Link
+          href={{
+            pathname: `${router.pathname}/lessons/[lesson]`,
+          }}
+          as={`${router.asPath}/lessons/1`}
+        >
+          <a className="link-button">
+            <View
+              className="amplify-button amplify-button--primary amplify-button--fullwidth"
+              height="42px"
+            >
+              Start course
+            </View>
+          </a>
+        </Link>
+      </View>
       <Button
         isFullWidth={true}
         onClick={() => {
