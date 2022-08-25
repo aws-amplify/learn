@@ -53,8 +53,9 @@ export function LessonTableOfContents({
 
       const asPath =
         router.asPath.indexOf("lessons") > -1
-          ? `${router.asPath.substring(0, router.asPath.lastIndexOf("/"))}/${lesson.lessonNumber
-          }`
+          ? `${router.asPath.substring(0, router.asPath.lastIndexOf("/"))}/${
+              lesson.lessonNumber
+            }`
           : `${router.asPath}/lessons/${lesson.lessonNumber}`;
 
       result.push(
@@ -69,23 +70,42 @@ export function LessonTableOfContents({
               <Flex
                 ariaLabel={`Go to lesson ${lesson.lessonNumber}, ${lesson.title}`}
                 textAlign="left"
-                gap="0.875rem"
+                columnGap="0.875rem"
                 padding="8px 12px"
-                margin="0px 8px"
                 borderRadius="4px"
                 alignItems="center"
-                className={`${styles["lesson-link"]} ${Number(currentLesson) === lesson.lessonNumber
-                  ? styles["current-lesson"]
-                  : ""
-                  }`}
+                className={`${styles["lesson-link"]} ${
+                  Number(currentLesson) === lesson.lessonNumber
+                    ? styles["current-lesson"]
+                    : ""
+                }`}
               >
-                {Number(currentLesson) === lesson.lessonNumber ?
-                  <Icon width="24px"
-                    height="24px" ariaLabel="Current lesson icon" fr={undefined} viewBox={{ width: 18, height: 12 }}>
-                    <rect x="4" y="0.666672" width="4" height="11" rx="1" fill="white" />
-                    <rect x="11" y="0.666672" width="4" height="11" rx="1" fill="white" />
+                {Number(currentLesson) === lesson.lessonNumber ? (
+                  <Icon
+                    width="18px"
+                    height="24px"
+                    ariaLabel="Current lesson icon"
+                    fr={undefined}
+                    viewBox={{ minX: 2.5, minY: 0, width: 13, height: 11 }}
+                  >
+                    <rect
+                      x="3"
+                      y="0.666672"
+                      width="4"
+                      height="11"
+                      rx="1"
+                      fill="white"
+                    />
+                    <rect
+                      x="10"
+                      y="0.666672"
+                      width="4"
+                      height="11"
+                      rx="1"
+                      fill="white"
+                    />
                   </Icon>
-                  :
+                ) : (
                   <PlayIcon
                     overrides={{
                       PlayIcon: {
@@ -93,6 +113,14 @@ export function LessonTableOfContents({
                           Number(currentLesson) === lesson.lessonNumber
                             ? "white"
                             : "#0074BD",
+                        width: "16px",
+                        // @ts-ignore
+                        viewBox: {
+                          minX: 2.2,
+                          minY: 0,
+                          width: 16,
+                          height: 24,
+                        },
                         // @ts-ignore
                         paths: [
                           {
@@ -105,7 +133,8 @@ export function LessonTableOfContents({
                         ],
                       },
                     }}
-                  />}
+                  />
+                )}
                 <Text fontWeight="700" fontSize="1rem">
                   {lesson.title}
                 </Text>
