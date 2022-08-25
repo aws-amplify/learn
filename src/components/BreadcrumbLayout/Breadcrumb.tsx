@@ -36,7 +36,7 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
           {child}
           <Icon
             ariaLabel="Breadcrumb separator"
-            viewBox={{ width: 16, height: 16 }}
+            viewBox={{ minX: 3, minY: -0.5, width: 9, height: 16 }}
             fr={undefined}
           >
             <path
@@ -56,7 +56,7 @@ export function Breadcrumb({ children }: { children: ReactNode }) {
 
   return (
     <nav aria-label="Breadcrumbs">
-      <Flex direction="row" alignItems="center">
+      <Flex direction="row" alignItems="center" columnGap="17px">
         {childrenWithSeparator}
       </Flex>
     </nav>
