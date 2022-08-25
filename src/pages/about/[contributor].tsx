@@ -6,6 +6,7 @@ import {
   Text,
   Button,
   useBreakpointValue,
+  Heading,
 } from "@aws-amplify/ui-react";
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
@@ -154,16 +155,17 @@ export default function ContributorPage(data: {
           columnGap="100px"
         >
           <Flex direction="column">
-            <Text fontWeight="300" fontSize="2.5rem">
+            <Heading level={1} fontWeight="300" fontSize="2.5rem">
               {`${contributor.firstName} ${contributor.lastName}`}
-            </Text>
-            <Text
+            </Heading>
+            <Heading
+              level={2}
               fontFamily="Amazon Ember Display"
               fontWeight="400"
               fontSize="1.5rem"
             >
               {contributor.jobTitle}
-            </Text>
+            </Heading>
             <Text fontWeight="400" fontSize="1rem">
               {contributor.bio}
             </Text>
