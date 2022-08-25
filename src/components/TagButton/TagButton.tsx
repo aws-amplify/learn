@@ -27,6 +27,7 @@ export function TagButton({
       as={`/tags/${tag.name}`}
     >
       <a
+        target="_blank"
         className={inCourseLayout ? inCourseClasses : `amplify-button`}
         style={
           !inCourseLayout
