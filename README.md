@@ -1,33 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Amplify Learn
+
+This is the repo for https://amplify.aws/learn, which is a site containing courses on AWS Amplify created by the Developer Advocacy team working on the product.
+
+The site is hosted on [Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html) and built using these technologies:
+
+- [Amplify Studio](https://docs.amplify.aws/console/)
+- [Amplify UI](https://ui.docs.amplify.aws/)
+- [Next.js](https://nextjs.org/)
+
+## Prerequisites
+
+- Node.js 12.x or later
+- Amplify CLI
+  - Install it by running this command in terminal: `npm install -g @aws-amplify/cli`
+- An AWS Account
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Fork the repo: https://github.com/aws-amplify/learn/fork and clone it.
+2. In your terminal, navigate to the _root_ of your local clone.
+3. Run `npm install`
+4. Run `amplify init`
+   - This will initialize an Amplify app within your local directory.
+   - Follow the steps in the terminal to set up your project
+   - After completing these steps, Amplify CLI will set up the cloud resources needed for the Learn repo
+5. If you want to push up these changes to AWS, run `amplify push`
+   - Note, to set up the data for the app you will need to run `amplify push` to set up the cloud resources. Then you can run `amplify console` in terminal to visit Amplify Studio where you can add data using the CMS and modify the data models.
+6. Run `npm run dev`
+7. Navigate to `localhost:3000/learn` to view the site in your dev environment
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about AWS Amplify, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [AWS Amplify Documentation](https://docs.amplify.aws/) - learn about Amplify features such as CLI and the different libraries.
