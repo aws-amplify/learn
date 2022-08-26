@@ -5,6 +5,9 @@
 }
 
 .navbar-menu-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
   color: rgba(84, 91, 100, 1);
   text-decoration: none;
   background-color: transparent;
@@ -23,4 +26,10 @@
     background-color: transparent;
     color: rgba(35, 47, 62, 1);
   }
+
+  border: 2px solid transparent;
+}
+
+.current-nav-menu-item {
+  border-bottom: 2px solid #ff9900;
 }

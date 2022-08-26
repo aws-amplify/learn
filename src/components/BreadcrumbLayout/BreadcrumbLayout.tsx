@@ -25,7 +25,7 @@ export function BreadcrumbLayout({
 
   if (breadcrumbs?.length > 0) {
     return (
-      <View padding="16px 32px" backgroundColor="#FFFFFF">
+      <View padding="20px 32px" backgroundColor="#FFFFFF">
         <Breadcrumb>
           {breadcrumbs.map((e) => {
             if (e.label && e.href) {
