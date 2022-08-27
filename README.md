@@ -22,12 +22,34 @@ The site is hosted on [Amplify Hosting](https://docs.aws.amazon.com/amplify/late
 3. Run `npm install`
 4. Run `amplify init`
    - This will initialize an Amplify app within your local directory.
-   - Follow the steps in the terminal to set up your project
-   - After completing these steps, Amplify CLI will set up the cloud resources needed for the Learn repo
+   - Follow the steps in the terminal to set up your project.
+   - After completing these steps, Amplify CLI will set up the cloud resources needed for the Learn repo.
 5. If you want to push up these changes to AWS, run `amplify push`
-   - Note, to set up the data for the app you will need to run `amplify push` to set up the cloud resources. Then you can run `amplify console` in terminal to visit Amplify Studio where you can add data using the CMS and modify the data models.
+   - This will create AWS resources on your account required by the Learn app. More details in the [Amplify Backend Environment](#amplify-backend-environment) section.
 6. Run `npm run dev`
-7. Navigate to `localhost:3000/learn` to view the site in your dev environment
+7. Navigate to `localhost:3000/learn` to view the site in your dev environment.
+
+## Amplify Backend Environment
+
+The Learn app uses Amplify to create a backend environment consisting of these services:
+
+- AWS AppSync
+- AWS DynamoDB
+
+When you run the terminal command `amplify push` and follow the prompts, Amplify CLI pushes the configurations from the Learn app to create these resources using AWS CloudFormation.
+
+### Modifying data for the Learn app
+
+The Learn app uses the [CMS from Amplify Studio](https://docs.amplify.aws/console/data/content-management/) to manage data for the app. To set this up, follow these steps:
+
+1. First, make sure the backend environment has been pushed up to the cloud.
+2. Run `amplify console` in terminal and choose `AWS console` as your option.
+   - This should open the AWS Amplify Console in your browser.
+3. In the left navigation menu, click on "Amplify Studio settings".
+4. Enable Amplify Studio by toggling it on.
+5. Once it's done setting up, go back to your terminal and run `amplify console`.
+6. Choose `Amplify Studio` and now a browser window should open up for Amplify Studio
+7. Now you can use Amplify Studio to modify the data models and create content.
 
 ## Learn More
 
