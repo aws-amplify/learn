@@ -10,7 +10,7 @@ The site is hosted on [Amplify Hosting](https://docs.aws.amazon.com/amplify/late
 
 ## Prerequisites
 
-- Node.js 12.x or later
+- Node.js 14.x or later
 - Amplify CLI
   - Install it by running this command in terminal: `npm install -g @aws-amplify/cli`
 - An AWS Account
