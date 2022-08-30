@@ -52,8 +52,8 @@ export function MetaLayout({
         <meta name="twitter:url" content={url} />
         <meta name="twitter:site" content="@AWSAmplify" />
         <meta name="twitter:image" content={image} />
-        <link rel="icon" type="image/svg+xml" href={"learn/favicon.ico"} />
-        <link rel="apple-touch-icon" href="learn/apple-touch-icon.png" />
+        <link rel="icon" type="image/svg+xml" href="/learn/favicon.ico" />
+        <link rel="apple-touch-icon" href="/learn/apple-touch-icon.png" />
       </Head>
       <Layout
         showBreadcrumb={showBreadcrumb}
