@@ -5,6 +5,14 @@ const nextConfig = {
   env: {
     SITE_URL: process.env.SITE_URL,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/learn/api",
+        destination: "/api"
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;
