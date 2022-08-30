@@ -37,7 +37,7 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <Link href="/">
+          <Link href="/learn">
             <a>
               <LearnLogo
                 className={styles["learn-logo"]}
@@ -64,7 +64,7 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <Link href="/courses">
+          <Link href="/learn/courses">
             <a className={styles["navbar-menu-item"]}>Courses</a>
           </Link>
         </Flex>
@@ -79,7 +79,7 @@ export function LearnNavBarDesktop() {
           position="relative"
           padding="0px 0px 0px 0px"
         >
-          <Link href="/about">
+          <Link href="/learn/about">
             <a className={styles["navbar-menu-item"]}>About</a>
           </Link>
         </Flex>

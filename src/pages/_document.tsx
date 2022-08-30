@@ -67,7 +67,7 @@ const getCspContent = (context: HtmlProps) => {
     frame-src 'self' https://www.youtube-nocookie.com ${ANALYTICS_CSP.all.frame.join(
       " "
     )};
-    connect-src 'self' *.shortbread.aws.dev https://learn-backend.amplify.aws ws: ${[
+    connect-src 'self' *.shortbread.aws.dev ws: ${[
       ...ANALYTICS_CSP.all.connect,
       ...ANALYTICS_CSP.prod.connect,
     ].join(" ")};
@@ -89,42 +89,42 @@ export default class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="/learn/fonts/AmazonEmber_W_Lt.woff2"
+            href="/fonts/AmazonEmber_W_Lt.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/learn/fonts/AmazonEmber_W_Rg.woff2"
+            href="/fonts/AmazonEmber_W_Rg.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/learn/fonts/AmazonEmber_W_Bd.woff2"
+            href="/fonts/AmazonEmber_W_Bd.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/learn/fonts/AmazonEmberDisplay_W_Rg.woff2"
+            href="/fonts/AmazonEmberDisplay_W_Rg.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/learn/fonts/AmazonEmberDisplay_W_Md.woff2"
+            href="/fonts/AmazonEmberDisplay_W_Md.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/learn/fonts/AmazonEmberDisplay_W_Bd.woff2"
+            href="/fonts/AmazonEmberDisplay_W_Bd.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
@@ -133,10 +133,7 @@ export default class MyDocument extends Document {
             src="https://a0.awsstatic.com/s_code/js/3.0/awshome_s_code.js"
             defer
           ></script>
-          <script
-            src="/learn/scripts/aws-ux-shortbread-v1-0-14.js"
-            defer
-          ></script>
+          <script src="/scripts/aws-ux-shortbread-v1-0-14.js" defer></script>
         </Head>
         <body>
           <Main />
