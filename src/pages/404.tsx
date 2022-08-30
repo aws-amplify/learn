@@ -1,7 +1,7 @@
 import { Flex, Heading, Text } from "@aws-amplify/ui-react";
 import Link from "next/link";
-import { MetaLayout } from "../../components/MetaLayout";
-import { MetaInfo } from "../../types/models";
+import { MetaLayout } from "../components/MetaLayout";
+import { MetaInfo } from "../types/models";
 
 export default function Custom404() {
   // 404 page meta data
