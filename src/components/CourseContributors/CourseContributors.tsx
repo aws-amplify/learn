@@ -24,9 +24,9 @@ export function CourseContributors({
           <Link
             key={index}
             href={{
-              pathname: "/about/[contributor]",
+              pathname: "/learn/about/[contributor]",
             }}
-            as={`/about/${contributor.username}`}
+            as={`/learn/about/${contributor.username}`}
           >
             <a className={styles["course-contributor-hyperlink"]}>
               <ContributorHorizontal

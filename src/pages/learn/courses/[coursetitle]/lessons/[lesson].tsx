@@ -1,19 +1,19 @@
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
-import { LessonLayout } from "../../../../components/LessonLayout";
-import { Contributor, Course, Lesson } from "../../../../models";
-import { YoutubeEmbed } from "../../../../components/YoutubeEmbed";
+import { LessonLayout } from "../../../../../components/LessonLayout";
+import { Contributor, Course, Lesson } from "../../../../../models";
+import { YoutubeEmbed } from "../../../../../components/YoutubeEmbed";
 import { Text, useBreakpointValue, View, Flex } from "@aws-amplify/ui-react";
-import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
-import { LearnMarkdown } from "../../../../components/LearnMarkdown";
-import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
-import { createCourseTitleUri } from "../../../../utils";
+import { LessonTableOfContents } from "../../../../../components/LessonTableOfContents";
+import { LearnMarkdown } from "../../../../../components/LearnMarkdown";
+import { CoursesRouteLayout } from "../../../../../components/CoursesRouteLayout";
+import { createCourseTitleUri } from "../../../../../utils";
 import { useRouter } from "next/router";
-import { Fallback } from "../../../../components/Fallback";
+import { Fallback } from "../../../../../components/Fallback";
 import Link from "next/link";
-import ArrowRightIconCustom from "../../../../ui-components/ArrowRightIconCustom";
+import ArrowRightIconCustom from "../../../../../ui-components/ArrowRightIconCustom";
 import styles from "./lesson.module.scss";
-import { CardLayoutData, Context, MetaInfo } from "../../../../types/models";
+import { CardLayoutData, Context, MetaInfo } from "../../../../../types/models";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
@@ -24,7 +24,7 @@ import {
   getCardLayoutData,
   getCourseAndLessonData,
   getCourseContributors,
-} from "../../../../lib/getData";
+} from "../../../../../lib/getData";
 import { ParsedUrlQuery } from "querystring";
 
 export default function LessonPage(data: {
