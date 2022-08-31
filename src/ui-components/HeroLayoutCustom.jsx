@@ -244,9 +244,12 @@ export default function HeroLayout(props) {
         <View {...getOverrideProps(overrides, "Button31473054")}>
           <Link
             href={{
-              pathname: "/courses/[coursetitle]",
+              pathname: "/learn/courses/[coursetitle]",
             }}
-            as={`/courses/${createCourseTitleUri(course.title, course.id)}`}
+            as={`/learn/courses/${createCourseTitleUri(
+              course.title,
+              course.id
+            )}`}
           >
             <a className="link-button">
               <View

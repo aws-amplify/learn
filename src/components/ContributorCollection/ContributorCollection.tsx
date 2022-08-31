@@ -41,9 +41,9 @@ export function ContributorCollection({
         <Link
           key={item.id}
           href={{
-            pathname: "/about/[contributor]",
+            pathname: "/learn/about/[contributor]",
           }}
-          as={`/about/${item.username}`}
+          as={`/learn/about/${item.username}`}
         >
           <a className={styles["contributor-card-hyperlink"]}>
             <Card
