@@ -3,13 +3,21 @@ import {
   Flex,
   Icon,
   Text,
-  useBreakpointValue,
   View,
   VisuallyHidden,
 } from "@aws-amplify/ui-react";
-import { createContext, useMemo, useState, useContext, useEffect } from "react";
+import {
+  createContext,
+  useMemo,
+  useState,
+  useContext,
+  useLayoutEffect,
+  useRef,
+  useEffect,
+} from "react";
 import styles from "./GlobalNav.module.scss";
 
+// Helper function to create the twitter and discord icons
 function IconLink({ iconType }: { iconType: string }) {
   let icon;
   switch (iconType) {
@@ -47,6 +55,7 @@ function IconLink({ iconType }: { iconType: string }) {
   return icon;
 }
 
+// Helper function to create an external icon link
 function ExternalLink({ children }: { children: any }) {
   const externalIcon = (
     <Icon
@@ -80,6 +89,7 @@ function ExternalLink({ children }: { children: any }) {
   );
 }
 
+// Helper function to create the nav menu links
 function NavMenuLink({
   navMenuItem,
   currentMenuItem = "",
@@ -178,80 +188,7 @@ interface NavProps {
   currentSite: string;
   secondaryNavDesktop?: JSX.Element;
   secondaryNavMobile?: JSX.Element;
-}
-
-// The nav needs to take in the "secondary" nav bar...
-// What type of data should this be?
-//   - we don't want it to be a whole component cause we want to theme it?
-//   -
-export function NavDesktop({
-  links,
-  currentSite,
-  secondaryNavDesktop,
-}: NavProps) {
-  const leftLinks: NavMenuItem[] = links.filter((e) => e.placement === "LEFT");
-  const rightLinks: NavMenuItem[] = links.filter(
-    (e) => e.placement === "RIGHT"
-  );
-
-  leftLinks.sort((a, b) => a.order - b.order);
-  rightLinks.sort((a, b) => a.order - b.order);
-
-  return (
-    <>
-      <nav className={styles.navbar} aria-label="Amplify Dev Center Global">
-        <Flex
-          height="80px"
-          alignItems="center"
-          justifyContent="space-between"
-          padding={{
-            base: "0px 18px",
-            small: "0px 18px",
-            medium: "0px 18px",
-            large: "0px 18px",
-            xl: "0px 32px",
-          }}
-        >
-          <Flex height="100%" grow="1" columnGap="16px" alignItems="center">
-            {/* Left side of nav bar */}
-            <Flex columnGap="8px" alignItems="center">
-              {/* Dev Center logo */}
-              <Icon
-                ariaLabel="Amplify Dev Center logo"
-                width="24"
-                height="22"
-                viewBox={{ width: 24, height: 22 }}
-                pathData="M20.6144 19L10.1205 1H13.5019L24 19H20.6144ZM7.80721 5.3588L15.4882 19H18.7952L9.45719 2.42859L7.80721 5.3588ZM4.89082 10.5419L0 19H13.8795L12.1271 15.9696H5.2705L8.70006 10.043L6.94038 7L4.89082 10.5419Z"
-                fr={undefined}
-                fill="#FF9900"
-              />
-              <Text fontSize="22px">
-                <strong>Amplify</strong> Dev Center
-              </Text>
-            </Flex>
-            {leftLinks.map((link) => (
-              <NavMenuLink
-                navMenuItem={link}
-                currentMenuItem={currentSite}
-                key={link.order}
-              />
-            ))}
-          </Flex>
-          <Flex columnGap="16px" alignItems="center">
-            {/* Right side of nav bar */}
-            {rightLinks.map((link) => (
-              <NavMenuLink
-                navMenuItem={link}
-                currentMenuItem={currentSite}
-                key={link.order}
-              />
-            ))}
-          </Flex>
-        </Flex>
-      </nav>
-      {secondaryNavDesktop}
-    </>
-  );
+  setIsMobileState?: any;
 }
 
 type NavMobileContextType = {
@@ -264,11 +201,56 @@ const NavMobileContext = createContext<NavMobileContextType>({
   setShowGlobalNav: () => ({}),
 });
 
-export function NavMobile({
+export function GlobalNav({
   links,
   currentSite,
+  secondaryNavDesktop,
   secondaryNavMobile,
 }: NavProps) {
+  const leftLinks: NavMenuItem[] = links.filter((e) => e.placement === "LEFT");
+  const rightLinks: NavMenuItem[] = links.filter(
+    (e) => e.placement === "RIGHT"
+  );
+
+  leftLinks.sort((a, b) => a.order - b.order);
+  rightLinks.sort((a, b) => a.order - b.order);
+
+  const [isMobileState, setIsMobileState] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(Infinity);
+  const [currentWindowWidth, setCurrentWindowWidth] = useState(
+    window.innerWidth
+  );
+  const navDesktopRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const handleWindowSizeChange = () => {
+      setCurrentWindowWidth(window.innerWidth);
+
+      if (navDesktopRef.current !== null) {
+        if (
+          navDesktopRef.current.scrollHeight >
+          navDesktopRef.current.clientHeight
+        ) {
+          setWindowWidth(window.innerWidth);
+          setIsMobileState(true);
+        }
+      }
+    };
+
+    window.addEventListener("resize", handleWindowSizeChange);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (currentWindowWidth > windowWidth) {
+      setIsMobileState(false);
+      setWindowWidth(Infinity);
+    }
+  }, [windowWidth, currentWindowWidth]);
+
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [showGlobalNav, setShowGlobalNav] = useState(false);
 
@@ -278,168 +260,228 @@ export function NavMobile({
   );
 
   return (
-    <NavMobileContext.Provider value={value}>
-      <nav className={styles.navbar}>
-        <div className={styles["mobile-nav-container"]}>
-          <div
-            style={{
-              display: "flex",
-              columnGap: "8px",
-              alignItems: "center",
-            }}
-          >
-            <Icon
-              ariaLabel="Amplify Dev Center logo"
-              width="24"
-              height="22"
-              viewBox={{ width: 24, height: 22 }}
-              pathData="M20.6144 19L10.1205 1H13.5019L24 19H20.6144ZM7.80721 5.3588L15.4882 19H18.7952L9.45719 2.42859L7.80721 5.3588ZM4.89082 10.5419L0 19H13.8795L12.1271 15.9696H5.2705L8.70006 10.043L6.94038 7L4.89082 10.5419Z"
-              fr={undefined}
-              fill="#FF9900"
-            />
-            <Text fontSize="22px">
-              <strong>Amplify</strong> Dev Center
-            </Text>
-          </div>
-          <Button
-            border="none"
-            onClick={() => {
-              setIsCollapsed(!isCollapsed);
-            }}
-          >
-            <VisuallyHidden>
-              {isCollapsed ? "Open menu" : "Close menu"}
-            </VisuallyHidden>
-            {isCollapsed ? (
-              <Icon
-                ariaLabel="Icon"
-                width="20"
-                height="18"
-                viewBox={{ minX: 0, minY: 0, width: 20, height: 18 }}
-                fr={undefined}
+    <>
+      <div style={{ display: isMobileState ? "block" : "none" }}>
+        <NavMobileContext.Provider value={value}>
+          <nav className={styles.navbar}>
+            <div className={styles["mobile-nav-container"]}>
+              <div
+                style={{
+                  display: "flex",
+                  columnGap: "8px",
+                  alignItems: "center",
+                }}
               >
-                <line
-                  x1="1"
-                  y1="1"
-                  x2="19"
-                  y2="1"
-                  stroke="#545B64"
-                  strokeWidth="2"
-                  strokeLinecap="round"
+                <Icon
+                  ariaLabel="Amplify Dev Center logo"
+                  width="24"
+                  height="22"
+                  viewBox={{ width: 24, height: 22 }}
+                  pathData="M20.6144 19L10.1205 1H13.5019L24 19H20.6144ZM7.80721 5.3588L15.4882 19H18.7952L9.45719 2.42859L7.80721 5.3588ZM4.89082 10.5419L0 19H13.8795L12.1271 15.9696H5.2705L8.70006 10.043L6.94038 7L4.89082 10.5419Z"
+                  fr={undefined}
+                  fill="#FF9900"
                 />
-                <line
-                  x1="1"
-                  y1="9"
-                  x2="19"
-                  y2="9"
-                  stroke="#545B64"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="1"
-                  y1="17"
-                  x2="19"
-                  y2="17"
-                  stroke="#545B64"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </Icon>
-            ) : (
-              <Icon
-                width="20"
-                height="18"
-                viewBox={{ minX: 2, minY: 4, width: 20, height: 18 }}
-                paths={[
-                  {
-                    d: "M7.05025 5.63603C6.65972 5.24551 6.02656 5.24551 5.63603 5.63603C5.24551 6.02656 5.24551 6.65972 5.63603 7.05025L7.05025 5.63603ZM16.9497 18.364C17.3403 18.7545 17.9734 18.7545 18.364 18.364C18.7545 17.9734 18.7545 17.3403 18.364 16.9497L16.9497 18.364ZM5.63603 7.05025L16.9497 18.364L18.364 16.9497L7.05025 5.63603L5.63603 7.05025Z",
-                    fill: "#545B64",
-                  },
-                  {
-                    d: "M18.364 7.05025C18.7545 6.65972 18.7545 6.02656 18.364 5.63603C17.9734 5.24551 17.3403 5.24551 16.9498 5.63603L18.364 7.05025ZM5.63605 16.9497C5.24552 17.3403 5.24552 17.9734 5.63605 18.364C6.02657 18.7545 6.65973 18.7545 7.05026 18.364L5.63605 16.9497ZM16.9498 5.63603L5.63605 16.9497L7.05026 18.364L18.364 7.05025L16.9498 5.63603Z",
-                    fill: "#545B64",
-                  },
-                ]}
-                ariaLabel="Icon"
-                fr={undefined}
-              />
-            )}
-          </Button>
-        </div>
-        {isCollapsed ? (
-          <></>
-        ) : (
-          <>
-            {showGlobalNav ? (
-              <View className={styles["mobile-nav-menu-container"]}>
-                {links
-                  .filter((link) => link.type !== "ICON")
-                  .map((link) => (
-                    <View
-                      className={styles["mobile-nav-menu-items"]}
-                      key={`${link.order}`}
-                    >
-                      <NavMenuLink
-                        navMenuItem={link}
-                        currentMenuItem={currentSite}
-                        isMobile={true}
-                      />
-                    </View>
-                  ))}
-                <View
-                  className={`${styles["mobile-nav-menu-items"]} ${styles["mobile-nav-icons"]}`}
-                >
-                  {links
-                    .filter((link) => link.type === "ICON")
-                    .map((link) => (
-                      <View style={{ width: "100%" }} key={`${link.order}`}>
-                        <NavMenuLink
-                          navMenuItem={link}
-                          currentMenuItem={currentSite}
-                        />
-                      </View>
-                    ))}
-                </View>
-              </View>
-            ) : (
-              <>
-                <Flex
-                  tabIndex={0}
-                  onClick={() => setShowGlobalNav(true)}
-                  padding="12px"
-                  alignItems="center"
-                  columnGap="9px"
-                  className={styles["back-nav-button"]}
-                  ariaLabel={`Back to nav button`}
-                >
-                  <VisuallyHidden>Learn</VisuallyHidden>
+                <Text fontSize="22px">
+                  <strong>Amplify</strong> Dev Center
+                </Text>
+              </div>
+              <Button
+                border="none"
+                onClick={() => {
+                  setIsCollapsed(!isCollapsed);
+                }}
+              >
+                <VisuallyHidden>
+                  {isCollapsed ? "Open menu" : "Close menu"}
+                </VisuallyHidden>
+                {isCollapsed ? (
                   <Icon
-                    viewBox={{ minX: 0, minY: 0, width: 18, height: 18 }}
-                    pathData="M13.4102 5.41L8.83016 10L13.4102 14.59L12.0002 16L6.00016 10L12.0002 4L13.4102 5.41Z"
-                    ariaLabel="Icon to"
+                    ariaLabel="Icon"
+                    width="20"
+                    height="18"
+                    viewBox={{ minX: 0, minY: 0, width: 20, height: 18 }}
+                    fr={undefined}
+                  >
+                    <line
+                      x1="1"
+                      y1="1"
+                      x2="19"
+                      y2="1"
+                      stroke="#545B64"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <line
+                      x1="1"
+                      y1="9"
+                      x2="19"
+                      y2="9"
+                      stroke="#545B64"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <line
+                      x1="1"
+                      y1="17"
+                      x2="19"
+                      y2="17"
+                      stroke="#545B64"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </Icon>
+                ) : (
+                  <Icon
+                    width="20"
+                    height="18"
+                    viewBox={{ minX: 2, minY: 4, width: 20, height: 18 }}
+                    paths={[
+                      {
+                        d: "M7.05025 5.63603C6.65972 5.24551 6.02656 5.24551 5.63603 5.63603C5.24551 6.02656 5.24551 6.65972 5.63603 7.05025L7.05025 5.63603ZM16.9497 18.364C17.3403 18.7545 17.9734 18.7545 18.364 18.364C18.7545 17.9734 18.7545 17.3403 18.364 16.9497L16.9497 18.364ZM5.63603 7.05025L16.9497 18.364L18.364 16.9497L7.05025 5.63603L5.63603 7.05025Z",
+                        fill: "#545B64",
+                      },
+                      {
+                        d: "M18.364 7.05025C18.7545 6.65972 18.7545 6.02656 18.364 5.63603C17.9734 5.24551 17.3403 5.24551 16.9498 5.63603L18.364 7.05025ZM5.63605 16.9497C5.24552 17.3403 5.24552 17.9734 5.63605 18.364C6.02657 18.7545 6.65973 18.7545 7.05026 18.364L5.63605 16.9497ZM16.9498 5.63603L5.63605 16.9497L7.05026 18.364L18.364 7.05025L16.9498 5.63603Z",
+                        fill: "#545B64",
+                      },
+                    ]}
+                    ariaLabel="Icon"
                     fr={undefined}
                   />
-                  <Text>{`${currentSite}`}</Text>
-                </Flex>
+                )}
+              </Button>
+            </div>
+            {isCollapsed ? (
+              <></>
+            ) : (
+              <>
+                {showGlobalNav ? (
+                  <View className={styles["mobile-nav-menu-container"]}>
+                    {links
+                      .filter((link) => link.type !== "ICON")
+                      .map((link) => (
+                        <View
+                          className={styles["mobile-nav-menu-items"]}
+                          key={`${link.order}`}
+                        >
+                          <NavMenuLink
+                            navMenuItem={link}
+                            currentMenuItem={currentSite}
+                            isMobile={true}
+                          />
+                        </View>
+                      ))}
+                    <View
+                      className={`${styles["mobile-nav-menu-items"]} ${styles["mobile-nav-icons"]}`}
+                    >
+                      {links
+                        .filter((link) => link.type === "ICON")
+                        .map((link) => (
+                          <View style={{ width: "100%" }} key={`${link.order}`}>
+                            <NavMenuLink
+                              navMenuItem={link}
+                              currentMenuItem={currentSite}
+                            />
+                          </View>
+                        ))}
+                    </View>
+                  </View>
+                ) : (
+                  <>
+                    <Flex
+                      tabIndex={0}
+                      onClick={() => setShowGlobalNav(true)}
+                      padding="12px"
+                      alignItems="center"
+                      columnGap="9px"
+                      className={styles["back-nav-button"]}
+                      ariaLabel={`Back to nav button`}
+                    >
+                      <VisuallyHidden>Learn</VisuallyHidden>
+                      <Icon
+                        viewBox={{ minX: 0, minY: 0, width: 18, height: 18 }}
+                        pathData="M13.4102 5.41L8.83016 10L13.4102 14.59L12.0002 16L6.00016 10L12.0002 4L13.4102 5.41Z"
+                        ariaLabel="Icon to"
+                        fr={undefined}
+                      />
+                      <Text>{`${currentSite}`}</Text>
+                    </Flex>
 
-                {secondaryNavMobile}
+                    {secondaryNavMobile}
+                  </>
+                )}
               </>
             )}
-          </>
-        )}
-      </nav>
-    </NavMobileContext.Provider>
+          </nav>
+        </NavMobileContext.Provider>
+      </div>
+      <div style={{ display: isMobileState ? "none" : "block" }}>
+        <nav
+          className={`${styles.navbar}`}
+          aria-label="Amplify Dev Center Global"
+        >
+          <Flex
+            id="nav-desktop"
+            height="80px"
+            alignItems="center"
+            justifyContent="space-between"
+            padding={{
+              base: "0px 18px",
+              small: "0px 18px",
+              medium: "0px 18px",
+              large: "0px 18px",
+              xl: "0px 32px",
+            }}
+          >
+            <Flex
+              height="100%"
+              columnGap="16px"
+              alignItems="center"
+              id="left-nav"
+            >
+              {/* Left side of nav bar */}
+              <Flex height="100%" columnGap="8px" alignItems="center">
+                {/* Dev Center logo */}
+                <Icon
+                  ariaLabel="Amplify Dev Center logo"
+                  width="24"
+                  height="22"
+                  viewBox={{ width: 24, height: 22 }}
+                  pathData="M20.6144 19L10.1205 1H13.5019L24 19H20.6144ZM7.80721 5.3588L15.4882 19H18.7952L9.45719 2.42859L7.80721 5.3588ZM4.89082 10.5419L0 19H13.8795L12.1271 15.9696H5.2705L8.70006 10.043L6.94038 7L4.89082 10.5419Z"
+                  fr={undefined}
+                  fill="#FF9900"
+                />
+                <Text fontSize="1.375rem">
+                  <strong>Amplify</strong> Docs
+                </Text>
+              </Flex>
+              {leftLinks.map((link) => (
+                <NavMenuLink
+                  navMenuItem={link}
+                  currentMenuItem={currentSite}
+                  key={link.order}
+                />
+              ))}
+            </Flex>
+            <Flex
+              columnGap="16px"
+              alignItems="center"
+              id="right-nav"
+              ref={navDesktopRef}
+            >
+              {/* Right side of nav bar */}
+              {rightLinks.map((link) => (
+                <NavMenuLink
+                  navMenuItem={link}
+                  currentMenuItem={currentSite}
+                  key={link.order}
+                />
+              ))}
+            </Flex>
+          </Flex>
+        </nav>
+        {secondaryNavDesktop}
+      </div>
+    </>
   );
-}
-
-export function GlobalNav(props: NavProps) {
-  const isMobile = useBreakpointValue({
-    base: true,
-    small: true,
-    medium: true,
-    large: false,
-  });
-
-  return isMobile ? <NavMobile {...props} /> : <NavDesktop {...props} />;
 }

@@ -6,8 +6,6 @@ import { useRouter } from "next/router";
 export function LearnNavBarDesktop() {
   const router = useRouter();
 
-  console.log(router.asPath);
-
   return (
     <Flex
       gap="32px"
