@@ -109,5 +109,10 @@ $breakpoint-xxl: 1536px;
 }
 
 .current-nav-menu-item {
+  border-top: 2px solid transparent;
   border-bottom: 2px solid #ff9900;
+}
+
+.hidden-nav {
+  display: none;
 }
