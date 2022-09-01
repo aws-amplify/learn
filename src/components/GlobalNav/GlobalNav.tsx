@@ -216,23 +216,34 @@ export function GlobalNav({
   rightLinks.sort((a, b) => a.order - b.order);
 
   const [isMobileState, setIsMobileState] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(Infinity);
-  const [currentWindowWidth, setCurrentWindowWidth] = useState(
+  const [mobileNavBreakpoint, setMobileNavBreakpoint] = useState(0);
+  const [currentWindowInnerWidth, setCurrentWindowInnerWidth] = useState(
     window.innerWidth
   );
-  const navDesktopRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  const navLinksContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (navLinksContainerRef.current !== null) {
+      if (
+        navLinksContainerRef.current.scrollWidth >
+        navLinksContainerRef.current.clientWidth
+      ) {
+        setIsMobileState(true);
+        setMobileNavBreakpoint(window.innerWidth);
+      }
+    }
+
     const handleWindowSizeChange = () => {
-      setCurrentWindowWidth(window.innerWidth);
+      setCurrentWindowInnerWidth(window.innerWidth);
 
-      if (navDesktopRef.current !== null) {
+      if (navLinksContainerRef.current !== null) {
         if (
-          navDesktopRef.current.scrollHeight >
-          navDesktopRef.current.clientHeight
+          navLinksContainerRef.current.scrollWidth >
+          navLinksContainerRef.current.clientWidth
         ) {
-          setWindowWidth(window.innerWidth);
           setIsMobileState(true);
+          setMobileNavBreakpoint(window.innerWidth);
         }
       }
     };
@@ -245,11 +256,10 @@ export function GlobalNav({
   }, []);
 
   useLayoutEffect(() => {
-    if (currentWindowWidth > windowWidth) {
+    if (currentWindowInnerWidth > mobileNavBreakpoint) {
       setIsMobileState(false);
-      setWindowWidth(Infinity);
     }
-  }, [windowWidth, currentWindowWidth]);
+  }, [currentWindowInnerWidth, mobileNavBreakpoint]);
 
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [showGlobalNav, setShowGlobalNav] = useState(false);
@@ -282,7 +292,7 @@ export function GlobalNav({
                   fill="#FF9900"
                 />
                 <Text fontSize="22px">
-                  <strong>Amplify</strong> Dev Center
+                  <strong>Amplify</strong> {currentSite}
                 </Text>
               </div>
               <Button
@@ -404,9 +414,8 @@ export function GlobalNav({
                         ariaLabel="Icon to"
                         fr={undefined}
                       />
-                      <Text>{`${currentSite}`}</Text>
+                      <Text>All Amplify sites</Text>
                     </Flex>
-
                     {secondaryNavMobile}
                   </>
                 )}
@@ -417,11 +426,13 @@ export function GlobalNav({
       </div>
       <div style={{ display: isMobileState ? "none" : "block" }}>
         <nav
+          id="main-nav"
           className={`${styles.navbar}`}
           aria-label="Amplify Dev Center Global"
         >
           <Flex
-            id="nav-desktop"
+            ref={navLinksContainerRef}
+            id="nav-links-container"
             height="80px"
             alignItems="center"
             justifyContent="space-between"
@@ -432,8 +443,12 @@ export function GlobalNav({
               large: "0px 18px",
               xl: "0px 32px",
             }}
+            style={{
+              overflowY: "scroll",
+            }}
           >
             <Flex
+              columnStart="1"
               height="100%"
               columnGap="16px"
               alignItems="center"
@@ -451,8 +466,8 @@ export function GlobalNav({
                   fr={undefined}
                   fill="#FF9900"
                 />
-                <Text fontSize="1.375rem">
-                  <strong>Amplify</strong> Docs
+                <Text fontSize="1.375rem" whiteSpace="nowrap">
+                  <strong>Amplify</strong> {currentSite}
                 </Text>
               </Flex>
               {leftLinks.map((link) => (
@@ -463,11 +478,12 @@ export function GlobalNav({
                 />
               ))}
             </Flex>
+            {/* <View width="100%"></View> */}
             <Flex
+              columnStart="3"
               columnGap="16px"
               alignItems="center"
               id="right-nav"
-              ref={navDesktopRef}
             >
               {/* Right side of nav bar */}
               {rightLinks.map((link) => (
