@@ -90,7 +90,6 @@ export function LearnFooter({ isMobile }: { isMobile: boolean }) {
       <LearnFooterCustom
         socialMediaButtons={socialMediaButtons}
         submitGithubIssueButton={submitGithubIssueLink}
-        width="100vw"
       />
     );
   } else {
