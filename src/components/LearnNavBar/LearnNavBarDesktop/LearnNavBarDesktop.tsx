@@ -30,24 +30,9 @@ export function LearnNavBarDesktop() {
         padding="0px 0px 0px 0px"
       >
         <Link href="/learn">
-          <a className={styles["navbar-menu-item"]}>
-            <Text
-              fontFamily="Amazon Ember"
-              fontSize="20px"
-              fontWeight="400"
-              color="rgba(35,47,62,1)"
-              lineHeight="22px"
-              textAlign="left"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-            >
-              Learn
-            </Text>
-          </a>
+          <a className={styles["navbar-menu-item"]}>Home</a>
         </Link>
-        <Link href="/courses">
+        <Link href="/learn/courses">
           <a
             className={`${styles["navbar-menu-item"]} ${
               router.asPath.startsWith("/learn/courses")

@@ -56,7 +56,6 @@ export function Layout({
           secondaryNavDesktop={<LearnNavBar isMobile={false} />}
           secondaryNavMobile={<LearnNavBar isMobile={true} />}
         />
-        {/* <LearnNavBar isMobile={isMobile} /> */}
         {showBreadcrumb && breadcrumbCallback && (
           <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
         )}

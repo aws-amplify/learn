@@ -10,5 +10,5 @@ export function LearnNavBar({ isMobile }: { isMobile: boolean }) {
     navbar = <LearnNavBarDesktop />;
   }
 
-  return <nav aria-label="Main">{navbar}</nav>;
+  return <nav aria-label="Learn">{navbar}</nav>;
 }
