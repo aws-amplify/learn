@@ -9,6 +9,9 @@ $breakpoint-xxl: 1536px;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
   border-bottom: 1px solid #d5dbdb;
   background-color: white;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 }
 
 .nav-container {
@@ -16,14 +19,6 @@ $breakpoint-xxl: 1536px;
   height: 80px;
   align-items: center;
   justify-content: space-between;
-
-  @media (min-width: $breakpoint-xl) {
-    padding: 0px 32px;
-  }
-
-  @media (min-width: $breakpoint-large) {
-    padding: 0px 18px;
-  }
 }
 
 .mobile-nav-container {
@@ -44,7 +39,9 @@ $breakpoint-xxl: 1536px;
   border-bottom: 1px solid #d5dbdb;
 }
 
-.mobile-nav-icons {
+.mobile-nav-icons-container {
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -57,11 +54,13 @@ $breakpoint-xxl: 1536px;
 
 .mobile-nav-menu-items {
   border-top: 1px solid #d5dbdb;
+  border-bottom: 1px solid #d5dbdb;
   height: 48px;
-  padding: 12px;
+  width: 100%;
 }
 
 .nav-menu-item {
+  padding: 12px;
   display: flex;
   align-items: center;
   height: 100%;
@@ -75,11 +74,11 @@ $breakpoint-xxl: 1536px;
 
   &:hover {
     color: black;
+    background-color: white !important;
   }
 }
 
 .back-nav-button {
-  cursor: pointer;
   border-top: 1px solid #d5dbdb;
   border-bottom: 1px solid #d5dbdb;
 
@@ -92,6 +91,8 @@ $breakpoint-xxl: 1536px;
 
   &:hover {
     color: black;
+    border: 1px solid #d5dbdb;
+    background-color: white !important;
 
     p {
       color: black;
@@ -102,8 +103,4 @@ $breakpoint-xxl: 1536px;
 .current-nav-menu-item {
   border-top: 2px solid transparent;
   border-bottom: 2px solid #ff9900;
-}
-
-.hidden-nav {
-  display: none;
 }
