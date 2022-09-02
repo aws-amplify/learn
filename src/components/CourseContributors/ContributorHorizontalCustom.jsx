@@ -97,18 +97,16 @@ export default function ContributorHorizontal(props) {
         backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 360")}
       >
-        <Image
+        <img
           width="52px"
           height="52px"
-          grow="1"
-          basis="52px"
-          alignSelf="stretch"
-          position="relative"
-          borderRadius="50%"
+          style={{
+            borderRadius: "50%",
+          }}
           src={contributor?.profilePic}
           alt={`Profile picture`}
           {...getOverrideProps(overrides, "Ellipse 15")}
-        ></Image>
+        />
       </Flex>
       <Flex
         gap="0"

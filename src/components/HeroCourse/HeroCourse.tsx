@@ -92,6 +92,7 @@ export function HeroCourse({ course, tags }: HeroCourseProps) {
             src={course.image}
             alt={course.imageAltText}
             borderRadius="8px"
+            overflow="hidden"
           />
         </View>
       </Flex>

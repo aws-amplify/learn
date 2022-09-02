@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   Flex,
   Grid,
@@ -50,6 +51,9 @@ export default function ContributorPage(data: {
   otherContributors: Contributor[];
 }) {
   const router = useRouter();
+
+  const profilePicBorderSizeBreak = useBreakpointValue(profilePicBorderSize);
+  const profilePicSizeBreak = useBreakpointValue(profilePicSize);
 
   const otherContributorsLimit = useBreakpointValue({
     base: 2,
@@ -204,17 +208,15 @@ export default function ContributorPage(data: {
             padding="9px 9px 9px 9px"
             backgroundColor="rgba(255,255,255,1)"
           >
-            <Image
-              width={profilePicSize}
-              height={profilePicSize}
-              grow="1"
-              basis="104px"
-              alignSelf="stretch"
-              position="relative"
-              borderRadius="50%"
+            <img
+              width={profilePicBorderSizeBreak}
+              height={profilePicSizeBreak}
+              style={{
+                borderRadius: "50%",
+              }}
               src={contributor?.profilePic || ""}
               alt={`Profile pic of ${contributor.firstName}`}
-            ></Image>
+            />
           </Flex>
         </Flex>
 
