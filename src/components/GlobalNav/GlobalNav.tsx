@@ -65,11 +65,17 @@ export function GlobalNav({
   leftLinks.sort((a, b) => a.order - b.order);
   rightLinks.sort((a, b) => a.order - b.order);
 
+  let windowInnerWidth;
+  if (typeof window === "undefined") {
+    windowInnerWidth = 0;
+  } else {
+    windowInnerWidth = window.innerWidth;
+  }
+
   const [isMobileState, setIsMobileState] = useState(false);
   const [mobileNavBreakpoint, setMobileNavBreakpoint] = useState(0);
-  const [currentWindowInnerWidth, setCurrentWindowInnerWidth] = useState(
-    window.innerWidth
-  );
+  const [currentWindowInnerWidth, setCurrentWindowInnerWidth] =
+    useState(windowInnerWidth);
 
   const navLinksContainerRef = useRef<HTMLDivElement>(null);
 
@@ -135,8 +141,9 @@ export function GlobalNav({
               fr={undefined}
               fill="#FF9900"
             />
-            <Text fontSize="22px">
-              <strong>Amplify</strong> {currentSite}
+            <Text className={styles["dev-center-logo"]}>
+              <span style={{ fontWeight: "400" }}>Amplify</span>{" "}
+              <span style={{ fontWeight: "300" }}>{currentSite}</span>
             </Text>
           </Flex>
           <Button
@@ -235,7 +242,7 @@ export function GlobalNav({
           width="100vw"
           position="fixed"
           top="0"
-          style={{ backgroundColor: "rgba(0,0,0,0.5)", zIndex: 1 }}
+          style={{ backgroundColor: "rgba(0,0,0,0.5)", zIndex: 150 }}
           onClick={() => {
             setIsCollapsed(true);
           }}
@@ -285,8 +292,9 @@ export function GlobalNav({
               fr={undefined}
               fill="#FF9900"
             />
-            <Text fontSize="1.375rem" whiteSpace="nowrap">
-              <strong>Amplify</strong> {currentSite}
+            <Text className={styles["dev-center-logo"]}>
+              <span style={{ fontWeight: "400" }}>Amplify</span>{" "}
+              <span style={{ fontWeight: "300" }}>Dev Center</span>
             </Text>
           </Flex>
           {leftLinks.map((link) => (

@@ -1,10 +1,33 @@
+@font-face {
+  font-family: Amazon Ember;
+  src: url(./fonts/AmazonEmber_W_Lt.woff2) format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Amazon Ember;
+  src: url(./fonts/AmazonEmber_W_Rg.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .navbar {
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
   border-bottom: 1px solid #d5dbdb;
   background-color: white;
   position: sticky;
   top: 0px;
-  z-index: 100;
+  z-index: 200;
+  font-family: "Amazon Ember";
+}
+
+.dev-center-logo {
+  color: #232f3e;
+  font-size: 1.25rem;
+  white-space: nowrap;
 }
 
 .nav-container {
@@ -23,7 +46,7 @@
 }
 
 .mobile-nav-menu-container {
-  z-index: 100;
+  z-index: 1000;
   background-color: white;
   position: absolute;
   display: flex;
