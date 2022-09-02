@@ -1,4 +1,4 @@
-import { Flex, useBreakpointValue, View } from "@aws-amplify/ui-react";
+import { Button, Flex, useBreakpointValue, View } from "@aws-amplify/ui-react";
 import {
   ClassAttributes,
   HTMLAttributes,
@@ -51,35 +51,39 @@ export function YoutubeModal({
     return (
       <div {...props}>
         <View onClick={closeModal} position="absolute" right="20px" top="20px">
-          <CloseIcon
-            color="white"
-            tabIndex="0"
-            role="button"
+          <Button
+            ariaLabel="Close trailer"
+            variation="link"
             className={styles["close-modal"]}
-            ariaLabel="Close modal"
-            overrides={{
-              "Vector 3": {
-                // @ts-ignore
-                paths: [
-                  {
-                    d: "M1 0C1 -0.552285 0.552285 -1 0 -1C-0.552285 -1 -1 -0.552285 -1 0L1 0ZM-1 16C-1 16.5523 -0.552285 17 0 17C0.552285 17 1 16.5523 1 16L-1 16ZM-1 0L-1 16L1 16L1 0L-1 0Z",
-                    fillRule: "nonzero",
-                    strokeWidth: 2,
-                  },
-                ],
-              },
-              "Vector 4": {
-                // @ts-ignore
-                paths: [
-                  {
-                    d: "M1 0C1 -0.552285 0.552285 -1 0 -1C-0.552285 -1 -1 -0.552285 -1 0L1 0ZM-1 16C-1 16.5523 -0.552285 17 0 17C0.552285 17 1 16.5523 1 16L-1 16ZM-1 0L-1 16L1 16L1 0L-1 0Z",
-                    fillRule: "nonzero",
-                    strokeWidth: 2,
-                  },
-                ],
-              },
-            }}
-          />
+          >
+            <CloseIcon
+              color="white"
+              role="button"
+              ariaLabel="Close modal"
+              overrides={{
+                "Vector 3": {
+                  // @ts-ignore
+                  paths: [
+                    {
+                      d: "M1 0C1 -0.552285 0.552285 -1 0 -1C-0.552285 -1 -1 -0.552285 -1 0L1 0ZM-1 16C-1 16.5523 -0.552285 17 0 17C0.552285 17 1 16.5523 1 16L-1 16ZM-1 0L-1 16L1 16L1 0L-1 0Z",
+                      fillRule: "nonzero",
+                      strokeWidth: 2,
+                    },
+                  ],
+                },
+                "Vector 4": {
+                  // @ts-ignore
+                  paths: [
+                    {
+                      d: "M1 0C1 -0.552285 0.552285 -1 0 -1C-0.552285 -1 -1 -0.552285 -1 0L1 0ZM-1 16C-1 16.5523 -0.552285 17 0 17C0.552285 17 1 16.5523 1 16L-1 16ZM-1 0L-1 16L1 16L1 0L-1 0Z",
+                      fillRule: "nonzero",
+                      strokeWidth: 2,
+                    },
+                  ],
+                },
+              }}
+            />
+          </Button>
         </View>
         {contentElement}
       </div>
