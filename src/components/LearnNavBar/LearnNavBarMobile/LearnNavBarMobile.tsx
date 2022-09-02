@@ -1,4 +1,4 @@
-import { Flex, View } from "@aws-amplify/ui-react";
+import { View } from "@aws-amplify/ui-react";
 import Link from "next/link";
 import styles from "../LearnNavBar.module.scss";
 
