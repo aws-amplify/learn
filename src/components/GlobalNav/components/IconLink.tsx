@@ -1,21 +1,13 @@
-import { Icon, View } from "@aws-amplify/ui-react";
-import { useState } from "react";
+import { Icon } from "@aws-amplify/ui-react";
+import styles from "../GlobalNav.module.scss";
 
 export function IconLink({ iconType }: { iconType: string }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   let icon;
   switch (iconType) {
     case "twitter":
       icon = (
         <Icon
-          color={isHovered ? "black" : "#545B64"}
-          onMouseEnter={() => {
-            setIsHovered(true);
-          }}
-          onMouseLeave={() => {
-            setIsHovered(false);
-          }}
+          className={styles["icon-link-hover"]}
           ariaLabel="Twitter icon"
           width="20"
           height="18"
@@ -28,13 +20,7 @@ export function IconLink({ iconType }: { iconType: string }) {
     case "discord":
       icon = (
         <Icon
-          color={isHovered ? "black" : "#545B64"}
-          onMouseEnter={() => {
-            setIsHovered(true);
-          }}
-          onMouseLeave={() => {
-            setIsHovered(false);
-          }}
+          className={styles["icon-link-hover"]}
           ariaLabel="Discord icon"
           width="20"
           height="16"

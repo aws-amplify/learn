@@ -97,3 +97,9 @@
   border-top: 2px solid transparent;
   border-bottom: 2px solid #ff9900;
 }
+
+.icon-link-hover {
+  &:hover {
+    color: black;
+  }
+}
