@@ -1,4 +1,4 @@
-import { Button, View } from "@aws-amplify/ui-react";
+import { Button } from "@aws-amplify/ui-react";
 import { useContext } from "react";
 import styles from "../GlobalNav.module.scss";
 import { IconLink, ExternalLink } from ".";
