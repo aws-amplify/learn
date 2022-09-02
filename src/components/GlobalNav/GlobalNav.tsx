@@ -16,7 +16,7 @@ import {
 } from "react";
 import styles from "./GlobalNav.module.scss";
 import { NavMenuLink } from "./components/NavMenuLink";
-import { ChevronDownIcon, ChevronUpIcon } from "./components/icons";
+import { ChevronIcon } from "./components/icons";
 
 export interface NavMenuItem {
   type: "DEFAULT" | "EXTERNAL" | "ICON";
@@ -148,7 +148,7 @@ export function GlobalNav({
             <VisuallyHidden>
               {isCollapsed ? "Open menu" : "Close menu"}
             </VisuallyHidden>
-            {isCollapsed ? <ChevronDownIcon /> : <ChevronUpIcon />}
+            {isCollapsed ? <ChevronIcon /> : <ChevronIcon rotateDeg="180" />}
           </Button>
         </View>
         {isCollapsed ? (
