@@ -148,7 +148,11 @@ export function GlobalNav({
             <VisuallyHidden>
               {isCollapsed ? "Open menu" : "Close menu"}
             </VisuallyHidden>
-            {isCollapsed ? <ChevronIcon /> : <ChevronIcon rotateDeg="180" />}
+            {isCollapsed ? (
+              <ChevronIcon rotateDeg="0" />
+            ) : (
+              <ChevronIcon rotateDeg="180" />
+            )}
           </Button>
         </View>
         {isCollapsed ? (
