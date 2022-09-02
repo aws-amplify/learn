@@ -175,6 +175,7 @@ export default function CoursePage(data: {
               <Flex justifyContent="center">
                 <Image
                   objectFit="cover"
+                  overflow="hidden"
                   width="100%"
                   maxHeight="350px"
                   src={course.image || ""}

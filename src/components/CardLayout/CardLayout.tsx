@@ -72,6 +72,7 @@ export function CardLayout({
                 transform="rotate(0deg)"
                 borderRadius="8px"
                 padding="0px 0px 0px 0px"
+                overflow="hidden"
                 src={course?.image}
                 alt={course?.imageAltText}
               ></Image>
