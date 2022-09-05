@@ -218,7 +218,7 @@ export function GlobalNav({
                   borderRadius="0px"
                   columnGap="9px"
                   className={`${styles["back-nav-button"]}`}
-                  ariaLabel={`Back to nav button`}
+                  ariaLabel={`Back to all Amplify sites`}
                 >
                   <VisuallyHidden>Learn</VisuallyHidden>
                   <Icon
@@ -239,7 +239,6 @@ export function GlobalNav({
         <></>
       ) : (
         <View
-          ariaLabel="Nav bar overlay"
           height="100vh"
           width="100vw"
           position="fixed"
