@@ -160,7 +160,7 @@ export default createTheme({
           borderColor: { value: "{colors.border.tertiary.value}" },
         },
         primary: {
-          borderColor: { value: "hsla(0, 0%, 0%, 0)" },
+          borderColor: { value: "hsl(21, 86%, 48%)" },
           borderWidth: { value: "{borderWidths.small.value}" },
           borderStyle: { value: "solid" },
           backgroundColor: { value: "hsl(21, 86%, 48%)" },
@@ -176,21 +176,21 @@ export default createTheme({
             color: { value: "{colors.font.disabled.value}" },
           },
           _hover: {
-            borderColor: { value: "transparent" },
+            borderColor: { value: "hsl(21, 86%, 45%)" },
             backgroundColor: { value: "hsl(21, 86%, 45%)" },
             color: { value: "{colors.font.inverse.value}" },
           },
           _focus: {
-            borderColor: { value: "hsl(27, 86%, 46%)" },
-            backgroundColor: { value: "hsl(27, 86%, 46%)" },
+            borderColor: { value: "hsl(21, 86%, 45%)" },
+            backgroundColor: { value: "hsl(21, 86%, 45%)" },
             color: { value: "{colors.font.inverse.value}" },
             boxShadow: {
               value: "{components.fieldcontrol._focus.boxShadow.value}",
             },
           },
           _active: {
-            borderColor: { value: "hsl(27, 86%, 46%)" },
-            backgroundColor: { value: "hsl(27, 86%, 46%)" },
+            borderColor: { value: "hsl(21, 86%, 45%)" },
+            backgroundColor: { value: "hsl(21, 86%, 45%)" },
             color: { value: "{colors.font.inverse.value}" },
           },
         },
