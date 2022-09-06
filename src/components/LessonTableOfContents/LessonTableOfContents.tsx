@@ -135,7 +135,7 @@ export function LessonTableOfContents({
                     }}
                   />
                 )}
-                <Text fontWeight="700" fontSize="1rem">
+                <Text fontWeight="700" fontSize="1.17rem">
                   {lesson.title}
                 </Text>
               </Flex>
