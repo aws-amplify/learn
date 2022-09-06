@@ -260,6 +260,7 @@ export default function HeroLayout(props) {
                   small: "100%",
                   medium: "auto",
                 }}
+                fontSize="1.17rem"
               >
                 Explore course
               </View>
@@ -267,6 +268,7 @@ export default function HeroLayout(props) {
           </Link>
         </View>
         <Button
+          fontSize="1.17rem"
           display="flex"
           gap="0"
           direction="row"

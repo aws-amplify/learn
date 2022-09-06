@@ -87,6 +87,7 @@ export default function CoursePage(data: {
             <View
               className="amplify-button amplify-button--primary amplify-button--fullwidth"
               height="42px"
+              fontSize="1.17rem"
             >
               Start course
             </View>
@@ -98,6 +99,7 @@ export default function CoursePage(data: {
         onClick={() => {
           setIsOpen(true);
         }}
+        fontSize="1.17rem"
       >
         Watch trailer
       </Button>
