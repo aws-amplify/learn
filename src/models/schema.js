@@ -169,7 +169,7 @@ export const schema = {
                     "name": "imageAltText",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "trailerEmbedId": {
@@ -572,5 +572,5 @@ export const schema = {
             }
         }
     },
-    "version": "d31fb7782a70224b6c2ca141e6b76dbb"
+    "version": "9c4414cc71c8e4f5aa68cc54dbc1d2be"
 };
