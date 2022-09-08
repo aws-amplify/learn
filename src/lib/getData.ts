@@ -90,24 +90,26 @@ export async function getCourseAndLessonData(
   context: GetStaticPropsContext & Context
 ): Promise<{ course: Course; lessons: Lesson[] } | null> {
   const { DataStore } = withSSRContext(context);
-  const { coursetitle: encodedCourseTitle } =
+  const { courseurltitle: encodedCourseUrlTitle } =
     context.params as CoursePageParams;
 
-  const coursetitle = decodeURIComponent(encodedCourseTitle);
+  const courseUrlTitle = decodeURIComponent(encodedCourseUrlTitle);
 
   // Get the course title without the appended id
-  const originalCourseTitle = coursetitle
-    ?.substring(0, coursetitle?.lastIndexOf("-"))
+  const originalCourseUrlTitle = courseUrlTitle
+    ?.substring(0, courseUrlTitle?.lastIndexOf("-"))
     .replace(/-/g, " ");
 
   // Get the course Id prefix
-  const courseIdPrefix = coursetitle?.substring(
-    coursetitle?.lastIndexOf("-") + 1,
-    coursetitle.length
+  const courseIdPrefix = courseUrlTitle?.substring(
+    courseUrlTitle?.lastIndexOf("-") + 1,
+    courseUrlTitle.length
   );
 
   const courseResults: Course[] = await DataStore.query(Course, (c: any) =>
-    c.id("beginsWith", courseIdPrefix).title("eq", originalCourseTitle)
+    c
+      .id("beginsWith", courseIdPrefix)
+      .courseUrlTitle("eq", originalCourseUrlTitle)
   );
 
   const courseResult = courseResults[0];
