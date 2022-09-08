@@ -27,7 +27,7 @@ export declare type Context = {
 };
 
 interface CoursePageParams extends ParsedUrlQuery {
-  coursetitle: string;
+  courseurltitle: string;
 }
 
 interface CoursePageProps {

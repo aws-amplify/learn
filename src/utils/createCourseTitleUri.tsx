@@ -1,7 +1,7 @@
 const COURSE_ID_PREFIX_LENGTH = 5;
 
 /**
- * Helper function to create the [coursetitle] path using the course.title and course.id.
+ * Helper function to create the [courseurltitle] path using the course.title and course.id.
  * @param courseTitle {string} The course title.
  * @param courseId {string} The Course ID.
  * @returns {string} The modified string representing the coursetitle.

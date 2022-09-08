@@ -46,9 +46,12 @@ export function CardLayout({
     >
       <Link
         href={{
-          pathname: "/learn/courses/[coursetitle]",
+          pathname: "/learn/courses/[courseurltitle]",
         }}
-        as={`/learn/courses/${createCourseTitleUri(course.title, course.id)}`}
+        as={`/learn/courses/${createCourseTitleUri(
+          course.courseUrlTitle,
+          course.id
+        )}`}
       >
         <a style={{ textDecoration: "none" }} className={styles["course-card"]}>
           <Flex gap="24px" direction="column">

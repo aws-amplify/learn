@@ -25,7 +25,7 @@ export function CoursesRouteLayout({
 
         if (path === "courses") {
           result["label"] = "All courses";
-        } else if (path === "[coursetitle]") {
+        } else if (path === "[courseurltitle]") {
           result["label"] = "Overview";
         } else if (path === "[lesson]") {
           result["label"] = "Lesson";
