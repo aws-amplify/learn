@@ -14,7 +14,7 @@ import LearnLogo from "./LearnLogo";
 import { Button, Flex, View } from "@aws-amplify/ui-react";
 import LearnMenuItem from "./LearnMenuItem";
 export default function NavBar(props) {
-  const { navBar, overrides, ...rest } = props;
+  const { overrides, ...rest } = props;
   const frameFourZeroEightOnClick = useNavigateAction({
     target: "_blank",
     type: "url",
