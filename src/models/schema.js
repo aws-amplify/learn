@@ -178,6 +178,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "courseUrlTitle": {
+                    "name": "courseUrlTitle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -572,5 +579,5 @@ export const schema = {
             }
         }
     },
-    "version": "9c4414cc71c8e4f5aa68cc54dbc1d2be"
+    "version": "e833041d398c528e24cf0fc026c0c27c"
 };
