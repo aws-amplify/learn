@@ -340,7 +340,7 @@ export async function getStaticPaths(
   return {
     paths: courses.map((course) => ({
       params: {
-        coursetitle: createCourseTitleUri(course.title, course.id),
+        courseurltitle: createCourseTitleUri(course.courseUrlTitle, course.id),
       },
     })),
     fallback: true,

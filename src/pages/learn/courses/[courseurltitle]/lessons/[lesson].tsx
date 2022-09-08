@@ -158,7 +158,7 @@ interface LessonPageProps {
 }
 
 interface LessonPageParams extends ParsedUrlQuery {
-  coursetitle: string;
+  courseurltitle: string;
   lesson: string;
 }
 
@@ -176,7 +176,7 @@ export async function getStaticPaths(
     );
 
     return filteredLessons.map((lesson) => ({
-      courseTitle: course.title,
+      courseurltitle: course.courseUrlTitle,
       courseId: course.id,
       lessonNumber: `${lesson.lessonNumber}`,
     }));
@@ -192,7 +192,7 @@ export async function getStaticPaths(
   return {
     paths: flatData.map((e) => ({
       params: {
-        coursetitle: createCourseTitleUri(e.courseTitle, e.courseId),
+        courseurltitle: createCourseTitleUri(e.courseurltitle, e.courseId),
         lesson: e.lessonNumber,
       },
     })),
