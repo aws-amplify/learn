@@ -74,7 +74,7 @@ export function CardLayout({
                 padding="0px 0px 0px 0px"
                 overflow="hidden"
                 src={course?.image}
-                alt={course?.imageAltText}
+                alt={course?.imageAltText || ""}
               ></Image>
             </View>
             <Flex
