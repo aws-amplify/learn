@@ -90,7 +90,7 @@ export function HeroCourse({ course, tags }: HeroCourseProps) {
             height="100%"
             objectFit="cover"
             src={course.image}
-            alt={course.imageAltText}
+            alt={course.imageAltText || ""}
             borderRadius="8px"
             overflow="hidden"
           />

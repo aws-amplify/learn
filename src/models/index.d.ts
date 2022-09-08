@@ -45,7 +45,7 @@ export declare class Course {
   readonly skillLevel: SkillLevel | keyof typeof SkillLevel;
   readonly dateCreated: string;
   readonly isFeatured: boolean;
-  readonly imageAltText: string;
+  readonly imageAltText?: string | null;
   readonly trailerEmbedId?: string | null;
   constructor(init: ModelInit<Course>);
   static copyOf(source: Course, mutator: (draft: MutableModel<Course>) => MutableModel<Course> | void): Course;
