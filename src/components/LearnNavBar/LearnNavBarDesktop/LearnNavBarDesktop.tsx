@@ -10,7 +10,6 @@ export function LearnNavBarDesktop() {
     <Flex
       gap="32px"
       direction="row"
-      width="100vw"
       height="56px"
       justifyContent="space-between"
       alignItems="center"
