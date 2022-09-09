@@ -32,7 +32,6 @@ interface NavProps {
   currentSite: string;
   secondaryNavDesktop?: JSX.Element;
   secondaryNavMobile?: JSX.Element;
-  setIsMobileState?: any;
 }
 
 type NavMobileContextType = {
@@ -258,19 +257,12 @@ export function GlobalNav({
     >
       <Flex
         ref={navLinksContainerRef}
-        id="nav-links-container"
-        height="80px"
-        alignItems="center"
-        justifyContent="space-between"
+        className={styles["nav-links-container"]}
         padding={{
-          base: "0px 18px",
-          small: "0px 18px",
-          medium: "0px 18px",
           large: "0px 18px",
           xl: "0px 32px",
         }}
         style={{
-          overflowY: "scroll",
           borderBottom: hasSecondaryNav
             ? "1px solid #d5dbdb"
             : "1px solid transparent",
