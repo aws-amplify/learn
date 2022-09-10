@@ -72,31 +72,32 @@ export function GlobalNav({
   }
 
   const [isMobileState, setIsMobileState] = useState(false);
-  const [mobileNavBreakpoint, setMobileNavBreakpoint] = useState(0);
+  const [mobileNavBreakpoint, setMobileNavBreakpoint] =
+    useState(windowInnerWidth);
   const [currentWindowInnerWidth, setCurrentWindowInnerWidth] =
     useState(windowInnerWidth);
 
   const navLinksContainerRef = useRef<HTMLDivElement>(null);
+  const navLinksLeftRef = useRef<HTMLDivElement>(null);
+  const navLinksRightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (navLinksContainerRef.current !== null) {
-      if (
-        navLinksContainerRef.current.scrollWidth >
-        navLinksContainerRef.current.clientWidth
-      ) {
-        setIsMobileState(true);
-        setMobileNavBreakpoint(window.innerWidth);
-      }
-    }
-
     const handleWindowSizeChange = () => {
       setCurrentWindowInnerWidth(window.innerWidth);
 
-      if (navLinksContainerRef.current !== null) {
-        if (
-          navLinksContainerRef.current.scrollWidth >
-          navLinksContainerRef.current.clientWidth
-        ) {
+      if (
+        navLinksContainerRef.current &&
+        navLinksLeftRef.current &&
+        navLinksRightRef.current
+      ) {
+        const navLinksContainerBCR =
+          navLinksContainerRef.current.getBoundingClientRect();
+        const navLinksRightBCR =
+          navLinksRightRef.current.getBoundingClientRect();
+
+        const navLinksLeftBCR = navLinksLeftRef.current.getBoundingClientRect();
+
+        if (navLinksRightBCR.right >= navLinksContainerBCR.right) {
           setIsMobileState(true);
           setMobileNavBreakpoint(window.innerWidth);
         }
@@ -108,6 +109,25 @@ export function GlobalNav({
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (
+      navLinksContainerRef.current &&
+      navLinksLeftRef.current &&
+      navLinksRightRef.current
+    ) {
+      const navLinksContainerBCR =
+        navLinksContainerRef.current.getBoundingClientRect();
+      const navLinksRightBCR = navLinksRightRef.current.getBoundingClientRect();
+
+      const navLinksLeftBCR = navLinksLeftRef.current.getBoundingClientRect();
+
+      if (navLinksRightBCR.right >= navLinksContainerBCR.right) {
+        setIsMobileState(true);
+        setMobileNavBreakpoint(window.innerWidth);
+      }
+    }
   }, []);
 
   useLayoutEffect(() => {
@@ -269,6 +289,7 @@ export function GlobalNav({
         }}
       >
         <Flex
+          ref={navLinksLeftRef}
           columnStart="1"
           height="100%"
           columnGap="16px"
@@ -301,6 +322,7 @@ export function GlobalNav({
           ))}
         </Flex>
         <Flex
+          ref={navLinksRightRef}
           columnStart="3"
           columnGap="16px"
           alignItems="center"
