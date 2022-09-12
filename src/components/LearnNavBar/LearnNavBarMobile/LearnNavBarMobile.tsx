@@ -12,7 +12,7 @@ export function LearnNavBarMobile() {
     <Flex
       gap="0"
       direction="column"
-      width="100vw"
+      width="100%"
       alignItems="center"
       position="relative"
       boxShadow="0px 4px 16px rgba(0, 0, 0, 0.03999999910593033)"
