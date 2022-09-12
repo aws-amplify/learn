@@ -50,6 +50,12 @@ export function GlobalNav({
   secondaryNavDesktop,
   secondaryNavMobile,
 }: NavProps) {
+  const themeableSites: any = {
+    "UI Library": true,
+  };
+
+  const themeClass = themeableSites[currentSite] ? "" : "add-variables";
+
   let hasSecondaryNav = false;
 
   if (secondaryNavDesktop && secondaryNavMobile) {
@@ -80,6 +86,8 @@ export function GlobalNav({
   const navLinksContainerRef = useRef<HTMLDivElement>(null);
   const navLinksRightRef = useRef<HTMLDivElement>(null);
 
+  const navLinksLeftRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleWindowSizeChange = () => {
       setCurrentWindowInnerWidth(window.innerWidth);
@@ -90,7 +98,9 @@ export function GlobalNav({
         const navLinksRightBCR =
           navLinksRightRef.current.getBoundingClientRect();
 
-        if (navLinksRightBCR.right >= navLinksContainerBCR.right) {
+        console.log("navLinksRightBCR.right ", navLinksRightBCR.right);
+        console.log("navLinksContainerBCR.right ", navLinksContainerBCR.right);
+        if (navLinksRightBCR.right > navLinksContainerBCR.right) {
           setIsMobileState(true);
           setMobileNavBreakpoint(window.innerWidth);
         }
@@ -105,11 +115,19 @@ export function GlobalNav({
   }, []);
 
   useLayoutEffect(() => {
-    if (navLinksContainerRef.current && navLinksRightRef.current) {
+    if (
+      navLinksContainerRef.current &&
+      navLinksRightRef.current &&
+      navLinksLeftRef.current
+    ) {
       const navLinksContainerBCR =
         navLinksContainerRef.current.getBoundingClientRect();
       const navLinksRightBCR = navLinksRightRef.current.getBoundingClientRect();
 
+      const navLinksLeftBCR = navLinksLeftRef.current.getBoundingClientRect();
+
+      console.log("navLinksRightBCR.right ", navLinksRightBCR.right);
+      console.log("navLinksContainerBCR.right ", navLinksContainerBCR.right);
       if (navLinksRightBCR.right >= navLinksContainerBCR.right) {
         setIsMobileState(true);
         setMobileNavBreakpoint(window.innerWidth);
@@ -118,6 +136,8 @@ export function GlobalNav({
   }, []);
 
   useLayoutEffect(() => {
+    console.log("currentWindowInnerWidth ", currentWindowInnerWidth);
+    console.log("mobileNavBreakpoint ", mobileNavBreakpoint);
     if (currentWindowInnerWidth > mobileNavBreakpoint) {
       setIsMobileState(false);
     }
@@ -135,7 +155,10 @@ export function GlobalNav({
 
   return isMobileState ? (
     <NavMobileContext.Provider value={value}>
-      <nav className={styles.navbar} aria-label="Amplify Dev Center Global">
+      <nav
+        className={`${styles.navbar} ${themeClass}`}
+        aria-label="Amplify Dev Center Global"
+      >
         <View className={styles["mobile-nav-container"]} padding="0px 20px">
           <Flex columnGap="8px" alignItems="center">
             <Icon
@@ -188,6 +211,7 @@ export function GlobalNav({
                         currentMenuItem={currentSite}
                         hasSecondaryNav={hasSecondaryNav}
                         isMobile={true}
+                        themeClass={themeClass}
                       />
                     </View>
                   ))}
@@ -201,6 +225,7 @@ export function GlobalNav({
                         <NavMenuLink
                           navMenuItem={link}
                           currentMenuItem={currentSite}
+                          themeClass={themeClass}
                         />
                       </View>
                     ))}
@@ -223,7 +248,7 @@ export function GlobalNav({
                   alignItems="center"
                   borderRadius="0px"
                   columnGap="9px"
-                  className={`${styles["back-nav-button"]}`}
+                  className={`${styles["secondary-nav-button"]}`}
                   ariaLabel={`Back to all Amplify sites`}
                 >
                   <VisuallyHidden>Learn</VisuallyHidden>
@@ -259,16 +284,13 @@ export function GlobalNav({
   ) : (
     <nav
       id="main-nav"
-      className={`${styles.navbar}`}
+      className={`${styles.navbar} ${themeClass}`}
       aria-label="Amplify Dev Center Global"
     >
       <Flex
         ref={navLinksContainerRef}
         className={styles["nav-links-container"]}
-        padding={{
-          large: "0px 18px",
-          xl: "0px 32px",
-        }}
+        padding="0px 32px"
         style={{
           borderBottom: hasSecondaryNav
             ? "1px solid #d5dbdb"
@@ -276,6 +298,7 @@ export function GlobalNav({
         }}
       >
         <Flex
+          ref={navLinksLeftRef}
           columnStart="1"
           height="100%"
           columnGap="16px"
@@ -304,6 +327,7 @@ export function GlobalNav({
               navMenuItem={link}
               currentMenuItem={currentSite}
               key={link.order}
+              themeClass={themeClass}
             />
           ))}
         </Flex>
@@ -319,6 +343,7 @@ export function GlobalNav({
               navMenuItem={link}
               currentMenuItem={currentSite}
               key={link.order}
+              themeClass={themeClass}
             />
           ))}
         </Flex>
