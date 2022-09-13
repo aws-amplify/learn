@@ -29,7 +29,12 @@ export function LearnNavBarDesktop() {
         padding="0px 0px 0px 0px"
       >
         <Link href="/learn">
-          <a className={styles["navbar-menu-item"]}>Home</a>
+          <a
+            className={styles["navbar-menu-item"]}
+            style={{ fontSize: "1.25rem" }}
+          >
+            Learn
+          </a>
         </Link>
         <Link href="/learn/courses">
           <a
