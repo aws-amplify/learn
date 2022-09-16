@@ -1,16 +1,16 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from "react";
 import {
   View,
   Text,
   Button,
   Flex,
   VisuallyHidden,
-} from '@aws-amplify/ui-react';
-import { ChevronIcon, DevCenterLogo } from './icons';
-import { NavMenuLink } from './NavMenuLink';
-import { NavMenuItem } from '../GlobalNav';
-import { MobileSecondaryNav } from './secondary-nav-components';
-import styles from '../GlobalNav.module.scss';
+} from "@aws-amplify/ui-react";
+import { ChevronIcon, DevCenterLogo } from "./icons";
+import { NavMenuLink } from "./NavMenuLink";
+import { NavMenuItem } from "../GlobalNav";
+import { MobileSecondaryNav } from "./secondary-nav-components";
+import styles from "../GlobalNav.module.scss";
 
 interface MobileNavProps {
   allLinks: NavMenuItem[];
@@ -32,19 +32,19 @@ export function MobileNav({
 
   const iconLinks: JSX.Element[] = useMemo(() => {
     return allLinks
-      .filter((link) => link.type === 'ICON')
+      .filter((link) => link.type === "ICON")
       .map((link) => (
-        <View style={{ width: '100%' }} key={`${link.order}`}>
+        <View style={{ width: "100%" }} key={`${link.order}`}>
           <NavMenuLink navMenuItem={link} currentMenuItem={currentSite} />
         </View>
       ));
-  }, [allLinks]);
+  }, [allLinks, currentSite]);
 
   const mobileLinks: JSX.Element[] = useMemo(() => {
     return allLinks
-      .filter((link) => link.type !== 'ICON')
+      .filter((link) => link.type !== "ICON")
       .map((link) => (
-        <View className={styles['mobile-nav-menu-items']} key={`${link.order}`}>
+        <View className={styles["mobile-nav-menu-items"]} key={`${link.order}`}>
           <NavMenuLink
             navMenuItem={link}
             currentMenuItem={currentSite}
@@ -54,20 +54,20 @@ export function MobileNav({
           />
         </View>
       ));
-  }, [allLinks]);
+  }, [allLinks, currentSite, hasSecondaryNav]);
 
-  const chevronRotation = isCollapsed ? '0' : '180';
+  const chevronRotation = isCollapsed ? "0" : "180";
 
   return (
     <>
-      <View className={styles['mobile-nav-container']} padding="0px 20px">
+      <View className={styles["mobile-nav-container"]} padding="0px 20px">
         <Flex columnGap="8px" alignItems="center">
           <DevCenterLogo />
-          <Text className={styles['dev-center-logo']}>
-            <span style={{ fontWeight: '400' }}>Amplify</span>{' '}
-            <span style={{ fontWeight: '300' }}>Dev Center </span>
+          <Text className={styles["dev-center-logo"]}>
+            <span style={{ fontWeight: "400" }}>Amplify</span>{" "}
+            <span style={{ fontWeight: "300" }}>Dev Center </span>
             <ChevronIcon rotateDeg="270" />
-            <span style={{ fontWeight: '300' }}> {currentSite}</span>
+            <span style={{ fontWeight: "300" }}> {currentSite}</span>
           </Text>
         </Flex>
         <Button
@@ -80,7 +80,7 @@ export function MobileNav({
           }}
         >
           <VisuallyHidden>
-            {isCollapsed ? 'Open menu' : 'Close menu'}
+            {isCollapsed ? "Open menu" : "Close menu"}
           </VisuallyHidden>
           <ChevronIcon rotateDeg={chevronRotation} />
         </Button>
@@ -90,10 +90,10 @@ export function MobileNav({
       ) : (
         <View id="mobile-nav-links">
           {showGlobalNav ? (
-            <View className={styles['mobile-nav-menu-container']}>
+            <View className={styles["mobile-nav-menu-container"]}>
               {mobileLinks}
               <View
-                className={`${styles['mobile-nav-menu-items']} ${styles['mobile-nav-icons-container']}`}
+                className={`${styles["mobile-nav-menu-items"]} ${styles["mobile-nav-icons-container"]}`}
               >
                 {iconLinks}
               </View>
@@ -110,7 +110,7 @@ export function MobileNav({
         <></>
       ) : (
         <View
-          className={styles['background-overlay']}
+          className={styles["background-overlay"]}
           onClick={() => {
             setIsCollapsed(true);
           }}
