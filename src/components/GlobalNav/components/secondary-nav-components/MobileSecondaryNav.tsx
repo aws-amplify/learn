@@ -4,8 +4,8 @@ import {
   VisuallyHidden,
   Icon,
   Text,
-} from '@aws-amplify/ui-react';
-import styles from '../../GlobalNav.module.scss';
+} from "@aws-amplify/ui-react";
+import styles from "../../GlobalNav.module.scss";
 
 interface MobileSecondaryNavProps {
   secondaryNavMobile: JSX.Element;
@@ -22,7 +22,7 @@ export function MobileSecondaryNav({
       direction="column"
       width="100%"
       backgroundColor="white"
-      style={{ zIndex: 100 }}
+      style={{ zIndex: 200 }}
       rowGap="0px"
     >
       <Button
@@ -33,7 +33,7 @@ export function MobileSecondaryNav({
         alignItems="center"
         borderRadius="0px"
         columnGap="9px"
-        className={`${styles['secondary-nav-button']}`}
+        className={`${styles["secondary-nav-button"]}`}
         ariaLabel={`Back to all Amplify sites`}
       >
         <VisuallyHidden>Learn</VisuallyHidden>
