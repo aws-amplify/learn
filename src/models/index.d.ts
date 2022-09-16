@@ -48,6 +48,7 @@ export declare class Course {
   readonly imageAltText?: string | null;
   readonly trailerEmbedId?: string | null;
   readonly courseUrlTitle: string;
+  readonly published?: boolean | null;
   constructor(init: ModelInit<Course>);
   static copyOf(source: Course, mutator: (draft: MutableModel<Course>) => MutableModel<Course> | void): Course;
 }
