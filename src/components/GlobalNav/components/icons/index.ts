@@ -1,2 +1,2 @@
-export { ChevronIcon } from './ChevronIcon';
-export { DevCenterLogo } from './DevCenterLogo';
+export { ChevronIcon } from "./ChevronIcon";
+export { AmplifyLogo } from "./AmplifyLogo";

@@ -6,7 +6,7 @@ import {
   Flex,
   VisuallyHidden,
 } from "@aws-amplify/ui-react";
-import { ChevronIcon, DevCenterLogo } from "./icons";
+import { ChevronIcon, AmplifyLogo } from "./icons";
 import { NavMenuLink } from "./NavMenuLink";
 import { NavMenuItem } from "../GlobalNav";
 import { MobileSecondaryNav } from "./secondary-nav-components";
@@ -62,7 +62,7 @@ export function MobileNav({
     <>
       <View className={styles["mobile-nav-container"]} padding="0px 20px">
         <Flex columnGap="8px" alignItems="center">
-          <DevCenterLogo />
+          <AmplifyLogo />
           <Text className={styles["dev-center-logo"]}>
             <span style={{ fontWeight: "400" }}>Amplify</span>{" "}
             <span style={{ fontWeight: "300" }}>Dev Center </span>
@@ -75,6 +75,7 @@ export function MobileNav({
           aria-controls="mobile-nav-links"
           border="none"
           height="30px"
+          width="30px"
           onClick={() => {
             setIsCollapsed(!isCollapsed);
           }}
@@ -85,9 +86,7 @@ export function MobileNav({
           <ChevronIcon rotateDeg={chevronRotation} />
         </Button>
       </View>
-      {isCollapsed ? (
-        <></>
-      ) : (
+      {isCollapsed ? null : (
         <View id="mobile-nav-links">
           {showGlobalNav ? (
             <View className={styles["mobile-nav-menu-container"]}>
@@ -106,9 +105,7 @@ export function MobileNav({
           )}
         </View>
       )}
-      {isCollapsed ? (
-        <></>
-      ) : (
+      {isCollapsed ? null : (
         <View
           className={styles["background-overlay"]}
           onClick={() => {
