@@ -1,5 +1,5 @@
 // This class is added to the sites that aren't using the Amplify UI theme provider and is creating the variables that are being used in dark mode of Amplify UI
-.add-variables {
+.use-ui-theme {
   --amplify-colors-font-primary: #232f3e;
   --amplify-colors-font-tertiary: #545b64;
   --amplify-colors-background-primary: white;
@@ -17,7 +17,7 @@
   a,
   p,
   span {
-    font-family: 'Amazon Ember' !important;
+    font-family: "Amazon Ember";
     -webkit-font-smoothing: auto !important;
     -moz-osx-font-smoothing: auto !important;
   }
@@ -31,11 +31,11 @@
   --amplify-colors-font-hover: #000;
 }
 
-[data-amplify-theme='amplify-docs'][data-amplify-color-mode='dark'] .navbar {
+[data-amplify-theme="amplify-docs"][data-amplify-color-mode="dark"] .navbar {
   --amplify-colors-font-hover: inherit;
 }
 
-[data-amplify-theme='amplify-docs'][data-amplify-color-mode='system'] .navbar {
+[data-amplify-theme="amplify-docs"][data-amplify-color-mode="system"] .navbar {
   @media (prefers-color-scheme: dark) {
     --amplify-colors-font-hover: inherit;
   }
@@ -104,8 +104,7 @@
   font-size: 1rem;
   text-decoration: none;
   color: var(--amplify-colors-font-tertiary) !important;
-  font-family: 'Amazon Ember';
-  cursor: pointer;
+  font-family: "Amazon Ember";
   font-weight: 400;
 
   white-space: nowrap;
@@ -115,7 +114,7 @@
     color: var(--amplify-colors-font-hover) !important;
 
     .custom-path-stroke {
-      stroke: var(--amplify-colors-font-hover) !important;
+      stroke: var(--amplify-colors-font-hover);
     }
   }
 
@@ -138,10 +137,12 @@
   &:hover {
     color: var(--secondary-nav-hover-color);
     border: 1px solid var(--navbar-border-color);
+
+    /* Override the button's background color */
     background-color: var(--secondary-nav-hover-background-color) !important;
 
     p {
-      color: black;
+      color: var(--amplify-colors-font-hover);
     }
   }
 }
