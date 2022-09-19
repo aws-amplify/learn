@@ -36,15 +36,16 @@
 
 .mobile-nav-menu-items {
   border-bottom: 1px solid var(--amplify-colors-neutral-80);
+  font-size: 0.875rem;
 
   a {
-    color: inherit;
+    color: var(--amplify-colors-neutral-40);
   }
 
   &:focus,
   &:hover {
     a {
-      color: inherit;
+      color: var(--amplify-colors-neutral-10);
     }
   }
 }

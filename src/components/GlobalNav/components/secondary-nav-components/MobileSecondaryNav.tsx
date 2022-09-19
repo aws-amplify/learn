@@ -27,6 +27,7 @@ export function MobileSecondaryNav({
         alignItems="center"
         borderRadius="0px"
         columnGap="9px"
+        fontSize="0.875rem"
         className={`${styles["secondary-nav-button"]}`}
         ariaLabel={`Back to all Amplify sites`}
       >
