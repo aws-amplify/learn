@@ -9,6 +9,8 @@ import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { LearnNavBar } from "../LearnNavBar";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
+import { GlobalNav, NavMenuItem } from "../GlobalNav";
+import { LEFT_NAV_LINKS, RIGHT_NAV_LINKS } from "../../data/globalnav";
 
 export function Layout({
   children,
@@ -48,7 +50,13 @@ export function Layout({
   return (
     <ThemeProvider theme={studioTheme}>
       <Flex direction="column" minHeight="100%" gap="0px">
-        <LearnNavBar isMobile={isMobile} />
+        <GlobalNav
+          rightLinks={RIGHT_NAV_LINKS as NavMenuItem[]}
+          leftLinks={LEFT_NAV_LINKS as NavMenuItem[]}
+          currentSite="Learn"
+          secondaryNavDesktop={<LearnNavBar isMobile={false} />}
+          secondaryNavMobile={<LearnNavBar isMobile={true} />}
+        />
         {showBreadcrumb && breadcrumbCallback && (
           <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
         )}
