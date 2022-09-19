@@ -23,7 +23,7 @@
   // Top level navbar element, create all of the variables that will be used throughout the unified navbar
   --navbar-border-color: var(--amplify-colors-neutral-80);
   --navbar-current-property-color: #ff9900;
-  --secondary-nav-hover-color: black;
+  --secondary-nav-hover-color: var(--amplify-colors-neutral-10);
   --secondary-nav-hover-background-color: var(--amplify-colors-neutral-90);
   --dev-center-nav-height: 3rem;
   --amplify-colors-font-hover: var(--amplify-colors-neutral-10);
@@ -55,7 +55,7 @@
 .mobile-nav-container {
   display: flex;
   height: var(--dev-center-nav-height);
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 }
 
@@ -63,6 +63,9 @@
   height: var(--dev-center-nav-height);
   align-items: center;
   justify-content: space-between;
+  align-items: stretch;
+  padding-block: 0;
+  padding-inline: var(--amplify-space-large);
 }
 
 .mobile-nav-menu-container {
@@ -101,7 +104,7 @@
   height: 100%;
   font-size: var(--amplify-font-sizes-small);
   text-decoration: none;
-  color: var(--amplify-colors-neutral-20) !important;
+  color: var(--amplify-colors-neutral-40) !important;
   font-family: "Amazon Ember";
   font-weight: 400;
 
@@ -109,7 +112,7 @@
 
   &:hover,
   &:focus {
-    color: var(--amplify-colors-neutral-20) !important;
+    color: var(--amplify-colors-neutral-10) !important;
 
     .custom-path-stroke {
       stroke: var(--amplify-colors-neutral-10);
@@ -117,7 +120,7 @@
   }
 
   .custom-path-stroke {
-    stroke: var(--amplify-colors-neutral-20);
+    stroke: var(--amplify-colors-neutral-40);
   }
 }
 
@@ -126,22 +129,23 @@
   border-style: solid none;
 
   // Set color for back chevron icon
-  color: var(--amplify-colors-neutral-20);
+  color: var(--amplify-colors-neutral-40);
 
   p {
-    color: var(--amplify-colors-neutral-20);
+    color: var(--amplify-colors-neutral-40);
   }
 
   &:focus,
   &:hover {
-    color: var(--secondary-nav-hover-color);
+    color: var(--amplify-colors-neutral-10);
     border: 1px solid var(--navbar-border-color);
+    box-shadow: none;
 
     /* Override the button's background color */
     background-color: var(--secondary-nav-hover-background-color) !important;
 
     p {
-      color: var(--amplify-colors-font-hover);
+      color: var(--amplify-colors-neutral-10);
     }
   }
 }
@@ -149,7 +153,7 @@
 .current-nav-menu-item {
   border-top: 2px solid transparent;
   border-bottom: 2px solid var(--navbar-current-property-color);
-  color: var(--amplify-colors-neutral-10);
+  color: var(--amplify-colors-neutral-10) !important;
 }
 
 .icon-link-hover {
@@ -159,7 +163,7 @@
 }
 
 .chevron-icon {
-  fill: var(--amplify-colors-neutral-20);
+  fill: var(--amplify-colors-neutral-40);
 }
 
 .background-overlay {
@@ -176,5 +180,9 @@
 .secondary-nav-mobile {
   z-index: 200;
   background-color: var(--amplify-colors-neutral-90);
-  color: var(--amplify-colors-neutral-20);
+  color: var(--amplify-colors-neutral-40);
+
+  &:hover {
+    color: var(--amplify-colors-neutral-10);
+  }
 }
