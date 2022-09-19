@@ -39,6 +39,7 @@ import { default as HeroLayout } from "../../../../ui-components/HeroLayoutCusto
 import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
 import { YoutubeModal } from "../../../../components/YoutubeModal";
 import Link from "next/link";
+import { LearnMarkdown } from "../../../../components/LearnMarkdown";
 
 export default function CoursePage(data: {
   course: Course;
@@ -287,12 +288,8 @@ export default function CoursePage(data: {
               >
                 {`What you'll learn`}
               </Text>
-              <Text
-                fontFamily="Amazon Ember"
-                whiteSpace="pre-line"
-                color="#545B64"
-              >
-                {course.learningObjective}
+              <Text fontFamily="Amazon Ember">
+                <LearnMarkdown markdownContent={course.learningObjective} />
               </Text>
             </Flex>
             {course?.requirements && course.requirements.length > 0 && (
@@ -310,11 +307,7 @@ export default function CoursePage(data: {
                   {course.requirements.map((requirement, index) => {
                     return (
                       <li key={index}>
-                        <Text
-                          fontFamily="Amazon Ember"
-                          whiteSpace="pre-line"
-                          color="#545B64"
-                        >
+                        <Text fontFamily="Amazon Ember" whiteSpace="pre-line">
                           {requirement}
                         </Text>
                       </li>
