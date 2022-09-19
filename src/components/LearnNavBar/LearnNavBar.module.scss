@@ -35,5 +35,16 @@
 }
 
 .mobile-nav-menu-items {
-  border-bottom: 1px solid #d5dbdb;
+  border-bottom: 1px solid var(--amplify-colors-neutral-80);
+
+  a {
+    color: inherit;
+  }
+
+  &:focus,
+  &:hover {
+    a {
+      color: inherit;
+    }
+  }
 }

@@ -1,13 +1,13 @@
-import { Text, Link } from '@aws-amplify/ui-react';
-import { Dispatch, SetStateAction } from 'react';
-import styles from '../GlobalNav.module.scss';
-import { IconLink, ExternalLink } from '.';
-import { NavMenuItem } from '../GlobalNav';
-import { ShowSecondaryNav } from './secondary-nav-components';
+import { Text, Link } from "@aws-amplify/ui-react";
+import { Dispatch, SetStateAction } from "react";
+import styles from "../GlobalNav.module.scss";
+import { IconLink, ExternalLink } from ".";
+import { NavMenuItem } from "../GlobalNav";
+import { ShowSecondaryNav } from "./secondary-nav-components";
 
 export function NavMenuLink({
   navMenuItem,
-  currentMenuItem = '',
+  currentMenuItem = "",
   hasSecondaryNav = false,
   isMobile = false,
   setShowGlobalNav,
@@ -20,37 +20,30 @@ export function NavMenuLink({
 }) {
   const label: string = navMenuItem.label;
   const linkContent: JSX.Element =
-    navMenuItem.type === 'EXTERNAL' ? (
-      <Text as="span" color="inherit" padding="2px 10px">
+    navMenuItem.type === "EXTERNAL" ? (
+      <Text as="span" color="inherit">
         <ExternalLink>{label}</ExternalLink>
       </Text>
     ) : (
-      <Text
-        as="span"
-        color="inherit"
-        marginLeft="auto"
-        marginRight="auto"
-        padding="2px 10px"
-      >
-        <IconLink iconType={navMenuItem.icon ? navMenuItem.icon : ''} />
+      <Text as="span" color="inherit" marginInline="auto">
+        <IconLink iconType={navMenuItem.icon ? navMenuItem.icon : ""} />
       </Text>
     );
   const showSecondaryNav = hasSecondaryNav && label === currentMenuItem;
 
-  if (navMenuItem.type === 'DEFAULT') {
+  if (navMenuItem.type === "DEFAULT") {
     if (isMobile) {
       return showSecondaryNav ? (
         <ShowSecondaryNav label={label} setShowGlobalNav={setShowGlobalNav} />
       ) : (
-        <Link className={styles['nav-menu-item']} href={navMenuItem.url}>
+        <Link className={styles["nav-menu-item"]} href={navMenuItem.url}>
           <Text
             as="span"
-            padding="2px 10px"
             color="inherit"
             className={
               navMenuItem.label === currentMenuItem
-                ? styles['current-nav-menu-item']
-                : ''
+                ? styles["current-nav-menu-item"]
+                : ""
             }
           >
             {label}
@@ -60,10 +53,10 @@ export function NavMenuLink({
     } else {
       return (
         <Link
-          className={`${styles['nav-menu-item']} ${
+          className={`${styles["nav-menu-item"]} ${
             navMenuItem.label === currentMenuItem
-              ? styles['current-nav-menu-item']
-              : ''
+              ? styles["current-nav-menu-item"]
+              : ""
           }`}
           href={navMenuItem.url}
         >
@@ -75,7 +68,7 @@ export function NavMenuLink({
     return (
       <Link
         isExternal={true}
-        className={styles['nav-menu-item']}
+        className={styles["nav-menu-item"]}
         href={navMenuItem.url}
       >
         {linkContent}
