@@ -20,7 +20,7 @@ export function ShowSecondaryNav({
       fontWeight="400"
       border="none"
       borderRadius="0"
-      padding="12px 22px"
+      padding="12px 10px"
       columnGap="9px"
       className={styles["secondary-nav-button"]}
       onClick={() => setShowGlobalNav(false)}
