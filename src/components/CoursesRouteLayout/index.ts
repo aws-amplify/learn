@@ -1,0 +1,1 @@
+export { CoursesRouteLayout } from './CoursesRouteLayout';

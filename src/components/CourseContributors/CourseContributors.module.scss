@@ -1,0 +1,17 @@
+.course-contributor {
+  &:hover {
+    cursor: pointer;
+
+    .profile-pic-container {
+      border-color: #E95E07 !important;
+    }
+
+    .contributor-name {
+      color: #E95E07 !important;
+    }
+  }
+}
+
+.course-contributor-hyperlink {
+  text-decoration: none;
+}

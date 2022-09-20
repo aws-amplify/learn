@@ -1,0 +1,1 @@
+export { LearnFooter } from './LearnFooter';

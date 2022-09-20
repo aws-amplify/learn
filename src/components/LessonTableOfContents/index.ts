@@ -1,0 +1,1 @@
+export { LessonTableOfContents } from "./LessonTableOfContents";
