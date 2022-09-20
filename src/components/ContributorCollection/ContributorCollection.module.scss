@@ -1,0 +1,19 @@
+.contributor-card {
+  &:hover {
+    border: 1px #232F3E solid;
+    box-shadow: none;
+    cursor: pointer;
+
+    .profile-pic-container {
+      border-color: #E95E07 !important;
+    }
+
+    .contributor-name {
+      color: #E95E07 !important;
+    }
+  }
+}
+
+.contributor-card-hyperlink {
+  text-decoration: none;
+}
