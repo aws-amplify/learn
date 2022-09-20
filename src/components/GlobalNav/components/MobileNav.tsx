@@ -61,7 +61,13 @@ export function MobileNav({
   return (
     <>
       <View className={styles["mobile-nav-container"]} padding="0 large">
-        <Flex gap="xs" alignItems="center">
+        <Flex
+          gap="xs"
+          alignItems="center"
+          as="a"
+          href="https://amplify.aws/learn"
+          style={{ cursor: "pointer" }}
+        >
           <AmplifyLogo />
           <Text className={styles["dev-center-logo"]}>
             <span style={{ fontWeight: "400" }}>Amplify</span>{" "}
