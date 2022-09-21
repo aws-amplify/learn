@@ -121,7 +121,6 @@ export async function getStaticProps(
         featuredCourseTags: serializeModel(featuredCourseData.tags),
         cardLayoutData: JSON.stringify(cardLayoutData),
       },
-      revalidate: 60,
     };
   }
 
