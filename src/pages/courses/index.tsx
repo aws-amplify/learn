@@ -86,6 +86,5 @@ export async function getStaticProps(
     props: {
       cardLayoutData: JSON.stringify(cardLayoutData),
     },
-    revalidate: 60,
   };
 }

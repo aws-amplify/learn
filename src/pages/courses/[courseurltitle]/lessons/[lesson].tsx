@@ -196,7 +196,7 @@ export async function getStaticPaths(
         lesson: e.lessonNumber,
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -226,7 +226,6 @@ export async function getStaticProps(
           contributors: serializeModel(courseContributors),
           cardLayoutData: JSON.stringify(cardLayoutData),
         },
-        revalidate: 60,
       };
     }
   }
