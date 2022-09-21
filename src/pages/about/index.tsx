@@ -140,6 +140,5 @@ export async function getStaticProps(
     props: {
       contributors: serializeModel(contributors),
     },
-    revalidate: 60,
   };
 }

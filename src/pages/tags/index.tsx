@@ -82,6 +82,5 @@ export async function getStaticProps(
     props: {
       tags: serializeModel(tags),
     },
-    revalidate: 60,
   };
 }

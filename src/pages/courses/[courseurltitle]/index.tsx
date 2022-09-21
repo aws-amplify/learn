@@ -336,7 +336,7 @@ export async function getStaticPaths(
         courseurltitle: createCourseTitleUri(course.courseUrlTitle, course.id),
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -366,7 +366,6 @@ export async function getStaticProps(
         contributors: serializeModel(courseContributors),
         cardLayoutData: JSON.stringify(cardLayoutData),
       },
-      revalidate: 10,
     };
   }
 

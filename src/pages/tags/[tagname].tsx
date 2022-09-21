@@ -131,7 +131,7 @@ export async function getStaticPaths(
     paths: tags.map((tag) => ({
       params: { tagname: tag.name },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -157,7 +157,6 @@ export async function getStaticProps(
         props: {
           cardLayoutData: JSON.stringify(filteredData),
         },
-        revalidate: 60,
       };
     }
   }

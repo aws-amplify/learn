@@ -131,6 +131,5 @@ export async function getStaticProps(
       featuredCourseTags: null,
       cardLayoutData: "",
     },
-    revalidate: 60,
   };
 }

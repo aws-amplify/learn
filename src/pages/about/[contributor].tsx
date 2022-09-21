@@ -363,7 +363,7 @@ export async function getStaticPaths(
         contributor: contributor.username,
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -403,7 +403,6 @@ export async function getStaticProps(
           cardLayoutData: JSON.stringify(filteredCardLayoutData),
           otherContributors: serializeModel(otherContributors),
         },
-        revalidate: 60,
       };
     }
   }
