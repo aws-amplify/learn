@@ -328,7 +328,9 @@ export async function getStaticPaths(
   context: GetStaticPaths & Context
 ): Promise<GetStaticPathsResult<CoursePageParams>> {
   const { DataStore } = withSSRContext(context);
-  const courses: Course[] = await DataStore.query(Course);
+  const courses: Course[] = await DataStore.query(Course, (c: any) =>
+    c.published("eq", true)
+  );
 
   return {
     paths: courses.map((course) => ({
