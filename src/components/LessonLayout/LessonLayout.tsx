@@ -148,7 +148,7 @@ export function LessonLayout({
             width="100%"
             gap="10px"
             onClick={() => {
-              router.push("/learn/courses");
+              router.push("/courses");
             }}
           >
             All courses
