@@ -1,9 +1,9 @@
 import { Grid, Heading, View, useBreakpointValue } from "@aws-amplify/ui-react";
-import { CardLayoutCollection } from "../../components/CardLayoutCollection";
-import { CardLayoutData, Context, MetaInfo } from "../../types/models";
-import { getCardLayoutData } from "../../lib/getData";
+import { CardLayoutCollection } from "../../../components/CardLayoutCollection";
+import { CardLayoutData, Context, MetaInfo } from "../../../types/models";
+import { getCardLayoutData } from "../../../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { MetaLayout } from "../../components/MetaLayout";
+import { MetaLayout } from "../../../components/MetaLayout";
 
 export default function CoursesPage(data: { cardLayoutData: string }) {
   const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);

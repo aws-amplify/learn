@@ -7,15 +7,15 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { ActionLayout } from "../../components/ActionLayout";
-import { ContributorCollection } from "../../components/ContributorCollection";
-import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
+import { ActionLayout } from "../../../components/ActionLayout";
+import { ContributorCollection } from "../../../components/ContributorCollection";
+import ExternalIconCustom from "../../../ui-components/ExternalIconCustom";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
-import { trackExternalLink } from "../../utils/track";
-import { Contributor } from "../../models";
-import { Context, MetaInfo } from "../../types/models";
-import { getContributors } from "../../lib/getData";
-import { MetaLayout } from "../../components/MetaLayout";
+import { trackExternalLink } from "../../../utils/track";
+import { Contributor } from "../../../models";
+import { Context, MetaInfo } from "../../../types/models";
+import { getContributors } from "../../../lib/getData";
+import { MetaLayout } from "../../../components/MetaLayout";
 
 export default function AboutPage(data: any) {
   const contributors: Contributor[] = deserializeModel(

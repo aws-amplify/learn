@@ -1,10 +1,10 @@
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
-import { CoursesRouteLayout } from "../../../components/CoursesRouteLayout";
-import { Contributor, Course, Lesson, Tag } from "../../../models";
-import { capitalizeEnum, createCourseTitleUri } from "../../../utils";
+import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
+import { Contributor, Course, Lesson, Tag } from "../../../../models";
+import { capitalizeEnum, createCourseTitleUri } from "../../../../utils";
 import { useRouter } from "next/router";
-import { Fallback } from "../../../components/Fallback";
+import { Fallback } from "../../../../components/Fallback";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
@@ -17,13 +17,13 @@ import {
   CoursePageParams,
   CoursePageProps,
   MetaInfo,
-} from "../../../types/models";
+} from "../../../../types/models";
 import {
   getCardLayoutData,
   getCourseAndLessonData,
   getCourseContributors,
   getCourseTags,
-} from "../../../lib/getData";
+} from "../../../../lib/getData";
 import { useState } from "react";
 import {
   Button,
@@ -34,12 +34,12 @@ import {
   Card,
   View,
 } from "@aws-amplify/ui-react";
-import { LessonLayout } from "../../../components/LessonLayout";
-import { default as HeroLayout } from "../../../ui-components/HeroLayoutCustom";
-import { LessonTableOfContents } from "../../../components/LessonTableOfContents";
-import { YoutubeModal } from "../../../components/YoutubeModal";
+import { LessonLayout } from "../../../../components/LessonLayout";
+import { default as HeroLayout } from "../../../../ui-components/HeroLayoutCustom";
+import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
+import { YoutubeModal } from "../../../../components/YoutubeModal";
 import Link from "next/link";
-import { LearnMarkdown } from "../../../components/LearnMarkdown";
+import { LearnMarkdown } from "../../../../components/LearnMarkdown";
 
 export default function CoursePage(data: {
   course: Course;

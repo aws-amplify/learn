@@ -28,7 +28,7 @@ export function LearnNavBarDesktop() {
         position="relative"
         padding="0px 0px 0px 0px"
       >
-        <Link href="/">
+        <Link href="/learn">
           <a
             className={styles["navbar-menu-item"]}
             style={{ fontSize: "1.25rem" }}
@@ -36,10 +36,10 @@ export function LearnNavBarDesktop() {
             Learn
           </a>
         </Link>
-        <Link href="/courses">
+        <Link href="/learn/courses">
           <a
             className={`${styles["navbar-menu-item"]} ${
-              router.asPath.startsWith("/courses")
+              router.asPath.startsWith("/learn/courses")
                 ? styles["current-nav-menu-item"]
                 : ""
             }`}
@@ -47,10 +47,10 @@ export function LearnNavBarDesktop() {
             Courses
           </a>
         </Link>
-        <Link href="/about">
+        <Link href="/learn/about">
           <a
             className={`${styles["navbar-menu-item"]} ${
-              router.asPath.startsWith("/about")
+              router.asPath.startsWith("/learn/about")
                 ? styles["current-nav-menu-item"]
                 : ""
             }`}
