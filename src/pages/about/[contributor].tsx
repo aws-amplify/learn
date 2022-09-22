@@ -2,7 +2,6 @@
 import {
   Flex,
   Grid,
-  Image,
   View,
   Text,
   Button,
