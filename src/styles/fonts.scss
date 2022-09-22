@@ -1,8 +1,10 @@
 /* Font faces using Amazon Ember and Amazon Ember Display */
 
+$basepath: "/learn";
+
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_Th.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_Th.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -10,7 +12,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_ThIt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_ThIt.woff2") format("woff2");
   font-weight: 100;
   font-style: italic;
   font-display: swap;
@@ -18,7 +20,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_Lt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_Lt.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -26,7 +28,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_LtIt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_LtIt.woff2") format("woff2");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -34,7 +36,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_Rg.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_Rg.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -42,7 +44,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_RgIt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_RgIt.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -50,7 +52,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_SBd.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_SBd.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -58,7 +60,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_SBdIt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_SBdIt.woff2") format("woff2");
   font-weight: 600;
   font-style: italic;
   font-display: swap;
@@ -66,7 +68,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_Bd.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_Bd.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -74,7 +76,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_BdIt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_BdIt.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -82,7 +84,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_He.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_He.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -90,7 +92,7 @@
 
 @font-face {
   font-family: Amazon Ember;
-  src: url(/learn/fonts/AmazonEmber_W_HeIt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmber_W_HeIt.woff2") format("woff2");
   font-weight: 900;
   font-style: italic;
   font-display: swap;
@@ -98,7 +100,7 @@
 
 @font-face {
   font-family: Amazon Ember Display;
-  src: url(/learn/fonts/AmazonEmberDisplay_W_Lt.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmberDisplay_W_Lt.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -106,7 +108,7 @@
 
 @font-face {
   font-family: Amazon Ember Display;
-  src: url(/learn/fonts/AmazonEmberDisplay_W_Rg.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmberDisplay_W_Rg.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -114,7 +116,7 @@
 
 @font-face {
   font-family: Amazon Ember Display;
-  src: url(/learn/fonts/AmazonEmberDisplay_W_Md.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmberDisplay_W_Md.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -122,7 +124,7 @@
 
 @font-face {
   font-family: Amazon Ember Display;
-  src: url(/learn/fonts/AmazonEmberDisplay_W_Bd.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmberDisplay_W_Bd.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -130,7 +132,7 @@
 
 @font-face {
   font-family: Amazon Ember Display;
-  src: url(/learn/fonts/AmazonEmberDisplay_W_He.woff2) format("woff2");
+  src: url("#{$basepath}/fonts/AmazonEmberDisplay_W_He.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
