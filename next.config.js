@@ -1,11 +1,12 @@
-const BASEPATH = process.env.BASEPATH;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: BASEPATH,
+  basePath: process.env.BASEPATH,
   typescript: {
     ignoreBuildErrors: true,
+  },
+  sassOptions: {
+    prependData: `$basepath: '${process.env.BASEPATH}';`,
   },
   env: {
     SITE_URL: process.env.SITE_URL,
