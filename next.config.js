@@ -6,7 +6,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   sassOptions: {
-    prependData: `$basepath: '${process.env.BASEPATH}';`,
+    prependData: process.env.BASEPATH
+      ? `$basepath: '${process.env.BASEPATH}';`
+      : "",
   },
   env: {
     SITE_URL: process.env.SITE_URL,
