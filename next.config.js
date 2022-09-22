@@ -8,7 +8,7 @@ const nextConfig = {
   sassOptions: {
     prependData: process.env.BASEPATH
       ? `$basepath: '${process.env.BASEPATH}';`
-      : "",
+      : `$basepath: '';`,
   },
   env: {
     SITE_URL: process.env.SITE_URL,
