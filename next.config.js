@@ -14,7 +14,6 @@ const nextConfig = {
     SITE_URL: process.env.SITE_URL,
     BASEPATH: process.env.BASEPATH,
   },
-  trailingSlash: true,
 };
 
 module.exports = nextConfig;
