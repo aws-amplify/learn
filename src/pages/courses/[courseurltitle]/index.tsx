@@ -1,10 +1,10 @@
 import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
-import { CoursesRouteLayout } from "../../../../components/CoursesRouteLayout";
-import { Contributor, Course, Lesson, Tag } from "../../../../models";
-import { capitalizeEnum, createCourseTitleUri } from "../../../../utils";
+import { CoursesRouteLayout } from "../../../components/CoursesRouteLayout";
+import { Contributor, Course, Lesson, Tag } from "../../../models";
+import { capitalizeEnum, createCourseTitleUri } from "../../../utils";
 import { useRouter } from "next/router";
-import { Fallback } from "../../../../components/Fallback";
+import { Fallback } from "../../../components/Fallback";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
@@ -17,13 +17,13 @@ import {
   CoursePageParams,
   CoursePageProps,
   MetaInfo,
-} from "../../../../types/models";
+} from "../../../types/models";
 import {
   getCardLayoutData,
   getCourseAndLessonData,
   getCourseContributors,
   getCourseTags,
-} from "../../../../lib/getData";
+} from "../../../lib/getData";
 import { useState } from "react";
 import {
   Button,
@@ -34,12 +34,12 @@ import {
   Card,
   View,
 } from "@aws-amplify/ui-react";
-import { LessonLayout } from "../../../../components/LessonLayout";
-import { default as HeroLayout } from "../../../../ui-components/HeroLayoutCustom";
-import { LessonTableOfContents } from "../../../../components/LessonTableOfContents";
-import { YoutubeModal } from "../../../../components/YoutubeModal";
+import { LessonLayout } from "../../../components/LessonLayout";
+import { default as HeroLayout } from "../../../ui-components/HeroLayoutCustom";
+import { LessonTableOfContents } from "../../../components/LessonTableOfContents";
+import { YoutubeModal } from "../../../components/YoutubeModal";
 import Link from "next/link";
-import { LearnMarkdown } from "../../../../components/LearnMarkdown";
+import { LearnMarkdown } from "../../../components/LearnMarkdown";
 
 export default function CoursePage(data: {
   course: Course;
@@ -328,7 +328,9 @@ export async function getStaticPaths(
   context: GetStaticPaths & Context
 ): Promise<GetStaticPathsResult<CoursePageParams>> {
   const { DataStore } = withSSRContext(context);
-  const courses: Course[] = await DataStore.query(Course);
+  const courses: Course[] = await DataStore.query(Course, (c: any) =>
+    c.published("eq", true)
+  );
 
   return {
     paths: courses.map((course) => ({
@@ -336,7 +338,7 @@ export async function getStaticPaths(
         courseurltitle: createCourseTitleUri(course.courseUrlTitle, course.id),
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -366,7 +368,6 @@ export async function getStaticProps(
         contributors: serializeModel(courseContributors),
         cardLayoutData: JSON.stringify(cardLayoutData),
       },
-      revalidate: 10,
     };
   }
 

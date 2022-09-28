@@ -1,20 +1,20 @@
 import { useRouter } from "next/router";
 import { Grid, Heading, View } from "@aws-amplify/ui-react";
-import { Tag } from "../../../models";
+import { Tag } from "../../models";
 import { useCallback } from "react";
 import { withSSRContext } from "aws-amplify";
-import { Fallback } from "../../../components/Fallback";
+import { Fallback } from "../../components/Fallback";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from "next";
-import { CardLayoutData, Context, MetaInfo } from "../../../types/models";
+import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
-import { getCardLayoutData } from "../../../lib/getData";
-import { CardLayoutCollection } from "../../../components/CardLayoutCollection";
-import { MetaLayout } from "../../../components/MetaLayout";
+import { getCardLayoutData } from "../../lib/getData";
+import { CardLayoutCollection } from "../../components/CardLayoutCollection";
+import { MetaLayout } from "../../components/MetaLayout";
 
 export default function TagPage(data: { cardLayoutData: string }) {
   function tagsBreadcrumbCallback(
@@ -131,7 +131,7 @@ export async function getStaticPaths(
     paths: tags.map((tag) => ({
       params: { tagname: tag.name },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -157,7 +157,6 @@ export async function getStaticProps(
         props: {
           cardLayoutData: JSON.stringify(filteredData),
         },
-        revalidate: 60,
       };
     }
   }

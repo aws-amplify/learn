@@ -1,15 +1,15 @@
 import { Button, View, Heading, Flex } from "@aws-amplify/ui-react";
-import { ActionLayout } from "../../components/ActionLayout";
-import ExternalIconCustom from "../../ui-components/ExternalIconCustom";
-import { Course, Tag } from "../../models";
+import { ActionLayout } from "../components/ActionLayout";
+import ExternalIconCustom from "../ui-components/ExternalIconCustom";
+import { Course, Tag } from "../models";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
-import { trackExternalLink } from "../../utils/track";
-import { HeroCourse } from "../../components/HeroCourse";
-import { CardLayoutCollection } from "../../components/CardLayoutCollection";
-import { CardLayoutData, Context, MetaInfo } from "../../types/models";
-import { getCardLayoutData, getFeaturedCourseData } from "../../lib/getData";
+import { trackExternalLink } from "../utils/track";
+import { HeroCourse } from "../components/HeroCourse";
+import { CardLayoutCollection } from "../components/CardLayoutCollection";
+import { CardLayoutData, Context, MetaInfo } from "../types/models";
+import { getCardLayoutData, getFeaturedCourseData } from "../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { MetaLayout } from "../../components/MetaLayout";
+import { MetaLayout } from "../components/MetaLayout";
 
 export default function Home(data: {
   featuredCourse: Course;
@@ -121,7 +121,6 @@ export async function getStaticProps(
         featuredCourseTags: serializeModel(featuredCourseData.tags),
         cardLayoutData: JSON.stringify(cardLayoutData),
       },
-      revalidate: 60,
     };
   }
 
@@ -131,6 +130,5 @@ export async function getStaticProps(
       featuredCourseTags: null,
       cardLayoutData: "",
     },
-    revalidate: 60,
   };
 }
