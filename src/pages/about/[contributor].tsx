@@ -2,7 +2,6 @@
 import {
   Flex,
   Grid,
-  Image,
   View,
   Text,
   Button,
@@ -13,23 +12,23 @@ import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { Contributor, ContributorCourse } from "../../../models";
-import { CardLayoutCollection } from "../../../components/CardLayoutCollection";
-import { SocialMediaButton } from "../../../components/SocialMediaButton";
-import { capitalizeEnum } from "../../../utils/capitalizeEnum";
-import { Fallback } from "../../../components/Fallback";
-import ArrowRightIconCustom from "../../../ui-components/ArrowRightIconCustom";
-import { ContributorCollection } from "../../../components/ContributorCollection";
+import { Contributor, ContributorCourse } from "../../models";
+import { CardLayoutCollection } from "../../components/CardLayoutCollection";
+import { SocialMediaButton } from "../../components/SocialMediaButton";
+import { capitalizeEnum } from "../../utils/capitalizeEnum";
+import { Fallback } from "../../components/Fallback";
+import ArrowRightIconCustom from "../../ui-components/ArrowRightIconCustom";
+import { ContributorCollection } from "../../components/ContributorCollection";
 import {
   GetStaticPaths,
   GetStaticPathsResult,
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from "next";
-import { CardLayoutData, Context, MetaInfo } from "../../../types/models";
+import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
-import { getCardLayoutData } from "../../../lib/getData";
-import { MetaLayout } from "../../../components/MetaLayout";
+import { getCardLayoutData } from "../../lib/getData";
+import { MetaLayout } from "../../components/MetaLayout";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -254,7 +253,7 @@ export default function ContributorPage(data: {
               width="100%"
               gap="10px"
               onClick={() => {
-                router.push("/learn/courses");
+                router.push("/courses");
               }}
             >
               All courses
@@ -311,7 +310,7 @@ export default function ContributorPage(data: {
               aria-label="All contributors"
               gap="10px"
               onClick={() => {
-                router.push("/learn/about");
+                router.push("/about");
               }}
             >
               All contributors
@@ -363,7 +362,7 @@ export async function getStaticPaths(
         contributor: contributor.username,
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -403,7 +402,6 @@ export async function getStaticProps(
           cardLayoutData: JSON.stringify(filteredCardLayoutData),
           otherContributors: serializeModel(otherContributors),
         },
-        revalidate: 60,
       };
     }
   }

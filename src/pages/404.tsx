@@ -27,7 +27,7 @@ export default function Custom404() {
         </Text>
         <Text>
           Go to the{" "}
-          <Link href="/learn">
+          <Link href="/">
             <a>homepage</a>
           </Link>
         </Text>

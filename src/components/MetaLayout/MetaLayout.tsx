@@ -19,15 +19,18 @@ export function MetaLayout({
   const router = useRouter();
 
   const siteUrl = process.env.SITE_URL;
+  const basePath = process.env.BASEPATH;
 
   const title =
     metaInfo.title.indexOf("Learn Amplify") > -1
       ? metaInfo.title
       : `${metaInfo.title} - Learn Amplify`;
 
-  const url = `${process.env.SITE_URL}${router.asPath}`;
+  const url = `${siteUrl}${router.asPath}`;
 
-  const image = metaInfo.image ? metaInfo.image : "/learn/learn-preview.jpg";
+  const image = metaInfo.image
+    ? metaInfo.image
+    : `${basePath}/learn-preview.jpg`;
 
   return (
     <>
@@ -52,8 +55,15 @@ export function MetaLayout({
         <meta name="twitter:url" content={url} />
         <meta name="twitter:site" content="@AWSAmplify" />
         <meta name="twitter:image" content={image} />
-        <link rel="icon" type="image/svg+xml" href={"learn/favicon.ico"} />
-        <link rel="apple-touch-icon" href="learn/apple-touch-icon.png" />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href={`${basePath}/favicon.ico`}
+        />
+        <link
+          rel="apple-touch-icon"
+          href={`${basePath}/apple-touch-icon.png`}
+        />
       </Head>
       <Layout
         showBreadcrumb={showBreadcrumb}
