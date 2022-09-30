@@ -87,7 +87,7 @@ export function HeroCourse({ course, tags }: HeroCourseProps) {
         >
           <Image
             width={{ base: "100%", large: "", xl: "100%" }}
-            height="100%"
+            height={{ base: "100%", large: "", xl: "100%" }}
             objectFit={{ base: "cover", large: "contain", xl: "cover" }}
             src={course.image}
             alt={course.imageAltText || ""}
