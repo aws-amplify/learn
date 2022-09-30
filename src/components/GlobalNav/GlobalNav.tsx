@@ -1,11 +1,11 @@
-import { View, Flex, Button } from "@aws-amplify/ui-react";
+import { View, Flex } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import styles from "./GlobalNav.module.scss";
 import { NavMenuIconType } from "./components/icons/IconLink";
 import { RightNavLinks } from "./components/RightNavLinks";
 import { AmplifyNavLink } from "./components/AmplifyNavLink";
 import { LeftNavLinks } from "./components/LeftNavLinks";
-import { ChevronIcon } from "./components/icons";
+import { SecondaryNav } from "./components/SecondaryNav";
 
 export enum NavMenuItemType {
   DEFAULT = "DEFAULT",
@@ -26,8 +26,8 @@ export interface NavProps {
   rightLinks: NavMenuItem[];
   socialLinks: NavMenuItem[];
   currentSite: string;
-  secondaryNavDesktop: any;
-  secondaryNavMobile: any;
+  secondaryNavDesktop: JSX.Element;
+  secondaryNavMobile: JSX.Element;
 }
 
 export function GlobalNav({
@@ -74,7 +74,11 @@ export function GlobalNav({
   }, []);
 
   return (
-    <View className={styles["navbar"]}>
+    <View
+      as="nav"
+      className={styles["navbar"]}
+      aria-label="Amplify Dev Center - External links to additional Amplify resources"
+    >
       <View
         className={`${styles["dev-center-navbar"]} ${
           themeClass ? styles[themeClass] : ""
@@ -109,41 +113,14 @@ export function GlobalNav({
             isCollapsed={isCollapsed}
           />
         </Flex>
-        <Flex
-          style={{ display: showSecondaryNav ? "flex" : "none" }}
-          className={styles["nav-links-container"]}
-        >
-          <Flex
-            height="100%"
-            id="left-nav"
-            className={styles["left-nav-links"]}
-          >
-            <AmplifyNavLink
-              currentSite={currentSite}
-              isCollapsed={isCollapsed}
-              setIsCollapsed={setIsCollapsed}
-            />
-            <Flex
-              direction="column"
-              gap="0px"
-              className={`${styles["mobile-secondary-nav"]} ${
-                isCollapsed ? styles["collapsed-menu"] : ""
-              }`}
-            >
-              <Button
-                onClick={() => {
-                  setShowSecondaryNav(false);
-                }}
-                className={styles["secondary-nav-button"]}
-                ariaLabel={`Back to all Amplify sites`}
-              >
-                <ChevronIcon rotateDeg="90" />
-                All Amplify sites
-              </Button>
-              {secondaryNavMobile}
-            </Flex>
-          </Flex>
-        </Flex>
+        <SecondaryNav
+          currentSite={currentSite}
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+          showSecondaryNav={showSecondaryNav}
+          setShowSecondaryNav={setShowSecondaryNav}
+          secondaryNavMobile={secondaryNavMobile}
+        />
         <View
           className={isCollapsed ? "" : styles["background-overlay"]}
           onClick={() => {

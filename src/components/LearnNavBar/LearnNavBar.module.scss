@@ -38,22 +38,6 @@
   border-bottom: 2px solid #ff9900;
 }
 
-// .mobile-nav-menu-items {
-//   font-size: 0.875rem;
-//   align-items: center;
-
-//   a {
-//     color: var(--amplify-colors-neutral-40);
-//   }
-
-//   &:focus,
-//   &:hover {
-//     a {
-//       color: var(--amplify-colors-neutral-10);
-//     }
-//   }
-// }
-
 @media (min-width: 975px) {
   .learn-navbar {
     display: flex;

@@ -7,7 +7,6 @@ import {
 import { useEffect, useState } from "react";
 import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
-import { LearnNavBar } from "../LearnNavBar";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
 import {
   LEFT_NAV_LINKS,
