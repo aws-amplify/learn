@@ -50,13 +50,23 @@ export function GlobalNav({
   const [showSecondaryNav, setShowSecondaryNav] = useState(true);
 
   useEffect(() => {
-    let mediaQuery = window.matchMedia("(min-width: 975px)");
+    const mediaQuery = window.matchMedia("(min-width: 975px)");
 
-    const eventListener = (e) => {
+    // Handle the changes when switching between the breakpoint
+    // so that the secondary nav only shows when on the mobile dev center nav
+    const eventListener = (e: MediaQueryListEvent) => {
       if (e.matches) {
         setShowSecondaryNav(false);
+      } else {
+        setShowSecondaryNav(true);
       }
     };
+
+    // Check on first load to see if on mobile dev center
+    if (mediaQuery.matches) {
+      // Always show the secondary nav if so
+      setShowSecondaryNav(false);
+    }
 
     mediaQuery.addEventListener("change", eventListener);
 
