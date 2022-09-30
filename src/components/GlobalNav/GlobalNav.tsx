@@ -1,5 +1,5 @@
 import { View, Flex, Button } from "@aws-amplify/ui-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./GlobalNav.module.scss";
 import { NavMenuIconType } from "./components/icons/IconLink";
 import { RightNavLinks } from "./components/RightNavLinks";
@@ -47,7 +47,21 @@ export function GlobalNav({
   const themeClass = themeableSites[currentSite] ? "" : "use-ui-theme";
 
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [showSecondaryNav, setShowSecondaryNav] = useState(false);
+  const [showSecondaryNav, setShowSecondaryNav] = useState(true);
+
+  useEffect(() => {
+    let mediaQuery = window.matchMedia("(min-width: 975px)");
+
+    const eventListener = (e) => {
+      if (e.matches) {
+        setShowSecondaryNav(false);
+      }
+    };
+
+    mediaQuery.addEventListener("change", eventListener);
+
+    return () => mediaQuery.removeEventListener("change", eventListener);
+  }, []);
 
   return (
     <View className={styles["navbar"]}>
@@ -102,14 +116,16 @@ export function GlobalNav({
             <Flex
               direction="column"
               gap="0px"
-              className={isCollapsed ? styles["collapsed-menu"] : ""}
+              className={`${styles["mobile-secondary-nav"]} ${
+                isCollapsed ? styles["collapsed-menu"] : ""
+              }`}
             >
               <Button
                 onClick={() => {
                   setShowSecondaryNav(false);
                 }}
-                gap="10px"
                 className={styles["secondary-nav-button"]}
+                ariaLabel={`Back to all Amplify sites`}
               >
                 <ChevronIcon rotateDeg="90" />
                 All Amplify sites

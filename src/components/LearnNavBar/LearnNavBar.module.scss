@@ -38,23 +38,21 @@
   border-bottom: 2px solid #ff9900;
 }
 
-.mobile-nav-menu-items {
-  border-bottom: 1px solid var(--amplify-colors-neutral-80);
-  font-size: 0.875rem;
-  padding: 12px;
-  align-items: center;
+// .mobile-nav-menu-items {
+//   font-size: 0.875rem;
+//   align-items: center;
 
-  a {
-    color: var(--amplify-colors-neutral-40);
-  }
+//   a {
+//     color: var(--amplify-colors-neutral-40);
+//   }
 
-  &:focus,
-  &:hover {
-    a {
-      color: var(--amplify-colors-neutral-10);
-    }
-  }
-}
+//   &:focus,
+//   &:hover {
+//     a {
+//       color: var(--amplify-colors-neutral-10);
+//     }
+//   }
+// }
 
 @media (min-width: 975px) {
   .learn-navbar {

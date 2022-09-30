@@ -2,6 +2,7 @@ import { View, Flex, Button } from "@aws-amplify/ui-react";
 import { NavMenuLink } from "./NavMenuLink";
 import styles from "../GlobalNav.module.scss";
 import { NavMenuItem } from "../GlobalNav";
+import { ChevronIcon } from "./icons";
 
 interface LeftNavLinksProps {
   leftLinks: NavMenuItem[];
@@ -33,8 +34,10 @@ export function LeftNavLinks({
                 onClick={() => {
                   setShowSecondaryNav(!showSecondaryNav);
                 }}
+                ariaLabel={`Show ${link.label} nav bar`}
               >
                 {link.label}
+                <ChevronIcon rotateDeg="270" />
               </Button>
               <View className={styles["secondary-nav-link"]}>
                 <NavMenuLink navMenuItem={link} currentMenuItem={currentSite} />
