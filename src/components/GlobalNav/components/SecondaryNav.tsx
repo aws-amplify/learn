@@ -1,4 +1,4 @@
-import { Button, Flex, View } from "@aws-amplify/ui-react";
+import { Button, Flex } from "@aws-amplify/ui-react";
 import { AmplifyNavLink } from "./AmplifyNavLink";
 import { ChevronIcon } from "./icons";
 import styles from "../GlobalNav.module.scss";
@@ -28,13 +28,11 @@ export function SecondaryNav({
       className={styles["nav-links-container"]}
     >
       <Flex height="100%" id="left-nav" className={styles["left-nav-links"]}>
-        <View>
-          <AmplifyNavLink
-            currentSite={currentSite}
-            isCollapsed={isCollapsed}
-            setIsCollapsed={setIsCollapsed}
-          />
-        </View>
+        <AmplifyNavLink
+          currentSite={currentSite}
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+        />
         <Flex
           direction="column"
           gap="0px"
