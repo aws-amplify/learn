@@ -39,15 +39,19 @@ export default function Home(data: {
         }}
       >
         <HeroCourse course={featuredCourse} tags={featuredCourseTags} />
-        <CardLayoutCollection
-          cardLayouts={cardLayoutData}
-          isOnHomePage={true}
-          filter={(e: CardLayoutData) => e.course.isFeatured === false}
-          isPaginated={false}
-          limit={4}
-          gap="40px"
-          templateColumns="1fr 1fr"
-        />
+        {cardLayoutData.length > 1 ? (
+          <CardLayoutCollection
+            cardLayouts={cardLayoutData}
+            isOnHomePage={true}
+            filter={(e: CardLayoutData) => e.course.isFeatured === false}
+            isPaginated={false}
+            limit={4}
+            gap="40px"
+            templateColumns="1fr 1fr"
+          />
+        ) : (
+          <></>
+        )}
       </Flex>
     );
   }
