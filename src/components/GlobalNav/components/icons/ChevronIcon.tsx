@@ -1,10 +1,10 @@
-import { Icon } from "@aws-amplify/ui-react";
-import styles from "../../GlobalNav.module.scss";
+import { Icon } from '@aws-amplify/ui-react';
+import styles from '../../GlobalNav.module.scss';
 
 export function ChevronIcon({ rotateDeg }: { rotateDeg?: string }) {
   return (
     <Icon
-      className={styles["chevron-icon"]}
+      className={styles['chevron-icon']}
       width="10px"
       height="9px"
       viewBox={{ minX: 2, minY: -1.5, width: 11, height: 12 }}

@@ -1,3 +1,8 @@
+.learn-navbar {
+  display: flex;
+  flex-direction: column;
+}
+
 .learn-logo {
   &:hover {
     cursor: pointer;
@@ -26,26 +31,16 @@
     background-color: transparent;
     color: rgba(35, 47, 62, 1);
   }
-
-  border: 2px solid transparent;
 }
 
 .current-nav-menu-item {
+  border-top: 2px solid transparent;
   border-bottom: 2px solid #ff9900;
 }
 
-.mobile-nav-menu-items {
-  border-bottom: 1px solid var(--amplify-colors-neutral-80);
-  font-size: 0.875rem;
-
-  a {
-    color: var(--amplify-colors-neutral-40);
-  }
-
-  &:focus,
-  &:hover {
-    a {
-      color: var(--amplify-colors-neutral-10);
-    }
+@media (min-width: 975px) {
+  .learn-navbar {
+    display: flex;
+    flex-direction: row;
   }
 }
