@@ -172,7 +172,7 @@ export default function HeroLayout(props) {
       <Heading
         level={1}
         fontFamily="Amazon Ember"
-        fontSize="48px"
+        fontSize="2.125rem"
         fontWeight="300"
         color="rgba(35,47,62,1)"
         lineHeight="56px"
