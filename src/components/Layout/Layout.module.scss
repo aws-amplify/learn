@@ -1,0 +1,11 @@
+.layout-container {
+  --dev-center-nav-height: 3rem;
+}
+
+.main-content {
+  margin-top: calc(24px + var(--dev-center-nav-height));
+
+  @media (min-width: 975px) {
+    margin-top: 64px;
+  }
+}

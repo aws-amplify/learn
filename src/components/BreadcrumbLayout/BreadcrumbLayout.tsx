@@ -2,6 +2,7 @@ import { View, Text } from "@aws-amplify/ui-react";
 import { Breadcrumb, BreadcrumbItem } from "./Breadcrumb";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import styles from "./BreadcrumbLayout.module.scss";
 
 export function BreadcrumbLayout({
   breadcrumbCallback,
@@ -25,7 +26,11 @@ export function BreadcrumbLayout({
 
   if (breadcrumbs?.length > 0) {
     return (
-      <View padding="20px 32px" backgroundColor="#FFFFFF">
+      <View
+        className={styles["breadcrumb-container"]}
+        padding="12px 24px"
+        backgroundColor="#FFFFFF"
+      >
         <Breadcrumb>
           {breadcrumbs.map((e) => {
             if (e.label && e.href) {
