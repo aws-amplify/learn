@@ -1,4 +1,4 @@
-import { Icon } from "@aws-amplify/ui-react";
+import { Icon } from '@aws-amplify/ui-react';
 
 export function AmplifyLogo() {
   return (

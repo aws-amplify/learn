@@ -10,12 +10,13 @@ export function LearnNavBarDesktop() {
     <Flex
       gap="32px"
       direction="row"
-      height="56px"
+      height="3rem"
+      width="100%"
       justifyContent="space-between"
       alignItems="center"
       position="relative"
       boxShadow="0px 4px 16px rgba(0, 0, 0, 0.03999999910593033)"
-      padding="0px 32px 0px 32px"
+      padding="0px 24px"
       backgroundColor="rgba(255,255,255,1)"
     >
       <Flex

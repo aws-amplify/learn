@@ -7,10 +7,16 @@ import {
 import { useEffect, useState } from "react";
 import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
-import { LearnNavBar } from "../LearnNavBar";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
+import {
+  LEFT_NAV_LINKS,
+  RIGHT_NAV_LINKS,
+  SOCIAL_LINKS,
+} from "../../data/globalnav";
 import { GlobalNav, NavMenuItem } from "../GlobalNav";
-import { LEFT_NAV_LINKS, RIGHT_NAV_LINKS } from "../../data/globalnav";
+import { LearnNavBarDesktop } from "../LearnNavBar/LearnNavBarDesktop";
+import { LearnNavBarMobile } from "../LearnNavBar/LearnNavBarMobile";
+import styles from "./Layout.module.scss";
 
 export function Layout({
   children,
@@ -49,19 +55,26 @@ export function Layout({
 
   return (
     <ThemeProvider theme={studioTheme}>
-      <Flex direction="column" minHeight="100%" gap="0px">
+      <Flex
+        className={styles["layout-container"]}
+        direction="column"
+        minHeight="100%"
+        gap="0px"
+      >
         <GlobalNav
           rightLinks={RIGHT_NAV_LINKS as NavMenuItem[]}
           leftLinks={LEFT_NAV_LINKS as NavMenuItem[]}
+          socialLinks={SOCIAL_LINKS as NavMenuItem[]}
           currentSite="Learn"
-          secondaryNavDesktop={<LearnNavBar isMobile={false} />}
-          secondaryNavMobile={<LearnNavBar isMobile={true} />}
+          secondaryNavDesktop={<LearnNavBarDesktop />}
+          secondaryNavMobile={<LearnNavBarMobile />}
         />
         {showBreadcrumb && breadcrumbCallback && (
           <BreadcrumbLayout breadcrumbCallback={breadcrumbCallback} />
         )}
         <Grid
           as="main"
+          className={styles["main-content"]}
           templateColumns={{
             base: "1fr",
             small: "1fr",
@@ -76,11 +89,6 @@ export function Layout({
           marginRight={{
             base: "16px",
             small: "16px",
-            medium: "64px",
-          }}
-          marginTop={{
-            base: "32px",
-            small: "32px",
             medium: "64px",
           }}
           marginBottom={{
