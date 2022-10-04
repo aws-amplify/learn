@@ -35,7 +35,7 @@ export function MetaLayout({
   return (
     <>
       <Head>
-        <link rel="canonical" href={siteUrl} />
+        <link rel="canonical" href={`${siteUrl}${basePath}`} />
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={metaInfo.description} />
