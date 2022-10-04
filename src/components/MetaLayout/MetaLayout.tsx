@@ -26,11 +26,11 @@ export function MetaLayout({
       ? metaInfo.title
       : `${metaInfo.title} - Learn Amplify`;
 
-  const url = `${siteUrl}${router.asPath}`;
+  const url = `${siteUrl}${basePath}${router.asPath}`;
 
   const image = metaInfo.image
-    ? metaInfo.image
-    : `${basePath}/learn-preview.jpg`;
+    ? `${siteUrl}${metaInfo.image}`
+    : `${siteUrl}${basePath}/learn-preview.jpg`;
 
   return (
     <>
