@@ -81,8 +81,11 @@ export default function CoursePage(data: {
         <Link
           href={{
             pathname: `${router.pathname}/lessons/[lesson]`,
+            query: {
+              courseurltitle: router.query.courseurltitle,
+              lesson: "1",
+            },
           }}
-          as={`${router.asPath}/lessons/1`}
         >
           <a className="link-button">
             <View

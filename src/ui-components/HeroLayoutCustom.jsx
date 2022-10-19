@@ -245,11 +245,13 @@ export default function HeroLayout(props) {
           <Link
             href={{
               pathname: "/courses/[courseurltitle]",
+              query: {
+                courseurltitle: createCourseTitleUri(
+                  course.courseUrlTitle,
+                  course.id
+                ),
+              },
             }}
-            as={`/courses/${createCourseTitleUri(
-              course.courseUrlTitle,
-              course.id
-            )}`}
           >
             <a className="link-button">
               <View
