@@ -25,8 +25,10 @@ export function CourseContributors({
             key={index}
             href={{
               pathname: "/about/[contributor]",
+              query: {
+                contributor: contributor.username,
+              },
             }}
-            as={`/about/${contributor.username}`}
           >
             <a className={styles["course-contributor-hyperlink"]}>
               <ContributorHorizontal

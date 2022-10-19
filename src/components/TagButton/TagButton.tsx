@@ -23,8 +23,10 @@ export function TagButton({
     <Link
       href={{
         pathname: "/tags/[tagname]",
+        query: {
+          tagname: tag.name,
+        },
       }}
-      as={`/tags/${tag.name}`}
     >
       <a
         target="_blank"
