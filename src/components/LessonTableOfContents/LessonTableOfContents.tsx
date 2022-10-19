@@ -51,20 +51,16 @@ export function LessonTableOfContents({
           ? router.pathname
           : `${router.pathname}/lessons/[lesson]`;
 
-      const asPath =
-        router.asPath.indexOf("lessons") > -1
-          ? `${router.asPath.substring(0, router.asPath.lastIndexOf("/"))}/${
-              lesson.lessonNumber
-            }`
-          : `${router.asPath}/lessons/${lesson.lessonNumber}`;
-
       result.push(
         <View key={`lesson-${lesson.lessonNumber}`} padding="0px 8px">
           <Link
             href={{
               pathname: pathname,
+              query: {
+                courseurltitle: router.query.courseurltitle,
+                lesson: lesson.lessonNumber,
+              },
             }}
-            as={asPath}
           >
             <a style={{ textDecoration: "none" }}>
               <Flex
