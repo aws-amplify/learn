@@ -8,7 +8,7 @@ The site is hosted on [Amplify Hosting](https://docs.aws.amazon.com/amplify/late
 - [Amplify UI](https://ui.docs.amplify.aws/)
 - [Next.js](https://nextjs.org/)
 
-## Prerequisites
+## Prerequisites:
 
 - Node.js 14.x or later
 - Amplify CLI
@@ -18,7 +18,7 @@ The site is hosted on [Amplify Hosting](https://docs.aws.amazon.com/amplify/late
 ## Getting Started
 
 1. Fork the repo: https://github.com/aws-amplify/learn/fork and clone it.
-2. In your terminal, navigate to the _root_ of your local clone.
+2. Navigate to the root directory of your local clone in your terminal.
 3. Run `npm install`
 4. Run `amplify init`
    - This will initialize an Amplify app within your local directory.
@@ -38,13 +38,13 @@ The Learn app uses Amplify to create a backend environment consisting of these s
 
 When you run the terminal command `amplify push` and follow the prompts, Amplify CLI pushes the configurations from the Learn app to create these resources using AWS CloudFormation.
 
-### Modifying data for the Learn app
+### Modifying Data for the Learn App
 
 The Learn app uses the [CMS from Amplify Studio](https://docs.amplify.aws/console/data/content-management/) to manage data for the app. To set this up, follow these steps:
 
 1. First, make sure the backend environment has been pushed up to the cloud.
 2. Run `amplify console` in terminal and choose `AWS console` as your option.
-   - This should open the AWS Amplify Console in your browser.
+   - This action should open the AWS Amplify Console in your web browser.
 3. In the left navigation menu, click on "Amplify Studio settings".
 4. Enable Amplify Studio by toggling it on.
 5. Once it's done setting up, go back to your terminal and run `amplify console`.
@@ -55,4 +55,4 @@ The Learn app uses the [CMS from Amplify Studio](https://docs.amplify.aws/consol
 
 To learn more about AWS Amplify, take a look at the following resources:
 
-- [AWS Amplify Documentation](https://docs.amplify.aws/) - learn about Amplify features such as CLI and the different libraries.
+- [AWS Amplify Documentation](https://docs.amplify.aws/) - Learn about Amplify features such as CLI and the different libraries.
