@@ -40,6 +40,7 @@
     "shell-quote": "1.7.3",
     "loader-utils": "2.0.4",
     "fast-xml-parser": "4.2.5",
-    "semver": "7.5.2"
+    "semver": "7.5.2",
+    "postcss": "8.4.31"
   }
 }
