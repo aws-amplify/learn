@@ -118,20 +118,19 @@ export default function LessonPage(data: {
                         router.asPath.lastIndexOf("/") + 1
                       )}${Number(lessonNumber) + 1}`,
                     }}
+                    className={styles["next-lesson-link"]}
                   >
-                    <a className={styles["next-lesson-link"]}>
-                      <Flex
-                        marginTop="50px"
-                        alignItems="flex-end"
-                        direction="column"
-                        textAlign="right"
-                      >
-                        <Flex>
-                          Next <ArrowRightIconCustom />
-                        </Flex>
-                        {lessons[lessonNumber].title}
+                    <Flex
+                      marginTop="50px"
+                      alignItems="flex-end"
+                      direction="column"
+                      textAlign="right"
+                    >
+                      <Flex>
+                        Next <ArrowRightIconCustom />
                       </Flex>
-                    </a>
+                      {lessons[lessonNumber].title}
+                    </Flex>
                   </Link>
                 </View>
               </Flex>

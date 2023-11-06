@@ -27,19 +27,18 @@ export function TagButton({
           tagname: tag.name,
         },
       }}
+      target="_blank"
+      className={inCourseLayout ? inCourseClasses : `amplify-button`}
+      style={
+        !inCourseLayout
+          ? {
+              color: "#0074bd",
+              padding: tagButtonPadding,
+            }
+          : {}
+      }
     >
-      <a
-        target="_blank"
-        className={inCourseLayout ? inCourseClasses : `amplify-button`}
-        style={
-          !inCourseLayout
-            ? {
-                color: "#0074bd",
-                padding: tagButtonPadding,
-              }
-            : {}
-        }
-      >{`#${tag.name}`}</a>
+      {`#${tag.name}`}
     </Link>
   );
 }

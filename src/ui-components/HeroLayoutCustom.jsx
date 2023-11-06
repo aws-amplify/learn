@@ -252,21 +252,21 @@ export default function HeroLayout(props) {
                 ),
               },
             }}
-          >
-            <a className="link-button">
-              <View
-                className="amplify-button amplify-button--primary"
-                height="42px"
-                width={{
-                  base: "100%",
-                  small: "100%",
-                  medium: "auto",
-                }}
-                fontSize="1.17rem"
-              >
-                Explore course
-              </View>
-            </a>
+            className="link-button">
+
+            <View
+              className="amplify-button amplify-button--primary"
+              height="42px"
+              width={{
+                base: "100%",
+                small: "100%",
+                medium: "auto",
+              }}
+              fontSize="1.17rem"
+            >
+              Explore course
+            </View>
+
           </Link>
         </View>
         <Button

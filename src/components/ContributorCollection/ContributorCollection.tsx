@@ -46,38 +46,37 @@ export function ContributorCollection({
               contributor: item.username,
             },
           }}
+          className={styles["contributor-card-hyperlink"]}
         >
-          <a className={styles["contributor-card-hyperlink"]}>
-            <Card
-              className={styles["contributor-card"]}
-              borderRadius="16px"
-              paddingTop={{
-                base: "32px",
-                small: "32px",
-                medium: "48px",
-                large: "48px",
-                xl: "64px",
-              }}
-              paddingBottom={{
-                base: "32px",
-                small: "32px",
-                medium: "48px",
-                large: "48px",
-                xl: "64px",
-              }}
-              variation="elevated"
-            >
-              {useLargeVariant ? (
-                <ContributorLargeCustom
-                  contributor={item}
-                ></ContributorLargeCustom>
-              ) : (
-                <ContributorVerticalCustom
-                  contributor={item}
-                ></ContributorVerticalCustom>
-              )}
-            </Card>
-          </a>
+          <Card
+            className={styles["contributor-card"]}
+            borderRadius="16px"
+            paddingTop={{
+              base: "32px",
+              small: "32px",
+              medium: "48px",
+              large: "48px",
+              xl: "64px",
+            }}
+            paddingBottom={{
+              base: "32px",
+              small: "32px",
+              medium: "48px",
+              large: "48px",
+              xl: "64px",
+            }}
+            variation="elevated"
+          >
+            {useLargeVariant ? (
+              <ContributorLargeCustom
+                contributor={item}
+              ></ContributorLargeCustom>
+            ) : (
+              <ContributorVerticalCustom
+                contributor={item}
+              ></ContributorVerticalCustom>
+            )}
+          </Card>
         </Link>
       )}
     </Collection>

@@ -13,15 +13,14 @@ export function BreadcrumbItem({
   isCurrent?: boolean;
 }) {
   return (
-    <Link href={href}>
-      <a
-        className={`${styles["breadcrumb"]} ${
-          isCurrent ? styles["current"] : ""
-        }`}
-        aria-current={isCurrent ? "page" : "false"}
-      >
-        {children}
-      </a>
+    <Link
+      href={href}
+      className={`${styles["breadcrumb"]} ${
+        isCurrent ? styles["current"] : ""
+      }`}
+      aria-current={isCurrent ? "page" : "false"}
+    >
+      {children}
     </Link>
   );
 }
