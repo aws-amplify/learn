@@ -87,7 +87,7 @@ export default function CoursePage(data: {
             },
           }}
         >
-          <a className="link-button">
+          <View className="link-button">
             <View
               className="amplify-button amplify-button--primary"
               fontSize="1.17rem"
@@ -95,7 +95,7 @@ export default function CoursePage(data: {
             >
               Start course
             </View>
-          </a>
+          </View>
         </Link>
       </View>
       <Button

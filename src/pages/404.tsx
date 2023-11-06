@@ -26,10 +26,7 @@ export default function Custom404() {
           The link you clicked may be broken or the page may have been removed
         </Text>
         <Text>
-          Go to the{" "}
-          <Link href="/">
-            <a>homepage</a>
-          </Link>
+          Go to the <Link href="/">homepage</Link>
         </Text>
       </Flex>
     </MetaLayout>

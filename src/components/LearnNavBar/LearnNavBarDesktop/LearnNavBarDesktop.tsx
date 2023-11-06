@@ -1,4 +1,4 @@
-import { Flex } from "@aws-amplify/ui-react";
+import { Flex, View } from "@aws-amplify/ui-react";
 import styles from "../LearnNavBar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -28,17 +28,18 @@ export function LearnNavBarDesktop() {
         height="100%"
         position="relative"
         padding="0px 0px 0px 0px"
+        className={styles["navbar"]}
       >
         <Link href="/">
-          <a
+          <View
             className={styles["navbar-menu-item"]}
             style={{ fontSize: "1.25rem" }}
           >
             Learn
-          </a>
+          </View>
         </Link>
         <Link href="/courses">
-          <a
+          <View
             className={`${styles["navbar-menu-item"]} ${
               router.asPath.startsWith("/courses")
                 ? styles["current-nav-menu-item"]
@@ -46,10 +47,10 @@ export function LearnNavBarDesktop() {
             }`}
           >
             Courses
-          </a>
+          </View>
         </Link>
         <Link href="/about">
-          <a
+          <View
             className={`${styles["navbar-menu-item"]} ${
               router.asPath.startsWith("/about")
                 ? styles["current-nav-menu-item"]
@@ -57,7 +58,7 @@ export function LearnNavBarDesktop() {
             }`}
           >
             About
-          </a>
+          </View>
         </Link>
       </Flex>
     </Flex>

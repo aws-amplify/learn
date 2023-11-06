@@ -2,7 +2,7 @@ import React from "react";
 import { Contributor } from "../../models";
 import ContributorLargeCustom from "./ContributorComponents/ContributorLargeCustom";
 import ContributorVerticalCustom from "./ContributorComponents/ContributorVerticalCustom";
-import { Collection, Card, CollectionProps } from "@aws-amplify/ui-react";
+import { Collection, Card, CollectionProps, View } from "@aws-amplify/ui-react";
 import styles from "./ContributorCollection.module.scss";
 import Link from "next/link";
 
@@ -47,7 +47,7 @@ export function ContributorCollection({
             },
           }}
         >
-          <a className={styles["contributor-card-hyperlink"]}>
+          <View className={styles["contributor-card-hyperlink"]}>
             <Card
               className={styles["contributor-card"]}
               borderRadius="16px"
@@ -77,7 +77,7 @@ export function ContributorCollection({
                 ></ContributorVerticalCustom>
               )}
             </Card>
-          </a>
+          </View>
         </Link>
       )}
     </Collection>

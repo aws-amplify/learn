@@ -253,7 +253,7 @@ export default function HeroLayout(props) {
               },
             }}
           >
-            <a className="link-button">
+            <View className="link-button">
               <View
                 className="amplify-button amplify-button--primary"
                 height="42px"
@@ -266,7 +266,7 @@ export default function HeroLayout(props) {
               >
                 Explore course
               </View>
-            </a>
+            </View>
           </Link>
         </View>
         <Button

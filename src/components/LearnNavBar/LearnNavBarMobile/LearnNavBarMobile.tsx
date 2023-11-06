@@ -7,17 +7,17 @@ export function LearnNavBarMobile() {
     <>
       <View className={styles["mobile-nav-menu-items"]}>
         <Link href="/">
-          <a className={styles["navbar-menu-item"]}>Home</a>
+          <View className={styles["navbar-menu-item"]}>Home</View>
         </Link>
       </View>
       <View className={styles["mobile-nav-menu-items"]}>
         <Link href="/courses">
-          <a className={styles["navbar-menu-item"]}>Courses</a>
+          <View className={styles["navbar-menu-item"]}>Courses</View>
         </Link>
       </View>
       <View className={styles["mobile-nav-menu-items"]}>
         <Link href="/about">
-          <a className={styles["navbar-menu-item"]}>About</a>
+          <View className={styles["navbar-menu-item"]}>About</View>
         </Link>
       </View>
     </>

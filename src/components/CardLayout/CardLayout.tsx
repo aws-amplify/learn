@@ -55,7 +55,10 @@ export function CardLayout({
           },
         }}
       >
-        <a style={{ textDecoration: "none" }} className={styles["course-card"]}>
+        <View
+          style={{ textDecoration: "none" }}
+          className={styles["course-card"]}
+        >
           <Flex gap="24px" direction="column">
             <View
               height="240px"
@@ -199,7 +202,7 @@ export function CardLayout({
               ></Text>
             </Flex>
           </Flex>
-        </a>
+        </View>
       </Link>
       <Flex
         gap="8px"

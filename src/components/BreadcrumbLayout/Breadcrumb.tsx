@@ -1,4 +1,4 @@
-import { Flex, Icon } from "@aws-amplify/ui-react";
+import { Flex, Icon, View } from "@aws-amplify/ui-react";
 import Link from "next/link";
 import { Children, Fragment, ReactNode } from "react";
 import styles from "./BreadcrumbLayout.module.scss";
@@ -14,14 +14,14 @@ export function BreadcrumbItem({
 }) {
   return (
     <Link href={href}>
-      <a
+      <View
         className={`${styles["breadcrumb"]} ${
           isCurrent ? styles["current"] : ""
         }`}
         aria-current={isCurrent ? "page" : "false"}
       >
         {children}
-      </a>
+      </View>
     </Link>
   );
 }

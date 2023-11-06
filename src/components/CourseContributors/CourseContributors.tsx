@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Flex, Text, View } from "@aws-amplify/ui-react";
 import { Contributor } from "../../models";
 import { default as ContributorHorizontal } from "./ContributorHorizontalCustom";
 import styles from "./CourseContributors.module.scss";
@@ -30,12 +30,12 @@ export function CourseContributors({
               },
             }}
           >
-            <a className={styles["course-contributor-hyperlink"]}>
+            <View className={styles["course-contributor-hyperlink"]}>
               <ContributorHorizontal
                 className={styles["course-contributor"]}
                 contributor={contributor}
               />
-            </a>
+            </View>
           </Link>
         );
       })}

@@ -119,7 +119,7 @@ export default function LessonPage(data: {
                       )}${Number(lessonNumber) + 1}`,
                     }}
                   >
-                    <a className={styles["next-lesson-link"]}>
+                    <View className={styles["next-lesson-link"]}>
                       <Flex
                         marginTop="50px"
                         alignItems="flex-end"
@@ -131,7 +131,7 @@ export default function LessonPage(data: {
                         </Flex>
                         {lessons[lessonNumber].title}
                       </Flex>
-                    </a>
+                    </View>
                   </Link>
                 </View>
               </Flex>
