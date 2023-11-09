@@ -29,13 +29,12 @@ export function CourseContributors({
                 contributor: contributor.username,
               },
             }}
+            className={styles["course-contributor-hyperlink"]}
           >
-            <a className={styles["course-contributor-hyperlink"]}>
-              <ContributorHorizontal
-                className={styles["course-contributor"]}
-                contributor={contributor}
-              />
-            </a>
+            <ContributorHorizontal
+              className={styles["course-contributor"]}
+              contributor={contributor}
+            />
           </Link>
         );
       })}

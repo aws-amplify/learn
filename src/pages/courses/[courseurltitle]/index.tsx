@@ -86,16 +86,15 @@ export default function CoursePage(data: {
               lesson: "1",
             },
           }}
+          className="link-button"
         >
-          <a className="link-button">
-            <View
-              className="amplify-button amplify-button--primary"
-              fontSize="1.17rem"
-              width="100%"
-            >
-              Start course
-            </View>
-          </a>
+          <View
+            className="amplify-button amplify-button--primary"
+            fontSize="1.17rem"
+            width="100%"
+          >
+            Start course
+          </View>
         </Link>
       </View>
       <Button

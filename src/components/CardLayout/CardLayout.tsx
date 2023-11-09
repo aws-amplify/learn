@@ -54,152 +54,152 @@ export function CardLayout({
             ),
           },
         }}
+        style={{ textDecoration: "none" }}
+        className={styles["course-card"]}
       >
-        <a style={{ textDecoration: "none" }} className={styles["course-card"]}>
-          <Flex gap="24px" direction="column">
-            <View
-              height="240px"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
+        <Flex gap="24px" direction="column">
+          <View
+            height="240px"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+          >
+            <Image
+              position="absolute"
+              top="0px"
+              bottom="0px"
+              height="100%"
+              left="0px"
+              right="0px"
+              width="calc(100% - 0px)"
+              objectFit="cover"
+              transformOrigin="top left"
+              transform="rotate(0deg)"
+              borderRadius="8px"
               padding="0px 0px 0px 0px"
-            >
-              <Image
-                position="absolute"
-                top="0px"
-                bottom="0px"
-                height="100%"
-                left="0px"
-                right="0px"
-                width="calc(100% - 0px)"
-                objectFit="cover"
-                transformOrigin="top left"
-                transform="rotate(0deg)"
-                borderRadius="8px"
-                padding="0px 0px 0px 0px"
-                overflow="hidden"
-                src={course?.image}
-                alt={course?.imageAltText || ""}
-              ></Image>
-            </View>
+              overflow="hidden"
+              src={course?.image}
+              alt={course?.imageAltText || ""}
+            ></Image>
+          </View>
+          <Flex
+            gap="12px"
+            direction="column"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+          >
             <Flex
               gap="12px"
-              direction="column"
+              direction="row"
+              wrap="wrap"
+              alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
             >
-              <Flex
-                gap="12px"
-                direction="row"
-                wrap="wrap"
-                alignItems="flex-start"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-              >
-                <Text
-                  fontFamily="Amazon Ember Display"
-                  fontSize="16px"
-                  fontWeight="700"
-                  color="rgba(35,47,62,1)"
-                  textTransform="uppercase"
-                  lineHeight="24px"
-                  textAlign="left"
-                  display="flex"
-                  letterSpacing="1.13px"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children="COURSE"
-                ></Text>
-                <Divider
-                  height="24px"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  size="small"
-                  orientation="vertical"
-                ></Divider>
-                <Text
-                  fontFamily="Amazon Ember"
-                  fontSize="16px"
-                  fontWeight="400"
-                  color="rgba(35,47,62,1)"
-                  lineHeight="24px"
-                  textAlign="right"
-                  display="flex"
-                  letterSpacing="0.01px"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={capitalizeEnum(course?.skillLevel)}
-                ></Text>
-                <Divider
-                  height="24px"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  size="small"
-                  orientation="vertical"
-                ></Divider>
-                <Text
-                  fontFamily="Amazon Ember"
-                  fontSize="16px"
-                  fontWeight="400"
-                  color="rgba(35,47,62,1)"
-                  lineHeight="24px"
-                  textAlign="right"
-                  display="flex"
-                  letterSpacing="0.01px"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={`${course?.timeHours}${"h "}${
-                    course?.timeMinutes
-                  }${"m"}`}
-                ></Text>
-              </Flex>
               <Text
                 fontFamily="Amazon Ember Display"
-                fontSize="24px"
-                fontWeight="500"
-                color="rgba(0,116,189,1)"
-                lineHeight="32px"
+                fontSize="16px"
+                fontWeight="700"
+                color="rgba(35,47,62,1)"
+                textTransform="uppercase"
+                lineHeight="24px"
                 textAlign="left"
                 display="flex"
+                letterSpacing="1.13px"
                 shrink="0"
-                alignSelf="stretch"
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children={course?.title}
-                className={styles["course-title"]}
+                children="COURSE"
               ></Text>
+              <Divider
+                height="24px"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                size="small"
+                orientation="vertical"
+              ></Divider>
               <Text
                 fontFamily="Amazon Ember"
                 fontSize="16px"
                 fontWeight="400"
-                color="rgba(84,91,100,1)"
+                color="rgba(35,47,62,1)"
                 lineHeight="24px"
-                textAlign="left"
-                display={isOnHomePage ? "flex" : "none"}
+                textAlign="right"
+                display="flex"
                 letterSpacing="0.01px"
                 shrink="0"
-                alignSelf="stretch"
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children={course?.description}
+                children={capitalizeEnum(course?.skillLevel)}
+              ></Text>
+              <Divider
+                height="24px"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                size="small"
+                orientation="vertical"
+              ></Divider>
+              <Text
+                fontFamily="Amazon Ember"
+                fontSize="16px"
+                fontWeight="400"
+                color="rgba(35,47,62,1)"
+                lineHeight="24px"
+                textAlign="right"
+                display="flex"
+                letterSpacing="0.01px"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={`${course?.timeHours}${"h "}${
+                  course?.timeMinutes
+                }${"m"}`}
               ></Text>
             </Flex>
+            <Text
+              fontFamily="Amazon Ember Display"
+              fontSize="24px"
+              fontWeight="500"
+              color="rgba(0,116,189,1)"
+              lineHeight="32px"
+              textAlign="left"
+              display="flex"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={course?.title}
+              className={styles["course-title"]}
+            ></Text>
+            <Text
+              fontFamily="Amazon Ember"
+              fontSize="16px"
+              fontWeight="400"
+              color="rgba(84,91,100,1)"
+              lineHeight="24px"
+              textAlign="left"
+              display={isOnHomePage ? "flex" : "none"}
+              letterSpacing="0.01px"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={course?.description}
+            ></Text>
           </Flex>
-        </a>
+        </Flex>
       </Link>
       <Flex
         gap="8px"

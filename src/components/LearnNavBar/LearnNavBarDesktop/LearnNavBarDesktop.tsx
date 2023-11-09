@@ -29,35 +29,32 @@ export function LearnNavBarDesktop() {
         position="relative"
         padding="0px 0px 0px 0px"
       >
-        <Link href="/">
-          <a
-            className={styles["navbar-menu-item"]}
-            style={{ fontSize: "1.25rem" }}
-          >
-            Learn
-          </a>
+        <Link
+          href="/"
+          className={styles["navbar-menu-item"]}
+          style={{ fontSize: "1.25rem" }}
+        >
+          Learn
         </Link>
-        <Link href="/courses">
-          <a
-            className={`${styles["navbar-menu-item"]} ${
-              router.asPath.startsWith("/courses")
-                ? styles["current-nav-menu-item"]
-                : ""
-            }`}
-          >
-            Courses
-          </a>
+        <Link
+          href="/courses"
+          className={`${styles["navbar-menu-item"]} ${
+            router.asPath.startsWith("/courses")
+              ? styles["current-nav-menu-item"]
+              : ""
+          }`}
+        >
+          Courses
         </Link>
-        <Link href="/about">
-          <a
-            className={`${styles["navbar-menu-item"]} ${
-              router.asPath.startsWith("/about")
-                ? styles["current-nav-menu-item"]
-                : ""
-            }`}
-          >
-            About
-          </a>
+        <Link
+          href="/about"
+          className={`${styles["navbar-menu-item"]} ${
+            router.asPath.startsWith("/about")
+              ? styles["current-nav-menu-item"]
+              : ""
+          }`}
+        >
+          About
         </Link>
       </Flex>
     </Flex>
