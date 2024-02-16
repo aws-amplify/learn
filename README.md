@@ -56,3 +56,4 @@ The Learn app uses the [CMS from Amplify Studio](https://docs.amplify.aws/consol
 To learn more about AWS Amplify, take a look at the following resources:
 
 - [AWS Amplify Documentation](https://docs.amplify.aws/) - learn about Amplify features such as CLI and the different libraries.
+
