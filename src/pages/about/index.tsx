@@ -69,10 +69,10 @@ export default function AboutPage(data: any) {
             This site contains a collection of courses on{" "}
             <a
               target="_blank"
-              href="https://docs.amplify.aws"
+              href="https://docs.amplify.aws/gen1"
               rel="noopener noreferrer"
             >
-              AWS Amplify
+              AWS Amplify Gen 1
             </a>{" "}
             brought to you by the Developer Advocacy team working on the
             product.
