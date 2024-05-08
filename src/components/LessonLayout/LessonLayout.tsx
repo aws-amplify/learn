@@ -7,6 +7,7 @@ import {
   useBreakpointValue,
   View,
 } from "@aws-amplify/ui-react";
+import { Banner } from "../Banner";
 import { Contributor, Course } from "../../models";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { CourseContributors } from "../CourseContributors";
@@ -60,6 +61,7 @@ export function LessonLayout({
         large: "70% 1fr",
       }}
     >
+      <Banner />
       {mainChildren}
       <Flex
         display={{

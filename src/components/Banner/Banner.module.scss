@@ -1,0 +1,12 @@
+.message-banner {
+  display: flex;
+  flex-direction: row;
+  grid-column: 2;
+  align-items: start;
+  border: 1px solid var(--amplify-colors-border-primary);
+  padding: var(--amplify-space-medium);
+}
+
+.message-banner__inner {
+  flex-direction: row;
+}
