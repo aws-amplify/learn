@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { studioTheme } from "../../ui-components";
 import { LearnFooter } from "../LearnFooter";
 import { BreadcrumbLayout } from "../BreadcrumbLayout";
+import { Banner } from "../Banner";
 import {
   LEFT_NAV_LINKS,
   RIGHT_NAV_LINKS,
@@ -99,6 +100,7 @@ export function Layout({
           }}
           grow="1"
         >
+          <Banner />
           {children}
         </Grid>
         <LearnFooter isMobile={isMobile} />

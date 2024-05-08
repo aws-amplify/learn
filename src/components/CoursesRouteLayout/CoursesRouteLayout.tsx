@@ -1,7 +1,6 @@
 import { ReactNode, useCallback } from "react";
 import { MetaInfo } from "../../types/models";
 import { MetaLayout } from "../MetaLayout";
-import { Banner } from "../Banner";
 
 export function CoursesRouteLayout({
   children,
@@ -47,7 +46,6 @@ export function CoursesRouteLayout({
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >
-      <Banner />
       {children}
     </MetaLayout>
   );
