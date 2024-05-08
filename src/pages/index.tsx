@@ -10,6 +10,7 @@ import { CardLayoutData, Context, MetaInfo } from "../types/models";
 import { getCardLayoutData, getFeaturedCourseData } from "../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { MetaLayout } from "../components/MetaLayout";
+import { Banner } from "../components/Banner";
 
 export default function Home(data: {
   featuredCourse: Course;
@@ -65,6 +66,14 @@ export default function Home(data: {
 
   return (
     <MetaLayout metaInfo={metaInfo}>
+      <Banner
+        columnStart={{
+          base: 2,
+          small: 2,
+          medium: 2,
+          large: 2,
+        }}
+      />
       <View
         columnStart="2"
         marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}

@@ -3,14 +3,21 @@ import { IconInfo } from "./IconInfo";
 import styles from "./Banner.module.scss";
 
 interface BannerProps {
-  url?: string;
+  columnStart?: any;
 }
 
-export const Banner: React.FC<BannerProps> = () => {
+export const Banner: React.FC<BannerProps> = ({
+  columnStart = {
+    base: 1,
+    small: 1,
+    medium: 1,
+    large: 2,
+  },
+}) => {
   return (
-    <View className={styles["message-banner"]}>
+    <View className={styles["message-banner"]} columnStart={columnStart}>
       <Flex direction="column">
-        <Flex direction="row" gap="xxs">
+        <Flex direction="row" gap="xxs" alignItems="center">
           <IconInfo />
           <Text className={styles["message-banner__content"]}>
             The courses on this site teach Amplify Gen 1. If you&apos;re
