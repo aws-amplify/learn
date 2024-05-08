@@ -70,9 +70,9 @@ export default function TagPage(data: { cardLayoutData: string }) {
     >
       <Banner
         columnStart={{
-          base: 2,
-          small: 2,
-          medium: 2,
+          base: 1,
+          small: 1,
+          medium: 1,
           large: 2,
         }}
       />
