@@ -5,6 +5,11 @@
   align-items: start;
   border: 1px solid var(--amplify-colors-border-primary);
   padding: var(--amplify-space-medium);
+  margin-bottom: var(--amplify-space-large);
+
+  @media (max-width: 992px) {
+    grid-column: 1;
+  }
 }
 
 .message-banner__inner {
