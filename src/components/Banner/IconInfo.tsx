@@ -1,9 +1,6 @@
 import * as React from "react";
 import { Icon } from "@aws-amplify/ui-react";
 
-/**
- * @internal For internal Amplify UI use only. May be removed in a future release.
- */
 export const IconInfo = () => {
   return (
     <Icon
