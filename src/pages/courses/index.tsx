@@ -4,6 +4,7 @@ import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { getCardLayoutData } from "../../lib/getData";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { MetaLayout } from "../../components/MetaLayout";
+import { Banner } from "../../components/Banner";
 
 export default function CoursesPage(data: { cardLayoutData: string }) {
   const cardLayoutData: CardLayoutData[] = JSON.parse(data.cardLayoutData);
@@ -25,6 +26,7 @@ export default function CoursesPage(data: { cardLayoutData: string }) {
   return (
     <MetaLayout metaInfo={metaInfo}>
       <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
+        <Banner />
         <Grid
           templateColumns={{
             base: "1fr",

@@ -15,6 +15,7 @@ import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { MetaLayout } from "../../components/MetaLayout";
+import { Banner } from "../../components/Banner";
 
 export default function TagPage(data: { cardLayoutData: string }) {
   function tagsBreadcrumbCallback(
@@ -67,6 +68,14 @@ export default function TagPage(data: { cardLayoutData: string }) {
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >
+      <Banner
+        columnStart={{
+          base: 1,
+          small: 1,
+          medium: 1,
+          large: 2,
+        }}
+      />
       <View
         columnStart={{
           base: "1",

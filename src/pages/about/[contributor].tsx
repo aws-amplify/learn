@@ -29,6 +29,7 @@ import { CardLayoutData, Context, MetaInfo } from "../../types/models";
 import { ParsedUrlQuery } from "querystring";
 import { getCardLayoutData } from "../../lib/getData";
 import { MetaLayout } from "../../components/MetaLayout";
+import { Banner } from "../../components/Banner";
 
 const profilePicBorderSize = {
   base: "128px",
@@ -131,6 +132,14 @@ export default function ContributorPage(data: {
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >
+      <Banner
+        columnStart={{
+          base: 1,
+          small: 1,
+          medium: 1,
+          large: 2,
+        }}
+      />
       <Flex
         columnStart={{
           base: "1",
