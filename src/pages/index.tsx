@@ -63,43 +63,43 @@ export default function Home(data: {
   return (
     <MetaLayout metaInfo={metaInfo}>
       <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
-      <Banner />
-      <View
-        columnStart="2"
-        marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}
-      >
-        {content}
-      </View>
-      <ActionLayout>
-        <View>
-          <Heading className="action-layout-heading" level={3}>
-            Take Amplify for a Spin!
-          </Heading>
-          <p>
-            Build extensible, full-stack web and mobile apps faster. Easy to
-            start, easy to scale.
-          </p>
+        <Banner />
+        <View
+          columnStart="2"
+          marginTop={{ base: "0px", small: "0px", medium: "0px", large: "64px" }}
+        >
+          {content}
         </View>
-        <View>
-          <Button
-            variation="primary"
-            size="large"
-            gap="10px"
-            width="max-content"
-            onClick={() => {
-              trackExternalLink("https://docs.amplify.aws/start/");
-              window.open(
-                "https://docs.amplify.aws/start/",
-                "_blank",
-                "noopener,noreferrer"
-              );
-            }}
-          >
-            Try Amplify now
-            <ExternalIconCustom />
-          </Button>
-        </View>
-      </ActionLayout>
+        <ActionLayout>
+          <View>
+            <Heading className="action-layout-heading" level={3}>
+              Take Amplify for a Spin!
+            </Heading>
+            <p>
+              Build extensible, full-stack web and mobile apps faster. Easy to
+              start, easy to scale.
+            </p>
+          </View>
+          <View>
+            <Button
+              variation="primary"
+              size="large"
+              gap="10px"
+              width="max-content"
+              onClick={() => {
+                trackExternalLink("https://docs.amplify.aws/start/");
+                window.open(
+                  "https://docs.amplify.aws/start/",
+                  "_blank",
+                  "noopener,noreferrer"
+                );
+              }}
+            >
+              Try Amplify now
+              <ExternalIconCustom />
+            </Button>
+          </View>
+        </ActionLayout>
       </View>
     </MetaLayout>
   );

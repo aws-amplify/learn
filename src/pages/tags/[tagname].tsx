@@ -68,55 +68,50 @@ export default function TagPage(data: { cardLayoutData: string }) {
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >
-      <Banner
-        columnStart={{
-          base: 1,
-          small: 1,
-          medium: 1,
-          large: 2,
-        }}
-      />
-      <View
-        columnStart={{
-          base: "1",
-          small: "1",
-          medium: "1",
-          large: "2",
-          xl: "2",
-        }}
-      >
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr",
-            large: "1fr 1fr",
-          }}
-          gap="16px"
-          marginBottom={{
-            base: "64px",
-            small: "64px",
-            medium: "64px",
-            large: "128px",
+      <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
+        <Banner />
+        <View
+          columnStart={{
+            base: "1",
+            small: "1",
+            medium: "1",
+            large: "2",
+            xl: "2",
           }}
         >
-          <Heading className="page-heading" level={1}>
-            {`#${tagname}`}
-          </Heading>
-        </Grid>
-        <CardLayoutCollection
-          cardLayouts={cardLayoutData}
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr",
-            large: "1fr 1fr",
-            xl: "1fr 1fr 1fr",
-          }}
-          gap="64px"
-          isOnHomePage={false}
-          marginBottom="30px"
-        />
+          <Grid
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr",
+              large: "1fr 1fr",
+            }}
+            gap="16px"
+            marginBottom={{
+              base: "64px",
+              small: "64px",
+              medium: "64px",
+              large: "128px",
+            }}
+          >
+            <Heading className="page-heading" level={1}>
+              {`#${tagname}`}
+            </Heading>
+          </Grid>
+          <CardLayoutCollection
+            cardLayouts={cardLayoutData}
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr",
+              large: "1fr 1fr",
+              xl: "1fr 1fr 1fr",
+            }}
+            gap="64px"
+            isOnHomePage={false}
+            marginBottom="30px"
+          />
+        </View>
       </View>
     </MetaLayout>
   );

@@ -68,7 +68,7 @@ export default function CoursePage(data: {
 
   const course: Course = deserializeModel(Course, data.course);
   const lessons: Lesson[] = deserializeModel(Lesson, data.lessons);
-  const tags: Tag[] = deserializeModel(Tag, data.tags);
+  const tags: Tag[] = data.tags;
   const contributors: Contributor[] = deserializeModel(
     Contributor,
     data.contributors

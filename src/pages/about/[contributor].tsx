@@ -132,219 +132,214 @@ export default function ContributorPage(data: {
       showBreadcrumb={true}
       breadcrumbCallback={callback}
     >
-      <Banner
-        columnStart={{
-          base: 1,
-          small: 1,
-          medium: 1,
-          large: 2,
-        }}
-      />
-      <Flex
-        columnStart={{
-          base: "1",
-          small: "1",
-          medium: "1",
-          large: "2",
-          xl: "2",
-        }}
-        direction="column"
-        rowGap={{
-          base: "64px",
-          small: "64px",
-          medium: "64px",
-          large: "128px",
-        }}
-      >
+      <View columnStart={{ base: "1", small: "1", medium: "1", large: "2" }}>
+        <Banner />
         <Flex
-          justifyContent="space-between"
-          direction={{
-            base: "column-reverse",
-            small: "column-reverse",
-            medium: "column-reverse",
-            large: "row",
+          columnStart={{
+            base: "1",
+            small: "1",
+            medium: "1",
+            large: "2",
+            xl: "2",
           }}
-          columnGap="100px"
+          direction="column"
+          rowGap={{
+            base: "64px",
+            small: "64px",
+            medium: "64px",
+            large: "128px",
+          }}
         >
-          <Flex direction="column">
-            <Heading level={1} fontWeight="300" fontSize="2.5rem">
-              {`${contributor.firstName} ${contributor.lastName}`}
-            </Heading>
-            <Heading
-              level={2}
-              fontFamily="Amazon Ember Display"
-              fontWeight="400"
-              fontSize="1.5rem"
-            >
-              {contributor.jobTitle}
-            </Heading>
-            <Text fontWeight="400" fontSize="1rem">
-              {contributor.bio}
-            </Text>
-            {contributor.socialNetwork &&
-            contributor.socialNetwork.length > 0 ? (
-              <Flex>
-                {contributor.socialNetwork?.map((e, index: number) => {
-                  return (
-                    <SocialMediaButton
-                      key={index}
-                      platform={e?.platform}
-                      url={e?.url || ""}
-                      iconAriaLabel={`${
-                        contributor.firstName
-                      }'s ${capitalizeEnum(e?.platform)} profile link`}
-                      iconWidth="24px"
-                      iconHeight="24px"
-                    ></SocialMediaButton>
-                  );
-                })}
-              </Flex>
-            ) : (
-              <></>
-            )}
-          </Flex>
           <Flex
-            gap="10px"
-            direction="row"
-            width={profilePicBorderSize}
-            height={profilePicBorderSize}
-            alignItems="flex-start"
-            shrink="0"
-            position="relative"
-            border="3px solid rgba(169,182,183,1)"
-            borderRadius="50%"
-            padding="9px 9px 9px 9px"
-            backgroundColor="rgba(255,255,255,1)"
+            justifyContent="space-between"
+            direction={{
+              base: "column-reverse",
+              small: "column-reverse",
+              medium: "column-reverse",
+              large: "row",
+            }}
+            columnGap="100px"
           >
-            <img
-              width={profilePicBorderSizeBreak}
-              height={profilePicSizeBreak}
-              style={{
-                borderRadius: "50%",
-              }}
-              src={contributor?.profilePic || ""}
-              alt={`Profile pic of ${contributor.firstName}`}
-            />
+            <Flex direction="column">
+              <Heading level={1} fontWeight="300" fontSize="2.5rem">
+                {`${contributor.firstName} ${contributor.lastName}`}
+              </Heading>
+              <Heading
+                level={2}
+                fontFamily="Amazon Ember Display"
+                fontWeight="400"
+                fontSize="1.5rem"
+              >
+                {contributor.jobTitle}
+              </Heading>
+              <Text fontWeight="400" fontSize="1rem">
+                {contributor.bio}
+              </Text>
+              {contributor.socialNetwork &&
+              contributor.socialNetwork.length > 0 ? (
+                <Flex>
+                  {contributor.socialNetwork?.map((e, index: number) => {
+                    return (
+                      <SocialMediaButton
+                        key={index}
+                        platform={e?.platform}
+                        url={e?.url || ""}
+                        iconAriaLabel={`${
+                          contributor.firstName
+                        }'s ${capitalizeEnum(e?.platform)} profile link`}
+                        iconWidth="24px"
+                        iconHeight="24px"
+                      ></SocialMediaButton>
+                    );
+                  })}
+                </Flex>
+              ) : (
+                <></>
+              )}
+            </Flex>
+            <Flex
+              gap="10px"
+              direction="row"
+              width={profilePicBorderSize}
+              height={profilePicBorderSize}
+              alignItems="flex-start"
+              shrink="0"
+              position="relative"
+              border="3px solid rgba(169,182,183,1)"
+              borderRadius="50%"
+              padding="9px 9px 9px 9px"
+              backgroundColor="rgba(255,255,255,1)"
+            >
+              <img
+                width={profilePicBorderSizeBreak}
+                height={profilePicSizeBreak}
+                style={{
+                  borderRadius: "50%",
+                }}
+                src={contributor?.profilePic || ""}
+                alt={`Profile pic of ${contributor.firstName}`}
+              />
+            </Flex>
           </Flex>
-        </Flex>
 
-        <Grid
-          templateRows={{
-            small: "auto",
-            medium: "auto 1fr",
-          }}
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr 1fr",
-          }}
-          rowGap="32px"
-        >
-          <Text
-            display={contributorSectionTitle}
-            fontFamily="'Amazon Ember Display'"
-            fontWeight="400"
-            fontSize="2rem"
-          >
-            {`Courses by ${contributor.firstName}`}
-          </Text>
-          <View
-            order={{
-              base: 1,
-              small: 1,
-              medium: 0,
+          <Grid
+            templateRows={{
+              small: "auto",
+              medium: "auto 1fr",
             }}
-            alignSelf="center"
-            style={sectionButtonClassNames}
-          >
-            <Button
-              aria-label="All Courses"
-              width="100%"
-              gap="10px"
-              onClick={() => {
-                router.push("/courses");
-              }}
-            >
-              All courses
-              <ArrowRightIconCustom />
-            </Button>
-          </View>
-          <View columnSpan={2}>
-            <CardLayoutCollection
-              cardLayouts={cardLayoutData}
-              type="grid"
-              templateColumns={{
-                base: "1fr",
-                small: "1fr",
-                medium: "1fr 1fr",
-                large: "1fr 1fr",
-                xl: "1fr 1fr 1fr",
-              }}
-              gap="64px 20px"
-              isPaginated={cardLayoutData.length > 3}
-              itemsPerPage={cardLayoutData.length > 3 ? 3 : undefined}
-            />
-          </View>
-        </Grid>
-        <Grid
-          templateRows={{
-            small: "auto",
-            medium: "auto 1fr",
-          }}
-          templateColumns={{
-            base: "1fr",
-            small: "1fr",
-            medium: "1fr 1fr",
-          }}
-          rowGap="32px"
-        >
-          <Text
-            fontFamily="'Amazon Ember Display'"
-            fontWeight="400"
-            fontSize="2rem"
-          >
-            Other Contributors
-          </Text>
-          <View
-            order={{
-              base: 1,
-              small: 1,
-              medium: 0,
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr 1fr",
             }}
-            alignSelf="center"
-            style={sectionButtonClassNames}
+            rowGap="32px"
           >
-            <Button
-              width="100%"
-              aria-label="All contributors"
-              gap="10px"
-              onClick={() => {
-                router.push("/about");
-              }}
+            <Text
+              display={contributorSectionTitle}
+              fontFamily="'Amazon Ember Display'"
+              fontWeight="400"
+              fontSize="2rem"
             >
-              All contributors
-              <ArrowRightIconCustom />
-            </Button>
-          </View>
-          <View columnSpan={2}>
-            <ContributorCollection
-              type="grid"
-              contributors={otherContributors}
-              gap="20px"
-              templateColumns={{
-                base: "1fr",
-                small: "1fr",
-                medium: "1fr 1fr",
-                large: "1fr 1fr 1fr",
-                xl: "1fr 1fr 1fr 1fr",
+              {`Courses by ${contributor.firstName}`}
+            </Text>
+            <View
+              order={{
+                base: 1,
+                small: 1,
+                medium: 0,
               }}
-              useLargeVariant={false}
-              filter={(e: Contributor) => e.username !== contributor.username}
-              limit={otherContributorsLimit}
-            />
-          </View>
-        </Grid>
-      </Flex>
+              alignSelf="center"
+              style={sectionButtonClassNames}
+            >
+              <Button
+                aria-label="All Courses"
+                width="100%"
+                gap="10px"
+                onClick={() => {
+                  router.push("/courses");
+                }}
+              >
+                All courses
+                <ArrowRightIconCustom />
+              </Button>
+            </View>
+            <View columnSpan={2}>
+              <CardLayoutCollection
+                cardLayouts={cardLayoutData}
+                type="grid"
+                templateColumns={{
+                  base: "1fr",
+                  small: "1fr",
+                  medium: "1fr 1fr",
+                  large: "1fr 1fr",
+                  xl: "1fr 1fr 1fr",
+                }}
+                gap="64px 20px"
+                isPaginated={cardLayoutData.length > 3}
+                itemsPerPage={cardLayoutData.length > 3 ? 3 : undefined}
+              />
+            </View>
+          </Grid>
+          <Grid
+            templateRows={{
+              small: "auto",
+              medium: "auto 1fr",
+            }}
+            templateColumns={{
+              base: "1fr",
+              small: "1fr",
+              medium: "1fr 1fr",
+            }}
+            rowGap="32px"
+          >
+            <Text
+              fontFamily="'Amazon Ember Display'"
+              fontWeight="400"
+              fontSize="2rem"
+            >
+              Other Contributors
+            </Text>
+            <View
+              order={{
+                base: 1,
+                small: 1,
+                medium: 0,
+              }}
+              alignSelf="center"
+              style={sectionButtonClassNames}
+            >
+              <Button
+                width="100%"
+                aria-label="All contributors"
+                gap="10px"
+                onClick={() => {
+                  router.push("/about");
+                }}
+              >
+                All contributors
+                <ArrowRightIconCustom />
+              </Button>
+            </View>
+            <View columnSpan={2}>
+              <ContributorCollection
+                type="grid"
+                contributors={otherContributors}
+                gap="20px"
+                templateColumns={{
+                  base: "1fr",
+                  small: "1fr",
+                  medium: "1fr 1fr",
+                  large: "1fr 1fr 1fr",
+                  xl: "1fr 1fr 1fr 1fr",
+                }}
+                useLargeVariant={false}
+                filter={(e: Contributor) => e.username !== contributor.username}
+                limit={otherContributorsLimit}
+              />
+            </View>
+          </Grid>
+        </Flex>
+      </View>
     </MetaLayout>
   );
 }
