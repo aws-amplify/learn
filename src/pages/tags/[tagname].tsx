@@ -152,7 +152,7 @@ export async function getStaticProps(
     const { tagname } = context.params;
 
     const tags: Tag[] = await DataStore.query(Tag, (t: any) =>
-      t.name("eq", tagname)
+      t.name.eq(tagname)
     );
 
     if (tags.length > 0) {

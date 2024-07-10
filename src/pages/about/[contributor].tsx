@@ -384,7 +384,7 @@ export async function getStaticProps(
 
     let contributorResults: Contributor[] = await DataStore.query(
       Contributor,
-      (c: any) => c.username("eq", username)
+      (c: any) => c.username.eq(username)
     );
 
     const contributorCoursesRelationships: ContributorCourse[] =
@@ -401,7 +401,7 @@ export async function getStaticProps(
     );
 
     const otherContributors = await DataStore.query(Contributor, (c: any) =>
-      c.username("ne", username)
+      c.username.ne(username)
     );
 
     if (contributorResults.length > 0) {

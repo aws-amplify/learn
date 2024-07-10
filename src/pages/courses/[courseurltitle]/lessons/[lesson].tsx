@@ -167,7 +167,7 @@ export async function getStaticPaths(
   const { DataStore } = withSSRContext(context);
   const lessons: Lesson[] = await DataStore.query(Lesson);
   const courses: Course[] = await DataStore.query(Course, (c: any) =>
-    c.published("eq", true)
+    c.published.eq(true)
   );
 
   // Create object that contains course title, course Id, and the lesson number

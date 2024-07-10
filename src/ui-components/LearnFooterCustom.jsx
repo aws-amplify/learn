@@ -223,8 +223,8 @@ export default function LearnFooterCustom(props) {
               borderRadius="4px"
               padding="7px 19px 7px 19px"
               backgroundColor="rgba(255,255,255,1)"
-              isHover={false}
-              isActive={false}
+              ishover="false"
+              isactive="false"
               {...getOverrideProps(overrides, "MadeLabel")}
             ></MadeLabel>
           </Flex>

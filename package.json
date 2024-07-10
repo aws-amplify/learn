@@ -11,10 +11,10 @@
     "pre-commit": "next lint"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "3.5",
-    "aws-amplify": "^4.3.34",
+    "@aws-amplify/ui-react": "^5.3.3",
+    "aws-amplify": "^5.3.19",
     "mapbox-gl": "1.13.1",
-    "next": "^13.5.6",
+    "next": "^14.2.4",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",

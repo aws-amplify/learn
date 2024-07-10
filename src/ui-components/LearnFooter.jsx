@@ -201,8 +201,8 @@ export default function LearnFooter(props) {
           borderRadius="4px"
           padding="7px 19px 7px 19px"
           backgroundColor="rgba(255,255,255,1)"
-          isHover={false}
-          isActive={false}
+          ishover="false"
+          isactive="false"
           {...getOverrideProps(overrides, "MadeLabel")}
         ></MadeLabel>
       </Flex>
@@ -232,8 +232,8 @@ export default function LearnFooter(props) {
             position="relative"
             borderRadius="100px"
             padding="0px 0px 0px 0px"
-            isHover={false}
-            isActive={false}
+            ishover="false"
+            isactive="false"
             {...getOverrideProps(overrides, "LearnSocialBorderless31472969")}
           ></LearnSocialBorderless>
           <LearnSocialBorderless
@@ -243,8 +243,8 @@ export default function LearnFooter(props) {
             position="relative"
             borderRadius="100px"
             padding="0px 0px 0px 0px"
-            isHover={false}
-            isActive={false}
+            ishover="false"
+            isactive="false"
             {...getOverrideProps(overrides, "LearnSocialBorderless31472970")}
           ></LearnSocialBorderless>
           <LearnSocialBorderless
@@ -254,8 +254,8 @@ export default function LearnFooter(props) {
             position="relative"
             borderRadius="100px"
             padding="0px 0px 0px 0px"
-            isHover={false}
-            isActive={false}
+            ishover="false"
+            isactive="false"
             {...getOverrideProps(overrides, "LearnSocialBorderless31472971")}
           ></LearnSocialBorderless>
           <LearnSocialBorderless
@@ -265,8 +265,8 @@ export default function LearnFooter(props) {
             position="relative"
             borderRadius="100px"
             padding="0px 0px 0px 0px"
-            isHover={false}
-            isActive={false}
+            ishover="false"
+            isactive="false"
             {...getOverrideProps(overrides, "LearnSocialBorderless31472972")}
           ></LearnSocialBorderless>
         </Flex>
