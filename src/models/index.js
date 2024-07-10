@@ -19,13 +19,13 @@ const SkillLevel = {
   "ADVANCED": "ADVANCED"
 };
 
-const { Tag, Course, Contributor, Lesson, CourseTag, ContributorCourse, SocialMediaLink } = initSchema(schema);
+const { Tag, Contributor, Lesson, Course, CourseTag, ContributorCourse, SocialMediaLink } = initSchema(schema);
 
 export {
   Tag,
-  Course,
   Contributor,
   Lesson,
+  Course,
   CourseTag,
   ContributorCourse,
   SocialMediaPlatform,
