@@ -37,3 +37,4 @@ interface CoursePageProps {
   contributors: JSON;
   cardLayoutData: string;
 }
+
