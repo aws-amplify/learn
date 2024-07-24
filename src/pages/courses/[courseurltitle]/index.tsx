@@ -183,7 +183,7 @@ export default function CoursePage(data: {
                   overflow="hidden"
                   width="100%"
                   maxHeight="350px"
-                  src={course.image || ""}
+                  src={course?.image.substring(6) || ""}
                   alt={course.imageAltText || ""}
                   borderRadius="8px"
                 />

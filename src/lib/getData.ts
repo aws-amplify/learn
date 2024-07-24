@@ -43,16 +43,32 @@ export async function getFeaturedCourseData(
 
 export async function getCourseTags(
   context: GetStaticPropsContext & Context,
-  courseId: string
+  courseId: string, 
 ): Promise<Tag[]> {
   const { DataStore } = withSSRContext(context);
 
   const courseTags: CourseTag[] = await DataStore.query(CourseTag);
-  const filteredCourseTags = courseTags.filter(
-   async (e) => (await (e.course)).published && (await (e.course)).id === courseId
-  );
+  const filteredCourseTags = [];
 
-  return filteredCourseTags.map((e) => e.tag);
+  for (const courseTag of courseTags) {
+    const course = await courseTag.course;
+    
+    if (course.published && course.id === courseId) {
+      filteredCourseTags.push(courseTag)
+    }
+  }
+
+  const tagsList = [];
+
+  for (const filteredCourseTag of filteredCourseTags) {
+    const tag = await filteredCourseTag.tag;
+    const course = await filteredCourseTag.course;
+    const id = await filteredCourseTag.id;
+    
+    tagsList.push({id, tag, course});
+  }
+
+  return tagsList.map((e) => e.tag);
 }
 
 export async function getCardLayoutData(
@@ -61,7 +77,6 @@ export async function getCardLayoutData(
   const { DataStore } = withSSRContext(context);
 
   let courseTags: CourseTag[] = await DataStore.query(CourseTag);
-
 
   // Go through and group up the tags to their respective courses
     const groupedCourseTags: Record<string, CardLayoutData> = {};
@@ -130,7 +145,6 @@ export async function getCourseAndLessonData(
 
     return { course: courseResult, lessons: lessonsSorted };
   }
-
   return null;
 }
 
@@ -141,8 +155,17 @@ export async function getCourseContributors(
   const { DataStore } = withSSRContext(context);
 
   const contributorCourses = await DataStore.query(ContributorCourse);
+  const resolvedCourses = [];
 
-  return contributorCourses
+  for (const contributorCourse of contributorCourses) {
+    const id = await contributorCourse.id;
+    const contributor = await contributorCourse.contributor;
+
+    const course = await contributorCourse.course;
+    resolvedCourses.push({id, contributor:contributor, course: course}); 
+  }
+
+  return resolvedCourses
     .filter(filterFn)
     .map((e: ContributorCourse) => e.contributor);
 }

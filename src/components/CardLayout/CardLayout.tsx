@@ -79,7 +79,7 @@ export function CardLayout({
               borderRadius="8px"
               padding="0px 0px 0px 0px"
               overflow="hidden"
-              src={course?.image}
+              src={course?.image.substring(6)}
               alt={course?.imageAltText || ""}
             ></Image>
           </View>

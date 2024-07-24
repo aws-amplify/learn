@@ -103,7 +103,7 @@ export default function ContributorLargeCustom(props) {
           style={{
             borderRadius: "50%",
           }}
-          src={contributor?.profilePic}
+          src={contributor?.profilePic.substring(6)}
           alt={`Profile picture`}
           {...getOverrideProps(overrides, "Ellipse 15")}
         />

@@ -126,7 +126,7 @@ export default function CardLayout(props) {
           transform="rotate(0deg)"
           borderRadius="8px"
           padding="0px 0px 0px 0px"
-          src={course?.image}
+          src={course?.image.substring(6)}
           alt={course?.imageAltText}
           {...getOverrideProps(
             overrides,

@@ -12,7 +12,7 @@ import { withSSRContext } from "aws-amplify";
 import { serializeModel, deserializeModel } from "@aws-amplify/datastore/ssr";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { Contributor, ContributorCourse } from "../../models";
+import { Contributor, ContributorCourse, LazyCourse } from "../../models";
 import { CardLayoutCollection } from "../../components/CardLayoutCollection";
 import { SocialMediaButton } from "../../components/SocialMediaButton";
 import { capitalizeEnum } from "../../utils/capitalizeEnum";
@@ -216,7 +216,7 @@ export default function ContributorPage(data: {
                 style={{
                   borderRadius: "50%",
                 }}
-                src={contributor?.profilePic || ""}
+                src={contributor?.profilePic.substring(6) || ""}
                 alt={`Profile pic of ${contributor.firstName}`}
               />
             </Flex>
@@ -385,15 +385,29 @@ export async function getStaticProps(
     const contributorCoursesRelationships: ContributorCourse[] =
       await DataStore.query(ContributorCourse);
 
-    const filteredCourses = contributorCoursesRelationships
-      .filter((e) => e.contributor.username === username)
-      .map((e) => e.course);
+      const resolvedContributorCourseRelationships = [];
+
+      for (const contributorCoursesRelationship of contributorCoursesRelationships) {
+        const contributor = await contributorCoursesRelationship.contributor;
+        const id = contributorCoursesRelationship.id;
+        const course = await contributorCoursesRelationship.course;
+
+        resolvedContributorCourseRelationships.push({id, course, contributor}); 
+      }
+
+    const filteredCourses = resolvedContributorCourseRelationships
+      .filter((e) => {
+        return e.contributor.username === username
+      })
 
     const cardLayoutData = await getCardLayoutData(context);
 
-    const filteredCardLayoutData = cardLayoutData.filter((cardLayout) =>
-      filteredCourses.find((e) => e.id === cardLayout.course.id)
-    );
+    const filteredCardLayoutData = cardLayoutData.filter((cardLayout) => {
+      const filter = filteredCourses.find((e) => {
+        return e.course.id === cardLayout.course.id;
+      })
+      return filter;
+    });
 
     const otherContributors = await DataStore.query(Contributor, (c: any) =>
       c.username.ne(username)
