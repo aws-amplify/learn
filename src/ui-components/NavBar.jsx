@@ -90,7 +90,7 @@ export default function NavBar(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             isDisabled={false}
-            isHover={false}
+            ishover="false"
             {...getOverrideProps(overrides, "LearnMenuItem31473021")}
           ></LearnMenuItem>
         </Flex>
@@ -118,7 +118,7 @@ export default function NavBar(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             isDisabled={false}
-            isHover={false}
+            ishover="false"
             {...getOverrideProps(overrides, "LearnMenuItem31473022")}
           ></LearnMenuItem>
         </Flex>
@@ -149,7 +149,7 @@ export default function NavBar(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             isDisabled={false}
-            isHover="false"
+            ishover="false"
             {...getOverrideProps(overrides, "LearnMenuItem31473023")}
           ></LearnMenuItem>
         </Flex>

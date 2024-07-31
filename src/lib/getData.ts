@@ -1,6 +1,6 @@
 import { Amplify, withSSRContext } from "aws-amplify";
 import { GetStaticPropsContext } from "next";
-import awsmobile from "../aws-exports";
+import amplifyconfig from "../amplifyconfiguration.json";
 import {
   Contributor,
   ContributorCourse,
@@ -12,7 +12,7 @@ import {
 import { CardLayoutData, Context, CoursePageParams } from "../types/models";
 
 export function configureAmplify() {
-  Amplify.configure({ ...awsmobile, ssr: true });
+  Amplify.configure({ ...amplifyconfig, ssr: true });
 }
 
 configureAmplify();
@@ -23,13 +23,13 @@ export async function getFeaturedCourseData(
   const { DataStore } = withSSRContext(context);
 
   const courses: Course[] = await DataStore.query(Course, (c: any) =>
-    c.published("eq", true)
+    c.published.eq(true)
   );
 
   if (courses.length > 0) {
     const featuredCourses: Course[] = await DataStore.query(Course, (c: any) =>
-      c.published("eq", true).isFeatured("eq", true)
-    );
+      c.published.eq(true) && c.isFeatured.eq(true)
+  );
 
     const course =
       featuredCourses.length === 1 ? featuredCourses[0] : courses[0];
@@ -38,23 +38,37 @@ export async function getFeaturedCourseData(
 
     return { course, tags };
   }
-
   return null;
 }
 
 export async function getCourseTags(
   context: GetStaticPropsContext & Context,
-  courseId: string
+  courseId: string, 
 ): Promise<Tag[]> {
   const { DataStore } = withSSRContext(context);
 
   const courseTags: CourseTag[] = await DataStore.query(CourseTag);
+  const filteredCourseTags = [];
 
-  const filteredCourseTags = courseTags.filter(
-    (e) => e.course.published && e.course.id === courseId
-  );
+  for (const courseTag of courseTags) {
+    const course = await courseTag.course;
+    
+    if (course.published && course.id === courseId) {
+      filteredCourseTags.push(courseTag)
+    }
+  }
 
-  return filteredCourseTags.map((e) => e.tag);
+  const tagsList = [];
+
+  for (const filteredCourseTag of filteredCourseTags) {
+    const tag = await filteredCourseTag.tag;
+    const course = await filteredCourseTag.course;
+    const id = await filteredCourseTag.id;
+    
+    tagsList.push({id, tag, course});
+  }
+
+  return tagsList.map((e) => e.tag);
 }
 
 export async function getCardLayoutData(
@@ -64,33 +78,32 @@ export async function getCardLayoutData(
 
   let courseTags: CourseTag[] = await DataStore.query(CourseTag);
 
-  const groupedCourseTags: Record<string, CardLayoutData> = {};
-
   // Go through and group up the tags to their respective courses
-  courseTags.forEach((courseTag) => {
-    if (courseTag.course.published) {
-      if (!groupedCourseTags.hasOwnProperty(courseTag.course.id)) {
-        const tags = [courseTag.tag];
-
-        groupedCourseTags[courseTag.course.id] = {
-          course: courseTag.course,
-          tags,
-        };
-      } else {
-        const cardLayout = groupedCourseTags[courseTag.course.id];
-
-        const tags = cardLayout.tags;
-        tags.push(courseTag.tag);
-
-        groupedCourseTags[courseTag.course.id] = {
-          course: courseTag.course,
-          tags,
-        };
+    const groupedCourseTags: Record<string, CardLayoutData> = {};
+    for (const courseTag of courseTags) {
+      const course = await courseTag.course;
+      const tag = await courseTag.tag;
+      if (course.published) {
+        if (!groupedCourseTags.hasOwnProperty(course.id)) {
+  
+          groupedCourseTags[course.id] = {
+            course: course,
+            tags: [tag],
+          };
+        } else {
+          const cardLayout = groupedCourseTags[course.id];
+          const tags = cardLayout.tags;
+          tags.push(tag);
+  
+          groupedCourseTags[course.id] = {
+            course: course,
+            tags,
+          };
+        }
       }
-    }
-  });
+    };
 
-  return Object.values(groupedCourseTags);
+  return Object.values(groupedCourseTags)
 }
 
 export async function getCourseAndLessonData(
@@ -114,17 +127,16 @@ export async function getCourseAndLessonData(
   );
 
   const courseResults: Course[] = await DataStore.query(Course, (c: any) =>
-    c
-      .published("eq", true)
-      .id("beginsWith", courseIdPrefix)
-      .courseUrlTitle("eq", originalCourseUrlTitle)
+    c.published.eq(true) &&
+    c.id.beginsWith(courseIdPrefix) &&
+    c.courseUrlTitle.eq(originalCourseUrlTitle)
   );
 
   const courseResult = courseResults[0];
 
   if (courseResult) {
     const lessons: Lesson[] = await DataStore.query(Lesson, (l: any) =>
-      l.lessonCourseLessonId("eq", courseResult.id)
+      l.lessonCourseLessonId.eq(courseResult.id)
     );
 
     const lessonsSorted = lessons.sort(
@@ -133,7 +145,6 @@ export async function getCourseAndLessonData(
 
     return { course: courseResult, lessons: lessonsSorted };
   }
-
   return null;
 }
 
@@ -144,8 +155,17 @@ export async function getCourseContributors(
   const { DataStore } = withSSRContext(context);
 
   const contributorCourses = await DataStore.query(ContributorCourse);
+  const resolvedCourses = [];
 
-  return contributorCourses
+  for (const contributorCourse of contributorCourses) {
+    const id = await contributorCourse.id;
+    const contributor = await contributorCourse.contributor;
+
+    const course = await contributorCourse.course;
+    resolvedCourses.push({id, contributor:contributor, course: course}); 
+  }
+
+  return resolvedCourses
     .filter(filterFn)
     .map((e: ContributorCourse) => e.contributor);
 }

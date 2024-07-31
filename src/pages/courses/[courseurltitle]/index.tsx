@@ -68,7 +68,7 @@ export default function CoursePage(data: {
 
   const course: Course = deserializeModel(Course, data.course);
   const lessons: Lesson[] = deserializeModel(Lesson, data.lessons);
-  const tags: Tag[] = deserializeModel(Tag, data.tags);
+  const tags: Tag[] = data.tags;
   const contributors: Contributor[] = deserializeModel(
     Contributor,
     data.contributors
@@ -183,7 +183,7 @@ export default function CoursePage(data: {
                   overflow="hidden"
                   width="100%"
                   maxHeight="350px"
-                  src={course.image || ""}
+                  src={course?.image.substring(6) || ""}
                   alt={course.imageAltText || ""}
                   borderRadius="8px"
                 />
@@ -331,7 +331,7 @@ export async function getStaticPaths(
 ): Promise<GetStaticPathsResult<CoursePageParams>> {
   const { DataStore } = withSSRContext(context);
   const courses: Course[] = await DataStore.query(Course, (c: any) =>
-    c.published("eq", true)
+    c.published.eq(true)
   );
 
   return {

@@ -503,8 +503,8 @@ export default function LearnFooterMobile(props) {
           position="relative"
           borderRadius="100px"
           padding="0px 0px 0px 0px"
-          isHover={false}
-          isActive={false}
+          ishover="false"
+          isactive="false"
           {...getOverrideProps(overrides, "LearnSocialBorderless33513269")}
         ></LearnSocialBorderless>
         <LearnSocialBorderless
@@ -514,8 +514,8 @@ export default function LearnFooterMobile(props) {
           position="relative"
           borderRadius="100px"
           padding="0px 0px 0px 0px"
-          isHover={false}
-          isActive={false}
+          ishover="false"
+          isactive="false"
           {...getOverrideProps(overrides, "LearnSocialBorderless33513270")}
         ></LearnSocialBorderless>
         <LearnSocialBorderless
@@ -525,8 +525,8 @@ export default function LearnFooterMobile(props) {
           position="relative"
           borderRadius="100px"
           padding="0px 0px 0px 0px"
-          isHover={false}
-          isActive={false}
+          ishover="false"
+          isactive="false"
           {...getOverrideProps(overrides, "LearnSocialBorderless33513271")}
         ></LearnSocialBorderless>
         <LearnSocialBorderless
@@ -536,8 +536,8 @@ export default function LearnFooterMobile(props) {
           position="relative"
           borderRadius="100px"
           padding="0px 0px 0px 0px"
-          isHover={false}
-          isActive={false}
+          ishover="false"
+          isactive="false"
           {...getOverrideProps(overrides, "LearnSocialBorderless33513272")}
         ></LearnSocialBorderless>
       </Flex>
