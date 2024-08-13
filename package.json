@@ -43,7 +43,7 @@
     "semver": "7.5.2",
     "postcss": "8.4.31",
     "browserify-sign": "4.2.2",
-    "axios": "^1.6.0",
+    "axios": "^1.7.4",
     "ws": "7.5.10"
   }
 }
