@@ -1,1 +1,0 @@
-export { LearnFooter } from './LearnFooter';

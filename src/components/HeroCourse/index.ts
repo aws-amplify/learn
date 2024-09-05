@@ -1,1 +1,0 @@
-export { HeroCourse } from './HeroCourse'

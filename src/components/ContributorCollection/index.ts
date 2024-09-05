@@ -1,1 +1,0 @@
-export { ContributorCollection } from "./ContributorCollection";

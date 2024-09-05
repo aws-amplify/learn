@@ -1,1 +1,0 @@
-export { CourseContributors } from './CourseContributors';

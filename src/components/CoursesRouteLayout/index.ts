@@ -1,1 +1,0 @@
-export { CoursesRouteLayout } from './CoursesRouteLayout';
