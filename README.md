@@ -1,5 +1,7 @@
 # Amplify Learn
 
+** This project has been archived. Please check out the (Amplify docs site)[https://github.com/aws-amplify/docs].**
+
 This is the repo for https://amplify.aws/learn, which is a site containing courses on AWS Amplify created by the Developer Advocacy team working on the product.
 
 The site is hosted on [Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html) and built using these technologies:
